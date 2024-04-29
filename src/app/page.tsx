@@ -1,3 +1,9 @@
+import Datas from "@/components/Datas";
+
 export default function Home() {
-  return <>Home페이지</>;
+  return (
+    <>
+      <Datas />
+    </>
+  );
 }
