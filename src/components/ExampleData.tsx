@@ -9,7 +9,7 @@ function ExampleData() {
 
   console.log(data);
 
-  return <div>asdfasdfadsfsadfsadfasdf</div>;
+  return <div>{data?.data.title}</div>;
 }
 
 export default ExampleData;
