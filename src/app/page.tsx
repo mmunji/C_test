@@ -1,9 +1,9 @@
-import Datas from "@/components/Datas";
+import ExampleData from "@/components/ExampleData";
 
 export default function Home() {
   return (
     <>
-      <Datas />
+      <ExampleData />
     </>
   );
 }

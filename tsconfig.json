@@ -26,7 +26,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "src/react-query/HydratedPosts.jsx"
+    "src/react-query/HydratedExample.jsx"
   ],
   "exclude": ["node_modules"]
 }
