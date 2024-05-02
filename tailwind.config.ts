@@ -8,6 +8,23 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontSize: {
+        "3xl": "34px",
+        "2xl": "28px",
+        xl: "24px",
+        md: "20px",
+        regular: "16px",
+        sm: "14px",
+        xs: "12px",
+        E_lg: "48px",
+        E_md: "16px",
+        E_sm: "12px",
+      },
+      fontWeight: {
+        Bold: "700",
+        Medium: "500",
+        Regular: "400",
+      },
       colors: {
         Black: "#222",
         D1_Gray: "#2E2C2B",
@@ -39,6 +56,7 @@ const config: Config = {
         Opacity_W15: "rgba(255, 255, 255, 0.15)",
         Opacity_W20: "rgba(255, 255, 255, 0.20)",
       },
+
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
