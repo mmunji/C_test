@@ -8,6 +8,12 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      screens: {
+        Mobile: "360px",
+        Tablet: "768px",
+        Laptop: "1280px",
+        Desktop: "1920px",
+      },
       fontSize: {
         "3xl": "2.125rem",
         "2xl": "1.75rem",
