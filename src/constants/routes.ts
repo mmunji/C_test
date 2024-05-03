@@ -1,6 +1,6 @@
 const ROUTES = {
   MAIN: "/",
-  Detail: "/detail",
+  DETAIL: "/detail",
   MY: "/my",
 };
 

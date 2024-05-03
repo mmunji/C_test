@@ -8,25 +8,36 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      screens: {
+        Mobile: "360px",
+        Tablet: "768px",
+        Laptop: "1280px",
+        Desktop: "1920px",
+      },
       fontSize: {
-        "3xl": "34px",
-        "2xl": "28px",
-        xl: "24px",
-        md: "20px",
-        regular: "16px",
-        sm: "14px",
-        xs: "12px",
-        E_lg: "48px",
-        E_md: "16px",
-        E_sm: "12px",
+        "3xl": "2.125rem",
+        "2xl": "1.75rem",
+        xl: "1.5rem",
+        md: "1.25rem",
+        regular: "1rem",
+        sm: "0.875rem",
+        xs: "0.75rem",
+        E_lg: "3rem",
+        E_md: "1rem",
+        E_sm: "0.75rem",
       },
       fontWeight: {
         Bold: "700",
         Medium: "500",
         Regular: "400",
       },
+      fontFamily: {
+        appleSDGothicNeo: ["var(--font-appleSDGothicNeo)"],
+        pretendard: ["var(--font-pretendard)"],
+      },
       colors: {
-        Black: "#222",
+        BG: "#262626",
+        Black: "#1e1e1e",
         D1_Gray: "#2E2C2B",
         D2_Gray: "#403e3c",
         D3_Gray: "#545250",
@@ -56,7 +67,6 @@ const config: Config = {
         Opacity_W15: "rgba(255, 255, 255, 0.15)",
         Opacity_W20: "rgba(255, 255, 255, 0.20)",
       },
-
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
