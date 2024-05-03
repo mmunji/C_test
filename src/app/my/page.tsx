@@ -1,5 +1,5 @@
 import React from "react";
 
 export default function My() {
-  return <div>my page</div>;
+  return <div className="h-[2000px] bg-BG">my page</div>;
 }
