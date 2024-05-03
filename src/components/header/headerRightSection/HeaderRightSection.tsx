@@ -1,5 +1,9 @@
 import React from "react";
 
+import useLoggedInStore from "@/stores/useLoggedIn";
+
+import HeaderAuthButtons from "./HeaderAuthButtons";
+import HeaderAuthedUserSection from "./HeaderAuthedUserSection";
 import HeaderSearchInput from "./HeaderSearchInput";
 
 interface HeaderRightSectionProps {
@@ -9,16 +13,12 @@ interface HeaderRightSectionProps {
 export default function HeaderRightSection({
   hasScrolledPast,
 }: HeaderRightSectionProps) {
-  return (
-    <section className="flex gap-8">
-      <HeaderSearchInput hasScrolledPast={hasScrolledPast} />
-      <button className="h-10 p-2 text-regular font-Medium text-White">
-        로그인
-      </button>
+  const { loggedIn, setLoggedIn } = useLoggedInStore();
 
-      <button className="rounded-[8px] bg-Primary px-4 text-regular font-Medium text-White">
-        회원가입
-      </button>
+  return (
+    <section className="flex h-10 items-center gap-8">
+      <HeaderSearchInput hasScrolledPast={hasScrolledPast} />
+      {loggedIn ? <HeaderAuthedUserSection /> : <HeaderAuthButtons />}
     </section>
   );
 }
