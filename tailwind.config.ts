@@ -9,16 +9,16 @@ const config: Config = {
   theme: {
     extend: {
       fontSize: {
-        "3xl": "34px",
-        "2xl": "28px",
-        xl: "24px",
-        md: "20px",
-        regular: "16px",
-        sm: "14px",
-        xs: "12px",
-        E_lg: "48px",
-        E_md: "16px",
-        E_sm: "12px",
+        "3xl": "2.125rem",
+        "2xl": "1.75rem",
+        xl: "1.5rem",
+        md: "1.25rem",
+        regular: "1rem",
+        sm: "0.875rem",
+        xs: "0.75rem",
+        E_lg: "3rem",
+        E_md: "1rem",
+        E_sm: "0.75rem",
       },
       fontWeight: {
         Bold: "700",
