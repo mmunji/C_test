@@ -18,7 +18,11 @@ export default function HeaderRightSection({
   return (
     <section className="flex h-10 items-center gap-8">
       <HeaderSearchInput hasScrolledPast={hasScrolledPast} />
-      {loggedIn ? <HeaderAuthedUserSection /> : <HeaderAuthButtons />}
+      {loggedIn ? (
+        <HeaderAuthedUserSection hasScrolledPast={hasScrolledPast} />
+      ) : (
+        <HeaderAuthButtons hasScrolledPast={hasScrolledPast} />
+      )}
     </section>
   );
 }
