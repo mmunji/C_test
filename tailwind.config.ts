@@ -31,6 +31,10 @@ const config: Config = {
         Medium: "500",
         Regular: "400",
       },
+      fontFamily: {
+        appleSDGothicNeo: ["var(--font-appleSDGothicNeo)"],
+        pretendard: ["var(--font-pretendard)"],
+      },
       colors: {
         BG: "#262626",
         Black: "#1e1e1e",
@@ -63,7 +67,6 @@ const config: Config = {
         Opacity_W15: "rgba(255, 255, 255, 0.15)",
         Opacity_W20: "rgba(255, 255, 255, 0.20)",
       },
-
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
