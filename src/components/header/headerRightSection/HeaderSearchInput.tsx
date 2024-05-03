@@ -20,18 +20,18 @@ export default function HeaderSearchInput({
         hasScrolledPast ? (
           <input
             placeholder="‘파묘’ 궁금하지 않으세요?"
-            className="flex h-10 w-full items-start rounded-[20px] bg-[#2e2c2b] pl-[64px] pr-[24px] font-Medium text-L_Gray outline-none placeholder:text-L_Gray"
+            className="flex h-10 w-full items-start rounded-[20px] border-D2_Gray bg-[#2e2c2b] pl-[64px] pr-[24px] font-Medium text-L_Gray outline-none placeholder:text-L_Gray hover:border"
           />
         ) : (
           <input
             placeholder="‘파묘’ 궁금하지 않으세요?"
-            className="flex h-10 w-full items-start rounded-[20px] border border-[[rgba(255,255,255,0.70)]] bg-transparent pl-[64px] pr-[24px] font-Medium text-[rgba(255,255,255,0.70)] outline-none placeholder:text-[rgba(255,255,255,0.70)]"
+            className="flex h-10 w-full items-start rounded-[20px] border border-[rgba(255,255,255,0.6)] bg-transparent pl-[64px] pr-[24px] font-Medium text-[rgba(255,255,255,0.6)] outline-none placeholder:text-[rgba(255,255,255,0.6)] hover:border-Silver"
           />
         )
       ) : (
         <input
           placeholder="‘파묘’ 궁금하지 않으세요?"
-          className="flex h-10 w-full items-start rounded-[20px] bg-[#2e2c2b] pl-[64px] pr-[24px] font-Medium text-L_Gray outline-none placeholder:text-L_Gray"
+          className="flex h-10 w-full items-start rounded-[20px] border-D2_Gray bg-[#2e2c2b] pl-[64px] pr-[24px] font-Medium text-L_Gray outline-none placeholder:text-L_Gray hover:border"
         />
       )}
       <Image

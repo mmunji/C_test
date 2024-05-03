@@ -12,7 +12,7 @@ function HeaderAuthButtons({ hasScrolledPast }: HeaderAuthButtonsProps) {
   return (
     <section className="flex gap-8">
       <button
-        className={`h-10 p-2 text-regular font-Medium ${pathname === ROUTES.DETAIL ? (hasScrolledPast ? "text-White" : "text-[rgba(255,255,255,0.70)]") : "text-White"}`}
+        className={`h-10 p-2 text-regular font-Medium ${pathname === ROUTES.DETAIL ? (hasScrolledPast ? "text-White" : "text-[rgba(255,255,255,0.6)]") : "text-White"}`}
       >
         로그인
       </button>
