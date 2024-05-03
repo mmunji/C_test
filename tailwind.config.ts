@@ -26,7 +26,8 @@ const config: Config = {
         Regular: "400",
       },
       colors: {
-        Black: "#222",
+        BG: "#262626",
+        Black: "#1e1e1e",
         D1_Gray: "#2E2C2B",
         D2_Gray: "#403e3c",
         D3_Gray: "#545250",
