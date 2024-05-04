@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React from "react";
 
-import { Fire } from "../../../../public/icons";
+import { Fire } from "../../../../../public/icons";
 
 interface HeaderSearchDropdownProps {
   inputValue: string;

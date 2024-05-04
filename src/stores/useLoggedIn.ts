@@ -9,7 +9,7 @@ interface UseLoggedInStore {
 const useLoggedInStore = create(
   persist<UseLoggedInStore>(
     (set, _get) => ({
-      loggedIn: true,
+      loggedIn: false,
       setLoggedIn: (authState: boolean) => set(() => ({ loggedIn: authState })),
     }),
     {
