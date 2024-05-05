@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import React, { useState } from "react";
+import React, { Dispatch, SetStateAction, useState } from "react";
 
 import ROUTES from "@/constants/routes";
 
@@ -10,14 +10,20 @@ import RenderSearchInput from "./headerSearchInputSection/RenderSearchInput";
 
 interface HeaderSearchInputProps {
   hasScrolledPast: boolean;
+  inputValue: string;
+  setInputValue: Dispatch<SetStateAction<string>>;
+  inputFocused: boolean;
+  setInputFocused: Dispatch<SetStateAction<boolean>>;
 }
 
 export default function HeaderSearchInputSection({
   hasScrolledPast,
+  inputValue,
+  setInputValue,
+  inputFocused,
+  setInputFocused,
 }: HeaderSearchInputProps) {
   const pathname = usePathname();
-  const [inputFocused, setInputFocused] = useState(false);
-  const [inputValue, setInputValue] = useState("");
 
   return (
     <div className="relative w-fit Laptop:w-[360px]">

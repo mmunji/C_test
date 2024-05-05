@@ -18,10 +18,10 @@ export default function useHeaderScrollThreshold() {
       }
     };
 
-    window.addEventListener("scroll", handleScroll);
+    addEventListener("scroll", handleScroll);
 
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      removeEventListener("scroll", handleScroll);
     };
   }, [hasScrolledPast]);
 
