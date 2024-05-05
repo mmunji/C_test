@@ -2,6 +2,7 @@ import "./globals.css";
 
 import type { Metadata } from "next";
 
+import Header from "@/components/header/Header";
 import ReactQueryProvier from "@/react-query/ReactQueryProvider";
 import { appleSDGothicNeo, pretendard } from "@/utils/fonts";
 
@@ -20,7 +21,10 @@ export default function RootLayout({
       <body
         className={`${pretendard.variable} ${appleSDGothicNeo.variable} font-pretendard`}
       >
-        <ReactQueryProvier>{children}</ReactQueryProvier>
+        <ReactQueryProvier>
+          <Header />
+          {children}
+        </ReactQueryProvier>
       </body>
     </html>
   );
