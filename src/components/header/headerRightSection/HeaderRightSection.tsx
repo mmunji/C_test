@@ -7,7 +7,7 @@ import useLoggedInStore from "@/stores/useLoggedIn";
 import HeaderAuthButtons from "./HeaderAuthButtons";
 import HeaderAuthedUserSection from "./HeaderAuthedUserSection";
 import HeaderSearchInputSection from "./HeaderSearchInputSection";
-import MobileHeaderRightSection from "./MobileHeaderRightSection";
+import MobileHeaderRightSection from "./mobileHeaderRightSection/MobileHeaderRightSection";
 
 interface HeaderRightSectionProps {
   hasScrolledPast: boolean;

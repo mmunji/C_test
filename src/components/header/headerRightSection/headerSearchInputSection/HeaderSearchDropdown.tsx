@@ -23,7 +23,10 @@ export default function HeaderSearchDropdown({
         </div>
       )}
       {arr.map((el, i) => (
-        <li key={i} className="py-1 pl-[60px] pr-4 font-Regular text-Silver">
+        <li
+          key={i}
+          className="cursor-pointer py-1 pl-[60px] pr-4 font-Regular text-Silver"
+        >
           {el}
         </li>
       ))}

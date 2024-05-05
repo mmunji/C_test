@@ -1,22 +1,47 @@
 import Image from "next/image";
-import React, { Dispatch, SetStateAction, useState } from "react";
+import React, {
+  ChangeEvent,
+  Dispatch,
+  SetStateAction,
+  useEffect,
+  useRef,
+} from "react";
 
-import { Search, WhiterSearch } from "../../../../../public/icons";
+import { Search } from "../../../../../public/icons";
 
 interface MobileHeaderInputSectionProps {
+  clickSearchIcon: boolean;
   setClickSearchIcon: Dispatch<SetStateAction<boolean>>;
+  inputFocused: boolean;
+  setInputFocused: Dispatch<SetStateAction<boolean>>;
+  inputValue: string;
+  setInputValue: Dispatch<SetStateAction<string>>;
 }
 
 export default function MobileHeaderInputSection({
   setClickSearchIcon,
+  inputFocused,
+  setInputFocused,
+  inputValue,
+  setInputValue,
+  clickSearchIcon,
 }: MobileHeaderInputSectionProps) {
-  const [inputFocused, setInputFocused] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (clickSearchIcon) inputRef.current?.focus();
+  }, [clickSearchIcon]);
 
   return (
     <>
       <div className="relative w-full">
         <input
+          ref={inputRef}
           type="text"
+          value={inputValue}
+          onChange={(e: ChangeEvent<HTMLInputElement>) =>
+            setInputValue(e.target.value)
+          }
           placeholder="‘파묘’ 궁금하지 않으세요?"
           onFocus={() => setInputFocused(true)}
           onBlur={() => setInputFocused(false)}
