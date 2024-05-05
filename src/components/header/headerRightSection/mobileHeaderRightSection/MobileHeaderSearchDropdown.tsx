@@ -18,7 +18,7 @@ export default function MobilHeaderSearchDropdown({
 }: MobilHeaderSearchDropdownProps) {
   return (
     <div
-      className={`fixed left-0 top-[64px] min-h-[calc(100vh-40px)] w-full bg-BG pb-3 ${inputValue ? "Tablet:pt-2" : "pt-1 Tablet:pt-4"} Tablet:top-[60px] Tablet:min-h-[calc(100vh-60px)]`}
+      className={`fixed left-0 top-0 min-h-[100vh] w-full bg-BG ${inputValue ? "pt-16 Tablet:pt-[72px]" : "pt-[68px] Tablet:pt-20"}`}
     >
       {inputFocused && !inputValue && (
         <div className="mb-2 flex gap-1 px-6 py-1">

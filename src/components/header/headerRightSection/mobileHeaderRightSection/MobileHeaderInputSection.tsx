@@ -34,7 +34,7 @@ export default function MobileHeaderInputSection({
 
   return (
     <>
-      <div className="relative w-full">
+      <div className="relative z-10 w-full">
         <input
           ref={inputRef}
           type="text"
@@ -56,7 +56,7 @@ export default function MobileHeaderInputSection({
       </div>
       <p
         onClick={() => setClickSearchIcon(false)}
-        className="flex-shrink-0 cursor-pointer p-2 text-sm font-Medium text-Gray_Orange Tablet:text-regular"
+        className="z-10 flex-shrink-0 cursor-pointer p-2 text-sm font-Medium text-Gray_Orange Tablet:text-regular"
       >
         취소
       </p>
