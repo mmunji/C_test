@@ -57,7 +57,12 @@ function MobileHeaderRightSection({
           />
         </>
       )}
-      {inputFocused && <MobileHeaderSearchDropdown inputValue={inputValue} />}
+      {clickSearchIcon && (
+        <MobileHeaderSearchDropdown
+          inputValue={inputValue}
+          inputFocused={inputFocused}
+        />
+      )}
     </section>
   );
 }
