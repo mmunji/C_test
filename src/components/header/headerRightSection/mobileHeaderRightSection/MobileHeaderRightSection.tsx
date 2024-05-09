@@ -1,12 +1,6 @@
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import React, {
-  Dispatch,
-  SetStateAction,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import React, { Dispatch, SetStateAction, useState } from "react";
 
 import ROUTES from "@/constants/routes";
 
@@ -43,7 +37,7 @@ function MobileHeaderRightSection({
           }}
         />
       ) : (
-        <>
+        <section className="flex Tablet:gap-4">
           <Image
             src={WhiterSearch}
             alt="검색"
@@ -55,7 +49,7 @@ function MobileHeaderRightSection({
             alt="유저"
             className="m-2 cursor-pointer Laptop:hidden"
           />
-        </>
+        </section>
       )}
       {clickSearchIcon && (
         <MobileHeaderSearchDropdown
