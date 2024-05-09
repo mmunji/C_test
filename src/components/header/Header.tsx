@@ -35,7 +35,7 @@ export default function Header() {
             src={BackArrow}
             alt="뒤로 가기"
             onClick={() => router.back()}
-            className="cursor-pointer Tablet:hidden"
+            className="m-2 cursor-pointer Tablet:hidden"
           />
         )}
 
