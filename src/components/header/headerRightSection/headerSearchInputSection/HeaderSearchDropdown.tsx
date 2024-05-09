@@ -25,7 +25,7 @@ export default function HeaderSearchDropdown({
       {arr.map((el, i) => (
         <li
           key={i}
-          className="max-w-[calc(100%-32px)] cursor-pointer overflow-hidden text-ellipsis whitespace-nowrap py-1 pl-[60px] font-Regular text-Silver"
+          className="max-w-[calc(100%-32px)] cursor-pointer overflow-hidden text-ellipsis whitespace-nowrap py-1 pl-[60px] font-Regular text-Silver hover:underline"
         >
           {el}
         </li>
