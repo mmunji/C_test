@@ -53,7 +53,7 @@ function MobileHeaderRightSection({
           <Image
             src={User}
             alt="유저"
-            className="m-2 cursor-pointer Tablet:hidden"
+            className="m-2 cursor-pointer Laptop:hidden"
           />
         </>
       )}
