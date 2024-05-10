@@ -2,7 +2,7 @@ import React from "react";
 
 import DropdownContext, {
   useDropdownContext,
-} from "@/components/dropdown/dropdownContext";
+} from "@/components/dropdown/DropdownContext";
 import useDropdown from "@/components/dropdown/useDropdown";
 import useOutsideClick from "@/hooks/useOutsideClick";
 
