@@ -5,6 +5,7 @@
 body {
   letter-spacing: -0.03em;
   line-height: 150%;
+  @apply bg-BG font-pretendard text-Silver;
 }
 
 @layer components {
