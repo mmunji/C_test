@@ -26,7 +26,7 @@ export default function DetailBannerBottomRight() {
       <Image
         src={DetailPoster}
         alt="포스터"
-        className="Laptop:ml-6 Laptop:h-[258px] Laptop:w-[172px] Desktop:ml-9 Desktop:h-[360px] Desktop:w-60"
+        className="rounded-[12px] Laptop:ml-6 Laptop:h-[258px] Laptop:w-[172px] Desktop:ml-9 Desktop:h-[360px] Desktop:w-60"
       />
     </section>
   );

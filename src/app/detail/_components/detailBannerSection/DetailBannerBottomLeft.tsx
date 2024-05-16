@@ -2,7 +2,7 @@ import Image from "next/image";
 import React from "react";
 
 import { Star, TMDB } from "../../../../../public/icons";
-import { movieInfo } from "./fakeData";
+import { movieInfo } from "../../fakeData";
 
 export default function DetailBannerBottomLeft() {
   return (
