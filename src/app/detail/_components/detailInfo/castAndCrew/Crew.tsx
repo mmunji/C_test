@@ -11,10 +11,10 @@ export default function Crew() {
   const [swiper, setSwiper] = useState<SwiperClass>();
 
   const handlePrev = () => {
-    swiper?.slidePrev();
+    swiper?.slideTo(swiper.activeIndex - 6);
   };
   const handleNext = () => {
-    swiper?.slideNext();
+    swiper?.slideTo(swiper.activeIndex + 6);
   };
 
   return (
