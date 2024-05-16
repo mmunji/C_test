@@ -34,3 +34,4 @@ export { default as WhiterSearch } from "./whiter-search.svg";
 export { default as WritePencil } from "./write-pencil.svg";
 export { default as Checkbox } from "./checkbox.svg";
 export { default as CheckboxFill } from "./checkbox-fill.svg";
+export { default as CaretDownMd } from "./caret-down-md.svg";
