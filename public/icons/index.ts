@@ -1,3 +1,4 @@
+/* eslint-disable simple-import-sort/exports */
 // export { default as BackArrow } from "./back-arrow.svg";
 export { default as Fire } from "./best_fire.svg";
 export { default as BinHeart } from "./bin_heart.svg";
@@ -31,3 +32,5 @@ export { default as WhiteSearch } from "./white-search.svg";
 export { default as WhiteStart } from "./white-start.svg";
 export { default as WhiterSearch } from "./whiter-search.svg";
 export { default as WritePencil } from "./write-pencil.svg";
+export { default as Checkbox } from "./checkbox.svg";
+export { default as CheckboxFill } from "./checkbox-fill.svg";
