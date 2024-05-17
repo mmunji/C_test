@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import Image from "next/image";
 import React, {
   PropsWithChildren,
@@ -24,6 +25,7 @@ interface WithChildren {
 }
 interface ModalMainProps {
   isAlertModal: boolean;
+  hasAnimation?: boolean;
   onClose: () => void;
 }
 interface ModalButtonProps extends WithChildren {
@@ -244,6 +246,7 @@ function ModalMain({
   children,
   onClose,
   isAlertModal,
+  hasAnimation = true,
 }: ModalMainProps & PropsWithChildren) {
   const {
     isChecked,
@@ -300,24 +303,30 @@ function ModalMain({
       }}
     >
       <Portal selector="portal">
-        <div className="absolute bottom-0 left-0 right-0 top-0 flex items-center justify-center bg-black/40 backdrop-blur-[4px]">
-          <div
-            ref={ref}
-            className={`${isAlertModal ? "gap-9 px-12 pb-10 pt-11" : hasLoginModal.current ? "px-10 py-16" : "gap-7 px-12 py-10"} z-10 flex flex-col items-center gap-7 rounded-xl bg-D1_Gray`}
-          >
-            {content}
-            {checkbox.length > 0 && buttons.length > 0 && (
-              <div className="flex w-[372px] flex-col items-center justify-center gap-5">
-                <div className="flex items-center gap-2">{checkbox}</div>
-                <div className="flex w-full gap-3">{buttons}</div>
-              </div>
-            )}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: hasAnimation ? 0.2 : 0 }}
+        >
+          <div className="absolute bottom-0 left-0 right-0 top-0 flex items-center justify-center bg-black/40 backdrop-blur-[4px]">
+            <div
+              ref={ref}
+              className={`${isAlertModal ? "gap-9 px-12 pb-10 pt-11" : hasLoginModal.current ? "px-10 py-16" : "gap-7 px-12 py-10"} z-10 flex flex-col items-center gap-7 rounded-xl bg-D1_Gray`}
+            >
+              {content}
+              {checkbox.length > 0 && buttons.length > 0 && (
+                <div className="flex w-[372px] flex-col items-center justify-center gap-5">
+                  <div className="flex items-center gap-2">{checkbox}</div>
+                  <div className="flex w-full gap-3">{buttons}</div>
+                </div>
+              )}
 
-            {!checkbox.length && buttons.length > 0 && (
-              <div className="flex w-[372px] gap-3">{buttons}</div>
-            )}
+              {!checkbox.length && buttons.length > 0 && (
+                <div className="flex w-[372px] gap-3">{buttons}</div>
+              )}
+            </div>
           </div>
-        </div>
+        </motion.div>
       </Portal>
     </ModalContext.Provider>
   );
