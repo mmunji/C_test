@@ -1,11 +1,6 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
-import React, {
-  PropsWithChildren,
-  ReactElement,
-  useRef,
-  useState,
-} from "react";
+import React, { ReactElement, useRef, useState } from "react";
 
 import ModalContext, { useModalContext } from "@/components/modal/ModalContext";
 import Portal from "@/components/modal/portal";
@@ -26,7 +21,7 @@ import {
 interface WithChildren {
   children: React.ReactNode;
 }
-interface ModalMainProps {
+interface ModalMainProps extends WithChildren {
   isAlertModal: boolean;
   hasAnimation?: boolean;
   onClose: () => void;
@@ -310,7 +305,7 @@ function ModalMain({
   onClose,
   isAlertModal,
   hasAnimation = true,
-}: ModalMainProps & PropsWithChildren) {
+}: ModalMainProps) {
   const {
     isChecked,
     toggleChceked,
