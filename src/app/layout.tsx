@@ -18,7 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${pretendard.variable} ${appleSDGothicNeo.variable} font-pretendard`}
+        className={`${pretendard.variable} ${appleSDGothicNeo.variable} font-pretendard `}
       >
         <ReactQueryProvier>{children}</ReactQueryProvier>
       </body>
