@@ -1,14 +1,19 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useCallback, useState } from "react";
 
 export default function useModal() {
   const [isChecked, setIsChecked] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [detailedReason, setDetailedReason] = useState("");
 
-  const toggleChceked = () => setIsChecked(!isChecked);
-  const onDetailedReasonChange = (e: ChangeEvent<HTMLTextAreaElement>) =>
-    setDetailedReason(e.target.value);
-  const onSelectedIndexChange = (index: number) => setSelectedIndex(index);
+  const toggleChceked = useCallback(() => setIsChecked((prev) => !prev), []);
+  const onDetailedReasonChange = useCallback(
+    (e: ChangeEvent<HTMLTextAreaElement>) => setDetailedReason(e.target.value),
+    [],
+  );
+  const onSelectedIndexChange = useCallback(
+    (index: number) => setSelectedIndex(index),
+    [],
+  );
 
   return {
     isChecked,
