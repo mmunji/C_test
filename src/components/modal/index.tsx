@@ -162,7 +162,7 @@ function ModalButton({ children, onClick }: ModalButtonProps) {
   const checkDisabled = () => {
     if (hasCheckbox) return !isChecked;
     if (hasReport) {
-      if (selectedIndex && selectedIndex < 5) return false;
+      if (selectedIndex && selectedIndex < REPORT_TYPE.length - 1) return false;
       if (selectedIndex && detailedReason) return false;
       return true;
     }
@@ -228,7 +228,7 @@ function ModalReport({}: ModalReportProps) {
     if (isOpen) toggleDropdown();
   });
   const handleSelectedIndexChange = (index: number) => {
-    if (index === 5) textareaRef.current?.focus();
+    if (index === REPORT_TYPE.length - 1) textareaRef.current?.focus();
     onSelectedIndexChange(index);
     toggleDropdown();
   };
@@ -266,7 +266,7 @@ function ModalReport({}: ModalReportProps) {
                 if (!index) return;
                 return (
                   <button
-                    className="rounded-lg px-3 py-2 text-left Text-m-Regular hover:bg-D2_Gray active:bg-D3_Gray"
+                    className={`${selectedIndex === index ? "bg-D2_Gray" : "bg-none"} rounded-lg px-3 py-2 text-left Text-m-Regular hover:bg-D2_Gray active:bg-D3_Gray`}
                     onClick={() => handleSelectedIndexChange(index)}
                     key={type}
                   >
