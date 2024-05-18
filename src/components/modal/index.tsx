@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
-import React, { ReactElement, useRef, useState } from "react";
+import React, { ReactElement, useEffect, useRef, useState } from "react";
 
 import ModalContext, { useModalContext } from "@/components/modal/ModalContext";
 import Portal from "@/components/modal/portal";
@@ -228,10 +228,14 @@ function ModalReport({}: ModalReportProps) {
     if (isOpen) toggleDropdown();
   });
   const handleSelectedIndexChange = (index: number) => {
-    if (index === REPORT_TYPE.length - 1) textareaRef.current?.focus();
     onSelectedIndexChange(index);
     toggleDropdown();
   };
+
+  useEffect(() => {
+    if (selectedIndex === REPORT_TYPE.length - 1) textareaRef.current?.focus();
+  }, [selectedIndex]);
+
   return (
     <div className="flex w-[360px] flex-col gap-6">
       <div className="flex w-full flex-col gap-2">
