@@ -15,16 +15,20 @@ const config: Config = {
         Desktop: "1920px",
       },
       fontSize: {
-        "3xl": "2.125rem",
-        "2xl": "1.75rem",
-        xl: "1.5rem",
-        md: "1.25rem",
-        regular: "1rem",
-        sm: "0.875rem",
-        xs: "0.75rem",
-        E_lg: "3rem",
-        E_md: "1rem",
-        E_sm: "0.75rem",
+        "3xl": "2.125rem" /* 34px */,
+        "2xl": "1.75rem" /* 28px */,
+        xl: "1.5rem" /* 24px */,
+        md: "1.25rem" /* 20px */,
+        regular: "1rem" /* 16px */,
+        sm: "0.875rem" /* 14px */,
+        xs: "0.75rem" /* 12px */,
+        E_lg: "3rem" /* 48px */,
+        E_md: "1rem" /* 16px */,
+        E_sm: "0.75rem" /* 12px */,
+      },
+      lineHeight: {
+        140: "140%",
+        150: "150%",
       },
       fontWeight: {
         Bold: "700",
@@ -68,12 +72,35 @@ const config: Config = {
         Opacity_W20: "rgba(255, 255, 255, 0.20)",
       },
       backgroundImage: {
+        "detail-gradient":
+          "linear-gradient(180deg, rgba(38, 38, 38, 0.00) 0%, #262626 100%)",
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
     },
   },
-  plugins: [],
+  plugins: [
+    ({ addUtilities }: any) => {
+      addUtilities({
+        ".Text-xxxl-Bold": {},
+        ".Text-xxl-Bold": {},
+        ".Text-xl-Bold": {},
+        ".Text-l-Bold": {},
+        ".Text-l-Medium": {},
+        ".Text-m-Bold": {},
+        ".Text-m-Medium": {},
+        ".Text-m-Regular": {},
+        ".Text-s-Bold": {},
+        ".Text-s-Medium": {},
+        ".Text-s-Regular": {},
+        ".Text-xs-Bold": {},
+        ".Text-xs-Regular": {},
+        ".Emoji-l": {},
+        ".Emoji-m": {},
+        ".Emoji-s": {},
+      });
+    },
+  ],
 };
 export default config;
