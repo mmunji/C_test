@@ -1,4 +1,10 @@
-import { ChangeEvent, createContext, useContext } from "react";
+import {
+  ChangeEvent,
+  createContext,
+  Dispatch,
+  SetStateAction,
+  useContext,
+} from "react";
 
 interface ModalContextType {
   isChecked: boolean;
@@ -11,6 +17,8 @@ interface ModalContextType {
   onSelectedIndexChange: (index: number) => void;
   onClose: () => void;
   isAlertModal: boolean;
+  isDropdownOpen: boolean;
+  setIsDropdownOpen: Dispatch<SetStateAction<boolean>>;
 }
 
 const ModalContext = createContext<ModalContextType | null>(null);

@@ -219,18 +219,55 @@ function ModalReport({}: ModalReportProps) {
     detailedReason,
     onDetailedReasonChange,
     onSelectedIndexChange,
+    isDropdownOpen,
+    setIsDropdownOpen,
   } = useModalContext();
-  const [isOpen, setIsOpen] = useState(false);
 
-  const toggleDropdown = () => setIsOpen(!isOpen);
+  const toggleDropdown = () => setIsDropdownOpen(!isDropdownOpen);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const ref = useOutsideClick(() => {
-    if (isOpen) toggleDropdown();
+    if (isDropdownOpen) toggleDropdown();
   });
   const handleSelectedIndexChange = (index: number) => {
     onSelectedIndexChange(index);
     toggleDropdown();
   };
+  const handleDropdownItemClick = (index: number) => {
+    handleSelectedIndexChange(index);
+    toggleDropdown();
+  };
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      let index: number;
+      switch (e.key) {
+        case "Escape":
+          setIsDropdownOpen(false);
+          break;
+        case "ArrowUp":
+          index =
+            !selectedIndex || selectedIndex === 1
+              ? REPORT_TYPE.length - 1
+              : selectedIndex - 1;
+          onSelectedIndexChange(index);
+          break;
+        case "ArrowDown":
+          index =
+            selectedIndex === REPORT_TYPE.length - 1 ? 1 : selectedIndex + 1;
+          onSelectedIndexChange(index);
+          break;
+        case "Enter":
+          e.preventDefault();
+          setIsDropdownOpen(false);
+          break;
+        default:
+          break;
+      }
+    };
+
+    if (isDropdownOpen) document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [isDropdownOpen, onSelectedIndexChange, selectedIndex, setIsDropdownOpen]);
 
   useEffect(() => {
     if (selectedIndex === REPORT_TYPE.length - 1) textareaRef.current?.focus();
@@ -238,40 +275,43 @@ function ModalReport({}: ModalReportProps) {
 
   return (
     <div className="flex w-[360px] flex-col gap-6">
-      <div className="flex w-full flex-col gap-2">
+      <div className="relative flex w-full flex-col gap-2">
         <label htmlFor="reportOption" className="pointer-events-none">
           신고 유형
         </label>
         <div
+          ref={ref}
           id="reportOption"
-          onClick={toggleDropdown}
-          className={`${isOpen ? "border-Primary" : "border-Gray"} relative flex w-full cursor-pointer items-center rounded-xl border px-5 py-2`}
+          className={`${isDropdownOpen ? "border-Primary" : "border-Gray"} flex w-full cursor-pointer items-center overflow-hidden rounded-xl border `}
         >
-          <span
-            className={`flex-1 text-left Text-m-Medium ${selectedIndex ? "text-Silver" : "text-Gray"}`}
+          <button
+            onClick={toggleDropdown}
+            type="button"
+            className="flex w-full items-center justify-center px-5 py-2"
           >
-            {selectedIndex
-              ? REPORT_TYPE[selectedIndex]
-              : "신고 유형을 선택해주세요."}
-          </span>
-          <Image
-            className="ml-2"
-            alt="caret-down"
-            src={CaretDownMd}
-            width={24}
-            height={24}
-          />
-          {isOpen && (
-            <div
-              ref={ref}
-              className="absolute left-0 top-[46px] flex w-[360px] flex-col gap-1 rounded-xl border border-D2_Gray bg-D1_Gray p-2 shadow-[0_4px_10px_0_rgba(0,0,0,0.3)]"
+            <span
+              className={`flex-1 text-left Text-m-Medium ${selectedIndex ? "text-Silver" : "text-Gray"}`}
             >
+              {selectedIndex
+                ? REPORT_TYPE[selectedIndex]
+                : "신고 유형을 선택해주세요."}
+            </span>
+            <Image
+              className="ml-2"
+              alt="caret-down"
+              src={CaretDownMd}
+              width={24}
+              height={24}
+            />
+          </button>
+          {isDropdownOpen && (
+            <div className="absolute left-0 top-[78px] flex w-[360px] flex-col gap-1 rounded-xl border border-D2_Gray bg-D1_Gray p-2 shadow-[0_4px_10px_0_rgba(0,0,0,0.3)]">
               {REPORT_TYPE.map((type, index) => {
                 if (!index) return;
                 return (
                   <button
                     className={`${selectedIndex === index ? "bg-D2_Gray" : "bg-none"} rounded-lg px-3 py-2 text-left Text-m-Regular hover:bg-D2_Gray active:bg-D3_Gray`}
-                    onClick={() => handleSelectedIndexChange(index)}
+                    onClick={() => handleDropdownItemClick(index)}
                     key={type}
                   >
                     {type}
@@ -317,6 +357,8 @@ function ModalMain({
     selectedIndex,
     onDetailedReasonChange,
     onSelectedIndexChange,
+    isDropdownOpen,
+    setIsDropdownOpen,
   } = useModal();
   const hasLoginModal = useRef(false);
   const hasReportModal = useRef(false);
@@ -349,6 +391,22 @@ function ModalMain({
   );
   const ref = useOutsideClick(onClose);
 
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      switch (e.key) {
+        case "Escape":
+          onClose();
+          break;
+        default:
+          break;
+      }
+    };
+    if (!isDropdownOpen) {
+      document.addEventListener("keydown", handleKeyDown);
+      return () => document.removeEventListener("keydown", handleKeyDown);
+    }
+  }, [onClose, isDropdownOpen]);
+
   return (
     <ModalContext.Provider
       value={{
@@ -362,6 +420,8 @@ function ModalMain({
         selectedIndex,
         onDetailedReasonChange,
         onSelectedIndexChange,
+        isDropdownOpen,
+        setIsDropdownOpen,
       }}
     >
       <Portal selector="portal">

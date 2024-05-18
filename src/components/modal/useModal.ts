@@ -4,6 +4,7 @@ export default function useModal() {
   const [isChecked, setIsChecked] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [detailedReason, setDetailedReason] = useState("");
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const toggleChceked = useCallback(() => setIsChecked((prev) => !prev), []);
   const onDetailedReasonChange = useCallback(
@@ -22,5 +23,7 @@ export default function useModal() {
     onDetailedReasonChange,
     detailedReason,
     onSelectedIndexChange,
+    isDropdownOpen,
+    setIsDropdownOpen,
   };
 }
