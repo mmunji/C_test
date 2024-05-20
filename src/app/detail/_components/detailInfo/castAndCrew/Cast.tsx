@@ -1,14 +1,14 @@
 import Image from "next/image";
-import React, { Dispatch, SetStateAction, useState } from "react";
+import React from "react";
 import { A11y, Navigation, Pagination, Scrollbar } from "swiper/modules";
-import { Swiper, SwiperClass, SwiperSlide } from "swiper/react";
+import { Swiper, SwiperSlide } from "swiper/react";
 
 import useCastAndCrewSwiper from "@/app/detail/_hooks/useCastAndCrewSwiper";
 import { castAndCrew } from "@/app/detail/fakeData";
 
 import { NextArrow, PrevArrow } from "../../../../../../public/icons";
 
-export default function Crew() {
+export default function Cast() {
   const {
     hovered,
     setHovered,

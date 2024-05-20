@@ -1,12 +1,18 @@
+"use client";
+
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 
 import { BottomArrow } from "../../../../../public/icons";
 
 export default function DetailStory() {
+  const [clicked, setClicked] = useState(false);
+
   return (
-    <div className=" w-1/2 rounded-[12px] bg-D1_Gray px-8 pt-7">
-      <p className="line-clamp-[8] max-h-[196px] overflow-hidden text-ellipsis">
+    <div className="h-fit w-full rounded-[12px] bg-Black px-4 pt-5 Laptop:w-1/2 Laptop:bg-D1_Gray Laptop:px-8 Laptop:pt-7">
+      <p
+        className={`Text-s-Regular Laptop:Text-m-Regular overflow-hidden ${clicked ? "h-fit" : "line-clamp-[3] h-[62px] text-ellipsis Laptop:line-clamp-[8] Laptop:h-[196px]"}`}
+      >
         세상에서 가장 달콤한 여정 좋은 일은 모두 꿈에서부터 시작된다! 마법사이자
         초콜릿 메이커 ‘윌리 웡카’의 꿈은 디저트의 성지, ‘달콤 백화점’에 자신만의
         초콜릿 가게를 여는 것. 가진 것이라고는 낡은 모자 가득한 꿈과 단돈
@@ -22,7 +28,12 @@ export default function DetailStory() {
         초콜릿 메이커가 되는 길은 험난하기만 한데…
       </p>
       <div className="my-1 flex h-6 items-center justify-center">
-        <Image src={BottomArrow} alt="더보기" className="cursor-pointer" />
+        <Image
+          src={BottomArrow}
+          alt="더보기"
+          className={`cursor-pointer select-none ${clicked ? "scale-[-1]" : "scale-1"} transition-transform`}
+          onClick={() => setClicked(!clicked)}
+        />
       </div>
     </div>
   );
