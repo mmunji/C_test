@@ -9,7 +9,7 @@ import { NextArrow, PrevArrow } from "../../../../../../public/icons";
 
 export default function Crew() {
   const [swiper, setSwiper] = useState<SwiperClass>();
-  const [update, setUpdate] = useState(0);
+  const [, setUpdate] = useState(0);
 
   const forceUpdate = () => setUpdate((prev) => prev + 1);
 

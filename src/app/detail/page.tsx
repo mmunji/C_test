@@ -8,7 +8,7 @@ export default function Detail() {
     <div className="bg-BG">
       <DetailBannerSection />
       <div className="flex h-[1000px] flex-col gap-[100px] Laptop:mx-[68px] Laptop:mb-[184px] Laptop:mt-7 Desktop:mx-auto Desktop:w-[1560px]">
-        <DetailInfo />
+        {/* <DetailInfo /> */}
       </div>
     </div>
   );
