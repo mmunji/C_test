@@ -4,7 +4,7 @@ import DetailBannerBottom from "./DetailBannerBottom";
 
 export default function DetailBannerSection() {
   return (
-    <section className="mt-[-64px] h-[300px] w-full Laptop:mt-[-80px] Laptop:h-[640px] Desktop:h-[816px]">
+    <section className="mt-[-64px] h-[380px] w-full Tablet:h-[420px] Laptop:mt-[-80px] Laptop:h-[640px] Desktop:h-[816px]">
       <div
         className="flex h-full w-full bg-cover bg-center bg-no-repeat "
         style={{

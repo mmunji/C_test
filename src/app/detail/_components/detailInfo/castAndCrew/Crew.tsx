@@ -9,6 +9,9 @@ import { NextArrow, PrevArrow } from "../../../../../../public/icons";
 
 export default function Crew() {
   const [swiper, setSwiper] = useState<SwiperClass>();
+  const [update, setUpdate] = useState(0);
+
+  const forceUpdate = () => setUpdate((prev) => prev + 1);
 
   const handlePrev = () => {
     swiper?.slideTo(swiper.activeIndex - 6);
@@ -23,6 +26,7 @@ export default function Crew() {
         modules={[Navigation, Pagination, Scrollbar, A11y]}
         spaceBetween={12}
         slidesPerView={6}
+        onSlideChange={forceUpdate}
         onSwiper={(e) => {
           setSwiper(e);
         }}
@@ -49,19 +53,23 @@ export default function Crew() {
         ))}
       </Swiper>
 
-      <button
-        onClick={handlePrev}
-        className="absolute left-0 top-1/2 z-10 flex h-11 w-11 translate-x-[-50%] translate-y-[-50%] items-center justify-center rounded-full bg-[#FFFFFF19]"
-      >
-        <Image src={PrevArrow} alt="이전" />
-      </button>
+      {swiper && !swiper.isBeginning && (
+        <button
+          onClick={handlePrev}
+          className="absolute left-0 top-1/2 z-10 flex h-11 w-11 translate-x-[-50%] translate-y-[-50%] items-center justify-center rounded-full bg-[#FFFFFF19]"
+        >
+          <Image src={PrevArrow} alt="이전" />
+        </button>
+      )}
 
-      <button
-        onClick={handleNext}
-        className="absolute right-0 top-1/2 z-10 flex h-11 w-11 translate-x-[50%] translate-y-[-50%] items-center justify-center rounded-full bg-[#FFFFFF19]"
-      >
-        <Image src={NextArrow} alt="다음" />
-      </button>
+      {swiper && !swiper.isEnd && (
+        <button
+          onClick={handleNext}
+          className="absolute right-0 top-1/2 z-10 flex h-11 w-11 translate-x-[50%] translate-y-[-50%] items-center justify-center rounded-full bg-[#FFFFFF19]"
+        >
+          <Image src={NextArrow} alt="다음" />
+        </button>
+      )}
     </div>
   );
 }
