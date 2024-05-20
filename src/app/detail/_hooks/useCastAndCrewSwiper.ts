@@ -10,10 +10,10 @@ export default function useCastAndCrewSwiper(device: Device) {
   const forceUpdate = () => setUpdate((prev) => prev + 1);
 
   const handlePrev = () => {
-    swiper?.slideTo(swiper.activeIndex - 6);
+    swiper?.slideTo(swiper.activeIndex - Math.floor(slidesPerView));
   };
   const handleNext = () => {
-    swiper?.slideTo(swiper.activeIndex + 6);
+    swiper?.slideTo(swiper.activeIndex + Math.floor(slidesPerView));
   };
 
   useEffect(() => {
