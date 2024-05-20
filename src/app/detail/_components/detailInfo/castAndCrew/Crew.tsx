@@ -10,6 +10,7 @@ import { NextArrow, PrevArrow } from "../../../../../../public/icons";
 export default function Crew() {
   const [swiper, setSwiper] = useState<SwiperClass>();
   const [, setUpdate] = useState(0);
+  const [hovered, setHovered] = useState(false);
 
   const forceUpdate = () => setUpdate((prev) => prev + 1);
 
@@ -21,7 +22,11 @@ export default function Crew() {
   };
 
   return (
-    <div className="relative mt-5 h-[calc(256px-60px)]">
+    <div
+      className="relative mt-5 h-[calc(256px-60px)]"
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
       <Swiper
         modules={[Navigation, Pagination, Scrollbar, A11y]}
         spaceBetween={12}
@@ -56,7 +61,7 @@ export default function Crew() {
       {swiper && !swiper.isBeginning && (
         <button
           onClick={handlePrev}
-          className="absolute left-0 top-1/2 z-10 flex h-11 w-11 translate-x-[-50%] translate-y-[-50%] items-center justify-center rounded-full bg-[#FFFFFF19]"
+          className={`absolute hidden Laptop:flex ${hovered ? "opacity-100" : "opacity-0"} left-0 top-1/2 z-10 flex h-11 w-11 translate-x-[-50%] translate-y-[-50%] items-center justify-center rounded-full bg-[#FFFFFF19] transition-opacity duration-300`}
         >
           <Image src={PrevArrow} alt="이전" />
         </button>
@@ -65,7 +70,7 @@ export default function Crew() {
       {swiper && !swiper.isEnd && (
         <button
           onClick={handleNext}
-          className="absolute right-0 top-1/2 z-10 flex h-11 w-11 translate-x-[50%] translate-y-[-50%] items-center justify-center rounded-full bg-[#FFFFFF19]"
+          className={`absolute hidden Laptop:flex ${hovered ? "opacity-100" : "opacity-0"} right-0 top-1/2 z-10 flex h-11 w-11 translate-x-[50%] translate-y-[-50%] items-center justify-center rounded-full bg-[#FFFFFF19] transition-opacity duration-300`}
         >
           <Image src={NextArrow} alt="다음" />
         </button>
