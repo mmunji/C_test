@@ -8,7 +8,11 @@ import { castAndCrew } from "@/app/detail/fakeData";
 
 import { NextArrow, PrevArrow } from "../../../../../../public/icons";
 
-export default function Cast() {
+interface CastProps {
+  device: Device;
+}
+
+export default function Cast({ device }: CastProps) {
   const {
     hovered,
     setHovered,
@@ -17,7 +21,8 @@ export default function Cast() {
     forceUpdate,
     handleNext,
     handlePrev,
-  } = useCastAndCrewSwiper();
+    slidesPerView,
+  } = useCastAndCrewSwiper(device);
 
   return (
     <div
@@ -28,7 +33,7 @@ export default function Cast() {
       <Swiper
         modules={[Navigation, Pagination, Scrollbar, A11y]}
         spaceBetween={12}
-        slidesPerView={6}
+        slidesPerView={slidesPerView}
         onSlideChange={forceUpdate}
         onSwiper={(e) => {
           setSwiper(e);
