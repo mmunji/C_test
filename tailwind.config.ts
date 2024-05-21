@@ -47,7 +47,7 @@ const config: Config = {
         D3_Gray: "#545250",
         Gray: "#736F6C",
         L_Gray: "#999490",
-        Gray_Orange: "#999490",
+        Gray_Orange: "#ccc5c0",
         Silver: "#e9e9e9",
         White: "#ffffff",
         Primary: "#ff7a00",
