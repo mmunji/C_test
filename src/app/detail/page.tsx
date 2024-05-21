@@ -3,7 +3,7 @@ import React from "react";
 import CastAndCrew from "./_components/castAndCrew/CastAndCrew";
 import DetailBannerSection from "./_components/detailBannerSection/DetailBannerSection";
 import DetailInfo from "./_components/detailInfo/DetailInfo";
-import KeywordBar from "./_components/KeywordBar";
+import KeywordBar from "./_components/keywordBar/KeywordBar";
 
 export default function Detail() {
   return (
