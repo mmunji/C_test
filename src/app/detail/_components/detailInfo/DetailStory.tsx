@@ -11,7 +11,7 @@ export default function DetailStory() {
   return (
     <div className="h-fit w-full rounded-[12px] bg-Black px-4 pt-5 Laptop:w-1/2 Laptop:bg-D1_Gray Laptop:px-8 Laptop:pt-7">
       <p
-        className={`Text-s-Regular Laptop:Text-m-Regular overflow-hidden ${clicked ? "h-fit" : "line-clamp-[3] h-[62px] text-ellipsis Laptop:line-clamp-[8] Laptop:h-[196px]"}`}
+        className={`overflow-hidden Text-s-Regular Laptop:Text-m-Regular ${clicked ? "h-fit" : "line-clamp-[3] h-[62px] text-ellipsis Laptop:line-clamp-[8] Laptop:h-[196px]"}`}
       >
         세상에서 가장 달콤한 여정 좋은 일은 모두 꿈에서부터 시작된다! 마법사이자
         초콜릿 메이커 ‘윌리 웡카’의 꿈은 디저트의 성지, ‘달콤 백화점’에 자신만의

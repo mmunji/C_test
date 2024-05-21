@@ -28,3 +28,7 @@ export const castAndCrew = [
   { src: CastAndCrew, name: "티모시 샬라메", casting: "윌리 웡카잔아ㅏㅏㅏㅏ" },
   { src: CastAndCrew, name: "티모시 샬라메", casting: "윌리 웡카잔아ㅏㅏㅏㅏ" },
 ];
+
+export const keywords = Array(26)
+  .fill("키워드")
+  .map((content) => content);
