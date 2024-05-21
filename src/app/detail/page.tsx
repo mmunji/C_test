@@ -1,5 +1,6 @@
 import React from "react";
 
+import CastAndCrew from "./_components/castAndCrew/CastAndCrew";
 import DetailBannerSection from "./_components/detailBannerSection/DetailBannerSection";
 import DetailInfo from "./_components/detailInfo/DetailInfo";
 import KeywordBar from "./_components/KeywordBar";
@@ -14,6 +15,7 @@ export default function Detail() {
           <DetailInfo />
         </section>
       </div>
+      <CastAndCrew />
     </div>
   );
 }

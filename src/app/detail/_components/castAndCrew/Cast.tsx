@@ -6,7 +6,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import useCastAndCrewSwiper from "@/app/detail/_hooks/useCastAndCrewSwiper";
 import { castAndCrew } from "@/app/detail/fakeData";
 
-import { NextArrow, PrevArrow } from "../../../../../../public/icons";
+import { NextArrow, PrevArrow } from "../../../../../public/icons";
 
 interface CastProps {
   device: Device;
@@ -50,10 +50,10 @@ export default function Cast({ device }: CastProps) {
               className="h-[112px] rounded-[8px]"
             />
             <section className="px-2 pb-3 pt-2">
-              <p className="Text-s-Medium mb-2 line-clamp-2 overflow-hidden text-ellipsis text-center text-Silver">
+              <p className="mb-2 line-clamp-2 overflow-hidden text-ellipsis text-center text-Silver Text-s-Medium">
                 {el.name}
               </p>
-              <p className="Text-xs-Regular overflow-hidden text-ellipsis whitespace-nowrap text-L_Gray">
+              <p className="overflow-hidden text-ellipsis whitespace-nowrap text-L_Gray Text-xs-Regular">
                 {el.casting}
               </p>
             </section>
