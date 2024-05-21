@@ -1,11 +1,13 @@
 import React, { Dispatch, SetStateAction } from "react";
 
 interface CastAndCrewTab {
-  activeTab: "제작진" | "출연";
-  setActiveTab: Dispatch<SetStateAction<"제작진" | "출연">>;
+  tabs: string[];
+  activeTab: string;
+  setActiveTab: Dispatch<SetStateAction<string>>;
 }
 
-export default function CastAndCrewTab({
+export default function DetailActiveTab({
+  tabs,
   activeTab,
   setActiveTab,
 }: CastAndCrewTab) {
@@ -13,13 +15,13 @@ export default function CastAndCrewTab({
     <section className="relative max-h-[40px] w-fit text-md">
       <button
         className={`px-3 pb-2 pt-1 font-bold ${activeTab === "제작진" ? "text-Silver" : "text-Gray"}`}
-        onClick={() => setActiveTab("제작진")}
+        onClick={() => setActiveTab(tabs[0])}
       >
         제작진
       </button>
       <button
         className={`px-3 pb-2 pt-1 font-bold ${activeTab === "출연" ? "text-Silver" : "text-Gray"}`}
-        onClick={() => setActiveTab("출연")}
+        onClick={() => setActiveTab(tabs[1])}
       >
         출연
       </button>

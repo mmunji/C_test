@@ -5,12 +5,13 @@ import ReactDOM from "react-dom";
 
 import useDevice from "@/hooks/useDevice";
 
+import DetailActiveTab from "../DetailActiveTab";
 import Cast from "./Cast";
-import CastAndCrewTab from "./CastAndCrewTab";
 import Crew from "./Crew";
 
 export default function CastAndCrew() {
-  const [activeTab, setActiveTab] = useState<"제작진" | "출연">("제작진");
+  const tabs = ["제작진", "출연"];
+  const [activeTab, setActiveTab] = useState<string>(tabs[0]);
   const { device } = useDevice();
 
   const target = useMemo(
@@ -25,10 +26,10 @@ export default function CastAndCrew() {
     target &&
     ReactDOM.createPortal(
       <section className="max-h-full">
-        <CastAndCrewTab activeTab={activeTab} setActiveTab={setActiveTab} />
+        <DetailActiveTab {...{ tabs, activeTab, setActiveTab }} />
 
-        {activeTab === "제작진" && <Crew device={device} />}
-        {activeTab === "출연" && <Cast device={device} />}
+        {activeTab === tabs[0] && <Crew device={device} />}
+        {activeTab === tabs[1] && <Cast device={device} />}
       </section>,
       target as HTMLElement,
     )
