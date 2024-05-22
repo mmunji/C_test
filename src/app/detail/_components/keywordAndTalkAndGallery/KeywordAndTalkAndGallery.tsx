@@ -12,8 +12,8 @@ export default function KeywordAndTalkAndGallery() {
   return (
     <section className="Laptop:hidden">
       <CategoryTab {...{ tabs, activeTab, setActiveTab }} />
-      {/* {activeTab === tabs[0] && <Keyword />} */}
-      {activeTab === tabs[0] && <Talk />}
+      {activeTab === tabs[0] && <Keyword />}
+      {activeTab === tabs[1] && <Talk />}
     </section>
   );
 }

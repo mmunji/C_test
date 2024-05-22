@@ -18,7 +18,7 @@ export default function Detail() {
           <KeywordAndTalkAndGallery />
         </section>
       </div>
-      <CastAndCrew />
+      {/* <CastAndCrew /> */}
     </div>
   );
 }

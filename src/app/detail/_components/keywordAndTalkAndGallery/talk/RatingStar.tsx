@@ -13,7 +13,7 @@ interface StarProps {
   setRatingValue: Dispatch<SetStateAction<number>>;
   clickedValue: boolean;
   setClickedValue: Dispatch<SetStateAction<boolean>>;
-  handleDriveComment: () => void;
+  handleDriveTalk: () => void;
 }
 
 export default function RatingStar({
@@ -22,7 +22,7 @@ export default function RatingStar({
   setRatingValue,
   clickedValue,
   setClickedValue,
-  handleDriveComment,
+  handleDriveTalk,
 }: StarProps) {
   let src;
   let alt;
@@ -46,7 +46,7 @@ export default function RatingStar({
       }}
       onClick={() => {
         setRatingValue(ratingValue);
-        handleDriveComment();
+        handleDriveTalk();
         setClickedValue(!clickedValue);
       }}
     >

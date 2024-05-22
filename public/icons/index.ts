@@ -1,4 +1,6 @@
 export { default as BottomArrow } from "./bottom-arrow.svg";
+export { default as CheckedCheckbox } from "./checkbox-checked.svg";
+export { default as UnCheckedCheckbox } from "./checkbox-unchecked.svg";
 export { default as Exit } from "./exit.svg";
 export { default as Fire } from "./fire.svg";
 export { default as GalleryTab } from "./gallery-tab.svg";
