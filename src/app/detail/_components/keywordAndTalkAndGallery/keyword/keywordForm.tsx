@@ -22,7 +22,10 @@ export default function KeywordForm() {
   const value = watch("value");
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="relative Laptop:static">
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="relative w-full Laptop:static"
+    >
       <KeywordSpeechBubble />
       <div className="relative w-full overflow-hidden rounded-xl ">
         <input

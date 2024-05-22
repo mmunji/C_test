@@ -9,7 +9,7 @@ export default function KeywordAndTalkAndGallery() {
   const tabs = ["키워드", "톡", "정보"];
   const [activeTab, setActiveTab] = useState(tabs[0]);
   return (
-    <section>
+    <section className="Laptop:hidden">
       <CategoryTab {...{ tabs, activeTab, setActiveTab }} />
       {activeTab === tabs[0] && <Keyword />}
     </section>
