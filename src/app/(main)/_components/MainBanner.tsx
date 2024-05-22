@@ -14,7 +14,7 @@ import RealTimeHotTalk from "./MainBanner/RealTimeHotTalk";
 export default function MainBanner() {
   SwiperCore.use([Navigation, Scrollbar, Autoplay, Pagination]);
   return (
-    <div className=" Laptop:px-[68px] Desktop:h-[810px] Desktop:px-[180px]">
+    <div className=" px-5 Tablet:h-[380px] Laptop:h-[650px] Laptop:px-[64px] Desktop:h-[810px] Desktop:px-[180px]">
       <Swiper
         rewind={true}
         loop={true} // 슬라이드 루프
@@ -22,7 +22,7 @@ export default function MainBanner() {
         slidesPerView={1} // 보여질 슬라이드 수
         pagination={true}
         modules={[Autoplay, Pagination]}
-        className="h-[690px] "
+        className="h-[480px] Tablet:h-[400px] Laptop:h-[510px]  Desktop:h-[690px] "
         autoplay={{ delay: 5000, disableOnInteraction: false }}
       >
         {Array(3)
@@ -30,8 +30,9 @@ export default function MainBanner() {
           .map((_, index) => {
             return (
               <SwiperSlide key={index}>
-                <div className="m-auto flex justify-between rounded-[35px] border-2 text-white Laptop:px-[74px] Laptop:py-[40px] Desktop:px-[108px] Desktop:py-[60px]">
+                <div className=" flex flex-col justify-between rounded-[35px]  border-2 px-[20px] pb-2 pt-8 text-white Tablet:h-[360px] Tablet:flex-row Tablet:px-9 Tablet:pb-7  Laptop:h-[489px] Laptop:flex-row Laptop:px-[74px] Laptop:py-[40px] Desktop:h-[637px] Desktop:px-[108px] Desktop:py-[60px]">
                   <LeftMoivePost />
+                  <hr className="my-2 text-Opacity_W15" />
                   <RealTimeHotTalk /> {/* 실시간 핫한 톡 컴포넌트 */}
                 </div>
               </SwiperSlide>

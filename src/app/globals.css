@@ -18,43 +18,43 @@ body {
     @apply bg-D2_Gray;
   }
   .Text-xxxl-Bold {
-    @apply leading-140 text-3xl font-Bold;
+    @apply text-3xl font-Bold leading-140;
   }
   .Text-xxl-Bold {
-    @apply leading-140 text-2xl font-Bold;
+    @apply text-2xl font-Bold leading-140;
   }
   .Text-xl-Bold {
-    @apply leading-140 text-xl font-Bold;
+    @apply text-xl font-Bold leading-140;
   }
   .Text-l-Bold {
-    @apply leading-140 text-md font-Bold;
+    @apply text-md font-Bold leading-140;
   }
   .Text-l-Medium {
-    @apply leading-140 text-md font-Medium;
+    @apply text-md font-Medium leading-140;
   }
   .Text-m-Bold {
-    @apply leading-150 text-regular font-Bold;
+    @apply text-regular font-Bold leading-150;
   }
   .Text-m-Medium {
-    @apply leading-150 text-regular font-Medium;
+    @apply text-regular font-Medium leading-150;
   }
   .Text-m-Regular {
-    @apply leading-150 text-regular font-Regular;
+    @apply text-regular font-Regular leading-150;
   }
   .Text-s-Bold {
-    @apply leading-150 text-sm font-Bold;
+    @apply text-sm font-Bold leading-150;
   }
   .Text-s-Medium {
-    @apply leading-150 text-sm font-Medium;
+    @apply text-sm font-Medium leading-150;
   }
   .Text-s-Regular {
-    @apply leading-150 text-sm font-Regular;
+    @apply text-sm font-Regular leading-150;
   }
   .Text-xs-Bold {
-    @apply leading-150 text-xs font-Bold;
+    @apply text-xs font-Bold leading-150;
   }
   .Text-xs-Regular {
-    @apply leading-150 text-xs font-Medium;
+    @apply text-xs font-Medium leading-150;
   }
   .Emoji-l {
     @apply font-appleSDGothicNeo text-E_lg font-Regular leading-none;
