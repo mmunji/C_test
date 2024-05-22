@@ -1,5 +1,5 @@
 import NoTalk from "./NoTalk";
-import Rating from "./Rating";
+import Rating from "./rating/Rating";
 import TalkHeader from "./TalkHeader";
 
 export default function Talk() {
