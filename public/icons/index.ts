@@ -14,6 +14,7 @@ export { default as PrevArrow } from "./prev-arrow.svg";
 export { default as Search } from "./search.svg";
 export { default as Star } from "./star.svg";
 export { default as StarForRating } from "./star-for-rating.svg";
+export { default as TalkFilter } from "./talk-filter.svg";
 export { default as TalkTab } from "./talk-tab.svg";
 export { default as TMDB } from "./tmdv.svg";
 export { default as UnFilledStar } from "./unfilled-star.svg";

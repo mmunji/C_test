@@ -7,7 +7,7 @@ export default function Rating() {
   const [clickedValue, setClickedValue] = useState(false);
 
   return (
-    <div className="flex w-full flex-col justify-center py-3">
+    <div className="flex w-full flex-col justify-center py-3 Tablet:py-8 Laptop:py-0">
       <div className="mx-auto mb-3 flex gap-1">
         <span className="text-regular font-Bold text-Primary Laptop:text-[20px]">
           웡카
