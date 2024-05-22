@@ -1,4 +1,4 @@
-export { default as BackArrow } from "./back-arrow.svg";
+// export { default as BackArrow } from "./back-arrow.svg";
 export { default as Fire } from "./best_fire.svg";
 export { default as BinHeart } from "./bin_heart.svg";
 export { default as BottomArrow } from "./bottom-arrow.svg";
