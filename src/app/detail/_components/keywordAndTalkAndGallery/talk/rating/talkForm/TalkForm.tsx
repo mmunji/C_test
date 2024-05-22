@@ -15,13 +15,7 @@ interface AddTalkValues {
 
 export default function TalkForm() {
   const [readyToSubmit, setReadyToSubmit] = useState(true);
-  const {
-    register,
-    handleSubmit,
-    watch,
-    setValue,
-    formState: { errors },
-  } = useForm<AddTalkValues>();
+  const { register, handleSubmit, watch, setValue } = useForm<AddTalkValues>();
   const onSubmit: SubmitHandler<AddTalkValues> = (data) => {
     if (readyToSubmit) console.log(data);
   };
@@ -40,11 +34,12 @@ export default function TalkForm() {
       onSubmit={handleSubmit(onSubmit)}
       className="mx-auto flex w-full flex-col gap-3"
     >
-      <div className="relative h-[174px] w-full overflow-hidden rounded-xl bg-Black">
+      <div className="relative h-[182px] w-full overflow-hidden rounded-xl bg-Black">
         <TalkFormHeader />
         <textarea
           {...register("talk", { required: true })}
-          className="absolute bottom-5 left-0 h-[calc(100%-56px)] w-full resize-none bg-Black px-5 outline-none"
+          placeholder="영화에 대해 이야기 해볼까요?"
+          className="absolute bottom-5 left-0 h-[calc(100%-64px)] w-full resize-none bg-Black px-5 outline-none"
         />
       </div>
 
