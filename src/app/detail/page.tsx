@@ -14,6 +14,7 @@ export default function Detail() {
         <KeywordBar />
         <section className="flex flex-col Laptop:gap-[100px]">
           <DetailInfo />
+
           <KeywordAndTalkAndGallery />
         </section>
       </div>
