@@ -1,10 +1,11 @@
 import { keywords } from "../../../fakeData";
 import KeywordForm from "./keywordForm";
+import NewKeyword from "./NewKeyword";
 
 export default function Keyword() {
   return (
-    <section className="mt-6">
-      <div className="mb-[52px] flex flex-wrap justify-center gap-2 Tablet:mb-8">
+    <section>
+      <div className="mb-7 flex flex-wrap justify-center gap-2 py-6 Tablet:mb-8">
         {keywords.map((keyword, i) => (
           <p className="" key={i}>
             {keyword}
@@ -13,6 +14,7 @@ export default function Keyword() {
       </div>
 
       <KeywordForm />
+      <NewKeyword />
     </section>
   );
 }

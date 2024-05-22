@@ -10,7 +10,7 @@ export default function Detail() {
   return (
     <div className="bg-BG">
       <DetailBannerSection />
-      <div className="mx-5 mt-[137px] h-[1000px] Tablet:mx-6 Tablet:mt-[118px] Laptop:mx-[68px] Laptop:mb-[184px] Laptop:mt-7 Desktop:mx-auto Desktop:w-[1560px]">
+      <div className="mx-5 mb-[100px] mt-[137px] Tablet:mx-6 Tablet:mb-40 Tablet:mt-[118px] Laptop:mx-[68px] Laptop:mb-[180px] Laptop:mt-7 Desktop:mx-auto Desktop:mb-[200px] Desktop:w-[1560px]">
         <KeywordBar />
         <section className="flex flex-col Laptop:gap-[100px]">
           <DetailInfo />

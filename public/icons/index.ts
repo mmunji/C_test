@@ -1,9 +1,11 @@
 export { default as BottomArrow } from "./bottom-arrow.svg";
+export { default as Exit } from "./exit.svg";
 export { default as Fire } from "./fire.svg";
 export { default as GalleryTab } from "./gallery-tab.svg";
 export { default as HeaderUserArrow } from "./header-user-arrow.svg";
 export { default as Heart } from "./heart.svg";
 export { default as KakaoLogo } from "./kakao-logo.svg";
+export { default as KeywordSpeechBubbleBottom } from "./keyword-speech-bubble-bottom.svg";
 export { default as KeywordTab } from "./keyword-tab.svg";
 export { default as NaverLogo } from "./naver-logo.svg";
 export { default as NextArrow } from "./next-arrow.svg";
