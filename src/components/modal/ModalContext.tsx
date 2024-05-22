@@ -11,6 +11,7 @@ interface ModalContextType {
   toggleChceked: () => void;
   hasCheckbox: boolean;
   hasReport: boolean;
+  hasDescription: boolean;
   selectedIndex: number;
   onDetailedReasonChange: (e: ChangeEvent<HTMLTextAreaElement>) => void;
   detailedReason: string;
@@ -19,6 +20,7 @@ interface ModalContextType {
   isAlertModal: boolean;
   isDropdownOpen: boolean;
   setIsDropdownOpen: Dispatch<SetStateAction<boolean>>;
+  isMobile: boolean;
 }
 
 const ModalContext = createContext<ModalContextType | null>(null);

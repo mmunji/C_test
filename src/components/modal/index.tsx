@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import React, { ReactElement, useEffect, useRef, useState } from "react";
@@ -22,6 +23,7 @@ interface WithChildren {
   children: React.ReactNode;
 }
 interface ModalMainProps extends WithChildren {
+  isMobile?: boolean;
   isAlertModal: boolean;
   hasAnimation?: boolean;
   onClose: () => void;
@@ -137,27 +139,59 @@ function ModalLogin({ children, onKakaoLogin, onNaverLogin }: ModalLoginProps) {
   );
 }
 function ModalTitleWrapper({ children }: WithChildren) {
-  const { isAlertModal } = useModalContext();
+  const { isAlertModal, isMobile } = useModalContext();
+  return (
+    <>
+      <div
+        className={clsx(
+          isAlertModal
+            ? isMobile
+              ? "w-full gap-1"
+              : "w-[360px] gap-3"
+            : "gap-2",
+          `flex flex-col items-center`,
+        )}
+      >
+        {children}
+      </div>
+    </>
+  );
+}
+function ModalTitle({ children }: WithChildren) {
+  const { isMobile, hasDescription } = useModalContext();
   return (
     <div
-      className={`flex w-[360px] flex-col items-center ${isAlertModal ? "gap-3" : "gap-2"}`}
+      className={clsx(
+        `${isMobile ? "Text-m-Bold" : "Text-xl-Bold"} ${!hasDescription && "my-3"} text-Primary`,
+      )}
     >
       {children}
     </div>
   );
 }
-function ModalTitle({ children }: WithChildren) {
-  return <div className="text-Primary Text-xl-Bold">{children}</div>;
-}
 function ModalDescription({ children }: WithChildren) {
-  return <div className="text-center Text-m-Medium">{children}</div>;
+  const { isMobile } = useModalContext();
+
+  return (
+    <div
+      className={`${isMobile ? "Text-s-Medium" : "Text-m-Medium"} text-center`}
+    >
+      {children}
+    </div>
+  );
 }
 function ModalImg() {
   return <div className="h-[150px] w-[280px] bg-[#a4a4a4]" />;
 }
 function ModalButton({ children, onClick }: ModalButtonProps) {
-  const { hasCheckbox, hasReport, isChecked, selectedIndex, detailedReason } =
-    useModalContext();
+  const {
+    hasCheckbox,
+    hasReport,
+    isChecked,
+    selectedIndex,
+    detailedReason,
+    isMobile,
+  } = useModalContext();
 
   const checkDisabled = () => {
     if (hasCheckbox) return !isChecked;
@@ -177,18 +211,18 @@ function ModalButton({ children, onClick }: ModalButtonProps) {
     <button
       onClick={handleClick}
       disabled={checkDisabled()}
-      className="w-full rounded-xl bg-Primary px-5 py-3 text-white Text-m-Medium hover:bg-Shade_1 active:bg-Shade_3 disabled:bg-D2_Gray disabled:text-Gray"
+      className={`${isMobile ? "rounded-lg px-9 py-2 Text-s-Medium" : "rounded-xl px-5 py-3 Text-m-Medium"} w-full bg-Primary text-white hover:bg-Shade_1 active:bg-Shade_3 disabled:bg-D2_Gray disabled:text-Gray`}
     >
       {children}
     </button>
   );
 }
 function ModalCancelButton({ children }: ModalCancelButtonProps) {
-  const { onClose } = useModalContext();
+  const { onClose, isMobile } = useModalContext();
   return (
     <button
       onClick={onClose}
-      className="w-full rounded-xl border border-Gray bg-none px-5 py-3 text-white Text-m-Medium hover:border-Silver active:bg-D1_Gray"
+      className={`${isMobile ? "whitespace-nowrap rounded-lg px-9 py-2 Text-s-Regular" : "rounded-xl px-5 py-3 Text-m-Medium"} w-full  border border-Gray bg-none text-white hover:border-Silver active:bg-D1_Gray`}
     >
       {children}
     </button>
@@ -349,6 +383,7 @@ function ModalMain({
   onClose,
   isAlertModal,
   hasAnimation = true,
+  isMobile = false,
 }: ModalMainProps) {
   const {
     isChecked,
@@ -362,6 +397,7 @@ function ModalMain({
   } = useModal();
   const hasLoginModal = useRef(false);
   const hasReportModal = useRef(false);
+  const hasDescription = useRef(false);
   const { buttons, checkbox, content } = React.Children.toArray(
     children,
   ).reduce<{
@@ -380,6 +416,9 @@ function ModalMain({
           acc.content.push(cur);
         } else if (cur.type === Modal.Login) {
           hasLoginModal.current = true;
+          acc.content.push(cur);
+        } else if (cur.type === Modal.Description) {
+          hasDescription.current = true;
           acc.content.push(cur);
         } else {
           acc.content.push(cur);
@@ -416,12 +455,14 @@ function ModalMain({
         toggleChceked,
         hasCheckbox: !!checkbox.length,
         hasReport: hasReportModal.current,
+        hasDescription: hasDescription.current,
         detailedReason,
         selectedIndex,
         onDetailedReasonChange,
         onSelectedIndexChange,
         isDropdownOpen,
         setIsDropdownOpen,
+        isMobile,
       }}
     >
       <Portal selector="portal">
@@ -433,7 +474,15 @@ function ModalMain({
           <div className="absolute bottom-0 left-0 right-0 top-0 flex items-center justify-center bg-black/40 backdrop-blur-[4px]">
             <div
               ref={ref}
-              className={`${isAlertModal ? "gap-9 px-12 pb-10 pt-11" : hasLoginModal.current ? "px-10 py-16" : "gap-7 px-12 py-10"} z-10 flex flex-col items-center gap-7 rounded-xl bg-D1_Gray`}
+              className={clsx(
+                isAlertModal &&
+                  (isMobile
+                    ? "gap-4 px-6 pb-5 pt-6"
+                    : "gap-9 px-12 pb-10 pt-11"),
+                hasLoginModal.current && "px-10 py-16",
+                !isAlertModal && !hasLoginModal.current && "gap-7 px-12 py-10",
+                `z-10 flex flex-col items-center rounded-xl bg-D1_Gray`,
+              )}
             >
               {content}
               {checkbox.length > 0 && buttons.length > 0 && (
@@ -444,7 +493,11 @@ function ModalMain({
               )}
 
               {!checkbox.length && buttons.length > 0 && (
-                <div className="flex w-[372px] gap-3">{buttons}</div>
+                <div
+                  className={`flex ${isMobile ? "w-[224px] gap-2" : "w-[372px] gap-3"}`}
+                >
+                  {buttons}
+                </div>
               )}
             </div>
           </div>
