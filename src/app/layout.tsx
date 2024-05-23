@@ -28,6 +28,7 @@ export default function RootLayout({
         <ReactQueryProvier>
           <Header />
           {children}
+          <div id="portal" />
         </ReactQueryProvier>
       </body>
     </html>
