@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import { Dispatch, SetStateAction, useState } from "react";
 
 interface TalkContentsBodyProps {
@@ -48,7 +49,13 @@ export default function TalkContentsBody({
       ) : (
         showSpoiler && (
           <p
-            className={`${!showMore && "line-clamp-3 max-h-[63px] overflow-hidden Tablet:max-h-[72px]"} text-sm font-Regular leading-[150%] text-Gray_Orange Tablet:Text-m-Medium`}
+            className={clsx(
+              "text-sm font-Regular leading-[150%] text-Gray_Orange Tablet:Text-m-Medium",
+              {
+                "line-clamp-3 max-h-[63px] overflow-hidden Tablet:max-h-[72px]":
+                  !showMore,
+              },
+            )}
           >
             {talk}
           </p>

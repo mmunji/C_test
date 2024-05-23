@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { ChangeEvent, useEffect, useState } from "react";
+import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 
 import {

@@ -41,3 +41,5 @@ export { default as CaretDownMd } from "./caret-down-md.svg";
 export { default as CloseLg } from "./close-lg.svg";
 export { default as Polygon } from "./polygon.svg";
 export { default as CloseSm } from "./close-sm.svg";
+export { default as FilledThumbsUp } from "./filled-thumbs-up.svg";
+export { default as FilledThumbsDown } from "./filled-thumbs-down.svg";
