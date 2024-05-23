@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import { AnimatePresence, motion } from "framer-motion";
-import React, { ReactElement, useEffect, useRef } from "react";
+import React, { ReactElement, useEffect } from "react";
 
 import {
   ModalButton,
@@ -46,40 +46,53 @@ export function ModalMain({
     isDropdownOpen,
     setIsDropdownOpen,
   } = useModal(isOpen);
-  const hasComponents = useRef({
-    login: false,
-    report: false,
-    description: false,
-  });
-  const { buttons, checkbox, content } = React.Children.toArray(
+
+  const { buttons, checkbox, content, hasComponents } = React.Children.toArray(
     children,
   ).reduce<{
     buttons: ReactElement[];
     checkbox: ReactElement[];
     content: ReactElement[];
+    hasComponents: {
+      login: boolean;
+      report: boolean;
+      description: boolean;
+    };
   }>(
     (acc, cur) => {
       if (React.isValidElement(cur)) {
-        if (cur.type === ModalButton || cur.type === ModalCancelButton) {
-          acc.buttons.push(cur);
-        } else if (cur.type === ModalCheckbox) {
-          acc.checkbox.push(cur);
-        } else if (cur.type === ModalReport) {
-          hasComponents.current.report = true;
-          acc.content.push(cur);
-        } else if (cur.type === ModalLogin) {
-          hasComponents.current.login = true;
-          acc.content.push(cur);
-        } else if (cur.type === ModalDescription) {
-          hasComponents.current.description = true;
-          acc.content.push(cur);
-        } else {
-          acc.content.push(cur);
+        switch (cur.type) {
+          case ModalButton:
+          case ModalCancelButton:
+            acc.buttons.push(cur);
+            break;
+          case ModalCheckbox:
+            acc.checkbox.push(cur);
+            break;
+          case ModalReport:
+            acc.hasComponents.report = true;
+            acc.content.push(cur);
+            break;
+          case ModalLogin:
+            acc.hasComponents.login = true;
+            acc.content.push(cur);
+            break;
+          case ModalDescription:
+            acc.hasComponents.description = true;
+            acc.content.push(cur);
+            break;
+          default:
+            acc.content.push(cur);
         }
       }
       return acc;
     },
-    { buttons: [], checkbox: [], content: [] },
+    {
+      buttons: [],
+      checkbox: [],
+      content: [],
+      hasComponents: { login: false, report: false, description: false },
+    },
   );
   const ref = useOutsideClick(() => {
     if (isOpen) onClose();
@@ -111,8 +124,8 @@ export function ModalMain({
             isChecked,
             toggleChceked,
             hasCheckbox: !!checkbox.length,
-            hasReport: hasComponents.current.report,
-            hasDescription: hasComponents.current.description,
+            hasReport: hasComponents.report,
+            hasDescription: hasComponents.description,
             detailedReason,
             selectedIndex,
             onDetailedReasonChange,
@@ -124,44 +137,45 @@ export function ModalMain({
         >
           <Portal selector="portal">
             <motion.div
-              initial={{ opacity: 0 }}
+              initial={{ opacity: 1 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.3 }}
+              transition={{ duration: 0.2 }}
               exit={{ opacity: 0 }}
             >
-              <div className="absolute bottom-0 left-0 right-0 top-0 flex items-center justify-center bg-black/40 backdrop-blur-[4px]">
+              <div className="fixed bottom-0 left-0 right-0 top-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-[4px]">
                 <div
                   ref={ref}
                   className={clsx(
-                    hasComponents.current.login && "px-10 py-16",
+                    hasComponents.login && "px-10 py-16",
                     isAlertModal
                       ? [
                           isMobile
                             ? "gap-4 px-6 pb-5 pt-6"
                             : "gap-9 px-12 pb-10 pt-11",
                         ]
-                      : [!hasComponents.current.login && "gap-7 px-12 py-10"],
+                      : [!hasComponents.login && "gap-7 px-12 py-10"],
                     `z-10 flex flex-col items-center rounded-xl bg-D1_Gray`,
                   )}
                 >
                   {content}
-                  {checkbox.length > 0 && buttons.length > 0 && (
-                    <div className="flex w-[372px] flex-col items-center justify-center gap-5">
-                      <div className="flex items-center gap-2">{checkbox}</div>
-                      <div className="flex w-full gap-3">{buttons}</div>
-                    </div>
-                  )}
-
-                  {!checkbox.length && buttons.length > 0 && (
-                    <div
-                      className={clsx(
-                        isMobile ? "w-[224px] gap-2" : "w-[372px] gap-3",
-                        `flex`,
-                      )}
-                    >
-                      {buttons}
-                    </div>
-                  )}
+                  {buttons.length &&
+                    (checkbox.length ? (
+                      <div className="flex w-[372px] flex-col items-center justify-center gap-5">
+                        <div className="flex items-center gap-2">
+                          {checkbox}
+                        </div>
+                        <div className="flex w-full gap-3">{buttons}</div>
+                      </div>
+                    ) : (
+                      <div
+                        className={clsx(
+                          isMobile ? "w-[224px] gap-2" : "w-[372px] gap-3",
+                          `flex`,
+                        )}
+                      >
+                        {buttons}
+                      </div>
+                    ))}
                 </div>
               </div>
             </motion.div>
