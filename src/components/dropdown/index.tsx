@@ -100,7 +100,7 @@ function DropdownList({ children, className }: DropdownListProps) {
                 ? "min-w-[158px] gap-x-2 gap-y-1"
                 : "min-w-[198px] gap-x-5 gap-y-3",
             ]
-          : ["flex flex-col gap-2", isMobile ? "p-1" : "p-2"],
+          : ["flex flex-col gap-[9px]", isMobile ? "p-1" : "p-2"],
         `
   absolute whitespace-nowrap rounded-xl border border-D2_Gray bg-D1_Gray shadow-[0_4px_10px_0_rgba(0,0,0,0.3)] ${className}`,
       )}
