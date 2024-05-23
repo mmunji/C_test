@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import React from "react";
 
 import DropdownContext, {
@@ -8,6 +9,7 @@ import useOutsideClick from "@/hooks/useOutsideClick";
 
 /* 사용 방법
       <Dropdown type="genre">                                             // type = "genre" | "icon" | "text" 입니다 default = text
+                                                                          // isMobile = boolean 입니다 default = false
         <Dropdown.Trigger>
           <div className="bg-blue-500 text-white">아무거나</div>            // 트리거 엘리먼트 만들어주시면 됩니다.
         </Dropdown.Trigger>
@@ -43,6 +45,7 @@ interface DropdownListProps {
 interface DropdownMainProps {
   children: React.ReactNode;
   type?: "genre" | "icon" | "text";
+  isMobile?: boolean;
 }
 
 function DropdownTrigger({ children }: DropdownTriggerProps) {
@@ -60,7 +63,7 @@ function DropdownItem({
   onClick,
   isFocused = false,
 }: DropdownItemProps) {
-  const { type, toggleDropdown } = useDropdownContext();
+  const { type, toggleDropdown, isMobile } = useDropdownContext();
   const handleClick = () => {
     onClick();
     toggleDropdown();
@@ -69,7 +72,14 @@ function DropdownItem({
     <button
       onClick={handleClick}
       type="button"
-      className={`relative ${type === "genre" ? "px-6 py-2" : type === "icon" ? "item-border p-3" : "item-border px-3 py-2"} ${isFocused ? "bg-D2_Gray" : ""} flex justify-center rounded-lg hover:bg-D2_Gray active:bg-D3_Gray`}
+      className={clsx(
+        isFocused && "bg-D2_Gray",
+        isMobile ? "Text-s-Regular" : "Text-m-Regular",
+        type === "genre"
+          ? [isMobile ? "px-6 py-2" : "p-2"]
+          : [type === "icon" ? "item-border p-3" : "item-border px-3 py-2"],
+        `relative flex justify-center rounded-lg hover:bg-D2_Gray active:bg-D3_Gray`,
+      )}
     >
       {children}
     </button>
@@ -77,28 +87,43 @@ function DropdownItem({
 }
 
 function DropdownList({ children, className }: DropdownListProps) {
-  const { isOpen, type } = useDropdownContext();
+  const { isOpen, type, isMobile } = useDropdownContext();
 
   if (!isOpen) return null;
   return (
     <div
-      className={`
-  ${type === "genre" ? "grid min-w-[198px] grid-cols-2 gap-x-5 gap-y-3" : "flex flex-col gap-2"}
-  absolute whitespace-nowrap rounded-xl border border-D2_Gray bg-D1_Gray p-2 shadow-[0_4px_10px_0_rgba(0,0,0,0.3)] ${className || ""}`}
+      className={clsx(
+        type === "genre"
+          ? [
+              "grid grid-cols-2 p-2",
+              isMobile
+                ? "min-w-[158px] gap-x-2 gap-y-1"
+                : "min-w-[198px] gap-x-5 gap-y-3",
+            ]
+          : ["flex flex-col gap-2", isMobile ? "p-1" : "p-2"],
+        `
+  absolute whitespace-nowrap rounded-xl border border-D2_Gray bg-D1_Gray shadow-[0_4px_10px_0_rgba(0,0,0,0.3)] ${className}`,
+      )}
     >
       {children}
     </div>
   );
 }
 
-function DropdownMain({ children, type = "text" }: DropdownMainProps) {
+function DropdownMain({
+  children,
+  type = "text",
+  isMobile = false,
+}: DropdownMainProps) {
   const { toggleDropdown, isOpen } = useDropdown();
   const ref = useOutsideClick(() => {
     if (isOpen) toggleDropdown();
   });
 
   return (
-    <DropdownContext.Provider value={{ isOpen, toggleDropdown, type }}>
+    <DropdownContext.Provider
+      value={{ isOpen, toggleDropdown, type, isMobile }}
+    >
       <div ref={ref} className="relative">
         {children}
       </div>

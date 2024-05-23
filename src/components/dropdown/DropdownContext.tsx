@@ -4,6 +4,7 @@ interface DropdownContextType {
   isOpen: boolean;
   toggleDropdown: () => void;
   type: "genre" | "icon" | "text";
+  isMobile: boolean;
 }
 
 const DropdownContext = createContext<DropdownContextType | null>(null);
