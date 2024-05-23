@@ -5,7 +5,7 @@ import {
   HalfStar,
   StarForRating,
   UnFilledStar,
-} from "../../../../../../public/icons";
+} from "../../../../../../../public/icons";
 
 interface StarProps {
   index: number;

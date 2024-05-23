@@ -7,6 +7,7 @@ import Nokeyword from "./Nokeyword";
 
 export default function Keyword() {
   const [noKeyword, setNokeyword] = useState(true);
+
   return (
     <section className="flex flex-col items-center">
       {noKeyword ? (

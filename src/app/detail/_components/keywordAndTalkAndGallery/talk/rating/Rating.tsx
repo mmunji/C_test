@@ -2,8 +2,8 @@ import { useState } from "react";
 
 import useRating from "@/app/detail/_hooks/useRating";
 
-import RatingStar from "../RatingStar";
 import DriveCommentText from "./DriveCommentText";
+import RatingStar from "./RatingStar";
 import TalkForm from "./talkForm/TalkForm";
 import TextBeforeRating from "./TextBeforeRating";
 
