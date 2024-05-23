@@ -1,6 +1,16 @@
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 
-export default function TalkContentsBody() {
+interface TalkContentsBodyProps {
+  spoiler: boolean;
+  showSpoiler: boolean;
+  setShowSpoiler: Dispatch<SetStateAction<boolean>>;
+}
+
+export default function TalkContentsBody({
+  spoiler,
+  showSpoiler,
+  setShowSpoiler,
+}: TalkContentsBodyProps) {
   const [showMore, setShowMore] = useState(false);
 
   const talk = `
@@ -23,13 +33,29 @@ export default function TalkContentsBody() {
 
   return (
     <div className="relative ml-[34px] mt-2 Tablet:mb-2 Tablet:ml-14">
-      <p
-        className={`${showMore ? "" : "line-clamp-3 max-h-[63px] overflow-hidden Tablet:max-h-[72px]"} text-sm font-Regular leading-[150%] text-Gray_Orange Tablet:Text-m-Medium`}
-      >
-        {talk}
-      </p>
+      {spoiler && !showSpoiler ? (
+        <section className="flex gap-2">
+          <p className="text-Primary Text-s-Regular Tablet:Text-m-Medium">
+            스포일러가 담겨있어요.
+          </p>
+          <button
+            onClick={() => setShowSpoiler(true)}
+            className="text-Primary Text-s-Regular Text-s-Regular Tablet:Text-m-Medium"
+          >
+            보기
+          </button>
+        </section>
+      ) : (
+        showSpoiler && (
+          <p
+            className={`${!showMore && "line-clamp-3 max-h-[63px] overflow-hidden Tablet:max-h-[72px]"} text-sm font-Regular leading-[150%] text-Gray_Orange Tablet:Text-m-Medium`}
+          >
+            {talk}
+          </p>
+        )
+      )}
 
-      {!showMore && (
+      {!showMore && showSpoiler && (
         <button
           onClick={() => setShowMore(true)}
           className="absolute bottom-0 right-0 z-10 bg-BG pl-1 text-sm font-Regular leading-[150%] text-Gray Tablet:Text-m-Medium"

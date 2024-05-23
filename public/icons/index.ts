@@ -6,6 +6,7 @@ export { default as CheckedCheckbox } from "./checkbox-checked.svg";
 export { default as UnCheckedCheckbox } from "./checkbox-unchecked.svg";
 export { default as Exit } from "./exit.svg";
 export { default as GalleryTab } from "./gallery-tab.svg";
+export { default as GrayBottomArrow } from "./gray-bottom-arrow.svg";
 export { default as HalfStar } from "./half-star.svg";
 export { default as HeaderUserArrow } from "./header-user-arrow.svg";
 export { default as Heart } from "./heart.svg";
