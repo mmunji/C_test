@@ -1,6 +1,6 @@
-import { ChangeEvent, useCallback, useState } from "react";
+import { ChangeEvent, useCallback, useEffect, useState } from "react";
 
-export default function useModal() {
+export default function useModal(isOpen: boolean) {
   const [isChecked, setIsChecked] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [detailedReason, setDetailedReason] = useState("");
@@ -15,6 +15,15 @@ export default function useModal() {
     (index: number) => setSelectedIndex(index),
     [],
   );
+
+  useEffect(() => {
+    if (!isOpen) {
+      setIsChecked(false);
+      setDetailedReason("");
+      setSelectedIndex(0);
+      setIsDropdownOpen(false);
+    }
+  }, [isOpen]);
 
   return {
     isChecked,
