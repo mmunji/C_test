@@ -65,7 +65,7 @@ export default function TalkContentsBody({
       {!showMore && showSpoiler && (
         <button
           onClick={() => setShowMore(true)}
-          className="absolute bottom-0 right-0 z-10 bg-BG pl-1 text-sm font-Regular leading-[150%] text-Gray Tablet:Text-m-Medium"
+          className="absolute bottom-0 right-0 z-10 bg-BG pl-1 text-sm font-Regular leading-[150%] text-Gray Tablet:Text-m-Medium Laptop:bg-D1_Gray"
         >
           ...더보기
         </button>

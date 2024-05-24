@@ -9,7 +9,7 @@ import NewKeyword from "./NewKeyword";
 import Nokeyword from "./Nokeyword";
 
 export default function Keyword() {
-  const [noKeyword, setNokeyword] = useState(false);
+  const [noKeyword, setNokeyword] = useState(true);
 
   return (
     <section className="flex flex-col items-center Laptop:relative Laptop:rounded-xl Laptop:bg-D1_Gray Laptop:p-10 Desktop:p-[60px]">

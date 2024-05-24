@@ -13,7 +13,7 @@ export default function TalkContents() {
   }, [spoiler]);
 
   return (
-    <div className="border-b-[1px] border-D1_Gray py-5 first:mt-4 last:border-b-0 Tablet:mt-5 Tablet:py-6">
+    <div className="border-b-[1px] border-D1_Gray py-5 first:mt-4 last:border-b-0 Tablet:mt-5 Tablet:py-6 Laptop:border-D2_Gray">
       <TalkContentsHeader />
       <TalkContentsBody {...{ spoiler, showSpoiler, setShowSpoiler }} />
       <TalkContentsFooter {...{ spoiler, showSpoiler }} />

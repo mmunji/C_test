@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useState } from "react";
 
 import KeywordSpeechBubble from "./KeywordSpeechBubble";
 
@@ -14,8 +14,12 @@ export default function KeywordForm() {
     }
   };
 
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+  };
+
   return (
-    <form className="relative w-full Laptop:static">
+    <form onSubmit={handleSubmit} className="relative w-full Laptop:static">
       <div className="Laptop:hidden">
         <KeywordSpeechBubble />
       </div>

@@ -16,18 +16,20 @@ export default function Talk() {
       <Rating />
       <DividingLine />
 
-      <TalkHeader />
-      {noTalk ? (
-        <NoTalk />
-      ) : (
-        <>
-          {Array(10)
-            .fill(null)
-            .map((_, i) => (
-              <TalkContents key={i} />
-            ))}
-        </>
-      )}
+      <section className="Laptop:rounded-xl Laptop:bg-D1_Gray Laptop:p-8">
+        <TalkHeader />
+        {noTalk ? (
+          <NoTalk />
+        ) : (
+          <>
+            {Array(10)
+              .fill(null)
+              .map((_, i) => (
+                <TalkContents key={i} />
+              ))}
+          </>
+        )}
+      </section>
     </section>
   );
 }

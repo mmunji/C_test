@@ -32,7 +32,7 @@ export default function TalkForm() {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="mx-auto flex w-full flex-col gap-3"
+      className="mx-auto flex w-full flex-col gap-3 Laptop:mt-7"
     >
       <div className="relative h-[182px] w-full overflow-hidden rounded-xl bg-Black">
         <TalkFormHeader />
