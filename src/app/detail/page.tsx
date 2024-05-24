@@ -2,7 +2,10 @@ import React from "react";
 
 import DetailBannerSection from "./_components/detailBannerSection/DetailBannerSection";
 import DetailInfo from "./_components/detailInfo/DetailInfo";
+import TrailerAndPhoto from "./_components/keywordAndTalkAndGallery/gallery/trailerAndPhoto/TrailerAndPhoto";
+import Keyword from "./_components/keywordAndTalkAndGallery/keyword/Keyword";
 import KeywordAndTalkAndGallery from "./_components/keywordAndTalkAndGallery/KeywordAndTalkAndGallery";
+import Talk from "./_components/keywordAndTalkAndGallery/talk/Talk";
 import KeywordBar from "./_components/keywordBar/KeywordBar";
 
 export default function Detail() {
@@ -13,6 +16,18 @@ export default function Detail() {
         <KeywordBar />
         <section className="flex flex-col Laptop:gap-[100px]">
           <DetailInfo />
+          <div className="hidden Laptop:block">
+            <TrailerAndPhoto />
+          </div>
+
+          <section className="hidden Laptop:flex Laptop:gap-7 Desktop:gap-9">
+            <div className="w-[67.74%]">
+              <Talk />
+            </div>
+            <div className="w-[32.26%]">
+              <Keyword />
+            </div>
+          </section>
 
           <KeywordAndTalkAndGallery />
         </section>

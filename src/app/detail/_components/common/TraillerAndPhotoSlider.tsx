@@ -21,7 +21,7 @@ export default function TrailerAndPhotoSlider() {
 
   return (
     <div
-      className="mt-2"
+      className="relative mt-2"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >

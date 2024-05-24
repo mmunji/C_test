@@ -16,7 +16,9 @@ export default function KeywordForm() {
 
   return (
     <form className="relative w-full Laptop:static">
-      <KeywordSpeechBubble />
+      <div className="Laptop:hidden">
+        <KeywordSpeechBubble />
+      </div>
       <div className="relative w-full overflow-hidden rounded-xl ">
         <input
           type="text"

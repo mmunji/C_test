@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useLayoutEffect, useState } from "react";
 import { SwiperClass } from "swiper/react";
 
 import useDevice from "@/hooks/useDevice";
@@ -32,7 +32,7 @@ export default function useDetailSwiper(
     swiper?.slideTo(swiper.activeIndex + Math.floor(slidesPerView));
   };
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     switch (device) {
       case "mobile":
         setCastAndCrewSlidesPerView(3.5);

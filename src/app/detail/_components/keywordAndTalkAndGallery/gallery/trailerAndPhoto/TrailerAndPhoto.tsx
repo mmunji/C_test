@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from "react";
 
 import TrailerAndPhotoSlider from "../../../common/TraillerAndPhotoSlider";
