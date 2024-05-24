@@ -1,0 +1,8 @@
+.keyword_bar {
+  background: linear-gradient(
+      96deg,
+      rgba(115, 80, 136, 0.3) 0%,
+      rgba(93, 32, 44, 0.3) 100%
+    ),
+    #2e2c2b;
+}

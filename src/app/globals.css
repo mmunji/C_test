@@ -4,4 +4,68 @@
 
 body {
   letter-spacing: -0.03em;
+  line-height: 150%;
+  @apply bg-BG font-pretendard text-Silver;
+}
+
+@layer utilities {
+  .item-border:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    bottom: -4.5px;
+    width: 100%;
+    height: 1px;
+    @apply bg-D2_Gray;
+  }
+  .Text-xxxl-Bold {
+    @apply text-3xl font-Bold leading-140;
+  }
+  .Text-xxl-Bold {
+    @apply text-2xl font-Bold leading-140;
+  }
+  .Text-xl-Bold {
+    @apply text-xl font-Bold leading-140;
+  }
+  .Text-l-Bold {
+    @apply text-md font-Bold leading-140;
+  }
+  .Text-l-Medium {
+    @apply text-md font-Medium leading-140;
+  }
+  .Text-m-Bold {
+    @apply text-regular font-Bold leading-150;
+  }
+  .Text-m-Medium {
+    @apply text-regular font-Medium leading-150;
+  }
+  .Text-m-Regular {
+    @apply text-regular font-Regular leading-150;
+  }
+  .Text-s-Bold {
+    @apply text-sm font-Bold leading-150;
+  }
+  .Text-s-Medium {
+    @apply text-sm font-Medium leading-150;
+  }
+  .Text-s-Regular {
+    @apply text-sm font-Regular leading-150;
+  }
+  .Text-xs-Bold {
+    @apply text-xs font-Bold leading-150;
+  }
+  .Text-xs-Regular {
+    @apply text-xs font-Medium leading-150;
+  }
+  .Emoji-l {
+    @apply font-appleSDGothicNeo text-E_lg font-Regular leading-none;
+  }
+  .Emoji-m {
+    @apply font-appleSDGothicNeo text-regular font-Regular leading-none;
+  }
+  .Emoji-s {
+    @apply font-appleSDGothicNeo text-xs font-Regular leading-none;
+  }
+}
+
+@layer components {
 }

@@ -1,4 +1,8 @@
 import "./globals.css";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/scrollbar";
 
 import type { Metadata } from "next";
 
@@ -17,13 +21,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${pretendard.variable} ${appleSDGothicNeo.variable} font-pretendard`}
-      >
+    <html lang="ko">
+      <body className={`${pretendard.variable} ${appleSDGothicNeo.variable}`}>
         <ReactQueryProvier>
           <Header />
           {children}
+          <div id="portal" />
         </ReactQueryProvier>
       </body>
     </html>
