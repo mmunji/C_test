@@ -1,6 +1,5 @@
 import React from "react";
 
-import CastAndCrew from "./_components/castAndCrew/CastAndCrew";
 import DetailBannerSection from "./_components/detailBannerSection/DetailBannerSection";
 import DetailInfo from "./_components/detailInfo/DetailInfo";
 import KeywordAndTalkAndGallery from "./_components/keywordAndTalkAndGallery/KeywordAndTalkAndGallery";
@@ -18,7 +17,6 @@ export default function Detail() {
           <KeywordAndTalkAndGallery />
         </section>
       </div>
-      {/* <CastAndCrew /> */}
     </div>
   );
 }

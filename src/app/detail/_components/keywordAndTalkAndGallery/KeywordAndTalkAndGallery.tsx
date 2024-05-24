@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 
-import CategoryTab from "../CategoryTab";
+import CategoryTab from "./CategoryTab";
+import Gallery from "./gallery/Gallery";
 import Keyword from "./keyword/Keyword";
 import Talk from "./talk/Talk";
 
@@ -15,6 +16,7 @@ export default function KeywordAndTalkAndGallery() {
       <CategoryTab {...{ tabs, activeTab, setActiveTab }} />
       {activeTab === tabs[0] && <Keyword />}
       {activeTab === tabs[1] && <Talk />}
+      {activeTab === tabs[2] && <Gallery />}
     </section>
   );
 }

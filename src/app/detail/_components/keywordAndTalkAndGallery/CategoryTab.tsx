@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { Dispatch, SetStateAction } from "react";
 
-import { GalleryTab, KeywordTab, TalkTab } from "../../../../public/icons";
+import { GalleryTab, KeywordTab, TalkTab } from "../../../../../public/icons";
 
 interface CategoryTabProps {
   tabs: string[];

@@ -1,18 +1,13 @@
 import Image from "next/image";
-import React from "react";
 import { A11y, Navigation, Pagination, Scrollbar } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-import useCastAndCrewSwiper from "@/app/detail/_hooks/useCastAndCrewSwiper";
-import { castAndCrew } from "@/app/detail/fakeData";
+import useDetailSwiper from "@/app/detail/_hooks/useDetailSwiper";
+import { trailerAndPhoto } from "@/app/detail/fakeData";
 
 import { NextArrow, PrevArrow } from "../../../../../public/icons";
 
-interface CastProps {
-  device: Device;
-}
-
-export default function Cast({ device }: CastProps) {
+export default function TrailerAndPhotoSlider() {
   const {
     hovered,
     setHovered,
@@ -21,42 +16,30 @@ export default function Cast({ device }: CastProps) {
     forceUpdate,
     handleNext,
     handlePrev,
-    slidesPerView,
-  } = useCastAndCrewSwiper(device);
+    traillerAndPhotoSpaceBetween,
+  } = useDetailSwiper("traillerAndPhoto");
 
   return (
     <div
-      className="relative mt-5 h-[calc(256px-60px)]"
+      className="mt-2"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
       <Swiper
         modules={[Navigation, Pagination, Scrollbar, A11y]}
-        spaceBetween={12}
-        slidesPerView={slidesPerView}
+        spaceBetween={traillerAndPhotoSpaceBetween}
+        slidesPerView={"auto"}
         onSlideChange={forceUpdate}
         onSwiper={(e) => {
           setSwiper(e);
         }}
       >
-        {castAndCrew.map((el, i) => (
+        {trailerAndPhoto.map((el, i) => (
           <SwiperSlide
             key={i}
-            className="min-h-[196px] rounded-[8px] bg-D1_Gray"
+            className="max-w-[320px] Tablet:max-w-[352px] Laptop:max-w-[271px] Desktop:max-w-[372px]"
           >
-            <Image
-              src={el.src}
-              alt={el.name}
-              className="h-[112px] rounded-[8px]"
-            />
-            <section className="px-2 pb-3 pt-2">
-              <p className="mb-2 line-clamp-2 overflow-hidden text-ellipsis text-center text-Silver Text-s-Medium">
-                {el.name}
-              </p>
-              <p className="overflow-hidden text-ellipsis whitespace-nowrap text-L_Gray Text-xs-Regular">
-                {el.casting}
-              </p>
-            </section>
+            <Image src={el} alt="" className="w-full" />
           </SwiperSlide>
         ))}
       </Swiper>

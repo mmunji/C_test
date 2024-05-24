@@ -1,4 +1,4 @@
-import { CastAndCrew } from "../../../public/images";
+import { CastAndCrew, DetailTrailer } from "../../../public/images";
 
 export const movieInfo = [
   "2024",
@@ -38,4 +38,13 @@ export const newKeywords = [
   "최신입니다",
   "최신입니다",
   "최신입니다",
+];
+
+export const trailerAndPhoto = [
+  DetailTrailer,
+  DetailTrailer,
+  DetailTrailer,
+  DetailTrailer,
+  DetailTrailer,
+  DetailTrailer,
 ];

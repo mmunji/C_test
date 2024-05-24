@@ -1,18 +1,13 @@
 import Image from "next/image";
-import React from "react";
 import { A11y, Navigation, Pagination, Scrollbar } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-import useCastAndCrewSwiper from "@/app/detail/_hooks/useCastAndCrewSwiper";
+import useDetailSwiper from "@/app/detail/_hooks/useDetailSwiper";
 import { castAndCrew } from "@/app/detail/fakeData";
 
 import { NextArrow, PrevArrow } from "../../../../../public/icons";
 
-interface CresProps {
-  device: Device;
-}
-
-export default function Crew({ device }: CresProps) {
+export default function CastAndCrewSlider() {
   const {
     hovered,
     setHovered,
@@ -21,8 +16,8 @@ export default function Crew({ device }: CresProps) {
     forceUpdate,
     handleNext,
     handlePrev,
-    slidesPerView,
-  } = useCastAndCrewSwiper(device);
+    castAndCrewSpaceBetween,
+  } = useDetailSwiper("castAndCrew");
 
   return (
     <div
@@ -32,8 +27,8 @@ export default function Crew({ device }: CresProps) {
     >
       <Swiper
         modules={[Navigation, Pagination, Scrollbar, A11y]}
-        spaceBetween={12}
-        slidesPerView={slidesPerView}
+        spaceBetween={castAndCrewSpaceBetween}
+        slidesPerView={"auto"}
         onSlideChange={forceUpdate}
         onSwiper={(e) => {
           setSwiper(e);
@@ -42,7 +37,7 @@ export default function Crew({ device }: CresProps) {
         {castAndCrew.map((el, i) => (
           <SwiperSlide
             key={i}
-            className="min-h-[196px] rounded-[8px] bg-D1_Gray"
+            className="min-h-[196px] max-w-[82px] rounded-[8px] bg-D1_Gray"
           >
             <Image
               src={el.src}

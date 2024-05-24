@@ -25,12 +25,12 @@ export default function TalkContentsFooter({
 
   const handleClickLike = () => {
     setDisliked(false);
-    setLiked(true);
+    setLiked(!liked);
   };
 
   const handleClickDislike = () => {
     setLiked(false);
-    setDisliked(true);
+    setDisliked(!disliked);
   };
 
   return (

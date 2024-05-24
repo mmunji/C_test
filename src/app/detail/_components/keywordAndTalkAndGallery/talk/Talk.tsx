@@ -1,5 +1,6 @@
 import { useState } from "react";
 
+import DividingLine from "../../common/DividingLine";
 import NoTalk from "./NoTalk";
 import Rating from "./rating/Rating";
 import TalkContents from "./talkContents/TalkContents";
@@ -11,7 +12,7 @@ export default function Talk() {
   return (
     <section>
       <Rating />
-      <div className="my-8 h-3 w-[100vw] translate-x-[-20px] bg-Black Tablet:translate-x-[-24px] Laptop:hidden" />
+      <DividingLine />
 
       <TalkHeader />
       {noTalk ? (
