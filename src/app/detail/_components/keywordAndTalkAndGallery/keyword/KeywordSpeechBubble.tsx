@@ -17,7 +17,7 @@ export default function KeywordSpeechBubble() {
           initial={{ x: "-50%", y: "-100%" }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0, scale: 0 }}
-          className="absolute left-1/2 top-[-13px] z-10 flex h-[34px] w-[305px] translate-x-[-50%] translate-y-[-100%] items-center justify-between rounded-lg bg-Shade_1 py-2 pl-3 pr-1"
+          className="absolute left-1/2 top-[-13px] z-[5] flex h-[34px] w-[305px] translate-x-[-50%] translate-y-[-100%] items-center justify-between rounded-lg bg-Shade_1 py-2 pl-3 pr-1 Laptop:top-[13px]"
         >
           <p className="text-sm font-Medium leading-[18px] text-Silver">
             떠오르는 단어를 작성하거나, 키워드를 눌러보세요!
