@@ -1,16 +1,10 @@
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import React, {
-  Dispatch,
-  SetStateAction,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import React, { Dispatch, SetStateAction, useState } from "react";
 
 import ROUTES from "@/constants/routes";
 
-import { User, WhiterSearch } from "../../../../../public/icons";
+import { SearchWhiter, User } from "../../../../../public/icons";
 import MobileHeaderInputSection from "./MobileHeaderInputSection";
 import MobileHeaderSearchDropdown from "./MobileHeaderSearchDropdown";
 
@@ -43,9 +37,9 @@ function MobileHeaderRightSection({
           }}
         />
       ) : (
-        <>
+        <section className="flex Tablet:gap-4">
           <Image
-            src={WhiterSearch}
+            src={SearchWhiter}
             alt="검색"
             onClick={() => setClickSearchIcon(true)}
             className="m-2 cursor-pointer"
@@ -53,9 +47,9 @@ function MobileHeaderRightSection({
           <Image
             src={User}
             alt="유저"
-            className="m-2 cursor-pointer Tablet:hidden"
+            className="m-2 cursor-pointer Laptop:hidden"
           />
-        </>
+        </section>
       )}
       {clickSearchIcon && (
         <MobileHeaderSearchDropdown

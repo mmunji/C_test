@@ -27,7 +27,7 @@ export default function HeaderRightSection({
 
   return (
     <section
-      className={`${pathname === ROUTES.MAIN && "w-full"} flex h-10  items-center gap-4 Laptop:w-fit Laptop:gap-8`}
+      className={`${pathname === ROUTES.MAIN && "w-full"} flex h-10 items-center gap-4 Laptop:w-fit Laptop:gap-8`}
     >
       <HeaderSearchInputSection
         {...{

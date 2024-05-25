@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React from "react";
 
-import { OrangeFire } from "../../../../../public/icons";
+import { EnvironmentFire } from "../../../../../public/icons";
 
 interface HeaderSearchDropdownProps {
   inputValue: string;
@@ -18,14 +18,14 @@ export default function HeaderSearchDropdown({
     <ul className="absolute top-10 w-full rounded-b-[20px] bg-D2_Gray pb-3">
       {!inputValue && (
         <div className="flex gap-1 py-1 pl-8 pr-5">
-          <Image src={OrangeFire} alt="불" className="mx-[5px] my-[3px]" />
+          <Image src={EnvironmentFire} alt="불" className="mx-[5px] my-[3px]" />
           <p className="font-Medium text-Primary">인기 검색어</p>
         </div>
       )}
       {arr.map((el, i) => (
         <li
           key={i}
-          className="max-w-[calc(100%-32px)] cursor-pointer overflow-hidden text-ellipsis whitespace-nowrap py-1 pl-[60px] font-Regular text-Silver"
+          className="max-w-[calc(100%-32px)] cursor-pointer overflow-hidden text-ellipsis whitespace-nowrap py-1 pl-[60px] font-Regular text-Silver hover:underline"
         >
           {el}
         </li>

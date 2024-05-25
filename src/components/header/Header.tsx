@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import ROUTES from "@/constants/routes";
 import useHeaderScrollThreshold from "@/hooks/useHeaderScrollThreshold";
 
-import { PrevArrow } from "../../../public/icons";
+import { ChevronLeftMd } from "../../../public/icons";
 import HeaderRightSection from "./headerRightSection/HeaderRightSection";
 import Logo from "./Logo";
 
@@ -32,10 +32,10 @@ export default function Header() {
       <div className="relative mx-1 flex h-full items-center justify-between Tablet:mx-6 Laptop:mx-[52px]">
         {pathname !== ROUTES.MAIN && !clickSearchIcon && (
           <Image
-            src={PrevArrow}
+            src={ChevronLeftMd}
             alt="뒤로 가기"
             onClick={() => router.back()}
-            className="cursor-pointer Tablet:hidden"
+            className="m-2 cursor-pointer Tablet:hidden"
           />
         )}
         <svg

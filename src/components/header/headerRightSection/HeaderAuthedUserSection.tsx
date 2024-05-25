@@ -4,7 +4,7 @@ import React from "react";
 
 import ROUTES from "@/constants/routes";
 
-import { HeaderUserArrow } from "../../../../public/icons";
+import { CaretDownMd } from "../../../../public/icons";
 
 interface HeaderAuthedUserSectionProps {
   hasScrolledPast: boolean;
@@ -15,7 +15,7 @@ function HeaderAuthedUserSection({
 }: HeaderAuthedUserSectionProps) {
   const pathname = usePathname();
   return (
-    <section className="hidden items-center Tablet:flex">
+    <section className="hidden items-center Laptop:flex">
       <div className="mr-3 h-[30px] w-[30px] rounded-full bg-[#d9d9d9]" />
 
       <p
@@ -23,7 +23,7 @@ function HeaderAuthedUserSection({
       >
         닉네임
       </p>
-      <Image src={HeaderUserArrow} alt="더보기" className="cursor-pointer" />
+      <Image src={CaretDownMd} alt="더보기" className="cursor-pointer" />
     </section>
   );
 }
