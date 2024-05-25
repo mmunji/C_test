@@ -2,9 +2,9 @@ import Image from "next/image";
 import React from "react";
 
 import {
-  HalfStar,
-  StarForRating,
-  UnFilledStar,
+  StarFillSm,
+  StarHalfSm,
+  StarSm,
 } from "../../../../../../../../public/icons";
 
 interface TalkContentsRatingStarProps {
@@ -20,13 +20,13 @@ export default function TalkContentsRatingStar({
   let alt;
 
   if (rating >= index + 1) {
-    src = StarForRating;
+    src = StarFillSm;
     alt = "별";
   } else if (rating > index && rating === index + 0.5) {
-    src = HalfStar;
+    src = StarHalfSm;
     alt = "반 별";
   } else {
-    src = UnFilledStar;
+    src = StarSm;
     alt = "빈 별";
   }
 

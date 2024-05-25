@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React from "react";
 
-import { Menu } from "../../../../../../../../public/icons";
+import { MoreHorizontal } from "../../../../../../../../public/icons";
 import DetailBadge from "../../../../common/DetailBadge";
 import TalkContentsRatingStar from "./TalkContentsRatingStar";
 
@@ -37,7 +37,7 @@ export default function TalkContentsHeader() {
         </section>
       </section>
 
-      <Image src={Menu} alt="메뉴" className="m-2 mb-auto" />
+      <Image src={MoreHorizontal} alt="메뉴" className="m-2 mb-auto" />
     </div>
   );
 }

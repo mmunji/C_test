@@ -1,7 +1,12 @@
 import Image from "next/image";
 import React from "react";
 
-import { Heart, WritePencil } from "../../../../../public/icons";
+import {
+  EditPencilLineMd,
+  EditPencilLineSm,
+  HeartLineLg,
+  HeartLineXl,
+} from "../../../../../public/icons";
 import { DetailPoster } from "../../../../../public/images";
 
 export default function DetailBannerBottomRight() {
@@ -9,30 +14,40 @@ export default function DetailBannerBottomRight() {
     <section className="absolute bottom-[-60px] flex translate-y-[100%] Tablet:bottom-[-41px] Laptop:static Laptop:translate-y-0">
       <section className="mt-auto flex items-center gap-10 Laptop:gap-5 Desktop:gap-8">
         <section>
-          <p className="Text-l-Bold flex h-10 w-10 items-center justify-center text-Silver Laptop:h-12 Laptop:w-12 Laptop:text-xl Laptop:font-Medium Laptop:leading-[28px]">
+          <p className="flex h-10 w-10 items-center justify-center text-Silver Text-l-Bold Laptop:h-12 Laptop:w-12 Laptop:text-xl Laptop:font-Medium Laptop:leading-[28px]">
             0.0
           </p>
-          <p className="Text-xs-Regular Laptop:Text-s-Medium text-center text-L_Gray Laptop:text-White">
+          <p className="text-center text-L_Gray Text-xs-Regular Laptop:text-White Laptop:Text-s-Medium">
             내 평가
           </p>
         </section>
         <section className="cursor-pointer">
           <Image
-            src={Heart}
+            src={HeartLineLg}
             alt="찜하기"
-            className="m-1 h-8 w-8 Laptop:m-0 Laptop:h-fit Laptop:w-fit"
+            className="m-1 h-8 w-8 Laptop:hidden"
           />
-          <p className="Text-xs-Regular Laptop:Text-s-Medium text-center text-L_Gray Laptop:text-White">
+          <Image
+            src={HeartLineXl}
+            alt="찜하기"
+            className="hidden Laptop:block"
+          />
+          <p className="text-center text-L_Gray Text-xs-Regular Laptop:text-White Laptop:Text-s-Medium">
             찜하기
           </p>
         </section>
         <section className="cursor-pointer">
           <Image
-            src={WritePencil}
+            src={EditPencilLineSm}
             alt="톡 작성"
-            className="m-1 h-8 w-8 Laptop:m-0 Laptop:h-fit Laptop:w-fit"
+            className="m-1 h-8 w-8 Laptop:hidden"
           />
-          <p className="Text-xs-Regular Laptop:Text-s-Medium text-center text-L_Gray Laptop:text-White">
+          <Image
+            src={EditPencilLineMd}
+            alt="톡 작성"
+            className="hidden Laptop:block"
+          />
+          <p className="text-center text-L_Gray Text-xs-Regular Laptop:text-White Laptop:Text-s-Medium">
             톡 작성
           </p>
         </section>

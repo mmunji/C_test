@@ -5,7 +5,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import useDetailSwiper from "@/app/detail/_hooks/useDetailSwiper";
 import { trailerAndPhoto } from "@/app/detail/fakeData";
 
-import { NextArrow, PrevArrow } from "../../../../../public/icons";
+import { ChevronLeftMd, ChevronRightMd } from "../../../../../public/icons";
 
 export default function TrailerAndPhotoSlider() {
   const {
@@ -49,7 +49,7 @@ export default function TrailerAndPhotoSlider() {
           onClick={handlePrev}
           className={`absolute hidden Laptop:flex ${hovered ? "opacity-100" : "opacity-0"} left-0 top-1/2 z-10 flex h-11 w-11 translate-x-[-50%] translate-y-[-50%] items-center justify-center rounded-full bg-[#FFFFFF19] transition-opacity duration-300`}
         >
-          <Image src={PrevArrow} alt="이전" />
+          <Image src={ChevronLeftMd} alt="이전" />
         </button>
       )}
 
@@ -58,7 +58,7 @@ export default function TrailerAndPhotoSlider() {
           onClick={handleNext}
           className={`absolute hidden Laptop:flex ${hovered ? "opacity-100" : "opacity-0"} right-0 top-1/2 z-10 flex h-11 w-11 translate-x-[50%] translate-y-[-50%] items-center justify-center rounded-full bg-[#FFFFFF19] transition-opacity duration-300`}
         >
-          <Image src={NextArrow} alt="다음" />
+          <Image src={ChevronRightMd} alt="다음" />
         </button>
       )}
     </div>

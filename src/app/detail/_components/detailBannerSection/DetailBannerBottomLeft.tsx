@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React from "react";
 
-import { PrimaryStar, TMDB } from "../../../../../public/icons";
+import { StarFillMd, TmdbMd } from "../../../../../public/icons";
 import { movieInfo } from "../../fakeData";
 
 export default function DetailBannerBottomLeft() {
@@ -17,12 +17,12 @@ export default function DetailBannerBottomLeft() {
       <section className="flex flex-col items-center Laptop:mb-0 Laptop:flex-row Laptop:gap-6">
         <section className="mb-2 flex gap-6 Laptop:mb-0">
           <section className="flex items-center gap-1">
-            <Image src={PrimaryStar} alt="별점" />
+            <Image src={StarFillMd} alt="별점" />
             <p className="text-Primary Text-m-Bold Laptop:Text-xxl-Bold">0.0</p>
           </section>
 
           <section className="flex gap-1">
-            <Image src={TMDB} alt="TMDB" />
+            <Image src={TmdbMd} alt="TMDB" />
             <p className="text-Silver Text-m-Bold Laptop:Text-xxl-Bold">0.0</p>
           </section>
         </section>

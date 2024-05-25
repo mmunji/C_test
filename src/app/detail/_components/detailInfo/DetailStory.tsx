@@ -3,7 +3,7 @@
 import Image from "next/image";
 import React, { useState } from "react";
 
-import { BottomArrow } from "../../../../../public/icons";
+import { CaretDownGrayMd, CaretDownMd } from "../../../../../public/icons";
 
 export default function DetailStory() {
   const [clicked, setClicked] = useState(false);
@@ -29,9 +29,15 @@ export default function DetailStory() {
       </p>
       <div className="my-1 flex h-6 items-center justify-center">
         <Image
-          src={BottomArrow}
+          src={CaretDownGrayMd}
           alt="더보기"
-          className={`cursor-pointer select-none ${clicked ? "scale-[-1]" : "scale-1"} transition-transform`}
+          className={`cursor-pointer select-none Laptop:hidden ${clicked ? "scale-[-1]" : "scale-1"} transition-transform`}
+          onClick={() => setClicked(!clicked)}
+        />
+        <Image
+          src={CaretDownMd}
+          alt="더보기"
+          className={`hidden cursor-pointer select-none Laptop:block ${clicked ? "scale-[-1]" : "scale-1"} transition-transform`}
           onClick={() => setClicked(!clicked)}
         />
       </div>
