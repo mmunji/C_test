@@ -1,10 +1,12 @@
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import React, { Dispatch, SetStateAction, useState } from "react";
+import React, { Dispatch, SetStateAction } from "react";
 
 import ROUTES from "@/constants/routes";
 
-import { Search, WhiterSearch, WhiteSearch } from "../../../../public/icons";
+import { SearchWhite } from "../../../../public/icons";
+import { SearchWhiter } from "../../../../public/icons";
+import { Search } from "../../../../public/icons";
 import HeaderSearchDropdown from "./headerSearchInputSection/HeaderSearchDropdown";
 import RenderSearchInput from "./headerSearchInputSection/RenderSearchInput";
 
@@ -44,9 +46,9 @@ export default function HeaderSearchInputSection({
               ? pathname === ROUTES.DETAIL
                 ? hasScrolledPast
                   ? Search
-                  : WhiteSearch
+                  : SearchWhite
                 : Search
-              : WhiterSearch
+              : SearchWhiter
           }
           alt="검색"
           className="absolute left-[24px] top-[50%] translate-y-[-50%]"

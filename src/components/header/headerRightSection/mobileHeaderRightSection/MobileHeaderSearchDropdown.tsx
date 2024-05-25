@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React from "react";
 
-import { OrangeFire } from "../../../../../public/icons";
+import { EnvironmentFire } from "../../../../../public/icons";
 
 interface MobilHeaderSearchDropdownProps {
   inputValue: string;
@@ -22,7 +22,7 @@ export default function MobilHeaderSearchDropdown({
     >
       {inputFocused && !inputValue && (
         <div className="mb-2 flex gap-1 px-6 py-1">
-          <Image src={OrangeFire} alt="불" className="mx-[5px] my-[3px]" />
+          <Image src={EnvironmentFire} alt="불" className="mx-[5px] my-[3px]" />
           <p className="font-Medium text-Primary">인기 검색어</p>
         </div>
       )}
