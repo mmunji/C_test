@@ -1,4 +1,4 @@
-import { CastAndCrew } from "../../../public/images";
+import { CastAndCrew, DetailTrailer } from "../../../public/images";
 
 export const movieInfo = [
   "2024",
@@ -8,26 +8,13 @@ export const movieInfo = [
   "다큐멘터리/애니메이션",
 ];
 
-export const castAndCrew = [
-  { src: CastAndCrew, name: "티모시 샬라메", casting: "윌리 웡카잔아ㅏㅏㅏㅏ" },
-  { src: CastAndCrew, name: "티모시 샬라메", casting: "윌리 웡카잔아ㅏㅏㅏㅏ" },
-  { src: CastAndCrew, name: "티모시 샬라메", casting: "윌리 웡카잔아ㅏㅏㅏㅏ" },
-  { src: CastAndCrew, name: "티모시 샬라메", casting: "윌리 웡카잔아ㅏㅏㅏㅏ" },
-  { src: CastAndCrew, name: "티모시 샬라메", casting: "윌리 웡카잔아ㅏㅏㅏㅏ" },
-  { src: CastAndCrew, name: "티모시 샬라메", casting: "윌리 웡카잔아ㅏㅏㅏㅏ" },
-  { src: CastAndCrew, name: "티모시 샬라메", casting: "윌리 웡카잔아ㅏㅏㅏㅏ" },
-  { src: CastAndCrew, name: "티모시 샬라메", casting: "윌리 웡카잔아ㅏㅏㅏㅏ" },
-  { src: CastAndCrew, name: "티모시 샬라메", casting: "윌리 웡카잔아ㅏㅏㅏㅏ" },
-  { src: CastAndCrew, name: "티모시 샬라메", casting: "윌리 웡카잔아ㅏㅏㅏㅏ" },
-  { src: CastAndCrew, name: "티모시 샬라메", casting: "윌리 웡카잔아ㅏㅏㅏㅏ" },
-  { src: CastAndCrew, name: "티모시 샬라메", casting: "윌리 웡카잔아ㅏㅏㅏㅏ" },
-  { src: CastAndCrew, name: "티모시 샬라메", casting: "윌리 웡카잔아ㅏㅏㅏㅏ" },
-  { src: CastAndCrew, name: "티모시 샬라메", casting: "윌리 웡카잔아ㅏㅏㅏㅏ" },
-  { src: CastAndCrew, name: "티모시 샬라메", casting: "윌리 웡카잔아ㅏㅏㅏㅏ" },
-  { src: CastAndCrew, name: "티모시 샬라메", casting: "윌리 웡카잔아ㅏㅏㅏㅏ" },
-  { src: CastAndCrew, name: "티모시 샬라메", casting: "윌리 웡카잔아ㅏㅏㅏㅏ" },
-  { src: CastAndCrew, name: "티모시 샬라메", casting: "윌리 웡카잔아ㅏㅏㅏㅏ" },
-];
+export const castAndCrew = Array(30)
+  .fill(null)
+  .map(() => ({
+    src: CastAndCrew,
+    name: "티모시 샬라메",
+    casting: "윌리 웡카잔아ㅏㅏㅏㅏ",
+  }));
 
 export const keywords = Array(26)
   .fill("키워드")
@@ -39,3 +26,7 @@ export const newKeywords = [
   "최신입니다",
   "최신입니다",
 ];
+
+export const trailerAndPhoto = Array(20)
+  .fill(null)
+  .map(() => DetailTrailer);

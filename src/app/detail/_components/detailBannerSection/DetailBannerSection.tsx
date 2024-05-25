@@ -9,7 +9,7 @@ export default function DetailBannerSection() {
         className="flex h-full w-full bg-cover bg-center bg-no-repeat"
         style={{
           backgroundImage:
-            "linear-gradient(180deg, rgba(38, 38, 38, 0.00) 0%, #262626 100%), url('/images/detail-banner-example.png')",
+            "linear-gradient(180deg, rgba(38, 38, 38, 0.00) 0%, #262626 100%), url('/images/detail/detail-banner-example.png')",
         }}
       >
         <DetailBannerBottom />
