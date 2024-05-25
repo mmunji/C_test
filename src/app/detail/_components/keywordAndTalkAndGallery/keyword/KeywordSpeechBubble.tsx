@@ -2,10 +2,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import React, { useState } from "react";
 
-import {
-  Exit,
-  KeywordSpeechBubbleBottom,
-} from "../../../../../../public/icons";
+import { CloseSm, SpeechBubbleBottom } from "../../../../../../public/icons";
 
 export default function KeywordSpeechBubble() {
   const [clickExit, setClickExiit] = useState(false);
@@ -23,14 +20,14 @@ export default function KeywordSpeechBubble() {
             떠오르는 단어를 작성하거나, 키워드를 눌러보세요!
           </p>
           <Image
-            src={Exit}
+            src={CloseSm}
             alt="닫기"
             className="h-6 w-6 cursor-pointer"
             onClick={() => setClickExiit(true)}
           />
 
           <Image
-            src={KeywordSpeechBubbleBottom}
+            src={SpeechBubbleBottom}
             alt="꼬리표"
             className="absolute bottom-0 left-1/2 -z-10 translate-x-[-50%] translate-y-[50%]"
           />

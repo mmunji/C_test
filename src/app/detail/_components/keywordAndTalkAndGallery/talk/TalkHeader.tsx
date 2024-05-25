@@ -3,7 +3,7 @@ import { useState } from "react";
 
 import Dropdown from "@/components/dropdown";
 
-import { TalkFilter } from "../../../../../../public/icons";
+import { Filter } from "../../../../../../public/icons";
 
 export default function TalkHeader() {
   const filters = ["좋아요순", "최신순"];
@@ -19,7 +19,7 @@ export default function TalkHeader() {
       <Dropdown>
         <Dropdown.Trigger>
           <section className="flex gap-1">
-            <Image src={TalkFilter} alt="필터" />
+            <Image src={Filter} alt="필터" />
             <p className="text-Gray_Orange Text-s-Medium">{activeFilter}</p>
           </section>
         </Dropdown.Trigger>

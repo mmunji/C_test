@@ -3,8 +3,10 @@ import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 
 import {
-  CheckedCheckbox,
-  UnCheckedCheckbox,
+  SquareCheckFillMd,
+  SquareCheckFillSm,
+  SquareCheckMd,
+  SquareCheckSm,
 } from "../../../../../../../../public/icons";
 import TalkFormHeader from "./TalkFormHeader";
 
@@ -49,8 +51,14 @@ export default function TalkForm() {
           onClick={toggleSpoiler}
         >
           <Image
-            src={spoiler ? CheckedCheckbox : UnCheckedCheckbox}
+            src={spoiler ? SquareCheckFillSm : SquareCheckSm}
             alt="스포일러"
+            className="Laptop:hidden"
+          />
+          <Image
+            src={spoiler ? SquareCheckFillMd : SquareCheckMd}
+            alt="스포일러"
+            className="hidden Laptop:block"
           />
           <button className="text-Gray_Orange Text-s-Regular">스포일러</button>
         </section>

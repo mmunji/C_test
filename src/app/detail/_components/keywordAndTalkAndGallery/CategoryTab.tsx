@@ -1,7 +1,11 @@
 import Image from "next/image";
 import { Dispatch, SetStateAction } from "react";
 
-import { GalleryTab, KeywordTab, TalkTab } from "../../../../../public/icons";
+import {
+  chartBar,
+  ChatLineSm,
+  MoreGridSmall,
+} from "../../../../../public/icons";
 
 interface CategoryTabProps {
   tabs: string[];
@@ -20,15 +24,15 @@ export default function CategoryTab({
         let imgSrc;
         switch (activeTab) {
           case tabs[0]:
-            imgSrc = KeywordTab;
+            imgSrc = chartBar;
             break;
 
           case tabs[1]:
-            imgSrc = TalkTab;
+            imgSrc = ChatLineSm;
             break;
 
           case tabs[2]:
-            imgSrc = GalleryTab;
+            imgSrc = MoreGridSmall;
             break;
 
           default:

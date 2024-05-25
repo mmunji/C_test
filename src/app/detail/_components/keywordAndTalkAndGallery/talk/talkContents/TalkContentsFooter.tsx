@@ -3,12 +3,16 @@ import Image from "next/image";
 import React, { useState } from "react";
 
 import {
-  BottomArrow,
-  FilledThumbsDown,
-  FilledThumbsUp,
-  GrayBottomArrow,
-  UnfilledThumbsDown,
-  UnfilledThumbsUp,
+  CaretDownGraySm,
+  CaretDownSm,
+  ThumbsDownFillMd,
+  ThumbsDownFillSm,
+  ThumbsDownLineMd,
+  ThumbsDownLineSm,
+  ThumbsUpFillMd,
+  ThumbsUpFillSm,
+  ThumbsUpLineMd,
+  ThumbsUpLineSm,
 } from "../../../../../../../public/icons";
 
 interface TalkContentsFooterProps {
@@ -40,9 +44,14 @@ export default function TalkContentsFooter({
         className="my-2 ml-1 mr-2 flex cursor-pointer gap-1"
       >
         <Image
-          src={liked ? FilledThumbsUp : UnfilledThumbsUp}
+          src={liked ? ThumbsUpFillSm : ThumbsUpLineSm}
           alt="좋아요"
-          className="Tablet:h-6 Tablet:w-6"
+          className="Laptop:hidden"
+        />
+        <Image
+          src={liked ? ThumbsUpFillMd : ThumbsUpLineMd}
+          alt="좋아요"
+          className="hidden Laptop:block"
         />
         <p className="select-none text-Gray_Orange Text-xs-Regular Tablet:Text-s-Medium">
           0,000
@@ -53,9 +62,14 @@ export default function TalkContentsFooter({
         className="my-2 ml-1 mr-2 flex cursor-pointer gap-1"
       >
         <Image
-          src={disliked ? FilledThumbsDown : UnfilledThumbsDown}
+          src={disliked ? ThumbsDownFillSm : ThumbsDownLineSm}
           alt="싫어요"
-          className="Tablet:h-6 Tablet:w-6"
+          className="Laptop:hidden"
+        />
+        <Image
+          src={disliked ? ThumbsDownFillMd : ThumbsDownLineMd}
+          alt="싫어요"
+          className="hidden Laptop:block"
         />
         <p className="select-none text-Gray_Orange Text-xs-Regular Tablet:Text-s-Medium">
           0,000
@@ -87,9 +101,9 @@ export default function TalkContentsFooter({
           src={
             spoiler
               ? showSpoiler
-                ? BottomArrow
-                : GrayBottomArrow
-              : BottomArrow
+                ? CaretDownSm
+                : CaretDownGraySm
+              : CaretDownSm
           }
           alt="더보기"
         />

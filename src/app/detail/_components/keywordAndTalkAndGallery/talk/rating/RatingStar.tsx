@@ -2,9 +2,9 @@ import Image from "next/image";
 import React, { Dispatch, SetStateAction } from "react";
 
 import {
-  HalfStar,
-  StarForRating,
-  UnFilledStar,
+  StarFillXl,
+  StarHalfXl,
+  StarXl,
 } from "../../../../../../../public/icons";
 
 interface StarProps {
@@ -28,13 +28,13 @@ export default function RatingStar({
   let alt;
 
   if (ratingValue >= index + 1) {
-    src = StarForRating;
+    src = StarFillXl;
     alt = "별";
   } else if (ratingValue > index && ratingValue === index + 0.5) {
-    src = HalfStar;
+    src = StarHalfXl;
     alt = "반 별";
   } else {
-    src = UnFilledStar;
+    src = StarXl;
     alt = "빈 별";
   }
 
