@@ -99,6 +99,7 @@ const config: Config = {
         ".Emoji-l": {},
         ".Emoji-m": {},
         ".Emoji-s": {},
+        ".badge-gradient": {},
       });
     },
   ],

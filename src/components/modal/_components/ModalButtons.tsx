@@ -5,7 +5,7 @@ import { WithChildren } from "@/components/modal/_components/ModalMain";
 import { REPORT_TYPE } from "@/components/modal/_components/ModalReport";
 import { useModalContext } from "@/components/modal/ModalContext";
 
-import { Checkbox, CheckboxFill } from "../../../../public/icons";
+import { SquareCheckFillMd, SquareCheckMd } from "../../../../public/icons";
 
 interface ModalButtonProps extends WithChildren {
   onClick: (type?: string, reason?: string) => void;
@@ -77,9 +77,14 @@ export function ModalCheckbox({ children }: ModalChcekboxProps) {
     <>
       <button type="button" id="checkbox" onClick={toggleChceked} className="">
         {isChecked ? (
-          <Image src={CheckboxFill} alt="checkbox" width={24} height={24} />
+          <Image
+            src={SquareCheckFillMd}
+            alt="checkbox"
+            width={24}
+            height={24}
+          />
         ) : (
-          <Image src={Checkbox} alt="checkbox" width={24} height={24} />
+          <Image src={SquareCheckMd} alt="checkbox" width={24} height={24} />
         )}
       </button>
       <label htmlFor="checkbox" className="cursor-pointer">

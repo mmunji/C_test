@@ -22,9 +22,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <body
-        className={`${pretendard.variable} ${appleSDGothicNeo.variable} overflow-x-hidden`}
-      >
+      <body className={`${pretendard.variable} ${appleSDGothicNeo.variable}`}>
         <ReactQueryProvier>
           <Header />
           {children}
