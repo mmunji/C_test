@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-import { StarFillMd } from "../../../../public/icons";
+import { StarFillMd } from "../../../../../public/icons";
 
 export default function RatingItem() {
   return (

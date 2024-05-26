@@ -30,7 +30,7 @@ export default function Badge() {
         </div>
       </div>
       <div className="grid grid-cols-3 gap-3">
-        {Array(60)
+        {Array(18)
           .fill("d")
           .map((badge, i) => (
             <BadgeItem key={badge + i} />

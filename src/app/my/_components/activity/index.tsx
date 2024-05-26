@@ -2,17 +2,17 @@
 import Image from "next/image";
 import { useState } from "react";
 
-import RatingList from "@/app/my/activity/RatingList";
-import ReviewList from "@/app/my/activity/ReviewList";
+import RatingList from "@/app/my/_components/activity/RatingList";
+import ReviewList from "@/app/my/_components/activity/ReviewList";
 
-import { Filter } from "../../../../public/icons";
+import { Filter } from "../../../../../public/icons";
 
 const TAB_MENU = ["톡", "평가로그"];
 
-export default function Page() {
+export default function Activity() {
   const [selectedTab, setSelectedTab] = useState(0);
   return (
-    <div className="flex flex-col gap-3 px-5">
+    <section className="hidden flex-col gap-3 px-5 Tablet:flex Tablet:px-0">
       <div className="flex items-center justify-between">
         <div className="flex items-center">
           {TAB_MENU.map((menu, i) => (
@@ -38,6 +38,6 @@ export default function Page() {
         </button>
       </div>
       {!selectedTab ? <ReviewList /> : <RatingList />}
-    </div>
+    </section>
   );
 }

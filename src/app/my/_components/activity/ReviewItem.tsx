@@ -1,6 +1,10 @@
 import Image from "next/image";
 
-import { ChatLineSm, StarSm, ThumbsUpLineSm } from "../../../../public/icons";
+import {
+  ChatLineSmGrayOrange,
+  StarSm,
+  ThumbsUpLineSm,
+} from "../../../../../public/icons";
 
 export default function ReviewItem() {
   return (
@@ -26,9 +30,11 @@ export default function ReviewItem() {
             </button>
           </div>
         </div>
-        <div className="text-overflow-3 h-[72px] text-Gray_Orange Text-m-Regular">
+        <div className="line-clamp-3 h-[72px] text-Gray_Orange Text-m-Regular">
           내용은 3줄까지 보여집니다. 그 이상은 더보기로 볼 수 있습니다.내용은
           3줄까지 보여집니다. 그 이상은 더보 볼 수 있습니다.내용은 3줄까지
+          보여집니다. 그 이상은 더보기로 볼 수 있습니다. 볼 수 있습니다.내용은
+          보여집니다. 그 이상은 더보기로 볼 수 있습니다. 볼 수 있습니다.내용은
           보여집니다. 그 이상은 더보기로 볼 수 있습니다. 볼 수 있습니다.내용은
           3줄까지 보여집니다. 그 이상은 더보기로 볼 수 있습니다.
         </div>
@@ -41,7 +47,7 @@ export default function ReviewItem() {
             <span className="text-Gray_Orange Text-s-Medium">0,000</span>
           </div>
           <div className="flex items-center gap-1">
-            <Image alt="댓글" src={ChatLineSm} />
+            <Image alt="댓글" src={ChatLineSmGrayOrange} />
 
             <span className="text-Gray_Orange Text-s-Medium">0,000</span>
           </div>

@@ -2,8 +2,8 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import Activity from "@/app/my/_components/activity";
 import Badge from "@/app/my/_components/Badge";
-import Nav from "@/app/my/_components/Nav";
 import UserInfo from "@/app/my/_components/UserInfo";
 import ROUTES from "@/constants/routes";
 
@@ -11,10 +11,13 @@ import { Archive, Bookmark, User } from "../../../public/icons";
 
 export default function My() {
   return (
-    <div className="">
+    <div className="flex w-full flex-col Tablet:gap-20">
       <UserInfo />
       <div className="h-3 rounded-[3px] bg-Black Tablet:hidden" />
-      <Badge />
+      <div className="flex flex-col Tablet:gap-20 Laptop:gap-[46px]">
+        <Badge />
+        <Activity />
+      </div>
       <div className="border-b border-t border-D2_Gray Tablet:hidden">
         <div>
           <Link
