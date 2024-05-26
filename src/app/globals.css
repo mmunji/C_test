@@ -65,6 +65,27 @@ body {
   .Emoji-s {
     @apply font-appleSDGothicNeo text-xs font-Regular leading-none;
   }
+  .my-info-border-item:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: calc(41px / -2 - 0.5px);
+    width: 1px;
+    height: 100%;
+    @apply bg-D2_Gray;
+  }
+  .text-overflow-3 {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    word-break: break-word;
+
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+  }
+  .badge-gradient {
+    background: linear-gradient(214deg, #9d3c1e 0%, #0c4b5f 100%);
+  }
 }
 
 @layer components {
