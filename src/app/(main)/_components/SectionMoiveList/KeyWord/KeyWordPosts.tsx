@@ -1,13 +1,13 @@
 import Image from "next/image";
 
-import { PrimaryStart } from "@/../public/icons";
+import { StarFillSm } from "@/../public/icons";
 export default function KeyWordPosts() {
   return (
     <div className="Text-s-Mediuim flex  flex-col gap-2 rounded-xl bg-D1_Gray px-6 py-5">
       <div className="flex justify-between">
         <h1>닉네임</h1>
         <div className="flex gap-1">
-          <Image src={PrimaryStart} alt="주황별" />
+          <Image src={StarFillSm} alt="주황별" />
           0.0
         </div>
       </div>

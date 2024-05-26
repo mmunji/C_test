@@ -1,10 +1,9 @@
 import Image from "next/image";
 
 import {
-  BinHeart,
-  ChatBox,
-  PrimaryStart,
-  UpPoint,
+  ChatFillSm,
+  StarFillSm,
+  ThumbsUpFillSm,
 } from "../../../../../../public/icons";
 export default function SlimilarMobilePost() {
   return (
@@ -40,7 +39,7 @@ export default function SlimilarMobilePost() {
           <div className="flex justify-between ">
             <h1 className="text-L_Gray Text-xs-Regular">탸이틀</h1>
             <div className="flex  gap-1">
-              <Image src={PrimaryStart} alt="평점 별" className="h-4 w-4" />
+              <Image src={StarFillSm} alt="평점 별" className="h-4 w-4" />
               <span>0.0</span>
             </div>
           </div>
@@ -48,11 +47,19 @@ export default function SlimilarMobilePost() {
         </div>
         <div className="flex justify-end  gap-2 text-L_Gray Text-xs-Regular">
           <div className="flex  gap-1">
-            <Image src={UpPoint} alt="좋아요" className="h-4 w-4 text-L_Gray" />
+            <Image
+              src={ThumbsUpFillSm}
+              alt="좋아요"
+              className="h-4 w-4 text-L_Gray"
+            />
             0,000
           </div>
           <div className="flex gap-1">
-            <Image src={ChatBox} alt="댓글" className="h-4 w-4 text-L_Gray" />
+            <Image
+              src={ChatFillSm}
+              alt="댓글"
+              className="h-4 w-4 text-L_Gray"
+            />
             <span>0,000</span>
           </div>
         </div>
