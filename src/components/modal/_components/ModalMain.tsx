@@ -2,19 +2,11 @@ import clsx from "clsx";
 import { AnimatePresence, motion } from "framer-motion";
 import React, { ReactElement, useEffect } from "react";
 
-import {
-  ModalButton,
-  ModalCancelButton,
-  ModalCheckbox,
-} from "@/components/modal/_components/ModalButtons";
-import { ModalLogin } from "@/components/modal/_components/ModalLogin";
-import { ModalReport } from "@/components/modal/_components/ModalReport";
-import { ModalDescription } from "@/components/modal/_components/ModalTitle";
+import Modal from "@/components/modal/_components";
 import ModalContext from "@/components/modal/ModalContext";
 import Portal from "@/components/modal/portal";
 import useModal from "@/components/modal/useModal";
 import useOutsideClick from "@/hooks/useOutsideClick";
-
 export interface WithChildren {
   children: React.ReactNode;
 }
@@ -62,22 +54,22 @@ export function ModalMain({
     (acc, cur) => {
       if (React.isValidElement(cur)) {
         switch (cur.type) {
-          case ModalButton:
-          case ModalCancelButton:
+          case Modal.Button:
+          case Modal.CancelButton:
             acc.buttons.push(cur);
             break;
-          case ModalCheckbox:
+          case Modal.Checkbox:
             acc.checkbox.push(cur);
             break;
-          case ModalReport:
+          case Modal.Report:
             acc.hasComponents.report = true;
             acc.content.push(cur);
             break;
-          case ModalLogin:
+          case Modal.Login:
             acc.hasComponents.login = true;
             acc.content.push(cur);
             break;
-          case ModalDescription:
+          case Modal.Description:
             acc.hasComponents.description = true;
             acc.content.push(cur);
             break;
@@ -137,7 +129,7 @@ export function ModalMain({
         >
           <Portal selector="portal">
             <motion.div
-              initial={{ opacity: 1 }}
+              initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.2 }}
               exit={{ opacity: 0 }}
@@ -158,8 +150,8 @@ export function ModalMain({
                   )}
                 >
                   {content}
-                  {buttons.length &&
-                    (checkbox.length ? (
+                  {buttons.length > 0 &&
+                    (checkbox.length > 0 ? (
                       <div className="flex w-[372px] flex-col items-center justify-center gap-5">
                         <div className="flex items-center gap-2">
                           {checkbox}
