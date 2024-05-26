@@ -1,15 +1,11 @@
 "use client";
 import Image from "next/image";
-import { useCallback, useState } from "react";
 
 import {
-  ChatBox,
-  Fire,
-  GrayStart,
-  PrimaryStart,
-  TMDB,
-  UpPoint,
-  WhiteStart,
+  BestTalkFire,
+  ChatLineLg,
+  StarFillMd,
+  TmdbSm,
 } from "@/../public/icons";
 
 import PostCard from "../../PostCard";
@@ -29,19 +25,15 @@ export default function Tablet_BestMoive() {
           </div>
           <div className="flex gap-5">
             <div className="flex gap-1 text-E_md">
-              <Image src={TMDB} alt="white_ start" className="h-6 w-6" />
+              <Image src={TmdbSm} alt="white_ start" className="h-6 w-6" />
               <span>0.0</span>
             </div>
             <div className="flex gap-1">
-              <Image
-                src={PrimaryStart}
-                alt="Primary_Start"
-                className="h-6 w-6"
-              />
+              <Image src={StarFillMd} alt="Primary_Start" className="h-6 w-6" />
               <span>0.0</span>
             </div>
             <div className="flex gap-1">
-              <Image src={ChatBox} alt="ChatBox" className="h-6 w-6" />
+              <Image src={ChatLineLg} alt="ChatBox" className="h-6 w-6" />
               <span>0.0</span>
             </div>
           </div>
@@ -49,7 +41,7 @@ export default function Tablet_BestMoive() {
         <div className="flex flex-col">
           <div className="flex flex-col gap-3">
             <div className="flex gap-1">
-              <Image src={Fire} alt="베스트" className="h-6 w-6" />
+              <Image src={BestTalkFire} alt="베스트" className="h-6 w-6" />
               <h2>베스트 톡</h2>
             </div>
             <div className="flex gap-3">

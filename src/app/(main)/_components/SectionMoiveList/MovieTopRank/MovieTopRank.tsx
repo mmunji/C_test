@@ -2,15 +2,7 @@
 import Image from "next/image";
 import { useCallback, useState } from "react";
 
-import {
-  ChatBox,
-  Fire,
-  GrayStart,
-  PrimaryStart,
-  TMDB,
-  UpPoint,
-  WhiteStart,
-} from "@/../public/icons";
+import { ThumbsUpFillSm } from "@/../public/icons";
 
 import PostCard from "../../PostCard";
 import MovieCategory from "../MovieCategory";
@@ -62,7 +54,11 @@ export default function MoiveTopRank() {
               Best
             </div>
             <div className="flex items-center justify-center gap-1 text-L_Gray">
-              <Image src={UpPoint} alt="white_ start" className="h-4 w-4" />
+              <Image
+                src={ThumbsUpFillSm}
+                alt="white_ start"
+                className="h-4 w-4"
+              />
               <span>0,000</span>
             </div>
           </div>
