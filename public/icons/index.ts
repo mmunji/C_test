@@ -31,8 +31,8 @@ export { default as EditPencilLineMd } from "./interaction/edit_pencil/edit_penc
 export { default as EditPencilLineSm } from "./interaction/edit_pencil/edit_pencil_line_sm.svg";
 export { default as EditPencilMd } from "./interaction/edit_pencil/edit_pencil_md.svg";
 export { default as EditPencilSm } from "./interaction/edit_pencil/edit_pencil_sm.svg";
-export { default as EnvironmentFire } from "./fire/environment_fire.svg";
-export { default as BestTalkFire } from "./fire/besttalk_fire.svg";
+export { default as EnvironmentFire } from "./fire/environment_fire.svg";
+export { default as BestTalkFire } from "./fire/besttalk_fire.svg";
 export { default as Filter } from "./interaction/filter.svg";
 export { default as HeartFillLg } from "./interaction/heart/heart_fill_lg.svg";
 export { default as HeartFillMd } from "./interaction/heart/heart_fill_md.svg";
