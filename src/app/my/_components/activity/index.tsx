@@ -12,7 +12,10 @@ const TAB_MENU = ["톡", "평가로그"];
 export default function Activity() {
   const [selectedTab, setSelectedTab] = useState(0);
   return (
-    <section className="hidden flex-col gap-3 px-5 Tablet:flex Tablet:px-0">
+    <section className="flex flex-col gap-3 px-5 Tablet:flex Tablet:gap-4 Tablet:px-0">
+      <h2 className="hidden Text-m-Bold Tablet:block Tablet:Text-l-Bold">
+        내 활동
+      </h2>
       <div className="flex items-center justify-between">
         <div className="flex items-center">
           {TAB_MENU.map((menu, i) => (
@@ -20,7 +23,7 @@ export default function Activity() {
               key={menu}
               onClick={() => setSelectedTab(i)}
               type="button"
-              className={`${selectedTab === i ? "Text-m-Bold" : "text-Gray Text-m-Medium"} relative px-3 pb-3 pt-2`}
+              className={`${selectedTab === i ? "Text-m-Bold Tablet:Text-l-Bold" : "text-Gray Text-m-Medium Tablet:Text-l-Medium"} relative px-3 pb-3 pt-2`}
             >
               {menu} 11
               {selectedTab === i && (

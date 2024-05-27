@@ -10,9 +10,9 @@ import ROUTES from "@/constants/routes";
 import { Archive, Bookmark, User } from "../../../../public/icons";
 
 const LINKS = [
-  { href: ROUTES.MY.default, name: "모아보기" },
-  { href: ROUTES.MY.favorites(), name: "찜한 작품" },
-  { href: ROUTES.MY.account(), name: "개인정보" },
+  { href: ROUTES.MY.default, name: "모아보기", svg: Archive },
+  { href: ROUTES.MY.favorites(), name: "찜한 작품", svg: Bookmark },
+  { href: ROUTES.MY.account(), name: "개인정보", svg: User },
 ];
 
 export default function Sidebar() {
@@ -56,21 +56,13 @@ export default function Sidebar() {
         </div>
       </div>
       <ul className="h-full w-[72px] flex-col gap-4 px-4 pt-6 Tablet:flex Desktop:hidden">
-        <li>
-          <Link href="/" className="inline-flex p-2">
-            <Image src={Archive} width={24} height={24} alt="내 활동" />
-          </Link>
-        </li>
-        <li>
-          <Link href="/" className="inline-flex p-2">
-            <Image src={Bookmark} width={24} height={24} alt="찜한 작품" />
-          </Link>
-        </li>
-        <li>
-          <Link href="/" className="inline-flex p-2">
-            <Image src={User} width={24} height={24} alt="개인 정보" />
-          </Link>
-        </li>
+        {LINKS.map((link) => (
+          <li key={link.name}>
+            <Link href={link.href} className="inline-flex p-2">
+              <Image src={link.svg} width={24} height={24} alt={link.name} />
+            </Link>
+          </li>
+        ))}
       </ul>
     </nav>
   );

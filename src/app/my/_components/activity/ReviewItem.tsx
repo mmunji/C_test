@@ -8,9 +8,9 @@ import {
 
 export default function ReviewItem() {
   return (
-    <div className="flex flex-col gap-2 rounded-xl bg-D1_Gray px-7 pb-5 pt-3">
+    <div className="flex flex-col gap-2 rounded-xl bg-D1_Gray px-7 pb-5 pt-3 Laptop:gap-4 Laptop:pb-6 Laptop:pt-4">
       <div className="">
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between Laptop:mb-2">
           <div className="flex items-center gap-2">
             <span className="Text-m-Medium">영화제목</span>
             <div className="flex items-center">
@@ -30,9 +30,11 @@ export default function ReviewItem() {
             </button>
           </div>
         </div>
-        <div className="line-clamp-3 h-[72px] text-Gray_Orange Text-m-Regular">
+        <div className="line-clamp-3 text-Gray_Orange Text-m-Regular Laptop:line-clamp-4">
           내용은 3줄까지 보여집니다. 그 이상은 더보기로 볼 수 있습니다.내용은
           3줄까지 보여집니다. 그 이상은 더보 볼 수 있습니다.내용은 3줄까지
+          보여집니다. 그 이상은 더보기로 볼 수 있습니다. 볼 수 있습니다.내용은
+          보여집니다. 그 이상은 더보기로 볼 수 있습니다. 볼 수 있습니다.내용은
           보여집니다. 그 이상은 더보기로 볼 수 있습니다. 볼 수 있습니다.내용은
           보여집니다. 그 이상은 더보기로 볼 수 있습니다. 볼 수 있습니다.내용은
           보여집니다. 그 이상은 더보기로 볼 수 있습니다. 볼 수 있습니다.내용은
