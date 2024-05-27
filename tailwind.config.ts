@@ -67,6 +67,8 @@ const config: Config = {
         Tint_3: "#FFA674",
         Tint_4: "#FFD3BA",
         Tint_5: "#FFF1E8",
+        Naver: "#03C75A",
+        Kakako: "#FEE500",
         Opacity_W10: "rgba(255, 255, 255, 0.10)",
         Opacity_W15: "rgba(255, 255, 255, 0.15)",
         Opacity_W20: "rgba(255, 255, 255, 0.20)",

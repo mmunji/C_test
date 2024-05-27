@@ -77,7 +77,7 @@ export function ModalLogin({ onKakaoLogin, onNaverLogin }: ModalLoginProps) {
             <button
               type="button"
               onClick={onKakaoLogin}
-              className="flex h-12 w-[360px] items-center justify-center gap-4 rounded-xl bg-[#FEE500] text-[#000000d9] Text-m-Medium"
+              className="bg-Kakako flex h-12 w-[360px] items-center justify-center gap-4 rounded-xl text-[#000000d9] Text-m-Medium"
             >
               <Image src={Kakao} alt="카카오" width={18} height={18} />
               카카오로 시작하기
@@ -94,7 +94,7 @@ export function ModalLogin({ onKakaoLogin, onNaverLogin }: ModalLoginProps) {
             <button
               type="button"
               onClick={onNaverLogin}
-              className="flex h-12 w-[360px] items-center justify-center gap-4 rounded-xl bg-[#03C75A] text-White Text-m-Medium"
+              className="bg-Naver flex h-12 w-[360px] items-center justify-center gap-4 rounded-xl text-White Text-m-Medium"
             >
               <Image src={Naver} alt="네이버" width={16} height={16} />
               네이버로 시작하기
