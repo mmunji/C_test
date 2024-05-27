@@ -1,18 +1,26 @@
 "use client";
+
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 
-import RatingList from "@/app/my/_components/activity/RatingList";
-import ReviewList from "@/app/my/_components/activity/ReviewList";
+import RatingList from "@/app/my/activity/RatingList";
+import ReviewList from "@/app/my/activity/ReviewList";
+import ROUTES from "@/constants/routes";
 
-import { Filter } from "../../../../../public/icons";
+import { Filter } from "../../../../public/icons";
 
 const TAB_MENU = ["톡", "평가로그"];
 
 export default function Activity() {
   const [selectedTab, setSelectedTab] = useState(0);
+  const pathname = usePathname();
+  const isActivityPage = pathname === ROUTES.MY.activity();
+
   return (
-    <section className="flex flex-col gap-3 px-5 Tablet:flex Tablet:gap-4 Tablet:px-0">
+    <section
+      className={`${isActivityPage ? "flex" : "hidden"} flex-col gap-3 px-5 Tablet:flex Tablet:gap-4 Tablet:px-0`}
+    >
       <h2 className="hidden Text-m-Bold Tablet:block Tablet:Text-l-Bold">
         내 활동
       </h2>

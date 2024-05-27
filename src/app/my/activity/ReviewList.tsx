@@ -1,5 +1,5 @@
-import Placeholder from "@/app/my/_components/activity/Placeholder";
-import ReviewItem from "@/app/my/_components/activity/ReviewItem";
+import Placeholder from "@/app/my/activity/Placeholder";
+import ReviewItem from "@/app/my/activity/ReviewItem";
 
 export default function ReviewList() {
   const data = true;

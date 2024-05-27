@@ -4,7 +4,7 @@ import {
   ChatLineSmGrayOrange,
   StarSm,
   ThumbsUpLineSm,
-} from "../../../../../public/icons";
+} from "../../../../public/icons";
 
 export default function ReviewItem() {
   return (

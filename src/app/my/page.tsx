@@ -1,9 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import Activity from "@/app/my/_components/activity";
 import Badge from "@/app/my/_components/Badge";
 import UserInfo from "@/app/my/_components/UserInfo";
+import Activity from "@/app/my/activity";
 import ROUTES from "@/constants/routes";
 
 import { Archive, Bookmark, User } from "../../../public/icons";
@@ -20,7 +20,7 @@ export default function My() {
       <div className="border-b border-t border-D2_Gray Tablet:hidden">
         <div>
           <Link
-            href={ROUTES.MY.default}
+            href={ROUTES.MY.activity()}
             className="flex w-full items-center gap-2 px-5 py-4"
           >
             <Image src={Archive} width={24} height={24} alt="내 활동" />

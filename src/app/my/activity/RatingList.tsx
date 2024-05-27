@@ -1,5 +1,5 @@
-import Placeholder from "@/app/my/_components/activity/Placeholder";
-import RatingItem from "@/app/my/_components/activity/RatingItem";
+import Placeholder from "@/app/my/activity/Placeholder";
+import RatingItem from "@/app/my/activity/RatingItem";
 
 export default function RatingList() {
   const data = true;
