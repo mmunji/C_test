@@ -1,6 +1,8 @@
 import clsx from "clsx";
 import { Dispatch, SetStateAction, useState } from "react";
 
+import useNeedMoreButton from "@/app/detail/_hooks/useNeedMoreButton";
+
 interface TalkContentsBodyProps {
   spoiler: boolean;
   showSpoiler: boolean;
@@ -13,6 +15,7 @@ export default function TalkContentsBody({
   setShowSpoiler,
 }: TalkContentsBodyProps) {
   const [showMore, setShowMore] = useState(false);
+  const { contentRef, showMoreButton } = useNeedMoreButton("talk", showSpoiler);
 
   const talk = `
   3줄까지만 보여줍니다. 여행은 새로운 경험과 추억을 선사하지만, 올바른
@@ -21,15 +24,7 @@ export default function TalkContentsBody({
   준비가 필수입니다 올바른 준비가 필수입니다 올바른 준비가 필수입니다 올바른
   준비가 필수입니다 올바른 준비가 필수입니다 올바른 준비가 필수입니다 올바른
   준비가 필수입니다 올바른 준비가 필수입니다 올바른 준비가 필수입니다 올바른
-  준비가 필수입니다 올바른 준비가 필수입니다 준비가 필수입니다 올바른 준비가
-  필수입니다준비가 필수입니다 올바른 준비가 필수입니다준비가 필수입니다
-  올바른 준비가 필수입니다준비가 필수입니다 올바른 준비가 필수입니다준비가
-  필수입니다 올바른 준비가 필수입니다준비가 필수입니다 올바른 준비가
-  필수입니다준비가 필수입니다 올바른 준비가 필수입니다준비가 필수입니다
-  올바른 준비가 필수입니다준비가 필수입니다 올바른 준비가 필수입니다준비가
-  필수입니다 올바른 준비가 필수입니다준비가 필수입니다 올바른 준비가
-  필수입니다준비가 필수입니다 올바른 준비가 필수입니다준비가 필수입니다
-  올바른 준비가 필수입니다준비가 필수입니다 올바른 준비가 필수입니다
+  준비가 필수입니다 올바른 준비가 필수입니다 올바른 준비가 필수입니다 올바른
   `;
 
   return (
@@ -49,6 +44,7 @@ export default function TalkContentsBody({
       ) : (
         showSpoiler && (
           <p
+            ref={contentRef}
             className={clsx(
               "text-sm font-Regular leading-[150%] text-Gray_Orange Tablet:Text-m-Medium",
               {
@@ -62,7 +58,7 @@ export default function TalkContentsBody({
         )
       )}
 
-      {!showMore && showSpoiler && (
+      {!showMore && showSpoiler && showMoreButton && (
         <button
           onClick={() => setShowMore(true)}
           className="absolute bottom-0 right-0 z-10 bg-BG pl-2 text-sm font-Regular leading-[140%] text-Gray Tablet:Text-m-Medium Laptop:bg-D1_Gray"
