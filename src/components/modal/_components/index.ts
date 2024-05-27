@@ -31,9 +31,7 @@ import {
     <Modal.Login                                           - 로그인이 필요한 경우에 사용하세요 children 메시지와 로그인 함수를 받습니다.
       onKakaoLogin={() => console.log("d")}
       onNaverLogin={() => console.log("d")}
-    >
-      회원가입 안내 메시지 작성
-    </Modal.Login>
+    />
     <Modal.Img />                                          - 이미지가 필요한 경우에 사용하세요 props는 받지 않습니다.
     <Modal.Checkbox>네, 전부 삭제하고 탈퇴할래요</Modal.Checkbox> - 체크박스가 필요한 경우에 사용하세요 props는 받지 않습니다.
     <Modal.CancelButton>취소</Modal.CancelButton>            - 취소 버튼이 필요한 경우에 사용하세요 props는 받지 않습니다.

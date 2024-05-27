@@ -13,7 +13,7 @@ import {
   SpeechBubbleBottom,
 } from "../../../../public/icons";
 
-interface ModalLoginProps extends WithChildren {
+interface ModalLoginProps {
   onKakaoLogin: () => void;
   onNaverLogin: () => void;
 }
@@ -52,11 +52,7 @@ function SocialAlert({
   );
 }
 
-export function ModalLogin({
-  children,
-  onKakaoLogin,
-  onNaverLogin,
-}: ModalLoginProps) {
+export function ModalLogin({ onKakaoLogin, onNaverLogin }: ModalLoginProps) {
   const [lastSocialLogin, setLastSocialLogin] =
     useState<LastSocialLogin>("kakao");
   const { onClose } = useModalContext();
@@ -75,7 +71,7 @@ export function ModalLogin({
         <div className="h-[50px] w-[158px] bg-[#a4a4a4]"></div>
       </div>
       <div className="flex flex-col items-center gap-9">
-        <p>{children}</p>
+        <p>로그인하고 더 자유롭게 씨네톡을 사용하세요 :)</p>
         <div className="flex flex-col gap-6">
           <div className="relative">
             <button
