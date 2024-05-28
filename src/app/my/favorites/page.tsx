@@ -7,7 +7,10 @@ export default function Page() {
   return (
     <div className="flex flex-col gap-3 px-5 Tablet:px-0">
       <div className="flex items-center justify-between">
-        <h2 className="Text-m-Bold Tablet:Text-l-Bold">총 20개</h2>
+        <h2 className="flex items-center Text-m-Bold Tablet:Text-l-Bold">
+          <span className="hidden Tablet:block">찜한 작품 20개</span>
+          <span className="block Tablet:hidden">총 20개</span>
+        </h2>
         {isEditing ? (
           <div className="flex gap-2 Text-m-Medium">
             <button
@@ -50,7 +53,7 @@ export default function Page() {
           ))}
       </div>
       {isEditing && (
-        <div className="fixed bottom-0 left-0 flex w-screen items-center border-t border-D2_Gray bg-D1_Gray py-[6px] Text-m-Medium Tablet:hidden">
+        <div className="fixed bottom-0 left-0 flex w-screen items-center border-t border-D2_Gray bg-D1_Gray py-[6px] pb-6 Text-m-Medium Tablet:hidden">
           <button type="button" className="flex-1 p-2">
             선택 해제
           </button>
