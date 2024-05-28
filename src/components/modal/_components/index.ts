@@ -14,7 +14,6 @@ import {
 
 /* 사용 방법
  <Modal
-   isMobile={false}                                        - (optional) 현재 디바이스를 확인하여 패딩 값을 부여합니다. default = false
    isAlertModal={false}                                    - alert modal 유무를 확인하여 패딩 값을 부여합니다.
    isOpen={isOpen}                                         - 외부에서 상태를 받아옵니다.
    onClose={() => setIsOpen(false)}                        - onClose함수를 받습니다.
