@@ -8,9 +8,9 @@ import { useModalContext } from "@/components/modal/ModalContext";
 import {
   CloseLg,
   CloseSm,
-  KakaoLogo,
-  NaverLogo,
-  Polygon,
+  Kakao,
+  Naver,
+  SpeechBubbleBottom,
 } from "../../../../public/icons";
 
 interface ModalLoginProps extends WithChildren {
@@ -41,8 +41,8 @@ function SocialAlert({
           <Image src={CloseSm} alt="닫기" width={24} height={24} />
         </button>
         <Image
-          src={Polygon}
-          alt="polygon"
+          src={SpeechBubbleBottom}
+          alt="SpeechBubbleBottom"
           width={20}
           height={21}
           className="absolute -bottom-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
@@ -83,7 +83,7 @@ export function ModalLogin({
               onClick={onKakaoLogin}
               className="flex h-12 w-[360px] items-center justify-center gap-4 rounded-xl bg-[#FEE500] text-[#000000d9] Text-m-Medium"
             >
-              <Image src={KakaoLogo} alt="카카오" width={18} height={18} />
+              <Image src={Kakao} alt="카카오" width={18} height={18} />
               카카오로 시작하기
             </button>
             {lastSocialLogin === "kakao" && (
@@ -100,7 +100,7 @@ export function ModalLogin({
               onClick={onNaverLogin}
               className="flex h-12 w-[360px] items-center justify-center gap-4 rounded-xl bg-[#03C75A] text-White Text-m-Medium"
             >
-              <Image src={NaverLogo} alt="네이버" width={18} height={18} />
+              <Image src={Naver} alt="네이버" width={16} height={16} />
               네이버로 시작하기
             </button>
             {lastSocialLogin === "naver" && (

@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 
-import { GrayStart } from "@/../public/icons";
+import { StarXl } from "@/../public/icons";
 export default function MoviePosts() {
   return (
     <div>
@@ -30,7 +30,7 @@ export default function MoviePosts() {
                   return (
                     <Image
                       key={index}
-                      src={GrayStart}
+                      src={StarXl}
                       alt="평점"
                       className="h-[44px] w-[44px]"
                     />
@@ -65,7 +65,7 @@ export default function MoviePosts() {
                   return (
                     <Image
                       key={index}
-                      src={GrayStart}
+                      src={StarXl}
                       alt="평점"
                       className="h-[44px] w-[44px]"
                     />
@@ -87,32 +87,30 @@ export default function MoviePosts() {
           .map((e, index) => {
             return (
               <div key={index} className="flex flex-col">
-                <div className="h-[260px] w-[174px]  rounded-xl border-2  Desktop:h-[360px] Desktop:w-[240px]">
-                  1
-                </div>
+                <div className="h-[260px] w-[174px]  rounded-xl border-2  Desktop:h-[360px] Desktop:w-[240px]"></div>
                 <div className="flex  justify-between">
                   <Image
-                    src={GrayStart}
+                    src={StarXl}
                     alt="star"
                     className="h-[44px] w-[44px] Tablet:h-7 Tablet:w-7"
                   />
                   <Image
-                    src={GrayStart}
+                    src={StarXl}
                     alt="star"
                     className="h-[44px] w-[44px]  Tablet:h-7 Tablet:w-7"
                   />
                   <Image
-                    src={GrayStart}
+                    src={StarXl}
                     alt="star"
                     className="h-[44px] w-[44px]  Tablet:h-7 Tablet:w-7"
                   />
                   <Image
-                    src={GrayStart}
+                    src={StarXl}
                     alt="star"
                     className="h-[44px] w-[44px]  Tablet:h-7 Tablet:w-7"
                   />
                   <Image
-                    src={GrayStart}
+                    src={StarXl}
                     alt="star"
                     className="h-[44px] w-[44px]  Tablet:h-7 Tablet:w-7"
                   />
