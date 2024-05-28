@@ -49,7 +49,7 @@ export default function TalkContentsFooter({
     <section className="flex items-center justify-end Tablet:mt-2">
       <section
         onClick={handleClickLike}
-        className="my-2 ml-1 mr-2 flex cursor-pointer gap-1"
+        className="my-2 ml-1 mr-2 flex cursor-pointer items-center gap-1"
       >
         <Image
           src={liked ? ThumbsUpFillSm : ThumbsUpLineSm}
@@ -67,7 +67,7 @@ export default function TalkContentsFooter({
       </section>
       <section
         onClick={handleClickDislike}
-        className="my-2 ml-1 mr-2 flex cursor-pointer gap-1"
+        className="my-2 ml-1 mr-2 flex cursor-pointer items-center gap-1"
       >
         <Image
           src={disliked ? ThumbsDownFillSm : ThumbsDownLineSm}
@@ -92,10 +92,13 @@ export default function TalkContentsFooter({
         })}
       >
         <p
-          className={clsx("select-none Text-xs-Regular Tablet:Text-s-Medium", {
-            "text-Gray_Orange": spoiler ? showSpoiler : true,
-            "text-Gray": spoiler && !showSpoiler,
-          })}
+          className={clsx(
+            "mr-1 select-none Text-xs-Regular Tablet:Text-s-Medium",
+            {
+              "text-Gray_Orange": spoiler ? showSpoiler : true,
+              "text-Gray": spoiler && !showSpoiler,
+            },
+          )}
         >
           답글
         </p>
