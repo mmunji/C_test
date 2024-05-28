@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { Dispatch, SetStateAction, useState } from "react";
 
 import {
   CaretDownGraySm,
@@ -18,11 +18,15 @@ import {
 interface TalkContentsFooterProps {
   spoiler: boolean;
   showSpoiler: boolean;
+  showReplies: boolean;
+  setShowReplies: Dispatch<SetStateAction<boolean>>;
 }
 
 export default function TalkContentsFooter({
   spoiler,
   showSpoiler,
+  showReplies,
+  setShowReplies,
 }: TalkContentsFooterProps) {
   const [liked, setLiked] = useState(false);
   const [disliked, setDisliked] = useState(false);
@@ -35,6 +39,10 @@ export default function TalkContentsFooter({
   const handleClickDislike = () => {
     setLiked(false);
     setDisliked(!disliked);
+  };
+
+  const handleClickReplies = () => {
+    setShowReplies(!showReplies);
   };
 
   return (
@@ -75,7 +83,9 @@ export default function TalkContentsFooter({
           0,000
         </p>
       </section>
-      <section
+      <button
+        disabled={!showSpoiler}
+        onClick={handleClickReplies}
         className={clsx("mx-1 my-2 flex items-center", {
           "cursor-pointer": spoiler ? showSpoiler : true,
           "cursor-default": spoiler && !showSpoiler,
@@ -107,7 +117,7 @@ export default function TalkContentsFooter({
           }
           alt="더보기"
         />
-      </section>
+      </button>
     </section>
   );
 }

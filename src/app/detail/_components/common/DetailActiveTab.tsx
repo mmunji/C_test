@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction } from "react";
+import React, { Dispatch, PropsWithChildren, SetStateAction } from "react";
 
 interface CastAndCrewTab {
   tabs: string[];
@@ -10,7 +10,8 @@ export default function DetailActiveTab({
   tabs,
   activeTab,
   setActiveTab,
-}: CastAndCrewTab) {
+  children,
+}: PropsWithChildren<CastAndCrewTab>) {
   return (
     <section className="relative max-h-[40px] w-fit text-md">
       {tabs.map((tab, i) => (
@@ -22,9 +23,8 @@ export default function DetailActiveTab({
           {tab}
         </button>
       ))}
-      <div
-        className={`absolute bottom-[3px] h-0.5 bg-Primary transition-all duration-300 ease-out ${activeTab === tabs[0] ? "left-[22.5px] w-5 Laptop:left-[27.75px]" : "left-[82px] w-5 Laptop:left-[95px]"}`}
-      />
+
+      {children}
     </section>
   );
 }
