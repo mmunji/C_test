@@ -1,12 +1,23 @@
 import Image from "next/image";
+import { useState } from "react";
 
-import { ChatLineSm, StarSm, ThumbsUpLineSm } from "../../../../public/icons";
+import Dropdown from "@/components/dropdown";
+import Modal from "@/components/modal/_components";
+
+import {
+  ChatLineSmGrayOrange,
+  MoreHorizontal,
+  StarSm,
+  ThumbsUpLineSm,
+} from "../../../../public/icons";
 
 export default function ReviewItem() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
-    <div className="flex flex-col gap-2 rounded-xl bg-D1_Gray px-7 pb-5 pt-3">
+    <div className="flex flex-col gap-2 rounded-xl bg-D1_Gray px-5 pb-5 pt-3 Laptop:gap-4 Laptop:px-7 Laptop:pb-6 Laptop:pt-4">
       <div className="">
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between Laptop:mb-2">
           <div className="flex items-center gap-2">
             <span className="Text-m-Medium">영화제목</span>
             <div className="flex items-center">
@@ -18,17 +29,33 @@ export default function ReviewItem() {
             </div>
           </div>
           <div>
-            <button
-              type="button"
-              className="p-2 text-Gray_Orange Text-m-Medium"
-            >
-              수정
-            </button>
+            <Dropdown>
+              <Dropdown.Trigger>
+                <button
+                  type="button"
+                  className="p-2 text-Gray_Orange Text-m-Medium"
+                >
+                  <Image alt="" src={MoreHorizontal} />
+                </button>
+              </Dropdown.Trigger>
+              <Dropdown.List className="right-1/2 top-11 translate-x-1/2 Tablet:right-0 Tablet:-translate-x-0">
+                <Dropdown.Item onClick={() => console.log("sdf")}>
+                  수정
+                </Dropdown.Item>
+                <Dropdown.Item onClick={() => setIsModalOpen(true)}>
+                  삭제
+                </Dropdown.Item>
+              </Dropdown.List>
+            </Dropdown>
           </div>
         </div>
-        <div className="text-overflow-3 h-[72px] text-Gray_Orange Text-m-Regular">
+        <div className="line-clamp-3 text-Gray_Orange Text-m-Regular Laptop:line-clamp-4">
           내용은 3줄까지 보여집니다. 그 이상은 더보기로 볼 수 있습니다.내용은
           3줄까지 보여집니다. 그 이상은 더보 볼 수 있습니다.내용은 3줄까지
+          보여집니다. 그 이상은 더보기로 볼 수 있습니다. 볼 수 있습니다.내용은
+          보여집니다. 그 이상은 더보기로 볼 수 있습니다. 볼 수 있습니다.내용은
+          보여집니다. 그 이상은 더보기로 볼 수 있습니다. 볼 수 있습니다.내용은
+          보여집니다. 그 이상은 더보기로 볼 수 있습니다. 볼 수 있습니다.내용은
           보여집니다. 그 이상은 더보기로 볼 수 있습니다. 볼 수 있습니다.내용은
           3줄까지 보여집니다. 그 이상은 더보기로 볼 수 있습니다.
         </div>
@@ -41,12 +68,27 @@ export default function ReviewItem() {
             <span className="text-Gray_Orange Text-s-Medium">0,000</span>
           </div>
           <div className="flex items-center gap-1">
-            <Image alt="댓글" src={ChatLineSm} />
+            <Image alt="댓글" src={ChatLineSmGrayOrange} />
 
             <span className="text-Gray_Orange Text-s-Medium">0,000</span>
           </div>
         </div>
       </div>
+
+      {isModalOpen && (
+        <Modal
+          isAlertModal
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+        >
+          <Modal.TitleWrapper>
+            <Modal.Title>정말 삭제하시겠어요?</Modal.Title>
+            <Modal.Description>텍스트 텍스트</Modal.Description>
+          </Modal.TitleWrapper>
+          <Modal.CancelButton>아니요</Modal.CancelButton>
+          <Modal.Button onClick={() => console.log("sdfds")}>네</Modal.Button>
+        </Modal>
+      )}
     </div>
   );
 }
