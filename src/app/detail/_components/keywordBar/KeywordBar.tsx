@@ -2,8 +2,8 @@
 
 import { josa } from "es-hangul";
 
+import LoadingSpinner from "../../../../components/loadingSpinner/LoadingSpinner";
 import { usePaletteStore } from "../../_stores/usePaletteStore";
-import LoadingSpinner from "../common/LoadingSpinner";
 
 export default function KeywordBar() {
   const movieTitle = "웡카";
