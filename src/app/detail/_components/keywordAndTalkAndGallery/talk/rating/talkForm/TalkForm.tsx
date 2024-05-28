@@ -2,6 +2,8 @@ import Image from "next/image";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 
+import hexToRGBA from "@/utils/hexToRGBA";
+
 import {
   SquareCheckFillMd,
   SquareCheckFillSm,
@@ -31,17 +33,22 @@ export default function TalkForm() {
     }, 0);
   };
 
+  const backgroundColor = hexToRGBA("#000000", 0.2);
+
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
       className="mx-auto flex w-full flex-col gap-3 Laptop:mt-7"
     >
-      <div className="relative h-[182px] w-full overflow-hidden rounded-xl bg-Black">
+      <div
+        className="relative h-[182px] w-full overflow-hidden rounded-xl"
+        style={{ backgroundColor: backgroundColor }}
+      >
         <TalkFormHeader />
         <textarea
           {...register("talk", { required: true })}
           placeholder="영화에 대해 이야기 해볼까요?"
-          className="absolute bottom-5 left-0 h-[calc(100%-64px)] w-full resize-none bg-Black px-5 outline-none"
+          className="absolute bottom-5 left-0 h-[calc(100%-64px)] w-full resize-none bg-transparent px-5 outline-none"
         />
       </div>
 

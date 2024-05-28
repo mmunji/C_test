@@ -92,10 +92,13 @@ export default function TalkContentsFooter({
         })}
       >
         <p
-          className={clsx("select-none Text-xs-Regular Tablet:Text-s-Medium", {
-            "text-Gray_Orange": spoiler ? showSpoiler : true,
-            "text-Gray": spoiler && !showSpoiler,
-          })}
+          className={clsx(
+            "mr-1 select-none Text-xs-Regular Tablet:Text-s-Medium",
+            {
+              "text-Gray_Orange": spoiler ? showSpoiler : true,
+              "text-Gray": spoiler && !showSpoiler,
+            },
+          )}
         >
           답글
         </p>

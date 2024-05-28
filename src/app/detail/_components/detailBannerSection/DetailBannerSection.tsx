@@ -2,8 +2,8 @@
 
 import { Palette } from "color-thief-react";
 
+import hexToRGBA from "../../../../utils/hexToRGBA";
 import { usePaletteStore } from "../../_stores/usePaletteStore";
-import hexToRGBA from "../../_utils/hexToRGBA";
 import DetailBannerBottom from "./DetailBannerBottom";
 
 export default function DetailBannerSection() {

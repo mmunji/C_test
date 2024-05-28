@@ -1,6 +1,6 @@
 import React from "react";
 
-import hexToRGBA from "../../_utils/hexToRGBA";
+import hexToRGBA from "../../../../utils/hexToRGBA";
 
 interface DetailBadgeProps {
   content: string;

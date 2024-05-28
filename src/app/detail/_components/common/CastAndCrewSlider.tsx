@@ -44,7 +44,7 @@ export default function CastAndCrewSlider() {
               alt={el.name}
               className="h-[112px] rounded-[8px]"
             />
-            <section className="px-2 pb-3 pt-2">
+            <section className="h-[79px] px-2 pb-3 pt-2">
               <p className="mb-2 line-clamp-2 overflow-hidden text-ellipsis text-center text-Silver Text-s-Medium">
                 {el.name}
               </p>
