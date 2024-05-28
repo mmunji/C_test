@@ -12,23 +12,29 @@ export default function useNeedMoreButton(
   const [showMoreButton, setShowMoreButton] = useState(false);
 
   useEffect(() => {
-    const handleResizeContentHeight = () => {
-      if (type === "talk") {
-        if (showSpoiler && contentRef.current) {
-          setContentHeight(contentRef.current.scrollHeight);
+    const contentElement = contentRef.current;
+    if (!contentElement) return;
+
+    const resizeObserver = new ResizeObserver((entries) => {
+      const entry = entries[0];
+      const newHeight = entry.target.scrollHeight;
+      if (type === "talk" && showSpoiler) {
+        if (contentHeight !== newHeight) {
+          setContentHeight(newHeight);
         }
       } else {
-        if (contentRef.current) {
-          setContentHeight(contentRef.current?.scrollHeight);
+        if (contentHeight !== newHeight) {
+          setContentHeight(newHeight);
         }
       }
+    });
+
+    resizeObserver.observe(contentElement);
+
+    return () => {
+      resizeObserver.unobserve(contentElement);
     };
-
-    handleResizeContentHeight();
-    addEventListener("resize", handleResizeContentHeight);
-
-    return () => removeEventListener("resize", handleResizeContentHeight);
-  }, [contentRef, showSpoiler, type]);
+  }, [contentHeight, type, showSpoiler]);
 
   useEffect(() => {
     const isShowMoreButtonNeeded = (contentHeight: number) => {
