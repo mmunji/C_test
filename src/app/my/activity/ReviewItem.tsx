@@ -1,12 +1,19 @@
 import Image from "next/image";
+import { useState } from "react";
+
+import Dropdown from "@/components/dropdown";
+import Modal from "@/components/modal/_components";
 
 import {
   ChatLineSmGrayOrange,
+  MoreHorizontal,
   StarSm,
   ThumbsUpLineSm,
 } from "../../../../public/icons";
 
 export default function ReviewItem() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
     <div className="flex flex-col gap-2 rounded-xl bg-D1_Gray px-5 pb-5 pt-3 Laptop:gap-4 Laptop:px-7 Laptop:pb-6 Laptop:pt-4">
       <div className="">
@@ -22,12 +29,24 @@ export default function ReviewItem() {
             </div>
           </div>
           <div>
-            <button
-              type="button"
-              className="p-2 text-Gray_Orange Text-m-Medium"
-            >
-              수정
-            </button>
+            <Dropdown>
+              <Dropdown.Trigger>
+                <button
+                  type="button"
+                  className="p-2 text-Gray_Orange Text-m-Medium"
+                >
+                  <Image alt="" src={MoreHorizontal} />
+                </button>
+              </Dropdown.Trigger>
+              <Dropdown.List className="right-1/2 top-11 translate-x-1/2 Tablet:right-0 Tablet:-translate-x-0">
+                <Dropdown.Item onClick={() => console.log("sdf")}>
+                  수정
+                </Dropdown.Item>
+                <Dropdown.Item onClick={() => setIsModalOpen(true)}>
+                  삭제
+                </Dropdown.Item>
+              </Dropdown.List>
+            </Dropdown>
           </div>
         </div>
         <div className="line-clamp-3 text-Gray_Orange Text-m-Regular Laptop:line-clamp-4">
@@ -55,6 +74,21 @@ export default function ReviewItem() {
           </div>
         </div>
       </div>
+
+      {isModalOpen && (
+        <Modal
+          isAlertModal
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+        >
+          <Modal.TitleWrapper>
+            <Modal.Title>정말 삭제하시겠어요?</Modal.Title>
+            <Modal.Description>텍스트 텍스트</Modal.Description>
+          </Modal.TitleWrapper>
+          <Modal.CancelButton>아니요</Modal.CancelButton>
+          <Modal.Button onClick={() => console.log("sdfds")}>네</Modal.Button>
+        </Modal>
+      )}
     </div>
   );
 }
