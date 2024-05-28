@@ -6,12 +6,12 @@ import Modal from "@/components/modal/_components";
 import ModalContext from "@/components/modal/ModalContext";
 import Portal from "@/components/modal/portal";
 import useModal from "@/components/modal/useModal";
+import useDevice from "@/hooks/useDevice";
 import useOutsideClick from "@/hooks/useOutsideClick";
 export interface WithChildren {
   children: React.ReactNode;
 }
 interface ModalMainProps extends WithChildren {
-  isMobile?: boolean;
   isAlertModal: boolean;
   onClose: () => void;
   isOpen: boolean;
@@ -25,9 +25,10 @@ export function ModalMain({
   children,
   onClose,
   isAlertModal,
-  isMobile = false,
   isOpen,
 }: ModalMainProps) {
+  const { device } = useDevice();
+  const isMobile = device === "mobile";
   const {
     isChecked,
     toggleChceked,

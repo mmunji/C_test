@@ -44,7 +44,7 @@ export default function CastAndCrewSlider() {
               alt={el.name}
               className="h-[112px] rounded-[8px]"
             />
-            <section className="px-2 pb-3 pt-2">
+            <section className="h-[79px] px-2 pb-3 pt-2">
               <p className="mb-2 line-clamp-2 overflow-hidden text-ellipsis text-center text-Silver Text-s-Medium">
                 {el.name}
               </p>
@@ -59,7 +59,7 @@ export default function CastAndCrewSlider() {
       {swiper && !swiper.isBeginning && (
         <button
           onClick={handlePrev}
-          className={`absolute hidden Laptop:flex ${hovered ? "opacity-100" : "opacity-0"} left-0 top-1/2 z-10 flex h-11 w-11 translate-x-[-50%] translate-y-[-50%] items-center justify-center rounded-full bg-[#FFFFFF19] transition-opacity duration-300`}
+          className={`absolute hidden Laptop:flex ${hovered ? "opacity-100" : "opacity-0"} left-0 top-1/2 z-[5] flex h-11 w-11 translate-x-[-50%] translate-y-[-50%] items-center justify-center rounded-full bg-[#FFFFFF19] transition-opacity duration-300`}
         >
           <Image src={ChevronLeftMd} alt="이전" />
         </button>
@@ -68,7 +68,7 @@ export default function CastAndCrewSlider() {
       {swiper && !swiper.isEnd && (
         <button
           onClick={handleNext}
-          className={`absolute hidden Laptop:flex ${hovered ? "opacity-100" : "opacity-0"} right-0 top-1/2 z-10 flex h-11 w-11 translate-x-[50%] translate-y-[-50%] items-center justify-center rounded-full bg-[#FFFFFF19] transition-opacity duration-300`}
+          className={`absolute hidden Laptop:flex ${hovered ? "opacity-100" : "opacity-0"} right-0 top-1/2 z-[5] flex h-11 w-11 translate-x-[50%] translate-y-[-50%] items-center justify-center rounded-full bg-[#FFFFFF19] transition-opacity duration-300`}
         >
           <Image src={ChevronRightMd} alt="다음" />
         </button>
