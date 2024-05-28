@@ -5,11 +5,11 @@ import DropdownContext, {
   useDropdownContext,
 } from "@/components/dropdown/DropdownContext";
 import useDropdown from "@/components/dropdown/useDropdown";
+import useDevice from "@/hooks/useDevice";
 import useOutsideClick from "@/hooks/useOutsideClick";
 
 /* 사용 방법
       <Dropdown type="genre">                                             // type = "genre" | "icon" | "text" 입니다 default = text
-                                                                          // isMobile = boolean 입니다 default = false
         <Dropdown.Trigger>
           <div className="bg-blue-500 text-white">아무거나</div>            // 트리거 엘리먼트 만들어주시면 됩니다.
         </Dropdown.Trigger>
@@ -45,7 +45,6 @@ interface DropdownListProps {
 interface DropdownMainProps {
   children: React.ReactNode;
   type?: "genre" | "icon" | "text";
-  isMobile?: boolean;
 }
 
 function DropdownTrigger({ children }: DropdownTriggerProps) {
@@ -102,7 +101,7 @@ function DropdownList({ children, className }: DropdownListProps) {
             ]
           : ["flex flex-col gap-[9px]", isMobile ? "p-1" : "p-2"],
         `
-  absolute whitespace-nowrap rounded-xl border border-D2_Gray bg-D1_Gray shadow-[0_4px_10px_0_rgba(0,0,0,0.3)] ${className}`,
+  absolute z-50 whitespace-nowrap rounded-xl border border-D2_Gray bg-D1_Gray shadow-[0_4px_10px_0_rgba(0,0,0,0.3)] ${className}`,
       )}
     >
       {children}
@@ -110,11 +109,8 @@ function DropdownList({ children, className }: DropdownListProps) {
   );
 }
 
-function DropdownMain({
-  children,
-  type = "text",
-  isMobile = false,
-}: DropdownMainProps) {
+function DropdownMain({ children, type = "text" }: DropdownMainProps) {
+  const { device } = useDevice();
   const { toggleDropdown, isOpen } = useDropdown();
   const ref = useOutsideClick(() => {
     if (isOpen) toggleDropdown();
@@ -122,7 +118,7 @@ function DropdownMain({
 
   return (
     <DropdownContext.Provider
-      value={{ isOpen, toggleDropdown, type, isMobile }}
+      value={{ isOpen, toggleDropdown, type, isMobile: device === "mobile" }}
     >
       <div ref={ref} className="relative">
         {children}

@@ -5,10 +5,10 @@ export default function ReviewList() {
   const data = true;
 
   return data ? (
-    <div className="flex flex-col gap-5">
+    <div className="grid grid-cols-1 gap-5 Tablet:grid-cols-2 Tablet:gap-5 Laptop:gap-6">
       {Array(5)
         .fill(1)
-        .map((review, i) => (
+        .map((_, i) => (
           <ReviewItem key={i} />
         ))}
     </div>
