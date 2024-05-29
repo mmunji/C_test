@@ -1,4 +1,4 @@
-import Placeholder from "@/app/my/activity/Placeholder";
+import Placeholder from "@/app/my/_components/Placeholder";
 import RatingItem from "@/app/my/activity/RatingItem";
 
 export default function RatingList() {

@@ -5,7 +5,7 @@ import Dropdown from "@/components/dropdown";
 import Modal from "@/components/modal/_components";
 
 import {
-  ChatLineSmGrayOrange,
+  ChatLineGrayOrangeSm,
   MoreHorizontal,
   StarSm,
   ThumbsUpLineSm,
@@ -68,7 +68,7 @@ export default function ReviewItem() {
             <span className="text-Gray_Orange Text-s-Medium">0,000</span>
           </div>
           <div className="flex items-center gap-1">
-            <Image alt="댓글" src={ChatLineSmGrayOrange} />
+            <Image alt="댓글" src={ChatLineGrayOrangeSm} />
 
             <span className="text-Gray_Orange Text-s-Medium">0,000</span>
           </div>
