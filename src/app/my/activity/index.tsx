@@ -52,7 +52,7 @@ export default function Activity() {
               <span className="Text-s-Medium">{filter}</span>
             </button>
           </Dropdown.Trigger>
-          <Dropdown.List className="right-1/2 top-11 translate-x-1/2 Tablet:right-0 Tablet:-translate-x-0">
+          <Dropdown.List>
             <Dropdown.Item onClick={() => setFilter("최신순")}>
               최신순
             </Dropdown.Item>

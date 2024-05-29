@@ -38,7 +38,7 @@ export default function ReviewItem() {
                   <Image alt="" src={MoreHorizontal} />
                 </button>
               </Dropdown.Trigger>
-              <Dropdown.List className="right-1/2 top-11 translate-x-1/2 Tablet:right-0 Tablet:-translate-x-0">
+              <Dropdown.List>
                 <Dropdown.Item onClick={() => console.log("sdf")}>
                   수정
                 </Dropdown.Item>
