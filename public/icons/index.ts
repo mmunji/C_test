@@ -13,8 +13,10 @@ export { default as ChevronRight } from "./arrow/chevron_right.svg";
 export { default as ChevronRightLg } from "./arrow/chevron_right_lg.svg";
 export { default as ChevronRightMd } from "./arrow/chevron_right_md.svg";
 export { default as ChevronUp } from "./arrow/chevron_up.svg";
-export { default as Archive } from "./interaction/archive.svg";
-export { default as Bookmark } from "./interaction/bookmark.svg";
+export { default as Archive } from "./interaction/archive/archive.svg";
+export { default as ArchivePrimary } from "./interaction/archive/archive_primary.svg";
+export { default as Bookmark } from "./interaction/bookmark/bookmark.svg";
+export { default as BookmarkPrimary } from "./interaction/bookmark/bookmark_primary.svg";
 export { default as CameraMd } from "./interaction/camera/camera_md.svg";
 export { default as CameraSm } from "./interaction/camera/camera_sm.svg";
 export { default as chartBar } from "./interaction/chart_bar.svg";
@@ -71,7 +73,8 @@ export { default as ThumbsUpFillSm } from "./interaction/thumbs/thumbs_up_fill_s
 export { default as ThumbsUpLineMd } from "./interaction/thumbs/thumbs_up_line_md.svg";
 export { default as ThumbsUpLineSm } from "./interaction/thumbs/thumbs_up_line_sm.svg";
 export { default as trashFull } from "./interaction/trash_full.svg";
-export { default as User } from "./interaction/user.svg";
+export { default as User } from "./interaction/user/user.svg";
+export { default as UserPrimary } from "./interaction/user/user_primary.svg";
 export { default as Kakao } from "./logo/kakao.svg";
 export { default as Naver } from "./logo/naver.svg";
 export { default as TmdbMd } from "./logo/tmdb_md.svg";
@@ -84,4 +87,4 @@ export { default as SpeechBubbleTop } from "./speeach_bubble/speech_bubble_top.s
 export { default as StarXl } from "./interaction/star/star_xl.svg";
 export { default as StarSm } from "./interaction/star/star_sm.svg";
 export { default as CaretDownGraySm } from "./arrow/caret_down_gray_sm.svg";
-export { default as ChatLineSmGrayOrange } from "./chat/chat_line_sm_grayOrange.svg";
+export { default as ChatLineGrayOrangeSm } from "./chat/chat_line_grayOrange_sm.svg";
