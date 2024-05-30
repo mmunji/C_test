@@ -1,7 +1,8 @@
 import Image from "next/image";
 import { useState } from "react";
 
-import Dropdown from "@/components/dropdown";
+import Button from "@/components/buttons/Button";
+import Dropdown from "@/components/dropdown/Dropdown";
 import Modal from "@/components/modal/_components";
 
 import {
@@ -31,12 +32,9 @@ export default function ReviewItem() {
           <div>
             <Dropdown>
               <Dropdown.Trigger>
-                <button
-                  type="button"
-                  className="p-2 text-Gray_Orange Text-m-Medium"
-                >
-                  <Image alt="" src={MoreHorizontal} />
-                </button>
+                <Button variant={"icon"}>
+                  <Image alt="더보기" src={MoreHorizontal} />
+                </Button>
               </Dropdown.Trigger>
               <Dropdown.List>
                 <Dropdown.Item onClick={() => console.log("sdf")}>

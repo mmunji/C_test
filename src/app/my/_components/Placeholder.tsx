@@ -1,5 +1,4 @@
-import Link from "next/link";
-
+import Button from "@/components/buttons/Button";
 import ROUTES from "@/constants/routes";
 
 interface Props {
@@ -36,12 +35,14 @@ export default function Placeholder({ type }: Props) {
         </p>
       </div>
       <div>
-        <Link
+        <Button
+          variant={"orange"}
+          size={"lg"}
           href={ROUTES.MAIN}
-          className="inline-block rounded-xl bg-Primary px-5 py-3 text-Silver Text-m-Medium"
+          className="w-[154px] Tablet:w-[180px]"
         >
           {MESSAGES[type].button}
-        </Link>
+        </Button>
       </div>
     </div>
   );

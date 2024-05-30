@@ -3,6 +3,7 @@
 import { useState } from "react";
 
 import Placeholder from "@/app/my/_components/Placeholder";
+import Button from "@/components/buttons/Button";
 export default function Page() {
   const [isEditing, setIsEditing] = useState(false);
   const data = true;
@@ -15,34 +16,28 @@ export default function Page() {
         </h2>
         {isEditing ? (
           <div className="flex gap-2 Text-m-Medium">
-            <button
+            {/* <button
               type="button"
               className="hidden p-2 text-Error Tablet:block"
             >
               삭제
-            </button>
-            <button
-              type="button"
-              className="hidden p-2 text-Gray_Orange Tablet:block"
+            </button> */}
+            <Button
+              onClick={() => console.log("sdf")}
+              className="hidden text-Error Tablet:block"
+            >
+              삭제
+            </Button>
+            <Button
+              onClick={() => console.log("sdf")}
+              className="hidden Tablet:block"
             >
               선택 해제
-            </button>
-            <button
-              onClick={() => setIsEditing(false)}
-              type="button"
-              className="p-2 text-Gray_Orange"
-            >
-              완료
-            </button>
+            </Button>
+            <Button onClick={() => setIsEditing(false)}>완료</Button>
           </div>
         ) : (
-          <button
-            onClick={() => setIsEditing(true)}
-            type="button"
-            className="p-2 text-Gray_Orange Text-m-Medium"
-          >
-            편집
-          </button>
+          <Button onClick={() => setIsEditing(true)}>편집</Button>
         )}
       </div>
 

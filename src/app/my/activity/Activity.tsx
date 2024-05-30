@@ -6,7 +6,8 @@ import { useState } from "react";
 
 import RatingList from "@/app/my/activity/RatingList";
 import ReviewList from "@/app/my/activity/ReviewList";
-import Dropdown from "@/components/dropdown";
+import Button from "@/components/buttons/Button";
+import Dropdown from "@/components/dropdown/Dropdown";
 import ROUTES from "@/constants/routes";
 
 import { Filter } from "../../../../public/icons";
@@ -44,13 +45,10 @@ export default function Activity() {
         </div>
         <Dropdown>
           <Dropdown.Trigger>
-            <button
-              type="button"
-              className="flex items-center gap-1 py-2 pl-1 pr-2 text-Gray_Orange"
-            >
+            <Button variant={"textIconL"} className="Text-s-Medium">
               <Image alt="필터" src={Filter} />
-              <span className="Text-s-Medium">{filter}</span>
-            </button>
+              <span>{filter}</span>
+            </Button>
           </Dropdown.Trigger>
           <Dropdown.List>
             <Dropdown.Item onClick={() => setFilter("최신순")}>

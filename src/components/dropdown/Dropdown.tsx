@@ -88,7 +88,7 @@ function DropdownItem({
 function DropdownList({ children, className }: DropdownListProps) {
   const { isOpen, type, isMobile, height } = useDropdownContext();
   if (!isOpen) return null;
-  const top = `top-[${height}px]`;
+  const position = `right-1/2 top-[${height}px] translate-x-1/2 Tablet:right-0 Tablet:-translate-x-0`;
   return (
     <div
       className={clsx(
@@ -102,8 +102,7 @@ function DropdownList({ children, className }: DropdownListProps) {
           : ["flex flex-col gap-[9px]", isMobile ? "p-1" : "p-2"],
         `
   absolute z-50 whitespace-nowrap rounded-xl border border-D2_Gray bg-D1_Gray shadow-[0_4px_10px_0_rgba(0,0,0,0.3)]`,
-        className ??
-          `right-1/2 ${top} translate-x-1/2 Tablet:right-0 Tablet:-translate-x-0`,
+        className ?? position,
       )}
     >
       {children}
@@ -118,7 +117,6 @@ function DropdownMain({ children, type = "text" }: DropdownMainProps) {
     if (isOpen) toggleDropdown();
   });
   const height = (ref.current?.children[0].clientHeight ?? 0) + 4;
-
   return (
     <DropdownContext.Provider
       value={{
