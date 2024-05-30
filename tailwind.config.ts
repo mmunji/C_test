@@ -58,7 +58,7 @@ const config: Config = {
         Shade_3: "#91461d",
         Shade_4: "7a3f1d",
         Shade_5: "#7a3f1d",
-        Error: "#FF2B56",
+        Error: "#EF2247",
         D1_Error: "#832D2B",
         D2_Error: "#362524",
         Success: "#2E7D31",
