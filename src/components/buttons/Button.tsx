@@ -18,7 +18,7 @@ const ButtonVariants = cva(`flex justify-center`, {
       grey: "bg-D2_Gray text-Gray hover:bg-D3_Gray hover:text-Gray_Orange active:bg-Gray active:text-Silver disabled:bg-D2_Gray disabled:text-Gray",
       orange:
         "text-Silver bg-Primary hover:bg-Shade_1 active:bg-Shade_3 disabled:bg-D2_Gray disabled:text-Gray",
-      line: "bg-BG text-Gray_Orange border border-Gray hover:border-Silver hover:text-Silver active:bg-D1_Gray",
+      line: "inner-gray bg-BG text-Gray_Orange hover:inner-silver hover:text-Silver active:bg-D1_Gray",
       text: "p-2 ",
       textIconR: "p-2 pr-1",
       textIconL: "p-2 pl-1",
@@ -64,7 +64,7 @@ const ButtonVariants = cva(`flex justify-center`, {
     {
       variant: "line",
       focus: "1",
-      className: "bg-D2_Gray text-Silver border-none",
+      className: "bg-D2_Gray text-Silver inner-none",
     },
     {
       variant: "line",
