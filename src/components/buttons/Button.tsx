@@ -1,8 +1,8 @@
 "use client";
 import { cva, VariantProps } from "class-variance-authority";
-import clsx from "clsx";
 import Link from "next/link";
 import { ButtonHTMLAttributes } from "react";
+import { twMerge } from "tailwind-merge";
 
 interface ButtonProps
   extends ButtonHTMLAttributes<HTMLButtonElement>,
@@ -40,7 +40,7 @@ const ButtonVariants = cva(`flex justify-center`, {
     {
       variant: ["text", "textIconL", "textIconR"],
       className:
-        "rounded-lg Text-m-Medium hover:bg-Opacity_W10 hover:text-Silver active:bg-Opacity_W15 disabled:text-Gray",
+        "Text-s-Medium h-10 Tablet:h-auto items-center rounded-lg Tablet:Text-m-Medium hover:bg-Opacity_W10 hover:text-Silver active:bg-Opacity_W15 disabled:text-Gray",
     },
     {
       variant: ["text", "textIconL", "textIconR"],
@@ -64,7 +64,7 @@ const ButtonVariants = cva(`flex justify-center`, {
     {
       variant: "line",
       focus: "1",
-      className: "bg-D2_Gray text-Silver",
+      className: "bg-D2_Gray text-Silver border-none",
     },
     {
       variant: "line",
@@ -91,7 +91,7 @@ export default function Button({
 }: ButtonProps) {
   return href ? (
     <Link
-      className={clsx(ButtonVariants({ size, variant, focus, className }))}
+      className={twMerge(ButtonVariants({ size, variant, focus, className }))}
       href={href}
     >
       {children}
@@ -100,7 +100,7 @@ export default function Button({
     <button
       {...rest}
       type={type}
-      className={ButtonVariants({ size, variant, focus, className })}
+      className={twMerge(ButtonVariants({ size, variant, focus, className }))}
     >
       {children}
     </button>
