@@ -14,31 +14,29 @@ export default function Page() {
           <span className="hidden Tablet:block">찜한 작품 20개</span>
           <span className="block Tablet:hidden">총 20개</span>
         </h2>
-        {isEditing ? (
-          <div className="flex gap-2 Text-m-Medium">
-            {/* <button
-              type="button"
-              className="hidden p-2 text-Error Tablet:block"
-            >
-              삭제
-            </button> */}
-            <Button
-              onClick={() => console.log("sdf")}
-              className="hidden text-Error Tablet:block"
-            >
-              삭제
-            </Button>
-            <Button
-              onClick={() => console.log("sdf")}
-              className="hidden Tablet:block"
-            >
-              선택 해제
-            </Button>
-            <Button onClick={() => setIsEditing(false)}>완료</Button>
-          </div>
-        ) : (
-          <Button onClick={() => setIsEditing(true)}>편집</Button>
-        )}
+        <div className="flex gap-2 Text-m-Medium">
+          <Button
+            variant={"text"}
+            onClick={() => console.log("sdf")}
+            className="hidden text-Error hover:text-Error Tablet:flex"
+          >
+            삭제
+          </Button>
+          <Button
+            variant={"text"}
+            onClick={() => console.log("sdf")}
+            className="hidden Tablet:flex"
+          >
+            선택 해제
+          </Button>
+          <Button
+            className="Tablet:flex"
+            variant={"text"}
+            onClick={() => setIsEditing(true)}
+          >
+            {isEditing ? "완료" : "편집"}
+          </Button>
+        </div>
       </div>
 
       {data ? (
@@ -58,10 +56,10 @@ export default function Page() {
       )}
       {isEditing && (
         <div className="fixed bottom-0 left-0 flex w-screen items-center border-t border-D2_Gray bg-D1_Gray py-[6px] pb-6 Text-m-Medium Tablet:hidden">
-          <button type="button" className="flex-1 p-2">
+          <button type="button" className="flex-1 p-2 Text-m-Medium">
             선택 해제
           </button>
-          <button type="button" className="flex-1 p-2 text-Error">
+          <button type="button" className="flex-1 p-2 text-Error Text-m-Medium">
             삭제
           </button>
         </div>
