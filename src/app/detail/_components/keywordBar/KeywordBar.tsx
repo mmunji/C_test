@@ -14,7 +14,15 @@ export default function KeywordBar() {
     <>
       {gradientStyle === "" ? (
         <div className="mb-4 flex h-12 w-full items-center justify-center rounded-xl Laptop:mb-[52px] Laptop:h-[74px]">
-          <LoadingSpinner />
+          <div className="Tablet:hidden">
+            <LoadingSpinner size="sm" color="primary" />
+          </div>
+          <div className="hidden Tablet:block Laptop:hidden">
+            <LoadingSpinner size="md" color="primary" />
+          </div>
+          <div className="hidden Laptop:block">
+            <LoadingSpinner size="lg" color="primary" />
+          </div>
         </div>
       ) : (
         <div

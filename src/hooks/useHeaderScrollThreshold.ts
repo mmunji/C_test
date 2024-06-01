@@ -10,7 +10,7 @@ export default function useHeaderScrollThreshold() {
     mobile: 209,
     tablet: 252,
     laptop: 282,
-    pc: 356,
+    desktop: 356,
   };
 
   const breakPoints = breakPointsMap[device];
