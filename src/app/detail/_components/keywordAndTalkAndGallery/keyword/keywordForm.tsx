@@ -1,11 +1,8 @@
 import { ChangeEvent, FormEvent, useState } from "react";
 
-import LoadingSpinner from "@/components/loadingSpinner/LoadingSpinner";
-
 import KeywordSpeechBubble from "./KeywordSpeechBubble";
 
 export default function KeywordForm() {
-  const [loading, setLoading] = useState(false);
   const [focused, setFocused] = useState(false);
   const [value, setValue] = useState("");
 
@@ -19,10 +16,6 @@ export default function KeywordForm() {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-    }, 2000);
   };
 
   return (
@@ -46,10 +39,10 @@ export default function KeywordForm() {
           )}
           <button
             type="submit"
-            disabled={!value || loading}
-            className={`flex h-[29px] w-[60px] items-center justify-center rounded-lg ${!value ? "bg-D2_Gray text-Gray" : "bg-Primary text-Silver"} Text-s-Medium`}
+            disabled={!value}
+            className={`flex h-[29px] items-center justify-center rounded-lg ${!value ? "bg-D2_Gray text-Gray" : "bg-Primary text-Silver"} px-3 Text-s-Medium`}
           >
-            {loading ? <LoadingSpinner color="white" size="xs" /> : "올리기"}
+            올리기
           </button>
         </section>
       </div>
