@@ -33,7 +33,7 @@ export default function DetailBannerBottomRight() {
             className="hidden Laptop:block"
           />
           <p className="text-center text-L_Gray Text-xs-Regular Laptop:text-White Laptop:Text-s-Medium">
-            찜하기
+            찜 하기
           </p>
         </section>
         <section className="cursor-pointer">
