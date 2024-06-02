@@ -14,7 +14,7 @@ import RealTimeHotTalk from "./MainBanner/RealTimeHotTalk";
 export default function MainBanner() {
   SwiperCore.use([Navigation, Scrollbar, Autoplay, Pagination]);
   return (
-    <div className=" Tablet:h-[380px] Laptop:h-[650px] Laptop:px-[64px] Desktop:h-[810px] Desktop:px-[180px]">
+    <div className=" mt-2 Tablet:h-[380px] Laptop:mt-9 Laptop:h-[650px] Laptop:px-[64px] Desktop:h-[810px] Desktop:px-[180px] ">
       <Swiper
         rewind={true}
         loop={true} // 슬라이드 루프

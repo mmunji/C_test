@@ -13,7 +13,7 @@ export default function RealTimeHotTalk() {
   }
   return (
     <div className="flex  flex-col justify-end gap-[20px]  text-white">
-      <h1 className=" hidden Laptop:block Laptop:Text-xl-Bold Desktop:w-[521px]  ">
+      <h1 className=" hidden Laptop:block Laptop:Text-xl-Bold  Desktop:w-[521px]  ">
         실시간 핫한 톡
       </h1>
 
@@ -24,7 +24,7 @@ export default function RealTimeHotTalk() {
             return (
               <li
                 key={index}
-                className="flex items-center justify-between gap-2 Text-s-Regular"
+                className="items- center   flex justify-between gap-2 Text-s-Regular"
               >
                 <div className="flex">
                   <Image src={StarFillSm} alt="star" className="h-4 w-4" />

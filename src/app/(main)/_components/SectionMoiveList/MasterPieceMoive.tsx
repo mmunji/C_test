@@ -25,19 +25,21 @@ export default function MasterPieceMoive() {
           <Image src={HeartLineMd} alt="빈 하트" />
         </div>
       </div>
-      <div className="hidden gap-5 Tablet:flex Desktop:flex Desktop:gap-6">
+      <div className="hidden gap-5 Tablet:flex  Desktop:gap-6">
         {Array(6)
           .fill(0)
           .map((_, index) => {
             return (
               <div key={index} className="flex flex-col">
                 <PostCard />
-                <div className="flex justify-between">
-                  <div className="flex">
+                <div className="mt-3 flex justify-between">
+                  <div className=" flex">
                     <Image src={StarFillMd} alt="star" className="h-6 w-6" />
                     0.0
                   </div>
-                  <div>하트</div>
+                  <div>
+                    <Image src={HeartLineMd} alt="" />
+                  </div>
                 </div>
               </div>
             );

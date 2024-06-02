@@ -1,3 +1,4 @@
+import PostCard from "../../PostCard";
 import SlimilarMobilePost from "./SlimilarMobilePost";
 import SlimilarUser from "./SlimilarUser";
 export default function SlimilarPost() {
@@ -14,7 +15,7 @@ export default function SlimilarPost() {
               return <SlimilarUser key={index} />;
             })}
         </div>
-        <div className="gap-6 rounded-xl border-2 px-[12px] py-[24px]   Laptop:hidden Desktop:flex">
+        <div className="gap-6 rounded-xl    py-[24px]   Laptop:hidden Desktop:flex">
           <SlimilarUser />
           <SlimilarUser />
           <SlimilarUser />
@@ -22,14 +23,14 @@ export default function SlimilarPost() {
         </div>
       </div>
 
-      <div className="hidden flex-col gap-[16px] rounded-xl border-2 bg-D1_Gray p-[24px] text-white Laptop:flex Desktop:flex">
+      <div className="hidden flex-col gap-[16px] rounded-xl bg-D1_Gray p-[24px] text-white Laptop:flex Desktop:flex">
         <h1>닉네임님의 최근 톡 000개</h1>
         <div className="flex gap-[24px]">
-          <div className="h-[360px] w-[240px] rounded-xl border-2" />
-          <div className="h-[360px] w-[240px] rounded-xl border-2" />
-          <div className="h-[360px] w-[240px] rounded-xl border-2" />
-          <div className="h-[360px] w-[240px] rounded-xl border-2" />
-          <div className="h-[360px] w-[240px] rounded-xl border-2" />
+          {Array(5)
+            .fill(0)
+            .map((_, index) => {
+              return <PostCard key={index} />;
+            })}
         </div>
       </div>
     </div>

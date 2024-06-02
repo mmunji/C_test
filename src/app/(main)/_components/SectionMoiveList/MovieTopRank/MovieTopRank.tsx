@@ -20,36 +20,22 @@ export default function MoiveTopRank() {
     <div className="flex flex-col gap-4  ">
       <div className="flex justify-between">
         <div className="flex gap-[24px]">
-          <h1 className="Text-I-Bold">영화톡TOP10</h1>
+          <h1 className="Text-I-Bold Laptop:Text-xxl-Bold">영화톡TOP10</h1>
           <button className="flex items-center" onClick={onClick}>
             전체
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-            >
-              <path
-                d="M16 10L12 14L8 10"
-                stroke="#999490"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
           </button>
           {StateCategory ? <MovieCategory /> : ""}
         </div>
-        <span className="text-D3_Gray">00.00.00 기준</span>
+        <span className="text-D3_Gray">00.00.00 기준 `</span>
       </div>
       {/* 모바일 */}
       <Tablet_BestMoive />
       <DeskTop_BestMovie />
       <div className="flex w-[238px] flex-col gap-4  rounded-xl bg-Black pb-4  Tablet:hidden Laptop:hidden Desktop:hidden ">
+        Blame Passud
         <PostCard />
         <div className="flex flex-col gap-2 px-4">
-          <div className="flex justify-between Text-xs-Regular">
+          <div className="Text-xs-Re gular flex   justify-between">
             <div className="flex items-center rounded bg-Primary px-1 text-White">
               Best
             </div>
