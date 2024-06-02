@@ -3,7 +3,7 @@ import React from "react";
 import hexToRGBA from "../../../../utils/hexToRGBA";
 
 interface DetailBadgeProps {
-  content: string;
+  content: Badge;
 }
 
 export default function DetailBadge({ content }: DetailBadgeProps) {
