@@ -19,7 +19,7 @@ export default function ReplyForm() {
     console.log(data);
   };
 
-  const maxLines = 10;
+  const maxLines = 5;
   const lineHeight = device === "mobile" ? 21 : 24;
 
   return (
