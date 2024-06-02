@@ -102,6 +102,18 @@ const config: Config = {
         ".Emoji-m": {},
         ".Emoji-s": {},
         ".badge-gradient": {},
+        ".input-scrollbar": {
+          "&::-webkit-scrollbar": {
+            width: "2px",
+          },
+          "&::-webkit-scrollbar-track": {
+            background: "transparent",
+          },
+          "&::-webkit-scrollbar-thumb": {
+            backgroundColor: "#545250",
+            borderRadius: "2px",
+          },
+        },
       });
     },
   ],
