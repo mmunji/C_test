@@ -29,13 +29,7 @@ export default function DetailBannerSection() {
       >
         {({ data }) => {
           if (data && data.length >= 2) {
-            const sortedColors = data.sort(
-              (a, b) =>
-                parseInt(b.replace("#", ""), 16) -
-                parseInt(a.replace("#", ""), 16),
-            );
-
-            const newGradientStyle = `linear-gradient(135deg, ${hexToRGBA(sortedColors[0], 0.5)}, ${hexToRGBA(sortedColors[1], 0.5)})`;
+            const newGradientStyle = `linear-gradient(135deg, ${hexToRGBA(data[0], 0.5)}, ${hexToRGBA(data[1], 0.5)})`;
 
             if (gradientStyle !== newGradientStyle) {
               setGradientStyle(newGradientStyle);
