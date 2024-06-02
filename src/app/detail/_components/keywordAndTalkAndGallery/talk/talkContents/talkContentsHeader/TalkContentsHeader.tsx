@@ -11,7 +11,7 @@ export default function TalkContentsHeader() {
       <section className="flex gap-2 Tablet:gap-4">
         <div className="mt-1 h-7 w-7 rounded-full bg-White Tablet:mt-[7px] Tablet:h-10 Tablet:w-10" />
         <section className="mb-auto flex flex-col gap-1 Tablet:items-center Tablet:gap-2">
-          <section className="Tablet:flex Tablet:items-center Tablet:gap-2">
+          <section className="mr-auto Tablet:flex Tablet:items-center Tablet:gap-2">
             <div className="mb-1 flex Tablet:mb-0">
               {Array(5)
                 .fill(null)

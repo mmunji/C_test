@@ -1,4 +1,5 @@
 type Device = "mobile" | "tablet" | "laptop" | "desktop" | "";
+
 type Badge =
   | "액션가면"
   | "모험가"
