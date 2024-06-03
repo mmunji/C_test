@@ -1,17 +1,18 @@
 import Image from "next/image";
 import React from "react";
 
+import SmallBadge from "@/components/smallBadge/SmallBadge";
+
 import { MoreHorizontal } from "../../../../../../../../public/icons";
-import DetailBadge from "../../../../common/DetailBadge";
 import TalkContentsRatingStar from "./TalkContentsRatingStar";
 
 export default function TalkContentsHeader() {
   return (
-    <div className="flex justify-between">
+    <div className="relative flex h-[66px] justify-between Tablet:h-[54px]">
       <section className="flex gap-2 Tablet:gap-4">
         <div className="mt-1 h-7 w-7 rounded-full bg-White Tablet:mt-[7px] Tablet:h-10 Tablet:w-10" />
         <section className="mb-auto flex flex-col gap-1 Tablet:items-center Tablet:gap-2">
-          <section className="Tablet:flex Tablet:items-center Tablet:gap-2">
+          <section className="mr-auto Tablet:flex Tablet:items-center Tablet:gap-2">
             <div className="mb-1 flex Tablet:mb-0">
               {Array(5)
                 .fill(null)
@@ -29,10 +30,15 @@ export default function TalkContentsHeader() {
             </section>
           </section>
 
-          <section className="mr-auto flex h-[25px] gap-1 Tablet:mt-0">
-            <DetailBadge content="사랑꾼" />
-            <DetailBadge content="액션가면" />
-            <DetailBadge content="모험가" />
+          <section className="absolute bottom-0 left-9 flex h-[25px] gap-1 Tablet:left-[56px] Tablet:mt-0 Tablet:hidden">
+            <SmallBadge content="강심장" size="xs" />
+            <SmallBadge content="고고학자" size="xs" />
+            <SmallBadge content="파이브덕" size="xs" />
+          </section>
+          <section className="absolute bottom-0 left-9 hidden h-[25px] gap-1 Tablet:left-[56px] Tablet:mt-0 Tablet:flex">
+            <SmallBadge content="강심장" size="sm" />
+            <SmallBadge content="고고학자" size="sm" />
+            <SmallBadge content="파이브덕" size="sm" />
           </section>
         </section>
       </section>

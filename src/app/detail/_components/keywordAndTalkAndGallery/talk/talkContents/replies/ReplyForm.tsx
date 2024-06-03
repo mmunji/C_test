@@ -1,5 +1,8 @@
-import React, { useRef } from "react";
+import React, { RefObject, useRef } from "react";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
+
+import handleResizeTextareaHeight from "@/app/detail/utils/handleResizeTextareaHeight";
+import useDevice from "@/hooks/useDevice";
 
 interface ReplyValue {
   replyValue: string;
@@ -8,6 +11,7 @@ interface ReplyValue {
 export default function ReplyForm() {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const { handleSubmit, watch, control } = useForm<ReplyValue>();
+  const { device } = useDevice();
 
   const replyValue = watch("replyValue");
 
@@ -15,16 +19,12 @@ export default function ReplyForm() {
     console.log(data);
   };
 
-  const handleResizeHeight = () => {
-    if (textareaRef.current) {
-      textareaRef.current.style.height = "auto";
-      textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`;
-    }
-  };
+  const maxLines = 5;
+  const lineHeight = device === "mobile" ? 21 : 24;
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <div className="relative">
+      <div className="relative flex h-fit rounded-xl bg-[#00000033]">
         <Controller
           control={control}
           name="replyValue"
@@ -34,10 +34,10 @@ export default function ReplyForm() {
               rows={1}
               ref={textareaRef}
               placeholder="답글을 작성해주세요."
-              className="w-full resize-none rounded-xl bg-[#00000033] py-3 pl-4 pr-[61px] text-Gray_Orange outline-none Text-s-Regular placeholder:text-Gray Tablet:pr-[72px] Tablet:Text-m-Regular"
+              className="input-scrollbar my-3 w-[calc(100%-71px)] resize-none bg-transparent pl-4 pr-2 leading-[21px] text-Gray_Orange outline-none Text-s-Regular placeholder:text-Gray Tablet:w-[calc(100%-90px)] Tablet:pr-3 Tablet:leading-[24px] Tablet:Text-m-Regular"
               onChange={(e) => {
                 field.onChange(e);
-                handleResizeHeight();
+                handleResizeTextareaHeight(maxLines, lineHeight, textareaRef);
               }}
             />
           )}

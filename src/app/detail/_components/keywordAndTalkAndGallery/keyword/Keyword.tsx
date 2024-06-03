@@ -9,7 +9,7 @@ import NewKeyword from "./NewKeyword";
 import Nokeyword from "./Nokeyword";
 
 export default function Keyword() {
-  const [noKeyword, setNokeyword] = useState(true);
+  const [noKeyword, setNokeyword] = useState(false);
 
   return (
     <section className="flex flex-col items-center Laptop:relative Laptop:rounded-xl Laptop:bg-D1_Gray Laptop:p-10 Desktop:p-[60px]">
@@ -18,7 +18,7 @@ export default function Keyword() {
       ) : (
         <div className="mb-7 flex flex-wrap justify-center gap-2 py-6 Tablet:mb-8 Tablet:max-w-[554px] Laptop:max-w-fit Laptop:py-0 Desktop:mb-5">
           {keywords.map((keyword, i) => (
-            <p className="" key={i}>
+            <p className="text-Gray_Orange" key={i}>
               {keyword}
             </p>
           ))}

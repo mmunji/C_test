@@ -72,3 +72,17 @@ body {
 
 @layer components {
 }
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 455px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #545250;
+  border-radius: 21px;
+}
