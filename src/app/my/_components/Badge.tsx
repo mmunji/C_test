@@ -37,7 +37,7 @@ function BadgeTitle() {
   );
 }
 
-export function BadgeItem() {
+function BadgeItem() {
   return (
     <div className="flex h-[126px] flex-col items-center justify-center gap-3 rounded-xl badge-gradient Tablet:h-[162px] Tablet:gap-4">
       <div className="font-appleSDGothicNeo text-[32px]">👊</div>
