@@ -4,9 +4,23 @@ import {
   EditPencilLineFill,
   ThumbsUpFillSm,
 } from "../../../../../../public/icons";
-export default function SlimilarUser() {
+
+interface UserPostType {
+  value: number;
+  ClickIndex: number;
+  onClick: () => void;
+}
+
+export default function SlimilarUser({
+  value,
+  ClickIndex,
+  onClick,
+}: UserPostType) {
   return (
-    <div className="flex flex-col gap-5 rounded-xl bg-D1_Gray  px-3  py-6 Text-m-Medium">
+    <div
+      className={`flex w-[368px] flex-col gap-5 rounded-xl  ${value != ClickIndex ? "bg-D1_Gray" : "bg-Black"}  px-3 py-6 Text-m-Medium `}
+      onClick={onClick}
+    >
       <div className="flex items-center gap-2">
         <div className="h-[40px] w-[40px] rounded-[60px] border-2 " />
         <span>닉네임</span>

@@ -31,7 +31,7 @@ export default function MoiveTopRank() {
       {/* 모바일 */}
       <Tablet_BestMoive />
       <DeskTop_BestMovie />
-      <div className="flex w-[238px] flex-col gap-4  rounded-xl bg-Black pb-4  Tablet:hidden Laptop:hidden Desktop:hidden ">
+      <div className="flex w-[238px] flex-col gap-4  rounded-xl bg-Black pb-4  Tablet:hidden ">
         Blame Passud
         <PostCard />
         <div className="flex flex-col gap-2 px-4">

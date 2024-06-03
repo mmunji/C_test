@@ -89,7 +89,7 @@ export default function MoviePosts() {
           .map((e, index) => {
             return (
               <div key={index} className="flex flex-col">
-                <PostCard />
+                <PostCard PostType="Post" />
                 <div className="flex  justify-between">
                   <Image
                     src={StarXl}

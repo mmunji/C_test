@@ -30,7 +30,9 @@ export default function RealTimeHotTalk() {
                   <Image src={StarFillSm} alt="star" className="h-4 w-4" />
                   <span className="Text-xs-Regular">0.0</span>
                 </div>
-                <span>1줄까지 보여줍니다.</span>
+                <span>1줄까지 보여줍니다
+                  .</span>
+                  
                 <span className=" opacity-40">방금전</span>
               </li>
             );
