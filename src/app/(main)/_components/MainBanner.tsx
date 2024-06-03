@@ -14,7 +14,7 @@ import RealTimeHotTalk from "./MainBanner/RealTimeHotTalk";
 export default function MainBanner() {
   SwiperCore.use([Navigation, Scrollbar, Autoplay, Pagination]);
   return (
-    <div className=" px-5 Tablet:h-[380px] Laptop:h-[650px] Laptop:px-[64px] Desktop:h-[810px] Desktop:px-[180px]">
+    <div className=" mt-2 Tablet:h-[380px] Laptop:mt-9 Laptop:h-[650px] Laptop:px-[64px] Desktop:h-[810px] Desktop:px-[180px] ">
       <Swiper
         rewind={true}
         loop={true} // 슬라이드 루프
@@ -30,10 +30,26 @@ export default function MainBanner() {
           .map((_, index) => {
             return (
               <SwiperSlide key={index}>
-                <div className=" flex flex-col justify-between rounded-[35px]  border-2 px-[20px] pb-2 pt-8 text-white Tablet:h-[360px] Tablet:flex-row Tablet:px-9 Tablet:pb-7  Laptop:h-[489px] Laptop:flex-row Laptop:px-[74px] Laptop:py-[40px] Desktop:h-[637px] Desktop:px-[108px] Desktop:py-[60px]">
-                  <LeftMoivePost />
-                  <hr className="my-2 text-Opacity_W15" />
-                  <RealTimeHotTalk /> {/* 실시간 핫한 톡 컴포넌트 */}
+                <div
+                  className=" rounded-[35px]   Tablet:h-[360px]  Laptop:h-[489px] Laptop:px-[74px] Desktop:h-[637px]    "
+                  style={{
+                    backgroundImage:
+                      "linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, rgba(0, 0, 0, 0.50) 100%), url('/images/detail/detail-banner-example.png')",
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                  }}
+                >
+                  <div
+                    className="absolute inset-0  flex flex-col justify-between rounded-[35px] px-[20px] pb-2 pt-8  text-white Tablet:flex-row Tablet:px-9 Tablet:pb-7  Laptop:py-[40px]  Desktop:h-[637px] Desktop:px-[108px] Desktop:py-[60px]"
+                    style={{
+                      backdropFilter: "blur(5px)",
+                      background: "rgba(0, 0, 0, 0.50)",
+                    }}
+                  >
+                    <LeftMoivePost />
+                    <hr className="my-2 text-Opacity_W15" />
+                    <RealTimeHotTalk /> {/* 실시간 핫한 톡 컴포넌트 */}
+                  </div>
                 </div>
               </SwiperSlide>
             );
