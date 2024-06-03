@@ -1,13 +1,14 @@
 import Image from "next/image";
 import React from "react";
 
+import SmallBadge from "@/components/smallBadge/SmallBadge";
+
 import { MoreHorizontal } from "../../../../../../../../public/icons";
-import DetailBadge from "../../../../common/DetailBadge";
 import TalkContentsRatingStar from "./TalkContentsRatingStar";
 
 export default function TalkContentsHeader() {
   return (
-    <div className="flex justify-between">
+    <div className="relative flex h-[66px] justify-between Tablet:h-[54px]">
       <section className="flex gap-2 Tablet:gap-4">
         <div className="mt-1 h-7 w-7 rounded-full bg-White Tablet:mt-[7px] Tablet:h-10 Tablet:w-10" />
         <section className="mb-auto flex flex-col gap-1 Tablet:items-center Tablet:gap-2">
@@ -29,10 +30,10 @@ export default function TalkContentsHeader() {
             </section>
           </section>
 
-          <section className="mr-auto flex h-[25px] gap-1 Tablet:mt-0">
-            <DetailBadge content="사랑꾼" />
-            <DetailBadge content="액션가면" />
-            <DetailBadge content="모험가" />
+          <section className="absolute bottom-0 left-9 flex h-[25px] gap-1 Tablet:left-[56px] Tablet:mt-0">
+            <SmallBadge content="호그와트생" />
+            <SmallBadge content="호그와트생" />
+            <SmallBadge content="호그와트생" />
           </section>
         </section>
       </section>
