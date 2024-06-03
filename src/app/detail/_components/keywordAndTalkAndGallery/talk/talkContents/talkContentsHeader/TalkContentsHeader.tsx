@@ -30,10 +30,15 @@ export default function TalkContentsHeader() {
             </section>
           </section>
 
-          <section className="absolute bottom-0 left-9 flex h-[25px] gap-1 Tablet:left-[56px] Tablet:mt-0">
-            <SmallBadge content="호그와트생" />
-            <SmallBadge content="호그와트생" />
-            <SmallBadge content="호그와트생" />
+          <section className="absolute bottom-0 left-9 flex h-[25px] gap-1 Tablet:left-[56px] Tablet:mt-0 Tablet:hidden">
+            <SmallBadge content="강심장" size="xs" />
+            <SmallBadge content="고고학자" size="xs" />
+            <SmallBadge content="파이브덕" size="xs" />
+          </section>
+          <section className="absolute bottom-0 left-9 hidden h-[25px] gap-1 Tablet:left-[56px] Tablet:mt-0 Tablet:flex">
+            <SmallBadge content="강심장" size="sm" />
+            <SmallBadge content="고고학자" size="sm" />
+            <SmallBadge content="파이브덕" size="sm" />
           </section>
         </section>
       </section>

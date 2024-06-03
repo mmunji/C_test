@@ -1,26 +1,47 @@
+import clsx from "clsx";
 import React from "react";
 
 import getEmoji from "../../utils/getEmoji";
 import hexToRGBA from "../../utils/hexToRGBA";
 
-interface DetailBadgeProps {
+interface SmallBadgeProps {
   content: Badge;
-  isTalkForm?: boolean;
+  withoutContent?: boolean;
+  size: "xs" | "sm" | "md";
 }
 
-export default function SmallBadge({ content, isTalkForm }: DetailBadgeProps) {
+export default function SmallBadge({
+  content,
+  withoutContent,
+  size,
+}: SmallBadgeProps) {
   const backgroundColor = hexToRGBA("#000000", 0.2);
-
   const emoji = getEmoji(content);
 
   return (
     <div
-      className="flex h-[29px] items-center justify-center gap-1 rounded-lg px-2"
+      className={clsx(
+        "flex items-center justify-center gap-1 rounded-lg px-2",
+        size === "xs" && "h-[21px]",
+        size === "sm" && "h-[29px]",
+        size === "md" && "h-10",
+      )}
       style={{ backgroundColor: backgroundColor }}
     >
-      <p>{emoji}</p>
       <p
-        className={`text-Silver ${isTalkForm && "hidden Tablet:block"} Text-xs-Regular Tablet:Text-s-Medium`}
+        className={clsx(
+          size === "xs" && "text-[14px]",
+          size === "md" && "text-[16px]",
+        )}
+      >
+        {emoji}
+      </p>
+      <p
+        className={clsx(
+          `text-Silver ${withoutContent && "hidden Tablet:block"}`,
+          size === "xs" && "Text-xs-Regular",
+          size === "sm" && "Text-s-Medium",
+        )}
       >
         {content}
       </p>
