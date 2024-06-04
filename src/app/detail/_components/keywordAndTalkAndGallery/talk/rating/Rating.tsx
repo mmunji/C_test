@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 import useRating from "@/app/detail/_hooks/useRating";
+import SpeechBubble from "@/components/speechBubble/SpeechBubble";
 
 import DriveCommentText from "./DriveCommentText";
 import RatingStar from "./RatingStar";
@@ -19,7 +20,7 @@ export default function Rating() {
   const [showTalkForm, setShowTalkForm] = useState(false);
 
   return (
-    <div className="flex w-full flex-col justify-center rounded-xl py-3 Tablet:py-8 Laptop:mb-6 Laptop:bg-D1_Gray Laptop:px-7 Laptop:py-8">
+    <div className="relative flex w-full flex-col justify-center rounded-xl py-3 Tablet:py-8 Laptop:mb-6 Laptop:bg-D1_Gray Laptop:px-7 Laptop:py-8">
       {driveTalkText === "" ? (
         <TextBeforeRating />
       ) : (
@@ -54,6 +55,14 @@ export default function Rating() {
         </button>
       )}
       {showTalkForm && <TalkForm />}
+
+      {!clickedValue && (
+        <div className="absolute bottom-0 left-1/2 translate-x-[-50%] translate-y-[50%]">
+          <SpeechBubble exit={clickedValue} dir="top">
+            먼저 별점을 매기고 톡을 작성해주세요.
+          </SpeechBubble>
+        </div>
+      )}
     </div>
   );
 }

@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
-import React, { PropsWithChildren, useState } from "react";
+import React, { PropsWithChildren, useEffect, useState } from "react";
 
 import {
   CloseSm,
@@ -12,11 +12,13 @@ import {
 
 interface SpeechBubbleProps {
   dir: "top" | "bottom" | "left";
+  exit?: boolean;
 }
 
 export default function SpeechBubble({
   children,
   dir,
+  exit,
 }: PropsWithChildren<SpeechBubbleProps>) {
   const [clickExit, setClickExiit] = useState(false);
 
@@ -28,13 +30,17 @@ export default function SpeechBubble({
 
   const arrowSrc = arrowMap[dir];
 
+  useEffect(() => {
+    if (exit) setClickExiit(true);
+  }, [exit]);
+
   return (
     <AnimatePresence>
       {!clickExit && (
         <motion.div
           animate={{ opacity: 1 }}
-          exit={{ opacity: 0, scale: 0 }}
-          className="relative z-[5] flex h-[34px] items-center justify-between rounded-lg bg-Shade_1 py-2 pl-3 pr-1"
+          exit={{ opacity: 0, scale: 0, transition: { duration: 0.275 } }}
+          className="relative z-[5] flex h-[34px] w-fit items-center justify-between rounded-lg bg-Shade_1 py-2 pl-3 pr-1"
         >
           <p className="text-sm font-Medium leading-[18px] text-Silver">
             {children}
