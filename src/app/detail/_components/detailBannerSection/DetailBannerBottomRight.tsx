@@ -1,6 +1,8 @@
 import Image from "next/image";
 import React from "react";
 
+import useSmoothScroll from "@/hooks/useSmoothScroll";
+
 import {
   EditPencilLineMd,
   EditPencilLineSm,
@@ -8,8 +10,12 @@ import {
   HeartLineXl,
 } from "../../../../../public/icons";
 import { DetailPoster } from "../../../../../public/images";
+import { useCategoryTabStore } from "../../_stores/useCategoryTabStore";
 
 export default function DetailBannerBottomRight() {
+  const { smoothScroll } = useSmoothScroll();
+  const { setActiveCategoryTab } = useCategoryTabStore();
+
   return (
     <section className="absolute bottom-[-60px] flex translate-y-[100%] Tablet:bottom-[-41px] Laptop:static Laptop:translate-y-0">
       <section className="mt-auto flex items-center gap-10 Laptop:gap-5 Desktop:gap-8">
@@ -36,7 +42,15 @@ export default function DetailBannerBottomRight() {
             찜 하기
           </p>
         </section>
-        <section className="cursor-pointer">
+        <section
+          onClick={() => {
+            setActiveCategoryTab("톡");
+            setTimeout(() => {
+              smoothScroll("my-talk");
+            }, 0);
+          }}
+          className="cursor-pointer"
+        >
           <Image
             src={EditPencilLineSm}
             alt="톡 작성"
