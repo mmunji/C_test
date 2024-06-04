@@ -1,5 +1,8 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
+
+import Button from "@/components/buttons/Button";
 
 import { Naver } from "../../../../public/icons";
 
@@ -16,9 +19,13 @@ export default function Page() {
               </span>
               <span className="">영화처돌이</span>
             </div>
-            <button type="button" className="inline-block p-2 text-Gray_Orange">
+            <Button
+              variant={"text"}
+              onClick={() => console.log("sdf")}
+              className="Text-s-Medium Tablet:Text-m-Medium"
+            >
               변경
-            </button>
+            </Button>
           </div>
           <div className="h-[1px] w-full bg-D2_Gray" />
           <div className="flex items-center">
@@ -35,14 +42,18 @@ export default function Page() {
         <h2 className="Text-s-Bold Tablet:Text-l-Bold">로그인 연동</h2>
         <div className="flex items-center gap-3 rounded-xl bg-D1_Gray px-4 py-2 Text-s-Medium Tablet:px-8 Tablet:py-4 Tablet:Text-m-Medium">
           <div className="flex flex-1 items-center gap-4">
-            <div className="bg-Naver my-1 flex h-10 w-10 items-center justify-center rounded-lg Tablet:my-0">
+            <div className="my-1 flex h-10 w-10 items-center justify-center rounded-lg bg-Naver Tablet:my-0">
               <Image alt="네이버" src={Naver} />
             </div>
             <span className="">네이버 계정 연동 중</span>
           </div>
-          <button type="button" className="inline-block p-2 text-Gray_Orange">
+          <Button
+            className="Text-s-Medium Tablet:Text-m-Medium"
+            variant={"text"}
+            onClick={() => console.log("sdf")}
+          >
             로그아웃
-          </button>
+          </Button>
         </div>
       </div>
       <div className="flex flex-col gap-3 Tablet:gap-5">
@@ -55,9 +66,13 @@ export default function Page() {
               </span>
               <span className="">2024 / 01 / 01</span>
             </div>
-            <button type="button" className="inline-block p-2 text-Gray_Orange">
+            <Button
+              className="Text-s-Medium Tablet:Text-m-Medium"
+              variant={"text"}
+              onClick={() => console.log("sdf")}
+            >
               변경
-            </button>
+            </Button>
           </div>
           <div className="h-[1px] w-full bg-D2_Gray" />
           <div className="flex items-center">
@@ -67,14 +82,18 @@ export default function Page() {
               </span>
               <span className="">남자</span>
             </div>
-            <button type="button" className="inline-block p-2 text-Gray_Orange">
+            <Button
+              className="Text-s-Medium Tablet:Text-m-Medium"
+              variant={"text"}
+              onClick={() => console.log("sdf")}
+            >
               변경
-            </button>
+            </Button>
           </div>
         </div>
       </div>
       <div className="flex flex-col items-start text-Gray Text-s-Medium Tablet:Text-m-Medium">
-        <button type="button" className="py-2 text-Gray_Orange">
+        <button type="button" className="py-2 text-Gray_Orange hover:underline">
           회원탈퇴
         </button>
         <div className="block py-2 Desktop:hidden">개인정보 처리방침</div>

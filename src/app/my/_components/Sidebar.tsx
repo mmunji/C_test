@@ -7,12 +7,34 @@ import { usePathname } from "next/navigation";
 
 import ROUTES from "@/constants/routes";
 
-import { Archive, Bookmark, User } from "../../../../public/icons";
+import {
+  Archive,
+  ArchivePrimary,
+  Bookmark,
+  BookmarkPrimary,
+  User,
+  UserPrimary,
+} from "../../../../public/icons";
 
 const LINKS = [
-  { href: ROUTES.MY.default, name: "모아보기", svg: Archive },
-  { href: ROUTES.MY.favorites(), name: "찜한 작품", svg: Bookmark },
-  { href: ROUTES.MY.account(), name: "개인정보", svg: User },
+  {
+    href: ROUTES.MY.default,
+    name: "모아보기",
+    svg: Archive,
+    acitveSvg: ArchivePrimary,
+  },
+  {
+    href: ROUTES.MY.favorites(),
+    name: "찜한 작품",
+    svg: Bookmark,
+    acitveSvg: BookmarkPrimary,
+  },
+  {
+    href: ROUTES.MY.account(),
+    name: "개인정보",
+    svg: User,
+    acitveSvg: UserPrimary,
+  },
 ];
 
 export default function Sidebar() {
@@ -56,13 +78,21 @@ export default function Sidebar() {
         </div>
       </div>
       <ul className="h-full w-[72px] flex-col gap-4 px-4 pt-6 Tablet:flex Desktop:hidden">
-        {LINKS.map((link) => (
-          <li key={link.name}>
-            <Link href={link.href} className="inline-flex p-2">
-              <Image src={link.svg} width={24} height={24} alt={link.name} />
-            </Link>
-          </li>
-        ))}
+        {LINKS.map((link) => {
+          const isActive = pathname === link.href;
+          return (
+            <li key={link.name}>
+              <Link href={link.href} className="inline-flex p-2">
+                <Image
+                  src={isActive ? link.acitveSvg : link.svg}
+                  width={24}
+                  height={24}
+                  alt={link.name}
+                />
+              </Link>
+            </li>
+          );
+        })}
       </ul>
     </nav>
   );

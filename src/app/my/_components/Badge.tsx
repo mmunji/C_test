@@ -1,46 +1,35 @@
+"use client";
+
+import Button from "@/components/buttons/Button";
+
 function BadgeTitle() {
   return (
-    <>
-      <div className="hidden items-center gap-1 Tablet:flex">
-        <div className="flex flex-1 flex-col gap-1">
-          <h2 className="Text-m-Bold Tablet:Text-l-Bold">내 뱃지</h2>
-          <div className="flex items-center justify-between gap-2">
-            <p className="text-Gray Text-s-Regular Tablet:Text-m-Medium">
-              뱃지를 설정하면 닉네임 옆에 표시돼요.
-            </p>
-            <button
-              type="button"
-              className="p-2 Text-s-Medium Tablet:Text-m-Medium"
-            >
-              변경
-            </button>
-          </div>
-        </div>
-      </div>
-      <div className="flex items-center gap-1 Tablet:hidden">
-        <div className="flex flex-1 flex-col gap-1">
-          <h2 className="Text-m-Bold Tablet:Text-l-Bold">내 뱃지</h2>
+    <div className="flex items-end gap-1">
+      <div className="flex flex-1 flex-col gap-1">
+        <h2 className="Text-m-Bold Tablet:Text-l-Bold">내 뱃지</h2>
+        <div className="flex items-center justify-between gap-2">
           <p className="text-Gray Text-s-Regular Tablet:Text-m-Medium">
-            뱃지를 설정하면 닉네임 옆에 표시돼요.
+            뱃지는 닉네임 옆에 표시돼요.
           </p>
         </div>
-        <div>
-          <button
-            type="button"
-            className="p-2 Text-s-Medium Tablet:Text-m-Medium"
-          >
-            변경
-          </button>
-        </div>
       </div>
-    </>
+      <div>
+        <Button
+          variant="text"
+          onClick={() => console.log("sdf")}
+          className="Text-s-Medium Tablet:Text-m-Medium"
+        >
+          변경
+        </Button>
+      </div>
+    </div>
   );
 }
 
 function BadgeItem() {
   return (
     <div className="flex h-[126px] flex-col items-center justify-center gap-3 rounded-xl badge-gradient Tablet:h-[162px] Tablet:gap-4">
-      <div className="font-appleSDGothicNeo text-[32px]">👊</div>
+      <div className="Emoji-l Mobile:text-[32px] Tablet:text-5xl">👊</div>
       <div className="flex flex-col items-center gap-1">
         <p className="Text-s-Bold">액션가면</p>
         <div className="flex items-center gap-1">
