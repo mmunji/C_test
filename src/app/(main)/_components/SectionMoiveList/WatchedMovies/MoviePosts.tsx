@@ -2,6 +2,8 @@
 import Image from "next/image";
 
 import { StarXl } from "@/../public/icons";
+
+import PostCard from "../../PostCard";
 export default function MoviePosts() {
   return (
     <div>
@@ -87,32 +89,32 @@ export default function MoviePosts() {
           .map((e, index) => {
             return (
               <div key={index} className="flex flex-col">
-                <div className="h-[260px] w-[174px]  rounded-xl border-2  Desktop:h-[360px] Desktop:w-[240px]"></div>
+                <PostCard PostType="Post" />
                 <div className="flex  justify-between">
                   <Image
                     src={StarXl}
                     alt="star"
-                    className="h-[44px] w-[44px] Tablet:h-7 Tablet:w-7"
+                    className="h-7 w-7 Desktop:h-[44px] Desktop:w-[44px]"
                   />
                   <Image
                     src={StarXl}
                     alt="star"
-                    className="h-[44px] w-[44px]  Tablet:h-7 Tablet:w-7"
+                    className="h-7 w-7 Desktop:h-[44px] Desktop:w-[44px]"
                   />
                   <Image
                     src={StarXl}
                     alt="star"
-                    className="h-[44px] w-[44px]  Tablet:h-7 Tablet:w-7"
+                    className="h-7 w-7 Desktop:h-[44px] Desktop:w-[44px]"
                   />
                   <Image
                     src={StarXl}
                     alt="star"
-                    className="h-[44px] w-[44px]  Tablet:h-7 Tablet:w-7"
+                    className="h-7 w-7 Desktop:h-[44px] Desktop:w-[44px]"
                   />
                   <Image
                     src={StarXl}
                     alt="star"
-                    className="h-[44px] w-[44px]  Tablet:h-7 Tablet:w-7"
+                    className="h-7 w-7 Desktop:h-[44px] Desktop:w-[44px]"
                   />
                 </div>
               </div>
