@@ -2,7 +2,7 @@ import { ChangeEvent, FormEvent, useState } from "react";
 
 import LoadingSpinner from "@/components/loadingSpinner/LoadingSpinner";
 
-import KeywordSpeechBubble from "./KeywordSpeechBubble";
+import SpeechBubble from "../../../../../components/speechBubble/SpeechBubble";
 
 export default function KeywordForm() {
   const [loading, setLoading] = useState(false);
@@ -27,8 +27,10 @@ export default function KeywordForm() {
 
   return (
     <form onSubmit={handleSubmit} className="relative w-full Laptop:static">
-      <div className="Laptop:hidden">
-        <KeywordSpeechBubble />
+      <div className="absolute left-1/2 top-[-13px] w-[305px] translate-x-[-50%] translate-y-[-100%] Laptop:hidden">
+        <SpeechBubble dir="bottom">
+          떠오르는 단어를 작성하거나, 키워드를 눌러보세요!
+        </SpeechBubble>
       </div>
       <div className="relative w-full overflow-hidden rounded-xl ">
         <input
