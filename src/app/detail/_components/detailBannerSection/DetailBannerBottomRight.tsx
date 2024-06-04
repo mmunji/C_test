@@ -1,5 +1,5 @@
 import Image from "next/image";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 import useDevice from "@/hooks/useDevice";
 import useSmoothScroll from "@/hooks/useSmoothScroll";
@@ -17,14 +17,18 @@ export default function DetailBannerBottomRight() {
   const { smoothScroll } = useSmoothScroll();
   const { activeCategoryTab, setActiveCategoryTab } = useCategoryTabStore();
   const { device } = useDevice();
+  const [clickedTalk, setClickedTalk] = useState(false);
 
   useEffect(() => {
-    if (activeCategoryTab === "톡") {
+    if (activeCategoryTab === "톡" && clickedTalk) {
       smoothScroll("my-talk");
     }
-  }, [activeCategoryTab, smoothScroll]);
+
+    return () => setClickedTalk(false);
+  }, [activeCategoryTab, clickedTalk, smoothScroll]);
 
   const handleClickTalk = () => {
+    setClickedTalk(true);
     if (device === "mobile" || device === "tablet") {
       setActiveCategoryTab("톡");
     }
