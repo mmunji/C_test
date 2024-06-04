@@ -16,7 +16,7 @@ export default function KeywordAndTalkAndGallery() {
   const id = device === "mobile" || device === "tablet" ? "my-talk" : undefined;
 
   return (
-    <section className="Laptop:hidden" id="my-talk">
+    <section className="Laptop:hidden">
       <CategoryTab {...{ tabs, activeCategoryTab, setActiveCategoryTab }} />
       <section id={id}>
         {activeCategoryTab === tabs[0] && <Keyword />}
