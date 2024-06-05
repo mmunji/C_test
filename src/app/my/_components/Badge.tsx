@@ -14,11 +14,7 @@ function BadgeTitle() {
         </div>
       </div>
       <div>
-        <Button
-          variant="text"
-          onClick={() => console.log("sdf")}
-          className="Text-s-Medium Tablet:Text-m-Medium"
-        >
+        <Button variant="text" onClick={() => console.log("sdf")}>
           변경
         </Button>
       </div>
