@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import React, { useEffect, useRef } from "react";
+import React from "react";
 
 import DropdownContext, {
   useDropdownContext,
@@ -111,7 +111,7 @@ function DropdownList({ children, className }: DropdownListProps) {
 }
 
 function DropdownMain({ children, type = "text" }: DropdownMainProps) {
-  const { device } = useDevice();
+  const { isMobile } = useDevice();
   const { toggleDropdown, isOpen } = useDropdown();
   const ref = useOutsideClick(() => {
     if (isOpen) toggleDropdown();
@@ -123,7 +123,7 @@ function DropdownMain({ children, type = "text" }: DropdownMainProps) {
         isOpen,
         toggleDropdown,
         type,
-        isMobile: device === "mobile",
+        isMobile,
         height,
       }}
     >
