@@ -22,6 +22,10 @@ const ButtonVariants = cva(`flex justify-center`, {
       text: "p-2 ",
       textIconR: "p-2 pr-1",
       textIconL: "p-2 pl-1",
+      arrow1:
+        "p-[10px] rounded-full bg-Opacity_W10 hover:bg-Opacity_W15 active:bg-Opacity_W20",
+      arrow2:
+        "p-2 rounded-lg bg-Opacity_W10 hover:bg-Opacity_W15 active:bg-Opacity_W20",
     },
     size: {
       full: "py-3 px-5 rounded-xl",
