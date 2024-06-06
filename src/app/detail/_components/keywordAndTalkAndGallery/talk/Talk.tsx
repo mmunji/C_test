@@ -11,7 +11,7 @@ import TalkContents from "./talkContents/TalkContents";
 import TalkHeader from "./TalkHeader";
 
 export default function Talk() {
-  const [noTalk, setNotalk] = useState(true);
+  const [noTalk, setNotalk] = useState(false);
   const { device } = useDevice();
 
   const id = device === "mobile" || device === "tablet" ? undefined : "my-talk";

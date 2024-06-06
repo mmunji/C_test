@@ -1,5 +1,6 @@
 import { ChangeEvent, FormEvent, useState } from "react";
 
+import Button from "@/components/buttons/Button";
 import LoadingSpinner from "@/components/loadingSpinner/LoadingSpinner";
 
 import SpeechBubble from "../../../../../components/speechBubble/SpeechBubble";
@@ -46,13 +47,15 @@ export default function KeywordForm() {
           {focused && (
             <p className="text-Gray Text-s-Regular">{value?.length}/5</p>
           )}
-          <button
+          <Button
+            size="sm"
+            variant="orange"
             type="submit"
             disabled={!value || loading}
-            className={`flex h-[29px] w-[60px] items-center justify-center rounded-lg ${!value ? "bg-D2_Gray text-Gray" : "bg-Primary text-Silver"} Text-s-Medium`}
+            className="flex h-[29px] w-[60.3px] items-center justify-center"
           >
             {loading ? <LoadingSpinner color="white" size="xs" /> : "올리기"}
-          </button>
+          </Button>
         </section>
       </div>
     </form>
