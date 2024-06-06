@@ -25,11 +25,11 @@ const ButtonVariants = cva(`flex justify-center`, {
     },
     size: {
       full: "py-3 px-5 rounded-xl",
-      xl: "py-3 px-5 w-[360px] rounded-xl",
-      lg: "py-3 px-5 w-[180px] rounded-xl",
-      md: "py-2 px-4 rounded-lg w-fit",
-      sm: "py-2 px-3 rounded-lg w-fit",
-      xs: "py-1 px-2 rounded-lg w-fit",
+      xl: "py-3 px-5 w-[360px] rounded-xl Text-m-Medium",
+      lg: "py-3 px-5 w-[180px] rounded-xl Text-m-Medium",
+      md: "py-2 px-4 rounded-lg w-fit Text-m-Medium",
+      sm: "py-1 px-3 rounded-lg w-fit Text-s-Medium",
+      xs: "py-1 px-2 rounded-lg w-fit Text-xs-Regular",
       none: "",
     },
     focus: {

@@ -2,6 +2,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 
+import Button from "@/components/buttons/Button";
 import hexToRGBA from "@/utils/hexToRGBA";
 
 import {
@@ -23,6 +24,8 @@ export default function TalkForm() {
   const onSubmit: SubmitHandler<AddTalkValues> = (data) => {
     if (readyToSubmit) console.log(data);
   };
+
+  const talk = watch("talk");
   const spoiler = watch("spoiler");
 
   const toggleSpoiler = () => {
@@ -70,12 +73,25 @@ export default function TalkForm() {
           <button className="text-Gray_Orange Text-s-Regular">스포일러</button>
         </section>
 
-        <button
+        <Button
+          disabled={!talk}
+          size="sm"
+          variant="orange"
           type="submit"
-          className="flex h-[29px] w-12 items-center justify-center rounded-lg bg-Primary text-Silver Text-s-Medium"
+          className="Laptop:hidden"
         >
           등록
-        </button>
+        </Button>
+
+        <Button
+          disabled={!talk}
+          size="md"
+          variant="orange"
+          type="submit"
+          className="hidden Laptop:block"
+        >
+          등록
+        </Button>
       </section>
     </form>
   );
