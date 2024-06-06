@@ -60,7 +60,6 @@ export default function Account() {
             <div className="flex flex-col Tablet:flex-row Tablet:gap-2">
               <div className="relative flex h-10 items-center">
                 <input
-                  autoComplete={"off"}
                   placeholder={nickname}
                   {...register("nickname")}
                   type="text"
