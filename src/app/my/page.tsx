@@ -4,7 +4,6 @@ import Link from "next/link";
 import Badge from "@/app/my/_components/Badge";
 import UserInfo from "@/app/my/_components/UserInfo";
 import Activity from "@/app/my/activity/Activity";
-import Button from "@/components/buttons/Button";
 import ROUTES from "@/constants/routes";
 
 import { Archive, Bookmark, User } from "../../../public/icons";
