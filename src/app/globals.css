@@ -79,6 +79,9 @@ body {
   }
 }
 
+@layer base {
+}
+
 @layer components {
 }
 

@@ -1,17 +1,10 @@
-import clsx from "clsx";
 import Image from "next/image";
 import { useState } from "react";
 
-import { WithChildren } from "@/components/modal/_components/ModalMain";
 import { useModalContext } from "@/components/modal/ModalContext";
+import SpeechBubble from "@/components/speechBubble/SpeechBubble";
 
-import {
-  CloseLg,
-  CloseSm,
-  Kakao,
-  Naver,
-  SpeechBubbleBottom,
-} from "../../../../public/icons";
+import { CloseLg, Kakao, Naver } from "../../../../public/icons";
 
 interface ModalLoginProps {
   onKakaoLogin: () => void;
@@ -19,44 +12,10 @@ interface ModalLoginProps {
 }
 type LastSocialLogin = null | "kakao" | "naver";
 
-function SocialAlert({
-  lastSocialLogin,
-  closeAlert,
-}: {
-  lastSocialLogin: LastSocialLogin;
-  closeAlert: () => void;
-}) {
-  return (
-    <div
-      className={clsx(
-        !lastSocialLogin ? "hidden" : "block",
-        `absolute bottom-[41px] left-1/2 -translate-x-1/2`,
-      )}
-    >
-      <div className="relative flex h-[34px] w-fit items-center rounded-lg bg-Shade_1 py-2 pl-3 pr-1">
-        <span className="text-sm font-medium leading-[18px] text-Silver ">
-          마지막에 로그인 했어요!
-        </span>
-        <button onClick={closeAlert} type="button">
-          <Image src={CloseSm} alt="닫기" width={24} height={24} />
-        </button>
-        <Image
-          src={SpeechBubbleBottom}
-          alt="SpeechBubbleBottom"
-          width={20}
-          height={21}
-          className="absolute -bottom-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
-        />
-      </div>
-    </div>
-  );
-}
-
 export function ModalLogin({ onKakaoLogin, onNaverLogin }: ModalLoginProps) {
   const [lastSocialLogin, setLastSocialLogin] =
     useState<LastSocialLogin>("kakao");
   const { onClose } = useModalContext();
-  const handleAlertClose = () => setLastSocialLogin(null);
 
   return (
     <div className="relative flex flex-col gap-7">
@@ -77,16 +36,17 @@ export function ModalLogin({ onKakaoLogin, onNaverLogin }: ModalLoginProps) {
             <button
               type="button"
               onClick={onKakaoLogin}
-              className="bg-Kakako flex h-12 w-[360px] items-center justify-center gap-4 rounded-xl text-[#000000d9] Text-m-Medium"
+              className="flex h-12 w-[360px] items-center justify-center gap-4 rounded-xl bg-Kakako text-[#000000d9] Text-m-Medium"
             >
               <Image src={Kakao} alt="카카오" width={18} height={18} />
               카카오로 시작하기
             </button>
             {lastSocialLogin === "kakao" && (
-              <SocialAlert
-                closeAlert={handleAlertClose}
-                lastSocialLogin={lastSocialLogin}
-              />
+              <div className="absolute bottom-[41px] left-1/2 z-10 -translate-x-1/2">
+                <SpeechBubble dir="bottom">
+                  마지막에 로그인 했어요!
+                </SpeechBubble>
+              </div>
             )}
           </div>
 
@@ -94,16 +54,17 @@ export function ModalLogin({ onKakaoLogin, onNaverLogin }: ModalLoginProps) {
             <button
               type="button"
               onClick={onNaverLogin}
-              className="bg-Naver flex h-12 w-[360px] items-center justify-center gap-4 rounded-xl text-White Text-m-Medium"
+              className="flex h-12 w-[360px] items-center justify-center gap-4 rounded-xl bg-Naver text-White Text-m-Medium"
             >
               <Image src={Naver} alt="네이버" width={16} height={16} />
               네이버로 시작하기
             </button>
             {lastSocialLogin === "naver" && (
-              <SocialAlert
-                closeAlert={handleAlertClose}
-                lastSocialLogin={lastSocialLogin}
-              />
+              <div className="absolute bottom-[41px] left-1/2 z-10 -translate-x-1/2">
+                <SpeechBubble dir="bottom">
+                  마지막에 로그인 했어요!
+                </SpeechBubble>
+              </div>
             )}
           </div>
         </div>
