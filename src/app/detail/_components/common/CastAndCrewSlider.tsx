@@ -60,7 +60,8 @@ export default function CastAndCrewSlider() {
       {swiper && !swiper.isBeginning && (
         <Button
           onClick={handlePrev}
-          className={`absolute hidden Laptop:flex ${hovered ? "opacity-100" : "opacity-0"} left-0 top-1/2 z-[5] flex h-11 w-11 translate-x-[-50%] translate-y-[-50%] items-center justify-center rounded-full bg-[#FFFFFF19] transition-opacity duration-300`}
+          variant="arrow1"
+          className={`absolute hidden Laptop:flex ${hovered ? "opacity-100" : "opacity-0"} left-0 top-1/2 z-[5] translate-x-[-50%] translate-y-[-50%] transition-opacity duration-300`}
         >
           <Image src={ChevronLeftMd} alt="이전" />
         </Button>
@@ -69,7 +70,8 @@ export default function CastAndCrewSlider() {
       {swiper && !swiper.isEnd && (
         <Button
           onClick={handleNext}
-          className={`absolute hidden Laptop:flex ${hovered ? "opacity-100" : "opacity-0"} right-0 top-1/2 z-[5] flex h-11 w-11 translate-x-[50%] translate-y-[-50%] items-center justify-center rounded-full bg-[#FFFFFF19] transition-opacity duration-300`}
+          variant="arrow2"
+          className={`absolute hidden Laptop:flex ${hovered ? "opacity-100" : "opacity-0"} right-0 top-1/2 z-[5] translate-x-[50%] translate-y-[-50%] transition-opacity duration-300`}
         >
           <Image src={ChevronRightMd} alt="다음" />
         </Button>
