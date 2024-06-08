@@ -1,5 +1,7 @@
 import React from "react";
 
+import { movieAPIs } from "@/api/movie/movieAPIs";
+
 import DetailBannerSection from "./_components/detailBannerSection/DetailBannerSection";
 import DetailInfo from "./_components/detailInfo/DetailInfo";
 import TrailerAndPhoto from "./_components/keywordAndTalkAndGallery/gallery/trailerAndPhoto/TrailerAndPhoto";
@@ -8,7 +10,11 @@ import KeywordAndTalkAndGallery from "./_components/keywordAndTalkAndGallery/Key
 import Talk from "./_components/keywordAndTalkAndGallery/talk/Talk";
 import KeywordBar from "./_components/keywordBar/KeywordBar";
 
-export default function Detail() {
+export default async function Detail() {
+  const data = await movieAPIs.getMovieDetail(787699);
+
+  console.log(data);
+
   return (
     <div className="bg-BG">
       <DetailBannerSection />

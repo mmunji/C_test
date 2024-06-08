@@ -1,4 +1,4 @@
-import React, { RefObject, useRef } from "react";
+import React, { useRef } from "react";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 
 import handleResizeTextareaHeight from "@/app/detail/utils/handleResizeTextareaHeight";
