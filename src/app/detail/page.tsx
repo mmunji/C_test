@@ -20,7 +20,7 @@ export default async function Detail() {
       <div className="mx-5 mb-[100px] mt-[137px] Tablet:mx-6 Tablet:mb-40 Tablet:mt-[118px] Laptop:mx-[68px] Laptop:mb-[180px] Laptop:mt-7 Desktop:mx-auto Desktop:mb-[200px] Desktop:w-[1560px]">
         <KeywordBar title={movieDetailData.title} />
         <section className="flex flex-col Laptop:gap-[100px]">
-          <DetailInfo overview={movieDetailData.overview} />
+          <DetailInfo movieDetailData={movieDetailData} />
           <div className="hidden Laptop:block">
             <TrailerAndPhoto />
           </div>
@@ -34,7 +34,7 @@ export default async function Detail() {
             </div>
           </section>
 
-          <KeywordAndTalkAndGallery />
+          <KeywordAndTalkAndGallery movieDetailData={movieDetailData} />
         </section>
       </div>
     </div>

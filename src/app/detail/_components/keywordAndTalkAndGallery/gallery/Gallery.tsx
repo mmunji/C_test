@@ -5,14 +5,26 @@ import DividingLine from "../../common/DividingLine";
 import GalleryTitle from "./GalleryTitle";
 import TrailerAndPhoto from "./trailerAndPhoto/TrailerAndPhoto";
 
-export default function Gallery() {
+interface GalleryProps {
+  castAndCrew: CastAndCrew;
+}
+
+interface CastAndCrew {
+  cast?: DetailCastDTO[];
+  crew?: DetailCrewDTO[];
+}
+
+export default function Gallery({ castAndCrew }: GalleryProps) {
+  const { cast } = castAndCrew;
+  const { crew } = castAndCrew;
+
   return (
     <>
       <GalleryTitle content="제작진" />
-      <CastAndCrewSlider />
+      <CastAndCrewSlider type="crew" crew={crew} />
       <DividingLine />
       <GalleryTitle content="출연" />
-      <CastAndCrewSlider />
+      <CastAndCrewSlider type="cast" cast={cast} />
       <DividingLine />
       <TrailerAndPhoto />
     </>

@@ -1,4 +1,4 @@
-import { CastAndCrew, DetailTrailer } from "../../../public/images";
+import { DetailTrailer } from "../../../public/images";
 
 export const movieInfo = [
   "2024",
@@ -7,14 +7,6 @@ export const movieInfo = [
   "00세",
   "다큐멘터리/애니메이션",
 ];
-
-export const castAndCrew = Array(30)
-  .fill(null)
-  .map(() => ({
-    src: CastAndCrew,
-    name: "티모시 샬라메",
-    casting: "윌리 웡카잔아ㅏㅏㅏㅏ",
-  }));
 
 export const keywords = Array(26)
   .fill("키워드")
