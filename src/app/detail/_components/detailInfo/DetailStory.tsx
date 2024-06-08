@@ -1,9 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import React, { useEffect, useRef, useState } from "react";
-
-import useDevice from "@/hooks/useDevice";
+import { useState } from "react";
 
 import { CaretDownGrayMd, CaretDownMd } from "../../../../../public/icons";
 import useNeedStoryMoreButton from "../../_hooks/useNeedStoryMoreButton";
@@ -13,19 +11,15 @@ interface DetailStoryProps {
 }
 
 export default function DetailStory({ overview }: DetailStoryProps) {
-  const [clicked, setClicked] = useState(false);
+  const [clicked, setClicked] = useState<boolean | null>(null);
   const story = `${overview}`;
-  const { contentRef, showMoreButton, maxHeight } = useNeedStoryMoreButton();
+  const { contentRef, showMoreButton } = useNeedStoryMoreButton();
 
   return (
     <div className="h-fit w-full rounded-[12px] bg-Black px-4 pt-5 Laptop:w-1/2 Laptop:bg-D1_Gray Laptop:px-8 Laptop:pt-7">
       <p
         ref={contentRef}
-        style={{
-          transition: "all 0.3s ease",
-          height: clicked ? contentRef.current?.scrollHeight : maxHeight,
-        }}
-        className={`overflow-hidden leading-[150%] Text-s-Regular Laptop:Text-m-Regular ${clicked ? "h-fit" : "line-clamp-[3] h-[63px] text-ellipsis Laptop:line-clamp-[8] Laptop:h-[196px]"}`}
+        className={`leading-[150%] transition-[height] duration-300 Text-s-Regular Laptop:Text-m-Regular ${clicked ? "h-fit" : "line-clamp-[3] h-[63px] text-ellipsis Laptop:line-clamp-[8] Laptop:h-[196px]"}`}
       >
         {story}
       </p>

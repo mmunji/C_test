@@ -5,8 +5,12 @@ import { josa } from "es-hangul";
 import LoadingSpinner from "../../../../components/loadingSpinner/LoadingSpinner";
 import { usePaletteStore } from "../../_stores/usePaletteStore";
 
-export default function KeywordBar() {
-  const movieTitle = "웡카";
+interface KeywordBarProps {
+  title: string;
+}
+
+export default function KeywordBar({ title }: KeywordBarProps) {
+  const movieTitle = title;
   const sentence1 = josa(movieTitle, "은/는") + " 지금";
   const { gradientStyle } = usePaletteStore();
 

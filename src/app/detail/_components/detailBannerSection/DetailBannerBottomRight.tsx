@@ -13,11 +13,11 @@ import {
 import { useCategoryTabStore } from "../../_stores/useCategoryTabStore";
 
 interface DetailBannerBottomRightProps {
-  posterImage: string;
+  movieDetailData: MovieDetailData;
 }
 
 export default function DetailBannerBottomRight({
-  posterImage,
+  movieDetailData,
 }: DetailBannerBottomRightProps) {
   const { smoothScroll } = useSmoothScroll();
   const { activeCategoryTab, setActiveCategoryTab } = useCategoryTabStore();
@@ -84,7 +84,7 @@ export default function DetailBannerBottomRight({
         </section>
       </section>
       <Image
-        src={posterImage}
+        src={movieDetailData.posterImg}
         alt="포스터"
         width={100}
         height={100}

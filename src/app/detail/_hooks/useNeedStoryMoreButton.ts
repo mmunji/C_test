@@ -38,5 +38,5 @@ export default function useNeedStoryMoreButton() {
     setShowMoreButton(isShowMoreButtonNeeded(contentHeight));
   }, [contentHeight, device, maxHeight]);
 
-  return { contentRef, showMoreButton, maxHeight };
+  return { contentRef, showMoreButton };
 }

@@ -7,20 +7,15 @@ import { usePaletteStore } from "../../_stores/usePaletteStore";
 import DetailBannerBottom from "./DetailBannerBottom";
 
 interface DetailBannerSectionProps {
-  images: Images;
+  movieDetailData: MovieDetailData;
 }
 
-type Images = {
-  posterImage: string;
-  backgroundImage: string;
-};
-
 export default function DetailBannerSection({
-  images,
+  movieDetailData,
 }: DetailBannerSectionProps) {
   const { gradientStyle, setGradientStyle } = usePaletteStore();
-  const { posterImage } = images;
-  const { backgroundImage } = images;
+  const posterImage = movieDetailData.posterImg;
+  const backgroundImage = movieDetailData.backGroundImg;
 
   return (
     <section className="relative mt-[-64px] h-[380px] w-full Tablet:h-[420zyx] Laptop:mt-[-80px] Laptop:h-[640px] Desktop:h-[816px]">
@@ -30,7 +25,7 @@ export default function DetailBannerSection({
           backgroundImage: `linear-gradient(180deg, rgba(38, 38, 38, 0.00) 0%, #262626 100%), url('${backgroundImage}')`,
         }}
       >
-        <DetailBannerBottom posterImage={posterImage} />
+        <DetailBannerBottom movieDetailData={movieDetailData} />
       </div>
 
       <Palette

@@ -4,16 +4,16 @@ import DetailBannerBottomLeft from "./DetailBannerBottomLeft";
 import DetailBannerBottomRight from "./DetailBannerBottomRight";
 
 interface DetailBannerBottomProps {
-  posterImage: string;
+  movieDetailData: MovieDetailData;
 }
 
 export default function DetailBannerBottom({
-  posterImage,
+  movieDetailData,
 }: DetailBannerBottomProps) {
   return (
     <section className="mx-auto mb-5 mt-auto flex flex-col items-center justify-between Laptop:mx-[68px] Laptop:w-full Laptop:flex-row Desktop:mx-auto Desktop:w-[1560px]">
       <DetailBannerBottomLeft />
-      <DetailBannerBottomRight posterImage={posterImage} />
+      <DetailBannerBottomRight movieDetailData={movieDetailData} />
     </section>
   );
 }
