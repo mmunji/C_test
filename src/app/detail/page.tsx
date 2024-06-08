@@ -11,20 +11,21 @@ import Talk from "./_components/keywordAndTalkAndGallery/talk/Talk";
 import KeywordBar from "./_components/keywordBar/KeywordBar";
 
 export default async function Detail() {
-  const data = await movieAPIs.getMovieDetail(787699);
+  const movieDetailData = await movieAPIs.getMovieDetail(787699);
 
+  console.log(movieDetailData.overview);
   return (
     <div className="bg-BG">
       <DetailBannerSection
         images={{
-          posterImage: data.posterImg,
-          backgroundImage: data.backGroundImg,
+          posterImage: movieDetailData.posterImg,
+          backgroundImage: movieDetailData.backGroundImg,
         }}
       />
       <div className="mx-5 mb-[100px] mt-[137px] Tablet:mx-6 Tablet:mb-40 Tablet:mt-[118px] Laptop:mx-[68px] Laptop:mb-[180px] Laptop:mt-7 Desktop:mx-auto Desktop:mb-[200px] Desktop:w-[1560px]">
         <KeywordBar />
         <section className="flex flex-col Laptop:gap-[100px]">
-          <DetailInfo />
+          <DetailInfo overview={movieDetailData.overview} />
           <div className="hidden Laptop:block">
             <TrailerAndPhoto />
           </div>

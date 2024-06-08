@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import { Dispatch, SetStateAction, useState } from "react";
 
-import useNeedMoreButton from "@/app/detail/_hooks/useNeedMoreButton";
+import useNeedTalkMoreButton from "@/app/detail/_hooks/useNeedTalkMoreButton";
 
 interface TalkContentsBodyProps {
   spoiler: boolean;
@@ -15,7 +15,10 @@ export default function TalkContentsBody({
   setShowSpoiler,
 }: TalkContentsBodyProps) {
   const [showMore, setShowMore] = useState(false);
-  const { contentRef, showMoreButton } = useNeedMoreButton("talk", showSpoiler);
+  const { contentRef, showMoreButton } = useNeedTalkMoreButton(
+    "talk",
+    showSpoiler,
+  );
 
   const talk = `
   3줄까지만 보여줍니다. 여행은 새로운 경험과 추억을 선사하지만, 올바른

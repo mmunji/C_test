@@ -2,14 +2,13 @@ import { useEffect, useRef, useState } from "react";
 
 import useDevice from "@/hooks/useDevice";
 
-export default function useNeedMoreButton(
-  type: "talk" | "reply",
-  showSpoiler?: boolean,
-) {
+export default function useNeedStoryMoreButton() {
   const { device } = useDevice();
   const contentRef = useRef<HTMLParagraphElement>(null);
   const [contentHeight, setContentHeight] = useState(0);
   const [showMoreButton, setShowMoreButton] = useState(false);
+
+  const maxHeight = device === "mobile" || device === "tablet" ? 63 : 196;
 
   useEffect(() => {
     const contentElement = contentRef.current;
@@ -18,14 +17,9 @@ export default function useNeedMoreButton(
     const resizeObserver = new ResizeObserver((entries) => {
       const entry = entries[0];
       const newHeight = entry.target.scrollHeight;
-      if (type === "talk" && showSpoiler) {
-        if (contentHeight !== newHeight) {
-          setContentHeight(newHeight);
-        }
-      } else {
-        if (contentHeight !== newHeight) {
-          setContentHeight(newHeight);
-        }
+
+      if (contentHeight !== newHeight) {
+        setContentHeight(newHeight);
       }
     });
 
@@ -34,16 +28,15 @@ export default function useNeedMoreButton(
     return () => {
       resizeObserver.unobserve(contentElement);
     };
-  }, [contentHeight, type, showSpoiler]);
+  }, [contentHeight]);
 
   useEffect(() => {
     const isShowMoreButtonNeeded = (contentHeight: number) => {
-      const maxHeight = device === "mobile" ? 63 : 72;
       return contentHeight > maxHeight;
     };
 
     setShowMoreButton(isShowMoreButtonNeeded(contentHeight));
-  }, [contentHeight, device]);
+  }, [contentHeight, device, maxHeight]);
 
-  return { contentRef, showMoreButton };
+  return { contentRef, showMoreButton, maxHeight };
 }
