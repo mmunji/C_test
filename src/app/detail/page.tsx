@@ -13,11 +13,14 @@ import KeywordBar from "./_components/keywordBar/KeywordBar";
 export default async function Detail() {
   const data = await movieAPIs.getMovieDetail(787699);
 
-  console.log(data);
-
   return (
     <div className="bg-BG">
-      <DetailBannerSection />
+      <DetailBannerSection
+        images={{
+          posterImage: data.posterImg,
+          backgroundImage: data.backGroundImg,
+        }}
+      />
       <div className="mx-5 mb-[100px] mt-[137px] Tablet:mx-6 Tablet:mb-40 Tablet:mt-[118px] Laptop:mx-[68px] Laptop:mb-[180px] Laptop:mt-7 Desktop:mx-auto Desktop:mb-[200px] Desktop:w-[1560px]">
         <KeywordBar />
         <section className="flex flex-col Laptop:gap-[100px]">
