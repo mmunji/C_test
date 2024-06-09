@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 
+import useDevice from "@/hooks/useDevice";
+
 import DividingLine from "../../common/DividingLine";
 import NoTalk from "./NoTalk";
 import Rating from "./rating/Rating";
@@ -10,9 +12,12 @@ import TalkHeader from "./TalkHeader";
 
 export default function Talk() {
   const [noTalk, setNotalk] = useState(false);
+  const { device } = useDevice();
+
+  const id = device === "mobile" || device === "tablet" ? undefined : "my-talk";
 
   return (
-    <section>
+    <section id={id}>
       <Rating />
       <DividingLine />
 

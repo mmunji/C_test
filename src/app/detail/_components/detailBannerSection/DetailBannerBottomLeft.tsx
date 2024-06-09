@@ -1,16 +1,49 @@
+import dayjs from "dayjs";
 import Image from "next/image";
 import React from "react";
 
 import { StarFillMd, TmdbMd } from "../../../../../public/icons";
-import { movieInfo } from "../../fakeData";
 
-export default function DetailBannerBottomLeft() {
+interface DetailBannerBottomLeftProps {
+  movieDetailData: MovieDetailData;
+}
+
+export default function DetailBannerBottomLeft({
+  movieDetailData,
+}: DetailBannerBottomLeftProps) {
+  const yearOfReleaseDate = dayjs(movieDetailData.releaseDate).format("YYYY");
+
+  const contentRating =
+    movieDetailData.contentRating === "All"
+      ? "전체관람가"
+      : movieDetailData.contentRating === ""
+        ? "관람가 심의 중"
+        : `${movieDetailData.contentRating}세`;
+
+  const genreDTOList = movieDetailData.genreDTOList;
+  const genreText = genreDTOList.map((el) => el.name);
+  const formattedGenreText = genreText.reduce((acc, cur) => {
+    return `${acc}/${cur}`;
+  });
+
+  const status = movieDetailData.status === "Released" ? "개봉됨" : "미개봉";
+
+  const movieInfo = [
+    yearOfReleaseDate,
+    `${movieDetailData.runningTime}분`,
+    "00.0만명",
+    contentRating,
+    formattedGenreText,
+  ];
+
   return (
     <section className="mt-auto flex flex-col gap-1">
       <section className="mb-2 flex flex-col-reverse items-center gap-1 Laptop:mb-0 Laptop:flex-row Laptop:gap-4">
-        <h2 className="text-Silver Text-xl-Bold Laptop:Text-xxxl-Bold">웡카</h2>
+        <h2 className="text-Silver Text-xl-Bold Laptop:Text-xxxl-Bold">
+          {movieDetailData.title}
+        </h2>
         <div className="flex items-center justify-center rounded-[35px] border-[1px] border-White px-3 py-1 Text-xs-Regular Laptop:border-[2px] Laptop:px-4 Laptop:py-2 Laptop:Text-m-Medium">
-          상영중
+          {status}
         </div>
       </section>
 

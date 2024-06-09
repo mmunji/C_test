@@ -1,5 +1,7 @@
 import React from "react";
 
+import { movieAPIs } from "@/api/movie/movieAPIs";
+
 import DetailBannerSection from "./_components/detailBannerSection/DetailBannerSection";
 import DetailInfo from "./_components/detailInfo/DetailInfo";
 import TrailerAndPhoto from "./_components/keywordAndTalkAndGallery/gallery/trailerAndPhoto/TrailerAndPhoto";
@@ -8,16 +10,24 @@ import KeywordAndTalkAndGallery from "./_components/keywordAndTalkAndGallery/Key
 import Talk from "./_components/keywordAndTalkAndGallery/talk/Talk";
 import KeywordBar from "./_components/keywordBar/KeywordBar";
 
-export default function Detail() {
+export default async function Detail() {
+  const movieDetailData: MovieDetailData =
+    await movieAPIs.getMovieDetail(24428);
+
   return (
     <div className="bg-BG">
-      <DetailBannerSection />
+      <DetailBannerSection movieDetailData={movieDetailData} />
       <div className="mx-5 mb-[100px] mt-[137px] Tablet:mx-6 Tablet:mb-40 Tablet:mt-[118px] Laptop:mx-[68px] Laptop:mb-[180px] Laptop:mt-7 Desktop:mx-auto Desktop:mb-[200px] Desktop:w-[1560px]">
-        <KeywordBar />
+        <KeywordBar title={movieDetailData.title} />
         <section className="flex flex-col Laptop:gap-[100px]">
-          <DetailInfo />
+          <DetailInfo movieDetailData={movieDetailData} />
           <div className="hidden Laptop:block">
-            <TrailerAndPhoto />
+            <TrailerAndPhoto
+              trailerAndPhoto={{
+                trailer: movieDetailData.videoList,
+                photo: movieDetailData.imageDTOList,
+              }}
+            />
           </div>
 
           <section className="hidden Laptop:flex Laptop:gap-7 Desktop:gap-9">
@@ -29,7 +39,7 @@ export default function Detail() {
             </div>
           </section>
 
-          <KeywordAndTalkAndGallery />
+          <KeywordAndTalkAndGallery movieDetailData={movieDetailData} />
         </section>
       </div>
     </div>

@@ -27,8 +27,7 @@ export function ModalMain({
   isAlertModal,
   isOpen,
 }: ModalMainProps) {
-  const { device } = useDevice();
-  const isMobile = device === "mobile";
+  const { isMobile } = useDevice();
   const {
     isChecked,
     toggleChceked,

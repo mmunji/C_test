@@ -21,10 +21,11 @@ export default function SmallBadge({
   return (
     <div
       className={clsx(
-        "flex items-center justify-center gap-1 rounded-lg px-2",
+        "flex items-center justify-center gap-1 rounded-lg",
         size === "xs" && "h-[21px]",
         size === "sm" && "h-[29px]",
         size === "md" && "h-10",
+        size === "md" ? "px-3" : "px-2",
       )}
       style={{ backgroundColor: backgroundColor }}
     >

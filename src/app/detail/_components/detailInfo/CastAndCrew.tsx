@@ -2,23 +2,32 @@
 
 import React, { useState } from "react";
 
-import CastAndCrewSlider from "../common/CastAndCrewSlider";
-import DetailActiveTab from "../common/DetailActiveTab";
+import CommonTab from "@/components/commonTab/CommonTab";
 
-export default function CastAndCrew() {
+import CastAndCrewSlider from "../common/CastAndCrewSlider";
+
+interface CastAndCrewProps {
+  castAndCrew: CastAndCrew;
+}
+
+interface CastAndCrew {
+  cast?: DetailCastDTO[];
+  crew?: DetailCrewDTO[];
+}
+
+export default function CastAndCrew({ castAndCrew }: CastAndCrewProps) {
   const tabs = ["제작진", "출연"];
   const [activeTab, setActiveTab] = useState(tabs[0]);
 
+  const { cast } = castAndCrew;
+  const { crew } = castAndCrew;
+
   return (
     <section className="max-h-full">
-      <DetailActiveTab {...{ tabs, activeTab, setActiveTab }}>
-        <div
-          className={`absolute bottom-[3px] h-0.5 w-5 bg-Primary transition-all duration-300 ease-out ${activeTab === tabs[0] ? "translate-x-[22.5px] Laptop:translate-x-[27.75px]" : "translate-x-[82px] Laptop:translate-x-[95px]"}`}
-        />
-      </DetailActiveTab>
+      <CommonTab {...{ tabs, activeTab, setActiveTab }} />
 
-      {activeTab === tabs[0] && <CastAndCrewSlider />}
-      {activeTab === tabs[1] && <CastAndCrewSlider />}
+      {activeTab === tabs[0] && <CastAndCrewSlider type="crew" crew={crew} />}
+      {activeTab === tabs[1] && <CastAndCrewSlider type="cast" cast={cast} />}
     </section>
   );
 }

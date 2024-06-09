@@ -1,7 +1,7 @@
 "use client";
 import { useRouter } from "next/navigation";
 
-import Activity from "@/app/my/activity";
+import Activity from "@/app/my/activity/Activity";
 import ROUTES from "@/constants/routes";
 import useDevice from "@/hooks/useDevice";
 

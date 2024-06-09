@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 
 export default function useDevice() {
   const [device, setDevice] = useState<Device>("");
+  const isMobile = device === "mobile";
 
   const handleResize = () => {
     const innerWidth = window.innerWidth;
@@ -34,5 +35,5 @@ export default function useDevice() {
     return () => removeEventListener("resize", handleResize);
   }, []);
 
-  return { device };
+  return { device, isMobile };
 }

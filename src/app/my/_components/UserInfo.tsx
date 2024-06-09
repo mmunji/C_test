@@ -1,25 +1,11 @@
 import Image from "next/image";
 
+import SmallBadge from "@/components/smallBadge/SmallBadge";
+
 import { CameraMd, CameraSm } from "../../../../public/icons";
 
 export default function UserInfo() {
-  const badges = [
-    {
-      id: 1,
-      badge: "👊",
-      text: "액션가면",
-    },
-    {
-      id: 2,
-      badge: "👽",
-      text: "신비주의",
-    },
-    {
-      id: 3,
-      badge: "🎈",
-      text: "웃음사냥꾼",
-    },
-  ];
+  const badges: Badge[] = ["강심장", "밀덕", "소오름"];
 
   return (
     <section className="mb-9 flex w-full flex-col items-center gap-7 px-5 Tablet:mb-0 Tablet:gap-[52px] Tablet:px-0">
@@ -40,44 +26,41 @@ export default function UserInfo() {
           </div>
         </div>
         <div className="flex flex-col items-center gap-2">
-          <p className="Text-m-Bold Tablet:Text-xxxl-Bold">
+          <p className="Text-m-Bold Tablet:Text-xxl-Bold">
             <strong className="text-Primary">닉네임</strong>님, 안녕하세요!
           </p>
           <div className="flex items-center gap-1 Tablet:gap-4">
             {badges.map((badge) => (
-              <div
-                key={badge.id}
-                className="flex w-fit items-center justify-center gap-1 rounded-lg bg-black bg-opacity-20 px-2 py-1 Tablet:px-3 Tablet:py-2"
-              >
-                <span className="font-appleSDGothicNeo Emoji-s Tablet:Emoji-m">
-                  {badge.badge}
-                </span>
-                <span className="Text-s-Medium Tablet:Text-m-Medium">
-                  {badge.text}
-                </span>
-              </div>
+              <>
+                <div className="hidden Tablet:block" key={badge}>
+                  <SmallBadge content={badge} size="md" />
+                </div>
+                <div className="block Tablet:hidden" key={badge}>
+                  <SmallBadge content={badge} size="sm" />
+                </div>
+              </>
             ))}
           </div>
         </div>
       </div>
-      <div className="flex w-full justify-center gap-5  rounded-xl bg-D1_Gray p-3 Tablet:justify-between Tablet:gap-[41px] Tablet:px-[88px] Tablet:py-3 Laptop:px-[100px]">
+      <div className="flex w-full justify-center gap-6 rounded-xl bg-D1_Gray p-3 Tablet:justify-between Tablet:gap-[41px] Tablet:px-[88px] Tablet:py-3 Laptop:px-[100px]">
         <div className="relative flex w-[54px] flex-col items-center gap-0 py-0 Tablet:w-auto Tablet:gap-1 Tablet:px-3 Tablet:py-2">
           <span className="Text-m-Bold Tablet:Text-l-Bold">00</span>
-          <span className="text-L_Gray Text-xs-Regular Tablet:text-Silver Tablet:Text-m-Bold">
+          <span className="text-L_Gray Text-xs-Regular Tablet:Text-s-Regular Laptop:text-Silver Laptop:Text-m-Bold">
             받은 좋아요
           </span>
         </div>
         <div className="w-[1px] bg-D2_Gray"></div>
         <div className="relative flex w-[54px] flex-col items-center gap-0 py-0 Tablet:w-auto Tablet:gap-1 Tablet:px-3 Tablet:py-2">
           <span className="Text-m-Bold Tablet:Text-l-Bold">00</span>
-          <span className="text-L_Gray Text-xs-Regular Tablet:text-Silver Tablet:Text-m-Bold">
+          <span className="text-L_Gray Text-xs-Regular Tablet:Text-s-Regular Laptop:text-Silver Laptop:Text-m-Bold">
             평가한 영화
           </span>
         </div>
         <div className="w-[1px] bg-D2_Gray"></div>
         <div className="relative flex w-[54px] flex-col items-center gap-0 py-0 Tablet:w-auto Tablet:gap-1 Tablet:px-3 Tablet:py-2">
           <span className="Text-m-Bold Tablet:Text-l-Bold">00</span>
-          <span className="text-L_Gray Text-xs-Regular Tablet:text-Silver Tablet:Text-m-Bold">
+          <span className="text-L_Gray Text-xs-Regular Tablet:Text-s-Regular Laptop:text-Silver Laptop:Text-m-Bold">
             찜한 영화
           </span>
         </div>

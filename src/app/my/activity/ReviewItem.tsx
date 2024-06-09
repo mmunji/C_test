@@ -1,11 +1,12 @@
 import Image from "next/image";
 import { useState } from "react";
 
-import Dropdown from "@/components/dropdown";
+import Button from "@/components/buttons/Button";
+import Dropdown from "@/components/dropdown/Dropdown";
 import Modal from "@/components/modal/_components";
 
 import {
-  ChatLineSmGrayOrange,
+  ChatLineGrayOrangeSm,
   MoreHorizontal,
   StarSm,
   ThumbsUpLineSm,
@@ -31,14 +32,11 @@ export default function ReviewItem() {
           <div>
             <Dropdown>
               <Dropdown.Trigger>
-                <button
-                  type="button"
-                  className="p-2 text-Gray_Orange Text-m-Medium"
-                >
-                  <Image alt="" src={MoreHorizontal} />
-                </button>
+                <Button variant={"icon"}>
+                  <Image alt="더보기" src={MoreHorizontal} />
+                </Button>
               </Dropdown.Trigger>
-              <Dropdown.List className="right-1/2 top-11 translate-x-1/2 Tablet:right-0 Tablet:-translate-x-0">
+              <Dropdown.List>
                 <Dropdown.Item onClick={() => console.log("sdf")}>
                   수정
                 </Dropdown.Item>
@@ -68,7 +66,7 @@ export default function ReviewItem() {
             <span className="text-Gray_Orange Text-s-Medium">0,000</span>
           </div>
           <div className="flex items-center gap-1">
-            <Image alt="댓글" src={ChatLineSmGrayOrange} />
+            <Image alt="댓글" src={ChatLineGrayOrangeSm} />
 
             <span className="text-Gray_Orange Text-s-Medium">0,000</span>
           </div>
