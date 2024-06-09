@@ -3,6 +3,8 @@ import Image from "next/image";
 import { useState } from "react";
 
 import { ChatFillSm, StarFillMd, ThumbsUpFillSm } from "@/../public/icons";
+
+import GetRating from "./getratingstart/GetRating";
 interface PostNumber {
   num?: number;
   onClick?: () => void;
@@ -53,13 +55,7 @@ export default function PostCard({
           }}
         >
           <div className="flex flex-col items-center gap-2">
-            <div className="flex">
-              {Array(5)
-                .fill(0)
-                .map((_, index) => {
-                  return <Image key={index} src={StarFillMd} alt="별" />;
-                })}
-            </div>
+            <GetRating />
             <div className="flex flex-col gap-1">
               <span className="Text-m-Regular">
                 여행은 새로운 경험과 추억을 선사하지만, 올바른 준비가

@@ -4,8 +4,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 
 import Image from "next/image";
-import { useState } from "react";
-import SwiperCore from "swiper";
+import { useEffect } from "react";
 import { Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -13,6 +12,20 @@ import { HeartLineMd, StarFillMd } from "@/../public/icons";
 
 import PostCard from "../PostCard";
 export default function MasterPieceMoive() {
+  useEffect(() => {
+    const GetMasterPieceMoives = async () => {
+      const res = fetch(
+        `${process.env.NEXT_PUBLIC_ENDPOINT}/movie/HidingPiece`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        },
+      );
+    };
+    GetMasterPieceMoives();
+  }, []);
   return (
     <div className="flex flex-col gap-[20px]">
       <div className="flex flex-col gap-1">
@@ -33,11 +46,11 @@ export default function MasterPieceMoive() {
           <Image src={HeartLineMd} alt="빈 하트" />
         </div>
       </div>
-      <div>
+      <div className="hidden Tablet:flex">
         <Swiper
           slidesPerView={6}
           spaceBetween={24}
-          className="hidden gap-5 Tablet:flex Laptop:gap-5 Desktop:gap-6"
+          className="gap-5  Laptop:gap-5 Desktop:gap-6"
           modules={[Pagination]}
         >
           {Array(10)

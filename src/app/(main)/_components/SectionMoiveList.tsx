@@ -1,5 +1,5 @@
+import MasterPieceMoive from "./MasterPieceMovie/MasterPieceMoive";
 import RecentKeyword from "./SectionMoiveList/KeyWord/RecentKeyword";
-import MasterPieceMoive from "./SectionMoiveList/MasterPieceMoive";
 import MoiveTopRank from "./SectionMoiveList/MovieTopRank/MovieTopRank";
 import SimilarTastesMoive from "./SectionMoiveList/SlimilarTaste/SimilarTastesMoive";
 import WatchedMoive from "./SectionMoiveList/WatchedMovies/WatchedMoive";

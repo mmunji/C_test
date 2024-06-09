@@ -15,7 +15,6 @@ export default function SlimilarPost() {
   const [UserStateNumder, SetUserStateNumber] = useState<number>(0);
   const onHandleStateChange = (e: number) => {
     SetUserStateNumber(e);
-    console.log(e, UserStateNumder);
   };
   return (
     <div className="flex flex-col gap-5 ">
@@ -24,9 +23,19 @@ export default function SlimilarPost() {
       </div>
       <div className=" hidden justify-between Laptop:flex">
         <Swiper
-          slidesPerView={4}
-          spaceBetween={1}
+          slidesPerView={3}
+          spaceBetween={20}
           className="flex  rounded-xl px-[12px]  py-[24px] Desktop:hidden"
+          breakpoints={{
+            1280: {
+              // Laptop 사이즈 이상
+              slidesPerView: 3,
+            },
+            1920: {
+              // Desktop 사이즈 이상
+              slidesPerView: 4,
+            },
+          }}
         >
           {Array(10)
             .fill(0)

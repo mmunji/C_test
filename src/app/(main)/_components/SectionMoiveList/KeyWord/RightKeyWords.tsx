@@ -1,7 +1,7 @@
 "use client";
 import KeyWordPosts from "./KeyWordPosts";
 
-export default function KeyWords() {
+export default function RightKeyWords() {
   return (
     <div>
       <div className="grid grid-cols-1 gap-3 Tablet:hidden Laptop:hidden Desktop:hidden">
