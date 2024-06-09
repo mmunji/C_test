@@ -86,8 +86,8 @@ export default function DetailBannerBottomRight({
       <Image
         src={movieDetailData.posterImg}
         alt="포스터"
-        width={100}
-        height={100}
+        width={500}
+        height={500}
         className="hidden rounded-[12px] Laptop:ml-6 Laptop:block Laptop:h-[258px] Laptop:w-[172px] Desktop:ml-9 Desktop:h-[360px] Desktop:w-60"
       />
     </section>

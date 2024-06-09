@@ -30,6 +30,9 @@ export default function CastAndCrewSlider({
     castAndCrewSpaceBetween,
   } = useDetailSwiper("castAndCrew");
 
+  const twentyCast = cast?.slice(0, 32);
+  const twentyCrew = crew?.slice(0, 32);
+
   return (
     <div
       className="relative mt-5 h-[calc(256px-60px)]"
@@ -46,7 +49,7 @@ export default function CastAndCrewSlider({
         }}
       >
         {type === "crew" &&
-          crew?.map((el, i) => {
+          twentyCrew?.map((el, i) => {
             const profileImage = el?.profilePath
               ? el.profilePath
               : DefaultProfile;
@@ -75,7 +78,7 @@ export default function CastAndCrewSlider({
             );
           })}
         {type === "cast" &&
-          cast?.map((el, i) => {
+          twentyCast?.map((el, i) => {
             const profileImage = el?.profilePath
               ? el.profilePath
               : DefaultProfile;

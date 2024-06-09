@@ -36,7 +36,7 @@ export default function DetailBannerSection({
       >
         {({ data }) => {
           if (data && data.length >= 2) {
-            const newGradientStyle = `linear-gradient(135deg, ${hexToRGBA(data[0], 0.5)}, ${hexToRGBA(data[1], 0.5)})`;
+            const newGradientStyle = `linear-gradient(135deg, ${hexToRGBA(data[0], 0.38)}, ${hexToRGBA(data[1], 0.38)})`;
 
             if (gradientStyle !== newGradientStyle) {
               setTimeout(() => {

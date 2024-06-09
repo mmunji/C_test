@@ -9,9 +9,9 @@ interface DetailInfoProps {
 
 export default function DetailInfo({ movieDetailData }: DetailInfoProps) {
   return (
-    <section className="flex Laptop:gap-5 Desktop:gap-6">
+    <section className="flex w-full justify-between Laptop:gap-5 Desktop:gap-6">
       <DetailStory overview={movieDetailData.overview} />
-      <div className="hidden max-h-[256px] w-1/2 Laptop:block">
+      <div className="hidden max-h-[256px] Laptop:block Laptop:w-[calc((100%-20px)/2)] Desktop:w-[768px]">
         <CastAndCrew
           castAndCrew={{
             cast: movieDetailData.castDTOList,

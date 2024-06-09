@@ -58,7 +58,7 @@ export default function TrailerAndPhotoSlider({
                 <Image
                   width={500}
                   height={500}
-                  src={`https://img.youtube.com/vi/${el}/mqdefault.jpg`}
+                  src={`https://img.youtube.com/vi/${el}/maxresdefault.jpg`}
                   alt="썸네일"
                   className="h-[182px] w-full rounded-lg Tablet:h-[200px] Laptop:h-[150px] Laptop:rounded-xl Desktop:h-[210px]"
                 />
@@ -72,8 +72,8 @@ export default function TrailerAndPhotoSlider({
               className="max-w-[320px] Tablet:max-w-[352px] Laptop:max-w-[271px] Desktop:max-w-[372px]"
             >
               <Image
-                width={100}
-                height={100}
+                width={500}
+                height={500}
                 src={el.filePath}
                 alt="포토"
                 className="h-[182px] w-full rounded-lg Tablet:h-[200px] Laptop:h-[150px] Laptop:rounded-xl Desktop:h-[210px]"
