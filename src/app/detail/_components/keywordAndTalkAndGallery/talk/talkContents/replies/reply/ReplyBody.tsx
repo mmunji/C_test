@@ -1,11 +1,11 @@
 import clsx from "clsx";
 import React, { useState } from "react";
 
-import useNeedMoreButton from "@/app/detail/_hooks/useNeedMoreButton";
+import useNeedTalkMoreButton from "@/app/detail/_hooks/useNeedTalkMoreButton";
 
 export default function ReplyBody() {
   const [showMore, setShowMore] = useState(false);
-  const { contentRef, showMoreButton } = useNeedMoreButton("reply");
+  const { contentRef, showMoreButton } = useNeedTalkMoreButton("reply");
 
   const reply = `
   3줄까지만 보여줍니다. 여행은 새로운 경험과 추억을 선사하지만, 올바른

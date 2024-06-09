@@ -8,7 +8,13 @@ import Gallery from "./gallery/Gallery";
 import Keyword from "./keyword/Keyword";
 import Talk from "./talk/Talk";
 
-export default function KeywordAndTalkAndGallery() {
+interface KeywordAndTalkAndGalleryProps {
+  movieDetailData: MovieDetailData;
+}
+
+export default function KeywordAndTalkAndGallery({
+  movieDetailData,
+}: KeywordAndTalkAndGalleryProps) {
   const tabs = ["키워드", "톡", "정보"];
   const { activeCategoryTab, setActiveCategoryTab } = useCategoryTabStore();
   const { device } = useDevice();
@@ -21,7 +27,18 @@ export default function KeywordAndTalkAndGallery() {
       <section id={id}>
         {activeCategoryTab === tabs[0] && <Keyword />}
         {activeCategoryTab === tabs[1] && <Talk />}
-        {activeCategoryTab === tabs[2] && <Gallery />}
+        {activeCategoryTab === tabs[2] && (
+          <Gallery
+            castAndCrew={{
+              cast: movieDetailData.castDTOList,
+              crew: movieDetailData.crewDTOList,
+            }}
+            trailerAndPhoto={{
+              trailer: movieDetailData.videoList,
+              photo: movieDetailData.imageDTOList,
+            }}
+          />
+        )}
       </section>
     </section>
   );

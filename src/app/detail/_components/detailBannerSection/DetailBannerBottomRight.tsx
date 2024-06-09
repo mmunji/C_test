@@ -10,10 +10,15 @@ import {
   HeartLineLg,
   HeartLineXl,
 } from "../../../../../public/icons";
-import { DetailPoster } from "../../../../../public/images";
 import { useCategoryTabStore } from "../../_stores/useCategoryTabStore";
 
-export default function DetailBannerBottomRight() {
+interface DetailBannerBottomRightProps {
+  movieDetailData: MovieDetailData;
+}
+
+export default function DetailBannerBottomRight({
+  movieDetailData,
+}: DetailBannerBottomRightProps) {
   const { smoothScroll } = useSmoothScroll();
   const { activeCategoryTab, setActiveCategoryTab } = useCategoryTabStore();
   const { device } = useDevice();
@@ -79,8 +84,10 @@ export default function DetailBannerBottomRight() {
         </section>
       </section>
       <Image
-        src={DetailPoster}
+        src={movieDetailData.posterImg}
         alt="포스터"
+        width={100}
+        height={100}
         className="hidden rounded-[12px] Laptop:ml-6 Laptop:block Laptop:h-[258px] Laptop:w-[172px] Desktop:ml-9 Desktop:h-[360px] Desktop:w-60"
       />
     </section>

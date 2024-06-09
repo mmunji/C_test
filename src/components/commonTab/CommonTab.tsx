@@ -7,6 +7,8 @@ import React, {
   useState,
 } from "react";
 
+import useDevice from "@/hooks/useDevice";
+
 interface CastAndCrewTab {
   tabs: string[];
   activeTab: string;
@@ -20,11 +22,12 @@ export default function CommonTab({
 }: PropsWithChildren<CastAndCrewTab>) {
   const [widths, setWidths] = useState<(number | undefined)[]>([]);
   const buttonRefs = useRef<(HTMLButtonElement | null)[]>([]);
+  const { device } = useDevice();
 
   useEffect(() => {
     const newWidths = buttonRefs.current.map((button) => button?.scrollWidth);
     setWidths(newWidths);
-  }, [tabs]);
+  }, [tabs, device]);
 
   return (
     <section className="relative max-h-[40px] w-fit text-md">
