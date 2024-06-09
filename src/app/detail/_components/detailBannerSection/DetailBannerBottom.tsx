@@ -12,7 +12,7 @@ export default function DetailBannerBottom({
 }: DetailBannerBottomProps) {
   return (
     <section className="mx-auto mb-5 mt-auto flex flex-col items-center justify-between Laptop:mx-[68px] Laptop:w-full Laptop:flex-row Desktop:mx-auto Desktop:w-[1560px]">
-      <DetailBannerBottomLeft />
+      <DetailBannerBottomLeft movieDetailData={movieDetailData} />
       <DetailBannerBottomRight movieDetailData={movieDetailData} />
     </section>
   );

@@ -12,7 +12,7 @@ import KeywordBar from "./_components/keywordBar/KeywordBar";
 
 export default async function Detail() {
   const movieDetailData: MovieDetailData =
-    await movieAPIs.getMovieDetail(787699);
+    await movieAPIs.getMovieDetail(24428);
 
   return (
     <div className="bg-BG">
@@ -22,7 +22,12 @@ export default async function Detail() {
         <section className="flex flex-col Laptop:gap-[100px]">
           <DetailInfo movieDetailData={movieDetailData} />
           <div className="hidden Laptop:block">
-            <TrailerAndPhoto />
+            <TrailerAndPhoto
+              trailerAndPhoto={{
+                trailer: movieDetailData.videoList,
+                photo: movieDetailData.imageDTOList,
+              }}
+            />
           </div>
 
           <section className="hidden Laptop:flex Laptop:gap-7 Desktop:gap-9">

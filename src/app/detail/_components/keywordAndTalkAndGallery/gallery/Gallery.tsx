@@ -7,6 +7,7 @@ import TrailerAndPhoto from "./trailerAndPhoto/TrailerAndPhoto";
 
 interface GalleryProps {
   castAndCrew: CastAndCrew;
+  trailerAndPhoto: TrailerAndPhoto;
 }
 
 interface CastAndCrew {
@@ -14,7 +15,15 @@ interface CastAndCrew {
   crew?: DetailCrewDTO[];
 }
 
-export default function Gallery({ castAndCrew }: GalleryProps) {
+interface TrailerAndPhoto {
+  trailer: string[];
+  photo: DetailImageDTO[];
+}
+
+export default function Gallery({
+  castAndCrew,
+  trailerAndPhoto,
+}: GalleryProps) {
   const { cast } = castAndCrew;
   const { crew } = castAndCrew;
 
@@ -26,7 +35,7 @@ export default function Gallery({ castAndCrew }: GalleryProps) {
       <GalleryTitle content="출연" />
       <CastAndCrewSlider type="cast" cast={cast} />
       <DividingLine />
-      <TrailerAndPhoto />
+      <TrailerAndPhoto trailerAndPhoto={trailerAndPhoto} />
     </>
   );
 }

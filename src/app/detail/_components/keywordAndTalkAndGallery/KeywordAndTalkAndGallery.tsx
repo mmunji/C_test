@@ -33,6 +33,10 @@ export default function KeywordAndTalkAndGallery({
               cast: movieDetailData.castDTOList,
               crew: movieDetailData.crewDTOList,
             }}
+            trailerAndPhoto={{
+              trailer: movieDetailData.videoList,
+              photo: movieDetailData.imageDTOList,
+            }}
           />
         )}
       </section>

@@ -6,6 +6,7 @@ import useDetailSwiper from "@/app/detail/_hooks/useDetailSwiper";
 import Button from "@/components/buttons/Button";
 
 import { ChevronLeftMd, ChevronRightMd } from "../../../../../public/icons";
+import { DefaultProfile } from "../../../../../public/images";
 
 interface CastAndCrewSliderProps {
   type: "cast" | "crew";
@@ -46,7 +47,9 @@ export default function CastAndCrewSlider({
       >
         {type === "crew" &&
           crew?.map((el, i) => {
-            const profileImage = el?.profilePath ? el.profilePath : "";
+            const profileImage = el?.profilePath
+              ? el.profilePath
+              : DefaultProfile;
 
             return (
               <SwiperSlide
@@ -73,8 +76,9 @@ export default function CastAndCrewSlider({
           })}
         {type === "cast" &&
           cast?.map((el, i) => {
-            const profileImage = el?.profilePath ? el.profilePath : "";
-            console.log("profile:", profileImage);
+            const profileImage = el?.profilePath
+              ? el.profilePath
+              : DefaultProfile;
 
             return (
               <SwiperSlide
