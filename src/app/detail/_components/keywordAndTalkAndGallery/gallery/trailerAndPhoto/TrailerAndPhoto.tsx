@@ -17,19 +17,19 @@ interface TrailerAndPhoto {
 export default function TrailerAndPhoto({
   trailerAndPhoto,
 }: TrailerAndPhotoProps) {
-  const tabs = ["예고편", "포토"];
+  const tabs = ["포토", "관련 영상"];
   const [activeTab, setActiveTab] = useState(tabs[0]);
   const { trailer } = trailerAndPhoto;
   const { photo } = trailerAndPhoto;
 
   return (
-    <div>
+    <div className="w-full">
       <CommonTab {...{ tabs, activeTab, setActiveTab }} />
       {activeTab === tabs[0] && (
-        <TrailerAndPhotoSlider type="trailer" trailer={trailer} />
+        <TrailerAndPhotoSlider type="photo" photo={photo} />
       )}
       {activeTab === tabs[1] && (
-        <TrailerAndPhotoSlider type="photo" photo={photo} />
+        <TrailerAndPhotoSlider type="trailer" trailer={trailer} />
       )}
     </div>
   );

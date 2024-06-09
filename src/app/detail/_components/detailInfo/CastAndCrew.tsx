@@ -16,7 +16,7 @@ interface CastAndCrew {
 }
 
 export default function CastAndCrew({ castAndCrew }: CastAndCrewProps) {
-  const tabs = ["제작진", "출연"];
+  const tabs = ["출연", "제작진"];
   const [activeTab, setActiveTab] = useState(tabs[0]);
 
   const { cast } = castAndCrew;
@@ -26,8 +26,8 @@ export default function CastAndCrew({ castAndCrew }: CastAndCrewProps) {
     <section className="max-h-full">
       <CommonTab {...{ tabs, activeTab, setActiveTab }} />
 
-      {activeTab === tabs[0] && <CastAndCrewSlider type="crew" crew={crew} />}
-      {activeTab === tabs[1] && <CastAndCrewSlider type="cast" cast={cast} />}
+      {activeTab === tabs[0] && <CastAndCrewSlider type="cast" cast={cast} />}
+      {activeTab === tabs[1] && <CastAndCrewSlider type="crew" crew={crew} />}
     </section>
   );
 }

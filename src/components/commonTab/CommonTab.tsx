@@ -30,7 +30,7 @@ export default function CommonTab({
   }, [tabs, device]);
 
   return (
-    <section className="relative max-h-[40px] w-fit text-md">
+    <section className="relative max-h-[40px] w-fit select-none text-md">
       {tabs.map((tab, i) => {
         return (
           <button

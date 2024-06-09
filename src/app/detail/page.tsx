@@ -12,15 +12,16 @@ import KeywordBar from "./_components/keywordBar/KeywordBar";
 
 export default async function Detail() {
   const movieDetailData: MovieDetailData =
-    await movieAPIs.getMovieDetail(24428);
+    await movieAPIs.getMovieDetail(838209);
 
   return (
     <div className="bg-BG">
       <DetailBannerSection movieDetailData={movieDetailData} />
       <div className="mx-5 mb-[100px] mt-[137px] Tablet:mx-6 Tablet:mb-40 Tablet:mt-[118px] Laptop:mx-[68px] Laptop:mb-[180px] Laptop:mt-7 Desktop:mx-auto Desktop:mb-[200px] Desktop:w-[1560px]">
         <KeywordBar title={movieDetailData.title} />
-        <section className="flex flex-col Laptop:gap-[100px]">
+        <section className="flex w-full flex-col Laptop:gap-[100px]">
           <DetailInfo movieDetailData={movieDetailData} />
+
           <div className="hidden Laptop:block">
             <TrailerAndPhoto
               trailerAndPhoto={{

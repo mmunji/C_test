@@ -42,7 +42,7 @@ export default function DetailBannerBottomLeft({
         <h2 className="text-Silver Text-xl-Bold Laptop:Text-xxxl-Bold">
           {movieDetailData.title}
         </h2>
-        <div className="flex items-center justify-center rounded-[35px] border-[1px] border-White px-3 py-1 Text-xs-Regular Laptop:border-[2px] Laptop:px-4 Laptop:py-2 Laptop:Text-m-Medium">
+        <div className="flex items-center justify-center rounded-[35px] border-[1px] border-White px-3 py-1 Text-xs-Regular Laptop:h-10 Laptop:border-[2px] Laptop:px-4 Laptop:py-2 Laptop:Text-m-Medium">
           {status}
         </div>
       </section>
@@ -60,7 +60,7 @@ export default function DetailBannerBottomLeft({
           </section>
         </section>
 
-        <section className="absolute bottom-[-2px] mb-5 flex w-[300px] translate-y-[150%] flex-wrap justify-center Tablet:bottom-[-4px] Tablet:w-fit Tablet:translate-y-[200%] Laptop:static Laptop:bottom-0 Laptop:mb-0 Laptop:translate-y-0 Laptop:flex-nowrap">
+        <section className="absolute bottom-[-2px] mb-5 flex w-[240px] translate-y-[150%] flex-wrap justify-center Tablet:bottom-[-4px] Tablet:w-fit Tablet:translate-y-[200%] Laptop:static Laptop:bottom-0 Laptop:mb-0 Laptop:translate-y-0 Laptop:flex-nowrap">
           {movieInfo.map((info, i) => (
             <p
               key={i}
