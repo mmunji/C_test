@@ -18,7 +18,7 @@ export default function SlimilarUser({
 }: UserPostType) {
   return (
     <div
-      className={`flex w-[368px] flex-col gap-5 rounded-xl  ${value != ClickIndex ? "bg-D1_Gray" : "bg-Black"}  px-3 py-6 Text-m-Medium `}
+      className={`flex w-[368px] flex-col gap-5 rounded-xl Desktop:w-[372px]  ${value != ClickIndex ? "bg-D1_Gray" : "bg-Black"}  px-3 py-6 Text-m-Medium `}
       onClick={onClick}
     >
       <div className="flex items-center gap-2">
