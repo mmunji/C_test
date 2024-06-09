@@ -1,4 +1,4 @@
-import { API_URL } from "@/_constants/api_url";
+import { API_URL } from "@/constants/api_url";
 
 export const movieAPIs = {
   getMovieDetail: async (movieId: number) => {
