@@ -35,7 +35,7 @@ export default function TrailerAndPhotoSlider({
     traillerAndPhotoSpaceBetween,
   } = useDetailSwiper("traillerAndPhoto");
 
-  const trailerOpacity = hexToRGBA("#000000", 0.2);
+  const trailerOpacity = hexToRGBA("#000000", 0.4);
 
   return (
     <div
