@@ -11,7 +11,7 @@ interface ButtonProps
   href?: string;
 }
 
-const ButtonVariants = cva(`flex justify-center`, {
+const ButtonVariants = cva(`flex justify-center whitespace-nowrap`, {
   variants: {
     variant: {
       icon: "p-2 rounded-lg hover:bg-Opacity_W10 active:bg-Opacity_W15",
