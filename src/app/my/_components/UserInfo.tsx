@@ -12,6 +12,12 @@ export default function UserInfo() {
       <div className="flex flex-col items-center gap-4 px-6 Tablet:gap-3 Tablet:px-0 Laptop:gap-4">
         <div className="flex justify-center">
           <div className="relative h-16 w-16 rounded-full bg-[#D9D9D9]  Tablet:h-[100px] Tablet:w-[100px]">
+            <Image
+              alt="유저_프로필"
+              src="/images/detail/default_profile2.png"
+              fill
+              className="overflow-hidden"
+            />
             <button
               type="button"
               className="absolute -bottom-[2px] right-[2px] flex h-7 w-7 translate-x-1/2 items-center justify-center rounded-full bg-Gray Tablet:h-10 Tablet:w-10"

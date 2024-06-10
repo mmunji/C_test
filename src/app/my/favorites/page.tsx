@@ -101,6 +101,7 @@ export default function Page() {
             </>
           )}
           <Button
+            disabled={!isEditing && !movieList.length}
             className="Tablet:flex"
             variant={"text"}
             onClick={handleEditButtonClick}

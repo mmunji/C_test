@@ -1,6 +1,6 @@
 "use client";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -21,6 +21,7 @@ export default function Account() {
     register,
     watch,
     clearErrors,
+    setValue,
     setFocus,
     reset,
     formState: { errors },
@@ -42,6 +43,12 @@ export default function Account() {
     }
     setIsEditingNickname((prev) => !prev);
   };
+  const handleKeyUp = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    const { value, maxLength } = e.currentTarget;
+    if (value.length > maxLength) {
+      setValue("nickname", value.slice(0, maxLength), { shouldValidate: true });
+    }
+  };
 
   useEffect(() => {
     if (isEditingNickname) setFocus("nickname");
@@ -60,8 +67,10 @@ export default function Account() {
             <div className="flex flex-col Tablet:flex-row Tablet:gap-2">
               <div className="relative flex h-10 items-center">
                 <input
+                  maxLength={10}
                   placeholder={nickname}
                   {...register("nickname")}
+                  onKeyUp={(e) => handleKeyUp(e)}
                   type="text"
                   className="w-[180px] rounded-lg bg-Black py-1 pl-3 pr-[50px] text-Silver outline-none Text-s-Medium placeholder:text-Gray Tablet:pl-4 Tablet:Text-m-Medium"
                 />
