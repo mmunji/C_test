@@ -35,9 +35,12 @@ export default function KeywordAndTalkAndGallery({
       <section id={id}>
         {activeCategoryTab === tabs[0] && (
           <Keyword
-            keywordsData={keywordsData}
-            noKeyword={noKeyword}
-            movieId={movieId}
+            {...{
+              keywordsData,
+              noKeyword,
+              movieId,
+              title,
+            }}
           />
         )}
         {activeCategoryTab === tabs[1] && <Talk title={title} />}

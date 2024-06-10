@@ -74,7 +74,7 @@ export default function Rating({ title }: RatingProps) {
       {showTalkForm && <TalkForm />}
 
       {!clickedValue && (
-        <div className="absolute bottom-0 left-1/2 w-[243px] translate-x-[-50%] translate-y-[50%]">
+        <div className="absolute bottom-0 left-1/2 w-[243px] translate-x-[-50%] translate-y-[50%] Tablet:bottom-5 Laptop:bottom-0">
           <SpeechBubble exit={clickedValue} dir="top">
             먼저 별점을 매기고 톡을 작성해주세요.
           </SpeechBubble>

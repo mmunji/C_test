@@ -44,7 +44,9 @@ export default async function Detail() {
               <Talk title={movieTitle} />
             </div>
             <div className="w-[32.26%]">
-              <Keyword {...{ keywordsData, noKeyword, movieId }} />
+              <Keyword
+                {...{ keywordsData, noKeyword, movieId, title: movieTitle }}
+              />
             </div>
           </section>
 
