@@ -7,9 +7,10 @@ import { usePaletteStore } from "../../_stores/usePaletteStore";
 
 interface KeywordBarProps {
   title: string;
+  top1Keyword: Keyword;
 }
 
-export default function KeywordBar({ title }: KeywordBarProps) {
+export default function KeywordBar({ title, top1Keyword }: KeywordBarProps) {
   const movieTitle = title;
   const sentence1 = josa(movieTitle, "은/는") + " 지금";
   const { gradientStyle } = usePaletteStore();
@@ -40,7 +41,7 @@ export default function KeywordBar({ title }: KeywordBarProps) {
               {gradientStyle !== "" && sentence1}
             </span>
             <span className="text-regular font-Bold text-Primary Laptop:text-xl">
-              {gradientStyle !== "" && "초콜릿 향"}
+              {gradientStyle !== "" && `${top1Keyword.keyword} 향`}
             </span>
           </section>
         </div>

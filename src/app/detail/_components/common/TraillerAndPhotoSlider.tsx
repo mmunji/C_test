@@ -46,7 +46,7 @@ export default function TrailerAndPhotoSlider({
         }}
       >
         {type === "trailer" &&
-          trailer?.map((el, i) => (
+          [...(trailer || [])].reverse()?.map((el, i) => (
             <SwiperSlide
               key={i}
               className="max-w-[320px] Tablet:max-w-[352px] Laptop:max-w-[271px] Desktop:max-w-[372px]"
