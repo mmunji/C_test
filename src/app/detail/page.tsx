@@ -2,6 +2,7 @@ import React from "react";
 
 import { keywordAPIs } from "@/api/keyword/keywordAPIs";
 import { movieAPIs } from "@/api/movie/movieAPIs";
+import { talkAPIs } from "@/api/talk/talkAPIs";
 
 import DetailBannerSection from "./_components/detailBannerSection/DetailBannerSection";
 import DetailInfo from "./_components/detailInfo/DetailInfo";
@@ -12,10 +13,13 @@ import Talk from "./_components/keywordAndTalkAndGallery/talk/Talk";
 import KeywordBar from "./_components/keywordBar/KeywordBar";
 
 export default async function Detail() {
-  const movieId = 406563;
+  const movieId = 787699;
+
   const movieDetailData: MovieDetailData =
     await movieAPIs.getMovieDetail(movieId);
   const keywordsData: Keyword[] = await keywordAPIs.getKeyword(movieId);
+  const talksData = await talkAPIs.getTalks(movieId);
+
   const noKeyword = keywordsData?.length === 0;
   const top1Keyword = keywordsData.sort((a, b) => b.count - a.count)[0];
   const movieTitle = movieDetailData.title;

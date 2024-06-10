@@ -30,7 +30,9 @@ export default function KeywordForm({ movieId, title }: KeywordFormProps) {
   const sliceNumber = sliceTitleMap[device];
 
   const formattedTitle =
-    title.split("").splice(0, sliceNumber).join("") + "...";
+    title.length > sliceNumber
+      ? title.split("").splice(0, sliceNumber).join("") + "..."
+      : title;
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.value.length > 5) {

@@ -1,6 +1,5 @@
 import dayjs from "dayjs";
 import Image from "next/image";
-import React, { useEffect, useRef, useState } from "react";
 
 import { StarFillMd, TmdbMd } from "../../../../../public/icons";
 
@@ -56,14 +55,16 @@ export default function DetailBannerBottomLeft({
             <p className="text-Primary Text-m-Bold Laptop:Text-xxl-Bold">0.0</p>
           </section>
 
-          <section className="flex gap-1">
+          <section className="flex items-center gap-1">
             <Image src={TmdbMd} alt="TMDB" />
-            <p className="text-Silver Text-m-Bold Laptop:Text-xxl-Bold">0.0</p>
+            <p className="text-Silver Text-m-Bold Laptop:Text-xxl-Bold">
+              {movieDetailData.score}
+            </p>
           </section>
         </section>
 
         <section
-          className={`absolute bottom-[-2px] mb-5 flex translate-y-[150%] flex-wrap justify-center Tablet:bottom-[-4px] Tablet:w-fit Tablet:translate-y-[200%] Laptop:static Laptop:bottom-0 Laptop:mb-0 Laptop:translate-y-0 Laptop:flex-nowrap`}
+          className={`absolute bottom-[-2px] mb-5 flex translate-y-[200%] flex-wrap justify-center Tablet:bottom-[-4px] Tablet:w-fit Laptop:static Laptop:bottom-0 Laptop:mb-0 Laptop:translate-y-0 Laptop:flex-nowrap`}
         >
           {movieInfo.map((info, i) => (
             <p

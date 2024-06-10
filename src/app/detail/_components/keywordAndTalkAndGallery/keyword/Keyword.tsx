@@ -23,10 +23,8 @@ export default function Keyword({
   movieId,
   title,
 }: KeywordProps) {
-  const sortedData = keywordsData.sort((a, b) => b.count - a.count);
-  const top26s = sortedData.slice(0, 26);
-  const top10s = sortedData.slice(0, 10);
-  const [shuffledTop26s, setShuffledTop26s] = useState(top26s);
+  const top10s = keywordsData.slice(0, 10);
+  const [shuffledTop26s, setShuffledTop26s] = useState(keywordsData);
 
   const top1 = top10s[0];
   const top2 = top10s[1];
@@ -46,7 +44,7 @@ export default function Keyword({
     Math.random() < 0.5 ? "text-[14px]" : "text-[16px]";
 
   useEffect(() => {
-    setShuffledTop26s(arrangeCenterHighKeyword([...top26s]));
+    setShuffledTop26s(arrangeCenterHighKeyword([...keywordsData]));
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [keywordsData]);
