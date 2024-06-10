@@ -2,10 +2,10 @@ import { useState } from "react";
 
 import useRating from "@/app/detail/_hooks/useRating";
 import Button from "@/components/buttons/Button";
+import RatingStar from "@/components/rating/RatingStar";
 import SpeechBubble from "@/components/speechBubble/SpeechBubble";
 
 import DriveCommentText from "./DriveCommentText";
-import RatingStar from "./RatingStar";
 import TalkForm from "./talkForm/TalkForm";
 import TextBeforeRating from "./TextBeforeRating";
 
@@ -46,6 +46,7 @@ export default function Rating({ title }: RatingProps) {
               clickedValue,
               setClickedValue,
               handleDriveTalk,
+              ratingSize: "Xl",
             }}
           />
         ))}
