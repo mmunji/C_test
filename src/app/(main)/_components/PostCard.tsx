@@ -4,7 +4,7 @@ import { useState } from "react";
 
 import { ChatFillSm, StarFillMd, ThumbsUpFillSm } from "@/../public/icons";
 
-import GetRating from "./getratingstart/GetRating";
+import GetRating from "./Rating/GetRating";
 interface PostNumber {
   num?: number;
   onClick?: () => void;

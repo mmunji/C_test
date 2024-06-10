@@ -2,10 +2,13 @@ import Image from "next/image";
 import React, { Dispatch, SetStateAction } from "react";
 
 import {
+  StarFillLg,
   StarFillXl,
+  StarHalfLg,
   StarHalfXl,
+  StarLg,
   StarXl,
-} from "../../../../../../../public/icons";
+} from "@/../public/icons";
 
 interface StarProps {
   index: number;
@@ -14,6 +17,7 @@ interface StarProps {
   clickedValue: boolean;
   setClickedValue: Dispatch<SetStateAction<boolean>>;
   handleDriveTalk: () => void;
+  ratingSize: string;
 }
 
 export default function RatingStar({
@@ -23,19 +27,35 @@ export default function RatingStar({
   clickedValue,
   setClickedValue,
   handleDriveTalk,
+  ratingSize,
 }: StarProps) {
   let src;
   let alt;
 
   if (ratingValue >= index + 1) {
-    src = StarFillXl;
-    alt = "별";
+    if (ratingSize == "Lg") {
+      src = StarFillLg;
+      alt = "작은 별";
+    } else {
+      src = StarFillXl;
+      alt = "큰 별";
+    }
   } else if (ratingValue > index && ratingValue === index + 0.5) {
-    src = StarHalfXl;
-    alt = "반 별";
+    if (ratingSize == "Lg") {
+      src = StarHalfLg;
+      alt = "작은 별";
+    } else {
+      src = StarHalfXl;
+      alt = "큰 반 별";
+    }
   } else {
-    src = StarXl;
-    alt = "빈 별";
+    if (ratingSize == "Lg") {
+      src = StarLg;
+      alt = "작은 빈 별";
+    } else {
+      src = StarXl;
+      alt = "큰 빈 별";
+    }
   }
 
   return (

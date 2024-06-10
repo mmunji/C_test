@@ -87,6 +87,7 @@ export { default as SpeechBubbleTop } from "./speeach_bubble/speech_bubble_top.s
 export { default as StarXl } from "./interaction/star/star_xl.svg";
 export { default as StarSm } from "./interaction/star/star_sm.svg";
 export { default as StarMd } from "./interaction/star/star_md.svg";
+export { default as StarLg } from "./interaction/star/star_lg.svg";
 export { default as CaretDownGraySm } from "./arrow/caret_down_gray_sm.svg";
 export { default as ChatLineGrayOrangeSm } from "./chat/chat_line_grayOrange_sm.svg";
 export { default as Check } from "./interaction/check.svg";

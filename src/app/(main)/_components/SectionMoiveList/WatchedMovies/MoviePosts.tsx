@@ -4,6 +4,7 @@ import Image from "next/image";
 import { StarXl } from "@/../public/icons";
 
 import PostCard from "../../PostCard";
+import PostRating from "../../Rating/PostRating";
 export default function MoviePosts() {
   return (
     <div>
@@ -88,34 +89,10 @@ export default function MoviePosts() {
           .fill(0)
           .map((e, index) => {
             return (
-              <div key={index} className="flex flex-col">
+              <div key={index} className="flex flex-col ">
                 <PostCard PostType="Post" />
-                <div className="flex  justify-between">
-                  <Image
-                    src={StarXl}
-                    alt="star"
-                    className="h-7 w-7 Desktop:h-[44px] Desktop:w-[44px]"
-                  />
-                  <Image
-                    src={StarXl}
-                    alt="star"
-                    className="h-7 w-7 Desktop:h-[44px] Desktop:w-[44px]"
-                  />
-                  <Image
-                    src={StarXl}
-                    alt="star"
-                    className="h-7 w-7 Desktop:h-[44px] Desktop:w-[44px]"
-                  />
-                  <Image
-                    src={StarXl}
-                    alt="star"
-                    className="h-7 w-7 Desktop:h-[44px] Desktop:w-[44px]"
-                  />
-                  <Image
-                    src={StarXl}
-                    alt="star"
-                    className="h-7 w-7 Desktop:h-[44px] Desktop:w-[44px]"
-                  />
+                <div className="flex ">
+                  <PostRating />
                 </div>
               </div>
             );
