@@ -36,7 +36,6 @@ export default function TrailerAndPhotoSlider({
   } = useDetailSwiper("traillerAndPhoto");
 
   const trailerOpacity = hexToRGBA("#000000", 0.2);
-  console.log(trailerOpacity);
 
   return (
     <div
