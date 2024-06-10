@@ -1,6 +1,6 @@
 import dayjs from "dayjs";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import { StarFillMd, TmdbMd } from "../../../../../public/icons";
 
@@ -18,7 +18,9 @@ export default function DetailBannerBottomLeft({
       ? "전체관람가"
       : movieDetailData.contentRating === ""
         ? "관람가 심의 중"
-        : `${movieDetailData.contentRating}세`;
+        : movieDetailData.contentRating.includes("관람가")
+          ? movieDetailData.contentRating
+          : `${movieDetailData.contentRating}세 이상 관람가`;
 
   const genreDTOList = movieDetailData.genreDTOList;
   const genreText = genreDTOList.map((el) => el.name);
@@ -60,11 +62,13 @@ export default function DetailBannerBottomLeft({
           </section>
         </section>
 
-        <section className="absolute bottom-[-2px] mb-5 flex w-[240px] translate-y-[150%] flex-wrap justify-center Tablet:bottom-[-4px] Tablet:w-fit Tablet:translate-y-[200%] Laptop:static Laptop:bottom-0 Laptop:mb-0 Laptop:translate-y-0 Laptop:flex-nowrap">
+        <section
+          className={`absolute bottom-[-2px] mb-5 flex translate-y-[150%] flex-wrap justify-center Tablet:bottom-[-4px] Tablet:w-fit Tablet:translate-y-[200%] Laptop:static Laptop:bottom-0 Laptop:mb-0 Laptop:translate-y-0 Laptop:flex-nowrap`}
+        >
           {movieInfo.map((info, i) => (
             <p
               key={i}
-              className={`group relative px-3 text-L_Gray Text-xs-Regular Laptop:px-[10px] Laptop:text-Silver Laptop:Text-m-Medium ${i === 0 && "pl-0"} last:after:border-none`}
+              className={`group relative px-3 text-L_Gray Text-xs-Regular last:absolute last:bottom-[-21px] Tablet:last:relative Tablet:last:bottom-0 Laptop:px-[10px] Laptop:text-Silver Laptop:Text-m-Medium ${i === 0 && "pl-0"} last:after:border-none`}
             >
               {info}
               {i !== movieInfo.length - 1 && (
@@ -74,6 +78,11 @@ export default function DetailBannerBottomLeft({
               )}
             </p>
           ))}
+          {/* <p
+            className={`px-3 text-L_Gray Text-xs-Regular last:after:border-none Laptop:px-[10px] Laptop:text-Silver Laptop:Text-m-Medium`}
+          >
+            {formattedGenreText}
+          </p> */}
         </section>
       </section>
     </section>
