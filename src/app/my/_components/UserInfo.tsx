@@ -37,14 +37,14 @@ export default function UserInfo() {
           </p>
           <div className="flex items-center gap-1 Tablet:gap-4">
             {badges.map((badge) => (
-              <>
-                <div className="hidden Tablet:block" key={badge}>
+              <div key={badge}>
+                <div className="hidden Tablet:block">
                   <SmallBadge content={badge} size="md" />
                 </div>
-                <div className="block Tablet:hidden" key={badge}>
+                <div className="block Tablet:hidden">
                   <SmallBadge content={badge} size="sm" />
                 </div>
-              </>
+              </div>
             ))}
           </div>
         </div>
