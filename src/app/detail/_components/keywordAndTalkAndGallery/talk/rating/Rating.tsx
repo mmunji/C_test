@@ -9,7 +9,11 @@ import RatingStar from "./RatingStar";
 import TalkForm from "./talkForm/TalkForm";
 import TextBeforeRating from "./TextBeforeRating";
 
-export default function Rating() {
+interface RatingProps {
+  title: string;
+}
+
+export default function Rating({ title }: RatingProps) {
   const {
     ratingValue,
     setRatingValue,
@@ -23,7 +27,7 @@ export default function Rating() {
   return (
     <div className="relative flex w-full flex-col justify-center rounded-xl py-3 Tablet:py-8 Laptop:mb-6 Laptop:bg-D1_Gray Laptop:px-7 Laptop:py-8">
       {driveTalkText === "" ? (
-        <TextBeforeRating />
+        <TextBeforeRating title={title} />
       ) : (
         <DriveCommentText
           ratingValue={ratingValue}

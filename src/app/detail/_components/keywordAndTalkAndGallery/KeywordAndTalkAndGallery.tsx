@@ -13,6 +13,7 @@ interface KeywordAndTalkAndGalleryProps {
   keywordsData: Keyword[];
   noKeyword: boolean;
   movieId: number;
+  title: string;
 }
 
 export default function KeywordAndTalkAndGallery({
@@ -20,6 +21,7 @@ export default function KeywordAndTalkAndGallery({
   keywordsData,
   noKeyword,
   movieId,
+  title,
 }: KeywordAndTalkAndGalleryProps) {
   const tabs = ["키워드", "톡", "정보"];
   const { activeCategoryTab, setActiveCategoryTab } = useCategoryTabStore();
@@ -38,7 +40,7 @@ export default function KeywordAndTalkAndGallery({
             movieId={movieId}
           />
         )}
-        {activeCategoryTab === tabs[1] && <Talk />}
+        {activeCategoryTab === tabs[1] && <Talk title={title} />}
         {activeCategoryTab === tabs[2] && (
           <Gallery
             castAndCrew={{

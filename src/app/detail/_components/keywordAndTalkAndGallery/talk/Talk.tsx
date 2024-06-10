@@ -10,7 +10,11 @@ import Rating from "./rating/Rating";
 import TalkContents from "./talkContents/TalkContents";
 import TalkHeader from "./TalkHeader";
 
-export default function Talk() {
+interface TalkProps {
+  title: string;
+}
+
+export default function Talk({ title }: TalkProps) {
   const [noTalk, setNotalk] = useState(false);
   const { device } = useDevice();
 
@@ -18,7 +22,7 @@ export default function Talk() {
 
   return (
     <section id={id}>
-      <Rating />
+      <Rating title={title} />
       <DividingLine />
 
       <section className="Laptop:rounded-xl Laptop:bg-D1_Gray Laptop:p-8">
