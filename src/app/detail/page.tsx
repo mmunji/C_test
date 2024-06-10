@@ -18,6 +18,7 @@ export default async function Detail() {
   const keywordsData: Keyword[] = await keywordAPIs.getKeyword(movieId);
   const noKeyword = keywordsData?.length === 0;
   const top1Keyword = keywordsData.sort((a, b) => b.count - a.count)[0];
+  const movieTitle = movieDetailData.title;
 
   return (
     <div className="bg-BG">
@@ -40,7 +41,7 @@ export default async function Detail() {
 
           <section className="hidden Laptop:flex Laptop:gap-7 Desktop:gap-9">
             <div className="w-[67.74%]">
-              <Talk />
+              <Talk title={movieTitle} />
             </div>
             <div className="w-[32.26%]">
               <Keyword {...{ keywordsData, noKeyword, movieId }} />
@@ -48,7 +49,13 @@ export default async function Detail() {
           </section>
 
           <KeywordAndTalkAndGallery
-            {...{ movieDetailData, keywordsData, noKeyword, movieId }}
+            {...{
+              movieDetailData,
+              keywordsData,
+              noKeyword,
+              movieId,
+              title: movieTitle,
+            }}
           />
         </section>
       </div>
