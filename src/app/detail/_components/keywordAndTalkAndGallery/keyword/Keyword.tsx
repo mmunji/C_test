@@ -1,15 +1,20 @@
 "use client";
 
-import { useState } from "react";
-
 import SpeechBubble from "../../../../../components/speechBubble/SpeechBubble";
-import { keywords } from "../../../fakeData";
 import KeywordForm from "./keywordForm";
 import NewKeyword from "./NewKeyword";
 import Nokeyword from "./Nokeyword";
 
-export default function Keyword() {
-  const [noKeyword, setNokeyword] = useState(false);
+interface KeywordProps {
+  keywordsData: Keyword[];
+  noKeyword: boolean;
+}
+
+export default function Keyword({ keywordsData, noKeyword }: KeywordProps) {
+  const reversedKeywords = [...(keywordsData || [])].reverse();
+  const keywords = reversedKeywords.slice(0, 26);
+  const latestKeywords = reversedKeywords.slice(0, 5);
+  console.log(keywords);
 
   return (
     <section className="flex flex-col items-center Laptop:relative Laptop:rounded-xl Laptop:bg-D1_Gray Laptop:p-10 Desktop:p-[60px]">
@@ -17,9 +22,9 @@ export default function Keyword() {
         <Nokeyword />
       ) : (
         <div className="mb-7 flex flex-wrap justify-center gap-2 py-6 Tablet:mb-8 Tablet:max-w-[554px] Laptop:max-w-fit Laptop:py-0 Desktop:mb-5">
-          {keywords.map((keyword, i) => (
+          {keywords?.map((keyword, i) => (
             <p className="text-Gray_Orange" key={i}>
-              {keyword}
+              {keyword.keyword}
             </p>
           ))}
         </div>
@@ -31,7 +36,7 @@ export default function Keyword() {
       </div>
 
       <KeywordForm />
-      <NewKeyword />
+      <NewKeyword latestKeywords={latestKeywords} />
     </section>
   );
 }

@@ -2,7 +2,9 @@ import { API_URL } from "@/constants/api_url";
 
 export const keywordAPIs = {
   getKeyword: async (movieId: number) => {
-    const res = await fetch(`${API_URL}/keywords/${movieId}`);
+    const res = await fetch(`${API_URL}/keywords/${movieId}`, {
+      cache: "no-store",
+    });
     const data: Keyword[] = await res.json();
 
     return data;

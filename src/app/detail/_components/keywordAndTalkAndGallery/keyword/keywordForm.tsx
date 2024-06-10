@@ -32,6 +32,7 @@ export default function KeywordForm() {
       console.error(error);
     } finally {
       setLoading(false);
+      router.refresh();
     }
   };
 
