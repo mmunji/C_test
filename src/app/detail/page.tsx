@@ -1,5 +1,6 @@
 import React from "react";
 
+import { keywordAPIs } from "@/api/keyword/keywordAPIs";
 import { movieAPIs } from "@/api/movie/movieAPIs";
 
 import DetailBannerSection from "./_components/detailBannerSection/DetailBannerSection";
@@ -13,6 +14,9 @@ import KeywordBar from "./_components/keywordBar/KeywordBar";
 export default async function Detail() {
   const movieDetailData: MovieDetailData =
     await movieAPIs.getMovieDetail(838209);
+  const keywords: Keyword[] = await keywordAPIs.getKeyword(838209);
+
+  console.log(keywords);
 
   return (
     <div className="bg-BG">
