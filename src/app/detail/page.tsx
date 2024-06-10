@@ -1,5 +1,6 @@
 import React from "react";
 
+import { keywordAPIs } from "@/api/keyword/keywordAPIs";
 import { movieAPIs } from "@/api/movie/movieAPIs";
 
 import DetailBannerSection from "./_components/detailBannerSection/DetailBannerSection";
@@ -11,14 +12,20 @@ import Talk from "./_components/keywordAndTalkAndGallery/talk/Talk";
 import KeywordBar from "./_components/keywordBar/KeywordBar";
 
 export default async function Detail() {
+  const movieId = 290859;
   const movieDetailData: MovieDetailData =
-    await movieAPIs.getMovieDetail(838209);
+    await movieAPIs.getMovieDetail(movieId);
+  const keywordsData: Keyword[] = await keywordAPIs.getKeyword(movieId);
+  const noKeyword = keywordsData?.length === 0;
+  const top1Keyword = keywordsData.sort((a, b) => b.count - a.count)[0];
 
   return (
     <div className="bg-BG">
       <DetailBannerSection movieDetailData={movieDetailData} />
       <div className="mx-5 mb-[100px] mt-[137px] Tablet:mx-6 Tablet:mb-40 Tablet:mt-[118px] Laptop:mx-[68px] Laptop:mb-[180px] Laptop:mt-7 Desktop:mx-auto Desktop:mb-[200px] Desktop:w-[1560px]">
-        <KeywordBar title={movieDetailData.title} />
+        {!noKeyword && (
+          <KeywordBar title={movieDetailData.title} top1Keyword={top1Keyword} />
+        )}
         <section className="flex w-full flex-col Laptop:gap-[100px]">
           <DetailInfo movieDetailData={movieDetailData} />
 
@@ -36,11 +43,13 @@ export default async function Detail() {
               <Talk />
             </div>
             <div className="w-[32.26%]">
-              <Keyword />
+              <Keyword {...{ keywordsData, noKeyword, movieId }} />
             </div>
           </section>
 
-          <KeywordAndTalkAndGallery movieDetailData={movieDetailData} />
+          <KeywordAndTalkAndGallery
+            {...{ movieDetailData, keywordsData, noKeyword, movieId }}
+          />
         </section>
       </div>
     </div>

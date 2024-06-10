@@ -10,10 +10,16 @@ import Talk from "./talk/Talk";
 
 interface KeywordAndTalkAndGalleryProps {
   movieDetailData: MovieDetailData;
+  keywordsData: Keyword[];
+  noKeyword: boolean;
+  movieId: number;
 }
 
 export default function KeywordAndTalkAndGallery({
   movieDetailData,
+  keywordsData,
+  noKeyword,
+  movieId,
 }: KeywordAndTalkAndGalleryProps) {
   const tabs = ["키워드", "톡", "정보"];
   const { activeCategoryTab, setActiveCategoryTab } = useCategoryTabStore();
@@ -25,7 +31,13 @@ export default function KeywordAndTalkAndGallery({
     <section className="Laptop:hidden">
       <CategoryTab {...{ tabs, activeCategoryTab, setActiveCategoryTab }} />
       <section id={id}>
-        {activeCategoryTab === tabs[0] && <Keyword />}
+        {activeCategoryTab === tabs[0] && (
+          <Keyword
+            keywordsData={keywordsData}
+            noKeyword={noKeyword}
+            movieId={movieId}
+          />
+        )}
         {activeCategoryTab === tabs[1] && <Talk />}
         {activeCategoryTab === tabs[2] && (
           <Gallery

@@ -1,14 +1,21 @@
+import { useRouter } from "next/navigation";
 import { ChangeEvent, FormEvent, useState } from "react";
 
+import { keywordAPIs } from "@/api/keyword/keywordAPIs";
 import Button from "@/components/buttons/Button";
 import LoadingSpinner from "@/components/loadingSpinner/LoadingSpinner";
 
 import SpeechBubble from "../../../../../components/speechBubble/SpeechBubble";
 
-export default function KeywordForm() {
+interface KeywordFormProps {
+  movieId: number;
+}
+
+export default function KeywordForm({ movieId }: KeywordFormProps) {
   const [loading, setLoading] = useState(false);
   const [focused, setFocused] = useState(false);
   const [value, setValue] = useState("");
+  const router = useRouter();
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.value.length > 5) {
@@ -18,12 +25,18 @@ export default function KeywordForm() {
     }
   };
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setLoading(true);
-    setTimeout(() => {
+    try {
+      const { res } = await keywordAPIs.addKeyword(movieId, value);
+      setLoading(true);
+      if (res.ok) setValue("");
+    } catch (error) {
+      console.error(error);
+    } finally {
       setLoading(false);
-    }, 2000);
+      router.refresh();
+    }
   };
 
   return (
@@ -38,6 +51,7 @@ export default function KeywordForm() {
           type="text"
           placeholder="‘웡카’를 한단어로 말한다면?"
           maxLength={5}
+          value={value}
           onFocus={() => setFocused(true)}
           onChange={(e) => handleChange(e)}
           className="h-[45px] w-full bg-[rgba(0,0,0,0.20)] py-2 pl-4 pr-3 text-Gray_Orange outline-none Text-s-Medium placeholder:text-Gray Tablet:Text-m-Medium"
