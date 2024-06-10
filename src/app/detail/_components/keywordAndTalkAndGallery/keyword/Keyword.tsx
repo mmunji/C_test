@@ -13,9 +13,14 @@ import Nokeyword from "./Nokeyword";
 interface KeywordProps {
   keywordsData: Keyword[];
   noKeyword: boolean;
+  movieId: number;
 }
 
-export default function Keyword({ keywordsData, noKeyword }: KeywordProps) {
+export default function Keyword({
+  keywordsData,
+  noKeyword,
+  movieId,
+}: KeywordProps) {
   const sortedData = keywordsData.sort((a, b) => b.count - a.count);
   const top26s = sortedData.slice(0, 26);
   const top10s = sortedData.slice(0, 10);
@@ -41,8 +46,10 @@ export default function Keyword({ keywordsData, noKeyword }: KeywordProps) {
 
   useEffect(() => {
     setShuffledTop26s(arrangeCenterHighKeyword([...top26s]));
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [keywordsData]);
+  console.log(shuffledTop26s);
 
   return (
     <section className="flex flex-col items-center Laptop:relative Laptop:rounded-xl Laptop:bg-D1_Gray Laptop:p-10 Desktop:p-[60px]">
@@ -76,7 +83,7 @@ export default function Keyword({ keywordsData, noKeyword }: KeywordProps) {
               )}
               key={i}
             >
-              {keyword.keyword}
+              {keyword?.keyword}
             </p>
           ))}
         </div>
@@ -87,8 +94,8 @@ export default function Keyword({ keywordsData, noKeyword }: KeywordProps) {
         </SpeechBubble>
       </div>
 
-      <KeywordForm />
-      <NewKeyword latestKeywords={latestKeywords} />
+      <KeywordForm movieId={movieId} />
+      {!noKeyword && <NewKeyword latestKeywords={latestKeywords} />}
     </section>
   );
 }

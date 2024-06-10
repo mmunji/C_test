@@ -12,9 +12,10 @@ import Talk from "./_components/keywordAndTalkAndGallery/talk/Talk";
 import KeywordBar from "./_components/keywordBar/KeywordBar";
 
 export default async function Detail() {
+  const movieId = 787699;
   const movieDetailData: MovieDetailData =
-    await movieAPIs.getMovieDetail(838209);
-  const keywordsData: Keyword[] = await keywordAPIs.getKeyword(838209);
+    await movieAPIs.getMovieDetail(movieId);
+  const keywordsData: Keyword[] = await keywordAPIs.getKeyword(movieId);
   const noKeyword = keywordsData?.length === 0;
   const top1Keyword = keywordsData.sort((a, b) => b.count - a.count)[0];
 
@@ -42,12 +43,12 @@ export default async function Detail() {
               <Talk />
             </div>
             <div className="w-[32.26%]">
-              <Keyword keywordsData={keywordsData} noKeyword={noKeyword} />
+              <Keyword {...{ keywordsData, noKeyword, movieId }} />
             </div>
           </section>
 
           <KeywordAndTalkAndGallery
-            {...{ movieDetailData, keywordsData, noKeyword }}
+            {...{ movieDetailData, keywordsData, noKeyword, movieId }}
           />
         </section>
       </div>

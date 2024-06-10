@@ -1,11 +1,5 @@
 import { useRouter } from "next/navigation";
-import {
-  ChangeEvent,
-  Dispatch,
-  FormEvent,
-  SetStateAction,
-  useState,
-} from "react";
+import { ChangeEvent, FormEvent, useState } from "react";
 
 import { keywordAPIs } from "@/api/keyword/keywordAPIs";
 import Button from "@/components/buttons/Button";
@@ -13,7 +7,11 @@ import LoadingSpinner from "@/components/loadingSpinner/LoadingSpinner";
 
 import SpeechBubble from "../../../../../components/speechBubble/SpeechBubble";
 
-export default function KeywordForm() {
+interface KeywordFormProps {
+  movieId: number;
+}
+
+export default function KeywordForm({ movieId }: KeywordFormProps) {
   const [loading, setLoading] = useState(false);
   const [focused, setFocused] = useState(false);
   const [value, setValue] = useState("");
@@ -30,7 +28,7 @@ export default function KeywordForm() {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const { res } = await keywordAPIs.addKeyword(838209, value);
+      const { res } = await keywordAPIs.addKeyword(movieId, value);
       setLoading(true);
       if (res.ok) setValue("");
     } catch (error) {
