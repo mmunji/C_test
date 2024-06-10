@@ -42,44 +42,44 @@ export default function Keyword({
   const latestKeywords = reversedKeywords.slice(0, 5);
 
   const getRandomTextSize = () =>
-    Math.random() < 0.5 ? "text-[12px]" : "text-[14px]";
+    Math.random() < 0.5 ? "text-[14px]" : "text-[16px]";
 
   useEffect(() => {
     setShuffledTop26s(arrangeCenterHighKeyword([...top26s]));
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [keywordsData]);
-  console.log(shuffledTop26s);
 
   return (
     <section className="flex flex-col items-center Laptop:relative Laptop:rounded-xl Laptop:bg-D1_Gray Laptop:p-10 Desktop:p-[60px]">
       {noKeyword ? (
         <Nokeyword />
       ) : (
-        <div className="mb-7 flex flex-wrap justify-center gap-2 py-6 Tablet:mb-8 Tablet:max-w-[554px] Laptop:max-w-fit Laptop:py-0 Desktop:mb-5">
+        <div className="mb-7 flex flex-wrap justify-center py-6 Tablet:mb-8 Tablet:max-w-[554px] Laptop:max-w-fit Laptop:py-0 Desktop:mb-5">
           {shuffledTop26s?.map((keyword, i) => (
             <p
               className={clsx(
-                `flex items-center ${keyword !== top1 && keyword !== top2 && keyword !== top3 && keyword !== top4 && keyword !== top5 && keyword !== top6 && keyword !== top7 && keyword !== top8 && keyword !== top8 && keyword !== top9 && keyword !== top10 && getRandomTextSize()} text-Gray_Orange`,
-                keyword === top1 && "text-Primary Text-xxxl-Bold",
+                `mr-2 flex h-12 items-center leading-[140%] last:mr-0 ${keyword !== top1 && keyword !== top2 && keyword !== top3 && keyword !== top4 && keyword !== top5 && keyword !== top6 && keyword !== top7 && keyword !== top8 && keyword !== top8 && keyword !== top9 && keyword !== top10 && getRandomTextSize()} text-Gray_Orange`,
+                keyword === top1 &&
+                  "h-12 leading-[140%] text-Primary Text-xxxl-Bold",
                 keyword === top2 &&
-                  "text-[32px] font-extrabold leading-[140%] text-Tint_2",
+                  "h-12 text-[32px] font-extrabold leading-[140%] text-Tint_2",
                 keyword === top3 &&
-                  "text-[30px] font-extrabold leading-[140%] text-Tint_2",
+                  "h-12 text-[30px] font-extrabold leading-[140%] text-Tint_2",
                 keyword === top4 &&
-                  "text-[28px] font-extrabold leading-[140%] text-Tint_3",
+                  "h-12 text-[28px] font-extrabold leading-[140%] text-Tint_3",
                 keyword === top5 &&
-                  "text-[26px] font-extrabold leading-[140%] text-Tint_3",
+                  "h-12 text-[26px] font-extrabold leading-[140%] text-Tint_3",
                 keyword === top6 &&
-                  "text-[24px] font-extrabold leading-[140%] text-Tint_3",
+                  "h-12 text-[24px] font-extrabold leading-[140%] text-Tint_3",
                 keyword === top7 &&
-                  "text-[22px] font-extrabold leading-[140%] text-Tint_4",
+                  "h-12 text-[22px] font-extrabold leading-[140%] text-Tint_4",
                 keyword === top8 &&
-                  "text-[20px] font-extrabold leading-[140%] text-Tint_4",
+                  "h-12 text-[20px] font-extrabold leading-[140%] text-Tint_4",
                 keyword === top9 &&
-                  "text-[20px] font-extrabold leading-[140%] text-Tint_4",
+                  "h-12 text-[20px] font-extrabold leading-[140%] text-Tint_4",
                 keyword === top10 &&
-                  "text-[20px] font-extrabold leading-[140%] text-Tint_4",
+                  "h-12 text-[20px] font-extrabold leading-[140%] text-Tint_4",
               )}
               key={i}
             >

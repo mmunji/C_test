@@ -5,8 +5,13 @@ import { Swiper, SwiperSlide } from "swiper/react";
 
 import useDetailSwiper from "@/app/detail/_hooks/useDetailSwiper";
 import Button from "@/components/buttons/Button";
+import hexToRGBA from "@/utils/hexToRGBA";
 
-import { ChevronLeftMd, ChevronRightMd } from "../../../../../public/icons";
+import {
+  ChevronLeftMd,
+  ChevronRightMd,
+  VideoPlay,
+} from "../../../../../public/icons";
 
 interface TrailerAndPhotoSliderProps {
   type: "trailer" | "photo";
@@ -30,6 +35,9 @@ export default function TrailerAndPhotoSlider({
     traillerAndPhotoSpaceBetween,
   } = useDetailSwiper("traillerAndPhoto");
 
+  const trailerOpacity = hexToRGBA("#000000", 0.2);
+  console.log(trailerOpacity);
+
   return (
     <div
       className="relative mt-2"
@@ -49,18 +57,29 @@ export default function TrailerAndPhotoSlider({
           [...(trailer || [])].reverse()?.map((el, i) => (
             <SwiperSlide
               key={i}
-              className="max-w-[320px] Tablet:max-w-[352px] Laptop:max-w-[271px] Desktop:max-w-[372px]"
+              className="relative max-w-[320px] Tablet:max-w-[352px] Laptop:max-w-[271px] Desktop:max-w-[372px]"
             >
               <Link
                 href={`https://www.youtube.com/watch?v=${el}`}
                 target="_BLANK"
               >
+                <div
+                  style={{
+                    backgroundColor: trailerOpacity,
+                  }}
+                  className="absolute h-full w-full"
+                />
                 <Image
                   width={500}
                   height={500}
                   src={`https://img.youtube.com/vi/${el}/maxresdefault.jpg`}
                   alt="썸네일"
                   className="h-[182px] w-full rounded-lg Tablet:h-[200px] Laptop:h-[150px] Laptop:rounded-xl Desktop:h-[210px]"
+                />
+                <Image
+                  src={VideoPlay}
+                  alt="재생"
+                  className="absolute left-1/2 top-1/2 translate-x-[-50%] translate-y-[-50%]"
                 />
               </Link>
             </SwiperSlide>
