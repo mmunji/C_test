@@ -15,7 +15,7 @@ interface MobileHeaderInputSectionProps {
   inputFocused: boolean;
   setInputFocused: Dispatch<SetStateAction<boolean>>;
   inputValue: string;
-  setInputValue: Dispatch<SetStateAction<string>>;
+  setInputValue: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
 export default function MobileHeaderInputSection({
@@ -39,9 +39,7 @@ export default function MobileHeaderInputSection({
           ref={inputRef}
           type="text"
           value={inputValue}
-          onChange={(e: ChangeEvent<HTMLInputElement>) =>
-            setInputValue(e.target.value)
-          }
+          onChange={setInputValue}
           placeholder="‘파묘’ 궁금하지 않으세요?"
           onFocus={() => setInputFocused(true)}
           onBlur={() => setInputFocused(false)}
