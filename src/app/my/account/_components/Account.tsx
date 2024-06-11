@@ -1,6 +1,7 @@
 "use client";
 import React, { FormEvent, useEffect, useRef, useState } from "react";
 
+import { AccountFormLabel } from "@/app/my/_components/Labels";
 import Button from "@/components/buttons/Button";
 import useDevice from "@/hooks/useDevice";
 import { nincknameRegex } from "@/utils/regex";
@@ -45,11 +46,7 @@ export default function Account() {
     <div className="flex flex-col gap-2 rounded-xl bg-D1_Gray px-4 py-2 Text-s-Medium Tablet:px-8 Tablet:py-4 Tablet:Text-m-Medium">
       <form className="flex" onSubmit={handleNicknameSubmit}>
         <div className="flex flex-1 gap-5 Tablet:gap-1">
-          <div className="flex h-10 items-center">
-            <span className="w-12 text-Gray_Orange Tablet:w-[120px]">
-              닉네임
-            </span>
-          </div>
+          <AccountFormLabel>닉네임</AccountFormLabel>
           {isEditingNickname ? (
             <div className="flex flex-col Tablet:flex-row Tablet:gap-2">
               <div className="relative flex h-10 items-center">
@@ -98,7 +95,7 @@ export default function Account() {
       <div className="h-[1px] w-full bg-D2_Gray" />
       <div className="flex items-center">
         <div className="flex h-10 flex-1 items-center gap-5 Tablet:gap-1">
-          <span className="w-12 text-Gray_Orange Tablet:w-[120px]">이메일</span>
+          <AccountFormLabel>이메일</AccountFormLabel>
           <span className="text-Gray">abcdef@gmail.com</span>
         </div>
       </div>
