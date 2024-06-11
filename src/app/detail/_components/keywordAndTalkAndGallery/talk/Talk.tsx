@@ -3,7 +3,7 @@
 import { useQuery } from "@tanstack/react-query";
 
 import { talkAPIs } from "@/api/talk/talkAPIs";
-import { QUERY_KEYS } from "@/constants/queryKeys";
+import { TALK_QUERY_KEYS } from "@/api/talk/talkQueryKeys";
 import useDevice from "@/hooks/useDevice";
 
 import DividingLine from "../../common/DividingLine";
@@ -19,7 +19,7 @@ interface TalkProps {
 
 export default function Talk({ title, movieId }: TalkProps) {
   const { data } = useQuery({
-    queryKey: QUERY_KEYS.TALK.all(),
+    queryKey: TALK_QUERY_KEYS.all(),
     queryFn: () => talkAPIs.getTalks(movieId),
   });
 
