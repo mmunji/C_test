@@ -1,7 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 
+import { talkAPIs } from "@/api/talk/talkAPIs";
+import { QUERY_KEYS } from "@/constants/queryKeys";
 import useDevice from "@/hooks/useDevice";
 
 import DividingLine from "../../common/DividingLine";
@@ -12,17 +14,22 @@ import TalkHeader from "./TalkHeader";
 
 interface TalkProps {
   title: string;
+  movieId: number;
 }
 
-export default function Talk({ title }: TalkProps) {
-  const [noTalk, setNotalk] = useState(false);
-  const { device } = useDevice();
+export default function Talk({ title, movieId }: TalkProps) {
+  const { data } = useQuery({
+    queryKey: QUERY_KEYS.TALK.all(),
+    queryFn: () => talkAPIs.getTalks(movieId),
+  });
 
+  const { device } = useDevice();
   const id = device === "mobile" || device === "tablet" ? undefined : "my-talk";
+  const noTalk = data?.reviewList.length === 0;
 
   return (
     <section id={id}>
-      <Rating title={title} />
+      <Rating title={title} movieId={movieId} />
       <DividingLine />
 
       <section className="Laptop:rounded-xl Laptop:bg-D1_Gray Laptop:p-8">

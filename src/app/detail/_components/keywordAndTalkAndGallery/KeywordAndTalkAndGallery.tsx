@@ -46,7 +46,9 @@ export default function KeywordAndTalkAndGallery({
             }}
           />
         )}
-        {activeCategoryTab === tabs[1] && <Talk title={title} />}
+        {activeCategoryTab === tabs[1] && (
+          <Talk movieId={movieId} title={title} />
+        )}
         {activeCategoryTab === tabs[2] && (
           <Gallery
             castAndCrew={{

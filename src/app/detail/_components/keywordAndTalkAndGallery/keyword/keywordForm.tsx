@@ -52,11 +52,10 @@ export default function KeywordForm({ movieId, title }: KeywordFormProps) {
       const { res } = await keywordAPIs.addKeyword(movieId, value);
       setLoading(true);
       if (res.ok) setValue("");
-    } catch (error) {
-      console.error(error);
-    } finally {
       setLoading(false);
       router.refresh();
+    } catch (error) {
+      console.error(error);
     }
   };
 
