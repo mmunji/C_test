@@ -10,6 +10,15 @@ export const keywordAPIs = {
     return data;
   },
 
+  getLatestKeyword: async (movieId: number) => {
+    const res = await fetch(`${API_URL}/keywords/latest/${movieId}`, {
+      cache: "no-store",
+    });
+    const data: Keyword[] = await res.json();
+
+    return data;
+  },
+
   addKeyword: async (movieId: number, keyword: string) => {
     const res = await fetch(`${API_URL}/keywords/${movieId}`, {
       method: "POST",

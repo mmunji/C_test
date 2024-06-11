@@ -18,6 +18,7 @@ export default async function Detail() {
   const movieDetailData: MovieDetailData =
     await movieAPIs.getMovieDetail(movieId);
   const keywordsData: Keyword[] = await keywordAPIs.getKeyword(movieId);
+  const latestKeywordData = await keywordAPIs.getLatestKeyword(movieId);
   const talksData = await talkAPIs.getTalks(movieId);
 
   const noKeyword = keywordsData?.length === 0;
@@ -49,7 +50,13 @@ export default async function Detail() {
             </div>
             <div className="w-[32.26%]">
               <Keyword
-                {...{ keywordsData, noKeyword, movieId, title: movieTitle }}
+                {...{
+                  keywordsData,
+                  noKeyword,
+                  movieId,
+                  title: movieTitle,
+                  latestKeywords: latestKeywordData,
+                }}
               />
             </div>
           </section>
@@ -61,6 +68,7 @@ export default async function Detail() {
               noKeyword,
               movieId,
               title: movieTitle,
+              latestKeywords: latestKeywordData,
             }}
           />
         </section>

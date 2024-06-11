@@ -15,6 +15,7 @@ interface KeywordProps {
   noKeyword: boolean;
   movieId: number;
   title: string;
+  latestKeywords: Keyword[];
 }
 
 export default function Keyword({
@@ -22,6 +23,7 @@ export default function Keyword({
   noKeyword,
   movieId,
   title,
+  latestKeywords,
 }: KeywordProps) {
   const top10s = keywordsData.slice(0, 10);
   const [shuffledTop26s, setShuffledTop26s] = useState(keywordsData);
@@ -36,9 +38,6 @@ export default function Keyword({
   const top8 = top10s[7];
   const top9 = top10s[8];
   const top10 = top10s[9];
-
-  const reversedKeywords = [...(keywordsData || [])].reverse();
-  const latestKeywords = reversedKeywords.slice(0, 5);
 
   const getRandomTextSize = () =>
     Math.random() < 0.5 ? "text-[14px]" : "text-[16px]";
