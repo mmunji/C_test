@@ -1,6 +1,6 @@
 import dayjs from "dayjs";
 import customParseFormat from "dayjs/plugin/customParseFormat";
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 
 import { AccountFormLabel } from "@/app/my/_components/Labels";
 import Button from "@/components/buttons/Button";
@@ -23,11 +23,15 @@ export default function BirthdayForm() {
   const [birthday, setBirthday] = useState<Birthday>(BIRTHDAY);
   const [birthdayError, setBirthdayError] = useState(false);
 
-  const handleBirthdayChangeButtonClick = () => {
+  const handleBirthdaySubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     if (birthdayError) {
       setBirthday(BIRTHDAY);
       setBirthdayError(false);
     } else {
+      ["month", "day"].forEach((field) =>
+        handlePadBirthday(field as keyof Birthday),
+      );
       BIRTHDAY = birthday;
     }
     setIsEditingBirthday((prev) => !prev);
@@ -66,7 +70,7 @@ export default function BirthdayForm() {
   };
 
   return (
-    <div className="flex">
+    <form className="flex" onSubmit={handleBirthdaySubmit}>
       <div className="flex flex-1 gap-5 Tablet:gap-1">
         <AccountFormLabel>생년월일</AccountFormLabel>
         {isEditingBirthday ? (
@@ -117,15 +121,15 @@ export default function BirthdayForm() {
         )}
       </div>
       <Button
+        type="submit"
         size={!isMobile && isEditingBirthday && !birthdayError ? "md" : "none"}
         focus={isEditingBirthday && !birthdayError ? "1" : "none"}
         variant={
           !isMobile && isEditingBirthday && !birthdayError ? "orange" : "text"
         }
-        onClick={handleBirthdayChangeButtonClick}
       >
         {isEditingBirthday ? (birthdayError ? "취소" : "완료") : "변경"}
       </Button>
-    </div>
+    </form>
   );
 }
