@@ -3,10 +3,6 @@ import Image from "next/image";
 
 import { StarFillMd, StarHalfMd, StarMd } from "@/../public/icons";
 
-interface StarProps {
-  RatingValue: Number;
-}
-
 export default function GetRating() {
   let star = 2.5;
   return (

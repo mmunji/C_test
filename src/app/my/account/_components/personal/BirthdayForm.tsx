@@ -72,7 +72,7 @@ export default function BirthdayForm() {
         </span>
         {isEditingBirthday ? (
           <div className="flex flex-col Tablet:flex-row Tablet:gap-2">
-            <div className="flex h-10 items-center">
+            <div className="flex h-10 items-center gap-1">
               <input
                 placeholder="년도"
                 type="string"
