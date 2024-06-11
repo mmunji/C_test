@@ -2,16 +2,16 @@ import Image from "next/image";
 
 import Button from "@/components/buttons/Button";
 
-import { ChevronRightGrayMd } from "../../../../../public/icons";
+import { ChevronRightGrayMd } from "../../../../public/icons";
 
 interface SearchTitleProps {
   category: string;
-  length: number;
+  length?: number;
 }
 
 export default function SearchTitle({ category, length }: SearchTitleProps) {
   return (
-    <div className="flex items-center justify-between">
+    <div className="mb-3 flex items-center justify-between Tablet:mb-2 Laptop:mb-5">
       <div>
         <h2 className="flex gap-2 Text-l-Bold">
           <strong>{category}</strong>
