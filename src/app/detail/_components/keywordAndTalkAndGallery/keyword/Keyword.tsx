@@ -14,16 +14,19 @@ interface KeywordProps {
   keywordsData: Keyword[];
   noKeyword: boolean;
   movieId: number;
+  title: string;
+  latestKeywords: Keyword[];
 }
 
 export default function Keyword({
   keywordsData,
   noKeyword,
   movieId,
+  title,
+  latestKeywords,
 }: KeywordProps) {
-  const sortedData = keywordsData.sort((a, b) => b.count - a.count);
-  const top26s = sortedData.slice(0, 26);
-  const top10s = sortedData.slice(0, 10);
+  const top10s = keywordsData.slice(0, 10);
+  const [shuffledTop26s, setShuffledTop26s] = useState(keywordsData);
 
   const top1 = top10s[0];
   const top2 = top10s[1];
@@ -36,16 +39,11 @@ export default function Keyword({
   const top9 = top10s[8];
   const top10 = top10s[9];
 
-  const [shuffledTop26s, setShuffledTop26s] = useState(top26s);
-
-  const reversedKeywords = [...(keywordsData || [])].reverse();
-  const latestKeywords = reversedKeywords.slice(0, 5);
-
   const getRandomTextSize = () =>
     Math.random() < 0.5 ? "text-[14px]" : "text-[16px]";
 
   useEffect(() => {
-    setShuffledTop26s(arrangeCenterHighKeyword([...top26s]));
+    setShuffledTop26s(arrangeCenterHighKeyword([...keywordsData]));
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [keywordsData]);
@@ -94,7 +92,7 @@ export default function Keyword({
         </SpeechBubble>
       </div>
 
-      <KeywordForm movieId={movieId} />
+      <KeywordForm movieId={movieId} title={title} />
       {!noKeyword && <NewKeyword latestKeywords={latestKeywords} />}
     </section>
   );

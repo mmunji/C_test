@@ -4,18 +4,36 @@ import { ChangeEvent, FormEvent, useState } from "react";
 import { keywordAPIs } from "@/api/keyword/keywordAPIs";
 import Button from "@/components/buttons/Button";
 import LoadingSpinner from "@/components/loadingSpinner/LoadingSpinner";
+import { abuseList } from "@/constants/abuseList";
+import useDevice from "@/hooks/useDevice";
 
 import SpeechBubble from "../../../../../components/speechBubble/SpeechBubble";
 
 interface KeywordFormProps {
   movieId: number;
+  title: string;
 }
 
-export default function KeywordForm({ movieId }: KeywordFormProps) {
+export default function KeywordForm({ movieId, title }: KeywordFormProps) {
   const [loading, setLoading] = useState(false);
   const [focused, setFocused] = useState(false);
   const [value, setValue] = useState("");
   const router = useRouter();
+  const { device } = useDevice();
+
+  const sliceTitleMap: { [key: string]: number } = {
+    mobile: 10,
+    tablet: Infinity,
+    laptop: 5,
+    desktop: 11,
+  };
+
+  const sliceNumber = sliceTitleMap[device];
+
+  const formattedTitle =
+    title.length > sliceNumber
+      ? title.split("").splice(0, sliceNumber).join("") + "..."
+      : title;
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.value.length > 5) {
@@ -28,14 +46,16 @@ export default function KeywordForm({ movieId }: KeywordFormProps) {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
+      if (abuseList.some((abuse) => value.includes(abuse))) {
+        return alert(`욕설은 안돼요..!`);
+      }
       const { res } = await keywordAPIs.addKeyword(movieId, value);
       setLoading(true);
       if (res.ok) setValue("");
-    } catch (error) {
-      console.error(error);
-    } finally {
       setLoading(false);
       router.refresh();
+    } catch (error) {
+      console.error(error);
     }
   };
 
@@ -49,7 +69,7 @@ export default function KeywordForm({ movieId }: KeywordFormProps) {
       <div className="relative w-full overflow-hidden rounded-xl ">
         <input
           type="text"
-          placeholder="‘웡카’를 한단어로 말한다면?"
+          placeholder={`'${device === "tablet" ? title : formattedTitle}'는 한 단어로?`}
           maxLength={5}
           value={value}
           onFocus={() => setFocused(true)}

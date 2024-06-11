@@ -28,17 +28,17 @@ export default function TalkContentsFooter({
   showReplies,
   setShowReplies,
 }: TalkContentsFooterProps) {
-  const [liked, setLiked] = useState(false);
-  const [disliked, setDisliked] = useState(false);
+  const [like, setLike] = useState(false);
+  const [disLike, setDisLike] = useState(false);
 
   const handleClickLike = () => {
-    setDisliked(false);
-    setLiked(!liked);
+    setDisLike(false);
+    setLike(!like);
   };
 
-  const handleClickDislike = () => {
-    setLiked(false);
-    setDisliked(!disliked);
+  const handleClickDisLike = () => {
+    setLike(false);
+    setDisLike(!disLike);
   };
 
   const handleClickReplies = () => {
@@ -52,12 +52,12 @@ export default function TalkContentsFooter({
         className="my-2 ml-1 mr-2 flex cursor-pointer items-center gap-1"
       >
         <Image
-          src={liked ? ThumbsUpFillSm : ThumbsUpLineSm}
+          src={like ? ThumbsUpFillSm : ThumbsUpLineSm}
           alt="좋아요"
           className="Laptop:hidden"
         />
         <Image
-          src={liked ? ThumbsUpFillMd : ThumbsUpLineMd}
+          src={like ? ThumbsUpFillMd : ThumbsUpLineMd}
           alt="좋아요"
           className="hidden Laptop:block"
         />
@@ -66,16 +66,16 @@ export default function TalkContentsFooter({
         </p>
       </section>
       <section
-        onClick={handleClickDislike}
+        onClick={handleClickDisLike}
         className="my-2 ml-1 mr-2 flex cursor-pointer items-center gap-1"
       >
         <Image
-          src={disliked ? ThumbsDownFillSm : ThumbsDownLineSm}
+          src={disLike ? ThumbsDownFillSm : ThumbsDownLineSm}
           alt="싫어요"
           className="Laptop:hidden"
         />
         <Image
-          src={disliked ? ThumbsDownFillMd : ThumbsDownLineMd}
+          src={disLike ? ThumbsDownFillMd : ThumbsDownLineMd}
           alt="싫어요"
           className="hidden Laptop:block"
         />
