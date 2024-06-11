@@ -48,7 +48,6 @@ interface Line {
 export default async function NotFound() {
   const randomNumber = Math.floor(Math.random() * 4);
 
-  console.log(randomNumber);
   const movieLinesMap: { [key: number]: MovieLine } = {
     0: movieLines[0],
     1: movieLines[1],
