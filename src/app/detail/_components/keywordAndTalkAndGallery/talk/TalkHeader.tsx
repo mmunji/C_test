@@ -20,7 +20,7 @@ export default function TalkHeader() {
         <Dropdown.Trigger>
           <section className="flex gap-1">
             <Image src={Filter} alt="필터" />
-            <p className="select-none text-Gray_Orange Text-s-Medium">
+            <p className="select-none text-Gray_Orange Text-s-Medium Tablet:Text-m-Medium">
               {activeFilter}
             </p>
           </section>

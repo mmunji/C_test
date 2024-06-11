@@ -4,6 +4,7 @@ import { ChangeEvent, FormEvent, useState } from "react";
 import { keywordAPIs } from "@/api/keyword/keywordAPIs";
 import Button from "@/components/buttons/Button";
 import LoadingSpinner from "@/components/loadingSpinner/LoadingSpinner";
+import { abuseList } from "@/constants/abuseList";
 import useDevice from "@/hooks/useDevice";
 
 import SpeechBubble from "../../../../../components/speechBubble/SpeechBubble";
@@ -45,6 +46,9 @@ export default function KeywordForm({ movieId, title }: KeywordFormProps) {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
+      if (abuseList.some((abuse) => value.includes(abuse))) {
+        return alert(`욕설은 안돼요..!`);
+      }
       const { res } = await keywordAPIs.addKeyword(movieId, value);
       setLoading(true);
       if (res.ok) setValue("");
