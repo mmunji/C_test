@@ -11,6 +11,11 @@ interface PostNumber {
   Hover?: () => void;
   StarPostType?: string;
   PostType?: string;
+  StarRating?: number;
+  content?: string;
+  regDate?: string;
+  likeCount?: number;
+  reviewCount?: number;
 }
 
 export default function PostCard({
@@ -18,6 +23,11 @@ export default function PostCard({
   onClick,
   PostType,
   StarPostType,
+  StarRating,
+  content,
+  regDate,
+  likeCount,
+  reviewCount,
 }: PostNumber) {
   const [onMouseHover, SetMouseHover] = useState(false);
   const HandleMouseOver = () => {
@@ -31,7 +41,7 @@ export default function PostCard({
       className="h-[358px] w-[238px] rounded-xl Tablet:h-[390px] Tablet:w-[260px] Laptop:h-[260px] Laptop:w-[174px] Desktop:h-[360px]  Desktop:w-[240px]"
       style={{
         backgroundImage:
-          "linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, rgba(0, 0, 0, 0.50) 100%), url('/images/detail/detail-poster-example.png')",
+          "linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, rgba(0, 0, 0, 0) 100%), url('/images/detail/detail-poster-example.png')",
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
@@ -55,25 +65,22 @@ export default function PostCard({
           }}
         >
           <div className="flex flex-col items-center gap-2">
-            <GetRating />
+            <GetRating StarRating={StarRating} />
             <div className="flex flex-col gap-1">
-              <span className="Text-m-Regular">
-                여행은 새로운 경험과 추억을 선사하지만, 올바른 준비가
-                필수입니다. 이번 블로그 포스트에서는ㅎ이번 블로
-              </span>
+              <span className="Text-m-Regular">{content}</span>
               <div className="flex justify-end text-Gray Text-xs-Regular">
-                00.00.00
+                {regDate}
               </div>
             </div>
             <div className="w-full border-[1px] text-Gray" />
             <div className="flex items-end justify-end gap-2 text-Gray_Orange Text-s-Medium">
               <div className="flex gap-1">
                 <Image src={ThumbsUpFillSm} alt="별" />
-                <span>0,000</span>
+                <span>{likeCount}</span>
               </div>
               <div className="flex gap-1">
                 <Image src={ChatFillSm} alt="별" />
-                <span>0,000</span>
+                <span>{reviewCount}</span>
               </div>
             </div>
           </div>
@@ -83,15 +90,13 @@ export default function PostCard({
       )}
       {PostType && onMouseHover ? (
         <div
-          className="flex h-[358px] w-[238px] items-center rounded-xl px-5 py-7 Text-m-Regular  Tablet:h-[390px] Tablet:w-[260px] Laptop:h-[260px] Laptop:w-[174px] Desktop:h-[360px] Desktop:w-[240px]"
+          className="line-clamp-9 flex h-[358px] w-[238px] items-center rounded-xl px-5 py-7 Text-m-Regular  Tablet:h-[390px] Tablet:w-[260px] Laptop:h-[260px] Laptop:w-[174px] Desktop:h-[360px] Desktop:w-[240px]"
           style={{
             backdropFilter: "blur(5px)",
             background: "rgba(0, 0, 0, 0.50)",
           }}
         >
-          여행은 새로운 경험과 추억을 선사하지만, 올바른 준비가 필수입니다. 이번
-          블로그 포스트에서는ㅎ이번 블로그 포스트에서는ㅎ이번 블로그
-          포스트에서는ㅎ이번 블로그 포
+          {content}
         </div>
       ) : (
         ""

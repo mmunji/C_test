@@ -2,9 +2,11 @@
 import Image from "next/image";
 
 import { StarFillMd, StarHalfMd, StarMd } from "@/../public/icons";
-
-export default function GetRating() {
-  let star = 2.5;
+interface RatingProps {
+  StarRating?: number;
+}
+export default function GetRating({ StarRating = 0 }: RatingProps) {
+  let star = StarRating;
   return (
     <div className="flex ">
       {Array(5)
