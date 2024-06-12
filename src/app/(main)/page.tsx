@@ -1,4 +1,4 @@
-import Footer from "./_components/Footer";
+import Footer from "../../components/footer/Footer";
 import MainBanner from "./_components/MainBanner";
 import SectionMoiveList from "./_components/SectionMoiveList";
 export default function Main() {

@@ -5,33 +5,42 @@ import "swiper/css/scrollbar";
 import "swiper/css/pagination";
 
 import SwiperCore from "swiper";
-import { Autoplay, Navigation, Pagination, Scrollbar } from "swiper/modules";
+import {
+  Autoplay,
+  FreeMode,
+  Navigation,
+  Pagination,
+  Scrollbar,
+} from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import LeftMoivePost from "./MainBanner/LeftMoivePost";
 import RealTimeHotTalk from "./MainBanner/RealTimeHotTalk";
 
 export default function MainBanner() {
-  SwiperCore.use([Navigation, Scrollbar, Autoplay, Pagination]);
+  SwiperCore.use([Scrollbar, Autoplay, Pagination]);
   return (
-    <div className=" mt-2 Tablet:h-[380px] Laptop:mt-9 Laptop:h-[650px] Laptop:px-[64px] Desktop:h-[810px] Desktop:px-[180px] ">
+    <div className=" mt-2  Tablet:h-[380px] Laptop:mt-9 Laptop:h-[600px] Desktop:h-[810px] ">
       <Swiper
         rewind={true}
-        loop={true} // 슬라이드 루프
-        spaceBetween={200} // 슬라이드 사이 간격
-        slidesPerView={1} // 보여질 슬라이드 수
+        // loop={true} // 슬라이드 루프
+        spaceBetween={20} // 슬라이드 사이 간격
+        slidesPerView="auto" // 보여질 슬라이드 수
         pagination={true}
+        centeredSlides={true}
+        // observer={true}
+        // observeParents={true}
         modules={[Autoplay, Pagination]}
-        className="h-[480px] Tablet:h-[400px] Laptop:h-[510px]  Desktop:h-[690px] "
-        autoplay={{ delay: 5000, disableOnInteraction: false }}
+        className="h-[480px] Tablet:h-[400px]  Laptop:h-[489px] Desktop:h-[690px]"
+        // autoplay={{ delay: 1000, disableOnInteraction: false }}
       >
         {Array(3)
           .fill(0)
           .map((_, index) => {
             return (
-              <SwiperSlide key={index}>
+              <SwiperSlide key={index} style={{ width: "1560px" }}>
                 <div
-                  className=" rounded-[35px]   Tablet:h-[360px]  Laptop:h-[489px] Laptop:px-[74px] Desktop:h-[637px]    "
+                  className=" rounded-[35px]  Tablet:h-[360px]  Laptop:h-[489px] Laptop:px-[74px] Desktop:h-[637px]    "
                   style={{
                     backgroundImage:
                       "linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, rgba(0, 0, 0, 0.50) 100%), url('/images/detail/detail-banner-example.png')",
@@ -57,8 +66,10 @@ export default function MainBanner() {
         <style jsx global>{`
           .swiper-pagination-bullet {
             width: 33.3px !important; /* 너비 조절 */
+            height: 4px !important;
             border-radius: 22px !important; /* 너비 조절 */
             background-color: #999490; /* 파란색 */
+            margin-top: 30px !important;
           }
           .swiper-pagination-bullet-active {
             background-color: #ff7a00; /* 파란색 */

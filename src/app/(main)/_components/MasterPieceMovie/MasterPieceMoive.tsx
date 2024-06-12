@@ -4,27 +4,30 @@ import "swiper/css";
 import "swiper/css/pagination";
 
 import Image from "next/image";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import { HeartLineMd, StarFillMd } from "@/../public/icons";
+import { movieAPIs } from "@/api/movie/movieAPIs";
 
 import PostCard from "../PostCard";
 export default function MasterPieceMoive() {
+  const [MoviePiece, setMoviePiece] = useState<MovieHidingPiece | null>(null);
+  // const MovieMasterPiece: MovieHidingPiece = await movieAPIs.getHidingPiece();
   useEffect(() => {
-    const GetMasterPieceMoives = async () => {
-      const res = fetch(
-        `${process.env.NEXT_PUBLIC_ENDPOINT}/movie/HidingPiece`,
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        },
-      );
+    const fetchMovie = async () => {
+      try {
+        // 실제 API 호출로 `movieAPIs.getHidingPiece`를 대체합니다.
+        const response = await movieAPIs.getHidingPiece();
+
+        setMoviePiece(response);
+      } catch (error) {
+        console.error("영화를 가져오는 중 오류 발생:", error);
+      }
     };
-    GetMasterPieceMoives();
+
+    fetchMovie();
   }, []);
   return (
     <div className="flex flex-col gap-[20px]">
@@ -53,21 +56,26 @@ export default function MasterPieceMoive() {
           className="gap-5  Laptop:gap-5 Desktop:gap-6"
           modules={[Pagination]}
         >
-          {Array(10)
-            .fill(0)
-            .map((_, index) => {
-              return (
+          {Array.isArray(MoviePiece) && MoviePiece.length > 0
+            ? MoviePiece.map((movie, index) => (
                 <SwiperSlide key={index}>
                   <div className="flex w-[174px] flex-col Desktop:w-[240px]">
-                    <PostCard StarPostType="StarPost" />
+                    <PostCard
+                      StarPostType="StarPost"
+                      StarRating={movie.star}
+                      content={movie.content}
+                      regDate={movie.regDate}
+                      likeCount={movie?.likeCount}
+                      reviewCount={movie?.rereviewCount}
+                    />
                     <div className="mt-3 flex justify-between">
-                      <div className=" flex">
+                      <div className="flex items-center">
                         <Image
                           src={StarFillMd}
                           alt="star"
                           className="h-6 w-6"
                         />
-                        0.0
+                        {movie.StarAvg}
                       </div>
                       <div>
                         <Image src={HeartLineMd} alt="" />
@@ -75,8 +83,8 @@ export default function MasterPieceMoive() {
                     </div>
                   </div>
                 </SwiperSlide>
-              );
-            })}
+              ))
+            : null}
         </Swiper>
       </div>
     </div>
