@@ -8,7 +8,7 @@ interface Props {
 
 export default function SearchMovieList({ movieList }: Props) {
   return (
-    <div className="mt-1 flex flex-col px-5">
+    <div className="flex flex-col">
       <SearchTitle category="영화" length={movieList?.length} />
       <div className="grid grid-cols-2 gap-2 Tablet:grid-cols-3 Tablet:gap-5 Laptop:grid-cols-6 Laptop:gap-5 Desktop:gap-6">
         {movieList?.map((movie) => (

@@ -120,6 +120,7 @@ const config: Config = {
         },
         ".inner-gray": {},
         ".inner-silver": {},
+        ".inner-gray-orange": {},
         ".inner-none": {},
       });
     },

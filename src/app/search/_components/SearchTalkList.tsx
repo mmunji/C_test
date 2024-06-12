@@ -10,7 +10,7 @@ interface Props {
 
 export default function SearchTalkList({ talkList }: Props) {
   return (
-    <div className="mt-1 flex flex-col px-5">
+    <div className="flex flex-col">
       <SearchTitle category="톡" length={talkList?.length} />
       <div className="flex flex-col gap-3">
         {talkList?.map((talk) => (

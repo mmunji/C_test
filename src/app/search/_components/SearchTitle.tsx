@@ -11,7 +11,7 @@ interface SearchTitleProps {
 
 export default function SearchTitle({ category, length }: SearchTitleProps) {
   return (
-    <div className="mb-3 flex items-center justify-between Tablet:mb-2 Laptop:mb-5">
+    <div className="flex items-center justify-between">
       <div>
         <h2 className="flex gap-2 Text-l-Bold">
           <strong>{category}</strong>
