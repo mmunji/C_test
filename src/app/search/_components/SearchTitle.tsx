@@ -9,7 +9,6 @@ interface SearchTitleProps {
   length?: number;
   handleTabChange: (category: string) => void;
   isActiveTabIndex: number;
-  isMobile: boolean;
 }
 
 export default function SearchTitle({
@@ -17,7 +16,6 @@ export default function SearchTitle({
   length,
   handleTabChange,
   isActiveTabIndex,
-  isMobile,
 }: SearchTitleProps) {
   if (isActiveTabIndex) return null;
 
@@ -38,10 +36,11 @@ export default function SearchTitle({
           >
             전체보기{" "}
             <Image
+              className="Mobile:h-4 Mobile:w-4 Tablet:h-6 Tablet:w-6"
               src={ChevronRightGrayMd}
               alt="ChevronRightMd"
-              width={isMobile ? 16 : 24}
-              height={isMobile ? 16 : 24}
+              width={16}
+              height={16}
             />
           </Button>
         </div>

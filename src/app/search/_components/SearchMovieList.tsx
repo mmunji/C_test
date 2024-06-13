@@ -4,8 +4,8 @@ import Link from "next/link";
 import SearchPlaceholder from "@/app/search/_components/placeholders/SearchPlaceholder";
 import SearchResponsiveContainer from "@/app/search/_components/SearchResponsiveContainer";
 import SearchTitle from "@/app/search/_components/SearchTitle";
+import useDeviceLimits from "@/app/search/_hooks/useDeviceLimits";
 import ROUTES from "@/constants/routes";
-import useDevice from "@/hooks/useDevice";
 
 interface Props {
   movieList?: SearchMovieInfoDTO[];
@@ -18,15 +18,15 @@ export default function SearchMovieList({
   handleTabChange,
   isActiveTabIndex,
 }: Props) {
-  const { isMobile } = useDevice();
-  const sortedMovieList = !isActiveTabIndex
-    ? movieList?.slice(0, isMobile ? 4 : 6)
-    : movieList;
+  const sortedMovieList = useDeviceLimits<SearchMovieInfoDTO>({
+    category: "movie",
+    isActiveTabIndex,
+    data: movieList,
+  });
   if (isActiveTabIndex === 2) return null;
   return (
     <SearchResponsiveContainer dataLength={movieList?.length}>
       <SearchTitle
-        isMobile={isMobile}
         isActiveTabIndex={isActiveTabIndex}
         handleTabChange={handleTabChange}
         category="영화"

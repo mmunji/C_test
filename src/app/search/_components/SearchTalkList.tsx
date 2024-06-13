@@ -3,7 +3,7 @@ import Image from "next/image";
 import SearchPlaceholder from "@/app/search/_components/placeholders/SearchPlaceholder";
 import SearchResponsiveContainer from "@/app/search/_components/SearchResponsiveContainer";
 import SearchTitle from "@/app/search/_components/SearchTitle";
-import useDevice from "@/hooks/useDevice";
+import useDeviceLimits from "@/app/search/_hooks/useDeviceLimits";
 
 import { StarFillSm } from "../../../../public/icons";
 
@@ -13,30 +13,22 @@ interface Props {
   isActiveTabIndex: number;
 }
 
-const deviceLimits: { [key in Exclude<Device, "">]: number } = {
-  mobile: 4,
-  tablet: 6,
-  laptop: 9,
-  desktop: 12,
-};
-
 export default function SearchTalkList({
   talkList,
   handleTabChange,
   isActiveTabIndex,
 }: Props) {
-  const { device, isMobile } = useDevice();
-  const limit = deviceLimits[device as Exclude<Device, "">];
-  const sortedTalkList = !isActiveTabIndex
-    ? talkList?.slice(0, limit)
-    : talkList;
+  const sortedTalkList = useDeviceLimits<SearchMovieTalkDTO>({
+    category: "talk",
+    isActiveTabIndex,
+    data: talkList,
+  });
 
   if (isActiveTabIndex === 1) return null;
 
   return (
     <SearchResponsiveContainer dataLength={talkList?.length}>
       <SearchTitle
-        isMobile={isMobile}
         isActiveTabIndex={isActiveTabIndex}
         handleTabChange={handleTabChange}
         category="톡"

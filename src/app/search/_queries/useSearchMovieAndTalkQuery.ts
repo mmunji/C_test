@@ -57,7 +57,62 @@ const dummyTalks: SearchMovieTalkDTO[] = [
     star: 3.0,
     userId: 3247,
   },
+  {
+    id: 7,
+    content:
+      "웡카는 실망스러운 영화였어요. 초콜릿공장의 마법 같은 분위기를 전혀 느낄 수 없었습니다.",
+    movieId: 23432,
+    spoiler: false,
+    star: 2.0,
+    userId: 3248,
+  },
+  {
+    id: 8,
+    content:
+      "이 영화는 전혀 기대에 미치지 못했어요. 웡카는 어른들이 보기에 너무 유치하고 지루했습니다.",
+    movieId: 23432,
+    spoiler: false,
+    star: 1.0,
+    userId: 3249,
+  },
+  {
+    id: 9,
+    content:
+      "웡카는 아이들에게도 별로 재미없을 것 같아요. 이야기 전개가 너무 느리고 매력적이지 않았습니다.",
+    movieId: 23432,
+    spoiler: false,
+    star: 1.5,
+    userId: 3250,
+  },
+  {
+    id: 10,
+    content:
+      "기대했던 것과 달리, 웡카는 매우 지루한 영화였습니다. 초콜릿공장의 매력을 전혀 느낄 수 없었어요.",
+    movieId: 23432,
+    spoiler: false,
+    star: 2.5,
+    userId: 3251,
+  },
+  {
+    id: 11,
+    content:
+      "이 영화는 정말 실망스러웠어요. 웡카는 단순히 아이들을 위한 영화일 뿐, 어른들이 즐길 요소가 전혀 없었습니다.",
+    movieId: 23432,
+    spoiler: false,
+    star: 1.5,
+    userId: 3252,
+  },
+  {
+    id: 12,
+    content:
+      "웡카는 초콜릿공장의 매력을 기대했지만, 전혀 다른 영화였습니다. 너무 유치해서 중간에 잠들 뻔했어요.",
+    movieId: 23432,
+    spoiler: false,
+    star: 2.0,
+    userId: 3253,
+  },
 ];
+
 const dummyMovies: SearchMovieInfoDTO[] = [
   {
     adult: false,
