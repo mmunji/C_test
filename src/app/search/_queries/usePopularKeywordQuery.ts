@@ -3,9 +3,9 @@ import { useSuspenseQuery } from "@tanstack/react-query";
 import { API_URL } from "@/constants/api_url";
 
 const dummy: string[] = [
-  "바보12",
-  "바보123",
-  "바보124qweeeeeeeeeeeeee",
+  "웡카",
+  "어벤져스",
+  "원더랜드",
   "바보126",
   "바보127",
   "바보127",

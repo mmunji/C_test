@@ -49,9 +49,9 @@ export default function SearchPlaceholder({
         <h2 className="text-Silver Text-s-Bold Tablet:Text-l-Bold">
           추천 검색어
         </h2>
-        {/* <Suspense fallback={<KeywordsSkeleton />}> */}
-        <KeywordList />
-        {/* </Suspense> */}
+        <Suspense fallback={<KeywordsSkeleton />}>
+          <KeywordList />
+        </Suspense>
       </div>
     </div>
   );
