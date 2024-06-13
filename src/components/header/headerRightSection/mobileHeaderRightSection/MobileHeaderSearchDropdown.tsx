@@ -10,7 +10,7 @@ import { EnvironmentFire } from "../../../../../public/icons";
 
 const findMovieTitle = async (title: string) => {
   const res = await fetch(`${API_URL}/find/findMovie?query=${title}`);
-  const data: FindMovieDTO[] = await res.json();
+  const data: SearchResultDTO[] = await res.json();
   return data;
 };
 
@@ -58,12 +58,11 @@ export default function MobilHeaderSearchDropdown({
       {data?.length ? (
         <ul className="flex flex-col gap-2">
           {data?.map((movie) => (
-            <li
-              onClick={() => setClickSearchIcon(false)}
-              key={movie.title}
-              className={`max-w-[calc(100%-32px)] cursor-pointer overflow-hidden text-ellipsis whitespace-nowrap py-1 hover:underline ${inputValue ? "pl-8" : "pl-[52px]"} font-Regular text-Silver Tablet:max-w-[calc(100%-48px)]`}
-            >
-              <Link href={ROUTES.SEARCH.getById(movie.title)}>
+            <li onClick={() => setClickSearchIcon(false)} key={movie.title}>
+              <Link
+                className={`flex w-full max-w-[calc(100%-32px)] cursor-pointer overflow-hidden text-ellipsis whitespace-nowrap py-1 hover:underline ${inputValue ? "pl-8" : "pl-[52px]"} font-Regular text-Silver Tablet:max-w-[calc(100%-48px)]`}
+                href={ROUTES.SEARCH.getById(movie.title)}
+              >
                 {movie.title}
               </Link>
             </li>
