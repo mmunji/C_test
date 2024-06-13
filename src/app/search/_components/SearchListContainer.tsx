@@ -1,4 +1,6 @@
+"use client";
 import clsx from "clsx";
+import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
 import SearchPlaceholder from "@/app/search/_components/placeholders/SearchPlaceholder";
@@ -9,13 +11,10 @@ import CommonTab from "@/components/commonTab/CommonTab";
 
 const INIT_TAB = "전체";
 
-interface Props {
-  query: string;
-}
-
-export default function SearchListContainer({ query }: Props) {
+export default function SearchListContainer({ query }: { query: string }) {
   const [activeTab, setActiveTab] = useState(INIT_TAB);
   const [tabs, setTabs] = useState(["전체", "영화 0", "톡 0"]);
+
   const { movieList, talkList } = useSearchMovieAndTalkQuery(query);
   const isActiveTabIndex =
     activeTab === "전체" ? 0 : activeTab.includes("영화") ? 1 : 2;
