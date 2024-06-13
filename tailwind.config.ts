@@ -1,6 +1,9 @@
 import type { Config } from "tailwindcss";
 
 const config: Config = {
+  future: {
+    hoverOnlyWhenSupported: true,
+  },
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -117,6 +120,7 @@ const config: Config = {
         },
         ".inner-gray": {},
         ".inner-silver": {},
+        ".inner-gray-orange": {},
         ".inner-none": {},
       });
     },

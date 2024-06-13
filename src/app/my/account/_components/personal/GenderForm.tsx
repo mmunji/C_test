@@ -1,5 +1,6 @@
 import { useState } from "react";
 
+import { AccountFormLabel } from "@/app/my/_components/Labels";
 import Button from "@/components/buttons/Button";
 import useDevice from "@/hooks/useDevice";
 
@@ -15,7 +16,7 @@ export default function GenderForm() {
   return (
     <div className="flex items-center">
       <div className="flex flex-1 items-center gap-5 Tablet:gap-1">
-        <span className="w-12 text-Gray_Orange Tablet:w-[120px]">성별</span>
+        <AccountFormLabel>성별</AccountFormLabel>
         {isEditingGender ? (
           <div className="flex gap-2 Tablet:gap-3">
             {GENDERS.map((g) => (

@@ -41,10 +41,10 @@ export default function Sidebar() {
   const pathname = usePathname();
   return (
     <nav className="fixed hidden h-screen border-r border-D2_Gray Tablet:flex">
-      <div className="hidden h-full w-[480px] flex-col px-20  pb-[164px] pt-16 Desktop:flex">
-        <div className="flex flex-col gap-[54px]">
+      <div className="hidden h-full w-[480px] flex-col overflow-y-scroll  px-20 pb-[164px] pt-16 Desktop:flex">
+        <div className="flex flex-1 flex-col gap-[54px]">
           <h2 className="Text-xl-Bold">마이 페이지</h2>
-          <ul className="mb-[363px] flex w-[320px] flex-col gap-6 Text-l-Bold">
+          <ul className="flex w-[320px] flex-col gap-6 Text-l-Bold">
             {LINKS.map((link) => {
               const isActive = pathname === link.href;
               return (

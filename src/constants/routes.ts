@@ -7,6 +7,10 @@ const ROUTES = {
     account: () => `${ROUTES.MY.default}/account`,
     favorites: () => `${ROUTES.MY.default}/favorites`,
   },
+  SEARCH: {
+    default: "/search",
+    getById: (title: string) => `${ROUTES.SEARCH.default}?query=${title}`,
+  },
 };
 
 export default ROUTES;

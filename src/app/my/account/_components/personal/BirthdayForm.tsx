@@ -1,7 +1,8 @@
 import dayjs from "dayjs";
 import customParseFormat from "dayjs/plugin/customParseFormat";
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 
+import { AccountFormLabel } from "@/app/my/_components/Labels";
 import Button from "@/components/buttons/Button";
 import useDevice from "@/hooks/useDevice";
 
@@ -22,11 +23,15 @@ export default function BirthdayForm() {
   const [birthday, setBirthday] = useState<Birthday>(BIRTHDAY);
   const [birthdayError, setBirthdayError] = useState(false);
 
-  const handleBirthdayChangeButtonClick = () => {
+  const handleBirthdaySubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     if (birthdayError) {
       setBirthday(BIRTHDAY);
       setBirthdayError(false);
     } else {
+      ["month", "day"].forEach((field) =>
+        handlePadBirthday(field as keyof Birthday),
+      );
       BIRTHDAY = birthday;
     }
     setIsEditingBirthday((prev) => !prev);
@@ -65,11 +70,9 @@ export default function BirthdayForm() {
   };
 
   return (
-    <div className="flex">
+    <form className="flex" onSubmit={handleBirthdaySubmit}>
       <div className="flex flex-1 gap-5 Tablet:gap-1">
-        <span className="flex h-[40px] w-12 items-center text-Gray_Orange Tablet:w-[120px]">
-          생년월일
-        </span>
+        <AccountFormLabel>생년월일</AccountFormLabel>
         {isEditingBirthday ? (
           <div className="flex flex-col Tablet:flex-row Tablet:gap-2">
             <div className="flex h-10 items-center gap-1">
@@ -118,15 +121,15 @@ export default function BirthdayForm() {
         )}
       </div>
       <Button
+        type="submit"
         size={!isMobile && isEditingBirthday && !birthdayError ? "md" : "none"}
         focus={isEditingBirthday && !birthdayError ? "1" : "none"}
         variant={
           !isMobile && isEditingBirthday && !birthdayError ? "orange" : "text"
         }
-        onClick={handleBirthdayChangeButtonClick}
       >
         {isEditingBirthday ? (birthdayError ? "취소" : "완료") : "변경"}
       </Button>
-    </div>
+    </form>
   );
 }

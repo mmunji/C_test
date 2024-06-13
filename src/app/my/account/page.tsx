@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import { AccountFormTitle } from "@/app/my/_components/Labels";
 import Account from "@/app/my/account/_components/Account";
 import Personal from "@/app/my/account/_components/personal/Personal";
 import SnsLogin from "@/app/my/account/_components/SnsLogin";
@@ -8,15 +9,15 @@ export default function Page() {
   return (
     <div className="flex flex-col gap-10 px-5 Tablet:px-0">
       <div className="flex flex-col gap-3 Tablet:gap-5">
-        <h2 className="Text-s-Bold Tablet:Text-l-Bold">계정</h2>
+        <AccountFormTitle>계정</AccountFormTitle>
         <Account />
       </div>
       <div className="flex flex-col gap-3 Tablet:gap-5">
-        <h2 className="Text-s-Bold Tablet:Text-l-Bold">로그인 연동</h2>
+        <AccountFormTitle>로그인 연동</AccountFormTitle>
         <SnsLogin />
       </div>
       <div className="flex flex-col gap-3 Tablet:gap-5">
-        <h2 className="Text-s-Bold Tablet:Text-l-Bold">개인 정보</h2>
+        <AccountFormTitle>개인 정보</AccountFormTitle>
         <Personal />
       </div>
       <div className="flex flex-col items-start text-Gray Text-s-Medium Tablet:Text-m-Medium">
