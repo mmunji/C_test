@@ -1,8 +1,8 @@
 import { Suspense } from "react";
 
-import Footer from "@/app/(main)/_components/Footer";
 import SearchListContainer from "@/app/search/_components/SearchListContainer";
 import { SearchListContainerSkeleton } from "@/app/search/_components/skeletons/Skeletons";
+import Footer from "@/components/footer/Footer";
 
 export default function Page({
   searchParams,
