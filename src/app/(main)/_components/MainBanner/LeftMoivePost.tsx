@@ -8,7 +8,7 @@ export default function LeftMovePost() {
 */
   }
   return (
-    <div className="flex  flex-col gap-9 Tablet:justify-end   ">
+    <div className="flex  flex-col gap-9 Tablet:justify-end">
       <div className="hidden Laptop:block ">
         <PostCard />
       </div>

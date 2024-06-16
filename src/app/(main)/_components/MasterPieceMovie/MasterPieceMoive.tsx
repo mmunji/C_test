@@ -40,16 +40,19 @@ export default function MasterPieceMoive() {
         </span>
       </div>
       {/* Post Movie Container */}
-      <div className="flex  gap-2 Tablet:hidden ">
-        <div className="flex h-[230px] w-[156px] items-end  justify-between rounded-xl  border-2 px-2 pb-2 Text-s-Bold Tablet:h-[240px] Tablet:w-[165px]">
-          <div className="flex items-center gap-1">
-            <Image src={StarFillMd} alt="평점" />
-            <span>0.0</span>
+      <div className="flex  gap-2 Laptop:hidden ">
+        <Swiper>
+          <div className="flex h-[230px] w-[156px] items-end  justify-between rounded-xl  border-2 px-2 pb-2 Text-s-Bold Tablet:h-[240px] Tablet:w-[165px]">
+            <div className="flex items-center gap-1">
+              <Image src={StarFillMd} alt="평점" />
+              <span>0.0</span>
+            </div>
+            <Image src={HeartLineMd} alt="빈 하트" />
           </div>
-          <Image src={HeartLineMd} alt="빈 하트" />
-        </div>
+        </Swiper>
       </div>
-      <div className="hidden Tablet:flex">
+
+      <div className="hidden Laptop:flex">
         <Swiper
           slidesPerView={6}
           spaceBetween={24}

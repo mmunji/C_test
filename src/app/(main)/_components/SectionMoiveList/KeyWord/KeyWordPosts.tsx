@@ -5,7 +5,7 @@ interface KeyWordInfoProps {
   movieName: string;
   star: number;
   content: string;
-  keyword: string;
+  keyword?: string;
   id: number;
   nickname: string;
 }

@@ -18,7 +18,7 @@ export default function SlimilarPost() {
   };
   return (
     <div className="flex flex-col gap-5 ">
-      <div className="flex flex-col gap-5 rounded-2xl bg-Black px-5 py-5 Laptop:hidden Desktop:hidden">
+      <div className="flex flex-col gap-5 rounded-2xl bg-Black px-5 py-5 Tablet:bg-D1_Gray Laptop:hidden ">
         <SlimilarMobilePost />
       </div>
       <div className=" hidden justify-between Laptop:flex">
