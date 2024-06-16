@@ -111,3 +111,23 @@ input:-webkit-autofill:focus {
 input[data-autocompleted] {
   background-color: transparent !important;
 }
+.responsive-slide {
+  width: 320px;
+}
+
+@media (min-width: 768px) {
+  .responsive-slide {
+    width: 726px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .responsive-slide {
+    width: 1144px;
+  }
+}
+@media (min-width: 1920px) {
+  .responsive-slide {
+    width: 1560px;
+  }
+}

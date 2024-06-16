@@ -5,11 +5,8 @@ import { movieAPIs } from "@/api/movie/movieAPIs";
 
 import RightKeyWords from "./RightKeyWords";
 export default function RecentKeyword() {
-  const [MentionKewords, setMentionKewords] = useState<MentionKeword | null>(
-    null,
-  );
+  const [MentionKeywords, setMentionKewords] = useState<MentionKeword[]>([]);
   const [KeywordListNumber, setKeywordListNumber] = useState<number>(0);
-  // const MovieMasterPiece: MovieHidingPiece = await movieAPIs.getHidingPiece();
   const HandleKeywords = (index: number) => {
     setKeywordListNumber(index);
   };
@@ -18,8 +15,7 @@ export default function RecentKeyword() {
       try {
         // 실제 API 호출로 `movieAPIs.getHidingPiece`를 대체합니다.
         const response = await movieAPIs.getMentionKeword();
-        console.log(response);
-        setMentionKewords(response);
+        setMentionKewords(Array.isArray(response) ? response : [response]);
       } catch (error) {
         console.error("영화를 가져오는 중 오류 발생:", error);
       }
@@ -34,8 +30,8 @@ export default function RecentKeyword() {
       </h1>
       <div className="flex flex-col gap-[24px] Laptop:flex-row Desktop:flex-row">
         <div className="Text-S-Bold flex gap-3 Laptop:flex-col Laptop:gap-5 Desktop:flex-col Desktop:gap-5">
-          {Array.isArray(MentionKewords) && MentionKewords.length > 0
-            ? MentionKewords.map((mention, index) => {
+          {Array.isArray(MentionKeywords) && MentionKeywords.length > 0
+            ? MentionKeywords.map((mention, index) => {
                 return (
                   <div
                     key={index}
@@ -48,8 +44,8 @@ export default function RecentKeyword() {
               })
             : ""}
         </div>
-        {MentionKewords != null ? (
-          <RightKeyWords keywordInfo={MentionKewords[KeywordListNumber]} />
+        {MentionKeywords != null ? (
+          <RightKeyWords keywordInfo={MentionKeywords[KeywordListNumber]} />
         ) : (
           ""
         )}

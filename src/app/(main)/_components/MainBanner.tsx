@@ -3,6 +3,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/scrollbar";
 import "swiper/css/pagination";
+import "@/app/globals.css";
 
 import SwiperCore from "swiper";
 import {
@@ -20,7 +21,7 @@ import RealTimeHotTalk from "./MainBanner/RealTimeHotTalk";
 export default function MainBanner() {
   SwiperCore.use([Scrollbar, Autoplay, Pagination]);
   return (
-    <div className=" mt-2  Tablet:h-[380px] Laptop:mt-9 Laptop:h-[600px] Desktop:h-[810px] ">
+    <div className=" mt-2 h-[450px]  Tablet:h-[460px] Laptop:mt-9 Laptop:h-[600px] Desktop:h-[690px] ">
       <Swiper
         rewind={true}
         // loop={true} // 슬라이드 루프
@@ -28,19 +29,20 @@ export default function MainBanner() {
         slidesPerView="auto" // 보여질 슬라이드 수
         pagination={true}
         centeredSlides={true}
+        autoHeight={true}
         // observer={true}
         // observeParents={true}
         modules={[Autoplay, Pagination]}
-        className="h-[480px] Tablet:h-[400px]  Laptop:h-[489px] Desktop:h-[690px]"
+        className="h-[450px] Tablet:h-[500px]  Laptop:h-[510px] Desktop:h-[690px]"
         // autoplay={{ delay: 1000, disableOnInteraction: false }}
       >
         {Array(3)
           .fill(0)
           .map((_, index) => {
             return (
-              <SwiperSlide key={index} style={{ width: "1560px" }}>
+              <SwiperSlide key={index} className="responsive-slide">
                 <div
-                  className=" rounded-[35px]  Tablet:h-[360px]  Laptop:h-[489px] Laptop:px-[74px] Desktop:h-[637px]    "
+                  className=" h-[421px] rounded-[35px]  Tablet:h-[360px]  Laptop:h-[489px] Laptop:px-[74px] Desktop:h-[637px]    "
                   style={{
                     backgroundImage:
                       "linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, rgba(0, 0, 0, 0.50) 100%), url('/images/detail/detail-banner-example.png')",
@@ -69,7 +71,6 @@ export default function MainBanner() {
             height: 4px !important;
             border-radius: 22px !important; /* 너비 조절 */
             background-color: #999490; /* 파란색 */
-            margin-top: 30px !important;
           }
           .swiper-pagination-bullet-active {
             background-color: #ff7a00; /* 파란색 */
@@ -81,6 +82,29 @@ export default function MainBanner() {
           .swiper-pagination-bullets.swiper-pagination-horizontal {
             display: flex !important;
             justify-content: flex-end !important;
+          }
+          .swiper .swiper-pagination {
+            position: relative;
+            margin-top: 20px !important;
+            padding-right: 20px !important;
+          }
+          @media (min-width: 768px) {
+            .swiper .swiper-pagination {
+              position: relative;
+              padding-right: 30px !important;
+            }
+          }
+          @media (min-width: 1280px) {
+            .swiper .swiper-pagination {
+              position: relative;
+              padding-right: 90px !important;
+            }
+          }
+          @media (min-width: 1920px) {
+            .swiper .swiper-pagination {
+              position: relative;
+              padding-right: 180px !important;
+            }
           }
         `}</style>
       </Swiper>
