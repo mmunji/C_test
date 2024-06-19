@@ -119,6 +119,7 @@ export default function TalkContentsFooter({
               : CaretDownSm
           }
           alt="더보기"
+          className={`${showReplies && "rotate-180"} transition-all`}
         />
       </button>
     </section>

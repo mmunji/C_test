@@ -20,7 +20,7 @@ export const keywordAPIs = {
   },
 
   addKeyword: async (movieId: number, keyword: string) => {
-    const res = await fetch(`${API_URL}/keywords/${movieId}`, {
+    const res = await fetch(`${API_URL}/keywords/${movieId}/save`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
