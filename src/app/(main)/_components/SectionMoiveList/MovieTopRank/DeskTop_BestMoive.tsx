@@ -7,7 +7,7 @@ import Link from "next/link";
 import { useState } from "react";
 import SwiperCore from "swiper";
 import { Pagination } from "swiper/modules";
-import { Swiper, SwiperSlide, SwiperClass } from "swiper/react";
+import { Swiper, SwiperClass, SwiperSlide } from "swiper/react";
 
 import {
   BestTalkFire,

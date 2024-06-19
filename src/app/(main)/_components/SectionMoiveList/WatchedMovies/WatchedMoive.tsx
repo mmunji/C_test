@@ -1,7 +1,9 @@
 "use client";
 
 import SpeechBubble from "@/components/speechBubble/SpeechBubble";
+
 import MoviePosts from "./MoviePosts";
+
 export default function WatchedMoive() {
   let arr = ["1", "1", "1", "1"];
   return (
