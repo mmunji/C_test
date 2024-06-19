@@ -7,7 +7,7 @@ import Link from "next/link";
 import { useState } from "react";
 import SwiperCore from "swiper";
 import { Pagination } from "swiper/modules";
-import { Swiper, SwiperSlide } from "swiper/react";
+import { Swiper, SwiperSlide, SwiperClass } from "swiper/react";
 
 import {
   BestTalkFire,
@@ -22,6 +22,8 @@ import BestTalkPost from "./BestTalkPost";
 
 export default function DeskTop_BestMovie() {
   SwiperCore.use([Pagination]);
+  const [swiper, setSwiper] = useState<SwiperClass>();
+  const [hoverd, sethoverd] = useState(false);
   const [StatePost, SetStatePost] = useState(0);
   const onHandlePost = (index: number) => {
     SetStatePost(index);

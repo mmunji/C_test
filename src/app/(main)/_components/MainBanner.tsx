@@ -24,17 +24,14 @@ export default function MainBanner() {
     <div className=" mt-2 h-[450px]  Tablet:h-[460px] Laptop:mt-9 Laptop:h-[600px] Desktop:h-[690px] ">
       <Swiper
         rewind={true}
-        // loop={true} // 슬라이드 루프
         spaceBetween={20} // 슬라이드 사이 간격
         slidesPerView="auto" // 보여질 슬라이드 수
         pagination={true}
         centeredSlides={true}
         autoHeight={true}
-        // observer={true}
-        // observeParents={true}
         modules={[Autoplay, Pagination]}
         className="h-[450px] Tablet:h-[500px]  Laptop:h-[510px] Desktop:h-[690px]"
-        // autoplay={{ delay: 1000, disableOnInteraction: false }}
+        autoplay={{ delay: 5000, disableOnInteraction: false }}
       >
         {Array(3)
           .fill(0)
