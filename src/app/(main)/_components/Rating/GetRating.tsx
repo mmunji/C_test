@@ -1,11 +1,19 @@
 "use client";
 import Image from "next/image";
 
-import { StarFillMd, StarHalfMd, StarMd } from "@/../public/icons";
+import {
+  StarFillMd,
+  StarFillSm,
+  StarHalfMd,
+  StarHalfSm,
+  StarMd,
+  StarSm,
+} from "@/../public/icons";
 interface RatingProps {
   StarRating?: number;
+  ratingsize: string;
 }
-export default function GetRating({ StarRating = 0 }: RatingProps) {
+export default function GetRating({ StarRating = 0, ratingsize }: RatingProps) {
   let star = StarRating;
   return (
     <div className="flex ">
@@ -14,12 +22,30 @@ export default function GetRating({ StarRating = 0 }: RatingProps) {
         .map((_, index) => {
           if (star >= 1) {
             star--;
-            return <Image key={index} src={StarFillMd} alt="별" />;
+            return (
+              <Image
+                key={index}
+                src={ratingsize === "Md" ? StarFillMd : StarFillSm}
+                alt="별"
+              />
+            );
           } else if (star == 0.5) {
             star -= 0.5;
-            return <Image key={index} src={StarHalfMd} alt="별" />;
+            return (
+              <Image
+                key={index}
+                src={ratingsize === "Md" ? StarHalfMd : StarHalfSm}
+                alt="별"
+              />
+            );
           } else {
-            return <Image key={index} src={StarMd} alt="별" />;
+            return (
+              <Image
+                key={index}
+                src={ratingsize === "Md" ? StarMd : StarSm}
+                alt="별"
+              />
+            );
           }
         })}
     </div>

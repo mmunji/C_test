@@ -28,7 +28,9 @@ export default function SimilarTastesMoive() {
                     className={`h-[60px] w-[60px] rounded-[60px] border-2 bg-white  ${PickUserNumber == index ? "border-Primary" : "border-transparent"}`}
                     onClick={() => ChangePickNumber(index)}
                   />
-                  <span className="text-center Text-xs-Regular">닉네임</span>
+                  <span className="mt-1 flex items-center justify-center Text-xs-Regular">
+                    닉네임
+                  </span>
                 </SwiperSlide>
               );
             })}

@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
 
 import { movieAPIs } from "@/api/movie/movieAPIs";
 
@@ -28,8 +29,26 @@ export default function RecentKeyword() {
       <h1 className="Desktop: Text-xxl-Bold Text-l-Bold Laptop:Text-xxl-Bold">
         지금 많이 언급되는 키워드
       </h1>
-      <div className="flex flex-col gap-[24px] Laptop:flex-row Desktop:flex-row">
-        <div className="Text-S-Bold flex gap-3 Laptop:flex-col Laptop:gap-5 Desktop:flex-col Desktop:gap-5">
+      <div className="flex flex-col gap-[24px] Laptop:flex-row">
+        <div className="flex Laptop:hidden">
+          <Swiper slidesPerView="auto" spaceBetween={1}>
+            {Array.isArray(MentionKeywords) && MentionKeywords.length > 0
+              ? MentionKeywords.map((mention, index) => {
+                  return (
+                    <SwiperSlide key={index} style={{ width: "90px" }}>
+                      <div
+                        className={`Text-S-Bold  ${KeywordListNumber == index ? "bg-D1_Gray" : ""} w-[90px]  rounded-xl px-5 py-2 text-center`}
+                        onClick={() => HandleKeywords(index)}
+                      >
+                        {mention.keyword}
+                      </div>
+                    </SwiperSlide>
+                  );
+                })
+              : ""}
+          </Swiper>
+        </div>
+        <div className="Text-S-Bold  hidden gap-3 Laptop:flex Laptop:flex-col Laptop:gap-5 ">
           {Array.isArray(MentionKeywords) && MentionKeywords.length > 0
             ? MentionKeywords.map((mention, index) => {
                 return (

@@ -41,14 +41,27 @@ export default function MasterPieceMoive() {
       </div>
       {/* Post Movie Container */}
       <div className="flex  gap-2 Laptop:hidden ">
-        <Swiper>
-          <div className="flex h-[230px] w-[156px] items-end  justify-between rounded-xl  border-2 px-2 pb-2 Text-s-Bold Tablet:h-[240px] Tablet:w-[165px]">
-            <div className="flex items-center gap-1">
-              <Image src={StarFillMd} alt="평점" />
-              <span>0.0</span>
-            </div>
-            <Image src={HeartLineMd} alt="빈 하트" />
-          </div>
+        <Swiper slidesPerView="auto" spaceBetween={20}>
+          {Array.isArray(MoviePiece) && MoviePiece.length > 0
+            ? MoviePiece.map((movie, index) => (
+                <SwiperSlide key={index} style={{ width: "156px" }}>
+                  <div
+                    className="flex h-[230px] w-[156px] items-end  justify-between rounded-xl  px-2 pb-2 Text-s-Bold Tablet:h-[240px] Tablet:w-[165px]"
+                    style={{
+                      backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0.0) 0%, rgba(0, 0, 0, 0.7) 70%), url('${movie?.movieposter ? movie?.movieposter : "/images/detail/detail-poster-example.png"}')`,
+                      backgroundSize: "cover",
+                      backgroundPosition: "center",
+                    }}
+                  >
+                    <div className="flex items-center gap-1">
+                      <Image src={StarFillMd} alt="평점" />
+                      <span>0.0</span>
+                    </div>
+                    <Image src={HeartLineMd} alt="빈 하트" />
+                  </div>
+                </SwiperSlide>
+              ))
+            : null}
         </Swiper>
       </div>
 
@@ -70,6 +83,7 @@ export default function MasterPieceMoive() {
                       regDate={movie.regDate}
                       likeCount={movie?.likeCount}
                       reviewCount={movie?.rereviewCount}
+                      background={movie?.movieposter}
                     />
                     <div className="mt-3 flex justify-between">
                       <div className="flex items-center">

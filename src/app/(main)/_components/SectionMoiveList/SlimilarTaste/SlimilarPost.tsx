@@ -25,7 +25,7 @@ export default function SlimilarPost() {
         <Swiper
           slidesPerView={3}
           spaceBetween={20}
-          className="flex  rounded-xl px-[12px]  py-[24px] Desktop:hidden"
+          className="flex  rounded-xl px-[12px]  py-[24px]"
           breakpoints={{
             1280: {
               // Laptop 사이즈 이상
@@ -51,13 +51,6 @@ export default function SlimilarPost() {
               );
             })}
         </Swiper>
-
-        <div className="gap-6 rounded-xl    py-[24px]   Laptop:hidden Desktop:flex">
-          {/* <SlimilarUser />
-          <SlimilarUser />
-          <SlimilarUser />
-          <SlimilarUser /> */}
-        </div>
       </div>
 
       <div className="hidden flex-col gap-[16px] rounded-xl bg-D1_Gray p-[24px] text-white Laptop:flex Desktop:flex">

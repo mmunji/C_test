@@ -11,7 +11,7 @@ export default function BestTalkPost() {
           <span>0.0</span>
         </div>
       </div>
-      <div className="flex-1">1줄은 이렇게 보여집니다.</div>
+      <div className="line-clamp-2 flex-1 ">1줄은 이렇게 보여집니다.</div>
       <div className="flex items-center justify-center gap-1 Text-s-Medium">
         <Image src={ThumbsUpLineSm} alt="" />
         <span>0,000</span>

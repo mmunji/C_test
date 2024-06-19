@@ -16,6 +16,7 @@ interface PostNumber {
   regDate?: string;
   likeCount?: number;
   reviewCount?: number;
+  background?: string;
 }
 
 export default function PostCard({
@@ -28,6 +29,7 @@ export default function PostCard({
   regDate,
   likeCount,
   reviewCount,
+  background,
 }: PostNumber) {
   const [onMouseHover, SetMouseHover] = useState(false);
   const HandleMouseOver = () => {
@@ -40,8 +42,7 @@ export default function PostCard({
     <div
       className="h-[358px] w-[238px] rounded-xl Tablet:h-[390px] Tablet:w-[260px] Laptop:h-[260px] Laptop:w-[174px] Desktop:h-[360px]  Desktop:w-[240px]"
       style={{
-        backgroundImage:
-          "linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, rgba(0, 0, 0, 0) 100%), url('/images/detail/detail-poster-example.png')",
+        backgroundImage: `linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, rgba(0, 0, 0, 0) 100%), url('${background ? background : "/images/detail/detail-poster-example.png"}')`,
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
@@ -65,15 +66,17 @@ export default function PostCard({
           }}
         >
           <div className="flex flex-col items-center gap-2">
-            <GetRating StarRating={StarRating} />
-            <div className="flex flex-col gap-1">
-              <span className="Text-m-Regular">{content}</span>
+            <GetRating StarRating={StarRating} ratingsize="Md" />
+            <div className="mt-4 flex flex-col gap-1">
+              <span className="Desktop:line-clamp-9 line-clamp-5 Text-m-Regular">
+                {content}
+              </span>
               <div className="flex justify-end text-Gray Text-xs-Regular">
                 {regDate}
               </div>
             </div>
             <div className="w-full border-[1px] text-Gray" />
-            <div className="flex items-end justify-end gap-2 text-Gray_Orange Text-s-Medium">
+            <div className="flex  justify-end gap-2 text-Gray_Orange Text-s-Medium">
               <div className="flex gap-1">
                 <Image src={ThumbsUpFillSm} alt="별" />
                 <span>{likeCount}</span>
@@ -90,7 +93,7 @@ export default function PostCard({
       )}
       {PostType && onMouseHover ? (
         <div
-          className="line-clamp-9 flex h-[358px] w-[238px] items-center rounded-xl px-5 py-7 Text-m-Regular  Tablet:h-[390px] Tablet:w-[260px] Laptop:h-[260px] Laptop:w-[174px] Desktop:h-[360px] Desktop:w-[240px]"
+          className="line-clamp-6 flex h-[358px] w-[238px] items-center rounded-xl px-5 py-7  Text-m-Regular Tablet:h-[390px]  Tablet:w-[260px] Laptop:h-[260px] Laptop:w-[174px] Desktop:h-[360px] Desktop:w-[240px]"
           style={{
             backdropFilter: "blur(5px)",
             background: "rgba(0, 0, 0, 0.50)",

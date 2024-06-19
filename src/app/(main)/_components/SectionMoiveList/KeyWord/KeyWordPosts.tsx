@@ -18,11 +18,13 @@ export default function KeyWordPosts({
   nickname,
   keyword,
 }: KeyWordInfoProps) {
-  console.log(nickname);
+  // if (nickname) {
+  //   return null;
+  // }
   return (
     <div className="Text-s-Mediuim flex  flex-col gap-2 rounded-xl bg-D1_Gray px-6 py-5">
       <div className="flex justify-between">
-        <h1 className="Text-s-Regular">{nickname}11</h1>
+        <h1 className="Text-s-Regular">{nickname}</h1>
         <div className="/Text-sm-Bold flex gap-1">
           <Image src={StarFillSm} alt="주황별" />
           {star}
