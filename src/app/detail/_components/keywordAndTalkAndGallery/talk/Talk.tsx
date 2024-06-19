@@ -34,7 +34,7 @@ export default function Talk({ title, movieId }: TalkProps) {
 
       <section className="Laptop:rounded-xl Laptop:bg-D1_Gray Laptop:p-8">
         <TalkHeader />
-        {noTalk ? (
+        {!noTalk ? (
           <NoTalk />
         ) : (
           <>

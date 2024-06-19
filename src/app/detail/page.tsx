@@ -12,7 +12,7 @@ import Talk from "./_components/keywordAndTalkAndGallery/talk/Talk";
 import KeywordBar from "./_components/keywordBar/KeywordBar";
 
 export default async function Detail() {
-  const movieId = 614479;
+  const movieId = 290859;
 
   const movieDetailData: MovieDetailData =
     await movieAPIs.getMovieDetail(movieId);
