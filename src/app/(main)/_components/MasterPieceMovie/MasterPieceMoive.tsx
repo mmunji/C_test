@@ -9,7 +9,7 @@ import { Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import { HeartLineMd, StarFillMd } from "@/../public/icons";
-import { movieAPIs } from "@/api/movie/movieAPIs";
+import { movieAPIs } from "@/services/movie/movieAPIs";
 
 import PostCard from "../PostCard";
 export default function MasterPieceMoive() {

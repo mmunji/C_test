@@ -1,7 +1,7 @@
 import React from "react";
 
-import { keywordAPIs } from "@/api/keyword/keywordAPIs";
-import { movieAPIs } from "@/api/movie/movieAPIs";
+import { keywordAPIs } from "@/services/keyword/keywordAPIs";
+import { movieAPIs } from "@/services/movie/movieAPIs";
 
 import DetailBannerSection from "./_components/detailBannerSection/DetailBannerSection";
 import DetailInfo from "./_components/detailInfo/DetailInfo";

@@ -1,7 +1,7 @@
 import { useRouter } from "next/navigation";
 import { ChangeEvent, FormEvent, useState } from "react";
 
-import { keywordAPIs } from "@/api/keyword/keywordAPIs";
+import { keywordAPIs } from "@/services/keyword/keywordAPIs";
 import Button from "@/components/buttons/Button";
 import LoadingSpinner from "@/components/loadingSpinner/LoadingSpinner";
 import { abuseList } from "@/constants/abuseList";

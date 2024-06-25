@@ -1,4 +1,4 @@
-import { movieAPIs } from "@/api/movie/movieAPIs";
+import { movieAPIs } from "@/services/movie/movieAPIs";
 
 export default async function Footer() {
   const MovieReviewComments: number = await movieAPIs.getMovieReviewComments();

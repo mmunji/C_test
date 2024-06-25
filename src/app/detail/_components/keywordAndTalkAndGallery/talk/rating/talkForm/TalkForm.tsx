@@ -3,7 +3,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 
-import { talkAPIs } from "@/api/talk/talkAPIs";
+import { talkAPIs } from "@/services/talk/talkAPIs";
 import Button from "@/components/buttons/Button";
 import hexToRGBA from "@/utils/hexToRGBA";
 
