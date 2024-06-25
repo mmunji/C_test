@@ -1,20 +1,26 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 import LoadingSpinner from "@/components/loadingSpinner/LoadingSpinner";
 import { authAPIS } from "@/services/auth/authAPIs";
 
 export default function Redirect() {
   const router = useRouter();
-  const searchParams = new URLSearchParams(window.location.search);
-  const authToken = searchParams.get("authToken");
+  const [authToken, setAuthToken] = useState<string | null>(null);
+  const [prevPage, setPrevPage] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const searchParams = new URLSearchParams(window.location.search);
+      setAuthToken(searchParams.get("authToken"));
+      setPrevPage(sessionStorage.getItem("prev-page"));
+    }
+  }, []);
 
   useEffect(() => {
     const fetchLogin = async () => {
-      const prevPage = sessionStorage.getItem("prev-page");
-
       if (authToken) {
         const { res } = await authAPIS.authBy(authToken);
         console.log(res.headers.get("access"));
@@ -25,7 +31,7 @@ export default function Redirect() {
       }
     };
     fetchLogin();
-  }, [authToken, router]);
+  }, [authToken, router, prevPage]);
 
   return (
     <div className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
