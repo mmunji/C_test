@@ -15,11 +15,10 @@ export default function Redirect() {
   useEffect(() => {
     const fetchLogin = async () => {
       if (authToken) {
-        const { data, res } = await authAPIS.authBy(authToken);
+        const { res } = await authAPIS.authBy(authToken);
         console.log(res.headers.get("access"));
 
         if (res.ok && prevPage) {
-          console.log(res.ok, prevPage);
           router.push(prevPage);
         }
       }
