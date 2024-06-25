@@ -1,13 +1,29 @@
 import Image from "next/image";
+import Link from "next/link";
 import { A11y, Navigation, Pagination, Scrollbar } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import useDetailSwiper from "@/app/detail/_hooks/useDetailSwiper";
-import { trailerAndPhoto } from "@/app/detail/fakeData";
+import Button from "@/components/buttons/Button";
+import hexToRGBA from "@/utils/hexToRGBA";
 
-import { ChevronLeftMd, ChevronRightMd } from "../../../../../public/icons";
+import {
+  ChevronLeftMd,
+  ChevronRightMd,
+  VideoPlay,
+} from "../../../../../public/icons";
 
-export default function TrailerAndPhotoSlider() {
+interface TrailerAndPhotoSliderProps {
+  type: "trailer" | "photo";
+  trailer?: string[];
+  photo?: DetailImageDTO[];
+}
+
+export default function TrailerAndPhotoSlider({
+  type,
+  trailer,
+  photo,
+}: TrailerAndPhotoSliderProps) {
   const {
     hovered,
     setHovered,
@@ -18,6 +34,8 @@ export default function TrailerAndPhotoSlider() {
     handlePrev,
     traillerAndPhotoSpaceBetween,
   } = useDetailSwiper("traillerAndPhoto");
+
+  const trailerOpacity = hexToRGBA("#000000", 0.4);
 
   return (
     <div
@@ -34,32 +52,72 @@ export default function TrailerAndPhotoSlider() {
           setSwiper(e);
         }}
       >
-        {trailerAndPhoto.map((el, i) => (
-          <SwiperSlide
-            key={i}
-            className="max-w-[320px] Tablet:max-w-[352px] Laptop:max-w-[271px] Desktop:max-w-[372px]"
-          >
-            <Image src={el} alt="" className="w-full" />
-          </SwiperSlide>
-        ))}
+        {type === "trailer" &&
+          [...(trailer || [])].reverse()?.map((el, i) => (
+            <SwiperSlide
+              key={i}
+              className="relative max-w-[320px] Tablet:max-w-[352px] Laptop:max-w-[271px] Desktop:max-w-[372px]"
+            >
+              <Link
+                href={`https://www.youtube.com/watch?v=${el}`}
+                target="_BLANK"
+              >
+                <div
+                  style={{
+                    backgroundColor: trailerOpacity,
+                  }}
+                  className="absolute h-full w-full"
+                />
+                <Image
+                  width={500}
+                  height={500}
+                  src={`https://img.youtube.com/vi/${el}/maxresdefault.jpg`}
+                  alt="썸네일"
+                  className="h-[182px] w-full rounded-lg Tablet:h-[200px] Laptop:h-[150px] Laptop:rounded-xl Desktop:h-[210px]"
+                />
+                <Image
+                  src={VideoPlay}
+                  alt="재생"
+                  className="absolute left-1/2 top-1/2 translate-x-[-50%] translate-y-[-50%]"
+                />
+              </Link>
+            </SwiperSlide>
+          ))}
+        {type === "photo" &&
+          photo?.map((el, i) => (
+            <SwiperSlide
+              key={i}
+              className="max-w-[320px] Tablet:max-w-[352px] Laptop:max-w-[271px] Desktop:max-w-[372px]"
+            >
+              <Image
+                width={500}
+                height={500}
+                src={el.filePath}
+                alt="포토"
+                className="h-[182px] w-full rounded-lg Tablet:h-[200px] Laptop:h-[150px] Laptop:rounded-xl Desktop:h-[210px]"
+              />
+            </SwiperSlide>
+          ))}
       </Swiper>
 
       {swiper && !swiper.isBeginning && (
-        <button
+        <Button
           onClick={handlePrev}
-          className={`absolute hidden Laptop:flex ${hovered ? "opacity-100" : "opacity-0"} left-0 top-1/2 z-[5] flex h-11 w-11 translate-x-[-50%] translate-y-[-50%] items-center justify-center rounded-full bg-[#FFFFFF19] transition-opacity duration-300`}
+          variant="arrow1"
+          className={`absolute hidden Laptop:flex ${hovered ? "opacity-100" : "opacity-0"} left-0 top-1/2 z-[5] translate-x-[-50%] translate-y-[-50%] transition-opacity duration-300`}
         >
           <Image src={ChevronLeftMd} alt="이전" />
-        </button>
+        </Button>
       )}
 
       {swiper && !swiper.isEnd && (
-        <button
+        <Button
           onClick={handleNext}
-          className={`absolute hidden Laptop:flex ${hovered ? "opacity-100" : "opacity-0"} right-0 top-1/2 z-[5] flex h-11 w-11 translate-x-[50%] translate-y-[-50%] items-center justify-center rounded-full bg-[#FFFFFF19] transition-opacity duration-300`}
+          variant="arrow2"
+          className={`absolute hidden Laptop:flex ${hovered ? "opacity-100" : "opacity-0"} right-0 top-1/2 z-[5] translate-x-[50%] translate-y-[-50%] transition-opacity duration-300`}
         >
           <Image src={ChevronRightMd} alt="다음" />
-        </button>
+        </Button>
       )}
     </div>
   );

@@ -74,9 +74,15 @@ body {
   .inner-silver {
     box-shadow: inset 0 0 0 1px theme(colors.Silver);
   }
+  .inner-gray-orange {
+    box-shadow: inset 0 0 0 1px theme(colors.Gray_Orange);
+  }
   .inner-none {
     box-shadow: none;
   }
+}
+
+@layer base {
 }
 
 @layer components {
@@ -94,4 +100,34 @@ body {
 ::-webkit-scrollbar-thumb {
   background: #545250;
   border-radius: 21px;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:focus {
+  transition:
+    background-color 600000s 0s,
+    color 600000s 0s;
+}
+input[data-autocompleted] {
+  background-color: transparent !important;
+}
+.responsive-slide {
+  width: 320px;
+}
+
+@media (min-width: 768px) {
+  .responsive-slide {
+    width: 726px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .responsive-slide {
+    width: 1144px;
+  }
+}
+@media (min-width: 1920px) {
+  .responsive-slide {
+    width: 1560px;
+  }
 }

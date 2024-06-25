@@ -1,31 +1,23 @@
 import Image from "next/image";
 
+import SmallBadge from "@/components/smallBadge/SmallBadge";
+
 import { CameraMd, CameraSm } from "../../../../public/icons";
 
 export default function UserInfo() {
-  const badges = [
-    {
-      id: 1,
-      badge: "👊",
-      text: "액션가면",
-    },
-    {
-      id: 2,
-      badge: "👽",
-      text: "신비주의",
-    },
-    {
-      id: 3,
-      badge: "🎈",
-      text: "웃음사냥꾼",
-    },
-  ];
+  const badges: Badge[] = ["강심장", "밀덕", "소오름"];
 
   return (
     <section className="mb-9 flex w-full flex-col items-center gap-7 px-5 Tablet:mb-0 Tablet:gap-[52px] Tablet:px-0">
       <div className="flex flex-col items-center gap-4 px-6 Tablet:gap-3 Tablet:px-0 Laptop:gap-4">
         <div className="flex justify-center">
           <div className="relative h-16 w-16 rounded-full bg-[#D9D9D9]  Tablet:h-[100px] Tablet:w-[100px]">
+            <Image
+              alt="유저_프로필"
+              src="/images/detail/default_profile2.png"
+              fill
+              className="overflow-hidden"
+            />
             <button
               type="button"
               className="absolute -bottom-[2px] right-[2px] flex h-7 w-7 translate-x-1/2 items-center justify-center rounded-full bg-Gray Tablet:h-10 Tablet:w-10"
@@ -45,14 +37,13 @@ export default function UserInfo() {
           </p>
           <div className="flex items-center gap-1 Tablet:gap-4">
             {badges.map((badge) => (
-              <div
-                key={badge.id}
-                className="flex w-fit items-center justify-center gap-1 rounded-lg bg-black bg-opacity-20 px-2 py-1 Tablet:px-3 Tablet:py-2"
-              >
-                <span className="Emoji-s Tablet:Emoji-m">{badge.badge}</span>
-                <span className="Text-s-Medium Tablet:Text-m-Medium">
-                  {badge.text}
-                </span>
+              <div key={badge}>
+                <div className="hidden Tablet:block">
+                  <SmallBadge content={badge} size="md" />
+                </div>
+                <div className="block Tablet:hidden">
+                  <SmallBadge content={badge} size="sm" />
+                </div>
               </div>
             ))}
           </div>

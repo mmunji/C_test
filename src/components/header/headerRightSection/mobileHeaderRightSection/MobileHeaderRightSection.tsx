@@ -3,6 +3,7 @@ import { usePathname } from "next/navigation";
 import React, { Dispatch, SetStateAction, useState } from "react";
 
 import ROUTES from "@/constants/routes";
+import useDebounce from "@/hooks/useDebounce";
 
 import { SearchWhiter, User } from "../../../../../public/icons";
 import MobileHeaderInputSection from "./MobileHeaderInputSection";
@@ -19,7 +20,18 @@ function MobileHeaderRightSection({
 }: MobileHeaderRightSectionProps) {
   const pathname = usePathname();
   const [inputFocused, setInputFocused] = useState(false);
+  const [debouncedValue, setDebouncedValue] = useState("");
   const [inputValue, setInputValue] = useState("");
+
+  const handleDebounceChange = useDebounce<React.ChangeEvent<HTMLInputElement>>(
+    (e) => setDebouncedValue(e.target.value),
+    300,
+  );
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInputValue(e.target.value);
+    handleDebounceChange(e);
+  };
 
   return (
     <section
@@ -30,7 +42,7 @@ function MobileHeaderRightSection({
           {...{
             inputFocused,
             inputValue,
-            setInputValue,
+            setInputValue: handleChange,
             setInputFocused,
             setClickSearchIcon,
             clickSearchIcon,
@@ -53,8 +65,9 @@ function MobileHeaderRightSection({
       )}
       {clickSearchIcon && (
         <MobileHeaderSearchDropdown
-          inputValue={inputValue}
+          inputValue={debouncedValue}
           inputFocused={inputFocused}
+          setClickSearchIcon={setClickSearchIcon}
         />
       )}
     </section>

@@ -11,25 +11,29 @@ interface ButtonProps
   href?: string;
 }
 
-const ButtonVariants = cva(`flex justify-center`, {
+const ButtonVariants = cva(`flex justify-center whitespace-nowrap`, {
   variants: {
     variant: {
       icon: "p-2 rounded-lg hover:bg-Opacity_W10 active:bg-Opacity_W15",
       grey: "bg-D2_Gray text-Gray hover:bg-D3_Gray hover:text-Gray_Orange active:bg-Gray active:text-Silver disabled:bg-D2_Gray disabled:text-Gray",
       orange:
         "text-Silver bg-Primary hover:bg-Shade_1 active:bg-Shade_3 disabled:bg-D2_Gray disabled:text-Gray",
-      line: "inner-gray bg-BG text-Gray_Orange hover:inner-silver hover:text-Silver active:bg-D1_Gray",
+      line: "inner-gray bg-transparent text-Gray_Orange hover:inner-silver hover:text-Silver active:bg-D1_Gray",
       text: "p-2 ",
       textIconR: "p-2 pr-1",
       textIconL: "p-2 pl-1",
+      arrow1:
+        "p-[10px] rounded-full bg-Opacity_W10 hover:bg-Opacity_W15 active:bg-Opacity_W20",
+      arrow2:
+        "p-[10px] rounded-full bg-Opacity_W10 hover:bg-Opacity_W15 active:bg-Opacity_W20",
     },
     size: {
       full: "py-3 px-5 rounded-xl",
-      xl: "py-3 px-5 w-[360px] rounded-xl",
-      lg: "py-3 px-5 w-[180px] rounded-xl",
-      md: "py-2 px-4 rounded-lg w-fit",
-      sm: "py-2 px-3 rounded-lg w-fit",
-      xs: "py-1 px-2 rounded-lg w-fit",
+      xl: "py-3 px-5 w-[360px] rounded-xl Text-m-Medium",
+      lg: "py-3 px-5 w-[180px] rounded-xl Text-m-Medium",
+      md: "py-2 px-4 rounded-lg w-fit Text-m-Medium",
+      sm: "py-1 px-3 rounded-lg w-fit Text-s-Medium",
+      xs: "py-1 px-2 rounded-lg w-fit Text-xs-Regular",
       none: "",
     },
     focus: {

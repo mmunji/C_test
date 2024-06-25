@@ -1,7 +1,8 @@
-import React, { RefObject, useRef } from "react";
+import React, { useRef } from "react";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 
 import handleResizeTextareaHeight from "@/app/detail/utils/handleResizeTextareaHeight";
+import Button from "@/components/buttons/Button";
 import useDevice from "@/hooks/useDevice";
 
 interface ReplyValue {
@@ -34,7 +35,7 @@ export default function ReplyForm() {
               rows={1}
               ref={textareaRef}
               placeholder="답글을 작성해주세요."
-              className="input-scrollbar my-3 w-[calc(100%-71px)] resize-none bg-transparent pl-4 pr-2 leading-[21px] text-Gray_Orange outline-none Text-s-Regular placeholder:text-Gray Tablet:w-[calc(100%-90px)] Tablet:pr-3 Tablet:leading-[24px] Tablet:Text-m-Regular"
+              className="my-3 w-[calc(100%-71px)] resize-none bg-transparent pl-4 pr-2 leading-[21px] text-Gray_Orange outline-none Text-s-Regular input-scrollbar placeholder:text-Gray Tablet:w-[calc(100%-90px)] Tablet:pr-3 Tablet:leading-[24px] Tablet:Text-m-Regular"
               onChange={(e) => {
                 field.onChange(e);
                 handleResizeTextareaHeight(maxLines, lineHeight, textareaRef);
@@ -42,13 +43,24 @@ export default function ReplyForm() {
             />
           )}
         />
-        <button
+        <Button
           disabled={!replyValue}
           type="submit"
-          className={`absolute right-4 top-[10px] flex h-[25px] w-[37px] items-center justify-center rounded-lg ${replyValue ? "bg-Primary text-Silver" : "bg-D2_Gray text-Gray_Orange"} leading-[150%] Text-xs-Regular Tablet:h-[29px] Tablet:w-12 Tablet:Text-s-Medium`}
+          size="xs"
+          variant="orange"
+          className="absolute right-4 top-[10px] Tablet:hidden"
         >
           답글
-        </button>
+        </Button>
+        <Button
+          disabled={!replyValue}
+          type="submit"
+          size="sm"
+          variant="orange"
+          className="absolute right-4 top-[10px] hidden Tablet:block"
+        >
+          답글
+        </Button>
       </div>
     </form>
   );

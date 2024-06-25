@@ -1,7 +1,10 @@
+import { useMutation } from "@tanstack/react-query";
 import Image from "next/image";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 
+import { talkAPIs } from "@/api/talk/talkAPIs";
+import Button from "@/components/buttons/Button";
 import hexToRGBA from "@/utils/hexToRGBA";
 
 import {
@@ -17,12 +20,34 @@ interface AddTalkValues {
   spoiler: boolean;
 }
 
-export default function TalkForm() {
+interface TalkFormProps {
+  movieId: number;
+  ratingValue: number;
+}
+
+export default function TalkForm({ movieId, ratingValue }: TalkFormProps) {
   const [readyToSubmit, setReadyToSubmit] = useState(true);
-  const { register, handleSubmit, watch, setValue } = useForm<AddTalkValues>();
-  const onSubmit: SubmitHandler<AddTalkValues> = (data) => {
-    if (readyToSubmit) console.log(data);
+  const { register, handleSubmit, watch, setValue } = useForm<AddTalkValues>({
+    defaultValues: {
+      talk: "",
+      spoiler: false,
+    },
+  });
+  const { data, mutate: mutateAddTalk } = useMutation({
+    mutationFn: () =>
+      talkAPIs.addTalks({ movieId, star: ratingValue, content: talk, spoiler }),
+    onSuccess: (data) => {
+      console.log(data);
+    },
+  });
+
+  const onSubmit: SubmitHandler<AddTalkValues> = () => {
+    if (readyToSubmit) {
+      mutateAddTalk();
+    }
   };
+
+  const talk = watch("talk");
   const spoiler = watch("spoiler");
 
   const toggleSpoiler = () => {
@@ -70,12 +95,25 @@ export default function TalkForm() {
           <button className="text-Gray_Orange Text-s-Regular">스포일러</button>
         </section>
 
-        <button
+        <Button
+          disabled={!talk}
+          size="sm"
+          variant="orange"
           type="submit"
-          className="flex h-[29px] w-12 items-center justify-center rounded-lg bg-Primary text-Silver Text-s-Medium"
+          className="Laptop:hidden"
         >
           등록
-        </button>
+        </Button>
+
+        <Button
+          disabled={!talk}
+          size="md"
+          variant="orange"
+          type="submit"
+          className="hidden Laptop:block"
+        >
+          등록
+        </Button>
       </section>
     </form>
   );

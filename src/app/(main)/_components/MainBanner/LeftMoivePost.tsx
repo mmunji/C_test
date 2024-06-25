@@ -8,7 +8,7 @@ export default function LeftMovePost() {
 */
   }
   return (
-    <div className="flex  flex-col gap-9 Tablet:justify-end   ">
+    <div className="flex  flex-col gap-9 Tablet:justify-end">
       <div className="hidden Laptop:block ">
         <PostCard />
       </div>
@@ -35,7 +35,7 @@ export default function LeftMovePost() {
               </h1>
             </li>
             <li className="flex flex-col gap-[8px] ">
-              <h4 className="text-center Text-xs-Regular ">Best키워드</h4>
+              <h4 className="text-center Text-xs-Regular ">Best 키워드</h4>
               <h1 className="Text-s-Bold Tablet:Text-l-Bold">초코릿향</h1>
             </li>
             <li className="flex flex-col gap-[8px]">

@@ -15,18 +15,27 @@ export default function SlimilarPost() {
   const [UserStateNumder, SetUserStateNumber] = useState<number>(0);
   const onHandleStateChange = (e: number) => {
     SetUserStateNumber(e);
-    console.log(e, UserStateNumder);
   };
   return (
     <div className="flex flex-col gap-5 ">
-      <div className="flex flex-col gap-5 rounded-2xl bg-Black px-5 py-5 Laptop:hidden Desktop:hidden">
+      <div className="flex flex-col gap-5 rounded-2xl bg-Black px-5 py-5 Tablet:bg-D1_Gray Laptop:hidden ">
         <SlimilarMobilePost />
       </div>
       <div className=" hidden justify-between Laptop:flex">
         <Swiper
-          slidesPerView={4}
-          spaceBetween={1}
-          className="flex  rounded-xl px-[12px]  py-[24px] Desktop:hidden"
+          slidesPerView={3}
+          spaceBetween={20}
+          className="flex  rounded-xl px-[12px]  py-[24px]"
+          breakpoints={{
+            1280: {
+              // Laptop 사이즈 이상
+              slidesPerView: 3,
+            },
+            1920: {
+              // Desktop 사이즈 이상
+              slidesPerView: 4,
+            },
+          }}
         >
           {Array(10)
             .fill(0)
@@ -42,13 +51,6 @@ export default function SlimilarPost() {
               );
             })}
         </Swiper>
-
-        <div className="gap-6 rounded-xl    py-[24px]   Laptop:hidden Desktop:flex">
-          {/* <SlimilarUser />
-          <SlimilarUser />
-          <SlimilarUser />
-          <SlimilarUser /> */}
-        </div>
       </div>
 
       <div className="hidden flex-col gap-[16px] rounded-xl bg-D1_Gray p-[24px] text-white Laptop:flex Desktop:flex">

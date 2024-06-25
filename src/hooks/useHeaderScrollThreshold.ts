@@ -40,7 +40,7 @@ export default function useHeaderScrollThreshold() {
     return () => {
       removeEventListener("scroll", handleScroll);
     };
-  }, [breakPoints, hasScrolledPast]);
+  }, [breakPoints, hasScrolledPast, pathname]);
 
   return { hasScrolledPast };
 }

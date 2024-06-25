@@ -79,12 +79,16 @@ export { default as Kakao } from "./logo/kakao.svg";
 export { default as Naver } from "./logo/naver.svg";
 export { default as TmdbMd } from "./logo/tmdb_md.svg";
 export { default as TmdbSm } from "./logo/tmdb_sm.svg";
-
 export { default as CaretDownGrayMd } from "./arrow/caret_down_gray_md.svg";
 export { default as SpeechBubbleBottom } from "./speeach_bubble/speech_bubble_bottom.svg";
 export { default as SpeechBubbleLeft } from "./speeach_bubble/speech_bubble_left.svg";
 export { default as SpeechBubbleTop } from "./speeach_bubble/speech_bubble_top.svg";
 export { default as StarXl } from "./interaction/star/star_xl.svg";
 export { default as StarSm } from "./interaction/star/star_sm.svg";
+export { default as StarMd } from "./interaction/star/star_md.svg";
+export { default as StarLg } from "./interaction/star/star_lg.svg";
 export { default as CaretDownGraySm } from "./arrow/caret_down_gray_sm.svg";
 export { default as ChatLineGrayOrangeSm } from "./chat/chat_line_grayOrange_sm.svg";
+export { default as Check } from "./interaction/check.svg";
+export { default as VideoPlay } from "./interaction/video_play.svg";
+export { default as ChevronRightGrayMd } from "./arrow/chevron_right_gray_md.svg";

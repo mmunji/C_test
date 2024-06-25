@@ -16,10 +16,20 @@ export default function ReplyFooter() {
   const [like, setLike] = useState(false);
   const [disLike, setDislike] = useState(false);
 
+  const handleClickLike = () => {
+    setDislike(false);
+    setLike(!like);
+  };
+
+  const handleClickDislike = () => {
+    setLike(false);
+    setDislike(!disLike);
+  };
+
   return (
     <section className="flex h-10 items-center justify-end gap-3">
       <section
-        onClick={() => setLike(!like)}
+        onClick={handleClickLike}
         className="flex cursor-pointer items-center"
       >
         <Image
@@ -38,7 +48,7 @@ export default function ReplyFooter() {
       </section>
 
       <section
-        onClick={() => setDislike(!disLike)}
+        onClick={handleClickDislike}
         className="flex cursor-pointer items-center"
       >
         <Image

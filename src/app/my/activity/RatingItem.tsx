@@ -5,12 +5,17 @@ import { StarFillMd } from "../../../../public/icons";
 export default function RatingItem() {
   return (
     <div className="flex flex-col gap-2">
-      <div>
-        <div className="h-[220px] rounded-lg bg-Gray_Orange"></div>
+      <div className="relative h-[220px]">
+        <Image
+          alt="웡카"
+          src="/images/detail/detail-poster-example.png"
+          fill
+          className="rounded-lg object-cover"
+        />
       </div>
       <div className="flex flex-col gap-1">
         <div className="text-L_Gray Text-s-Medium Tablet:Text-m-Medium">
-          영화제목
+          웡카
         </div>
         <div className="flex items-center gap-[2px]">
           {Array(5)
