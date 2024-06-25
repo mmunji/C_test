@@ -1,7 +1,8 @@
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { FormEvent, useState } from "react";
 
 import Button from "@/components/buttons/Button";
+import { authAPIS } from "@/services/auth/authAPIs";
 
 import SignUpBirth from "./SignUpBirth";
 import SignUpGender from "./SignUpGender";
@@ -31,9 +32,24 @@ export default function SignUp({ userInfo }: SignUpProps) {
   });
   const [gender, setGender] = useState(userInfo.gender);
 
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    try {
+      const { year, month, day } = birthValues;
+      const birthday = `${year}-${month}-${day}`;
+      console.log(nickname, gender, birthday);
+      const { res, data } = await authAPIS.signUp(nickname, gender, birthday);
+    } catch (error) {
+      alert(error);
+    }
+  };
+
   return (
     <div className="fixed inset-0 z-[99] min-h-[100vh] w-full overflow-y-auto bg-BG Tablet:flex Tablet:items-center">
-      <div className="mx-5 flex h-full flex-col Tablet:mx-auto Tablet:h-[686px] Tablet:w-[504px] Tablet:rounded-xl Tablet:bg-D1_Gray Tablet:px-[72px] Tablet:py-[64px]">
+      <form
+        onSubmit={handleSubmit}
+        className="mx-5 flex h-full flex-col Tablet:mx-auto Tablet:h-[686px] Tablet:w-[504px] Tablet:rounded-xl Tablet:bg-D1_Gray Tablet:px-[72px] Tablet:py-[64px]"
+      >
         <Image
           src=""
           alt=""
@@ -50,13 +66,14 @@ export default function SignUp({ userInfo }: SignUpProps) {
         </div>
 
         <Button
+          type="submit"
           size="lg"
           variant="orange"
           className="fixed bottom-0 left-0 w-full Tablet:static Tablet:mt-auto"
         >
           회원가입
         </Button>
-      </div>
+      </form>
     </div>
   );
 }

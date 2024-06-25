@@ -14,7 +14,7 @@ export default function SignUpGender({ gender, setGender }: SignUpGenderProps) {
       <p className="text-White Text-xs-Regular">성별</p>
       <section className="mt-1 flex gap-3">
         <Button
-          onClick={() => setGender("남자")}
+          onClick={() => setGender("M")}
           variant="line"
           size="md"
           className={clsx("w-full rounded-xl", gender === "M" && "bg-D2_Gray")}
@@ -22,7 +22,7 @@ export default function SignUpGender({ gender, setGender }: SignUpGenderProps) {
           남자
         </Button>
         <Button
-          onClick={() => setGender("여자")}
+          onClick={() => setGender("F")}
           variant="line"
           size="md"
           className={clsx("w-full rounded-xl", gender === "F" && "bg-D2_Gray")}

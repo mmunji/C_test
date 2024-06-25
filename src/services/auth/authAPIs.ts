@@ -7,4 +7,21 @@ export const authAPIS = {
     const data = await res.json();
     return { data, res };
   },
+
+  signUp: async (nickname: string, gender: string, birthday: string) => {
+    const res = await fetch(`${API_URL}/my/nickNameMerge`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        nickname: nickname,
+        gender: gender,
+        birthday: birthday,
+      }),
+    });
+
+    const data = await res.json();
+    return { data, res };
+  },
 };
