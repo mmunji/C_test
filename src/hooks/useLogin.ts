@@ -2,6 +2,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 import { authAPIS } from "@/services/auth/authAPIs";
+import tokenManager from "@/utils/tokenManager";
 
 export default function useLogin(type: "with-nickname" | "without-nickname") {
   const [isLoading, setIsLoading] = useState(true);
@@ -26,7 +27,9 @@ export default function useLogin(type: "with-nickname" | "without-nickname") {
     const fetchLogin = async () => {
       if (authToken) {
         const { data, res } = await authAPIS.authBy(authToken);
-        console.log(res.headers.get("access"));
+
+        const accessToken = res.headers.get("access");
+        if (accessToken) tokenManager.setToken(accessToken);
 
         if (res.ok && prevPage) {
           if (type === "with-nickname") router.push(prevPage);
