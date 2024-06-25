@@ -15,9 +15,12 @@ function HeaderAuthButtons({ hasScrolledPast }: HeaderAuthButtonsProps) {
   const router = useRouter();
 
   const handleClickAuthButton = (type: "kakao" | "naver") => {
-    sessionStorage.setItem("prev-page", window.location.href);
-    if (type === "kakao") router.push(`${API_URL}/oauth2/authorization/kakao`);
-    else router.push(`${API_URL}/oauth2/authorization/kakao`);
+    if (typeof window !== "undefined") {
+      sessionStorage.setItem("prev-page", window.location.href);
+      if (type === "kakao")
+        router.push(`${API_URL}/oauth2/authorization/kakao`);
+      else router.push(`${API_URL}/oauth2/authorization/naver`);
+    }
   };
 
   return (
