@@ -8,13 +8,28 @@ import SignUpGender from "./SignUpGender";
 import SignUpNickname from "./SignUpNickname";
 import SignUpTitle from "./SignUpTitle";
 
-export default function SignUp() {
+interface SignUpProps {
+  userInfo: UserInfo;
+}
+
+interface UserInfo {
+  nickname: string;
+  birthday: string;
+  gender: string;
+}
+
+export default function SignUp({ userInfo }: SignUpProps) {
+  const year = userInfo.birthday.split("").slice(0, 4).join("");
+  const month = userInfo.birthday.split("").slice(5, 7).join("");
+  const day = userInfo.birthday.split("").slice(8, 10).join("");
+
+  const [nickname, setNickname] = useState(userInfo.nickname);
   const [birthValues, setBirthValues] = useState({
-    year: "",
-    month: "",
-    day: "",
+    year: year,
+    month: month,
+    day: day,
   });
-  const [gender, setGender] = useState("");
+  const [gender, setGender] = useState(userInfo.gender);
 
   return (
     <div className="fixed inset-0 z-[99] min-h-[100vh] w-full overflow-y-auto bg-BG Tablet:flex Tablet:items-center">
@@ -26,7 +41,7 @@ export default function SignUp() {
         />
         <div className="mt-11 Tablet:mt-[52px]">
           <SignUpTitle />
-          <SignUpNickname />
+          <SignUpNickname nickname={nickname} setNickname={setNickname} />
           <SignUpBirth
             birthValues={birthValues}
             setBirthValues={setBirthValues}

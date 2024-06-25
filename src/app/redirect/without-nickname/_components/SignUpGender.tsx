@@ -17,10 +17,7 @@ export default function SignUpGender({ gender, setGender }: SignUpGenderProps) {
           onClick={() => setGender("남자")}
           variant="line"
           size="md"
-          className={clsx(
-            "w-full rounded-xl",
-            gender === "남자" && "bg-D2_Gray",
-          )}
+          className={clsx("w-full rounded-xl", gender === "M" && "bg-D2_Gray")}
         >
           남자
         </Button>
@@ -28,10 +25,7 @@ export default function SignUpGender({ gender, setGender }: SignUpGenderProps) {
           onClick={() => setGender("여자")}
           variant="line"
           size="md"
-          className={clsx(
-            "w-full rounded-xl",
-            gender === "여자" && "bg-D2_Gray",
-          )}
+          className={clsx("w-full rounded-xl", gender === "F" && "bg-D2_Gray")}
         >
           여자
         </Button>
