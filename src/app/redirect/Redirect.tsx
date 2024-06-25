@@ -1,16 +1,16 @@
 "use client";
-
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import React, { useEffect } from "react";
-
 import LoadingSpinner from "@/components/loadingSpinner/LoadingSpinner";
 import { authAPIS } from "@/services/auth/authAPIs";
 
 export default function Redirect() {
+  const searchParams = useSearchParams();
+  const authToken = searchParams.get("authToken");
   const router = useRouter();
   const prevPage = sessionStorage.getItem("prev-page");
-  const searchParams = new URLSearchParams(window.location.search);
-  const authToken = searchParams.get("authToken");
+  const params = new URL(document.location).searchParams;
+  const name = params.get("name");
 
   useEffect(() => {
     const fetchLogin = async () => {
