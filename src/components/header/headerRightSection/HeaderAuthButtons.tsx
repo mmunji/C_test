@@ -1,7 +1,8 @@
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import React, { useState } from "react";
 
 import Modal from "@/components/modal/_components";
+import { API_URL } from "@/constants/api_url";
 import ROUTES from "@/constants/routes";
 
 interface HeaderAuthButtonsProps {
@@ -11,6 +12,17 @@ interface HeaderAuthButtonsProps {
 function HeaderAuthButtons({ hasScrolledPast }: HeaderAuthButtonsProps) {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
+  const router = useRouter();
+
+  const handleClickAuthButton = (type: "kakao" | "naver") => {
+    if (typeof window !== "undefined") {
+      sessionStorage.setItem("prev-page", window.location.href);
+      if (type === "kakao")
+        router.push(`${API_URL}/oauth2/authorization/kakao`);
+      else router.push(`${API_URL}/oauth2/authorization/naver`);
+    }
+  };
+
   return (
     <section className="hidden gap-4 Laptop:flex Laptop:gap-8">
       <button
@@ -34,8 +46,8 @@ function HeaderAuthButtons({ hasScrolledPast }: HeaderAuthButtonsProps) {
           onClose={() => setIsOpen(false)}
         >
           <Modal.Login
-            onKakaoLogin={() => console.log("d")}
-            onNaverLogin={() => console.log("d")}
+            onKakaoLogin={() => handleClickAuthButton("kakao")}
+            onNaverLogin={() => handleClickAuthButton("naver")}
           />
         </Modal>
       )}

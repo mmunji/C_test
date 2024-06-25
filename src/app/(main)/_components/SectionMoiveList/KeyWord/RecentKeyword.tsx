@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-import { movieAPIs } from "@/api/movie/movieAPIs";
+import { movieAPIs } from "@/services/movie/movieAPIs";
 
 import RightKeyWords from "./RightKeyWords";
 export default function RecentKeyword() {
