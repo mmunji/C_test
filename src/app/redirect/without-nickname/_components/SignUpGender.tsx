@@ -1,19 +1,49 @@
-import React from "react";
+import clsx from "clsx";
+import React, { Dispatch, SetStateAction } from "react";
 
 import Button from "@/components/buttons/Button";
 
-export default function SignUpGender() {
+interface SignUpGenderProps {
+  gender: string;
+  setGender: Dispatch<SetStateAction<string>>;
+}
+
+export default function SignUpGender({ gender, setGender }: SignUpGenderProps) {
   return (
     <section className="mt-6 Tablet:mt-5">
-      <label className="text-White Text-xs-Regular">성별</label>
-      <section className="flex gap-3">
-        <Button variant="line" size="md" className="w-full rounded-xl ">
+      <p className="text-White Text-xs-Regular">성별</p>
+      <section className="mt-1 flex gap-3">
+        <Button
+          onClick={() => setGender("남자")}
+          variant="line"
+          size="md"
+          className={clsx(
+            "w-full rounded-xl",
+            gender === "남자" && "bg-D2_Gray",
+          )}
+        >
           남자
         </Button>
-        <Button variant="line" size="md" className="w-full rounded-xl ">
+        <Button
+          onClick={() => setGender("여자")}
+          variant="line"
+          size="md"
+          className={clsx(
+            "w-full rounded-xl",
+            gender === "여자" && "bg-D2_Gray",
+          )}
+        >
           여자
         </Button>
-        <Button variant="line" size="md" className="w-full rounded-xl ">
+        <Button
+          onClick={() => setGender("기타")}
+          variant="line"
+          size="md"
+          className={clsx(
+            "w-full rounded-xl",
+            gender === "기타" && "bg-D2_Gray",
+          )}
+        >
           기타
         </Button>
       </section>

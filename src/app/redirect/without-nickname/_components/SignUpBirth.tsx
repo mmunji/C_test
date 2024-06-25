@@ -23,8 +23,8 @@ export default function SignUpBirth({
 
   return (
     <section className="mt-6 Tablet:mt-8">
-      <label className="text-White Text-xs-Regular">생년월일</label>
-      <section className="flex items-center gap-3">
+      <p className="text-White Text-xs-Regular">생년월일</p>
+      <section className="mt-1 flex h-12 items-center gap-3">
         <section className="flex-grow-1 flex items-center gap-2">
           <input
             type="text"
@@ -33,7 +33,7 @@ export default function SignUpBirth({
             onChange={(e) => handleChange(e)}
             maxLength={4}
             placeholder="YYYY"
-            className="w-full rounded-xl border-[1px] border-Gray bg-transparent p-3 text-center outline-none placeholder:text-Gray"
+            className="h-12 w-full rounded-xl border-[1px] border-Gray bg-transparent p-3 text-center outline-none Text-m-Medium placeholder:text-Gray"
           />
           <p className="text-Gray Text-m-Medium">년</p>
         </section>
@@ -45,7 +45,7 @@ export default function SignUpBirth({
             onChange={(e) => handleChange(e)}
             maxLength={2}
             placeholder="MM"
-            className="w-full rounded-xl border-[1px] border-Gray bg-transparent p-3 text-center outline-none placeholder:text-Gray"
+            className="h-12 w-full rounded-xl border-[1px] border-Gray bg-transparent p-3 text-center outline-none Text-m-Medium placeholder:text-Gray"
           />
           <p className="text-Gray Text-m-Medium">월</p>
         </section>
@@ -57,7 +57,7 @@ export default function SignUpBirth({
             onChange={(e) => handleChange(e)}
             maxLength={2}
             placeholder="DD"
-            className="w-full rounded-xl border-[1px] border-Gray bg-transparent p-3 text-center outline-none placeholder:text-Gray"
+            className="h-12 w-full rounded-xl border-[1px] border-Gray bg-transparent p-3 text-center outline-none Text-m-Medium placeholder:text-Gray"
           />
           <p className="text-Gray Text-m-Medium">일</p>
         </section>
