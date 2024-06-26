@@ -10,7 +10,7 @@ export const authAPIS = {
 
   signUp: async (nickname: string, gender: string, birthday: string) => {
     const res = await fetch(`${API_URL}/my/nickNameMerge`, {
-      method: "POST",
+      method: "PATCH",
       headers: {
         "Content-Type": "application/json",
       },

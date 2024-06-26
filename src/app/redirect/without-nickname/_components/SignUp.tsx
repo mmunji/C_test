@@ -37,7 +37,6 @@ export default function SignUp({ userInfo }: SignUpProps) {
     try {
       const { year, month, day } = birthValues;
       const birthday = `${year}-${month}-${day}`;
-      console.log(nickname, gender, birthday);
       const { res, data } = await authAPIS.signUp(nickname, gender, birthday);
     } catch (error) {
       alert(error);
