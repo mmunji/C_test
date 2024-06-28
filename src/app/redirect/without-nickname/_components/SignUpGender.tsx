@@ -30,13 +30,10 @@ export default function SignUpGender({ gender, setGender }: SignUpGenderProps) {
           여자
         </Button>
         <Button
-          onClick={() => setGender("기타")}
+          onClick={() => setGender("E")}
           variant="line"
           size="md"
-          className={clsx(
-            "w-full rounded-xl",
-            gender === "기타" && "bg-D2_Gray",
-          )}
+          className={clsx("w-full rounded-xl", gender === "E" && "bg-D2_Gray")}
         >
           기타
         </Button>

@@ -38,7 +38,10 @@ export default function SignUp({ userInfo }: SignUpProps) {
     try {
       const { year, month, day } = birthValues;
       const birthday = `${year}-${month}-${day}`;
-      const { res, data } = await authAPIS.signUp(nickname, gender, birthday);
+      const { data } = await authAPIS.signUp(nickname, gender, birthday);
+      if (data === "success") {
+        alert("성공!");
+      }
     } catch (error) {
       alert(error);
     }
