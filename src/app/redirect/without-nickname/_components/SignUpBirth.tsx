@@ -22,7 +22,7 @@ export default function SignUpBirth({
   };
 
   return (
-    <section className="mt-6 Tablet:mt-8">
+    <section className="mt-6 Tablet:mt-8 Laptop:mt-7 Desktop:mt-8">
       <p className="text-White Text-xs-Regular">생년월일</p>
       <section className="mt-1 flex h-12 items-center gap-3">
         <section className="flex-grow-1 flex items-center gap-2">

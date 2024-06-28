@@ -4,6 +4,7 @@ import React, { FormEvent, useState } from "react";
 import Button from "@/components/buttons/Button";
 import { authAPIS } from "@/services/auth/authAPIs";
 
+import { FullLogo } from "../../../../../public/images";
 import SignUpBirth from "./SignUpBirth";
 import SignUpGender from "./SignUpGender";
 import SignUpNickname from "./SignUpNickname";
@@ -47,14 +48,14 @@ export default function SignUp({ userInfo }: SignUpProps) {
     <div className="fixed inset-0 z-[99] min-h-[100vh] w-full overflow-y-auto bg-BG Tablet:flex Tablet:items-center">
       <form
         onSubmit={handleSubmit}
-        className="mx-5 flex h-full flex-col Tablet:mx-auto Tablet:h-[686px] Tablet:w-[504px] Tablet:rounded-xl Tablet:bg-D1_Gray Tablet:px-[72px] Tablet:py-[64px]"
+        className="mx-5 flex h-full flex-col Tablet:mx-auto Tablet:h-[686px] Tablet:w-[504px] Tablet:rounded-xl Tablet:bg-D1_Gray Tablet:px-[72px] Tablet:py-[64px] Laptop:h-[545px] Laptop:w-[464px] Laptop:px-[52px] Laptop:py-10 Desktop:h-[686px] Desktop:w-[504px] Desktop:px-[72px] Desktop:py-[64px]"
       >
         <Image
-          src=""
-          alt=""
-          className="mx-auto hidden h-[50px] w-[158px] bg-[#a4a4a4] Tablet:block"
+          src={FullLogo}
+          alt="logo"
+          className="mx-auto hidden h-[34px] w-[204px] Tablet:block"
         />
-        <div className="mt-11 Tablet:mt-[52px]">
+        <div className="mt-11 Tablet:mt-[52px] Laptop:mt-8 Desktop:mt-[52px]">
           <SignUpTitle />
           <SignUpNickname nickname={nickname} setNickname={setNickname} />
           <SignUpBirth
