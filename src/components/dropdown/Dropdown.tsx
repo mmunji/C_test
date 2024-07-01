@@ -8,25 +8,6 @@ import useDropdown from "@/components/dropdown/useDropdown";
 import useDevice from "@/hooks/useDevice";
 import useOutsideClick from "@/hooks/useOutsideClick";
 
-/* 사용 방법
-      <Dropdown type="genre">                                             // type = "genre" | "icon" | "text" 입니다 default = text
-        <Dropdown.Trigger>
-          <div className="bg-blue-500 text-white">아무거나</div>            // 트리거 엘리먼트 만들어주시면 됩니다.
-        </Dropdown.Trigger>
-        <Dropdown.List className="right-0">                               // className으로 세부 위치 설정해주세요.(생략 가능)
-          {MEMU2.map((m) => (
-            <Dropdown.Item
-              key={m}
-              onClick={() => console.log(m)}                              // 핸들러 이벤트 설정해주세요.
-              isFocused={m === "전체"}                                     // focus의 경우 설정해주세요
-            >
-              {m}
-            </Dropdown.Item>
-          ))}
-        </Dropdown.List>
-      </Dropdown>
-*/
-
 interface DropdownTriggerProps {
   children: React.ReactNode;
 }
