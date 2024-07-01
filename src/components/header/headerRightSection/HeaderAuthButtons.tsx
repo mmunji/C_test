@@ -27,7 +27,7 @@ function HeaderAuthButtons({ hasScrolledPast }: HeaderAuthButtonsProps) {
     <section className="hidden gap-4 Laptop:flex Laptop:gap-8">
       <button
         onClick={() => setIsOpen(true)}
-        className={`h-10 flex-shrink-0 p-2 text-regular font-Medium ${pathname === ROUTES.DETAIL ? (hasScrolledPast ? "text-White" : "text-[rgba(255,255,255,0.6)]") : "text-White"}`}
+        className={`h-10 flex-shrink-0 p-2 text-regular font-Medium ${pathname.includes(ROUTES.DETAIL) ? (hasScrolledPast ? "text-White" : "text-[rgba(255,255,255,0.6)]") : "text-White"}`}
       >
         로그인
       </button>

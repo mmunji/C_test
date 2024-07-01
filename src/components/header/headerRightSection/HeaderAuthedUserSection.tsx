@@ -19,7 +19,7 @@ function HeaderAuthedUserSection({
       <div className="mr-3 h-[30px] w-[30px] rounded-full bg-[#d9d9d9]" />
 
       <p
-        className={`mr-2 text-regular font-Medium ${pathname === ROUTES.DETAIL ? (hasScrolledPast ? "text-Silver" : "text-[rgba(255,255,255,0.6)]") : "text-Silver"}`}
+        className={`mr-2 text-regular font-Medium ${pathname.includes(ROUTES.DETAIL) ? (hasScrolledPast ? "text-Silver" : "text-[rgba(255,255,255,0.6)]") : "text-Silver"}`}
       >
         닉네임
       </p>
