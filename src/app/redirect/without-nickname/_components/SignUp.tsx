@@ -1,7 +1,9 @@
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import React, { FormEvent, useState } from "react";
 
 import Button from "@/components/buttons/Button";
+import ROUTES from "@/constants/routes";
 import { authAPIS } from "@/services/auth/authAPIs";
 
 import { FullLogo } from "../../../../../public/images";
@@ -24,6 +26,7 @@ export default function SignUp({ userInfo }: SignUpProps) {
   const year = userInfo.birthday.split("").slice(0, 4).join("");
   const month = userInfo.birthday.split("").slice(5, 7).join("");
   const day = userInfo.birthday.split("").slice(8, 10).join("");
+  const router = useRouter();
 
   const [nickname, setNickname] = useState(userInfo.nickname);
   const [birthValues, setBirthValues] = useState({
@@ -40,7 +43,7 @@ export default function SignUp({ userInfo }: SignUpProps) {
       const birthday = `${year}-${month}-${day}`;
       const { data } = await authAPIS.signUp(nickname, gender, birthday);
       if (data === "success") {
-        alert("성공!");
+        router.push(`${ROUTES.SIGN_UP_COMPLETE}?nickname=${nickname}`);
       }
     } catch (error) {
       alert(error);
