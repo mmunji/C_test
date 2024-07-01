@@ -58,7 +58,7 @@ function DropdownItem({
         type === "genre"
           ? [isMobile ? "px-6 py-2" : "p-2"]
           : [type === "icon" ? "item-border p-3" : "item-border px-3 py-2"],
-        `relative flex justify-center rounded-lg hover:bg-D2_Gray active:bg-D3_Gray`,
+        `relative flex rounded-lg hover:bg-D2_Gray active:bg-D3_Gray ${type !== "icon" && "justify-center"}`,
       )}
     >
       {children}
