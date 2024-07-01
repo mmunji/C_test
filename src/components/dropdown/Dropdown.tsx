@@ -20,7 +20,6 @@ interface DropdownItemProps {
 
 interface DropdownListProps {
   children: React.ReactNode;
-  className?: string;
 }
 
 interface DropdownMainProps {
@@ -58,7 +57,7 @@ function DropdownItem({
         type === "genre"
           ? [isMobile ? "px-6 py-2" : "p-2"]
           : [type === "icon" ? "item-border p-3" : "item-border px-3 py-2"],
-        `relative flex rounded-lg hover:bg-D2_Gray active:bg-D3_Gray ${type !== "icon" && "justify-center"}`,
+        `relative flex justify-center rounded-lg hover:bg-D2_Gray active:bg-D3_Gray`,
       )}
     >
       {children}
@@ -66,12 +65,12 @@ function DropdownItem({
   );
 }
 
-function DropdownList({ children, className }: DropdownListProps) {
+function DropdownList({ children }: DropdownListProps) {
   const { isOpen, type, isMobile, height } = useDropdownContext();
   if (!isOpen) return null;
-  const position = `right-1/2 top-[${height}px] translate-x-1/2 Tablet:right-0 Tablet:-translate-x-0`;
   return (
     <div
+      style={{ top: `${height}px` }}
       className={clsx(
         type === "genre"
           ? [
@@ -82,8 +81,7 @@ function DropdownList({ children, className }: DropdownListProps) {
             ]
           : ["flex flex-col gap-[9px]", isMobile ? "p-1" : "p-2"],
         `
-  absolute z-50 whitespace-nowrap rounded-xl border border-D2_Gray bg-D1_Gray shadow-[0_4px_10px_0_rgba(0,0,0,0.3)]`,
-        className ?? position,
+  absolute left-1/2 top-[44px] z-50 -translate-x-1/2 whitespace-nowrap rounded-xl border border-D2_Gray bg-D1_Gray shadow-[0_4px_10px_0_rgba(0,0,0,0.3)] Tablet:left-auto Tablet:right-0 Tablet:transform-none`,
       )}
     >
       {children}
