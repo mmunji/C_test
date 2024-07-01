@@ -8,6 +8,7 @@ import Portal from "@/components/modal/portal";
 import useModal from "@/components/modal/useModal";
 import useDevice from "@/hooks/useDevice";
 import useOutsideClick from "@/hooks/useOutsideClick";
+
 export interface WithChildren {
   children: React.ReactNode;
 }
@@ -128,49 +129,40 @@ export function ModalMain({
           }}
         >
           <Portal selector="portal">
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.2 }}
-              exit={{ opacity: 0 }}
-            >
-              <div className="fixed bottom-0 left-0 right-0 top-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-[4px]">
-                <div
-                  ref={ref}
-                  className={clsx(
-                    hasComponents.login && "px-10 py-16",
-                    isAlertModal
-                      ? [
-                          isMobile
-                            ? "gap-4 px-6 pb-5 pt-6"
-                            : "gap-9 px-12 pb-10 pt-11",
-                        ]
-                      : [!hasComponents.login && "gap-7 px-12 py-10"],
-                    `z-10 flex flex-col items-center rounded-xl bg-D1_Gray`,
-                  )}
-                >
-                  {content}
-                  {buttons.length > 0 &&
-                    (checkbox.length > 0 ? (
-                      <div className="flex w-[372px] flex-col items-center justify-center gap-5">
-                        <div className="flex items-center gap-2">
-                          {checkbox}
-                        </div>
-                        <div className="flex w-full gap-3">{buttons}</div>
-                      </div>
-                    ) : (
-                      <div
-                        className={clsx(
-                          isMobile ? "w-[224px] gap-2" : "w-[372px] gap-3",
-                          `flex`,
-                        )}
-                      >
-                        {buttons}
-                      </div>
-                    ))}
-                </div>
+            <div className="fixed bottom-0 left-0 right-0 top-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-[4px]">
+              <div
+                ref={ref}
+                className={clsx(
+                  hasComponents.login && "px-10 py-16",
+                  isAlertModal
+                    ? [
+                        isMobile
+                          ? "gap-4 px-6 pb-5 pt-6"
+                          : "gap-9 px-12 pb-10 pt-11",
+                      ]
+                    : [!hasComponents.login && "gap-7 px-12 py-10"],
+                  `z-10 flex flex-col items-center rounded-xl bg-D1_Gray`,
+                )}
+              >
+                {content}
+                {buttons.length > 0 &&
+                  (checkbox.length > 0 ? (
+                    <div className="flex w-[372px] flex-col items-center justify-center gap-5">
+                      <div className="flex items-center gap-2">{checkbox}</div>
+                      <div className="flex w-full gap-3">{buttons}</div>
+                    </div>
+                  ) : (
+                    <div
+                      className={clsx(
+                        isMobile ? "w-[224px] gap-2" : "w-[372px] gap-3",
+                        `flex`,
+                      )}
+                    >
+                      {buttons}
+                    </div>
+                  ))}
               </div>
-            </motion.div>
+            </div>
           </Portal>
         </ModalContext.Provider>
       )}

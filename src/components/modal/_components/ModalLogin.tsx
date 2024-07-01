@@ -5,7 +5,7 @@ import { useModalContext } from "@/components/modal/ModalContext";
 import SpeechBubble from "@/components/speechBubble/SpeechBubble";
 
 import { CloseLg, Kakao, Naver } from "../../../../public/icons";
-
+import { FullLogo } from "../../../../public/images";
 interface ModalLoginProps {
   onKakaoLogin: () => void;
   onNaverLogin: () => void;
@@ -26,8 +26,13 @@ export function ModalLogin({ onKakaoLogin, onNaverLogin }: ModalLoginProps) {
       >
         <Image src={CloseLg} alt="닫기" width={24} height={24} />
       </button>
-      <div className="flex justify-center">
-        <div className="h-[50px] w-[158px] bg-[#a4a4a4]"></div>
+      <div className="relative flex h-[34px] justify-center">
+        <Image
+          src={FullLogo}
+          alt="씨네톡 로고"
+          fill
+          className="object-contain"
+        />
       </div>
       <div className="flex flex-col items-center gap-9">
         <p>로그인하고 더 자유롭게 씨네톡을 사용하세요 :)</p>
