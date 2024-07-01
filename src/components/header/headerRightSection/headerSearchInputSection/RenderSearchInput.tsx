@@ -24,7 +24,7 @@ function RenderSearchInput({
 
   return (
     <>
-      {pathname === ROUTES.DETAIL ? (
+      {pathname.includes(ROUTES.DETAIL) ? (
         hasScrolledPast ? (
           <CommonSearchInput
             {...{ inputValue, setInputValue, inputFocused, setInputFocused }}

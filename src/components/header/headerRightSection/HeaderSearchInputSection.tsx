@@ -43,7 +43,7 @@ export default function HeaderSearchInputSection({
         <Image
           src={
             !inputFocused
-              ? pathname === ROUTES.DETAIL
+              ? pathname.includes(ROUTES.DETAIL)
                 ? hasScrolledPast
                   ? Search
                   : SearchWhite

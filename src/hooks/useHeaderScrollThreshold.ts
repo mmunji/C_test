@@ -20,7 +20,7 @@ export default function useHeaderScrollThreshold() {
   const breakPoints = breakPointsMap[device];
 
   useEffect(() => {
-    if (pathname !== ROUTES.DETAIL) return;
+    if (!pathname.includes(ROUTES.DETAIL)) return;
     const initialScrollPosition = window.scrollY;
     if (initialScrollPosition > breakPoints) {
       setHasScrolledPast(true);
