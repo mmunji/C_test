@@ -26,7 +26,8 @@ export default function TalkHeader() {
           </section>
         </Dropdown.Trigger>
 
-        <Dropdown.List className="right-0 top-9 select-none">
+        <Dropdown.List>
+          {/* <Dropdown.List className="right-0 top-9 select-none"> */}
           {filters.map((filter) => (
             <Dropdown.Item key={filter} onClick={() => setActiveFilter(filter)}>
               {filter}
