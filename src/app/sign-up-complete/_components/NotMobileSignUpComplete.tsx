@@ -1,16 +1,17 @@
 import Image from "next/image";
+import { useSearchParams } from "next/navigation";
 
 import Button from "@/components/buttons/Button";
 
 interface NotMobileSignUpCompleteProps {
   prevPage: string;
-  nickname: string;
 }
 
 export default function NotMobileSignUpComplete({
   prevPage,
-  nickname,
 }: NotMobileSignUpCompleteProps) {
+  const nickname = useSearchParams().get("nickname");
+
   return (
     <div className="hidden h-[100vh] w-[100vw] items-center justify-center rounded-xl bg-D1_Gray Tablet:flex Tablet:h-[520px] Tablet:w-[472px] Tablet:flex-col Tablet:gap-10 Tablet:px-14 Tablet:py-16 Laptop:h-[404px] Laptop:w-[440px] Laptop:gap-6 Laptop:px-10 Laptop:py-11 Desktop:h-[603px] Desktop:w-[622px] Desktop:gap-10 Desktop:px-[100px] Desktop:py-20">
       <Image

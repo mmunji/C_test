@@ -1,17 +1,18 @@
 import Image from "next/image";
+import { useSearchParams } from "next/navigation";
 import React from "react";
 
 import Button from "@/components/buttons/Button";
 
 interface MobileSignUpCompleteProps {
   prevPage: string;
-  nickname: string;
 }
 
 export default function MobileSignUpComplete({
   prevPage,
-  nickname,
 }: MobileSignUpCompleteProps) {
+  const nickname = useSearchParams().get("nickname");
+
   return (
     <div className="flex h-full w-full flex-col items-center justify-center Tablet:hidden">
       <h2 className="text-center text-Primary Text-xxl-Bold">
