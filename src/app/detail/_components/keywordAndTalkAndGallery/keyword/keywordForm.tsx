@@ -62,11 +62,8 @@ export default function KeywordForm({ movieId, title }: KeywordFormProps) {
       setLoading(false);
       router.refresh();
     } catch (error) {
-      if (error instanceof Error) {
-        alert(`Error: ${error.message}`);
-      } else {
-        alert("Unexpected error occurred");
-      }
+      if (error instanceof Error) alert(error.message);
+
       setLoading(false);
     }
   };
