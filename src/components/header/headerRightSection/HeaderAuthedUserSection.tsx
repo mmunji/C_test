@@ -5,7 +5,6 @@ import React from "react";
 import Dropdown from "@/components/dropdown/Dropdown";
 import ROUTES from "@/constants/routes";
 import useLoggedInStore from "@/stores/useLoggedIn";
-import tokenManager from "@/utils/tokenManager";
 
 import { CaretDownMd, LogOut, User } from "../../../../public/icons";
 
@@ -22,12 +21,11 @@ function HeaderAuthedUserSection({
   ];
   const pathname = usePathname();
   const router = useRouter();
-  const { setLoggedIn } = useLoggedInStore();
+  const { logout } = useLoggedInStore();
   const handleClickDropdown = (i: number) => {
     if (i === 0) router.push(ROUTES.MY.default);
     else if (i === 1) {
-      setLoggedIn(false);
-      tokenManager.removeToken();
+      logout();
     }
   };
 
