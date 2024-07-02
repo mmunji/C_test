@@ -1,18 +1,19 @@
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
+
+import ROUTES from "@/constants/routes";
 
 import { EnvironmentFire } from "../../../../../public/icons";
 
 interface HeaderSearchDropdownProps {
   inputValue: string;
+  movieTitles: string[] | undefined;
 }
-
-const arr = Array(10)
-  .fill("검색어 텍스트")
-  .map((text) => text);
 
 export default function HeaderSearchDropdown({
   inputValue,
+  movieTitles,
 }: HeaderSearchDropdownProps) {
   return (
     <ul className="absolute top-10 w-full rounded-b-[20px] bg-D2_Gray pb-3">
@@ -22,14 +23,17 @@ export default function HeaderSearchDropdown({
           <p className="font-Medium text-Primary">인기 검색어</p>
         </div>
       )}
-      {arr.map((el, i) => (
-        <li
-          key={i}
-          className="max-w-[calc(100%-32px)] cursor-pointer overflow-hidden text-ellipsis whitespace-nowrap py-1 pl-[60px] font-Regular text-Silver hover:underline"
-        >
-          {el}
-        </li>
-      ))}
+      <div className="flex flex-col">
+        {movieTitles?.map((title, i) => (
+          <Link
+            key={i}
+            href={`${ROUTES.SEARCH.getById(title)}`}
+            className="w-full max-w-[calc(100%-32px)] cursor-pointer overflow-hidden text-ellipsis whitespace-nowrap py-1 pl-[60px] font-Regular text-Silver hover:underline"
+          >
+            {title}
+          </Link>
+        ))}
+      </div>
     </ul>
   );
 }
