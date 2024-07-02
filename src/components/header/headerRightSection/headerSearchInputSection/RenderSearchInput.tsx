@@ -22,7 +22,7 @@ function RenderSearchInput({
   inputFocused,
 }: RenderSearchInputProps) {
   const pathname = usePathname();
-  const { handleKeyPress } = usePressEnterSearch(setInputFocused);
+  const { handleKeyPress } = usePressEnterSearch(setInputFocused, inputValue);
   const inputRefs = useRef<HTMLInputElement[]>([]);
 
   return (

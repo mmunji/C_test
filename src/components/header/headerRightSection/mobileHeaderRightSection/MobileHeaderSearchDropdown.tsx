@@ -3,6 +3,7 @@ import Link from "next/link";
 import React, { Dispatch, SetStateAction } from "react";
 
 import ROUTES from "@/constants/routes";
+import { searchAPIs } from "@/services/search/searchAPIs";
 
 import { EnvironmentFire } from "../../../../../public/icons";
 
@@ -41,6 +42,7 @@ export default function MobilHeaderSearchDropdown({
               onClick={() => {
                 setClickSearchIcon(false);
                 setInputValue(title);
+                searchAPIs.saveSearchMovies(title);
               }}
               className={`max-w-[calc(100%-32px)] cursor-pointer overflow-hidden text-ellipsis whitespace-nowrap py-1 hover:underline ${inputValue ? "pl-8" : "pl-[52px]"} font-Regular text-Silver Tablet:max-w-[calc(100%-48px)]`}
             >

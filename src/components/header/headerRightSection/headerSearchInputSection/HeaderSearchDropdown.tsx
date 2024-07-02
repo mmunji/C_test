@@ -3,6 +3,7 @@ import Link from "next/link";
 import React, { Dispatch, SetStateAction } from "react";
 
 import ROUTES from "@/constants/routes";
+import { searchAPIs } from "@/services/search/searchAPIs";
 
 import { EnvironmentFire } from "../../../../../public/icons";
 
@@ -30,7 +31,10 @@ export default function HeaderSearchDropdown({
           <Link
             key={i}
             href={`${ROUTES.SEARCH.getById(title)}`}
-            onClick={() => setInputValue(title)}
+            onClick={() => {
+              setInputValue(title);
+              searchAPIs.saveSearchMovies(title);
+            }}
             className="w-full max-w-[calc(100%-32px)] cursor-pointer overflow-hidden text-ellipsis whitespace-nowrap py-1 pl-[60px] font-Regular text-Silver hover:underline"
           >
             {title}

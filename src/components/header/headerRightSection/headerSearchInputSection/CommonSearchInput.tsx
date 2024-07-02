@@ -18,7 +18,7 @@ export default function CommonSearchInput({
   setInputFocused,
   inputRefs,
 }: CommonSearchInputProps) {
-  const { handleKeyPress } = usePressEnterSearch(setInputFocused);
+  const { handleKeyPress } = usePressEnterSearch(setInputFocused, inputValue);
 
   return (
     <input
