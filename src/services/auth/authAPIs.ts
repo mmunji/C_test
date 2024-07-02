@@ -12,7 +12,6 @@ export const authAPIS = {
 
   refresh: async () => {
     const accessToken = tokenManager.getToken();
-    console.log(accessToken);
     const res = await fetch(`${API_URL}/reissue`, {
       credentials: "include",
       method: "POST",

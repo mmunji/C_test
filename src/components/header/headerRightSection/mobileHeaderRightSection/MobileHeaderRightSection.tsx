@@ -39,7 +39,7 @@ function MobileHeaderRightSection({
     }
   };
 
-  const { movieTitles } = useSearchMovies(inputValue);
+  useSearchMovies(inputValue);
 
   return (
     <section
@@ -78,7 +78,6 @@ function MobileHeaderRightSection({
             inputValue,
             inputFocused,
             setClickSearchIcon,
-            movieTitles,
             setInputValue,
           }}
         />

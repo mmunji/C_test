@@ -54,7 +54,7 @@ export default function MobileHeaderInputSection({
           onBlur={() => {
             setTimeout(() => {
               setInputFocused(false);
-            }, 100);
+            }, 150);
           }}
           onKeyDown={(e) => {
             handleKeyPress(e, inputValue);

@@ -26,7 +26,7 @@ export default function HeaderRightSection({
   const [inputFocused, setInputFocused] = useState(false);
   const [inputValue, setInputValue] = useState("");
 
-  const { movieTitles } = useSearchMovies(inputValue);
+  useSearchMovies(inputValue);
 
   return (
     <section
@@ -39,7 +39,6 @@ export default function HeaderRightSection({
           setInputValue,
           inputFocused,
           setInputFocused,
-          movieTitles,
         }}
       />
 

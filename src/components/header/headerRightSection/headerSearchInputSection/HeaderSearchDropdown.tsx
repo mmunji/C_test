@@ -3,21 +3,24 @@ import Link from "next/link";
 import React, { Dispatch, SetStateAction } from "react";
 
 import ROUTES from "@/constants/routes";
+import useGetPopularSearchList from "@/hooks/useGetPopularSearchList";
 import { searchAPIs } from "@/services/search/searchAPIs";
+import useSearchMovieTitlesStore from "@/stores/useSearchMovieTitlesStore";
 
 import { EnvironmentFire } from "../../../../../public/icons";
 
 interface HeaderSearchDropdownProps {
   inputValue: string;
   setInputValue: Dispatch<SetStateAction<string>>;
-  movieTitles: string[] | undefined;
 }
 
 export default function HeaderSearchDropdown({
   inputValue,
-  movieTitles,
   setInputValue,
 }: HeaderSearchDropdownProps) {
+  const { movieTitles } = useSearchMovieTitlesStore();
+  useGetPopularSearchList(inputValue);
+
   return (
     <ul className="absolute top-10 w-full rounded-b-[20px] bg-D2_Gray pb-3">
       {!inputValue && (

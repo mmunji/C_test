@@ -3,7 +3,9 @@ import Link from "next/link";
 import React, { Dispatch, SetStateAction } from "react";
 
 import ROUTES from "@/constants/routes";
+import useGetPopularSearchList from "@/hooks/useGetPopularSearchList";
 import { searchAPIs } from "@/services/search/searchAPIs";
+import useSearchMovieTitlesStore from "@/stores/useSearchMovieTitlesStore";
 
 import { EnvironmentFire } from "../../../../../public/icons";
 
@@ -12,16 +14,17 @@ interface MobilHeaderSearchDropdownProps {
   inputFocused: boolean;
   setInputValue: Dispatch<SetStateAction<string>>;
   setClickSearchIcon: Dispatch<SetStateAction<boolean>>;
-  movieTitles: string[] | undefined;
 }
 
 export default function MobilHeaderSearchDropdown({
   inputValue,
   setInputValue,
   inputFocused,
-  movieTitles,
   setClickSearchIcon,
 }: MobilHeaderSearchDropdownProps) {
+  const { movieTitles } = useSearchMovieTitlesStore();
+  useGetPopularSearchList(inputValue);
+
   return (
     <div
       className={`fixed left-0 top-0 min-h-[100vh] w-full bg-BG ${inputValue ? "pt-16 Tablet:pt-[72px]" : "pt-[68px] Tablet:pt-20"}`}

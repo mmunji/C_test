@@ -23,7 +23,7 @@ export const searchAPIs = {
   getPopularFind: async () => {
     const res = await fetch(`${API_URL}/find/PopularFind`);
 
-    const data = res.json();
+    const data = await res.json();
     return { res, data };
   },
 };

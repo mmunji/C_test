@@ -1,12 +1,13 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 import { searchAPIs } from "@/services/search/searchAPIs";
+import useSearchMovieTitlesStore from "@/stores/useSearchMovieTitlesStore";
 
 import useDebounce from "./useDebounce";
 
 export default function useSearchMovies(value: string) {
-  const debouncedSearchTerm = useDebounce(value, 300);
-  const [movieTitles, setMovieTitles] = useState([]);
+  const debouncedSearchTerm = useDebounce(value, 200);
+  const { setMovieTitles } = useSearchMovieTitlesStore();
 
   useEffect(() => {
     const searchMovies = async () => {
@@ -22,7 +23,5 @@ export default function useSearchMovies(value: string) {
     if (debouncedSearchTerm) {
       searchMovies();
     }
-  }, [debouncedSearchTerm]);
-
-  return { movieTitles };
+  }, [debouncedSearchTerm, setMovieTitles]);
 }

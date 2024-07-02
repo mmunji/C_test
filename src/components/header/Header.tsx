@@ -7,7 +7,6 @@ import { useEffect, useState } from "react";
 import ROUTES from "@/constants/routes";
 import useHeaderScrollThreshold from "@/hooks/useHeaderScrollThreshold";
 import useRefresh from "@/hooks/useRefresh";
-import { tokenManager } from "@/services/auth/tokenManager";
 
 import { ChevronLeftMd } from "../../../public/icons";
 import HeaderRightSection from "./headerRightSection/HeaderRightSection";
