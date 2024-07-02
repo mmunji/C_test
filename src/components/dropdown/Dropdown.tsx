@@ -8,25 +8,6 @@ import useDropdown from "@/components/dropdown/useDropdown";
 import useDevice from "@/hooks/useDevice";
 import useOutsideClick from "@/hooks/useOutsideClick";
 
-/* 사용 방법
-      <Dropdown type="genre">                                             // type = "genre" | "icon" | "text" 입니다 default = text
-        <Dropdown.Trigger>
-          <div className="bg-blue-500 text-white">아무거나</div>            // 트리거 엘리먼트 만들어주시면 됩니다.
-        </Dropdown.Trigger>
-        <Dropdown.List className="right-0">                               // className으로 세부 위치 설정해주세요.(생략 가능)
-          {MEMU2.map((m) => (
-            <Dropdown.Item
-              key={m}
-              onClick={() => console.log(m)}                              // 핸들러 이벤트 설정해주세요.
-              isFocused={m === "전체"}                                     // focus의 경우 설정해주세요
-            >
-              {m}
-            </Dropdown.Item>
-          ))}
-        </Dropdown.List>
-      </Dropdown>
-*/
-
 interface DropdownTriggerProps {
   children: React.ReactNode;
 }
@@ -39,7 +20,6 @@ interface DropdownItemProps {
 
 interface DropdownListProps {
   children: React.ReactNode;
-  className?: string;
 }
 
 interface DropdownMainProps {
@@ -85,12 +65,12 @@ function DropdownItem({
   );
 }
 
-function DropdownList({ children, className }: DropdownListProps) {
+function DropdownList({ children }: DropdownListProps) {
   const { isOpen, type, isMobile, height } = useDropdownContext();
   if (!isOpen) return null;
-  const position = `right-1/2 top-[${height}px] translate-x-1/2 Tablet:right-0 Tablet:-translate-x-0`;
   return (
     <div
+      style={{ top: `${height}px` }}
       className={clsx(
         type === "genre"
           ? [
@@ -101,8 +81,7 @@ function DropdownList({ children, className }: DropdownListProps) {
             ]
           : ["flex flex-col gap-[9px]", isMobile ? "p-1" : "p-2"],
         `
-  absolute z-50 whitespace-nowrap rounded-xl border border-D2_Gray bg-D1_Gray shadow-[0_4px_10px_0_rgba(0,0,0,0.3)]`,
-        className ?? position,
+  absolute left-1/2 top-[44px] z-50 -translate-x-1/2 whitespace-nowrap rounded-xl border border-D2_Gray bg-D1_Gray shadow-[0_4px_10px_0_rgba(0,0,0,0.3)] Tablet:left-auto Tablet:right-0 Tablet:transform-none`,
       )}
     >
       {children}
