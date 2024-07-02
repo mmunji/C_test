@@ -1,5 +1,6 @@
 import { API_URL } from "@/constants/api_url";
-import tokenManager from "@/utils/tokenManager";
+
+import { tokenManager } from "./tokenManager";
 
 export const authAPIS = {
   authBy: async (authToken: string) => {
@@ -11,7 +12,9 @@ export const authAPIS = {
 
   refresh: async () => {
     const accessToken = tokenManager.getToken();
+    console.log(accessToken);
     const res = await fetch(`${API_URL}/reissue`, {
+      credentials: "include",
       method: "POST",
       headers: {
         "Content-Type": "application/json",

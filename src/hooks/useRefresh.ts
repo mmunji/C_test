@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 
 import { authAPIS } from "@/services/auth/authAPIs";
+import { tokenManager } from "@/services/auth/tokenManager";
 import useLoggedInStore from "@/stores/useLoggedIn";
-import tokenManager from "@/utils/tokenManager";
 
 export default function useRefresh() {
   const NINE_MINUTES = 60 * 9 * 1000;
@@ -13,9 +13,12 @@ export default function useRefresh() {
       if (loggedIn) {
         const { res } = await authAPIS.refresh();
         const accessToken = res.headers.get("access");
-        if (accessToken) tokenManager.setToken(accessToken);
+        if (accessToken) {
+          tokenManager.setToken(accessToken);
+        }
       }
     };
+
     refresh();
     const interval = setInterval(() => {
       refresh();

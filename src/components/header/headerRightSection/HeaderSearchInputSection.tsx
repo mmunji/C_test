@@ -58,10 +58,7 @@ export default function HeaderSearchInputSection({
       </div>
 
       {inputFocused && (
-        <HeaderSearchDropdown
-          inputValue={inputValue}
-          movieTitles={movieTitles}
-        />
+        <HeaderSearchDropdown {...{ inputValue, movieTitles, setInputValue }} />
       )}
     </div>
   );

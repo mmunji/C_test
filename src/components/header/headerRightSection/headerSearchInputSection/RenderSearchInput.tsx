@@ -1,7 +1,8 @@
 import { usePathname } from "next/navigation";
-import React, { ChangeEvent, Dispatch, SetStateAction } from "react";
+import React, { ChangeEvent, Dispatch, SetStateAction, useRef } from "react";
 
 import ROUTES from "@/constants/routes";
+import usePressEnterSearch from "@/hooks/usePressEnterSearch";
 
 import CommonSearchInput from "./CommonSearchInput";
 
@@ -21,6 +22,8 @@ function RenderSearchInput({
   inputFocused,
 }: RenderSearchInputProps) {
   const pathname = usePathname();
+  const { handleKeyPress } = usePressEnterSearch(setInputFocused);
+  const inputRefs = useRef<HTMLInputElement[]>([]);
 
   return (
     <>
@@ -32,6 +35,7 @@ function RenderSearchInput({
               setInputValue,
               inputFocused,
               setInputFocused,
+              inputRefs,
             }}
           />
         ) : (
@@ -47,6 +51,9 @@ function RenderSearchInput({
                 setInputFocused(false);
               }, 100);
             }}
+            onKeyDown={(e) => {
+              handleKeyPress(e, inputValue);
+            }}
             className={`flex h-10 w-full items-start py-2 pl-[64px] pr-[24px] font-Medium text-[rgba(255,255,255,0.6)] outline-none placeholder:text-[rgba(255,255,255,0.6)] hover:border-Silver focus:placeholder:opacity-0 ${inputFocused ? "rounded-t-[20px] bg-D2_Gray text-Silver" : "rounded-[20px] border border-[rgba(255,255,255,0.6)] bg-transparent"}`}
           />
         )
@@ -58,6 +65,7 @@ function RenderSearchInput({
             setInputValue,
             inputFocused,
             setInputFocused,
+            inputRefs,
           }}
         />
       )}

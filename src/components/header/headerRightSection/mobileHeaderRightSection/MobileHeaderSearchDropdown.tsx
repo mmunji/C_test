@@ -9,12 +9,14 @@ import { EnvironmentFire } from "../../../../../public/icons";
 interface MobilHeaderSearchDropdownProps {
   inputValue: string;
   inputFocused: boolean;
+  setInputValue: Dispatch<SetStateAction<string>>;
   setClickSearchIcon: Dispatch<SetStateAction<boolean>>;
   movieTitles: string[] | undefined;
 }
 
 export default function MobilHeaderSearchDropdown({
   inputValue,
+  setInputValue,
   inputFocused,
   movieTitles,
   setClickSearchIcon,
@@ -36,7 +38,10 @@ export default function MobilHeaderSearchDropdown({
             <Link
               key={i}
               href={`${ROUTES.SEARCH.getById(title)}`}
-              onClick={() => setClickSearchIcon(false)}
+              onClick={() => {
+                setClickSearchIcon(false);
+                setInputValue(title);
+              }}
               className={`max-w-[calc(100%-32px)] cursor-pointer overflow-hidden text-ellipsis whitespace-nowrap py-1 hover:underline ${inputValue ? "pl-8" : "pl-[52px]"} font-Regular text-Silver Tablet:max-w-[calc(100%-48px)]`}
             >
               {title}

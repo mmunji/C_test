@@ -7,6 +7,8 @@ import React, {
   useRef,
 } from "react";
 
+import usePressEnterSearch from "@/hooks/usePressEnterSearch";
+
 import { Search } from "../../../../../public/icons";
 
 interface MobileHeaderInputSectionProps {
@@ -27,6 +29,10 @@ export default function MobileHeaderInputSection({
   clickSearchIcon,
 }: MobileHeaderInputSectionProps) {
   const inputRef = useRef<HTMLInputElement>(null);
+  const { handleKeyPress } = usePressEnterSearch(
+    setInputFocused,
+    setClickSearchIcon,
+  );
 
   useEffect(() => {
     if (clickSearchIcon) inputRef.current?.focus();
@@ -48,6 +54,9 @@ export default function MobileHeaderInputSection({
             setTimeout(() => {
               setInputFocused(false);
             }, 100);
+          }}
+          onKeyDown={(e) => {
+            handleKeyPress(e, inputValue);
           }}
           className={`h-10 w-full ${inputFocused && "placeholder:opacity-0"} border-1 rounded-[20px] border-[1px] border-transparent bg-D1_Gray pl-12 font-Medium text-Silver outline-none placeholder:text-L_Gray hover:border-D2_Gray `}
         />

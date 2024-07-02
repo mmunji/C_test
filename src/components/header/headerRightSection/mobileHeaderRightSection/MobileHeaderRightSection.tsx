@@ -1,10 +1,9 @@
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
-import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
+import React, { Dispatch, SetStateAction, useState } from "react";
 
 import Modal from "@/components/modal/_components";
 import ROUTES from "@/constants/routes";
-import useDevice from "@/hooks/useDevice";
 import useHandleClickAuthButton from "@/hooks/useHandleClickAuthButtons";
 import useSearchMovies from "@/hooks/useSearchMovies";
 import useLoggedInStore from "@/stores/useLoggedIn";
@@ -16,22 +15,22 @@ import MobileHeaderSearchDropdown from "./MobileHeaderSearchDropdown";
 interface MobileHeaderRightSectionProps {
   clickSearchIcon: boolean;
   setClickSearchIcon: Dispatch<SetStateAction<boolean>>;
+  inputValue: string;
+  setInputValue: Dispatch<SetStateAction<string>>;
 }
 
 function MobileHeaderRightSection({
   clickSearchIcon,
   setClickSearchIcon,
+  inputValue,
+  setInputValue,
 }: MobileHeaderRightSectionProps) {
   const pathname = usePathname();
   const [inputFocused, setInputFocused] = useState(false);
-  const [inputValue, setInputValue] = useState("");
   const { loggedIn } = useLoggedInStore();
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const { handleClickAuthButton } = useHandleClickAuthButton();
-  const { device } = useDevice();
-  const smDevice = device === "mobile" || device === "tablet";
-  const lgDevice = device === "laptop" || device === "desktop";
 
   const handleClickUserIcon = () => {
     if (loggedIn) router.push(ROUTES.MY.default);
@@ -39,10 +38,6 @@ function MobileHeaderRightSection({
       setIsOpen(true);
     }
   };
-
-  useEffect(() => {
-    setInputValue("");
-  }, [smDevice, lgDevice]);
 
   const { movieTitles } = useSearchMovies(inputValue);
 
@@ -79,7 +74,13 @@ function MobileHeaderRightSection({
       )}
       {clickSearchIcon && (
         <MobileHeaderSearchDropdown
-          {...{ inputValue, inputFocused, setClickSearchIcon, movieTitles }}
+          {...{
+            inputValue,
+            inputFocused,
+            setClickSearchIcon,
+            movieTitles,
+            setInputValue,
+          }}
         />
       )}
       {isOpen && (

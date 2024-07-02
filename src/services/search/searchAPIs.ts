@@ -8,8 +8,20 @@ export const searchAPIs = {
     return { res, data };
   },
 
+  saveSearchMovies: async (movieTitle: string) => {
+    const res = await fetch(`${API_URL}/find/findSave?findword=${movieTitle}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    const data = await res.json();
+    return { res, data };
+  },
+
   getPopularFind: async () => {
-    const res = await fetch(`${API_URL}/find/PopularFind'`);
+    const res = await fetch(`${API_URL}/find/PopularFind`);
 
     const data = res.json();
     return { res, data };

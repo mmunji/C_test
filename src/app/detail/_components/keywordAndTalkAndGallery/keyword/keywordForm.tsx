@@ -5,6 +5,7 @@ import Button from "@/components/buttons/Button";
 import LoadingSpinner from "@/components/loadingSpinner/LoadingSpinner";
 import { abuseList } from "@/constants/abuseList";
 import useDevice from "@/hooks/useDevice";
+import { tokenManager } from "@/services/auth/tokenManager";
 import { keywordAPIs } from "@/services/keyword/keywordAPIs";
 
 import SpeechBubble from "../../../../../components/speechBubble/SpeechBubble";

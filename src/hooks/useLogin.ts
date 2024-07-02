@@ -2,8 +2,8 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 import { authAPIS } from "@/services/auth/authAPIs";
+import { tokenManager } from "@/services/auth/tokenManager";
 import useLoggedInStore from "@/stores/useLoggedIn";
-import tokenManager from "@/utils/tokenManager";
 
 export default function useLogin(type: "with-nickname" | "without-nickname") {
   const [isLoading, setIsLoading] = useState(true);
