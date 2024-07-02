@@ -16,7 +16,7 @@ export const REPORT_TYPE = [
   "기타",
 ];
 
-export function ModalReport() {
+export default function ModalReport() {
   const {
     selectedIndex,
     detailedReason,
