@@ -6,6 +6,9 @@ function createTokenManager() {
       accessToken = token;
     },
     getToken: () => accessToken,
+    removeToken: () => {
+      accessToken = null;
+    },
   };
 }
 

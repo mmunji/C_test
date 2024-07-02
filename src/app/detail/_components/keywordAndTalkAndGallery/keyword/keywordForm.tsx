@@ -45,17 +45,29 @@ export default function KeywordForm({ movieId, title }: KeywordFormProps) {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setLoading(true);
+
     try {
       if (abuseList.some((abuse) => value.includes(abuse))) {
+        setLoading(false);
         return alert(`욕설은 안돼요..!`);
       }
-      const { res } = await keywordAPIs.addKeyword(movieId, value);
-      setLoading(true);
-      if (res.ok) setValue("");
+
+      const { data, res } = await keywordAPIs.addKeyword(movieId, value);
+      if (!res.ok) {
+        throw new Error((data as ErrorResponse).message);
+      } else {
+        setValue("");
+      }
       setLoading(false);
       router.refresh();
     } catch (error) {
-      console.error(error);
+      if (error instanceof Error) {
+        alert(`Error: ${error.message}`);
+      } else {
+        alert("Unexpected error occurred");
+      }
+      setLoading(false);
     }
   };
 
