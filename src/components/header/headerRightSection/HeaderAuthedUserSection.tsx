@@ -43,7 +43,7 @@ function HeaderAuthedUserSection({
         <Dropdown.Trigger>
           <Image src={CaretDownMd} alt="더보기" className="cursor-pointer" />
         </Dropdown.Trigger>
-        <Dropdown.List className="right-0 top-12">
+        <Dropdown.List>
           {dropdownMenu.map((m, i) => (
             <Dropdown.Item
               key={i}

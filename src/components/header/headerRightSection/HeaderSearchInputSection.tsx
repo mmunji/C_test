@@ -16,6 +16,7 @@ interface HeaderSearchInputProps {
   setInputValue: Dispatch<SetStateAction<string>>;
   inputFocused: boolean;
   setInputFocused: Dispatch<SetStateAction<boolean>>;
+  movieTitles: string[] | undefined;
 }
 
 export default function HeaderSearchInputSection({
@@ -24,6 +25,7 @@ export default function HeaderSearchInputSection({
   setInputValue,
   inputFocused,
   setInputFocused,
+  movieTitles,
 }: HeaderSearchInputProps) {
   const pathname = usePathname();
 
@@ -55,7 +57,12 @@ export default function HeaderSearchInputSection({
         />
       </div>
 
-      {inputFocused && <HeaderSearchDropdown inputValue={inputValue} />}
+      {inputFocused && (
+        <HeaderSearchDropdown
+          inputValue={inputValue}
+          movieTitles={movieTitles}
+        />
+      )}
     </div>
   );
 }

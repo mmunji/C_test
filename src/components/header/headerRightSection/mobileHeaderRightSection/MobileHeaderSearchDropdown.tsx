@@ -1,20 +1,23 @@
 import Image from "next/image";
-import React from "react";
+import Link from "next/link";
+import React, { Dispatch, SetStateAction } from "react";
+
+import ROUTES from "@/constants/routes";
 
 import { EnvironmentFire } from "../../../../../public/icons";
 
 interface MobilHeaderSearchDropdownProps {
   inputValue: string;
   inputFocused: boolean;
+  setClickSearchIcon: Dispatch<SetStateAction<boolean>>;
+  movieTitles: string[] | undefined;
 }
-
-const arr = Array(10)
-  .fill("검색어 텍스트")
-  .map((text) => text);
 
 export default function MobilHeaderSearchDropdown({
   inputValue,
   inputFocused,
+  movieTitles,
+  setClickSearchIcon,
 }: MobilHeaderSearchDropdownProps) {
   return (
     <div
@@ -29,13 +32,15 @@ export default function MobilHeaderSearchDropdown({
 
       {inputFocused && (
         <ul className="flex flex-col gap-2">
-          {arr.map((el, i) => (
-            <li
+          {movieTitles?.map((title, i) => (
+            <Link
               key={i}
+              href={`${ROUTES.SEARCH.getById(title)}`}
+              onClick={() => setClickSearchIcon(false)}
               className={`max-w-[calc(100%-32px)] cursor-pointer overflow-hidden text-ellipsis whitespace-nowrap py-1 hover:underline ${inputValue ? "pl-8" : "pl-[52px]"} font-Regular text-Silver Tablet:max-w-[calc(100%-48px)]`}
             >
-              {el}
-            </li>
+              {title}
+            </Link>
           ))}
         </ul>
       )}

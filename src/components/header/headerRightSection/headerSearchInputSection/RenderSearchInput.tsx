@@ -27,7 +27,12 @@ function RenderSearchInput({
       {pathname.includes(ROUTES.DETAIL) ? (
         hasScrolledPast ? (
           <CommonSearchInput
-            {...{ inputValue, setInputValue, inputFocused, setInputFocused }}
+            {...{
+              inputValue,
+              setInputValue,
+              inputFocused,
+              setInputFocused,
+            }}
           />
         ) : (
           <input
@@ -37,8 +42,12 @@ function RenderSearchInput({
             }
             placeholder="‘파묘’ 궁금하지 않으세요?"
             onFocus={() => setInputFocused(true)}
-            onBlur={() => setInputFocused(false)}
-            className={`flex h-10 w-full items-start pl-[64px] pr-[24px] font-Medium text-[rgba(255,255,255,0.6)] outline-none placeholder:text-[rgba(255,255,255,0.6)] hover:border-Silver focus:placeholder:opacity-0 ${inputFocused ? "rounded-t-[20px] bg-D2_Gray text-Silver" : "rounded-[20px] border border-[rgba(255,255,255,0.6)] bg-transparent"}`}
+            onBlur={() => {
+              setTimeout(() => {
+                setInputFocused(false);
+              }, 300);
+            }}
+            className={`flex h-10 w-full items-start py-2 pl-[64px] pr-[24px] font-Medium text-[rgba(255,255,255,0.6)] outline-none placeholder:text-[rgba(255,255,255,0.6)] hover:border-Silver focus:placeholder:opacity-0 ${inputFocused ? "rounded-t-[20px] bg-D2_Gray text-Silver" : "rounded-[20px] border border-[rgba(255,255,255,0.6)] bg-transparent"}`}
           />
         )
       ) : (

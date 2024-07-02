@@ -1,7 +1,9 @@
 import { usePathname } from "next/navigation";
-import React, { Dispatch, SetStateAction, useState } from "react";
+import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 
 import ROUTES from "@/constants/routes";
+import useDevice from "@/hooks/useDevice";
+import useSearchMovies from "@/hooks/useSearchMovies";
 import useLoggedInStore from "@/stores/useLoggedIn";
 
 import HeaderAuthButtons from "./HeaderAuthButtons";
@@ -24,6 +26,15 @@ export default function HeaderRightSection({
   const pathname = usePathname();
   const [inputFocused, setInputFocused] = useState(false);
   const [inputValue, setInputValue] = useState("");
+  const { device } = useDevice();
+  const smDevice = device === "mobile" || device === "tablet";
+  const lgDevice = device === "laptop" || device === "desktop";
+
+  useEffect(() => {
+    setInputValue("");
+  }, [smDevice, lgDevice]);
+
+  const { movieTitles } = useSearchMovies(inputValue);
 
   return (
     <section
@@ -36,6 +47,7 @@ export default function HeaderRightSection({
           setInputValue,
           inputFocused,
           setInputFocused,
+          movieTitles,
         }}
       />
 

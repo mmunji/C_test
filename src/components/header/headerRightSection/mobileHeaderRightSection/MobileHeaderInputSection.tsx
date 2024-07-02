@@ -44,7 +44,11 @@ export default function MobileHeaderInputSection({
           }
           placeholder="‘파묘’ 궁금하지 않으세요?"
           onFocus={() => setInputFocused(true)}
-          onBlur={() => setInputFocused(false)}
+          onBlur={() => {
+            setTimeout(() => {
+              setInputFocused(false);
+            }, 300);
+          }}
           className={`h-10 w-full ${inputFocused && "placeholder:opacity-0"} border-1 rounded-[20px] border-[1px] border-transparent bg-D1_Gray pl-12 font-Medium text-Silver outline-none placeholder:text-L_Gray hover:border-D2_Gray `}
         />
 
