@@ -7,4 +7,11 @@ export const searchAPIs = {
     const data = await res.json();
     return { res, data };
   },
+
+  getPopularFind: async () => {
+    const res = await fetch(`${API_URL}/find/PopularFind'`);
+
+    const data = res.json();
+    return { res, data };
+  },
 };

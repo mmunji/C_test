@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import React from "react";
+import React, { HtmlHTMLAttributes } from "react";
 
 import DropdownContext, {
   useDropdownContext,
@@ -20,6 +20,7 @@ interface DropdownItemProps {
 
 interface DropdownListProps {
   children: React.ReactNode;
+  className?: HtmlHTMLAttributes<HTMLDivElement>["className"];
 }
 
 interface DropdownMainProps {
@@ -65,7 +66,7 @@ function DropdownItem({
   );
 }
 
-function DropdownList({ children }: DropdownListProps) {
+function DropdownList({ children, className }: DropdownListProps) {
   const { isOpen, type, isMobile, height } = useDropdownContext();
   if (!isOpen) return null;
   return (
