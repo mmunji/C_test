@@ -15,6 +15,7 @@ const ROUTES = {
     default: "/redirect",
     without_nickname: () => `${ROUTES.RIDERECT.default}/without-nickname`,
   },
+  SIGN_UP_COMPLETE: "/sign-up-complete",
 };
 
 export default ROUTES;

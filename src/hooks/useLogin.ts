@@ -2,6 +2,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 import { authAPIS } from "@/services/auth/authAPIs";
+import useLoggedInStore from "@/stores/useLoggedIn";
 import tokenManager from "@/utils/tokenManager";
 
 export default function useLogin(type: "with-nickname" | "without-nickname") {
@@ -14,6 +15,7 @@ export default function useLogin(type: "with-nickname" | "without-nickname") {
     birthday: "",
     gender: "",
   });
+  const { setLoggedIn } = useLoggedInStore();
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -28,10 +30,11 @@ export default function useLogin(type: "with-nickname" | "without-nickname") {
       if (authToken) {
         const { data, res } = await authAPIS.authBy(authToken);
 
-        const accessToken = res.headers.get("access");
-        if (accessToken) tokenManager.setToken(accessToken);
-
         if (res.ok && prevPage) {
+          const accessToken = res.headers.get("access");
+          if (accessToken) tokenManager.setToken(accessToken);
+          setLoggedIn(true);
+
           if (type === "with-nickname") router.push(prevPage);
           else {
             setUserInfo({
@@ -45,7 +48,7 @@ export default function useLogin(type: "with-nickname" | "without-nickname") {
       }
     };
     fetchLogin();
-  }, [authToken, router, prevPage, type]);
+  }, [authToken, router, prevPage, type, setLoggedIn]);
 
   return { isLoading, userInfo };
 }

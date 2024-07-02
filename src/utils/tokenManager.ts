@@ -1,11 +1,8 @@
 function createTokenManager() {
-  let accessToken: string | null = null;
-
   return {
-    setToken: (token: string) => {
-      accessToken = token;
-    },
-    getToken: () => accessToken,
+    setToken: (token: string) => localStorage.setItem("access-token", token),
+    getToken: () => localStorage.getItem("access-token"),
+    removeToken: () => localStorage.removeItem("access-token"),
   };
 }
 

@@ -1,13 +1,13 @@
 import { usePathname } from "next/navigation";
 import React, { Dispatch, SetStateAction, useState } from "react";
 
-import MobileHeaderRightSection from "@/components/header/headerRightSection/mobileHeaderRightSection/MobileHeaderRightSection";
 import ROUTES from "@/constants/routes";
 import useLoggedInStore from "@/stores/useLoggedIn";
 
 import HeaderAuthButtons from "./HeaderAuthButtons";
 import HeaderAuthedUserSection from "./HeaderAuthedUserSection";
 import HeaderSearchInputSection from "./HeaderSearchInputSection";
+import MobileHeaderRightSection from "./mobileHeaderRightSection/MobileHeaderRightSection";
 
 interface HeaderRightSectionProps {
   hasScrolledPast: boolean;
@@ -20,7 +20,7 @@ export default function HeaderRightSection({
   clickSearchIcon,
   setClickSearchIcon,
 }: HeaderRightSectionProps) {
-  const { loggedIn, setLoggedIn } = useLoggedInStore();
+  const { loggedIn } = useLoggedInStore();
   const pathname = usePathname();
   const [inputFocused, setInputFocused] = useState(false);
   const [inputValue, setInputValue] = useState("");

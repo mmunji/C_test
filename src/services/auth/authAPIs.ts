@@ -9,9 +9,22 @@ export const authAPIS = {
     return { data, res };
   },
 
+  refresh: async () => {
+    const accessToken = tokenManager.getToken();
+    const res = await fetch(`${API_URL}/reissue`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        access: `${accessToken}`,
+      },
+    });
+
+    const data = res.json();
+    return { res, data };
+  },
+
   signUp: async (nickname: string, gender: string, birthday: string) => {
     const accessToken = tokenManager.getToken();
-    console.log(accessToken);
     const res = await fetch(`${API_URL}/my/nickNameMerge`, {
       method: "PATCH",
       headers: {

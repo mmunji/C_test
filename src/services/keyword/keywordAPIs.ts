@@ -1,4 +1,5 @@
 import { API_URL } from "@/constants/api_url";
+import tokenManager from "@/utils/tokenManager";
 
 export const keywordAPIs = {
   getKeyword: async (movieId: number) => {
@@ -20,17 +21,18 @@ export const keywordAPIs = {
   },
 
   addKeyword: async (movieId: number, keyword: string) => {
+    const accessToken = tokenManager.getToken();
     const res = await fetch(`${API_URL}/keywords/${movieId}/save`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer `,
+        access: `${accessToken}`,
       },
       body: JSON.stringify({
         keyword: keyword,
       }),
     });
-    const data: Keyword = await res.json();
+    const data: Keyword | ErrorResponse = await res.json();
 
     return { data, res };
   },

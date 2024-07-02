@@ -46,7 +46,7 @@ export { default as HeartLineSm } from "./interaction/heart/heart_line_sm.svg";
 export { default as HeartLineXl } from "./interaction/heart/heart_line_xl.svg";
 export { default as House } from "./interaction/house.svg";
 export { default as Info } from "./interaction/info.svg";
-export { default as logOut } from "./interaction/log_out.svg";
+export { default as LogOut } from "./interaction/log_out.svg";
 export { default as MoreGridSmall } from "./interaction/more_grid_small.svg";
 export { default as MoreHorizontal } from "./interaction/more_horizontal.svg";
 export { default as Search } from "./interaction/search/search.svg";

@@ -6,6 +6,9 @@ import { useEffect, useState } from "react";
 
 import ROUTES from "@/constants/routes";
 import useHeaderScrollThreshold from "@/hooks/useHeaderScrollThreshold";
+import useRefresh from "@/hooks/useRefresh";
+import { authAPIS } from "@/services/auth/authAPIs";
+import useLoggedInStore from "@/stores/useLoggedIn";
 
 import { ChevronLeftMd } from "../../../public/icons";
 import HeaderRightSection from "./headerRightSection/HeaderRightSection";
@@ -16,6 +19,7 @@ export default function Header() {
   const pathname = usePathname();
   const { hasScrolledPast } = useHeaderScrollThreshold();
   const router = useRouter();
+  useRefresh();
 
   useEffect(() => {
     const handleResize = () => {

@@ -1,9 +1,11 @@
 import Image from "next/image";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import React, { Dispatch, SetStateAction, useState } from "react";
 
+import Modal from "@/components/modal/_components";
 import ROUTES from "@/constants/routes";
-import useDebounce from "@/hooks/useDebounce";
+import useHandleClickAuthButton from "@/hooks/useHandleClickAuthButtons";
+import useLoggedInStore from "@/stores/useLoggedIn";
 
 import { SearchWhiter, User } from "../../../../../public/icons";
 import MobileHeaderInputSection from "./MobileHeaderInputSection";
@@ -20,17 +22,17 @@ function MobileHeaderRightSection({
 }: MobileHeaderRightSectionProps) {
   const pathname = usePathname();
   const [inputFocused, setInputFocused] = useState(false);
-  const [debouncedValue, setDebouncedValue] = useState("");
   const [inputValue, setInputValue] = useState("");
+  const { loggedIn } = useLoggedInStore();
+  const router = useRouter();
+  const [isOpen, setIsOpen] = useState(false);
+  const { handleClickAuthButton } = useHandleClickAuthButton();
 
-  const handleDebounceChange = useDebounce<React.ChangeEvent<HTMLInputElement>>(
-    (e) => setDebouncedValue(e.target.value),
-    300,
-  );
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInputValue(e.target.value);
-    handleDebounceChange(e);
+  const handleClickUserIcon = () => {
+    if (loggedIn) router.push(ROUTES.MY.default);
+    else {
+      setIsOpen(true);
+    }
   };
 
   return (
@@ -42,7 +44,7 @@ function MobileHeaderRightSection({
           {...{
             inputFocused,
             inputValue,
-            setInputValue: handleChange,
+            setInputValue,
             setInputFocused,
             setClickSearchIcon,
             clickSearchIcon,
@@ -59,16 +61,28 @@ function MobileHeaderRightSection({
           <Image
             src={User}
             alt="유저"
+            onClick={handleClickUserIcon}
             className="m-2 cursor-pointer Laptop:hidden"
           />
         </section>
       )}
       {clickSearchIcon && (
         <MobileHeaderSearchDropdown
-          inputValue={debouncedValue}
+          inputValue={inputValue}
           inputFocused={inputFocused}
-          setClickSearchIcon={setClickSearchIcon}
         />
+      )}
+      {isOpen && (
+        <Modal
+          isAlertModal={false}
+          isOpen={isOpen}
+          onClose={() => setIsOpen(false)}
+        >
+          <Modal.Login
+            onKakaoLogin={() => handleClickAuthButton("kakao")}
+            onNaverLogin={() => handleClickAuthButton("naver")}
+          />
+        </Modal>
       )}
     </section>
   );
