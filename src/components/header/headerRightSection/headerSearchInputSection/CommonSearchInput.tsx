@@ -25,7 +25,7 @@ export default function CommonSearchInput({
       onBlur={() => {
         setTimeout(() => {
           setInputFocused(false);
-        }, 300);
+        }, 100);
       }}
       className={`flex h-10 w-full items-start border border-transparent py-2 pl-[64px] pr-[24px] font-Medium text-L_Gray outline-none placeholder:text-L_Gray hover:border hover:border-D2_Gray focus:placeholder:opacity-0 ${inputFocused ? "rounded-t-[20px] bg-D2_Gray text-Silver" : "rounded-[20px] bg-[#2e2c2b]"}`}
     />

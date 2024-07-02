@@ -12,16 +12,17 @@ export default function useSearchMovies(value: string) {
     const searchMovies = async () => {
       const { data } = await searchAPIs.searchMovies(debouncedSearchTerm);
 
-      const movieTitlesArr = data?.map(
-        (movie: { title: string }) => movie.title,
-      );
+      const movieTitlesArr = data
+        ?.map((movie: { title: string }) => movie.title)
+        .slice(0, 10);
+
       setMovieTitles(movieTitlesArr);
     };
 
     if (debouncedSearchTerm) {
       searchMovies();
     }
-  }, [debouncedSearchTerm, value]);
+  }, [debouncedSearchTerm]);
 
   return { movieTitles };
 }

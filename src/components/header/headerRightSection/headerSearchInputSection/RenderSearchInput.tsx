@@ -45,7 +45,7 @@ function RenderSearchInput({
             onBlur={() => {
               setTimeout(() => {
                 setInputFocused(false);
-              }, 300);
+              }, 100);
             }}
             className={`flex h-10 w-full items-start py-2 pl-[64px] pr-[24px] font-Medium text-[rgba(255,255,255,0.6)] outline-none placeholder:text-[rgba(255,255,255,0.6)] hover:border-Silver focus:placeholder:opacity-0 ${inputFocused ? "rounded-t-[20px] bg-D2_Gray text-Silver" : "rounded-[20px] border border-[rgba(255,255,255,0.6)] bg-transparent"}`}
           />
