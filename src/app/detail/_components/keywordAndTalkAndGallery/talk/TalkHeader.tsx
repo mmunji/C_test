@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { useState } from "react";
 
+import Button from "@/components/buttons/Button";
 import Dropdown from "@/components/dropdown/Dropdown";
 
 import { Filter } from "../../../../../../public/icons";
@@ -18,12 +19,10 @@ export default function TalkHeader() {
 
       <Dropdown>
         <Dropdown.Trigger>
-          <section className="flex gap-1">
-            <Image src={Filter} alt="필터" />
-            <p className="select-none text-Gray_Orange Text-s-Medium Tablet:Text-m-Medium">
-              {activeFilter}
-            </p>
-          </section>
+          <Button variant={"textIconL"} className="Text-s-Medium">
+            <Image alt="필터" src={Filter} />
+            <span>{activeFilter}</span>
+          </Button>
         </Dropdown.Trigger>
 
         <Dropdown.List>

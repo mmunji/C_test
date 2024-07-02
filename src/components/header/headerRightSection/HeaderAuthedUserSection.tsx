@@ -22,6 +22,7 @@ function HeaderAuthedUserSection({
   const pathname = usePathname();
   const router = useRouter();
   const { logout } = useLoggedInStore();
+
   const handleClickDropdown = (i: number) => {
     if (i === 0) router.push(ROUTES.MY.default);
     else if (i === 1) {
@@ -33,15 +34,16 @@ function HeaderAuthedUserSection({
     <section className="hidden items-center Laptop:flex">
       <div className="mr-3 h-[30px] w-[30px] rounded-full bg-[#d9d9d9]" />
 
-      <p
-        className={`mr-2 text-regular font-Medium ${pathname.includes(ROUTES.DETAIL) ? (hasScrolledPast ? "text-Silver" : "text-[rgba(255,255,255,0.6)]") : "text-Silver"}`}
-      >
-        닉네임
-      </p>
-
       <Dropdown type="icon">
         <Dropdown.Trigger>
-          <Image src={CaretDownMd} alt="더보기" className="cursor-pointer" />
+          <div className="flex">
+            <p
+              className={`mr-2 text-regular font-Medium ${pathname.includes(ROUTES.DETAIL) ? (hasScrolledPast ? "text-Silver" : "text-[rgba(255,255,255,0.6)]") : "text-Silver"}`}
+            >
+              닉네임
+            </p>
+            <Image src={CaretDownMd} alt="더보기" className="cursor-pointer" />
+          </div>
         </Dropdown.Trigger>
         <Dropdown.List>
           {dropdownMenu.map((m, i) => (
@@ -50,8 +52,10 @@ function HeaderAuthedUserSection({
               onClick={() => handleClickDropdown(i)}
               isFocused={m.content === "전체"}
             >
-              <Image src={m.icon} alt={m.content} className="mr-2 h-6 w-6" />
-              <p className="Text-m-Regular">{m.content}</p>
+              <div className="flex items-center gap-2">
+                <Image src={m.icon} alt={m.content} className="mr-2 h-6 w-6" />
+                <p className="Text-m-Regular">{m.content}</p>
+              </div>
             </Dropdown.Item>
           ))}
         </Dropdown.List>
