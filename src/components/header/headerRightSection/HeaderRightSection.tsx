@@ -43,7 +43,12 @@ export default function HeaderRightSection({
       />
 
       <MobileHeaderRightSection
-        {...{ clickSearchIcon, setClickSearchIcon, inputValue, setInputValue }}
+        {...{
+          clickSearchIcon,
+          setClickSearchIcon,
+          inputValue,
+          setInputValue,
+        }}
       />
 
       {loggedIn ? (

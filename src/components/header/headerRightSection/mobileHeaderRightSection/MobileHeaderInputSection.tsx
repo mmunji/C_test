@@ -32,6 +32,7 @@ export default function MobileHeaderInputSection({
   const { handleKeyPress } = usePressEnterSearch(
     setInputFocused,
     inputValue,
+    inputRef,
     setClickSearchIcon,
   );
 

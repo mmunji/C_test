@@ -8,7 +8,7 @@ interface CommonSearchInputProps {
   setInputValue: Dispatch<SetStateAction<string>>;
   inputFocused: boolean;
   setInputFocused: Dispatch<SetStateAction<boolean>>;
-  inputRefs: RefObject<HTMLInputElement[]>;
+  inputRef: RefObject<HTMLInputElement | null>;
 }
 
 export default function CommonSearchInput({
@@ -16,17 +16,17 @@ export default function CommonSearchInput({
   setInputValue,
   inputFocused,
   setInputFocused,
-  inputRefs,
+  inputRef,
 }: CommonSearchInputProps) {
-  const { handleKeyPress } = usePressEnterSearch(setInputFocused, inputValue);
+  const { handleKeyPress } = usePressEnterSearch(
+    setInputFocused,
+    inputValue,
+    inputRef,
+  );
 
   return (
     <input
-      ref={(el) => {
-        if (inputRefs.current) {
-          inputRefs.current[0] = el as HTMLInputElement;
-        }
-      }}
+      ref={inputRef as RefObject<HTMLInputElement>}
       value={inputValue}
       onChange={(e: ChangeEvent<HTMLInputElement>) =>
         setInputValue(e.target.value)

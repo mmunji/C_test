@@ -22,8 +22,12 @@ function RenderSearchInput({
   inputFocused,
 }: RenderSearchInputProps) {
   const pathname = usePathname();
-  const { handleKeyPress } = usePressEnterSearch(setInputFocused, inputValue);
-  const inputRefs = useRef<HTMLInputElement[]>([]);
+  const inputRef = useRef<HTMLInputElement | null>(null);
+  const { handleKeyPress } = usePressEnterSearch(
+    setInputFocused,
+    inputValue,
+    inputRef,
+  );
 
   return (
     <>
@@ -35,11 +39,12 @@ function RenderSearchInput({
               setInputValue,
               inputFocused,
               setInputFocused,
-              inputRefs,
+              inputRef,
             }}
           />
         ) : (
           <input
+            ref={inputRef}
             value={inputValue}
             onChange={(e: ChangeEvent<HTMLInputElement>) =>
               setInputValue(e.target.value)
@@ -65,7 +70,7 @@ function RenderSearchInput({
             setInputValue,
             inputFocused,
             setInputFocused,
-            inputRefs,
+            inputRef,
           }}
         />
       )}
