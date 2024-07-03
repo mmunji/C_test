@@ -45,7 +45,7 @@ export default function MobileHeaderInputSection({
       <div className="relative z-10 w-full">
         <input
           ref={inputRef}
-          type="text"
+          type="search"
           value={inputValue}
           onChange={(e: ChangeEvent<HTMLInputElement>) =>
             setInputValue(e.target.value)

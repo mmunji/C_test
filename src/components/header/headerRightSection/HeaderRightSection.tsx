@@ -1,7 +1,14 @@
 import { usePathname } from "next/navigation";
-import React, { Dispatch, SetStateAction, useState } from "react";
+import React, {
+  Dispatch,
+  SetStateAction,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 
 import ROUTES from "@/constants/routes";
+import useIsInputFocused from "@/hooks/useIsInputFocused";
 import useSearchMovies from "@/hooks/useSearchMovies";
 import useLoggedInStore from "@/stores/useLoggedIn";
 
@@ -23,10 +30,17 @@ export default function HeaderRightSection({
 }: HeaderRightSectionProps) {
   const { loggedIn } = useLoggedInStore();
   const pathname = usePathname();
-  const [inputFocused, setInputFocused] = useState(false);
   const [inputValue, setInputValue] = useState("");
+  const inputRef = useRef<HTMLInputElement | null>(null);
+  const { isInputFocused, setIsInputFocused } = useIsInputFocused(inputRef);
 
   useSearchMovies(inputValue);
+
+  useEffect(() => {
+    if (isInputFocused) {
+      inputRef.current?.focus();
+    }
+  }, [isInputFocused, hasScrolledPast]);
 
   return (
     <section
@@ -37,8 +51,9 @@ export default function HeaderRightSection({
           hasScrolledPast,
           inputValue,
           setInputValue,
-          inputFocused,
-          setInputFocused,
+          isInputFocused,
+          setIsInputFocused,
+          inputRef,
         }}
       />
 
