@@ -1,4 +1,4 @@
-import { usePathname } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import React, {
   Dispatch,
   SetStateAction,
@@ -33,6 +33,8 @@ export default function HeaderRightSection({
   const [inputValue, setInputValue] = useState("");
   const inputRef = useRef<HTMLInputElement | null>(null);
   const { isInputFocused, setIsInputFocused } = useIsInputFocused(inputRef);
+  const searchParams = useSearchParams();
+  const searchQuery = searchParams.get("query");
 
   useSearchMovies(inputValue);
 
@@ -41,6 +43,14 @@ export default function HeaderRightSection({
       inputRef.current?.focus();
     }
   }, [isInputFocused, hasScrolledPast]);
+
+  useEffect(() => {
+    if (!pathname.includes(ROUTES.SEARCH.default)) {
+      setInputValue("");
+    } else {
+      if (searchQuery) setInputValue(searchQuery);
+    }
+  }, [pathname, searchQuery]);
 
   return (
     <section

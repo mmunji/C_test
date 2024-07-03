@@ -1,9 +1,11 @@
+import { usePathname } from "next/navigation";
 import { RefObject, useEffect, useState } from "react";
 
 export default function useIsInputFocused(
   inputRef: RefObject<HTMLInputElement>,
 ) {
   const [isInputFocused, setIsInputFocused] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleFocus = () => setIsInputFocused(true);
@@ -25,6 +27,11 @@ export default function useIsInputFocused(
       }
     };
   }, [inputRef]);
+
+  useEffect(() => {
+    inputRef.current?.blur();
+    setIsInputFocused(false);
+  }, [inputRef, pathname]);
 
   return { isInputFocused, setIsInputFocused };
 }
