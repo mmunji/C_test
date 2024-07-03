@@ -3,9 +3,10 @@ import {
   ModalCancelButton,
   ModalCheckbox,
 } from "@/components/modal/_components/ModalButtons";
-import { ModalLogin } from "@/components/modal/_components/ModalLogin";
-import { ModalImg, ModalMain } from "@/components/modal/_components/ModalMain";
-import { ModalReport } from "@/components/modal/_components/ModalReport";
+import ModalImg from "@/components/modal/_components/ModalImg";
+import ModalLogin from "@/components/modal/_components/ModalLogin";
+import ModalMain from "@/components/modal/_components/ModalMain";
+import ModalReport from "@/components/modal/_components/ModalReport";
 import {
   ModalDescription,
   ModalTitle,

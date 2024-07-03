@@ -12,7 +12,10 @@ interface ModalLoginProps {
 }
 type LastSocialLogin = null | "kakao" | "naver";
 
-export function ModalLogin({ onKakaoLogin, onNaverLogin }: ModalLoginProps) {
+export default function ModalLogin({
+  onKakaoLogin,
+  onNaverLogin,
+}: ModalLoginProps) {
   const [lastSocialLogin, setLastSocialLogin] =
     useState<LastSocialLogin>("kakao");
   const { onClose } = useModalContext();

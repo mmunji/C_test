@@ -1,7 +1,7 @@
 import { usePathname } from "next/navigation";
 import React, { useState } from "react";
 
-import Modal from "@/components/modal/_components";
+import Modal from "@/components/modal/modal";
 import ROUTES from "@/constants/routes";
 import useHandleClickAuthButton from "@/hooks/useHandleClickAuthButtons";
 

@@ -2,7 +2,7 @@ import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import React from "react";
 
-import Dropdown from "@/components/dropdown/Dropdown";
+import Dropdown from "@/components/dropdown/dropdown";
 import ROUTES from "@/constants/routes";
 import useLoggedInStore from "@/stores/useLoggedIn";
 
