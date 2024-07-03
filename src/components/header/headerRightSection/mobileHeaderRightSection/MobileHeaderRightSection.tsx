@@ -2,7 +2,7 @@ import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import React, { Dispatch, SetStateAction, useState } from "react";
 
-import Modal from "@/components/modal/_components";
+import Modal from "@/components/modal/modal";
 import ROUTES from "@/constants/routes";
 import useHandleClickAuthButton from "@/hooks/useHandleClickAuthButtons";
 import useSearchMovies from "@/hooks/useSearchMovies";

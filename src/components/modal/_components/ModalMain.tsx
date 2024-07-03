@@ -2,7 +2,7 @@ import clsx from "clsx";
 import { AnimatePresence, motion } from "framer-motion";
 import React, { ReactElement, useEffect } from "react";
 
-import Modal from "@/components/modal/_components";
+import Modal from "@/components/modal/modal";
 import ModalContext from "@/components/modal/ModalContext";
 import Portal from "@/components/modal/portal";
 import useModal from "@/components/modal/useModal";
@@ -18,11 +18,7 @@ interface ModalMainProps extends WithChildren {
   isOpen: boolean;
 }
 
-export function ModalImg() {
-  return <div className="h-[150px] w-[280px] bg-[#a4a4a4]" />;
-}
-
-export function ModalMain({
+export default function ModalMain({
   children,
   onClose,
   isAlertModal,

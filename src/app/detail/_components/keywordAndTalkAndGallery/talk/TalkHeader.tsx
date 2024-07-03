@@ -2,7 +2,7 @@ import Image from "next/image";
 import { useState } from "react";
 
 import Button from "@/components/buttons/Button";
-import Dropdown from "@/components/dropdown/Dropdown";
+import Dropdown from "@/components/dropdown/dropdown";
 
 import { Filter } from "../../../../../../public/icons";
 

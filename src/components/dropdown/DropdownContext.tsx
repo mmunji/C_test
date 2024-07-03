@@ -8,6 +8,8 @@ interface DropdownContextType {
   height: number;
 }
 
+export type ButtonType = DropdownContextType["type"];
+
 const DropdownContext = createContext<DropdownContextType | null>(null);
 
 export const useDropdownContext = () => {
