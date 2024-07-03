@@ -1,3 +1,4 @@
+import { josa } from "es-hangul";
 import { useRouter } from "next/navigation";
 import { ChangeEvent, FormEvent, useState } from "react";
 
@@ -35,6 +36,9 @@ export default function KeywordForm({ movieId, title }: KeywordFormProps) {
       ? title.split("").splice(0, sliceNumber).join("") + "..."
       : title;
 
+  const quotedTitle = `'${title}'`;
+  const quotedFormattedTitle = `'${formattedTitle}'`;
+
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.value.length > 5) {
       e.target.value = e.target.value.slice(0, 5);
@@ -68,6 +72,8 @@ export default function KeywordForm({ movieId, title }: KeywordFormProps) {
     }
   };
 
+  const josaTitle = josa(quotedFormattedTitle, "은/는");
+
   return (
     <form onSubmit={handleSubmit} className="relative w-full Laptop:static">
       <div className="absolute left-1/2 top-[-13px] w-[305px] translate-x-[-50%] translate-y-[-100%] Laptop:hidden">
@@ -78,7 +84,7 @@ export default function KeywordForm({ movieId, title }: KeywordFormProps) {
       <div className="relative w-full overflow-hidden rounded-xl ">
         <input
           type="text"
-          placeholder={`'${device === "tablet" ? title : formattedTitle}'는 한 단어로?`}
+          placeholder={`${device === "tablet" ? quotedTitle : josaTitle} 한 단어로?`}
           maxLength={5}
           value={value}
           onFocus={() => setFocused(true)}
