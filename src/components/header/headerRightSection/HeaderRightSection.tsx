@@ -1,8 +1,14 @@
 import { usePathname } from "next/navigation";
-import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
+import React, {
+  Dispatch,
+  SetStateAction,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 
 import ROUTES from "@/constants/routes";
-import useDevice from "@/hooks/useDevice";
+import useIsInputFocused from "@/hooks/useIsInputFocused";
 import useSearchMovies from "@/hooks/useSearchMovies";
 import useLoggedInStore from "@/stores/useLoggedIn";
 
@@ -24,17 +30,17 @@ export default function HeaderRightSection({
 }: HeaderRightSectionProps) {
   const { loggedIn } = useLoggedInStore();
   const pathname = usePathname();
-  const [inputFocused, setInputFocused] = useState(false);
   const [inputValue, setInputValue] = useState("");
-  const { device } = useDevice();
-  const smDevice = device === "mobile" || device === "tablet";
-  const lgDevice = device === "laptop" || device === "desktop";
+  const inputRef = useRef<HTMLInputElement | null>(null);
+  const { isInputFocused, setIsInputFocused } = useIsInputFocused(inputRef);
+
+  useSearchMovies(inputValue);
 
   useEffect(() => {
-    setInputValue("");
-  }, [smDevice, lgDevice]);
-
-  const { movieTitles } = useSearchMovies(inputValue);
+    if (isInputFocused) {
+      inputRef.current?.focus();
+    }
+  }, [isInputFocused, hasScrolledPast]);
 
   return (
     <section
@@ -45,15 +51,19 @@ export default function HeaderRightSection({
           hasScrolledPast,
           inputValue,
           setInputValue,
-          inputFocused,
-          setInputFocused,
-          movieTitles,
+          isInputFocused,
+          setIsInputFocused,
+          inputRef,
         }}
       />
 
       <MobileHeaderRightSection
-        clickSearchIcon={clickSearchIcon}
-        setClickSearchIcon={setClickSearchIcon}
+        {...{
+          clickSearchIcon,
+          setClickSearchIcon,
+          inputValue,
+          setInputValue,
+        }}
       />
 
       {loggedIn ? (

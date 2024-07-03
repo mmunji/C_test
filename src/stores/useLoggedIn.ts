@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
 
-import tokenManager from "@/utils/tokenManager";
+import { tokenManager } from "@/services/auth/tokenManager";
 
 interface UseLoggedInStore {
   loggedIn: boolean;

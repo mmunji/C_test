@@ -11,9 +11,9 @@ const ROUTES = {
     default: "/search",
     getById: (title: string) => `${ROUTES.SEARCH.default}?query=${title}`,
   },
-  RIDERECT: {
+  REDIRECT: {
     default: "/redirect",
-    without_nickname: () => `${ROUTES.RIDERECT.default}/without-nickname`,
+    without_nickname: () => `${ROUTES.REDIRECT.default}/without-nickname`,
   },
   SIGN_UP_COMPLETE: "/sign-up-complete",
 };

@@ -1,7 +1,8 @@
 import { usePathname } from "next/navigation";
-import React, { ChangeEvent, Dispatch, SetStateAction } from "react";
+import React, { ChangeEvent, Dispatch, RefObject, SetStateAction } from "react";
 
 import ROUTES from "@/constants/routes";
+import usePressEnterSearch from "@/hooks/usePressEnterSearch";
 
 import CommonSearchInput from "./CommonSearchInput";
 
@@ -9,18 +10,25 @@ interface RenderSearchInputProps {
   hasScrolledPast: boolean;
   inputValue: string;
   setInputValue: Dispatch<SetStateAction<string>>;
-  setInputFocused: Dispatch<SetStateAction<boolean>>;
-  inputFocused: boolean;
+  setIsInputFocused: Dispatch<SetStateAction<boolean>>;
+  isInputFocused: boolean;
+  inputRef: RefObject<HTMLInputElement | null>;
 }
 
 function RenderSearchInput({
   hasScrolledPast,
   inputValue,
-  setInputFocused,
+  setIsInputFocused,
   setInputValue,
-  inputFocused,
+  isInputFocused,
+  inputRef,
 }: RenderSearchInputProps) {
   const pathname = usePathname();
+  const { handleKeyPress } = usePressEnterSearch(
+    setIsInputFocused,
+    inputValue,
+    inputRef,
+  );
 
   return (
     <>
@@ -30,24 +38,30 @@ function RenderSearchInput({
             {...{
               inputValue,
               setInputValue,
-              inputFocused,
-              setInputFocused,
+              isInputFocused,
+              setIsInputFocused,
+              inputRef,
             }}
           />
         ) : (
           <input
+            type="search"
+            ref={inputRef as RefObject<HTMLInputElement>}
             value={inputValue}
             onChange={(e: ChangeEvent<HTMLInputElement>) =>
               setInputValue(e.target.value)
             }
             placeholder="‘파묘’ 궁금하지 않으세요?"
-            onFocus={() => setInputFocused(true)}
+            onFocus={() => setIsInputFocused(true)}
             onBlur={() => {
               setTimeout(() => {
-                setInputFocused(false);
-              }, 100);
+                setIsInputFocused(false);
+              }, 150);
             }}
-            className={`flex h-10 w-full items-start py-2 pl-[64px] pr-[24px] font-Medium text-[rgba(255,255,255,0.6)] outline-none placeholder:text-[rgba(255,255,255,0.6)] hover:border-Silver focus:placeholder:opacity-0 ${inputFocused ? "rounded-t-[20px] bg-D2_Gray text-Silver" : "rounded-[20px] border border-[rgba(255,255,255,0.6)] bg-transparent"}`}
+            onKeyDown={(e) => {
+              handleKeyPress(e, inputValue);
+            }}
+            className={`flex h-10 w-full items-start py-2 pl-[64px] pr-[24px] font-Medium text-[rgba(255,255,255,0.6)] outline-none placeholder:text-[rgba(255,255,255,0.6)] hover:border-Silver focus:placeholder:opacity-0 ${isInputFocused ? "rounded-t-[20px] bg-D2_Gray text-Silver" : "rounded-[20px] border border-[rgba(255,255,255,0.6)] bg-transparent"}`}
           />
         )
       ) : (
@@ -56,8 +70,9 @@ function RenderSearchInput({
             type: "lg",
             inputValue,
             setInputValue,
-            inputFocused,
-            setInputFocused,
+            isInputFocused,
+            setIsInputFocused,
+            inputRef,
           }}
         />
       )}

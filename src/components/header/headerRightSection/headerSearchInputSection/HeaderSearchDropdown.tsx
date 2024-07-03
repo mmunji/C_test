@@ -1,20 +1,26 @@
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { Dispatch, SetStateAction } from "react";
 
 import ROUTES from "@/constants/routes";
+import useGetPopularSearchList from "@/hooks/useGetPopularSearchList";
+import { searchAPIs } from "@/services/search/searchAPIs";
+import useSearchMovieTitlesStore from "@/stores/useSearchMovieTitlesStore";
 
 import { EnvironmentFire } from "../../../../../public/icons";
 
 interface HeaderSearchDropdownProps {
   inputValue: string;
-  movieTitles: string[] | undefined;
+  setInputValue: Dispatch<SetStateAction<string>>;
 }
 
 export default function HeaderSearchDropdown({
   inputValue,
-  movieTitles,
+  setInputValue,
 }: HeaderSearchDropdownProps) {
+  const { movieTitles } = useSearchMovieTitlesStore();
+  useGetPopularSearchList(inputValue);
+
   return (
     <ul className="absolute top-10 w-full rounded-b-[20px] bg-D2_Gray pb-3">
       {!inputValue && (
@@ -28,6 +34,10 @@ export default function HeaderSearchDropdown({
           <Link
             key={i}
             href={`${ROUTES.SEARCH.getById(title)}`}
+            onClick={() => {
+              setInputValue(title);
+              searchAPIs.saveSearchMovies(title);
+            }}
             className="w-full max-w-[calc(100%-32px)] cursor-pointer overflow-hidden text-ellipsis whitespace-nowrap py-1 pl-[60px] font-Regular text-Silver hover:underline"
           >
             {title}

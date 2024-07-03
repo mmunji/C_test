@@ -1,5 +1,6 @@
 import { API_URL } from "@/constants/api_url";
-import tokenManager from "@/utils/tokenManager";
+
+import { tokenManager } from "../auth/tokenManager";
 
 export const keywordAPIs = {
   getKeyword: async (movieId: number) => {
