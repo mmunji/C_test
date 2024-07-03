@@ -1,6 +1,8 @@
 "use client";
 
 import { Palette } from "color-thief-react";
+import { usePathname } from "next/navigation";
+import { useEffect } from "react";
 
 import hexToRGBA from "../../../../utils/hexToRGBA";
 import { usePaletteStore } from "../../_stores/usePaletteStore";
@@ -16,6 +18,12 @@ export default function DetailBannerSection({
   const { gradientStyle, setGradientStyle } = usePaletteStore();
   const posterImage = movieDetailData.posterImg;
   const backgroundImage = movieDetailData.backGroundImg;
+  const pathname = usePathname();
+
+  useEffect(() => {
+    if (gradientStyle) setGradientStyle("");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pathname, setGradientStyle]);
 
   return (
     <section className="relative mt-[-64px] h-[380px] w-full Tablet:h-[420zyx] Laptop:mt-[-80px] Laptop:h-[640px] Desktop:h-[816px]">
