@@ -63,13 +63,20 @@ function MobileHeaderRightSection({
               src={SearchWhiter}
               alt="검색"
               onClick={() => setClickSearchIcon(true)}
-              className="m-2 cursor-pointer"
+              className={`m-2 ${pathname.includes(ROUTES.DETAIL) && "hidden Tablet:block"} cursor-pointer`}
             />
+            <Image
+              src={House}
+              alt="홈"
+              onClick={() => router.push(ROUTES.MAIN)}
+              className={`m-2 ${!pathname.includes(ROUTES.DETAIL) && "hidden"} cursor-pointer Tablet:hidden`}
+            />
+
             <Image
               src={User}
               alt="유저"
               onClick={handleClickUserIcon}
-              className="m-2 cursor-pointer Laptop:hidden"
+              className={`m-2 ${pathname.includes(ROUTES.MY.default) && "hidden"} cursor-pointer Laptop:hidden`}
             />
           </section>
         )}
