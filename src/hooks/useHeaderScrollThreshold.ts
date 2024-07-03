@@ -42,5 +42,5 @@ export default function useHeaderScrollThreshold() {
     };
   }, [breakPoints, hasScrolledPast, pathname]);
 
-  return { hasScrolledPast };
+  return { hasScrolledPast, setHasScrolledPast };
 }
