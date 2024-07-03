@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 import { A11y, Navigation, Pagination, Scrollbar } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -12,6 +13,7 @@ import {
   ChevronRightMd,
   VideoPlay,
 } from "../../../../../public/icons";
+import PhotoModal from "./PhotoModal";
 
 interface TrailerAndPhotoSliderProps {
   type: "trailer" | "photo";
@@ -34,6 +36,13 @@ export default function TrailerAndPhotoSlider({
     handlePrev,
     traillerAndPhotoSpaceBetween,
   } = useDetailSwiper("traillerAndPhoto");
+  const [openPhotoModal, setOpenPhotoModal] = useState(false);
+  const [photoModalIndex, setPhotoModalIndex] = useState<number | null>(null);
+
+  const handleClickPhoto = (i: number) => {
+    setOpenPhotoModal(true);
+    setPhotoModalIndex(i);
+  };
 
   const trailerOpacity = hexToRGBA("#000000", 0.4);
 
@@ -87,13 +96,14 @@ export default function TrailerAndPhotoSlider({
           photo?.map((el, i) => (
             <SwiperSlide
               key={i}
-              className="max-w-[320px] Tablet:max-w-[352px] Laptop:max-w-[271px] Desktop:max-w-[372px]"
+              className="max-w-[320px] cursor-pointer Tablet:max-w-[352px] Laptop:max-w-[271px] Desktop:max-w-[372px]"
             >
               <Image
                 width={500}
                 height={500}
                 src={el.filePath}
                 alt="포토"
+                onClick={() => handleClickPhoto(i)}
                 className="h-[182px] w-full rounded-lg Tablet:h-[200px] Laptop:h-[150px] Laptop:rounded-xl Desktop:h-[210px]"
               />
             </SwiperSlide>
@@ -118,6 +128,11 @@ export default function TrailerAndPhotoSlider({
         >
           <Image src={ChevronRightMd} alt="다음" />
         </Button>
+      )}
+      {openPhotoModal && (
+        <PhotoModal
+          {...{ openPhotoModal, setOpenPhotoModal, photo, photoModalIndex }}
+        />
       )}
     </div>
   );

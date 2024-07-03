@@ -1,10 +1,14 @@
 import { API_URL } from "@/constants/api_url";
 
 export const talkAPIs = {
-  getTalks: async (movieId: number) => {
-    const res = await fetch(`${API_URL}/reviews/${movieId}?page=0`, {
+  getTalks: async (movieId: number, page: number) => {
+    const res = await fetch(`${API_URL}/reviews/${movieId}?page=${page}`, {
       cache: "no-store",
     });
+
+    if (!res.ok) {
+      throw new Error("Network response was not ok");
+    }
 
     const data: Talk = await res.json();
     return data;

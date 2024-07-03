@@ -11,13 +11,11 @@ export const authAPIS = {
   },
 
   refresh: async () => {
-    const accessToken = tokenManager.getToken();
     const res = await fetch(`${API_URL}/reissue`, {
       credentials: "include",
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        access: `${accessToken}`,
       },
     });
 
