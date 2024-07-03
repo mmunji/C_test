@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 
 import ROUTES from "@/constants/routes";
 import useHeaderScrollThreshold from "@/hooks/useHeaderScrollThreshold";
@@ -59,9 +59,11 @@ export default function Header() {
 
         <Logo />
 
-        <HeaderRightSection
-          {...{ hasScrolledPast, clickSearchIcon, setClickSearchIcon }}
-        />
+        <Suspense>
+          <HeaderRightSection
+            {...{ hasScrolledPast, clickSearchIcon, setClickSearchIcon }}
+          />
+        </Suspense>
       </div>
     </header>
   );
