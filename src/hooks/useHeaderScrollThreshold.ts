@@ -42,5 +42,11 @@ export default function useHeaderScrollThreshold() {
     };
   }, [breakPoints, hasScrolledPast, pathname]);
 
+  useEffect(() => {
+    if (pathname.includes(ROUTES.DETAIL)) {
+      setHasScrolledPast(false);
+    }
+  }, [pathname, setHasScrolledPast]);
+
   return { hasScrolledPast, setHasScrolledPast };
 }

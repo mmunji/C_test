@@ -16,15 +16,9 @@ import Logo from "./Logo";
 export default function Header() {
   const [clickSearchIcon, setClickSearchIcon] = useState(false);
   const pathname = usePathname();
-  const { hasScrolledPast, setHasScrolledPast } = useHeaderScrollThreshold();
+  const { hasScrolledPast } = useHeaderScrollThreshold();
   const router = useRouter();
   useRefresh();
-
-  useEffect(() => {
-    if (pathname.includes(ROUTES.DETAIL)) {
-      setHasScrolledPast(false);
-    }
-  }, [pathname, setHasScrolledPast]);
 
   useEffect(() => {
     const handleResize = () => {
