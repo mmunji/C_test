@@ -56,7 +56,7 @@ function RenderSearchInput({
             onBlur={() => {
               setTimeout(() => {
                 setIsInputFocused(false);
-              }, 150);
+              }, 100);
             }}
             onKeyDown={(e) => {
               handleKeyPress(e, inputValue);

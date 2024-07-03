@@ -7,7 +7,9 @@ export default function useIsInputFocused(
 
   useEffect(() => {
     const handleFocus = () => setIsInputFocused(true);
-    const handleBlur = () => setIsInputFocused(false);
+    const handleBlur = () => {
+      setTimeout(() => setIsInputFocused(false), 100);
+    };
 
     const inputElement = inputRef.current;
 
