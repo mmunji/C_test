@@ -27,6 +27,14 @@ export default function Header() {
     return () => removeEventListener("resize", handleResize);
   }, []);
 
+  useEffect(() => {
+    if (clickSearchIcon) {
+      document.body.style.overflowY = "hidden";
+    } else {
+      document.body.style.overflowY = "auto";
+    }
+  }, [clickSearchIcon]);
+
   return (
     <header
       className={`sticky top-0 z-10 h-[64px] Laptop:h-20 ${pathname.includes(ROUTES.DETAIL) ? (hasScrolledPast ? "bg-BG" : "bg-transparent") : "bg-BG"} ${pathname.includes(ROUTES.MY.default) && "border-b border-D2_Gray"} `}
