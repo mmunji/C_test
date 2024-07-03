@@ -17,7 +17,7 @@ export default function usePressEnterSearch(
     inputValue: string,
   ) => {
     if (e.key === "Enter" && !e.shiftKey) {
-      if (e.nativeEvent.isComposing) return;
+      if (e.nativeEvent.isComposing || !inputValue.trim()) return;
       inputRef.current?.blur();
       router.push(`${ROUTES.SEARCH.getById(inputValue)}`);
       setInputFocused(false);

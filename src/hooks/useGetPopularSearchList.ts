@@ -15,7 +15,6 @@ export default function useGetPopularSearchList(inputValue: string) {
 
       if (!inputValue) {
         setMovieTitles(data);
-      } else {
       }
     };
     getPopularSearchList();
