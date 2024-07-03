@@ -8,7 +8,7 @@ import useHandleClickAuthButton from "@/hooks/useHandleClickAuthButtons";
 import useSearchMovies from "@/hooks/useSearchMovies";
 import useLoggedInStore from "@/stores/useLoggedIn";
 
-import { SearchWhiter, User } from "../../../../../public/icons";
+import { House, SearchWhiter, User } from "../../../../../public/icons";
 import MobileHeaderInputSection from "./MobileHeaderInputSection";
 import MobileHeaderSearchDropdown from "./MobileHeaderSearchDropdown";
 
@@ -42,59 +42,68 @@ function MobileHeaderRightSection({
   useSearchMovies(inputValue);
 
   return (
-    <section
-      className={`${pathname === ROUTES.MAIN && "ml-auto"} flex w-fit items-center Laptop:hidden ${clickSearchIcon && "absolute left-0 flex h-full w-full gap-2 bg-BG pl-5 pr-4 Tablet:p-0"}`}
-    >
-      {clickSearchIcon ? (
-        <MobileHeaderInputSection
-          {...{
-            inputFocused,
-            inputValue,
-            setInputValue,
-            setInputFocused,
-            setClickSearchIcon,
-            clickSearchIcon,
-          }}
-        />
-      ) : (
-        <section className="flex Tablet:gap-4">
-          <Image
-            src={SearchWhiter}
-            alt="검색"
-            onClick={() => setClickSearchIcon(true)}
-            className="m-2 cursor-pointer"
+    <>
+      <section
+        className={`${pathname === ROUTES.MAIN && "ml-auto"} ${pathname.includes(ROUTES.MY.default) && "hidden Tablet:block"} flex w-fit items-center Laptop:hidden ${clickSearchIcon && "absolute left-0 flex h-full w-full gap-2 bg-BG pl-5 pr-4 Tablet:p-0"}`}
+      >
+        {clickSearchIcon ? (
+          <MobileHeaderInputSection
+            {...{
+              inputFocused,
+              inputValue,
+              setInputValue,
+              setInputFocused,
+              setClickSearchIcon,
+              clickSearchIcon,
+            }}
           />
-          <Image
-            src={User}
-            alt="유저"
-            onClick={handleClickUserIcon}
-            className="m-2 cursor-pointer Laptop:hidden"
+        ) : (
+          <section className="flex Tablet:gap-4">
+            <Image
+              src={SearchWhiter}
+              alt="검색"
+              onClick={() => setClickSearchIcon(true)}
+              className="m-2 cursor-pointer"
+            />
+            <Image
+              src={User}
+              alt="유저"
+              onClick={handleClickUserIcon}
+              className="m-2 cursor-pointer Laptop:hidden"
+            />
+          </section>
+        )}
+        {clickSearchIcon && (
+          <MobileHeaderSearchDropdown
+            {...{
+              inputValue,
+              inputFocused,
+              setClickSearchIcon,
+              setInputValue,
+            }}
           />
-        </section>
-      )}
-      {clickSearchIcon && (
-        <MobileHeaderSearchDropdown
-          {...{
-            inputValue,
-            inputFocused,
-            setClickSearchIcon,
-            setInputValue,
-          }}
-        />
-      )}
-      {isOpen && (
-        <Modal
-          isAlertModal={false}
-          isOpen={isOpen}
-          onClose={() => setIsOpen(false)}
-        >
-          <Modal.Login
-            onKakaoLogin={() => handleClickAuthButton("kakao")}
-            onNaverLogin={() => handleClickAuthButton("naver")}
-          />
-        </Modal>
-      )}
-    </section>
+        )}
+        {isOpen && (
+          <Modal
+            isAlertModal={false}
+            isOpen={isOpen}
+            onClose={() => setIsOpen(false)}
+          >
+            <Modal.Login
+              onKakaoLogin={() => handleClickAuthButton("kakao")}
+              onNaverLogin={() => handleClickAuthButton("naver")}
+            />
+          </Modal>
+        )}
+      </section>
+
+      <Image
+        src={House}
+        alt="home"
+        onClick={() => router.push(ROUTES.MAIN)}
+        className={`${!pathname.includes(ROUTES.MY.default) && "hidden"} mr-2 cursor-pointer Tablet:hidden`}
+      />
+    </>
   );
 }
 
