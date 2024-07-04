@@ -5,6 +5,7 @@ import React from "react";
 import Dropdown from "@/components/dropdown/dropdown";
 import ROUTES from "@/constants/routes";
 import useLoggedInStore from "@/stores/useLoggedIn";
+import useMyInfoStore from "@/stores/useMyInfoStore";
 
 import { CaretDownMd, LogOut, User } from "../../../../public/icons";
 
@@ -22,6 +23,7 @@ function HeaderAuthedUserSection({
   const pathname = usePathname();
   const router = useRouter();
   const { logout } = useLoggedInStore();
+  const { myInfo } = useMyInfoStore();
 
   const handleClickDropdown = (i: number) => {
     if (i === 0) router.push(ROUTES.MY.default);
@@ -40,7 +42,7 @@ function HeaderAuthedUserSection({
             <p
               className={`mr-2 text-regular font-Medium ${pathname.includes(ROUTES.DETAIL) ? (hasScrolledPast ? "text-Silver" : "text-[rgba(255,255,255,0.6)]") : "text-Silver"}`}
             >
-              닉네임
+              {myInfo.nickname}
             </p>
             <Image src={CaretDownMd} alt="더보기" className="cursor-pointer" />
           </div>
