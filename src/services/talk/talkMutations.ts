@@ -23,9 +23,7 @@ export function useAddTalk() {
         content: talk,
         spoiler,
       });
-      if (!res.ok) {
-        throw new Error(data?.message);
-      }
+      if (!res.ok) throw new Error(data?.message);
     },
     onSuccess: () => {},
     onError: (error) => {
