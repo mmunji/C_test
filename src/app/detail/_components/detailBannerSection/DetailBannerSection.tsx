@@ -21,7 +21,7 @@ export default function DetailBannerSection({
   const posterImage = movieDetailData.posterImg;
   const backgroundImage = movieDetailData.backGroundImg;
   const { device } = useDevice();
-  const isSM = device === "mobile" || device === "tablet";
+  const isSm = device === "mobile" || device === "tablet";
   const pathname = usePathname();
 
   useEffect(() => {
@@ -34,7 +34,7 @@ export default function DetailBannerSection({
       <div
         className="flex h-full w-full bg-cover bg-top bg-no-repeat"
         style={{
-          backgroundImage: `linear-gradient(180deg, rgba(38, 38, 38, 0.50) 0%, rgba(38, 38, 38, 0.20) 50%, #262626 100%), url('${isSM ? posterImage : backgroundImage}')`,
+          backgroundImage: `linear-gradient(180deg, rgba(38, 38, 38, 0.50) 0%, rgba(38, 38, 38, 0.20) 50%, #262626 100%), url('${isSm ? posterImage : backgroundImage}')`,
         }}
       >
         <DetailBannerBottom movieDetailData={movieDetailData} />

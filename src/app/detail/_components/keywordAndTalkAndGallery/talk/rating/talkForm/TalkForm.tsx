@@ -5,6 +5,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 
 import Button from "@/components/buttons/Button";
 import { talkAPIs } from "@/services/talk/talkAPIs";
+import { useAddTalk } from "@/services/talk/talkMutations";
 import hexToRGBA from "@/utils/hexToRGBA";
 
 import {
@@ -33,17 +34,11 @@ export default function TalkForm({ movieId, ratingValue }: TalkFormProps) {
       spoiler: false,
     },
   });
-  const { data, mutate: mutateAddTalk } = useMutation({
-    mutationFn: () =>
-      talkAPIs.addTalks({ movieId, star: ratingValue, content: talk, spoiler }),
-    onSuccess: (data) => {
-      console.log(data);
-    },
-  });
+  const { mutate: mutateAddTalk } = useAddTalk();
 
   const onSubmit: SubmitHandler<AddTalkValues> = () => {
     if (readyToSubmit) {
-      mutateAddTalk();
+      mutateAddTalk({ movieId, ratingValue, talk, spoiler });
     }
   };
 
