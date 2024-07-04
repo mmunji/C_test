@@ -16,7 +16,6 @@ interface StarProps {
   setRatingValue: Dispatch<SetStateAction<number>>;
   clickedValue: boolean;
   setClickedValue: Dispatch<SetStateAction<boolean>>;
-  handleDriveTalk: () => void;
   ratingSize: string;
   readyToRating: boolean;
 }
@@ -27,7 +26,6 @@ export default function RatingStar({
   setRatingValue,
   clickedValue,
   setClickedValue,
-  handleDriveTalk,
   ratingSize,
   readyToRating,
 }: StarProps) {
@@ -70,7 +68,6 @@ export default function RatingStar({
         setRatingValue(ratingValue);
         setClickedValue(!clickedValue);
         if (!readyToRating) return;
-        handleDriveTalk();
       }}
     >
       <div
