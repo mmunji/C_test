@@ -12,9 +12,10 @@ import TalkHeader from "./TalkHeader";
 interface TalkProps {
   title: string;
   movieId: number;
+  movieDetailData: MovieDetailData;
 }
 
-export default function Talk({ title, movieId }: TalkProps) {
+export default function Talk({ title, movieId, movieDetailData }: TalkProps) {
   const { data } = useGetTalkQuery(movieId.toString());
   const { device } = useDevice();
   const id = device === "mobile" || device === "tablet" ? undefined : "my-talk";
@@ -22,7 +23,7 @@ export default function Talk({ title, movieId }: TalkProps) {
 
   return (
     <section id={id}>
-      <Rating title={title} movieId={movieId} />
+      <Rating {...{ title, movieId, movieDetailData }} />
       <DividingLine />
 
       <section className="Laptop:rounded-xl Laptop:bg-D1_Gray Laptop:p-8">

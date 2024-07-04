@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 
 import Button from "@/components/buttons/Button";
@@ -23,9 +23,16 @@ interface AddTalkValues {
 interface TalkFormProps {
   movieId: number;
   ratingValue: number;
+  movieDetailData: MovieDetailData;
+  setShowTalkForm: Dispatch<SetStateAction<boolean>>;
 }
 
-export default function TalkForm({ movieId, ratingValue }: TalkFormProps) {
+export default function TalkForm({
+  movieId,
+  ratingValue,
+  movieDetailData,
+  setShowTalkForm,
+}: TalkFormProps) {
   const [readyToSubmit, setReadyToSubmit] = useState(true);
   const { register, handleSubmit, watch, setValue } = useForm<AddTalkValues>({
     defaultValues: {
@@ -33,13 +40,14 @@ export default function TalkForm({ movieId, ratingValue }: TalkFormProps) {
       spoiler: false,
     },
   });
-  const { mutate: mutateAddTalk } = useAddTalk();
+  const { mutate: mutateAddTalk } = useAddTalk(setShowTalkForm);
 
   const onSubmit: SubmitHandler<AddTalkValues> = () => {
     if (readyToSubmit) {
       if (filterAbuse(talk)) return;
+      const genreList = movieDetailData?.genreDTOList.map((el) => el.id);
 
-      mutateAddTalk({ movieId, ratingValue, talk, spoiler });
+      mutateAddTalk({ movieId, ratingValue, talk, spoiler, genreList });
     }
   };
 

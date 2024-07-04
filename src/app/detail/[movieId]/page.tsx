@@ -47,7 +47,13 @@ export default async function Detail({
 
           <section className="hidden Laptop:flex Laptop:gap-7 Desktop:gap-9">
             <div className="w-[67.74%]">
-              <Talk title={movieTitle} movieId={movieId} />
+              <Talk
+                {...{
+                  title: movieTitle,
+                  movieId,
+                  movieDetailData,
+                }}
+              />
             </div>
             <div className="w-[32.26%]">
               <Keyword

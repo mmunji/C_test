@@ -14,9 +14,14 @@ import TextBeforeRating from "./TextBeforeRating";
 interface RatingProps {
   title: string;
   movieId: number;
+  movieDetailData: MovieDetailData;
 }
 
-export default function Rating({ title, movieId }: RatingProps) {
+export default function Rating({
+  title,
+  movieId,
+  movieDetailData,
+}: RatingProps) {
   const {
     ratingValue,
     setRatingValue,
@@ -80,7 +85,11 @@ export default function Rating({ title, movieId }: RatingProps) {
           </Button>
         </>
       )}
-      {showTalkForm && <TalkForm movieId={movieId} ratingValue={ratingValue} />}
+      {showTalkForm && (
+        <TalkForm
+          {...{ movieId, ratingValue, movieDetailData, setShowTalkForm }}
+        />
+      )}
 
       {!clickedValue && !showTalkForm && (
         <div className="absolute bottom-0 left-1/2 w-[243px] translate-x-[-50%] translate-y-[50%] Tablet:bottom-5 Laptop:bottom-0">

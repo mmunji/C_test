@@ -21,11 +21,13 @@ export const talkAPIs = {
     star,
     content,
     spoiler,
+    genreList,
   }: {
     movieId: number;
     star: number;
     content: string;
     spoiler: boolean;
+    genreList: number[];
   }) => {
     const accessToken = tokenManager.getToken();
     const res = await fetch(`${API_URL}/reviews/${movieId}/save`, {
@@ -39,6 +41,7 @@ export const talkAPIs = {
         star,
         content,
         spoiler,
+        genreList,
       }),
     });
 
