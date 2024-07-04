@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { A11y, Navigation, Pagination, Scrollbar } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -45,6 +45,17 @@ export default function TrailerAndPhotoSlider({
   };
 
   const trailerOpacity = hexToRGBA("#000000", 0.4);
+
+  useEffect(() => {
+    const handlePressESC = (e: KeyboardEvent) => {
+      if (e.key === "Escape" || e.key === "Esc") {
+        setOpenPhotoModal(false);
+      }
+    };
+
+    addEventListener("keydown", handlePressESC);
+    return () => removeEventListener("keydown", handlePressESC);
+  }, []);
 
   return (
     <div
