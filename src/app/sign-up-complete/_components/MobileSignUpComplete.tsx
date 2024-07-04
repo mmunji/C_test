@@ -4,6 +4,8 @@ import React from "react";
 
 import Button from "@/components/buttons/Button";
 
+import { WelcomeSsikongi } from "../../../../public/images";
+
 interface MobileSignUpCompleteProps {
   prevPage: string;
 }
@@ -15,13 +17,18 @@ export default function MobileSignUpComplete({
 
   return (
     <div className="flex h-full w-full flex-col items-center justify-center Tablet:hidden">
-      <h2 className="text-center text-Primary Text-xxl-Bold">
-        어서오세요 {nickname}님!
+      <Image
+        src={WelcomeSsikongi}
+        alt="씨콩이"
+        className="mt-10 h-[160px] w-[300px]"
+      />
+      <h2 className="mt-10 text-center text-Primary Text-xxl-Bold">
+        어서오세요 <br /> {nickname}님!
       </h2>
       <p className="mt-4 Text-m-Medium">
         이제 씨네톡에서 같이 즐거운 시간 보내요 :)
       </p>
-      <Image src="" alt="" className="mt-10 h-[137px] w-[256px]" />
+
       <Button
         size="xl"
         href={prevPage}
