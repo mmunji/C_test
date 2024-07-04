@@ -61,7 +61,7 @@ function RenderSearchInput({
             onKeyDown={(e) => {
               handleKeyPress(e, inputValue);
             }}
-            className={`flex h-10 w-full items-start border-[1px] pl-[64px] pr-[24px] font-Medium text-[rgba(255,255,255,0.6)] outline-none placeholder:text-[rgba(255,255,255,0.6)] focus:placeholder:opacity-0 ${isInputFocused ? "rounded-t-[20px] border-Silver border-transparent bg-D2_Gray text-Silver hover:border hover:border-transparent" : "rounded-[20px] border-[1px] border-[rgba(255,255,255,0.6)] bg-transparent hover:border-Silver"}`}
+            className={`flex h-10 w-full items-start border-[1px] pl-[64px] pr-[24px] font-Medium text-[rgba(255,255,255,0.6)] outline-none placeholder:text-[rgba(255,255,255,0.6)] focus:placeholder:opacity-0 ${isInputFocused ? "rounded-t-[20px] border-transparent bg-D2_Gray text-Silver hover:border hover:border-transparent" : "rounded-[20px] border-[1px] border-[rgba(255,255,255,0.6)] bg-transparent hover:border-Silver"}`}
           />
         )
       ) : (
