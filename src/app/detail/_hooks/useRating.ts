@@ -1,9 +1,25 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
+import useNeedLogin from "@/hooks/useNeedLogin";
 
 export default function useRating() {
   const [ratingValue, setRatingValue] = useState<number>(0);
   const [clickedValue, setClickedValue] = useState(false);
   const [driveTalkText, setDriveTalkText] = useState("");
+  const [readyToRating, setReadyToRating] = useState(false);
+  const { isOpen, setIsOpen, handleNeedLogin } = useNeedLogin();
+
+  useEffect(() => {
+    if (clickedValue) {
+      if (handleNeedLogin()) {
+        setClickedValue(false);
+        setReadyToRating(false);
+      } else {
+        setClickedValue(true);
+        setReadyToRating(true);
+      }
+    }
+  }, [clickedValue, handleNeedLogin]);
 
   const handleDriveTalk = () => {
     if (ratingValue === 0.5 || ratingValue === 1 || ratingValue === 1.5) {
@@ -27,5 +43,8 @@ export default function useRating() {
     driveTalkText,
     setDriveTalkText,
     handleDriveTalk,
+    readyToRating,
+    isOpen,
+    setIsOpen,
   };
 }

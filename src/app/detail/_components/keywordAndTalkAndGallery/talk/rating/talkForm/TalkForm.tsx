@@ -1,11 +1,10 @@
-import { useMutation } from "@tanstack/react-query";
 import Image from "next/image";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 
 import Button from "@/components/buttons/Button";
-import { talkAPIs } from "@/services/talk/talkAPIs";
 import { useAddTalk } from "@/services/talk/talkMutations";
+import filterAbuse from "@/utils/filterAbuse";
 import hexToRGBA from "@/utils/hexToRGBA";
 
 import {
@@ -38,6 +37,8 @@ export default function TalkForm({ movieId, ratingValue }: TalkFormProps) {
 
   const onSubmit: SubmitHandler<AddTalkValues> = () => {
     if (readyToSubmit) {
+      if (filterAbuse(talk)) return;
+
       mutateAddTalk({ movieId, ratingValue, talk, spoiler });
     }
   };

@@ -4,10 +4,9 @@ import { ChangeEvent, FormEvent, useState } from "react";
 import Button from "@/components/buttons/Button";
 import LoadingSpinner from "@/components/loadingSpinner/LoadingSpinner";
 import Modal from "@/components/modal/modal";
-import { ABUSE } from "@/constants/abuseList";
-import { login } from "@/constants/login";
 import useDevice from "@/hooks/useDevice";
 import useHandleClickAuthButton from "@/hooks/useHandleClickAuthButtons";
+import useNeedLogin from "@/hooks/useNeedLogin";
 import { tokenManager } from "@/services/auth/tokenManager";
 import { useAddKeyword } from "@/services/keyword/keywordMutations";
 import filterAbuse from "@/utils/filterAbuse";
@@ -23,9 +22,9 @@ export default function KeywordForm({ movieId, title }: KeywordFormProps) {
   const [focused, setFocused] = useState(false);
   const [value, setValue] = useState("");
   const { device } = useDevice();
-  const { mutate: addKeyword, isPending } = useAddKeyword();
-  const [isOpen, setIsOpen] = useState(false);
+  const { mutate: addKeyword, isPending } = useAddKeyword(setValue);
   const { handleClickAuthButton } = useHandleClickAuthButton();
+  const { isOpen, setIsOpen, handleNeedLogin } = useNeedLogin();
 
   const sliceTitleMap: { [key: string]: number } = {
     mobile: 10,
@@ -54,16 +53,7 @@ export default function KeywordForm({ movieId, title }: KeywordFormProps) {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const accessToken = tokenManager.getToken();
-
-    if (!accessToken) {
-      if (confirm(login.NEED_LOGIN_TEXT)) {
-        return setIsOpen(true);
-      } else {
-        return alert("취소합니다.");
-      }
-    }
-
+    if (handleNeedLogin()) return;
     if (filterAbuse(value)) return;
     addKeyword({ movieId, value });
   };
