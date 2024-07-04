@@ -2,6 +2,7 @@ import clsx from "clsx";
 import { Dispatch, SetStateAction, useState } from "react";
 
 import useNeedTalkMoreButton from "@/app/detail/_hooks/useNeedTalkMoreButton";
+import WithLineBreak from "@/components/withLineBreak/WithLineBreak";
 
 interface TalkContentsBodyProps {
   talk: ReviewList;
@@ -46,7 +47,7 @@ export default function TalkContentsBody({
               },
             )}
           >
-            {talk.content}
+            {WithLineBreak(talk.content)}
           </p>
         )
       )}
