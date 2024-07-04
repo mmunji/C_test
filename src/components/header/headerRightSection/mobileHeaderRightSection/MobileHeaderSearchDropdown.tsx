@@ -52,6 +52,13 @@ export default function MobilHeaderSearchDropdown({
               {title}
             </Link>
           ))}
+          {inputValue && movieTitles.length === 0 && (
+            <p
+              className={`max-w-[calc(100%-32px)] py-1 pl-8 font-Regular text-Silver Tablet:max-w-[calc(100%-48px)]`}
+            >
+              연관 검색어가 없어요.
+            </p>
+          )}
         </ul>
       )}
     </div>
