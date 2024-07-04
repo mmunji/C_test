@@ -4,6 +4,8 @@ import { Palette } from "color-thief-react";
 import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 
+import useDevice from "@/hooks/useDevice";
+
 import hexToRGBA from "../../../../utils/hexToRGBA";
 import { usePaletteStore } from "../../_stores/usePaletteStore";
 import DetailBannerBottom from "./DetailBannerBottom";
@@ -18,6 +20,8 @@ export default function DetailBannerSection({
   const { gradientStyle, setGradientStyle } = usePaletteStore();
   const posterImage = movieDetailData.posterImg;
   const backgroundImage = movieDetailData.backGroundImg;
+  const { device } = useDevice();
+  const isSM = device === "mobile" || device === "tablet";
   const pathname = usePathname();
 
   useEffect(() => {
@@ -30,7 +34,7 @@ export default function DetailBannerSection({
       <div
         className="flex h-full w-full bg-cover bg-top bg-no-repeat"
         style={{
-          backgroundImage: `linear-gradient(180deg, rgba(38, 38, 38, 0.00) 0%, #262626 100%), url('${backgroundImage}')`,
+          backgroundImage: `linear-gradient(180deg, rgba(38, 38, 38, 0.50) 0%, rgba(38, 38, 38, 0.20) 50%, #262626 100%), url('${isSM ? posterImage : backgroundImage}')`,
         }}
       >
         <DetailBannerBottom movieDetailData={movieDetailData} />
