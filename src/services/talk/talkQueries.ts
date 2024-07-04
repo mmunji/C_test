@@ -7,7 +7,7 @@ export function useGetTalkQuery(movieId: string) {
   return useInfiniteQuery({
     queryKey: TALK_QUERY_KEYS.infiniteMovieQueryKeys(Number(movieId)),
     queryFn: ({ pageParam }) => talkAPIs.getTalks(Number(movieId), pageParam),
-    initialPageParam: 1,
+    initialPageParam: 0,
     getNextPageParam: (lastPage) => {
       return lastPage.isLast ? undefined : lastPage.totalPage + 1;
     },

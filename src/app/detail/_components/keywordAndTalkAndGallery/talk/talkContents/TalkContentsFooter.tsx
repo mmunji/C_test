@@ -16,14 +16,14 @@ import {
 } from "../../../../../../../public/icons";
 
 interface TalkContentsFooterProps {
-  spoiler: boolean;
+  talk: ReviewList;
   showSpoiler: boolean;
   showReplies: boolean;
   setShowReplies: Dispatch<SetStateAction<boolean>>;
 }
 
 export default function TalkContentsFooter({
-  spoiler,
+  talk,
   showSpoiler,
   showReplies,
   setShowReplies,
@@ -62,7 +62,7 @@ export default function TalkContentsFooter({
           className="hidden Laptop:block"
         />
         <p className="select-none text-Gray_Orange Text-xs-Regular Tablet:Text-s-Medium">
-          0,000
+          {talk.likeCount}
         </p>
       </section>
       <section
@@ -80,23 +80,23 @@ export default function TalkContentsFooter({
           className="hidden Laptop:block"
         />
         <p className="select-none text-Gray_Orange Text-xs-Regular Tablet:Text-s-Medium">
-          0,000
+          {talk.dislikeCount}
         </p>
       </section>
       <button
         disabled={!showSpoiler}
         onClick={handleClickReplies}
         className={clsx("mx-1 my-2 flex items-center", {
-          "cursor-pointer": spoiler ? showSpoiler : true,
-          "cursor-default": spoiler && !showSpoiler,
+          "cursor-pointer": talk.spoiler ? showSpoiler : true,
+          "cursor-default": talk.spoiler && !showSpoiler,
         })}
       >
         <p
           className={clsx(
             "mr-1 select-none Text-xs-Regular Tablet:Text-s-Medium",
             {
-              "text-Gray_Orange": spoiler ? showSpoiler : true,
-              "text-Gray": spoiler && !showSpoiler,
+              "text-Gray_Orange": talk.spoiler ? showSpoiler : true,
+              "text-Gray": talk.spoiler && !showSpoiler,
             },
           )}
         >
@@ -104,15 +104,15 @@ export default function TalkContentsFooter({
         </p>
         <p
           className={clsx("Text-xs-Regular Tablet:Text-s-Medium", {
-            "text-Gray_Orange": spoiler ? showSpoiler : true,
-            "text-Gray": spoiler && !showSpoiler,
+            "text-Gray_Orange": talk.spoiler ? showSpoiler : true,
+            "text-Gray": talk.spoiler && !showSpoiler,
           })}
         >
           999+
         </p>
         <Image
           src={
-            spoiler
+            talk.spoiler
               ? showSpoiler
                 ? CaretDownSm
                 : CaretDownGraySm

@@ -1,5 +1,7 @@
 "use client";
 
+import React from "react";
+
 import useDevice from "@/hooks/useDevice";
 import { useGetTalkQuery } from "@/services/talk/talkQueries";
 
@@ -31,13 +33,15 @@ export default function Talk({ title, movieId, movieDetailData }: TalkProps) {
         {noTalk ? (
           <NoTalk />
         ) : (
-          <>
-            {Array(10)
-              .fill(null)
-              .map((_, i) => (
-                <TalkContents key={i} />
-              ))}
-          </>
+          <React.Fragment>
+            {data?.pages.map((talkData, i) => (
+              <React.Fragment key={i}>
+                {talkData.reviewList.map((talk, i) => (
+                  <TalkContents talk={talk} key={i} />
+                ))}
+              </React.Fragment>
+            ))}
+          </React.Fragment>
         )}
       </section>
     </section>

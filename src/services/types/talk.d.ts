@@ -13,4 +13,6 @@ interface ReviewList {
   content: string;
   createdAt: string;
   spoiler: boolean;
+  likeCount: number;
+  dislikeCount: number;
 }
