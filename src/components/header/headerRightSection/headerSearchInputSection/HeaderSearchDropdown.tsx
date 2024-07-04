@@ -20,9 +20,10 @@ export default function HeaderSearchDropdown({
 }: HeaderSearchDropdownProps) {
   const { movieTitles } = useSearchMovieTitlesStore();
   useGetPopularSearchList(inputValue);
+  console.log(movieTitles);
 
   return (
-    <ul className="absolute top-10 w-full rounded-b-[20px] bg-D2_Gray pb-3">
+    <ul className="absolute top-10 w-full rounded-b-[20px] bg-D2_Gray pb-2">
       {!inputValue && (
         <div className="flex gap-1 py-1 pl-9 pr-5">
           <Image src={EnvironmentFire} alt="불" className="mx-[5px] my-[3px]" />
@@ -43,6 +44,11 @@ export default function HeaderSearchDropdown({
             {title}
           </Link>
         ))}
+        {inputValue && movieTitles.length === 0 && (
+          <p className="w-full max-w-[calc(100%-32px)] py-1 pl-[64px] font-Regular text-Silver">
+            연관 검색어가 없어요.
+          </p>
+        )}
       </div>
     </ul>
   );
