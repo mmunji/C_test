@@ -1,6 +1,7 @@
 import Image from "next/image";
 import React from "react";
 
+import Button from "@/components/buttons/Button";
 import SmallBadge from "@/components/smallBadge/SmallBadge";
 import formatDate from "@/utils/formatDate";
 
@@ -13,7 +14,7 @@ interface TalkContentsHeaderProps {
 
 export default function TalkContentsHeader({ talk }: TalkContentsHeaderProps) {
   return (
-    <div className="relative flex h-[66px] justify-between Tablet:h-[54px]">
+    <div className="itmes-center relative flex h-[66px] justify-between Tablet:h-[54px]">
       <section className="flex gap-2 Tablet:gap-4">
         <div className="mt-1 h-7 w-7 rounded-full bg-White Tablet:mt-[7px] Tablet:h-10 Tablet:w-10" />
         <section className="mb-auto flex flex-col gap-1 Tablet:items-center Tablet:gap-2">
@@ -52,7 +53,9 @@ export default function TalkContentsHeader({ talk }: TalkContentsHeaderProps) {
         </section>
       </section>
 
-      <Image src={MoreHorizontal} alt="메뉴" className="m-2 mb-auto" />
+      <Button variant="icon" className="my-auto h-fit">
+        <Image src={MoreHorizontal} alt="메뉴" />
+      </Button>
     </div>
   );
 }

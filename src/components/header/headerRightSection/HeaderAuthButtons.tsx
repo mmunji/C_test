@@ -1,6 +1,7 @@
 import { usePathname } from "next/navigation";
 import React, { useState } from "react";
 
+import Button from "@/components/buttons/Button";
 import Modal from "@/components/modal/modal";
 import ROUTES from "@/constants/routes";
 import useHandleClickAuthButton from "@/hooks/useHandleClickAuthButtons";
@@ -17,19 +18,17 @@ function HeaderAuthButtons({ hasScrolledPast }: HeaderAuthButtonsProps) {
 
   return (
     <section className="hidden gap-4 Laptop:flex Laptop:gap-8">
-      <button
+      <Button
+        variant="text"
         onClick={() => setIsOpen(true)}
         className={`h-10 flex-shrink-0 p-2 text-regular font-Medium ${pathname.includes(ROUTES.DETAIL) ? (hasScrolledPast ? "text-White" : "text-[rgba(255,255,255,0.6)]") : "text-White"}`}
       >
         로그인
-      </button>
+      </Button>
 
-      <button
-        onClick={() => setIsOpen(true)}
-        className="flex-shrink-0 rounded-[8px] bg-Primary px-4 text-regular font-Medium text-White"
-      >
+      <Button variant="orange" size="md" onClick={() => setIsOpen(true)}>
         회원가입
-      </button>
+      </Button>
 
       {isOpen && (
         <Modal

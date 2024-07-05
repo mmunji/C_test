@@ -2,6 +2,8 @@ import clsx from "clsx";
 import Image from "next/image";
 import React, { Dispatch, SetStateAction, useState } from "react";
 
+import Button from "@/components/buttons/Button";
+
 import {
   CaretDownGraySm,
   CaretDownSm,
@@ -47,10 +49,7 @@ export default function TalkContentsFooter({
 
   return (
     <section className="flex items-center justify-end Tablet:mt-2">
-      <section
-        onClick={handleClickLike}
-        className="my-2 ml-1 mr-2 flex cursor-pointer items-center gap-1"
-      >
+      <Button onClick={handleClickLike} variant="textIconL">
         <Image
           src={like ? ThumbsUpFillSm : ThumbsUpLineSm}
           alt="좋아요"
@@ -64,11 +63,8 @@ export default function TalkContentsFooter({
         <p className="select-none text-Gray_Orange Text-xs-Regular Tablet:Text-s-Medium">
           {talk.likeCount}
         </p>
-      </section>
-      <section
-        onClick={handleClickDisLike}
-        className="my-2 ml-1 mr-2 flex cursor-pointer items-center gap-1"
-      >
+      </Button>
+      <Button onClick={handleClickDisLike} variant="textIconL">
         <Image
           src={disLike ? ThumbsDownFillSm : ThumbsDownLineSm}
           alt="싫어요"
@@ -82,23 +78,18 @@ export default function TalkContentsFooter({
         <p className="select-none text-Gray_Orange Text-xs-Regular Tablet:Text-s-Medium">
           {talk.dislikeCount}
         </p>
-      </section>
-      <button
+      </Button>
+
+      <Button
         disabled={!showSpoiler}
         onClick={handleClickReplies}
-        className={clsx("mx-1 my-2 flex items-center", {
-          "cursor-pointer": talk.spoiler ? showSpoiler : true,
-          "cursor-default": talk.spoiler && !showSpoiler,
-        })}
+        variant="textIconR"
       >
         <p
-          className={clsx(
-            "mr-1 select-none Text-xs-Regular Tablet:Text-s-Medium",
-            {
-              "text-Gray_Orange": talk.spoiler ? showSpoiler : true,
-              "text-Gray": talk.spoiler && !showSpoiler,
-            },
-          )}
+          className={clsx("select-none Text-xs-Regular Tablet:Text-s-Medium", {
+            "text-Gray_Orange": talk.spoiler ? showSpoiler : true,
+            "text-Gray": talk.spoiler && !showSpoiler,
+          })}
         >
           답글
         </p>
@@ -121,7 +112,7 @@ export default function TalkContentsFooter({
           alt="더보기"
           className={`${showReplies && "rotate-180"} transition-all`}
         />
-      </button>
+      </Button>
     </section>
   );
 }
