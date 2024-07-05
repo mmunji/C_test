@@ -1,5 +1,3 @@
-import { useEffect, useState } from "react";
-
 import useRating from "@/app/detail/_hooks/useRating";
 import Button from "@/components/buttons/Button";
 import Modal from "@/components/modal/modal";
@@ -28,17 +26,13 @@ export default function Rating({
     clickedValue,
     setClickedValue,
     driveTalkText,
-    setDriveTalkText,
     readyToRating,
     isOpen,
     setIsOpen,
+    showTalkForm,
+    setShowTalkForm,
   } = useRating();
-  const [showTalkForm, setShowTalkForm] = useState(false);
   const { handleClickAuthButton } = useHandleClickAuthButton();
-
-  useEffect(() => {
-    if (showTalkForm) setDriveTalkText("");
-  }, [setDriveTalkText, showTalkForm]);
 
   return (
     <div className="relative flex w-full flex-col justify-center rounded-xl py-3 Tablet:py-8 Laptop:mb-6 Laptop:bg-D1_Gray Laptop:px-7 Laptop:py-8">

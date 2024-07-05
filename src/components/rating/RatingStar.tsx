@@ -17,7 +17,7 @@ interface StarProps {
   clickedValue: boolean;
   setClickedValue: Dispatch<SetStateAction<boolean>>;
   ratingSize: string;
-  readyToRating: boolean;
+  readyToRating?: boolean;
 }
 
 export default function RatingStar({
