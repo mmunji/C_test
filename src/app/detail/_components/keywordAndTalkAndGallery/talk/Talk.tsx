@@ -1,7 +1,8 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 
+import useTotalTalksStore from "@/app/detail/_stores/useTotalTalksStore";
 import useDevice from "@/hooks/useDevice";
 import { useGetTalkQuery } from "@/services/talk/talkQueries";
 
@@ -22,6 +23,13 @@ export default function Talk({ title, movieId, movieDetailData }: TalkProps) {
   const { device } = useDevice();
   const id = device === "mobile" || device === "tablet" ? undefined : "my-talk";
   const noTalk = data?.pages[0].reviewList.length === 0;
+  const { setTotalTalks } = useTotalTalksStore();
+
+  useEffect(() => {
+    if (data?.pages[0].totalElements) {
+      setTotalTalks(data?.pages[0].totalElements);
+    }
+  }, [data?.pages, setTotalTalks]);
 
   return (
     <section id={id}>
