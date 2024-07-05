@@ -1,5 +1,7 @@
 "use client";
 
+import React from "react";
+
 import useDevice from "@/hooks/useDevice";
 import { useGetTalkQuery } from "@/services/talk/talkQueries";
 
@@ -12,9 +14,10 @@ import TalkHeader from "./TalkHeader";
 interface TalkProps {
   title: string;
   movieId: number;
+  movieDetailData: MovieDetailData;
 }
 
-export default function Talk({ title, movieId }: TalkProps) {
+export default function Talk({ title, movieId, movieDetailData }: TalkProps) {
   const { data } = useGetTalkQuery(movieId.toString());
   const { device } = useDevice();
   const id = device === "mobile" || device === "tablet" ? undefined : "my-talk";
@@ -22,7 +25,7 @@ export default function Talk({ title, movieId }: TalkProps) {
 
   return (
     <section id={id}>
-      <Rating title={title} movieId={movieId} />
+      <Rating {...{ title, movieId, movieDetailData }} />
       <DividingLine />
 
       <section className="Laptop:rounded-xl Laptop:bg-D1_Gray Laptop:p-8">
@@ -30,13 +33,15 @@ export default function Talk({ title, movieId }: TalkProps) {
         {noTalk ? (
           <NoTalk />
         ) : (
-          <>
-            {Array(10)
-              .fill(null)
-              .map((_, i) => (
-                <TalkContents key={i} />
-              ))}
-          </>
+          <React.Fragment>
+            {data?.pages.map((talkData, i) => (
+              <React.Fragment key={i}>
+                {talkData.reviewList.map((talk, i) => (
+                  <TalkContents talk={talk} key={i} />
+                ))}
+              </React.Fragment>
+            ))}
+          </React.Fragment>
         )}
       </section>
     </section>

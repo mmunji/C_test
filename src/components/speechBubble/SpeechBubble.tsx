@@ -39,7 +39,11 @@ export default function SpeechBubble({
       {!clickExit && (
         <motion.div
           animate={{ opacity: 1 }}
-          exit={{ opacity: 0, scale: 0, transition: { duration: 0.275 } }}
+          exit={{
+            opacity: 0,
+            scale: 0,
+            transition: { duration: 0.275 },
+          }}
           className="relative z-[5] flex h-[34px] w-fit items-center justify-between rounded-lg bg-Shade_1 py-2 pl-3 pr-1"
         >
           <p className="text-sm font-Medium leading-[18px] text-Silver">

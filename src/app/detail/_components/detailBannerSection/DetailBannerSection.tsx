@@ -1,6 +1,10 @@
 "use client";
 
 import { Palette } from "color-thief-react";
+import { usePathname } from "next/navigation";
+import { useEffect } from "react";
+
+import useDevice from "@/hooks/useDevice";
 
 import hexToRGBA from "../../../../utils/hexToRGBA";
 import { usePaletteStore } from "../../_stores/usePaletteStore";
@@ -16,13 +20,21 @@ export default function DetailBannerSection({
   const { gradientStyle, setGradientStyle } = usePaletteStore();
   const posterImage = movieDetailData.posterImg;
   const backgroundImage = movieDetailData.backGroundImg;
+  const { device } = useDevice();
+  const isSm = device === "mobile" || device === "tablet";
+  const pathname = usePathname();
+
+  useEffect(() => {
+    if (gradientStyle) setGradientStyle("");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pathname, setGradientStyle]);
 
   return (
     <section className="relative mt-[-64px] h-[380px] w-full Tablet:h-[420zyx] Laptop:mt-[-80px] Laptop:h-[640px] Desktop:h-[816px]">
       <div
         className="flex h-full w-full bg-cover bg-top bg-no-repeat"
         style={{
-          backgroundImage: `linear-gradient(180deg, rgba(38, 38, 38, 0.00) 0%, #262626 100%), url('${backgroundImage}')`,
+          backgroundImage: `linear-gradient(180deg, rgba(38, 38, 38, 0.50) 0%, rgba(38, 38, 38, 0.20) 50%, #262626 100%), url('${isSm ? posterImage : backgroundImage}')`,
         }}
       >
         <DetailBannerBottom movieDetailData={movieDetailData} />

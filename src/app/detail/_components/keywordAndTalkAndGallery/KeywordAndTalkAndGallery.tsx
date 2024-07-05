@@ -47,7 +47,7 @@ export default function KeywordAndTalkAndGallery({
           />
         )}
         {activeCategoryTab === tabs[1] && (
-          <Talk movieId={movieId} title={title} />
+          <Talk {...{ movieId, title, movieDetailData }} />
         )}
         {activeCategoryTab === tabs[2] && (
           <Gallery

@@ -7,7 +7,7 @@ export const keywordAPIs = {
     const res = await fetch(`${API_URL}/keywords/${movieId}`, {
       cache: "no-store",
     });
-    const data: Keyword[] = await res.json();
+    const data = await res.json();
 
     return data;
   },
@@ -16,7 +16,7 @@ export const keywordAPIs = {
     const res = await fetch(`${API_URL}/keywords/latest/${movieId}`, {
       cache: "no-store",
     });
-    const data: Keyword[] = await res.json();
+    const data = await res.json();
 
     return data;
   },
@@ -33,7 +33,7 @@ export const keywordAPIs = {
         keyword: keyword,
       }),
     });
-    const data: Keyword | ErrorResponse = await res.json();
+    const data = await res.json();
 
     return { data, res };
   },

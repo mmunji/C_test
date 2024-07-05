@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { SwiperClass } from "swiper/react";
 
 export default function usePhotoModalSwiper() {
@@ -13,6 +13,19 @@ export default function usePhotoModalSwiper() {
   const handleNext = () => {
     swiper?.slideNext();
   };
+
+  useEffect(() => {
+    const handleKeyPress = (e: KeyboardEvent) => {
+      if (e.key === "ArrowLeft") {
+        swiper?.slidePrev();
+      } else if (e.key === "ArrowRight") {
+        swiper?.slideNext();
+      }
+    };
+
+    addEventListener("keydown", handleKeyPress);
+    return () => removeEventListener("keydown", handleKeyPress);
+  }, [swiper]);
 
   return { swiper, setSwiper, handlePrev, handleNext, forceUpdate };
 }

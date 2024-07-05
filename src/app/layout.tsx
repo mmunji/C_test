@@ -27,6 +27,10 @@ export default function RootLayout({
           http-equiv="Content-Security-Policy"
           content="upgrade-insecure-requests"
         />
+        <meta
+          name="viewport"
+          content="initial-scale=1.0, user-scalable=no, maximum-scale=1, width=device-width"
+        />
       </head>
       <body className={`${pretendard.variable} ${appleSDGothicNeo.variable}`}>
         <ReactQueryProvier>
