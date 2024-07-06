@@ -1,5 +1,6 @@
 import { API_URL } from "@/constants/api_url";
-import tokenManager from "@/utils/tokenManager";
+
+import { tokenManager } from "./tokenManager";
 
 export const authAPIS = {
   authBy: async (authToken: string) => {
@@ -9,9 +10,21 @@ export const authAPIS = {
     return { data, res };
   },
 
+  refresh: async () => {
+    const res = await fetch(`${API_URL}/reissue`, {
+      credentials: "include",
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    const data = res.json();
+    return { res, data };
+  },
+
   signUp: async (nickname: string, gender: string, birthday: string) => {
     const accessToken = tokenManager.getToken();
-    console.log(accessToken);
     const res = await fetch(`${API_URL}/my/nickNameMerge`, {
       method: "PATCH",
       headers: {

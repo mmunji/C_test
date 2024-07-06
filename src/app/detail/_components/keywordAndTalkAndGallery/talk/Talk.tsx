@@ -1,10 +1,9 @@
 "use client";
 
-import { useQuery } from "@tanstack/react-query";
+import React from "react";
 
 import useDevice from "@/hooks/useDevice";
-import { talkAPIs } from "@/services/talk/talkAPIs";
-import { TALK_QUERY_KEYS } from "@/services/talk/talkQueryKeys";
+import { useGetTalkQuery } from "@/services/talk/talkQueries";
 
 import DividingLine from "../../common/DividingLine";
 import NoTalk from "./NoTalk";
@@ -15,35 +14,34 @@ import TalkHeader from "./TalkHeader";
 interface TalkProps {
   title: string;
   movieId: number;
+  movieDetailData: MovieDetailData;
 }
 
-export default function Talk({ title, movieId }: TalkProps) {
-  const { data } = useQuery({
-    queryKey: TALK_QUERY_KEYS.all(),
-    queryFn: () => talkAPIs.getTalks(movieId),
-  });
-
+export default function Talk({ title, movieId, movieDetailData }: TalkProps) {
+  const { data } = useGetTalkQuery(movieId.toString());
   const { device } = useDevice();
   const id = device === "mobile" || device === "tablet" ? undefined : "my-talk";
-  const noTalk = data?.reviewList.length === 0;
+  const noTalk = data?.pages[0].reviewList.length === 0;
 
   return (
     <section id={id}>
-      <Rating title={title} movieId={movieId} />
+      <Rating {...{ title, movieId, movieDetailData }} />
       <DividingLine />
 
       <section className="Laptop:rounded-xl Laptop:bg-D1_Gray Laptop:p-8">
         <TalkHeader />
-        {!noTalk ? (
+        {noTalk ? (
           <NoTalk />
         ) : (
-          <>
-            {Array(10)
-              .fill(null)
-              .map((_, i) => (
-                <TalkContents key={i} />
-              ))}
-          </>
+          <React.Fragment>
+            {data?.pages.map((talkData, i) => (
+              <React.Fragment key={i}>
+                {talkData.reviewList.map((talk, i) => (
+                  <TalkContents talk={talk} key={i} />
+                ))}
+              </React.Fragment>
+            ))}
+          </React.Fragment>
         )}
       </section>
     </section>

@@ -7,6 +7,8 @@ import React, {
   useRef,
 } from "react";
 
+import usePressEnterSearch from "@/hooks/usePressEnterSearch";
+
 import { Search } from "../../../../../public/icons";
 
 interface MobileHeaderInputSectionProps {
@@ -15,7 +17,7 @@ interface MobileHeaderInputSectionProps {
   inputFocused: boolean;
   setInputFocused: Dispatch<SetStateAction<boolean>>;
   inputValue: string;
-  setInputValue: (e: ChangeEvent<HTMLInputElement>) => void;
+  setInputValue: Dispatch<SetStateAction<string>>;
 }
 
 export default function MobileHeaderInputSection({
@@ -27,6 +29,12 @@ export default function MobileHeaderInputSection({
   clickSearchIcon,
 }: MobileHeaderInputSectionProps) {
   const inputRef = useRef<HTMLInputElement>(null);
+  const { handleKeyPress } = usePressEnterSearch(
+    setInputFocused,
+    inputValue,
+    inputRef,
+    setClickSearchIcon,
+  );
 
   useEffect(() => {
     if (clickSearchIcon) inputRef.current?.focus();
@@ -37,12 +45,21 @@ export default function MobileHeaderInputSection({
       <div className="relative z-10 w-full">
         <input
           ref={inputRef}
-          type="text"
+          type="search"
           value={inputValue}
-          onChange={setInputValue}
+          onChange={(e: ChangeEvent<HTMLInputElement>) =>
+            setInputValue(e.target.value)
+          }
           placeholder="‘파묘’ 궁금하지 않으세요?"
           onFocus={() => setInputFocused(true)}
-          onBlur={() => setInputFocused(false)}
+          onBlur={() => {
+            setTimeout(() => {
+              setInputFocused(false);
+            }, 150);
+          }}
+          onKeyDown={(e) => {
+            handleKeyPress(e, inputValue);
+          }}
           className={`h-10 w-full ${inputFocused && "placeholder:opacity-0"} border-1 rounded-[20px] border-[1px] border-transparent bg-D1_Gray pl-12 font-Medium text-Silver outline-none placeholder:text-L_Gray hover:border-D2_Gray `}
         />
 

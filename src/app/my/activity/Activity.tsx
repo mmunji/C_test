@@ -8,7 +8,7 @@ import RatingList from "@/app/my/activity/RatingList";
 import ReviewList from "@/app/my/activity/ReviewList";
 import Button from "@/components/buttons/Button";
 import CommonTab from "@/components/commonTab/CommonTab";
-import Dropdown from "@/components/dropdown/Dropdown";
+import Dropdown from "@/components/dropdown/dropdown";
 import ROUTES from "@/constants/routes";
 
 import { Filter } from "../../../../public/icons";

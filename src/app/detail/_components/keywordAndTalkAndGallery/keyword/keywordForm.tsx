@@ -1,11 +1,15 @@
-import { useRouter } from "next/navigation";
+import { josa } from "es-hangul";
 import { ChangeEvent, FormEvent, useState } from "react";
 
 import Button from "@/components/buttons/Button";
 import LoadingSpinner from "@/components/loadingSpinner/LoadingSpinner";
-import { abuseList } from "@/constants/abuseList";
+import Modal from "@/components/modal/modal";
 import useDevice from "@/hooks/useDevice";
-import { keywordAPIs } from "@/services/keyword/keywordAPIs";
+import useHandleClickAuthButton from "@/hooks/useHandleClickAuthButtons";
+import useNeedLogin from "@/hooks/useNeedLogin";
+import { tokenManager } from "@/services/auth/tokenManager";
+import { useAddKeyword } from "@/services/keyword/keywordMutations";
+import filterAbuse from "@/utils/filterAbuse";
 
 import SpeechBubble from "../../../../../components/speechBubble/SpeechBubble";
 
@@ -15,11 +19,12 @@ interface KeywordFormProps {
 }
 
 export default function KeywordForm({ movieId, title }: KeywordFormProps) {
-  const [loading, setLoading] = useState(false);
   const [focused, setFocused] = useState(false);
   const [value, setValue] = useState("");
-  const router = useRouter();
   const { device } = useDevice();
+  const { mutate: addKeyword, isPending } = useAddKeyword(setValue);
+  const { handleClickAuthButton } = useHandleClickAuthButton();
+  const { isOpen, setIsOpen, handleNeedLogin } = useNeedLogin();
 
   const sliceTitleMap: { [key: string]: number } = {
     mobile: 10,
@@ -35,6 +40,9 @@ export default function KeywordForm({ movieId, title }: KeywordFormProps) {
       ? title.split("").splice(0, sliceNumber).join("") + "..."
       : title;
 
+  const quotedTitle = `'${title}'`;
+  const quotedFormattedTitle = `'${formattedTitle}'`;
+
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.value.length > 5) {
       e.target.value = e.target.value.slice(0, 5);
@@ -45,19 +53,12 @@ export default function KeywordForm({ movieId, title }: KeywordFormProps) {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    try {
-      if (abuseList.some((abuse) => value.includes(abuse))) {
-        return alert(`욕설은 안돼요..!`);
-      }
-      const { res } = await keywordAPIs.addKeyword(movieId, value);
-      setLoading(true);
-      if (res.ok) setValue("");
-      setLoading(false);
-      router.refresh();
-    } catch (error) {
-      console.error(error);
-    }
+    if (handleNeedLogin()) return;
+    if (filterAbuse(value)) return;
+    addKeyword({ movieId, value });
   };
+
+  const josaTitle = josa(quotedFormattedTitle, "은/는");
 
   return (
     <form onSubmit={handleSubmit} className="relative w-full Laptop:static">
@@ -69,7 +70,7 @@ export default function KeywordForm({ movieId, title }: KeywordFormProps) {
       <div className="relative w-full overflow-hidden rounded-xl ">
         <input
           type="text"
-          placeholder={`'${device === "tablet" ? title : formattedTitle}'는 한 단어로?`}
+          placeholder={`${device === "tablet" ? quotedTitle : josaTitle} 한 단어로?`}
           maxLength={5}
           value={value}
           onFocus={() => setFocused(true)}
@@ -85,13 +86,26 @@ export default function KeywordForm({ movieId, title }: KeywordFormProps) {
             size="sm"
             variant="orange"
             type="submit"
-            disabled={!value || loading}
+            disabled={!value || isPending}
             className="flex h-[29px] w-[60.3px] items-center justify-center"
           >
-            {loading ? <LoadingSpinner color="white" size="xs" /> : "올리기"}
+            {isPending ? <LoadingSpinner color="white" size="xs" /> : "올리기"}
           </Button>
         </section>
       </div>
+
+      {isOpen && (
+        <Modal
+          isAlertModal={false}
+          isOpen={isOpen}
+          onClose={() => setIsOpen(false)}
+        >
+          <Modal.Login
+            onKakaoLogin={() => handleClickAuthButton("kakao")}
+            onNaverLogin={() => handleClickAuthButton("naver")}
+          />
+        </Modal>
+      )}
     </form>
   );
 }

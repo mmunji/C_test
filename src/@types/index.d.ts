@@ -20,3 +20,7 @@ type Badge =
   | "강심장"
   | "밀덕"
   | "뱅뱅뱅";
+
+interface ErrorResponse {
+  message: string;
+}

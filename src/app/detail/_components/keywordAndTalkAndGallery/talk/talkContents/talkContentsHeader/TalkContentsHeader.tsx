@@ -2,11 +2,16 @@ import Image from "next/image";
 import React from "react";
 
 import SmallBadge from "@/components/smallBadge/SmallBadge";
+import formatDate from "@/utils/formatDate";
 
 import { MoreHorizontal } from "../../../../../../../../public/icons";
 import TalkContentsRatingStar from "./TalkContentsRatingStar";
 
-export default function TalkContentsHeader() {
+interface TalkContentsHeaderProps {
+  talk: ReviewList;
+}
+
+export default function TalkContentsHeader({ talk }: TalkContentsHeaderProps) {
   return (
     <div className="relative flex h-[66px] justify-between Tablet:h-[54px]">
       <section className="flex gap-2 Tablet:gap-4">
@@ -17,15 +22,19 @@ export default function TalkContentsHeader() {
               {Array(5)
                 .fill(null)
                 .map((_, i) => (
-                  <TalkContentsRatingStar key={i} rating={2.5} index={i} />
+                  <TalkContentsRatingStar
+                    key={i}
+                    rating={talk.star}
+                    index={i}
+                  />
                 ))}
             </div>
             <section className="flex gap-2">
               <p className="text-Gray_Orange Text-xs-Regular Tablet:Text-s-Medium">
-                닉네임
+                {talk.nickName}
               </p>
               <p className="text-Gray Text-xs-Regular Tablet:Text-s-Medium">
-                방금전 (수정)
+                {formatDate(talk.createdAt)}
               </p>
             </section>
           </section>

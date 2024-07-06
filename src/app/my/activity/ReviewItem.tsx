@@ -2,8 +2,8 @@ import Image from "next/image";
 import { useState } from "react";
 
 import Button from "@/components/buttons/Button";
-import Dropdown from "@/components/dropdown/Dropdown";
-import Modal from "@/components/modal/_components";
+import Dropdown from "@/components/dropdown/dropdown";
+import Modal from "@/components/modal/modal";
 
 import {
   ChatLineGrayOrangeSm,

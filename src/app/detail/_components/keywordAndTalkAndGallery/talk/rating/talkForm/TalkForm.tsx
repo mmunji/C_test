@@ -1,10 +1,10 @@
-import { useMutation } from "@tanstack/react-query";
 import Image from "next/image";
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 
 import Button from "@/components/buttons/Button";
-import { talkAPIs } from "@/services/talk/talkAPIs";
+import { useAddTalk } from "@/services/talk/talkMutations";
+import filterAbuse from "@/utils/filterAbuse";
 import hexToRGBA from "@/utils/hexToRGBA";
 
 import {
@@ -23,9 +23,16 @@ interface AddTalkValues {
 interface TalkFormProps {
   movieId: number;
   ratingValue: number;
+  movieDetailData: MovieDetailData;
+  setShowTalkForm: Dispatch<SetStateAction<boolean>>;
 }
 
-export default function TalkForm({ movieId, ratingValue }: TalkFormProps) {
+export default function TalkForm({
+  movieId,
+  ratingValue,
+  movieDetailData,
+  setShowTalkForm,
+}: TalkFormProps) {
   const [readyToSubmit, setReadyToSubmit] = useState(true);
   const { register, handleSubmit, watch, setValue } = useForm<AddTalkValues>({
     defaultValues: {
@@ -33,17 +40,14 @@ export default function TalkForm({ movieId, ratingValue }: TalkFormProps) {
       spoiler: false,
     },
   });
-  const { data, mutate: mutateAddTalk } = useMutation({
-    mutationFn: () =>
-      talkAPIs.addTalks({ movieId, star: ratingValue, content: talk, spoiler }),
-    onSuccess: (data) => {
-      console.log(data);
-    },
-  });
+  const { mutate: mutateAddTalk } = useAddTalk(setShowTalkForm);
 
   const onSubmit: SubmitHandler<AddTalkValues> = () => {
     if (readyToSubmit) {
-      mutateAddTalk();
+      if (filterAbuse(talk)) return;
+      const genreList = movieDetailData?.genreDTOList.map((el) => el.id);
+
+      mutateAddTalk({ movieId, ratingValue, talk, spoiler, genreList });
     }
   };
 

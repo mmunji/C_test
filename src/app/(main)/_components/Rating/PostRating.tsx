@@ -6,7 +6,6 @@ export default function PostRating() {
     setRatingValue,
     clickedValue,
     setClickedValue,
-    driveTalkText,
     handleDriveTalk,
   } = useRating();
   return (

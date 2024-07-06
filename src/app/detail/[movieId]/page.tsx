@@ -3,17 +3,20 @@ import React from "react";
 import { keywordAPIs } from "@/services/keyword/keywordAPIs";
 import { movieAPIs } from "@/services/movie/movieAPIs";
 
-import DetailBannerSection from "./_components/detailBannerSection/DetailBannerSection";
-import DetailInfo from "./_components/detailInfo/DetailInfo";
-import TrailerAndPhoto from "./_components/keywordAndTalkAndGallery/gallery/trailerAndPhoto/TrailerAndPhoto";
-import Keyword from "./_components/keywordAndTalkAndGallery/keyword/Keyword";
-import KeywordAndTalkAndGallery from "./_components/keywordAndTalkAndGallery/KeywordAndTalkAndGallery";
-import Talk from "./_components/keywordAndTalkAndGallery/talk/Talk";
-import KeywordBar from "./_components/keywordBar/KeywordBar";
+import DetailBannerSection from "../_components/detailBannerSection/DetailBannerSection";
+import DetailInfo from "../_components/detailInfo/DetailInfo";
+import TrailerAndPhoto from "../_components/keywordAndTalkAndGallery/gallery/trailerAndPhoto/TrailerAndPhoto";
+import Keyword from "../_components/keywordAndTalkAndGallery/keyword/Keyword";
+import KeywordAndTalkAndGallery from "../_components/keywordAndTalkAndGallery/KeywordAndTalkAndGallery";
+import Talk from "../_components/keywordAndTalkAndGallery/talk/Talk";
+import KeywordBar from "../_components/keywordBar/KeywordBar";
 
-export default async function Detail() {
-  const movieId = 290859;
-
+export default async function Detail({
+  params,
+}: {
+  params: { movieId: string };
+}) {
+  const movieId = Number(params.movieId);
   const movieDetailData: MovieDetailData =
     await movieAPIs.getMovieDetail(movieId);
   const keywordsData: Keyword[] = await keywordAPIs.getKeyword(movieId);
@@ -44,7 +47,13 @@ export default async function Detail() {
 
           <section className="hidden Laptop:flex Laptop:gap-7 Desktop:gap-9">
             <div className="w-[67.74%]">
-              <Talk title={movieTitle} movieId={movieId} />
+              <Talk
+                {...{
+                  title: movieTitle,
+                  movieId,
+                  movieDetailData,
+                }}
+              />
             </div>
             <div className="w-[32.26%]">
               <Keyword

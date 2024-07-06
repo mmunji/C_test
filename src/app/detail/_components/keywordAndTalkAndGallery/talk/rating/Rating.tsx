@@ -1,9 +1,9 @@
-import { useState } from "react";
-
 import useRating from "@/app/detail/_hooks/useRating";
 import Button from "@/components/buttons/Button";
+import Modal from "@/components/modal/modal";
 import RatingStar from "@/components/rating/RatingStar";
 import SpeechBubble from "@/components/speechBubble/SpeechBubble";
+import useHandleClickAuthButton from "@/hooks/useHandleClickAuthButtons";
 
 import DriveCommentText from "./DriveCommentText";
 import TalkForm from "./talkForm/TalkForm";
@@ -12,18 +12,27 @@ import TextBeforeRating from "./TextBeforeRating";
 interface RatingProps {
   title: string;
   movieId: number;
+  movieDetailData: MovieDetailData;
 }
 
-export default function Rating({ title, movieId }: RatingProps) {
+export default function Rating({
+  title,
+  movieId,
+  movieDetailData,
+}: RatingProps) {
   const {
     ratingValue,
     setRatingValue,
     clickedValue,
     setClickedValue,
     driveTalkText,
-    handleDriveTalk,
+    readyToRating,
+    isOpen,
+    setIsOpen,
+    showTalkForm,
+    setShowTalkForm,
   } = useRating();
-  const [showTalkForm, setShowTalkForm] = useState(false);
+  const { handleClickAuthButton } = useHandleClickAuthButton();
 
   return (
     <div className="relative flex w-full flex-col justify-center rounded-xl py-3 Tablet:py-8 Laptop:mb-6 Laptop:bg-D1_Gray Laptop:px-7 Laptop:py-8">
@@ -46,8 +55,8 @@ export default function Rating({ title, movieId }: RatingProps) {
               setRatingValue,
               clickedValue,
               setClickedValue,
-              handleDriveTalk,
               ratingSize: "Xl",
+              readyToRating,
             }}
           />
         ))}
@@ -73,14 +82,31 @@ export default function Rating({ title, movieId }: RatingProps) {
           </Button>
         </>
       )}
-      {showTalkForm && <TalkForm movieId={movieId} ratingValue={ratingValue} />}
+      {showTalkForm && (
+        <TalkForm
+          {...{ movieId, ratingValue, movieDetailData, setShowTalkForm }}
+        />
+      )}
 
-      {!clickedValue && (
+      {!clickedValue && !showTalkForm && (
         <div className="absolute bottom-0 left-1/2 w-[243px] translate-x-[-50%] translate-y-[50%] Tablet:bottom-5 Laptop:bottom-0">
           <SpeechBubble exit={clickedValue} dir="top">
             먼저 별점을 매기고 톡을 작성해주세요.
           </SpeechBubble>
         </div>
+      )}
+
+      {isOpen && (
+        <Modal
+          isAlertModal={false}
+          isOpen={isOpen}
+          onClose={() => setIsOpen(false)}
+        >
+          <Modal.Login
+            onKakaoLogin={() => handleClickAuthButton("kakao")}
+            onNaverLogin={() => handleClickAuthButton("naver")}
+          />
+        </Modal>
       )}
     </div>
   );
