@@ -4,6 +4,7 @@ import { useCallback, useState } from "react";
 
 import MovieCategory from "../MovieCategory";
 import DeskTop_BestMovie from "./DeskTop_BestMoive";
+import Laptop_BestMovie from "./Laptop_BestMovie";
 import Mobile_BestMovie from "./Mobile_BestMovie";
 import Tablet_BestMoive from "./Tablet_BestMoive";
 export default function MoiveTopRank() {
@@ -29,6 +30,7 @@ export default function MoiveTopRank() {
       {/* 모바일 */}
       <Tablet_BestMoive />
       <DeskTop_BestMovie />
+      <Laptop_BestMovie />
       <Mobile_BestMovie />
     </div>
   );

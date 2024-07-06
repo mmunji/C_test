@@ -5,6 +5,7 @@ import "swiper/css/scrollbar";
 import "swiper/css/pagination";
 import "@/app/globals.css";
 
+import Image from "next/image";
 import SwiperCore from "swiper";
 import {
   Autoplay,
@@ -13,13 +14,14 @@ import {
   Pagination,
   Scrollbar,
 } from "swiper/modules";
-import { Swiper, SwiperSlide } from "swiper/react";
+import { Swiper, SwiperClass, SwiperSlide } from "swiper/react";
 
 import LeftMoivePost from "./MainBanner/LeftMoivePost";
 import RealTimeHotTalk from "./MainBanner/RealTimeHotTalk";
 
 export default function MainBanner() {
   SwiperCore.use([Scrollbar, Autoplay, Pagination]);
+
   return (
     <div className=" mt-2 h-[450px]  Tablet:h-[460px] Laptop:mt-9 Laptop:h-[600px] Desktop:h-[690px] ">
       <Swiper

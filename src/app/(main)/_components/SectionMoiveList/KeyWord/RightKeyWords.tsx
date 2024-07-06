@@ -1,4 +1,5 @@
 "use client";
+
 import KeyWordPosts from "./KeyWordPosts";
 interface KeyWordInfoProps {
   keywordInfo: MentionKeword;
@@ -8,7 +9,7 @@ export default function RightKeyWords({ keywordInfo }: KeyWordInfoProps) {
   const keyword = keywordInfo?.keyword;
   return (
     <div>
-      <div className="grid grid-cols-1 gap-3 Tablet:hidden Laptop:hidden Desktop:hidden">
+      <div className="grid grid-cols-1 gap-3 Tablet:hidden ">
         {Array(3)
           .fill(0)
           .map((_, index) => {
@@ -28,7 +29,7 @@ export default function RightKeyWords({ keywordInfo }: KeyWordInfoProps) {
             );
           })}
       </div>
-      <div className="hidden  grid-cols-3 gap-4 Tablet:grid Laptop:hidden Desktop:hidden">
+      <div className="hidden   grid-cols-3 gap-4 Tablet:grid Laptop:hidden ">
         {Array(6)
           .fill(0)
           .map((_, index) => {
@@ -48,7 +49,7 @@ export default function RightKeyWords({ keywordInfo }: KeyWordInfoProps) {
             );
           })}
       </div>
-      <div className="hidden  grid-cols-4 gap-5 Tablet:hidden Laptop:grid Desktop:hidden">
+      <div className="hidden  grid-cols-4 gap-5 Laptop:grid Desktop:hidden">
         {Array(8)
           .fill(0)
           .map((_, index) => {
@@ -68,7 +69,7 @@ export default function RightKeyWords({ keywordInfo }: KeyWordInfoProps) {
             );
           })}
       </div>
-      <div className="hidden  grid-cols-5 gap-6 Tablet:hidden Laptop:hidden Desktop:grid">
+      <div className="hidden  grid-cols-5 gap-6 Desktop:grid">
         {keywordInfo?.reviewList.map((movie, index) => {
           if (!movie) {
             return null;

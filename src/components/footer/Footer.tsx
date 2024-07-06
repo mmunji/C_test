@@ -6,7 +6,7 @@ export default async function Footer() {
     <div className="Desktop: flex flex-col gap-7 bg-Black px-7  py-11 text-white Tablet:gap-[52px] Desktop:gap-[52px] Desktop:px-[180px] Desktop:py-[90px]">
       <div className="flex flex-col items-center gap-[24px]">
         <h1 className="text-regular font-Bold">
-          지금까지 총{" "}
+          지금까지 총
           <span className="text-Primary">{MovieReviewComments}</span>개의 톡이
           쌓였어요!
         </h1>

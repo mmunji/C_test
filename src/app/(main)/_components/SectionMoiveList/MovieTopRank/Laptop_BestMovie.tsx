@@ -4,6 +4,10 @@ import "swiper/css/pagination";
 
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
+import SwiperCore from "swiper";
+import { Pagination } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
 
 import {
   BestTalkFire,
@@ -15,14 +19,10 @@ import {
 } from "@/../public/icons";
 import Button from "@/components/buttons/Button";
 
-import { useState } from "react";
-import SwiperCore from "swiper";
-import { Pagination } from "swiper/modules";
-import { Swiper, SwiperClass, SwiperSlide } from "swiper/react";
 import useMovieSwiper from "../../../_hooks/useMovieSwiper";
 import PostCard from "../../PostCard";
 import BestTalkPost from "./BestTalkPost";
-export default function DeskTop_BestMovie() {
+export default function Laptop_BestMovie() {
   SwiperCore.use([Pagination]);
 
   const [StatePost, SetStatePost] = useState(0);
@@ -40,14 +40,13 @@ export default function DeskTop_BestMovie() {
   };
   return (
     <div
-      className=" hidden Desktop:flex "
+      className="relative hidden h-[calc(260px)]  Laptop:flex Desktop:hidden"
       onMouseEnter={() => sethovered(true)}
       onMouseLeave={() => sethovered(false)}
     >
       <Swiper
         slidesPerView="auto"
         spaceBetween={20}
-        className="mySwiper"
         modules={[Pagination]}
         onSlideChange={forceUpdate}
         onSwiper={(e) => {
@@ -61,7 +60,7 @@ export default function DeskTop_BestMovie() {
               <SwiperSlide
                 key={index}
                 style={{
-                  width: StatePost === index ? "768px" : "240px",
+                  width: StatePost === index ? "562px" : "174px",
                 }}
               >
                 <div
@@ -144,7 +143,7 @@ export default function DeskTop_BestMovie() {
         <Button
           onClick={handlePrev}
           variant="arrow1"
-          className={`absolute flex ${hovered ? "opacity-100" : "opacity-0"} left-3  top-1/2 z-[5] translate-x-[-50%] translate-y-[-50%] bg-black transition-opacity duration-300`}
+          className={`absolute flex ${hovered ? "opacity-100" : "opacity-0"} left-0 top-1/2  z-[5] translate-x-[-50%] translate-y-[-50%]  transition-opacity duration-300`}
         >
           <Image src={ChevronLeftMd} alt="이전" />
         </Button>
@@ -154,7 +153,7 @@ export default function DeskTop_BestMovie() {
         <Button
           onClick={handleNext}
           variant="arrow2"
-          className={`absolute  flex ${hovered ? "opacity-100" : "opacity-0"} right-0 top-1/2 z-[5] translate-x-[-50%] translate-y-[-50%] bg-black transition-opacity duration-300`}
+          className={`absolute  flex ${hovered ? "opacity-100" : "opacity-0"} right-0  top-1/2  z-[5] translate-x-[-50%] translate-y-[-50%] transition-opacity duration-300`}
         >
           <Image src={ChevronRightMd} alt="다음" />
         </Button>

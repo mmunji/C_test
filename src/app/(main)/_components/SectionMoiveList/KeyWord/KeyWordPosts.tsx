@@ -18,9 +18,6 @@ export default function KeyWordPosts({
   nickname,
   keyword,
 }: KeyWordInfoProps) {
-  // if (nickname) {
-  //   return null;
-  // }
   return (
     <div className="Text-s-Mediuim flex  flex-col gap-2 rounded-xl bg-D1_Gray px-6 py-5">
       <div className="flex justify-between">

@@ -24,12 +24,15 @@ export default function RecentKeyword() {
 
     fetchMovie();
   }, []);
+  if (!MentionKeywords) {
+    return null;
+  }
   return (
     <div className="flex flex-col gap-[20px]">
-      <h1 className="Desktop: Text-xxl-Bold Text-l-Bold Laptop:Text-xxl-Bold">
+      <h1 className="Text-l-Bold Laptop:Text-xxl-Bold Desktop:Text-xxl-Bold">
         지금 많이 언급되는 키워드
       </h1>
-      <div className="flex flex-col gap-[24px] Laptop:flex-row">
+      {/* <div className="flex flex-col items-start gap-[24px]  Laptop:flex-row">
         <div className="flex Laptop:hidden">
           <Swiper slidesPerView="auto" spaceBetween={1}>
             {Array.isArray(MentionKeywords) && MentionKeywords.length > 0
@@ -63,12 +66,12 @@ export default function RecentKeyword() {
               })
             : ""}
         </div>
-        {MentionKeywords != null ? (
+        {MentionKeywords ? (
           <RightKeyWords keywordInfo={MentionKeywords[KeywordListNumber]} />
         ) : (
           ""
         )}
-      </div>
+      </div> */}
     </div>
   );
 }
