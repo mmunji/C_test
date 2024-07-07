@@ -7,7 +7,11 @@ import Dropdown from "@/components/dropdown/dropdown";
 
 import { Filter } from "../../../../../../public/icons";
 
-export default function TalkHeader() {
+interface TalkHeaderProps {
+  title: string;
+}
+
+export default function TalkHeader({ title }: TalkHeaderProps) {
   const filters = ["최신순", "좋아요순"];
   const [activeFilter, setActiveFilter] = useState(filters[0]);
   const { totalTalks } = useTotalTalksStore();
@@ -15,7 +19,9 @@ export default function TalkHeader() {
   return (
     <section className="relative mb-4 flex h-10 items-center justify-between Tablet:mb-6">
       <section className="flex items-center gap-[14px]">
-        <p className="text-Silver Text-m-Bold Tablet:Text-l-Bold">웡카 TALK</p>
+        <p className="text-Silver Text-m-Bold Tablet:Text-l-Bold">
+          {title} TALK
+        </p>
         <p className="text-Primary Text-m-Bold Tablet:Text-l-Bold">
           {totalTalks.toLocaleString()}
         </p>

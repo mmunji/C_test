@@ -37,7 +37,7 @@ export default function Talk({ title, movieId, movieDetailData }: TalkProps) {
       <DividingLine />
 
       <section className="Laptop:rounded-xl Laptop:bg-D1_Gray Laptop:p-8">
-        <TalkHeader />
+        <TalkHeader title={title} />
         {noTalk ? (
           <NoTalk />
         ) : (
