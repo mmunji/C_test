@@ -4,6 +4,10 @@ import "swiper/css/pagination";
 
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
+import SwiperCore from "swiper";
+import { Pagination } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
 
 import {
   BestTalkFire,
@@ -15,10 +19,6 @@ import {
 } from "@/../public/icons";
 import Button from "@/components/buttons/Button";
 
-import { useState } from "react";
-import SwiperCore from "swiper";
-import { Pagination } from "swiper/modules";
-import { Swiper, SwiperClass, SwiperSlide } from "swiper/react";
 import useMovieSwiper from "../../../_hooks/useMovieSwiper";
 import PostCard from "../../PostCard";
 import BestTalkPost from "./BestTalkPost";

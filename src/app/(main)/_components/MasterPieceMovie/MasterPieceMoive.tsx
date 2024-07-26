@@ -86,16 +86,18 @@ export default function MasterPieceMoive() {
                       background={movie?.movieposter}
                     />
                     <div className="mt-3 flex justify-between">
-                      <div className="flex items-center">
+                      <div>
+                        <span>{movie.movienm}</span>
+                      </div>
+                      <div className="flex gap-1 Text-m-Medium">
                         <Image
                           src={StarFillMd}
                           alt="star"
                           className="h-6 w-6"
                         />
-                        {movie.StarAvg}
-                      </div>
-                      <div>
-                        <Image src={HeartLineMd} alt="" />
+                        <span className="flex items-center justify-center">
+                          {movie.StarAvg}
+                        </span>
                       </div>
                     </div>
                   </div>

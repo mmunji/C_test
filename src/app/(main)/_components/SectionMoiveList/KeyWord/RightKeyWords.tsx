@@ -13,6 +13,8 @@ export default function RightKeyWords({ keywordInfo }: KeyWordInfoProps) {
         {Array(3)
           .fill(0)
           .map((_, index) => {
+
+
             if (!keywordInfo?.reviewList[index]) {
               return null;
             }

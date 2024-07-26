@@ -33,7 +33,7 @@ export default function MainBanner() {
         autoHeight={true}
         modules={[Autoplay, Pagination]}
         className="h-[450px] Tablet:h-[500px]  Laptop:h-[510px] Desktop:h-[690px]"
-        autoplay={{ delay: 5000, disableOnInteraction: false }}
+        // autoplay={{ delay: 5000, disableOnInteraction: false }}
       >
         {Array(3)
           .fill(0)
@@ -41,7 +41,7 @@ export default function MainBanner() {
             return (
               <SwiperSlide key={index} className="responsive-slide">
                 <div
-                  className=" h-[421px] rounded-[35px]  Tablet:h-[360px]  Laptop:h-[489px] Laptop:px-[74px] Desktop:h-[637px]    "
+                  className=" h-[421px] rounded-[35px]  Tablet:h-[360px]  Laptop:h-[489px] Laptop:px-[74px] Desktop:h-[637px]"
                   style={{
                     backgroundImage:
                       "linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, rgba(0, 0, 0, 0.50) 100%), url('/images/detail/detail-banner-example.png')",
@@ -94,12 +94,18 @@ export default function MainBanner() {
             }
           }
           @media (min-width: 1280px) {
+            .responsive-slide {
+              width: 1300px !important;
+            }
             .swiper .swiper-pagination {
               position: relative;
               padding-right: 90px !important;
             }
           }
           @media (min-width: 1920px) {
+            .responsive-slide {
+              width: 1560px !important;
+            }
             .swiper .swiper-pagination {
               position: relative;
               padding-right: 180px !important;
