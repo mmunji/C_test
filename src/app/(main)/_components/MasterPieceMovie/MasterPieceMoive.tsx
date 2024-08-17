@@ -4,6 +4,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -20,13 +21,11 @@ export default function MasterPieceMoive() {
       try {
         // 실제 API 호출로 `movieAPIs.getHidingPiece`를 대체합니다.
         const response = await movieAPIs.getHidingPiece();
-
         setMoviePiece(response);
       } catch (error) {
         console.error("영화를 가져오는 중 오류 발생:", error);
       }
     };
-
     fetchMovie();
   }, []);
   return (
@@ -45,20 +44,22 @@ export default function MasterPieceMoive() {
           {Array.isArray(MoviePiece) && MoviePiece.length > 0
             ? MoviePiece.map((movie, index) => (
                 <SwiperSlide key={index} style={{ width: "156px" }}>
-                  <div
-                    className="flex h-[230px] w-[156px] items-end  justify-between rounded-xl  px-2 pb-2 Text-s-Bold Tablet:h-[240px] Tablet:w-[165px]"
-                    style={{
-                      backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0.0) 0%, rgba(0, 0, 0, 0.7) 70%), url('${movie?.movieposter ? movie?.movieposter : "/images/detail/detail-poster-example.png"}')`,
-                      backgroundSize: "cover",
-                      backgroundPosition: "center",
-                    }}
-                  >
-                    <div className="flex items-center gap-1">
-                      <Image src={StarFillMd} alt="평점" />
-                      <span>0.0</span>
+                  <Link href={`detail/${movie.movieid}`}>
+                    <div
+                      className="flex h-[230px] w-[156px] items-end  justify-between rounded-xl  px-2 pb-2 Text-s-Bold Tablet:h-[240px] Tablet:w-[165px]"
+                      style={{
+                        backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0.0) 0%, rgba(0, 0, 0, 0.7) 70%), url('${movie?.movieposter ? movie?.movieposter : "/images/detail/detail-poster-example.png"}')`,
+                        backgroundSize: "cover",
+                        backgroundPosition: "center",
+                      }}
+                    >
+                      <div className="flex items-center gap-1">
+                        <Image src={StarFillMd} alt="평점" />
+                        <span>0.0</span>
+                      </div>
+                      <Image src={HeartLineMd} alt="빈 하트" />
                     </div>
-                    <Image src={HeartLineMd} alt="빈 하트" />
-                  </div>
+                  </Link>
                 </SwiperSlide>
               ))
             : null}
@@ -75,32 +76,34 @@ export default function MasterPieceMoive() {
           {Array.isArray(MoviePiece) && MoviePiece.length > 0
             ? MoviePiece.map((movie, index) => (
                 <SwiperSlide key={index}>
-                  <div className="flex w-[174px] flex-col Desktop:w-[240px]">
-                    <PostCard
-                      StarPostType="StarPost"
-                      StarRating={movie.star}
-                      content={movie.content}
-                      regDate={movie.regDate}
-                      likeCount={movie?.likeCount}
-                      reviewCount={movie?.rereviewCount}
-                      background={movie?.movieposter}
-                    />
-                    <div className="mt-3 flex justify-between">
-                      <div>
-                        <span>{movie.movienm}</span>
-                      </div>
-                      <div className="flex gap-1 Text-m-Medium">
-                        <Image
-                          src={StarFillMd}
-                          alt="star"
-                          className="h-6 w-6"
-                        />
-                        <span className="flex items-center justify-center">
-                          {movie.StarAvg}
-                        </span>
+                  <Link href={`detail/${movie.movieid}`}>
+                    <div className="flex w-[174px] flex-col Desktop:w-[240px]">
+                      <PostCard
+                        StarPostType="StarPost"
+                        StarRating={movie.star}
+                        content={movie.content}
+                        regDate={movie.regDate}
+                        likeCount={movie?.likeCount}
+                        reviewCount={movie?.rereviewCount}
+                        background={movie?.movieposter}
+                      />
+                      <div className="mt-3  flex justify-between">
+                        <div>
+                          <span className="line-clamp-1">{movie.movienm}</span>
+                        </div>
+                        <div className="flex gap-1 Text-m-Medium">
+                          <Image
+                            src={StarFillMd}
+                            alt="star"
+                            className="h-6 w-6"
+                          />
+                          <span className="flex items-center justify-center">
+                            {movie.StarAvg}
+                          </span>
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  </Link>
                 </SwiperSlide>
               ))
             : null}

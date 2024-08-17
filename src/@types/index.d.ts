@@ -19,7 +19,8 @@ type Badge =
   | "티-브이"
   | "강심장"
   | "밀덕"
-  | "뱅뱅뱅";
+  | "뱅뱅뱅"
+  | string;
 
 interface ErrorResponse {
   message: string;

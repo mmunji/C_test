@@ -32,7 +32,7 @@ export default function RecentKeyword() {
       <h1 className="Text-l-Bold Laptop:Text-xxl-Bold Desktop:Text-xxl-Bold">
         지금 많이 언급되는 키워드
       </h1>
-      {/* <div className="flex flex-col items-start gap-[24px]  Laptop:flex-row">
+      <div className="flex flex-col items-start gap-[24px]  Laptop:flex-row">
         <div className="flex Laptop:hidden">
           <Swiper slidesPerView="auto" spaceBetween={1}>
             {Array.isArray(MentionKeywords) && MentionKeywords.length > 0
@@ -71,7 +71,7 @@ export default function RecentKeyword() {
         ) : (
           ""
         )}
-      </div> */}
+      </div>
     </div>
   );
 }
