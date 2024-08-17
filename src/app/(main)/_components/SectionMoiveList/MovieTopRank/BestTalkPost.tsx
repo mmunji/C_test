@@ -5,7 +5,7 @@ interface ReviewType {
   star: number;
   content: string;
   likeCount: number;
-  profileImg: string;
+  profileImg?: string;
 }
 
 export default function BestTalkPost({
