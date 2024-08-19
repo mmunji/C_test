@@ -30,7 +30,9 @@ export default function LeftMovePost({
             실시간 핫한 톡
           </span>
           <div className="flex items-center gap-4">
-            <h1 className="Text-xl-Bold Laptop:Text-xxxl-Bold ">{MovieName}</h1>
+            <h1 className="line-clamp-1 Text-xl-Bold Laptop:Text-xxxl-Bold ">
+              {MovieName}
+            </h1>
           </div>
         </div>
         <div>

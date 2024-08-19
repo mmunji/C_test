@@ -5,7 +5,7 @@ interface ReviewType {
   star: number;
   content: string;
   likeCount: number;
-  profileImg?: string;
+  profileImg: string;
 }
 
 export default function BestTalkPost({
@@ -18,10 +18,12 @@ export default function BestTalkPost({
     <div className="flex  w-full items-center justify-between gap-[12px]  rounded-xl bg-D1_Gray px-[16px] py-[8px] ">
       <div className="flex flex-row items-center justify-center Desktop:flex-col">
         {/* <div className="h-6 w-6 rounded-[60px] border-2 "  > */}
-        <img
-          className="h-6 w-6 rounded-[60px] border-2 "
-          src={`data:image/jpeg;base64,${profileImg}`}
-        />
+        {profileImg && (
+          <img
+            className="h-6 w-6 rounded-[60px] border-2 "
+            src={`data:image/jpeg;base64,${profileImg}`}
+          />
+        )}
         <div className="flex Text-s-Bold">
           <Image src={StarFillSm} alt="별점" />
           <span>{star}</span>
