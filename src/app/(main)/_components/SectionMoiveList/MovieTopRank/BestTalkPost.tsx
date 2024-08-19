@@ -18,11 +18,14 @@ export default function BestTalkPost({
     <div className="flex  w-full items-center justify-between gap-[12px]  rounded-xl bg-D1_Gray px-[16px] py-[8px] ">
       <div className="flex flex-row items-center justify-center Desktop:flex-col">
         {/* <div className="h-6 w-6 rounded-[60px] border-2 "  > */}
-        {profileImg && (
+        {profileImg ? (
           <img
-            className="h-6 w-6 rounded-[60px] "
+            className="h-6 w-6 rounded-[60px]"
             src={`data:image/jpeg;base64,${profileImg}`}
+            alt="Profile"
           />
+        ) : (
+          <div className="h-6 w-6 rounded-[60px] bg-gray-300" />
         )}
         <div className="flex Text-s-Bold">
           <Image src={StarFillSm} alt="별점" />
