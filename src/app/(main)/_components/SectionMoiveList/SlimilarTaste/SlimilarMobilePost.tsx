@@ -22,7 +22,8 @@ export default function SlimilarMobilePost({
     UserPost && UserPost.length > PickUserNumber
       ? UserPost[PickUserNumber]
       : null;
-  console.log(selectedUser);
+  ("");
+  console.log(console.log(Array.isArray(UserPost)));
   return (
     <div>
       <div className="flex flex-col gap-2">
@@ -47,7 +48,7 @@ export default function SlimilarMobilePost({
                 {selectedUser?.reviewCount}
               </span>
               <span className="flex items-center gap-1">
-                <Image src={ThumbsUpFillSm} alt="글 쓰기" className="h-4 w-4" />
+                <Image src={ThumbsUpFillSm} alt="좋아요" className="h-4 w-4" />
                 {selectedUser?.null ? selectedUser?.null : "0"}
               </span>
             </div>

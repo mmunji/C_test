@@ -1,11 +1,12 @@
 interface MovieReviewRecommed {
   userId: number;
-  ninkname: string;
+  nickname: string;
   profile: string;
   reviewCount: number;
   rateCount: number;
-  bages: BadgeDTO[];
+  badges: BadgeDTO[];
   reviews: PostreviewDTO[];
+  null: number;
 }
 interface BadgeDTO {
   badge_id: number;
@@ -14,11 +15,11 @@ interface BadgeDTO {
 interface PostreviewDTO {
   review_id: number;
   movie_id: number;
-  moviewnm: string;
+  movienm: string;
   poster_id: string;
   star: number;
   content: string;
   regDate: string;
-  rateCount: 0;
-  rereviewCount: 0;
+  rateCount: number;
+  rereviewCount: number;
 }

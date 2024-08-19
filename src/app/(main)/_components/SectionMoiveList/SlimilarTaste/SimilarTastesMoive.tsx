@@ -11,9 +11,7 @@ import SlimilarPost from "./SlimilarPost";
 export default function SimilarTastesMoive() {
   const [PickUserNumber, setPickUserNumber] = useState<number>(0);
   const { device } = useDevice();
-  const [ReviewUsers, setReviewUsers] = useState<MovieReviewRecommed | null>(
-    null,
-  );
+  const [ReviewUsers, setReviewUsers] = useState<MovieReviewRecommed[]>([]);
   const ChangePickNumber = (index: number) => {
     setPickUserNumber(index);
   };
