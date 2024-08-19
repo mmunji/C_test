@@ -30,7 +30,7 @@ export default function KeyWordPosts({
       <div className="line-clamp-2 Text-s-Regular Laptop:Text-m-Regular">
         {content}
       </div>
-      <span className="text-L_Gray Text-s-Regular Laptop:Text-m-Regular">
+      <span className="line-clamp-1 text-L_Gray Text-s-Regular  Laptop:Text-m-Regular">
         {movieName}
       </span>
     </div>

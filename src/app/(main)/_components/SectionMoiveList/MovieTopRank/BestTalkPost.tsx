@@ -5,7 +5,7 @@ interface ReviewType {
   star: number;
   content: string;
   likeCount: number;
-  profileImg: string;
+  profileImg?: string;
 }
 
 export default function BestTalkPost({
@@ -20,7 +20,7 @@ export default function BestTalkPost({
         {/* <div className="h-6 w-6 rounded-[60px] border-2 "  > */}
         {profileImg && (
           <img
-            className="h-6 w-6 rounded-[60px] border-2 "
+            className="h-6 w-6 rounded-[60px] "
             src={`data:image/jpeg;base64,${profileImg}`}
           />
         )}
