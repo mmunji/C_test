@@ -22,8 +22,7 @@ export default function SlimilarMobilePost({
     UserPost && UserPost.length > PickUserNumber
       ? UserPost[PickUserNumber]
       : null;
-  ("");
-  console.log(console.log(Array.isArray(UserPost)));
+
   return (
     <div>
       <div className="flex flex-col gap-2">

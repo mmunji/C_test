@@ -41,4 +41,9 @@ export const movieAPIs = {
     const data: MovieReviewRecommed[] = await res.json();
     return data;
   },
+  postFeedBack: async (content: string) => {
+    const res = await fetch(`${API_URL}/feedback/save?content=${content}`);
+    const data = await res.json();
+    return data;
+  },
 };
