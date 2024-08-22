@@ -5,6 +5,9 @@ import "swiper/css/scrollbar";
 import "swiper/css/pagination";
 import "@/app/globals.css";
 
+import Image from "next/image";
+import Link from "next/link";
+import { useEffect, useState } from "react";
 import SwiperCore from "swiper";
 import {
   Autoplay,
@@ -13,13 +16,29 @@ import {
   Pagination,
   Scrollbar,
 } from "swiper/modules";
-import { Swiper, SwiperSlide } from "swiper/react";
+import { Swiper, SwiperClass, SwiperSlide } from "swiper/react";
+
+import { movieAPIs } from "@/services/movie/movieAPIs";
 
 import LeftMoivePost from "./MainBanner/LeftMoivePost";
 import RealTimeHotTalk from "./MainBanner/RealTimeHotTalk";
 
 export default function MainBanner() {
   SwiperCore.use([Scrollbar, Autoplay, Pagination]);
+  const [MovieBanner, setMovieBanner] = useState<BannerDTO | null>(null);
+  // const MovieMasterPiece: MovieHidingPiece = await movieAPIs.getHidingPiece();
+  useEffect(() => {
+    const fetchMovie = async () => {
+      try {
+        const response = await movieAPIs.getMovieMainBanner();
+        setMovieBanner(response);
+      } catch (error) {
+        console.error("영화를 가져오는 중 오류 발생:", error);
+      }
+    };
+
+    fetchMovie();
+  }, []);
   return (
     <div className=" mt-2 h-[450px]  Tablet:h-[460px] Laptop:mt-9 Laptop:h-[600px] Desktop:h-[690px] ">
       <Swiper
@@ -31,37 +50,44 @@ export default function MainBanner() {
         autoHeight={true}
         modules={[Autoplay, Pagination]}
         className="h-[450px] Tablet:h-[500px]  Laptop:h-[510px] Desktop:h-[690px]"
-        autoplay={{ delay: 5000, disableOnInteraction: false }}
+        // autoplay={{ delay: 5000, disableOnInteraction: false }}
       >
-        {Array(3)
-          .fill(0)
-          .map((_, index) => {
-            return (
-              <SwiperSlide key={index} className="responsive-slide">
-                <div
-                  className=" h-[421px] rounded-[35px]  Tablet:h-[360px]  Laptop:h-[489px] Laptop:px-[74px] Desktop:h-[637px]    "
-                  style={{
-                    backgroundImage:
-                      "linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, rgba(0, 0, 0, 0.50) 100%), url('/images/detail/detail-banner-example.png')",
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
-                  }}
-                >
-                  <div
-                    className="absolute inset-0  flex flex-col justify-between rounded-[35px] px-[20px] pb-2 pt-8  text-white Tablet:flex-row Tablet:px-9 Tablet:pb-7  Laptop:px-[74px]  Laptop:py-[40px]  Desktop:h-[637px] Desktop:px-[108px] Desktop:py-[60px]"
-                    style={{
-                      backdropFilter: "blur(5px)",
-                      background: "rgba(0, 0, 0, 0.50)",
-                    }}
-                  >
-                    <LeftMoivePost />
-                    <hr className="my-2 text-Opacity_W15" />
-                    <RealTimeHotTalk /> {/* 실시간 핫한 톡 컴포넌트 */}
-                  </div>
-                </div>
-              </SwiperSlide>
-            );
-          })}
+        {Array.isArray(MovieBanner) && MovieBanner.length > 0
+          ? MovieBanner.map((BannerItem, index) => {
+              return (
+                <SwiperSlide key={index} className="responsive-slide">
+                  <Link href={`detail/${BannerItem.movieId}`}>
+                    <div
+                      className=" h-[421px] rounded-[35px]  Tablet:h-[360px]  Laptop:h-[489px] Laptop:px-[74px] Desktop:h-[637px]"
+                      style={{
+                        backgroundImage: `linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, rgba(0, 0, 0, 0.50) 100%), url(${BannerItem.backdrop_path})`,
+                        backgroundSize: "cover",
+                        backgroundPosition: "center",
+                      }}
+                    >
+                      <div
+                        className="absolute inset-0  flex flex-col justify-between rounded-[35px] px-[20px] pb-2 pt-8  text-white Tablet:flex-row Tablet:px-9 Tablet:pb-7  Laptop:px-[74px]  Laptop:py-[40px]  Desktop:h-[637px] Desktop:px-[108px] Desktop:py-[60px]"
+                        style={{
+                          backdropFilter: "blur(5px)",
+                          background: "rgba(0, 0, 0, 0.50)",
+                        }}
+                      >
+                        <LeftMoivePost
+                          PostImg={BannerItem.poster_path}
+                          keyword={BannerItem.genres[0].name}
+                          MovieName={BannerItem.movienm}
+                          Rate={BannerItem.rate}
+                        />
+                        <hr className="my-2 text-Opacity_W15" />
+                        <RealTimeHotTalk ReviewList={BannerItem.reviewList} />
+                        {/* 실시간 핫한 톡 컴포넌트 */}
+                      </div>
+                    </div>
+                  </Link>
+                </SwiperSlide>
+              );
+            })
+          : ""}
         <style jsx global>{`
           .swiper-pagination-bullet {
             width: 33.3px !important; /* 너비 조절 */
@@ -92,12 +118,18 @@ export default function MainBanner() {
             }
           }
           @media (min-width: 1280px) {
+            .responsive-slide {
+              width: 1300px !important;
+            }
             .swiper .swiper-pagination {
               position: relative;
               padding-right: 90px !important;
             }
           }
           @media (min-width: 1920px) {
+            .responsive-slide {
+              width: 1560px !important;
+            }
             .swiper .swiper-pagination {
               position: relative;
               padding-right: 180px !important;

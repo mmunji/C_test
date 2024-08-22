@@ -1,9 +1,29 @@
 "use client";
 
+import "dayjs/locale/ko"; // 한국어 가져오기
+
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
 import Image from "next/image";
 
 import { StarFillSm } from "@/../public/icons";
-export default function RealTimeHotTalk() {
+
+import GetRating from "../Rating/GetRating";
+
+dayjs.extend(relativeTime);
+dayjs.locale("ko");
+
+interface ReviewListType {
+  ReviewList: [
+    {
+      content: string;
+      createdAt: string;
+      star: number;
+    },
+  ];
+}
+
+export default function RealTimeHotTalk({ ReviewList }: ReviewListType) {
   let arr = ["1", "1", "1", "1", "1"];
   {
     /*
@@ -20,7 +40,7 @@ export default function RealTimeHotTalk() {
       <ul className="flex flex-col Tablet:gap-3 Laptop:hidden ">
         {Array(3)
           .fill(0)
-          .map((e, index) => {
+          .map((_, index) => {
             return (
               <li
                 key={index}
@@ -28,33 +48,36 @@ export default function RealTimeHotTalk() {
               >
                 <div className="flex">
                   <Image src={StarFillSm} alt="star" className="h-4 w-4" />
-                  <span className="Text-xs-Regular">0.0</span>
+                  <span className="Text-xs-Regular">
+                    {ReviewList[index].star}
+                  </span>
                 </div>
-                <span>1줄까지 보여줍니다
-                  .</span>
-                  
-                <span className=" opacity-40">방금전</span>
+                <span className="line-clamp-1 w-48 flex-1 truncate Text-m-Medium">
+                  {ReviewList[index].content}
+                </span>
+
+                <span className=" opacity-40">
+                  {dayjs(ReviewList[index].createdAt).fromNow()}
+                </span>
               </li>
             );
           })}
       </ul>
       {/* DeskTop , LabTop` */}
       <ul className="hidden flex-col Tablet:hidden Tablet:gap-3  Laptop:flex  Laptop:gap-3 Desktop:flex Desktop:gap-4">
-        {arr.map((e, index) => {
+        {ReviewList.map((ReviewData, index) => {
           return (
             <li
               key={index}
               className="flex items-center justify-between gap-5 Text-s-Regular"
             >
-              <div className="flex">
-                <Image src={StarFillSm} alt="star" className="h-4 w-4" />
-                <Image src={StarFillSm} alt="star" className="h-4 w-4" />
-                <Image src={StarFillSm} alt="star" className="h-4 w-4" />
-                <Image src={StarFillSm} alt="star" className="h-4 w-4" />
-                <Image src={StarFillSm} alt="star" className="h-4 w-4" />
-              </div>
-              <span className="flex-1 Text-m-Medium">이건 테스트입니다.</span>
-              <span className="Text-s-Mediuim opacity-40">방금 전</span>
+              <GetRating StarRating={ReviewData.star} ratingsize="Sm" />
+              <span className="line-clamp-1 w-48 flex-1 truncate Text-m-Medium">
+                {ReviewData.content}
+              </span>
+              <span className="Text-s-Mediuim opacity-40">
+                {dayjs(ReviewData.createdAt).fromNow()}
+              </span>
             </li>
           );
         })}
