@@ -6,10 +6,14 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import {
   BestTalkFire,
   ChatLineLg,
+  ChevronLeftMd,
+  ChevronRightMd,
   StarFillMd,
   TmdbSm,
 } from "@/../public/icons";
+import Button from "@/components/buttons/Button";
 
+import useMovieSwiper from "../../../_hooks/useMovieSwiper";
 import PostCard from "../../PostCard";
 import Tablet_BestTalkPost from "./Post/Tablet_BestTalkPost";
 interface Tablet_BestMoiveProps {
@@ -19,7 +23,14 @@ interface Tablet_BestMoiveProps {
 export default function Tablet_BestMoive(MovieData: Tablet_BestMoiveProps) {
   return (
     <div className="hidden  Tablet:flex Laptop:hidden">
-      <Swiper>
+      <Swiper
+        slidesPerView="auto"
+        spaceBetween={20}
+        onSwiper={(e) => {
+          setSwiper(e);
+        }}
+        className="relative"
+      >
         {Array.isArray(MovieData.MovieData) && MovieData.MovieData.length > 0
           ? MovieData.MovieData.map((MovieDetailData, index) => {
               return (
@@ -37,7 +48,7 @@ export default function Tablet_BestMoive(MovieData: Tablet_BestMoiveProps) {
                               )}
                             </span>
                             <div className="border-[1px]"></div>
-                            {/* <span>{MovieDetailData.genres[0].name}</span> */}
+                            <span>{MovieDetailData.genres[0].name}</span>
                           </div>
                         </div>
                         <div className="flex gap-5">
@@ -86,6 +97,7 @@ export default function Tablet_BestMoive(MovieData: Tablet_BestMoiveProps) {
                                     star={reviewData.star}
                                     content={reviewData.content}
                                     likeCount={reviewData.likeCount}
+                                    profileImg={reviewData.profile}
                                   />
                                 );
                               },

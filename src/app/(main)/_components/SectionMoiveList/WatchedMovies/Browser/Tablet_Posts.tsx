@@ -1,4 +1,6 @@
-import { Swiper, SwiperSlide } from "swiper/react";
+"use client";
+import { useState } from "react";
+import { Swiper, SwiperClass, SwiperSlide } from "swiper/react";
 
 import SpeechBubble from "@/components/speechBubble/SpeechBubble";
 
@@ -7,6 +9,7 @@ interface WatchMovieType {
   MovieWatchMovies: WatchMovie | null;
 }
 export default function Tablet_Posts({ MovieWatchMovies }: WatchMovieType) {
+  const [swiper, setSwiper] = useState<SwiperClass | null>(null);
   return (
     <div>
       <div className="mx-auto  hidden w-[557px] items-center rounded-xl bg-D1_Gray Tablet:flex Laptop:hidden">
@@ -15,6 +18,9 @@ export default function Tablet_Posts({ MovieWatchMovies }: WatchMovieType) {
           spaceBetween={20}
           centeredSlides={true}
           className="flex  rounded-xl px-[12px]  py-[24px]"
+          onSwiper={(e) => {
+            setSwiper(e);
+          }}
         >
           {Array.isArray(MovieWatchMovies) && MovieWatchMovies.length > 0
             ? MovieWatchMovies.map((e, index) => {
@@ -57,7 +63,14 @@ export default function Tablet_Posts({ MovieWatchMovies }: WatchMovieType) {
         </Swiper>
       </div>
       <div className="hidden Tablet:flex Laptop:hidden">
-        <button className="mx-auto mt-5 w-[392px] rounded-xl border-[1px] border-L_Gray px-5 py-3 text-L_Gray Text-s-Regular  ">
+        <button
+          className="mx-auto mt-5 w-[392px] rounded-xl border-[1px] border-L_Gray px-5 py-3 text-L_Gray Text-s-Regular  "
+          onClick={() => {
+            if (swiper) {
+              swiper.slideNext();
+            }
+          }}
+        >
           아직 안봤어요
         </button>
       </div>
