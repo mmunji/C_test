@@ -35,24 +35,17 @@ export default function SlimilarPost({
       </div>
       <div className=" hidden justify-between Laptop:flex">
         <Swiper
-          slidesPerView={3}
-          spaceBetween={20}
+          slidesPerView="auto"
+          spaceBetween={40}
           className="flex  rounded-xl px-[12px]  py-[24px]"
-          breakpoints={{
-            1280: {
-              // Laptop 사이즈 이상
-              slidesPerView: 3,
-            },
-            1920: {
-              // Desktop 사이즈 이상
-              slidesPerView: 4,
-            },
-          }}
         >
           {Array.isArray(ReviewUsers) && ReviewUsers.length > 0
             ? ReviewUsers.map((ReviewUser, index) => {
                 return (
-                  <SwiperSlide key={index}>
+                  <SwiperSlide
+                    key={index}
+                    className="w-[368px] Desktop:w-[372px]  "
+                  >
                     <SlimilarUser
                       name={ReviewUser.nickname}
                       evaluate={ReviewUser.rateCount}

@@ -14,28 +14,32 @@ import Mobile_BestMovie from "./Mobile_BestMovie";
 import Tablet_BestMoive from "./Tablet_BestMoive";
 export default function MoiveTopRank() {
   const [filter, setFilter] = useState(0);
-  /* 슬라이드 버튼 만들어야함 */
+
   const MovieGenreType = [
-    "전체",
-    "액션",
-    "모험",
-    "범죄",
-    "스릴러",
-    "로맨스",
-    "코미디",
-    "판타지",
-    "공포",
-    "드라마",
-    "가족",
-    "SF",
-    "애니메이션",
-    "다큐멘터리",
-    "음악",
-    "역사",
-    "전쟁",
-    "서부",
-    "TV영화",
+    {
+      name: "전체",
+      index: 0,
+    },
+    { name: "액션", index: 28 },
+    { name: "모험", index: 12 },
+    { name: "범죄", index: 80 },
+    { name: "스틸러", index: 53 },
+    { name: " 로맨스", index: 10749 },
+    { name: "코미디", index: 35 },
+    { name: "판타지", index: 14 },
+    { name: "공포", index: 27 },
+    { name: "드라마", index: 18 },
+    { name: "가족", index: 10751 },
+    { name: "SF", index: 878 },
+    { name: "애니메이션", index: 16 },
+    { name: "다큐멘터리", index: 99 },
+    { name: "음악", index: 10402 },
+    { name: "역사", index: 36 },
+    { name: "전쟁", index: 10752 },
+    { name: "서부", index: 37 },
+    { name: "TV영화", index: 10770 },
   ];
+
   const [MovieTopTenData, setMovieTopTenData] = useState<Movie_TopTen | null>(
     null,
   );
@@ -55,18 +59,21 @@ export default function MoiveTopRank() {
   return (
     <div className="flex flex-col gap-4  ">
       <div className="flex justify-between">
-        <div className="flex gap-[24px]">
+        <div className="flex items-center gap-[24px]">
           <h1 className="Text-l-Bold Laptop:Text-xxl-Bold">영화톡TOP10</h1>
           <Dropdown type="genre">
             <Dropdown.Trigger>
-              <div className=" text-white">전체</div>
+              <div className="text-white">전체</div>
             </Dropdown.Trigger>
 
             <Dropdown.List>
               {MovieGenreType.map((genre, index) => {
                 return (
-                  <Dropdown.Item key={index} onClick={() => setFilter(index)}>
-                    {genre}
+                  <Dropdown.Item
+                    key={index}
+                    onClick={() => setFilter(genre.index)}
+                  >
+                    {genre.name}
                   </Dropdown.Item>
                 );
               })}
@@ -74,7 +81,6 @@ export default function MoiveTopRank() {
           </Dropdown>
           {/* {StateCategory ? <MovieCategory /> : ""} */}
         </div>
-        <span className="text-D3_Gray">00.00.00 기준 `</span>
       </div>
       {/* 모바일 */}
       <Tablet_BestMoive MovieData={MovieTopTenData} />

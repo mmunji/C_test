@@ -88,7 +88,7 @@ export default function DeskTop_BestMovie(MovieData: Desktop_BestMoiveProps) {
                                 )}
                               </span>
                               <div className="border-[1px]"></div>
-                              <span>{MovieDetailData.genres[0].name}</span>
+                              {/* <span>{MovieDetailData.genres[0].name}</span> */}
                             </div>
                           </div>
                           <div className="flex gap-5">
@@ -98,7 +98,7 @@ export default function DeskTop_BestMovie(MovieData: Desktop_BestMoiveProps) {
                                 alt="white_ start"
                                 className="h-6 w-6"
                               />
-                              <span>{MovieDetailData.tmdbrate}</span>
+                              <span>{MovieDetailData.tmdbrate.toFixed(1)}</span>
                             </div>
                             <div className="flex gap-1">
                               <Image

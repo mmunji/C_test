@@ -71,22 +71,14 @@ export default function SlimilarMobilePost({
         </div>
       </div>
       <div>
-        <Swiper
-          spaceBetween={50} // 슬라이드 사이 간격
-          slidesPerView={4} // 보여질 슬라이드 수
-          breakpoints={{
-            360: {
-              slidesPerView: 2,
-            },
-            768: {
-              slidesPerView: 4,
-            },
-          }}
-        >
+        <Swiper slidesPerView="auto" spaceBetween={10}>
           {selectedUser?.reviews?.map((ReviewUser, index) => {
             return (
-              <SwiperSlide key={index} className="mt-5  flex flex-col gap-1 ">
-                <div className="h-[250px] w-[156px]">
+              <SwiperSlide
+                key={index}
+                className="mt-5  flex h-[250px] w-[156px]  flex-col gap-1"
+              >
+                <div className="">
                   <div
                     className="flex h-[230px]  w-[156px] flex-col justify-end rounded-2xl  px-3 py-4 Text-s-Bold"
                     style={{

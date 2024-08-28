@@ -50,7 +50,7 @@ export default function MainBanner() {
         autoHeight={true}
         modules={[Autoplay, Pagination]}
         className="h-[450px] Tablet:h-[500px]  Laptop:h-[510px] Desktop:h-[690px]"
-        // autoplay={{ delay: 5000, disableOnInteraction: false }}
+        autoplay={{ delay: 5000, disableOnInteraction: false }}
       >
         {Array.isArray(MovieBanner) && MovieBanner.length > 0
           ? MovieBanner.map((BannerItem, index) => {
@@ -109,7 +109,7 @@ export default function MainBanner() {
           .swiper .swiper-pagination {
             position: relative;
             margin-top: 20px !important;
-            padding-right: 20px !important;
+            padding-right: 110px !important;
           }
           @media (min-width: 768px) {
             .swiper .swiper-pagination {
@@ -119,11 +119,11 @@ export default function MainBanner() {
           }
           @media (min-width: 1280px) {
             .responsive-slide {
-              width: 1300px !important;
+              width: 1144px !important;
             }
             .swiper .swiper-pagination {
               position: relative;
-              padding-right: 90px !important;
+              padding-right: 220px !important;
             }
           }
           @media (min-width: 1920px) {
@@ -132,7 +132,7 @@ export default function MainBanner() {
             }
             .swiper .swiper-pagination {
               position: relative;
-              padding-right: 180px !important;
+              padding-right: 280px !important;
             }
           }
         `}</style>

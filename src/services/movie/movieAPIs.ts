@@ -1,5 +1,6 @@
 import { API_URL } from "@/constants/api_url";
 
+import { tokenManager } from "../auth/tokenManager";
 export const movieAPIs = {
   getMovieDetail: async (movieId: number) => {
     const res = await fetch(`${API_URL}/movie/${movieId}`);
@@ -32,17 +33,38 @@ export const movieAPIs = {
     return data;
   },
   getWatchMovie: async () => {
-    const res = await fetch(`${API_URL}/movie/HoxyWatching`);
+    const accessToken = tokenManager.getToken();
+    const res = await fetch(`${API_URL}/movie/HoxyWatching`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        access: `${accessToken}`,
+      },
+    });
     const data: WatchMovie = await res.json();
     return data;
   },
   getPeopleReviewers: async () => {
-    const res = await fetch(`${API_URL}/movie/top-reviewers`);
+    const accessToken = tokenManager.getToken();
+    const res = await fetch(`${API_URL}/movie/top-reviewers`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        access: `${accessToken}`,
+      },
+    });
     const data: MovieReviewRecommed[] = await res.json();
     return data;
   },
   postFeedBack: async (content: string) => {
-    const res = await fetch(`${API_URL}/feedback/save?content=${content}`);
+    const accessToken = tokenManager.getToken();
+    const res = await fetch(`${API_URL}/feedback/save?content=${content}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        access: `${accessToken}`,
+      },
+    });
     const data = await res.json();
     return data;
   },
