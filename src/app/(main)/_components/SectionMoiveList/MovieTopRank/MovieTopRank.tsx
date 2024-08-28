@@ -79,7 +79,6 @@ export default function MoiveTopRank() {
               })}
             </Dropdown.List>
           </Dropdown>
-          {/* {StateCategory ? <MovieCategory /> : ""} */}
         </div>
       </div>
       {/* 모바일 */}

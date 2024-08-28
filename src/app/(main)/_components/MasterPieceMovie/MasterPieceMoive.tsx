@@ -15,11 +15,10 @@ import { movieAPIs } from "@/services/movie/movieAPIs";
 import PostCard from "../PostCard";
 export default function MasterPieceMoive() {
   const [MoviePiece, setMoviePiece] = useState<MovieHidingPiece | null>(null);
-  // const MovieMasterPiece: MovieHidingPiece = await movieAPIs.getHidingPiece();
+
   useEffect(() => {
     const fetchMovie = async () => {
       try {
-        // 실제 API 호출로 `movieAPIs.getHidingPiece`를 대체합니다.
         const response = await movieAPIs.getHidingPiece();
         setMoviePiece(response);
       } catch (error) {
@@ -38,7 +37,7 @@ export default function MasterPieceMoive() {
           리뷰수 대비 평점이 높은 작품들이에요
         </span>
       </div>
-      {/* Post Movie Container */}
+
       <div className="flex  gap-2 Laptop:hidden ">
         <Swiper slidesPerView="auto" spaceBetween={20}>
           {Array.isArray(MoviePiece) && MoviePiece.length > 0
