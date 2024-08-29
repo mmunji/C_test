@@ -8,7 +8,7 @@ interface WatchMovieType {
 }
 export default function Labtop_Posts({ MovieWatchMovies }: WatchMovieType) {
   return (
-    <div className=" hidden  gap-[24px] Laptop:flex Desktop:flex">
+    <div className=" hidden  gap-[24px] Laptop:flex">
       <Swiper
         slidesPerView={6}
         spaceBetween={20}
@@ -19,10 +19,12 @@ export default function Labtop_Posts({ MovieWatchMovies }: WatchMovieType) {
               return (
                 <Link key={index} href={`detail/${e.movieId}`}>
                   <SwiperSlide>
-                    <div className="flex flex-col gap-2 ">
+                    <div className="flex flex-col  gap-2 ">
                       <PostCard PostType="Post" background={e.poster_path} />
-                      <span className="line-clamp-1">{e.movienm}</span>
-                      <div className="flex ">
+                      <span className="line-clamp-1 text-left">
+                        {e.movienm}
+                      </span>
+                      <div>
                         <PostRating />
                       </div>
                     </div>

@@ -1,6 +1,8 @@
+"use client";
 import dayjs from "dayjs";
 import Image from "next/image";
-import { Swiper, SwiperSlide } from "swiper/react";
+import { useState } from "react";
+import { Swiper, SwiperClass, SwiperSlide } from "swiper/react";
 
 import { StarXl } from "@/../public/icons";
 
@@ -9,12 +11,16 @@ interface WatchMovieType {
   MovieWatchMovies: WatchMovie | null;
 }
 export default function Mobile_Posts({ MovieWatchMovies }: WatchMovieType) {
+  const [swiper, setSwiper] = useState<SwiperClass | null>(null);
   return (
     <div className="rounded-xl bg-D1_Gray px-3 py-7 Tablet:hidden ">
       <Swiper
         slidesPerView={1}
         spaceBetween={20}
         className="flex  rounded-xl px-[12px]  py-[24px]"
+        onSwiper={(e) => {
+          setSwiper(e);
+        }}
       >
         {Array.isArray(MovieWatchMovies) && MovieWatchMovies.length > 0
           ? MovieWatchMovies.map((e, index) => {
@@ -49,7 +55,14 @@ export default function Mobile_Posts({ MovieWatchMovies }: WatchMovieType) {
                       </div>
                     </div>
                   </div>
-                  <button className="w-full rounded-xl border-[1px] border-L_Gray  px-5 py-3 text-L_Gray Text-s-Regular ">
+                  <button
+                    className="w-full rounded-xl border-[1px] border-L_Gray  px-5 py-3 text-L_Gray Text-s-Regular "
+                    onClick={() => {
+                      if (swiper) {
+                        swiper.slideNext();
+                      }
+                    }}
+                  >
                     아직 안봤어요
                   </button>
                 </SwiperSlide>

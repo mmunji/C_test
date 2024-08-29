@@ -45,22 +45,11 @@ export default function SimilarTastesMoive() {
         )}
       </div>
       <div className="flex gap-4 Laptop:hidden">
-        <Swiper
-          slidesPerView={7}
-          spaceBetween={5}
-          breakpoints={{
-            360: {
-              slidesPerView: 4,
-            },
-            768: {
-              slidesPerView: 7,
-            },
-          }}
-        >
+        <Swiper slidesPerView="auto" spaceBetween={10}>
           {Array.isArray(ReviewUsers) && ReviewUsers.length > 0
             ? ReviewUsers.map((Review, index) => {
                 return (
-                  <SwiperSlide key={index}>
+                  <SwiperSlide key={index} className=" w-[60px]">
                     <div
                       className={`h-[60px] w-[60px] rounded-[60px] border-2 bg-white  ${PickUserNumber == index ? "border-Primary" : "border-transparent"} `}
                       onClick={() => ChangePickNumber(index)}
@@ -70,7 +59,7 @@ export default function SimilarTastesMoive() {
                         backgroundPosition: "center",
                       }}
                     ></div>
-                    <span className="mt-1 text-center Text-xs-Regular">
+                    <span className="mt-1 line-clamp-1 text-center Text-xs-Regular ">
                       {Review.nickname}
                     </span>
                   </SwiperSlide>
