@@ -27,7 +27,7 @@ export default function Header() {
     addEventListener("resize", handleResize);
     return () => removeEventListener("resize", handleResize);
   }, []);
-
+  console.log(pathname);
   useEffect(() => {
     if (clickSearchIcon) {
       document.body.style.overflowY = "hidden";
@@ -38,9 +38,12 @@ export default function Header() {
 
   const { myPageHeaderText } = getMyPageHeaderText(pathname);
 
+  if (pathname == "/admin") {
+    return null;
+  }
   return (
     <header
-      className={`sticky top-0 z-10 h-[64px] Laptop:h-20 ${pathname.includes(ROUTES.DETAIL) ? (hasScrolledPast ? "bg-BG" : "bg-transparent") : "bg-BG"} ${pathname.includes(ROUTES.MY.default) && "border-b border-D2_Gray"} `}
+      className={`${pathname} sticky top-0 z-10 h-[64px] Laptop:h-20 ${pathname.includes(ROUTES.DETAIL) ? (hasScrolledPast ? "bg-BG" : "bg-transparent") : "bg-BG"} ${pathname.includes(ROUTES.MY.default) && "border-b border-D2_Gray"} `}
     >
       <div className="relative mx-1 flex h-full items-center justify-between Tablet:mx-6 Laptop:mx-[52px]">
         {pathname !== ROUTES.MAIN && !clickSearchIcon && (

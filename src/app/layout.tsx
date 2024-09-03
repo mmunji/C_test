@@ -6,6 +6,7 @@ import "swiper/css/scrollbar";
 
 import type { Metadata } from "next";
 
+import GoogleAnalytics from "@/components/googleanalytics/GoogleAnalytics";
 import Header from "@/components/header/Header";
 import ReactQueryProvier from "@/react-query/ReactQueryProvider";
 import { appleSDGothicNeo, pretendard } from "@/utils/fonts";
@@ -38,6 +39,9 @@ export default function RootLayout({
           {children}
           <div id="portal" />
         </ReactQueryProvier>
+        {process.env.REACT_APP_GA_TRACKING_ID ? (
+          <GoogleAnalytics gaId={process.env.REACT_APP_GA_TRACKING_ID} />
+        ) : null}
       </body>
     </html>
   );
