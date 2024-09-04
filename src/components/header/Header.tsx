@@ -27,7 +27,7 @@ export default function Header() {
     addEventListener("resize", handleResize);
     return () => removeEventListener("resize", handleResize);
   }, []);
-  console.log(pathname);
+
   useEffect(() => {
     if (clickSearchIcon) {
       document.body.style.overflowY = "hidden";
@@ -38,7 +38,7 @@ export default function Header() {
 
   const { myPageHeaderText } = getMyPageHeaderText(pathname);
 
-  if (pathname == "/admin") {
+  if (pathname.includes("/admin")) {
     return null;
   }
   return (

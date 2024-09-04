@@ -10,18 +10,16 @@ export default function RightKeyWords({ keywordInfo }: KeyWordInfoProps) {
   return (
     <div>
       <div className="grid grid-cols-1 gap-3 Tablet:hidden ">
-        {Array(3)
+        {/* {Array(3)
           .fill(0)
           .map((_, index) => {
-
-
-            if (!keywordInfo?.reviewList[index]) {
-              return null;
-            }
+            // if (!keywordInfo?.reviewList[index]) {
+            //   return null;
+            // }
             return (
               <KeyWordPosts
                 key={index}
-                id={keywordInfo?.reviewList[index]?.review.id}
+                // id={keywordInfo?.reviewList[index]?.review.id}
                 nickname={keywordInfo?.reviewList[index]?.nickname}
                 movieName={keywordInfo?.reviewList[index]?.review?.movienm}
                 star={keywordInfo?.reviewList[index]?.review?.star}
@@ -29,10 +27,10 @@ export default function RightKeyWords({ keywordInfo }: KeyWordInfoProps) {
                 keyword={keyword}
               />
             );
-          })}
+          })} */}
       </div>
       <div className="hidden   grid-cols-3 gap-4 Tablet:grid Laptop:hidden ">
-        {Array(6)
+        {/* {Array(6)
           .fill(0)
           .map((_, index) => {
             if (!keywordInfo?.reviewList[index]) {
@@ -69,10 +67,10 @@ export default function RightKeyWords({ keywordInfo }: KeyWordInfoProps) {
                 keyword={keyword}
               />
             );
-          })}
+          })} */}
       </div>
       <div className="hidden  grid-cols-5 gap-6 Desktop:grid">
-        {keywordInfo?.reviewList.map((movie, index) => {
+        {/* {keywordInfo?.reviewList.map((movie, index) => {
           if (!movie) {
             return null;
           }
@@ -87,7 +85,7 @@ export default function RightKeyWords({ keywordInfo }: KeyWordInfoProps) {
               keyword={keyword}
             />
           );
-        })}
+        })} */}
       </div>
     </div>
   );
