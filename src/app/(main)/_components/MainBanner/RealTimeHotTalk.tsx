@@ -49,15 +49,15 @@ export default function RealTimeHotTalk({ ReviewList }: ReviewListType) {
                 <div className="flex items-center justify-center">
                   <Image src={StarFillSm} alt="star" className="h-4 w-4" />
                   <span className="Text-xs-Regular">
-                    {ReviewList[index].star}
+                    {/* {ReviewList[index].star} */}
                   </span>
                 </div>
                 <span className="line-clamp-1 w-48 flex-1 truncate Text-m-Medium">
-                  {ReviewList[index].content}
+                  {/* {ReviewList[index].content} */}
                 </span>
 
                 <span className=" flex  items-center opacity-40">
-                  {dayjs(ReviewList[index].createdAt).fromNow()}
+                  {/* {dayjs(ReviewList[index].createdAt).fromNow()} */}
                 </span>
               </li>
             );

@@ -1,8 +1,14 @@
+"use client";
+import { MyResponsiveLine } from "./_components/Chart";
+
 export default function AdminMain() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <h1>admin</h1>
+    <main className="flex min-h-screen w-full flex-col  p-24">
+      <div className="Text-xl-Regular z-10 max-w-5xl  font-mono ">
+        <h1>통계</h1>
+      </div>
+      <div>
+        <MyResponsiveLine />
       </div>
     </main>
   );
