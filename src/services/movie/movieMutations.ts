@@ -1,10 +1,10 @@
-import { useMutation } from "@tanstack/react-query";
-import { useRouter } from "next/navigation";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import { movieAPIs } from "./movieAPIs";
+import { MOVIE_QUERY_KEYS } from "./movieQueryKeys";
 
-export function useBookmarkMovie() {
-  const router = useRouter();
+export function useBookmarkMovie(movieId: number) {
+  const queryClient = useQueryClient();
   return useMutation({
     mutationFn: async (movieId: number) => {
       const { data, res } = await movieAPIs.bookmarkMovie(movieId);
@@ -12,7 +12,9 @@ export function useBookmarkMovie() {
       if (!res.ok) throw new Error(data?.message);
     },
     onSuccess: () => {
-      router.refresh();
+      queryClient.invalidateQueries({
+        queryKey: MOVIE_QUERY_KEYS.bookmark.detail(movieId),
+      });
     },
     onError: (error) => {
       alert(error);

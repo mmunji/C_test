@@ -1,14 +1,20 @@
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 
+import Modal from "@/components/modal/modal";
 import useDevice from "@/hooks/useDevice";
+import useHandleClickAuthButton from "@/hooks/useHandleClickAuthButtons";
+import useNeedLogin from "@/hooks/useNeedLogin";
 import useSmoothScroll from "@/hooks/useSmoothScroll";
 import { useBookmarkMovie } from "@/services/movie/movieMutations";
+import { useCheckBookmark } from "@/services/movie/movieQueries";
 import useLoggedInStore from "@/stores/useLoggedIn";
 
 import {
   EditPencilLineMd,
   EditPencilLineSm,
+  HeartFillLg,
+  HeartFillXl,
   HeartLineLg,
   HeartLineXl,
 } from "../../../../../public/icons";
@@ -28,8 +34,11 @@ export default function DetailBannerBottomRight({
   const { device } = useDevice();
   const [clickedTalk, setClickedTalk] = useState(false);
   const { loggedIn } = useLoggedInStore();
+  const { handleNeedLogin, isOpen, setIsOpen } = useNeedLogin();
+  const { handleClickAuthButton } = useHandleClickAuthButton();
 
-  const { mutate: bookmark } = useBookmarkMovie();
+  const { mutate: bookmark } = useBookmarkMovie(movieId);
+  const { data: checkBookmark } = useCheckBookmark(movieId);
 
   useEffect(() => {
     if (activeCategoryTab === "톡" && clickedTalk) {
@@ -48,6 +57,11 @@ export default function DetailBannerBottomRight({
     smoothScroll("my-talk");
   };
 
+  const toggleBookmark = (movieId: number) => {
+    if (handleNeedLogin()) return;
+    bookmark(movieId);
+  };
+
   return (
     <section className="absolute bottom-[-60px] flex translate-y-[100%] Tablet:bottom-[-41px] Laptop:static Laptop:translate-y-0">
       <section className="mt-auto flex items-center gap-10 Laptop:gap-5 Desktop:gap-8">
@@ -61,14 +75,17 @@ export default function DetailBannerBottomRight({
             </p>
           </section>
         )}
-        <section onClick={() => bookmark(movieId)} className="cursor-pointer">
+        <section
+          onClick={() => toggleBookmark(movieId)}
+          className="cursor-pointer"
+        >
           <Image
-            src={HeartLineLg}
+            src={checkBookmark?.data ? HeartFillLg : HeartLineLg}
             alt="찜하기"
             className="m-1 h-8 w-8 Laptop:hidden"
           />
           <Image
-            src={HeartLineXl}
+            src={checkBookmark?.data ? HeartFillXl : HeartLineXl}
             alt="찜하기"
             className="hidden Laptop:block"
           />
@@ -100,6 +117,19 @@ export default function DetailBannerBottomRight({
         priority
         className="hidden rounded-[12px] Laptop:ml-6 Laptop:block Laptop:h-[258px] Laptop:w-[172px] Desktop:ml-9 Desktop:h-[360px] Desktop:w-60"
       />
+
+      {isOpen && (
+        <Modal
+          isAlertModal={false}
+          isOpen={isOpen}
+          onClose={() => setIsOpen(false)}
+        >
+          <Modal.Login
+            onKakaoLogin={() => handleClickAuthButton("kakao")}
+            onNaverLogin={() => handleClickAuthButton("naver")}
+          />
+        </Modal>
+      )}
     </section>
   );
 }

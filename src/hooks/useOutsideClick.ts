@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 
-export default function useOutsideClick(callback: () => void) {
+export default function useClickOutside(callback: () => void) {
   const ref = useRef<HTMLDivElement>(null);
   const initialClickOutside = useRef<boolean>(false);
 
@@ -19,6 +19,8 @@ export default function useOutsideClick(callback: () => void) {
         ref.current &&
         !ref.current.contains(e.target as Node)
       ) {
+        e.preventDefault();
+        e.stopPropagation();
         callback();
       }
       initialClickOutside.current = false;

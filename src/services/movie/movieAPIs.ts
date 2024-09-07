@@ -81,4 +81,18 @@ export const movieAPIs = {
     const data = await res.json();
     return { data, res };
   },
+  checkBookmark: async (movieId: number) => {
+    const accessToken = tokenManager.getToken();
+    if (!accessToken) return;
+    const res = await fetch(`${API_URL}/bookmark/${movieId}/check`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        access: `${accessToken}`,
+      },
+    });
+
+    const data = await res.json();
+    return { data, res };
+  },
 };

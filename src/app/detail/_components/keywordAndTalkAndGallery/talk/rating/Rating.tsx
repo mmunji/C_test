@@ -34,8 +34,8 @@ export default function Rating({
     setShowTalkForm,
   } = useRating();
   const { handleClickAuthButton } = useHandleClickAuthButton();
-  const { data: myTalk } = useGetMyTalk(movieId);
-  console.log("myTalk", myTalk);
+  // const { data: myTalk } = useGetMyTalk(movieId);
+  // console.log("myTalk", myTalk);
 
   return (
     <div className="relative flex w-full flex-col justify-center rounded-xl py-3 Tablet:py-8 Laptop:mb-6 Laptop:bg-D1_Gray Laptop:px-7 Laptop:py-8">
