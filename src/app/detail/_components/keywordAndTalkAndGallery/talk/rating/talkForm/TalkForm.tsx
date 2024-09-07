@@ -40,7 +40,7 @@ export default function TalkForm({
       spoiler: false,
     },
   });
-  const { mutate: mutateAddTalk } = useAddTalk(setShowTalkForm);
+  const { mutate: mutateAddTalk } = useAddTalk(movieId, setShowTalkForm);
 
   const onSubmit: SubmitHandler<AddTalkValues> = () => {
     if (readyToSubmit) {

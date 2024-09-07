@@ -3,6 +3,8 @@ import Image from "next/image";
 import React, { Dispatch, SetStateAction, useState } from "react";
 
 import Button from "@/components/buttons/Button";
+import { talkAPIs } from "@/services/talk/talkAPIs";
+import { useLikeTalk } from "@/services/talk/talkMutations";
 
 import {
   CaretDownGraySm,
@@ -22,6 +24,7 @@ interface TalkContentsFooterProps {
   showSpoiler: boolean;
   showReplies: boolean;
   setShowReplies: Dispatch<SetStateAction<boolean>>;
+  movieId: number;
 }
 
 export default function TalkContentsFooter({
@@ -29,16 +32,19 @@ export default function TalkContentsFooter({
   showSpoiler,
   showReplies,
   setShowReplies,
+  movieId,
 }: TalkContentsFooterProps) {
   const [like, setLike] = useState(false);
   const [disLike, setDisLike] = useState(false);
+  const { mutate: likeTalk } = useLikeTalk(movieId);
 
-  const handleClickLike = () => {
+  const handleClickLike = (talkId: number) => {
+    likeTalk(talkId);
     setDisLike(false);
     setLike(!like);
   };
 
-  const handleClickDisLike = () => {
+  const handleClickDisLike = async () => {
     setLike(false);
     setDisLike(!disLike);
   };
@@ -49,7 +55,7 @@ export default function TalkContentsFooter({
 
   return (
     <section className="flex items-center justify-end Tablet:mt-2">
-      <Button onClick={handleClickLike} variant="textIconL">
+      <Button onClick={() => handleClickLike(talk.id)} variant="textIconL">
         <Image
           src={like ? ThumbsUpFillSm : ThumbsUpLineSm}
           alt="좋아요"
@@ -64,7 +70,7 @@ export default function TalkContentsFooter({
           {talk.likeCount}
         </p>
       </Button>
-      <Button onClick={handleClickDisLike} variant="textIconL">
+      <Button onClick={() => handleClickDisLike()} variant="textIconL">
         <Image
           src={disLike ? ThumbsDownFillSm : ThumbsDownLineSm}
           alt="싫어요"

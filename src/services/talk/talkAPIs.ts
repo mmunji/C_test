@@ -48,4 +48,30 @@ export const talkAPIs = {
     const data = await res.json();
     return { data, res };
   },
+
+  removeTalk: async (talkId: number) => {
+    const accessToken = tokenManager.getToken();
+    const res = await fetch(`${API_URL}/reviews/${talkId}`, {
+      method: "DELETE",
+      headers: {
+        access: `${accessToken}`,
+      },
+    });
+
+    const data = res.json();
+    return { res, data };
+  },
+
+  like: async (talkId: number) => {
+    const accessToken = tokenManager.getToken();
+    const res = await fetch(`${API_URL}/reviews/${talkId}/like`, {
+      method: "POST",
+      headers: {
+        access: `${accessToken}`,
+      },
+    });
+
+    const data = res.json();
+    return { res, data };
+  },
 };

@@ -11,10 +11,12 @@ import { usePaletteStore } from "../../_stores/usePaletteStore";
 import DetailBannerBottom from "./DetailBannerBottom";
 
 interface DetailBannerSectionProps {
+  movieId: number;
   movieDetailData: MovieDetailData;
 }
 
 export default function DetailBannerSection({
+  movieId,
   movieDetailData,
 }: DetailBannerSectionProps) {
   const { gradientStyle, setGradientStyle } = usePaletteStore();
@@ -37,7 +39,10 @@ export default function DetailBannerSection({
           backgroundImage: `linear-gradient(180deg, rgba(38, 38, 38, 0.50) 0%, rgba(38, 38, 38, 0.20) 50%, #262626 100%), url('${isSm ? posterImage : backgroundImage}')`,
         }}
       >
-        <DetailBannerBottom movieDetailData={movieDetailData} />
+        <DetailBannerBottom
+          movieId={movieId}
+          movieDetailData={movieDetailData}
+        />
       </div>
 
       <Palette

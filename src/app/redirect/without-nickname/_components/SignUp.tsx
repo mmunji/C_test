@@ -42,8 +42,9 @@ export default function SignUp({ userInfo }: SignUpProps) {
     try {
       const { year, month, day } = birthValues;
       const birthday = `${year}-${month}-${day}`;
-      const { data } = await authAPIS.signUp(nickname, gender, birthday);
-      if (data === "success") {
+      const { res } = await authAPIS.signUp(nickname, gender, birthday);
+
+      if (res.ok) {
         router.push(`${ROUTES.SIGN_UP_COMPLETE}?nickname=${nickname}`);
       }
       setMyInfo({ nickname: nickname, birthday: birthday, gender: gender });

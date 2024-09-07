@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react";
 
 import useDevice from "@/hooks/useDevice";
 import useSmoothScroll from "@/hooks/useSmoothScroll";
+import { useBookmarkMovie } from "@/services/movie/movieMutations";
+import useLoggedInStore from "@/stores/useLoggedIn";
 
 import {
   EditPencilLineMd,
@@ -13,16 +15,21 @@ import {
 import { useCategoryTabStore } from "../../_stores/useCategoryTabStore";
 
 interface DetailBannerBottomRightProps {
+  movieId: number;
   movieDetailData: MovieDetailData;
 }
 
 export default function DetailBannerBottomRight({
+  movieId,
   movieDetailData,
 }: DetailBannerBottomRightProps) {
   const { smoothScroll } = useSmoothScroll();
   const { activeCategoryTab, setActiveCategoryTab } = useCategoryTabStore();
   const { device } = useDevice();
   const [clickedTalk, setClickedTalk] = useState(false);
+  const { loggedIn } = useLoggedInStore();
+
+  const { mutate: bookmark } = useBookmarkMovie();
 
   useEffect(() => {
     if (activeCategoryTab === "톡" && clickedTalk) {
@@ -44,15 +51,17 @@ export default function DetailBannerBottomRight({
   return (
     <section className="absolute bottom-[-60px] flex translate-y-[100%] Tablet:bottom-[-41px] Laptop:static Laptop:translate-y-0">
       <section className="mt-auto flex items-center gap-10 Laptop:gap-5 Desktop:gap-8">
-        <section>
-          <p className="flex h-10 w-10 items-center justify-center text-Silver Text-l-Bold Laptop:h-12 Laptop:w-12 Laptop:text-xl Laptop:font-Medium Laptop:leading-[28px]">
-            0.0
-          </p>
-          <p className="text-center text-L_Gray Text-xs-Regular Laptop:text-White Laptop:Text-s-Medium">
-            내 평가
-          </p>
-        </section>
-        <section className="cursor-pointer">
+        {loggedIn && (
+          <section>
+            <p className="flex h-10 w-10 items-center justify-center text-Silver Text-l-Bold Laptop:h-12 Laptop:w-12 Laptop:text-xl Laptop:font-Medium Laptop:leading-[28px]">
+              0.0
+            </p>
+            <p className="text-center text-L_Gray Text-xs-Regular Laptop:text-White Laptop:Text-s-Medium">
+              내 평가
+            </p>
+          </section>
+        )}
+        <section onClick={() => bookmark(movieId)} className="cursor-pointer">
           <Image
             src={HeartLineLg}
             alt="찜하기"

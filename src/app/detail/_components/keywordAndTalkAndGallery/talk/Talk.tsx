@@ -19,7 +19,7 @@ interface TalkProps {
 }
 
 export default function Talk({ title, movieId, movieDetailData }: TalkProps) {
-  const { data } = useGetTalkQuery(movieId.toString());
+  const { data } = useGetTalkQuery(movieId);
   const { device } = useDevice();
   const id = device === "mobile" || device === "tablet" ? undefined : "my-talk";
   const noTalk = data?.pages[0].reviewList.length === 0;
@@ -29,6 +29,8 @@ export default function Talk({ title, movieId, movieDetailData }: TalkProps) {
     if (data?.pages[0].totalElements) {
       setTotalTalks(data?.pages[0].totalElements);
     }
+
+    return () => setTotalTalks(0);
   }, [data?.pages, setTotalTalks]);
 
   return (
@@ -45,7 +47,7 @@ export default function Talk({ title, movieId, movieDetailData }: TalkProps) {
             {data?.pages.map((talkData, i) => (
               <React.Fragment key={i}>
                 {talkData.reviewList.map((talk, i) => (
-                  <TalkContents talk={talk} key={i} />
+                  <TalkContents movieId={movieId} talk={talk} key={i} />
                 ))}
               </React.Fragment>
             ))}

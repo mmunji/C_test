@@ -3,6 +3,7 @@ import React from "react";
 
 import Button from "@/components/buttons/Button";
 import SmallBadge from "@/components/smallBadge/SmallBadge";
+import useMyInfoStore from "@/stores/useMyInfoStore";
 import formatDate from "@/utils/formatDate";
 
 import { MoreHorizontal } from "../../../../../../../../public/icons";
@@ -13,6 +14,9 @@ interface TalkContentsHeaderProps {
 }
 
 export default function TalkContentsHeader({ talk }: TalkContentsHeaderProps) {
+  const { myInfo } = useMyInfoStore();
+  const isMyTalk = myInfo.nickname === talk.nickName;
+
   return (
     <div className="itmes-center relative flex h-[66px] justify-between Tablet:h-[54px]">
       <section className="flex gap-2 Tablet:gap-4">
@@ -53,9 +57,11 @@ export default function TalkContentsHeader({ talk }: TalkContentsHeaderProps) {
         </section>
       </section>
 
-      <Button variant="icon" className="my-auto h-fit">
-        <Image src={MoreHorizontal} alt="메뉴" />
-      </Button>
+      {!isMyTalk && (
+        <Button variant="icon" className="my-auto h-fit">
+          <Image src={MoreHorizontal} alt="메뉴" />
+        </Button>
+      )}
     </div>
   );
 }

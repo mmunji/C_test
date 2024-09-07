@@ -8,7 +8,10 @@ interface Talk {
 }
 
 interface ReviewList {
+  id: number;
   nickName: string;
+  profileImage: string;
+  badgeList: [];
   star: number;
   content: string;
   createdAt: string;

@@ -12,7 +12,10 @@ export interface AddTalkParams {
   genreList: number[];
 }
 
-export function useAddTalk(setShowTalkForm: Dispatch<SetStateAction<boolean>>) {
+export function useAddTalk(
+  movieId: number,
+  setShowTalkForm: Dispatch<SetStateAction<boolean>>,
+) {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -33,12 +36,27 @@ export function useAddTalk(setShowTalkForm: Dispatch<SetStateAction<boolean>>) {
       if (!res.ok) throw new Error(data?.message);
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: TALK_QUERY_KEYS.all() });
+      queryClient.invalidateQueries({
+        queryKey: TALK_QUERY_KEYS.infiniteMovieQueryKeys(movieId),
+      });
 
       setShowTalkForm(false);
     },
     onError: (error) => {
       alert(error);
+    },
+  });
+}
+
+export function useLikeTalk(movieId: number) {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: (talkId: number) => talkAPIs.like(talkId),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: TALK_QUERY_KEYS.infiniteMovieQueryKeys(movieId),
+      });
     },
   });
 }
