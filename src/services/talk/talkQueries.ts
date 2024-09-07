@@ -1,5 +1,6 @@
-import { useInfiniteQuery } from "@tanstack/react-query";
+import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 
+import { tokenManager } from "../auth/tokenManager";
 import { talkAPIs } from "./talkAPIs";
 import { TALK_QUERY_KEYS } from "./talkQueryKeys";
 
@@ -11,5 +12,16 @@ export function useGetTalkQuery(movieId: number) {
     getNextPageParam: (lastPage) => {
       return lastPage.isLast ? undefined : lastPage.totalPage + 1;
     },
+  });
+}
+
+export function useGetMyTalk(movieId: number) {
+  const accessToken = tokenManager.getToken();
+  return useQuery({
+    queryKey: TALK_QUERY_KEYS.my(movieId),
+    queryFn: () => {
+      return talkAPIs.getMyTalk(movieId);
+    },
+    enabled: !!accessToken,
   });
 }

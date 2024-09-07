@@ -16,6 +16,24 @@ export const talkAPIs = {
     return data;
   },
 
+  getMyTalk: async (movieId: number) => {
+    const accessToken = tokenManager.getToken();
+    const res = await fetch(`${API_URL}/reviews/my?movieId=${movieId}`, {
+      headers: {
+        "Content-Type": "application/json",
+        access: `${accessToken}`,
+      },
+      cache: "no-store",
+    });
+
+    if (!res.ok) {
+      throw new Error("Network response was not ok");
+    }
+
+    const data: Talk = await res.json();
+    return { data, res };
+  },
+
   addTalks: async ({
     movieId,
     star,

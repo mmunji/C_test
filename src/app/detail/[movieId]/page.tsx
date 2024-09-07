@@ -2,6 +2,7 @@ import React from "react";
 
 import { keywordAPIs } from "@/services/keyword/keywordAPIs";
 import { movieAPIs } from "@/services/movie/movieAPIs";
+import { talkAPIs } from "@/services/talk/talkAPIs";
 
 import DetailBannerSection from "../_components/detailBannerSection/DetailBannerSection";
 import DetailInfo from "../_components/detailInfo/DetailInfo";
@@ -25,8 +26,6 @@ export default async function Detail({
   const noKeyword = keywordsData?.length === 0;
   const top1Keyword = keywordsData.sort((a, b) => b.count - a.count)[0];
   const movieTitle = movieDetailData.title;
-
-  console.log(movieDetailData);
 
   return (
     <div className="bg-BG">
