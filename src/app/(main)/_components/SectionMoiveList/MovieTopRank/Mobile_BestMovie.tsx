@@ -10,7 +10,10 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { ThumbsUpFillSm } from "@/../public/icons";
 
 import PostCard from "../../PostCard";
-export default function Mobile_BestMovie() {
+interface Mobile_BestMoiveProps {
+  MovieData: Movie_TopTen | null;
+}
+export default function Mobile_BestMovie(MovieData: Mobile_BestMoiveProps) {
   return (
     <div className="flex Tablet:hidden">
       <Swiper
@@ -19,47 +22,49 @@ export default function Mobile_BestMovie() {
         className="mySwiper"
         modules={[Pagination]}
       >
-        {Array(10)
-          .fill(0)
-          .map((_, index) => {
-            return (
-              <SwiperSlide key={index} style={{ width: "238px" }}>
-                <div className="flex w-[238px] flex-col gap-4  rounded-xl bg-Black pb-4 ">
-                  <PostCard num={index + 1} />
-                  <div className="flex flex-col gap-2 px-4">
-                    <div className="Text-xs-Re gular flex   justify-between">
-                      <div className="flex items-center rounded bg-Primary px-1 text-White">
-                        Best
+        {Array.isArray(MovieData.MovieData) && MovieData.MovieData.length > 0
+          ? MovieData.MovieData.map((MovieDetailData, index) => {
+              return (
+                <SwiperSlide key={index} style={{ width: "238px" }}>
+                  <div className="flex w-[238px] flex-col gap-4  rounded-xl bg-Black pb-4 ">
+                    <PostCard
+                      num={index + 1}
+                      background={MovieDetailData.poster_path}
+                    />
+                    <div className="flex flex-col gap-2 px-4">
+                      <div className="Text-xs-Re gular flex   justify-between">
+                        <div className="flex items-center rounded bg-Primary px-1 text-White">
+                          Best
+                        </div>
+                        <div className="flex items-center justify-center gap-1 text-L_Gray">
+                          <Image
+                            src={ThumbsUpFillSm}
+                            alt="white_ start"
+                            className="h-4 w-4"
+                          />
+                          <span>{MovieDetailData.reviewList[0].likeCount}</span>
+                        </div>
                       </div>
-                      <div className="flex items-center justify-center gap-1 text-L_Gray">
-                        <Image
-                          src={ThumbsUpFillSm}
-                          alt="white_ start"
-                          className="h-4 w-4"
-                        />
-                        <span>0,000</span>
+                      <div className="flex gap-2">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                        >
+                          <circle cx="12" cy="12" r="12" fill="#D9D9D9" />
+                        </svg>
+                        <span className="line-clamp-1 Text-s-Regular">
+                          {MovieDetailData.reviewList[0].content}
+                        </span>
                       </div>
-                    </div>
-                    <div className="flex gap-2">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                      >
-                        <circle cx="12" cy="12" r="12" fill="#D9D9D9" />
-                      </svg>
-                      <span className="line-clamp-2 Text-s-Regular">
-                        김고은 굿씬이 진짜 미쳤음.. 생각보다 영화가 긴데
-                        몰입감이 오져
-                      </span>
                     </div>
                   </div>
-                </div>
-              </SwiperSlide>
-            );
-          })}
+                </SwiperSlide>
+              );
+            })
+          : ""}
       </Swiper>
     </div>
   );

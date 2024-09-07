@@ -5,7 +5,6 @@ import SpeechBubble from "@/components/speechBubble/SpeechBubble";
 import MoviePosts from "./MoviePosts";
 
 export default function WatchedMoive() {
-  let arr = ["1", "1", "1", "1"];
   return (
     <div className="flex flex-col gap-5">
       <div className="flex flex-col gap-1 text-center  Laptop:flex-row Laptop:gap-5 Laptop:text-left">
@@ -15,7 +14,7 @@ export default function WatchedMoive() {
         <div className="hidden  Laptop:block">
           <SpeechBubble dir="left">별을 눌러 평가해보세요 :)</SpeechBubble>
         </div>
-        <span className=" text-L_Gray Text-m-Regular Laptop:hidden Desktop:hidden ">
+        <span className=" text-L_Gray Text-m-Regular Laptop:hidden  ">
           간편하게 영화를 평가해보세요!
         </span>
       </div>
