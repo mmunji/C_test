@@ -60,3 +60,16 @@ export function useLikeTalk(movieId: number) {
     },
   });
 }
+
+export function useDislikeTalk(movieId: number) {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: (talkId: number) => talkAPIs.dislike(talkId),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: TALK_QUERY_KEYS.infiniteMovieQueryKeys(movieId),
+      });
+    },
+  });
+}

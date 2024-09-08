@@ -3,8 +3,7 @@ import Image from "next/image";
 import React, { Dispatch, SetStateAction, useState } from "react";
 
 import Button from "@/components/buttons/Button";
-import { talkAPIs } from "@/services/talk/talkAPIs";
-import { useLikeTalk } from "@/services/talk/talkMutations";
+import { useDislikeTalk, useLikeTalk } from "@/services/talk/talkMutations";
 
 import {
   CaretDownGraySm,
@@ -35,18 +34,20 @@ export default function TalkContentsFooter({
   movieId,
 }: TalkContentsFooterProps) {
   const [like, setLike] = useState(false);
-  const [disLike, setDisLike] = useState(false);
+  const [dislike, setDislike] = useState(false);
   const { mutate: likeTalk } = useLikeTalk(movieId);
+  const { mutate: dislikeTalk } = useDislikeTalk(movieId);
 
   const handleClickLike = (talkId: number) => {
     likeTalk(talkId);
-    setDisLike(false);
+    setDislike(false);
     setLike(!like);
   };
 
-  const handleClickDisLike = async () => {
+  const handleClickDislike = async (talkId: number) => {
+    dislikeTalk(talkId);
     setLike(false);
-    setDisLike(!disLike);
+    setDislike(!dislike);
   };
 
   const handleClickReplies = () => {
@@ -70,14 +71,14 @@ export default function TalkContentsFooter({
           {talk.likeCount}
         </p>
       </Button>
-      <Button onClick={() => handleClickDisLike()} variant="textIconL">
+      <Button onClick={() => handleClickDislike(talk.id)} variant="textIconL">
         <Image
-          src={disLike ? ThumbsDownFillSm : ThumbsDownLineSm}
+          src={dislike ? ThumbsDownFillSm : ThumbsDownLineSm}
           alt="싫어요"
           className="Laptop:hidden"
         />
         <Image
-          src={disLike ? ThumbsDownFillMd : ThumbsDownLineMd}
+          src={dislike ? ThumbsDownFillMd : ThumbsDownLineMd}
           alt="싫어요"
           className="hidden Laptop:block"
         />

@@ -92,4 +92,17 @@ export const talkAPIs = {
     const data = res.json();
     return { res, data };
   },
+
+  dislike: async (talkId: number) => {
+    const accessToken = tokenManager.getToken();
+    const res = await fetch(`${API_URL}/reviews/${talkId}/dislike`, {
+      method: "POST",
+      headers: {
+        access: `${accessToken}`,
+      },
+    });
+
+    const data = res.json();
+    return { res, data };
+  },
 };
