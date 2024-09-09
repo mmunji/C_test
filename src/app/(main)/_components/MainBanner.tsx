@@ -50,7 +50,7 @@ export default function MainBanner() {
         autoHeight={true}
         modules={[Autoplay, Pagination]}
         className="h-[450px] Tablet:h-[500px]  Laptop:h-[510px] Desktop:h-[690px]"
-        autoplay={{ delay: 5000, disableOnInteraction: false }}
+        // autoplay={{ delay: 5000, disableOnInteraction: false }}
       >
         {Array.isArray(MovieBanner) && MovieBanner.length > 0
           ? MovieBanner.map((BannerItem, index) => {
