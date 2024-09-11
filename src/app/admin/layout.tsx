@@ -7,7 +7,7 @@ export default function layout({ children }: { children: React.ReactNode }) {
       <AdminHeaders />
       <section className="flex">
         <SideMenu />
-        <main className="px-2">{children}</main>
+        <main className="w-full bg-gray-200 px-2 text-black">{children}</main>
       </section>
     </div>
   );
