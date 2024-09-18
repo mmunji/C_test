@@ -13,9 +13,9 @@ export default function AdminMain() {
     KeywordCount: Users[] | undefined;
   };
   return (
-    <main className="flex min-h-screen w-full flex-col  p-24">
-      <div className="Text-xl-Regular z-10 max-w-5xl  font-mono ">
-        <h1>통계</h1>
+    <main className="flex min-h-screen w-full flex-col  gap-5 p-24">
+      <div className="">
+        <h1 className="text-gray-80 text-4xl font-extrabold">통계</h1>
       </div>
       <div>
         <MyResponsiveLine
