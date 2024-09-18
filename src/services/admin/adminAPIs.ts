@@ -63,4 +63,19 @@ export const adminAPIs = {
     const data: Users = await res.json();
     return data;
   },
+  AdamageReport: async (id: number, category: string, date: string) => {
+    const accessToken = tokenManager.getToken();
+    const res = await fetch(
+      `${API_URL}/adamage/${id}?category=${category}&date=${date}`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          access: `${accessToken}`,
+        },
+      },
+    );
+    const data = await res.json();
+    return data;
+  },
 };
