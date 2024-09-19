@@ -1,11 +1,12 @@
 import { useEffect } from "react";
 
+import { setAccessToken } from "@/services/auth/actions";
 import { authAPIS } from "@/services/auth/authAPIs";
 import { tokenManager } from "@/services/auth/tokenManager";
 import useLoggedInStore from "@/stores/useLoggedIn";
 
 export default function useRefresh() {
-  const NINE_MINUTES = 60 * 9 * 1000;
+  const NINE_MINUTES = 60 * 1000;
   const { loggedIn } = useLoggedInStore();
 
   useEffect(() => {
@@ -15,11 +16,11 @@ export default function useRefresh() {
         const accessToken = res.headers.get("access");
         if (accessToken) {
           tokenManager.setToken(accessToken);
+          setAccessToken(accessToken);
         }
       }
     };
 
-    refresh();
     const interval = setInterval(() => {
       refresh();
     }, NINE_MINUTES);

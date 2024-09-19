@@ -7,7 +7,7 @@ import "swiper/css/scrollbar";
 import type { Metadata } from "next";
 
 import GoogleAnalytics from "@/components/googleanalytics/GoogleAnalytics";
-import Header from "@/components/header/Header";
+import HeaderContainer from "@/components/header/HeaderContainer";
 import ReactQueryProvier from "@/react-query/ReactQueryProvider";
 import { appleSDGothicNeo, pretendard } from "@/utils/fonts";
 
@@ -25,7 +25,7 @@ export default function RootLayout({
     <html lang="ko">
       <head>
         <meta
-          http-equiv="Content-Security-Policy"
+          httpEquiv="Content-Security-Policy"
           content="upgrade-insecure-requests"
         />
         <meta
@@ -35,7 +35,7 @@ export default function RootLayout({
       </head>
       <body className={`${pretendard.variable} ${appleSDGothicNeo.variable}`}>
         <ReactQueryProvier>
-          <Header />
+          <HeaderContainer />
           {children}
           <div id="portal" />
         </ReactQueryProvier>
