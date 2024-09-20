@@ -104,7 +104,7 @@ export default function Laptop_BestMovie(MovieData: Laptop_BestMoiveProps) {
                               alt="Primary_Start"
                               className="h-6 w-6"
                             />
-                            <span>{MovieDetailData.rate}</span>
+                            <span>{MovieDetailData.rate.toFixed(1)}</span>
                           </div>
                           <div className="flex gap-1">
                             <Image

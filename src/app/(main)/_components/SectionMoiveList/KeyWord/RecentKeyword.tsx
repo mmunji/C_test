@@ -38,9 +38,9 @@ export default function RecentKeyword() {
             {Array.isArray(MentionKeywords) && MentionKeywords.length > 0
               ? MentionKeywords.map((mention, index) => {
                   return (
-                    <SwiperSlide key={index} style={{ width: "90px" }}>
+                    <SwiperSlide key={index} style={{ width: "100px" }}>
                       <div
-                        className={`Text-S-Bold  ${KeywordListNumber == index ? "bg-D1_Gray" : ""} w-[90px]  rounded-xl px-5 py-2 text-center`}
+                        className={`Text-S-Bold  ${KeywordListNumber == index ? "bg-D1_Gray" : ""} w-[90px]  rounded-xl px-3 py-2 text-center text-base`}
                         onClick={() => HandleKeywords(index)}
                       >
                         {mention.keyword}
