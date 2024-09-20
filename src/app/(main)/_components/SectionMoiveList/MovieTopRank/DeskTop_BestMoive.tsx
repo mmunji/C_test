@@ -19,6 +19,7 @@ import {
   TmdbSm,
 } from "@/../public/icons";
 import Button from "@/components/buttons/Button";
+import useDevice from "@/hooks/useDevice";
 
 import PostCard from "../../PostCard";
 import BestTalkPost from "./Post/BestTalkPost";
@@ -33,6 +34,7 @@ export default function DeskTop_BestMovie(MovieData: Desktop_BestMoiveProps) {
   const onHandlePost = (index: number) => {
     SetStatePost(index);
   };
+
   return (
     <div
       className=" hidden Desktop:flex "
@@ -95,7 +97,7 @@ export default function DeskTop_BestMovie(MovieData: Desktop_BestMoiveProps) {
                             alt="Primary_Start"
                             className="h-6 w-6"
                           />
-                          <span>{MovieDetailData.rate}</span>
+                          <span>{MovieDetailData.rate.toFixed(1)}</span>
                         </div>
                         <div className="flex gap-1">
                           <Image

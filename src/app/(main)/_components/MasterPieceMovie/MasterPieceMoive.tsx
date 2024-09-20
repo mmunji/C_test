@@ -74,7 +74,7 @@ export default function MasterPieceMoive() {
         >
           {Array.isArray(MoviePiece) && MoviePiece.length > 0
             ? MoviePiece.map((movie, index) => (
-                <SwiperSlide key={index}>
+                <SwiperSlide key={index} className="w-[174px]">
                   <Link href={`detail/${movie.movieid}`}>
                     <div className="flex w-[174px] flex-col Desktop:w-[240px]">
                       <PostCard

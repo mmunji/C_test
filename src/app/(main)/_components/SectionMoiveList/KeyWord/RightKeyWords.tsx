@@ -8,29 +8,9 @@ interface KeyWordInfoProps {
 export default function RightKeyWords({ keywordInfo }: KeyWordInfoProps) {
   const keyword = keywordInfo?.keyword;
   return (
-    <div>
+    <div className="w-full">
       <div className="grid grid-cols-1 gap-3 Tablet:hidden ">
-        {/* {Array(3)
-          .fill(0)
-          .map((_, index) => {
-            // if (!keywordInfo?.reviewList[index]) {
-            //   return null;
-            // }
-            return (
-              <KeyWordPosts
-                key={index}
-                // id={keywordInfo?.reviewList[index]?.review.id}
-                nickname={keywordInfo?.reviewList[index]?.nickname}
-                movieName={keywordInfo?.reviewList[index]?.review?.movienm}
-                star={keywordInfo?.reviewList[index]?.review?.star}
-                content={keywordInfo?.reviewList[index]?.review?.content}
-                keyword={keyword}
-              />
-            );
-          })} */}
-      </div>
-      <div className="hidden   grid-cols-3 gap-4 Tablet:grid Laptop:hidden ">
-        {/* {Array(6)
+        {Array(3)
           .fill(0)
           .map((_, index) => {
             if (!keywordInfo?.reviewList[index]) {
@@ -49,7 +29,27 @@ export default function RightKeyWords({ keywordInfo }: KeyWordInfoProps) {
             );
           })}
       </div>
-      <div className="hidden  grid-cols-4 gap-5 Laptop:grid Desktop:hidden">
+      <div className="hidden   grid-cols-3 gap-4 Tablet:grid Laptop:hidden ">
+        {Array(6)
+          .fill(0)
+          .map((_, index) => {
+            if (!keywordInfo?.reviewList[index]) {
+              return null;
+            }
+            return (
+              <KeyWordPosts
+                key={index}
+                id={keywordInfo?.reviewList[index]?.review.id}
+                nickname={keywordInfo?.reviewList[index]?.nickname}
+                movieName={keywordInfo?.reviewList[index]?.review?.movienm}
+                star={keywordInfo?.reviewList[index]?.review?.star}
+                content={keywordInfo?.reviewList[index]?.review?.content}
+                keyword={keyword}
+              />
+            );
+          })}
+      </div>
+      <div className="hidden w-full  grid-cols-4  gap-5 Laptop:grid Desktop:hidden">
         {Array(8)
           .fill(0)
           .map((_, index) => {
@@ -67,10 +67,10 @@ export default function RightKeyWords({ keywordInfo }: KeyWordInfoProps) {
                 keyword={keyword}
               />
             );
-          })} */}
+          })}
       </div>
       <div className="hidden  grid-cols-5 gap-6 Desktop:grid">
-        {/* {keywordInfo?.reviewList.map((movie, index) => {
+        {keywordInfo?.reviewList.map((movie, index) => {
           if (!movie) {
             return null;
           }
@@ -85,7 +85,7 @@ export default function RightKeyWords({ keywordInfo }: KeyWordInfoProps) {
               keyword={keyword}
             />
           );
-        })} */}
+        })}
       </div>
     </div>
   );
