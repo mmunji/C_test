@@ -2,12 +2,15 @@
 import "swiper/css";
 import "swiper/css/pagination";
 
+import Image from "next/image";
 import Link from "next/link";
 import { Dispatch, SetStateAction, useState } from "react";
-import SwiperCore from "swiper";
-import { Pagination } from "swiper/modules";
-import { Swiper, SwiperSlide } from "swiper/react";
+import { Swiper, SwiperClass, SwiperSlide } from "swiper/react";
 
+import Button from "@/components/buttons/Button";
+import useDevice from "@/hooks/useDevice";
+
+import { ChevronLeftMd, ChevronRightMd } from "../../../../../../public/icons";
 import PostCard from "../../PostCard";
 import SlimilarMobilePost from "./SlimilarMobilePost";
 import SlimilarUser from "./SlimilarUser";
@@ -25,9 +28,13 @@ export default function SlimilarPost({
   ChangePickNumber,
   PickUserNumber,
 }: ReviewUsersProps) {
+  const { device } = useDevice();
+  const [swiper, setSwiper] = useState<SwiperClass>();
+  const [hovered, sethovered] = useState(false);
+
   return (
     <div className="flex flex-col gap-5 ">
-      <div className="flex flex-col gap-5 rounded-2xl bg-Black px-5 py-5 Tablet:bg-D1_Gray Laptop:hidden ">
+      <div className="flex flex-col gap-5 rounded-2xl bg-Black py-5 pl-5 Tablet:bg-D1_Gray Laptop:hidden ">
         <SlimilarMobilePost
           UserPost={ReviewUsers}
           PickUserNumber={PickUserNumber}
@@ -37,14 +44,14 @@ export default function SlimilarPost({
         <Swiper
           slidesPerView="auto"
           spaceBetween={40}
-          className="flex  rounded-xl px-[12px]  py-[24px]"
+          className="flex  rounded-xl"
         >
           {Array.isArray(ReviewUsers) && ReviewUsers.length > 0
             ? ReviewUsers.map((ReviewUser, index) => {
                 return (
                   <SwiperSlide
                     key={index}
-                    className="w-[368px] Desktop:w-[372px]  "
+                    className="w-[344px] Desktop:w-[372px]  "
                   >
                     <SlimilarUser
                       name={ReviewUser.nickname}
@@ -62,13 +69,18 @@ export default function SlimilarPost({
         </Swiper>
       </div>
 
-      <div className="hidden flex-col gap-[16px] rounded-xl bg-D1_Gray p-[24px] text-white Laptop:flex Desktop:flex">
-        <h1 className="Text-xl-Bold">닉네임님의 최근 톡</h1>
-        <div className="flex gap-[24px]">
+      <div className="hidden flex-col gap-[16px] rounded-xl bg-D1_Gray  px-[24px]  py-[28px] text-white Laptop:flex">
+        <h1 className="text-Silver Text-xl-Bold">닉네임님의 최근 톡</h1>
+        <div
+          className="flex gap-[24px]"
+          onMouseEnter={() => sethovered(true)}
+          onMouseLeave={() => sethovered(false)}
+        >
           <Swiper
             slidesPerView="auto"
-            spaceBetween={20}
-            className="flex  rounded-xl px-[12px]  py-[24px]"
+            spaceBetween={device == "laptop" ? 20 : 100}
+            className="flex  rounded-xl"
+            onSwiper={(e) => setSwiper(e)}
           >
             {Array.isArray(ReviewUsers) &&
             ReviewUsers.length > 0 &&
@@ -76,9 +88,12 @@ export default function SlimilarPost({
               ? ReviewUsers[PickUserNumber].reviews.map(
                   (_: PostreviewDTO, index: number) => {
                     return (
-                      <SwiperSlide key={index} className="h-[292px] w-[174px]">
+                      <SwiperSlide
+                        key={index}
+                        className=" h-[292px] w-[174px] Desktop:h-[396px]"
+                      >
                         <Link href={`detail/${_.movie_id}`}>
-                          <div className="flex flex-col">
+                          <div className="flex flex-col gap-2">
                             <PostCard
                               content={_.content}
                               background={_.poster_id}
@@ -86,8 +101,11 @@ export default function SlimilarPost({
                               StarRating={_.star}
                               reviewCount={_.rereviewCount}
                               likeCount={_.rateCount}
+                              regDate={_.regDate}
                             />
-                            <span className="line-clamp-1">{_.movienm}</span>
+                            <span className="line-clamp-1 text-Gray_Orange">
+                              {_.movienm}
+                            </span>
                           </div>
                         </Link>
                       </SwiperSlide>
@@ -95,6 +113,33 @@ export default function SlimilarPost({
                   },
                 )
               : ""}
+            {swiper && !swiper.isBeginning && (
+              <Button
+                onClick={() => swiper.slidePrev()}
+                variant="arrow1"
+                className={`absolute left-2 top-1/4 z-[10]  mt-9  transform   transition-opacity duration-300 ${hovered ? "opacity-100" : "opacity-10"} `}
+              >
+                <Image
+                  src={ChevronLeftMd}
+                  alt="이전"
+                  style={{ color: "#E9E9E9" }}
+                />
+              </Button>
+            )}
+
+            {swiper && !swiper.isEnd && (
+              <Button
+                onClick={() => swiper.slideNext()}
+                variant="arrow2"
+                className={`absolute right-4 top-1/4 z-[10]  mt-9  transform transition-opacity duration-300${hovered ? "opacity-100" : "opacity-10"}  `}
+              >
+                <Image
+                  src={ChevronRightMd}
+                  alt="다음"
+                  style={{ color: "#E9E9E9" }}
+                />
+              </Button>
+            )}
           </Swiper>
         </div>
       </div>

@@ -10,7 +10,7 @@ export default function PostRating() {
   } = useRating();
   return (
     <>
-      <div className="mx-auto  flex Desktop:hidden">
+      <div className="mx-auto flex  gap-1 Desktop:hidden">
         {[...Array(5)].map((_, i) => (
           <RatingStar
             key={i}
@@ -26,7 +26,7 @@ export default function PostRating() {
           />
         ))}
       </div>
-      <div className="mx-auto hidden Desktop:flex">
+      <div className="mx-auto hidden gap-1 Desktop:flex">
         {[...Array(5)].map((_, i) => (
           <RatingStar
             key={i}

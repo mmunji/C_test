@@ -12,11 +12,16 @@ import {
 interface RatingProps {
   StarRating?: number;
   ratingsize: string;
+  space: boolean;
 }
-export default function GetRating({ StarRating = 0, ratingsize }: RatingProps) {
+export default function GetRating({
+  StarRating = 0,
+  ratingsize,
+  space,
+}: RatingProps) {
   let star = StarRating;
   return (
-    <div className="flex ">
+    <div className={`flex ${space == true ? "gap-1" : ""}`}>
       {Array(5)
         .fill(0)
         .map((_, index) => {

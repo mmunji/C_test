@@ -8,7 +8,7 @@ export default function WatchedMoive() {
   return (
     <div className="flex flex-col gap-5">
       <div className="flex flex-col gap-1 text-center  Laptop:flex-row Laptop:gap-5 Laptop:text-left">
-        <h1 className=" Text-l-Bold Laptop:Text-xxl-Bold ">
+        <h1 className=" text-Silver Text-l-Bold  Laptop:Text-xxl-Bold">
           혹시 이 영화 보셨나요?
         </h1>
         <div className="hidden  Laptop:block">

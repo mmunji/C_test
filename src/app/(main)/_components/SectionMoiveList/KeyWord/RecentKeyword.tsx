@@ -40,10 +40,10 @@ export default function RecentKeyword() {
                   return (
                     <SwiperSlide key={index} style={{ width: "100px" }}>
                       <div
-                        className={`Text-S-Bold  ${KeywordListNumber == index ? "bg-D1_Gray" : ""} w-[90px]  rounded-xl px-3 py-2 text-center text-base`}
+                        className={`Text-S-Bold  ${KeywordListNumber == index ? "bg-D1_Gray text-Silver" : "text-L_Gray"} w-[90px]  rounded-[36px] px-3 py-2 text-center text-base`}
                         onClick={() => HandleKeywords(index)}
                       >
-                        {mention.keyword}
+                        {mention.keyword} {mention.count}
                       </div>
                     </SwiperSlide>
                   );
@@ -57,10 +57,10 @@ export default function RecentKeyword() {
                 return (
                   <div
                     key={index}
-                    className={`Text-S-Bold  ${KeywordListNumber == index ? "bg-D1_Gray" : ""}  rounded-xl px-5 py-2 text-center Laptop:w-[178px] Desktop:w-[240px]`}
+                    className={`Text-m-Bold Tablet:Text-s-Bold  Laptop:Text-l-Bold  ${KeywordListNumber == index ? "bg-D1_Gray text-Silver" : "text-L_Gray"}  rounded-xl px-5 py-2 text-center Laptop:w-[178px] Desktop:w-[240px] `}
                     onClick={() => HandleKeywords(index)}
                   >
-                    {mention.keyword}
+                    {mention.keyword} {mention.count}
                   </div>
                 );
               })

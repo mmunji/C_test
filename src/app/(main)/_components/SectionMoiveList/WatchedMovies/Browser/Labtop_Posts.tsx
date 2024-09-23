@@ -12,7 +12,7 @@ export default function Labtop_Posts({ MovieWatchMovies }: WatchMovieType) {
   const { device } = useDevice();
   return (
     <div className=" hidden  w-full gap-[24px] rounded-xl  px-[12px] py-[24px] Laptop:flex">
-      <Swiper slidesPerView="auto" spaceBetween={20}>
+      <Swiper slidesPerView="auto" spaceBetween={device == "laptop" ? 20 : 40}>
         {Array.isArray(MovieWatchMovies) && MovieWatchMovies.length > 0
           ? MovieWatchMovies.map((e, index) => {
               return (
@@ -22,11 +22,13 @@ export default function Labtop_Posts({ MovieWatchMovies }: WatchMovieType) {
                   >
                     <div className="flex flex-col  gap-2 ">
                       <PostCard PostType="Post" background={e.poster_path} />
-                      <span className="line-clamp-1 text-left">
-                        {e.movienm}
-                      </span>
-                      <div>
-                        <PostRating />
+                      <div className="flex flex-col gap-1">
+                        <span className="line-clamp-1 text-left text-Gray_Orange">
+                          {e.movienm}
+                        </span>
+                        <div className="flex justify-center">
+                          <PostRating />
+                        </div>
                       </div>
                     </div>
                   </SwiperSlide>
