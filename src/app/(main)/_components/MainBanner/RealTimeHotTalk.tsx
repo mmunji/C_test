@@ -26,7 +26,7 @@ interface ReviewListType {
 export default function RealTimeHotTalk({ ReviewList }: ReviewListType) {
   return (
     <div className="flex  flex-col gap-[20px]  text-white Tablet:justify-end">
-      <h1 className=" hidden Laptop:block Laptop:Text-xl-Bold  Desktop:w-[521px]  ">
+      <h1 className=" hidden Laptop:block Laptop:w-[390px]  Laptop:Text-xl-Bold Desktop:w-[521px]  ">
         실시간 핫한 톡
       </h1>
 
@@ -36,13 +36,13 @@ export default function RealTimeHotTalk({ ReviewList }: ReviewListType) {
           return (
             <li
               key={index}
-              className={`items- center flex  justify-between gap-2 Text-s-Regular`}
+              className={`items- center flex  justify-between gap-2 text-Silver Text-s-Regular Tablet:w-[331px]`}
             >
-              <div className="flex items-center justify-center">
+              <div className="flex w-[35px] items-center justify-center">
                 <Image src={StarFillSm} alt="star" className="h-4 w-4" />
-                <span className="Text-xs-Regular">{Review.star}</span>
+                <span className="Text-s-Regular">{Review.star}</span>
               </div>
-              <span className="line-clamp-1 w-48 flex-1 truncate Text-m-Medium">
+              <span className="line-clamp-1 w-48 flex-1  Text-s-Medium">
                 {Review.content}
               </span>
 
@@ -59,10 +59,14 @@ export default function RealTimeHotTalk({ ReviewList }: ReviewListType) {
           return (
             <li
               key={index}
-              className="flex items-center justify-between gap-5 Text-s-Regular"
+              className="flex items-center justify-between gap-5 text-Silver Text-s-Regular"
             >
-              <GetRating StarRating={ReviewData.star} ratingsize="Sm" />
-              <span className="line-clamp-1 w-48 flex-1 truncate Text-m-Medium">
+              <GetRating
+                StarRating={ReviewData.star}
+                ratingsize="Sm"
+                space={false}
+              />
+              <span className="line-clamp-1 w-48 flex-1  Text-m-Medium">
                 {ReviewData.content}
               </span>
               <span className="Text-s-Mediuim opacity-40">

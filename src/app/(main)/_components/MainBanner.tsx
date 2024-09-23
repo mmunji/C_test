@@ -64,7 +64,7 @@ export default function MainBanner() {
                   <SwiperSlide key={index} className="responsive-slide">
                     <Link href={`detail/${BannerItem.movieId}`}>
                       <div
-                        className=" h-[421px] rounded-[35px]  Tablet:h-[360px]  Laptop:h-[489px] Laptop:px-[74px] Desktop:h-[637px]"
+                        className=" h-[421px] rounded-[20px]  Tablet:h-[360px]  Laptop:h-[489px] Laptop:px-[74px] Desktop:h-[637px]"
                         style={{
                           backgroundImage: `linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, rgba(0, 0, 0, 0.50) 100%), url(${BannerItem.backdrop_path})`,
                           backgroundSize: "cover",
@@ -72,7 +72,7 @@ export default function MainBanner() {
                         }}
                       >
                         <div
-                          className="absolute inset-0  flex flex-col justify-between rounded-[35px] px-[20px] pb-2 pt-8  text-white Tablet:flex-row Tablet:px-9 Tablet:pb-7  Laptop:px-[74px]  Laptop:py-[40px]  Desktop:h-[637px] Desktop:px-[108px] Desktop:py-[60px]"
+                          className="absolute inset-0  flex flex-col justify-between rounded-[20px] px-[20px] pb-2 pt-8  text-white Tablet:flex-row Tablet:px-9 Tablet:pb-7  Laptop:px-[74px]  Laptop:py-[40px]  Desktop:h-[637px] Desktop:px-[108px] Desktop:py-[60px]"
                           style={{
                             backdropFilter: "blur(5px)",
                             background: "rgba(0, 0, 0, 0.50)",
@@ -99,10 +99,10 @@ export default function MainBanner() {
               width: 33.3px !important; /* 너비 조절 */
               height: 4px !important;
               border-radius: 22px !important; /* 너비 조절 */
-              background-color: #999490; /* 파란색 */
+              background-color: #545250;
             }
             .swiper-pagination-bullet-active {
-              background-color: #ff7a00; /* 파란색 */
+              background-color: #ff7a00;
               width: 33px !important; /* 너비 조절 */
             }
             .swiper-pagination-fraction,
@@ -123,13 +123,22 @@ export default function MainBanner() {
                 padding-right: 30px !important;
               }
             }
-            @media (min-width: 1280px) {
+            @media (min-width: 1439px) {
               .responsive-slide {
                 width: 1144px !important;
               }
               .swiper .swiper-pagination {
                 position: relative;
                 padding-right: 220px !important;
+              }
+            }
+            @media (min-width: 1280px) {
+              .responsive-slide {
+                width: 1144px !important;
+              }
+              .swiper .swiper-pagination {
+                position: relative;
+                padding-right: 80px !important;
               }
             }
             @media (min-width: 1920px) {

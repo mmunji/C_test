@@ -62,7 +62,7 @@ export default function MoiveTopRank() {
     <div className="flex flex-col gap-4  ">
       <div className="flex justify-between">
         <div className="flex items-center gap-[24px]">
-          <h1 className="Text-l-Bold Laptop:Text-xxl-Bold">영화톡TOP10</h1>
+          <h1 className="Text-l-Bold Laptop:Text-xxl-Bold">영화 톡 TOP 10</h1>
           <Dropdown type="genre">
             <Dropdown.Trigger>
               <div className="text-white">전체</div>

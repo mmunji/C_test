@@ -8,6 +8,7 @@ interface KeyWordInfoProps {
   keyword?: string;
   id: number;
   nickname: string;
+  createdAt: string;
 }
 
 export default function KeyWordPosts({
@@ -17,21 +18,22 @@ export default function KeyWordPosts({
   id,
   nickname,
   keyword,
+  createdAt,
 }: KeyWordInfoProps) {
   return (
-    <div className="Text-s-Mediuim flex w-full flex-col gap-2 rounded-xl bg-D1_Gray px-6 py-5">
+    <div className="Text-s-Mediuim flex h-full w-full flex-col gap-2 rounded-xl bg-D1_Gray px-6 py-5">
       <div className="flex justify-between">
-        <h1 className="Text-s-Regular">{nickname}</h1>
-        <div className="/Text-sm-Bold flex gap-1">
+        <h1 className="text-Silver Text-s-Medium">{nickname}</h1>
+        <div className="flex text-Silver Text-s-Bold ">
           <Image src={StarFillSm} alt="주황별" />
           {star}
         </div>
       </div>
-      <div className="line-clamp-2 Text-s-Regular Laptop:Text-m-Regular">
+      <div className="line-clamp-2 h-12 text-Gray_Orange Text-s-Regular  Laptop:Text-m-Regular">
         {content}
       </div>
       <span className="line-clamp-1 text-L_Gray Text-s-Regular  Laptop:Text-m-Regular">
-        {movieName}
+        {movieName} · {createdAt}
       </span>
     </div>
   );

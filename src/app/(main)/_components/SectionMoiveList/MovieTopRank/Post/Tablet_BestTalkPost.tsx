@@ -21,12 +21,19 @@ export default function Tablet_BestTalkPost({
         src={`data:image/jpeg;base64,${profileImg}`}
         alt="Profile"
       />
-
-      <GetRating StarRating={star} ratingsize="Sm" />
-      <div className="line-clamp-3 Text-s-Regular">{content}</div>
-      <div className="flex justify-end gap-1">
-        <Image src={ThumbsUpLineSm} alt="업버튼" />
-        <span className="Text-s-Medium">{likeCount}</span>
+      <GetRating StarRating={star} ratingsize="Sm" space={false} />
+      <div className="flex flex-col gap-1">
+        <div className="line-clamp-3 h-[63px] text-Gray_Orange Text-s-Regular">
+          {content}
+        </div>
+        <div className="flex justify-end gap-1">
+          <Image
+            src={ThumbsUpLineSm}
+            alt="업버튼"
+            style={{ color: "#999490" }}
+          />
+          <span className="text-L_Gray Text-s-Medium">{likeCount}</span>
+        </div>
       </div>
     </div>
   );

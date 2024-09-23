@@ -7,15 +7,24 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Pagination } from "swiper/modules";
-import { Swiper, SwiperSlide } from "swiper/react";
+import { Swiper, SwiperClass, SwiperSlide } from "swiper/react";
 
-import { HeartLineMd, StarFillMd } from "@/../public/icons";
+import {
+  ChevronLeftMd,
+  ChevronRightMd,
+  HeartLineMd,
+  StarFillMd,
+} from "@/../public/icons";
+import Button from "@/components/buttons/Button";
+import useDevice from "@/hooks/useDevice";
 import { movieAPIs } from "@/services/movie/movieAPIs";
 
 import PostCard from "../PostCard";
 export default function MasterPieceMoive() {
   const [MoviePiece, setMoviePiece] = useState<MovieHidingPiece | null>(null);
-
+  const [swiper, setSwiper] = useState<SwiperClass>();
+  const [hovered, sethovered] = useState(false);
+  const { device } = useDevice();
   useEffect(() => {
     const fetchMovie = async () => {
       try {
@@ -38,8 +47,18 @@ export default function MasterPieceMoive() {
         </span>
       </div>
 
-      <div className="flex  gap-2 Laptop:hidden ">
-        <Swiper slidesPerView="auto" spaceBetween={20}>
+      <div
+        className="flex  gap-2 Laptop:hidden  "
+        onMouseEnter={() => sethovered(true)}
+        onMouseLeave={() => sethovered(false)}
+      >
+        <Swiper
+          slidesPerView="auto"
+          spaceBetween={20}
+          onSwiper={(e) => {
+            setSwiper(e);
+          }}
+        >
           {Array.isArray(MoviePiece) && MoviePiece.length > 0
             ? MoviePiece.map((movie, index) => (
                 <SwiperSlide key={index} style={{ width: "156px" }}>
@@ -52,25 +71,61 @@ export default function MasterPieceMoive() {
                         backgroundPosition: "center",
                       }}
                     >
-                      <div className="flex items-center gap-1">
-                        <Image src={StarFillMd} alt="평점" />
-                        <span>0.0</span>
+                      <div className="flex  w-full items-center justify-between gap-1">
+                        <span className="line-clamp-1 Text-m-Medium">
+                          {movie.movienm}
+                        </span>
+                        <div className="flex gap-1 Text-m-Medium">
+                          <Image
+                            src={StarFillMd}
+                            alt="star"
+                            className="h-6 w-6"
+                          />
+                          <span className="flex items-center Text-m-Bold ">
+                            {movie.StarAvg.toFixed(1)}
+                          </span>
+                        </div>
                       </div>
-                      <Image src={HeartLineMd} alt="빈 하트" />
                     </div>
                   </Link>
                 </SwiperSlide>
               ))
             : null}
+          {swiper && !swiper.isBeginning && (
+            <Button
+              onClick={() => swiper.slidePrev()}
+              variant="arrow1"
+              className={`absolute left-2 top-1/2 z-[10]  transform   transition-opacity duration-300 ${hovered ? "opacity-100" : "opacity-10"} `}
+            >
+              <Image src={ChevronLeftMd} alt="이전" />
+            </Button>
+          )}
+
+          {swiper && !swiper.isEnd && (
+            <Button
+              onClick={() => swiper.slideNext()}
+              variant="arrow2"
+              className={`absolute right-4 top-1/2 z-[10]   transform transition-opacity duration-300${hovered ? "opacity-100" : "opacity-10"}  `}
+            >
+              <Image src={ChevronRightMd} alt="다음" />
+            </Button>
+          )}
         </Swiper>
       </div>
 
-      <div className="hidden Laptop:flex">
+      <div
+        className="hidden Laptop:flex"
+        onMouseEnter={() => sethovered(true)}
+        onMouseLeave={() => sethovered(false)}
+      >
         <Swiper
           slidesPerView="auto"
-          spaceBetween={24}
+          spaceBetween={device == "laptop" ? 20 : 100}
           className="gap-5  Laptop:gap-5 Desktop:gap-6"
           modules={[Pagination]}
+          onSwiper={(e) => {
+            setSwiper(e);
+          }}
         >
           {Array.isArray(MoviePiece) && MoviePiece.length > 0
             ? MoviePiece.map((movie, index) => (
@@ -86,7 +141,7 @@ export default function MasterPieceMoive() {
                         reviewCount={movie?.rereviewCount}
                         background={movie?.movieposter}
                       />
-                      <div className="mt-3  flex justify-between">
+                      <div className="mt-2  flex justify-between">
                         <div>
                           <span className="line-clamp-1">{movie.movienm}</span>
                         </div>
@@ -96,7 +151,7 @@ export default function MasterPieceMoive() {
                             alt="star"
                             className="h-6 w-6"
                           />
-                          <span className="flex items-center justify-center">
+                          <span className="flex items-center ">
                             {movie.StarAvg}
                           </span>
                         </div>
@@ -106,6 +161,25 @@ export default function MasterPieceMoive() {
                 </SwiperSlide>
               ))
             : null}
+          {swiper && !swiper.isBeginning && (
+            <Button
+              onClick={() => swiper.slidePrev()}
+              variant="arrow1"
+              className={`absolute left-2 top-1/2 z-[10]  transform   transition-opacity duration-300 ${hovered ? "opacity-100" : "opacity-10"} `}
+            >
+              <Image src={ChevronLeftMd} alt="이전" />
+            </Button>
+          )}
+
+          {swiper && !swiper.isEnd && (
+            <Button
+              onClick={() => swiper.slideNext()}
+              variant="arrow2"
+              className={`absolute right-4 top-1/2 z-[10]   transform transition-opacity duration-300${hovered ? "opacity-100" : "opacity-10"}  `}
+            >
+              <Image src={ChevronRightMd} alt="다음" />
+            </Button>
+          )}
         </Swiper>
       </div>
     </div>

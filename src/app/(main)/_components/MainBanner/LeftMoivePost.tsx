@@ -1,5 +1,8 @@
-import PostCard from "../PostCard";
+import Image from "next/image";
 
+import { StarFillMd } from "@/../public/icons";
+
+import PostCard from "../PostCard";
 interface MovieBannerTypes {
   PostImg: string;
   keyword: string;
@@ -20,7 +23,7 @@ export default function LeftMovePost({
 */
   }
   return (
-    <div className="flex  w-[200px] flex-col gap-9 Tablet:justify-end Laptop:w-[400px]">
+    <div className="flex  w-[200px] flex-col gap-9 Tablet:w-[220px] Tablet:justify-end Laptop:w-[400px]">
       <div className="hidden Laptop:block ">
         <PostCard background={PostImg} />
       </div>
@@ -35,21 +38,22 @@ export default function LeftMovePost({
         </div>
         <div>
           <ul className="flex gap-9   Tablet:gap-9 Laptop:gap-12">
-            <li className="flex flex-col gap-2  ">
+            <li className="flex flex-col gap-2 text-Silver ">
               <h4 className="Laptop:Text-s-Mediuim text-center Text-xs-Regular">
                 평점
               </h4>
-              <h1 className=" text-Primary  Text-s-Bold Laptop:Text-l-Bold">
-                {Rate}
+              <h1 className=" texst-center  flex gap-1 text-Primary Text-s-Bold Laptop:Text-l-Bold">
+                <Image src={StarFillMd} alt="star" className="h-6 w-6" />
+                <span className="flex items-end">{Rate.toFixed(1)}</span>
               </h1>
             </li>
-            <li className="flex flex-col gap-2 ">
+            <li className="flex flex-col gap-2  text-Silver">
               <h4 className="text-center Text-xs-Regular ">Best 키워드</h4>
               <h1 className="text-center Text-m-Bold Laptop:Text-l-Bold">
                 {keyword}
               </h1>
             </li>
-            <li className="flex flex-col gap-2">
+            <li className="flex flex-col gap-2  text-Silver">
               <h4 className="text-center Text-xs-Regular">장르</h4>
               <h1 className="text-center Text-m-Bold Laptop:Text-l-Bold">
                 판타지

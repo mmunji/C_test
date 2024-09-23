@@ -8,7 +8,7 @@ interface KeyWordInfoProps {
 export default function RightKeyWords({ keywordInfo }: KeyWordInfoProps) {
   const keyword = keywordInfo?.keyword;
   return (
-    <div className="w-full">
+    <div className="h-full w-full">
       <div className="grid grid-cols-1 gap-3 Tablet:hidden ">
         {Array(3)
           .fill(0)
@@ -25,6 +25,7 @@ export default function RightKeyWords({ keywordInfo }: KeyWordInfoProps) {
                 star={keywordInfo?.reviewList[index]?.review?.star}
                 content={keywordInfo?.reviewList[index]?.review?.content}
                 keyword={keyword}
+                createdAt={keywordInfo?.reviewList[index]?.review?.createdAt}
               />
             );
           })}
@@ -45,11 +46,12 @@ export default function RightKeyWords({ keywordInfo }: KeyWordInfoProps) {
                 star={keywordInfo?.reviewList[index]?.review?.star}
                 content={keywordInfo?.reviewList[index]?.review?.content}
                 keyword={keyword}
+                createdAt={keywordInfo?.reviewList[index]?.review?.createdAt}
               />
             );
           })}
       </div>
-      <div className="hidden w-full  grid-cols-4  gap-5 Laptop:grid Desktop:hidden">
+      <div className="hidden h-full w-full  grid-cols-4  gap-5 Laptop:grid Desktop:hidden">
         {Array(8)
           .fill(0)
           .map((_, index) => {
@@ -65,6 +67,7 @@ export default function RightKeyWords({ keywordInfo }: KeyWordInfoProps) {
                 star={keywordInfo?.reviewList[index]?.review?.star}
                 content={keywordInfo?.reviewList[index]?.review?.content}
                 keyword={keyword}
+                createdAt={keywordInfo?.reviewList[index]?.review?.createdAt}
               />
             );
           })}
@@ -83,6 +86,7 @@ export default function RightKeyWords({ keywordInfo }: KeyWordInfoProps) {
               star={movie.review?.star}
               content={movie.review?.content}
               keyword={keyword}
+              createdAt={movie.review?.createdAt}
             />
           );
         })}
