@@ -9,11 +9,12 @@ interface SearchContainerProps {
 }
 
 export default async function SearchContainer({ query }: SearchContainerProps) {
-  const [results, relatedKeywords] = await Promise.all([
-    searchPageAPIs.findResult(query),
+  const [movies, reviews, relatedKeywords] = await Promise.all([
+    searchPageAPIs.getMovies(query),
+    searchPageAPIs.getReviews(query),
     searchPageAPIs.getRelatedKeywords(query),
   ]);
-  const isEmpty = !results.movielist.length && !results.reviewlist.length;
+  const isEmpty = !movies.length && !reviews.length;
   return (
     <div className="mx-auto px-5 Tablet:px-6 Laptop:max-w-[1144px] Laptop:px-0 Desktop:max-w-[1560px]">
       <div className="">
@@ -34,8 +35,8 @@ export default async function SearchContainer({ query }: SearchContainerProps) {
         >
           <Tab>
             <TabButton isDefault>전체</TabButton>
-            <TabButton>영화 {results.movielist.length}</TabButton>
-            <TabButton>톡 {results.reviewlist.length}</TabButton>
+            <TabButton>영화 {movies.length}</TabButton>
+            <TabButton>톡 {reviews.length}</TabButton>
           </Tab>
         </div>
       </div>
@@ -43,8 +44,8 @@ export default async function SearchContainer({ query }: SearchContainerProps) {
         <SearchListContainer
           relatedKeywords={relatedKeywords}
           isEmpty={isEmpty}
-          movies={results.movielist}
-          revires={results.reviewlist}
+          movies={movies}
+          revires={reviews}
         />
       </div>
     </div>

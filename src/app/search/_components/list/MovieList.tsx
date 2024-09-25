@@ -47,12 +47,12 @@ export default function SearchMovieList({
               >
                 <Image
                   className="object-cover group-hover:opacity-70 group-hover:blur-[3px]"
-                  src={`${movie?.poster_path ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}` : "/images/detail/default_profile.png"}`}
+                  src={`${movie?.poster_path ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}` : "/images/ssikongi/PNG/NoImage.png"}`}
                   alt={movie.title}
                   fill
                 />
                 <div className="absolute hidden px-5 py-7 text-Silver Text-m-Regular group-hover:inline-block Desktop:px-6 Desktop:py-8">
-                  <p className="line-clamp-[7] Tablet:line-clamp-[11] Laptop:line-clamp-[8] Desktop:line-clamp-[12]">
+                  <p className="line-clamp-[7] break-all Tablet:line-clamp-[11] Laptop:line-clamp-[8] Desktop:line-clamp-[12]">
                     {movie.overview}
                   </p>
                 </div>

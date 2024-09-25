@@ -1,14 +1,14 @@
 import clsx from "clsx";
 import Image from "next/image";
+import Link from "next/link";
 
 import SearchListHeader from "@/app/search/_components/list/Header";
 import SearchPlaceholder from "@/app/search/_components/placeholders/SearchPlaceholder";
 import useDeviceLimits from "@/app/search/_hooks/useDeviceLimits";
 import useQueryString from "@/app/search/_hooks/useQueryString";
+import ROUTES from "@/constants/routes";
 
 import { StarFillSm } from "../../../../../public/icons";
-import Link from "next/link";
-import ROUTES from "@/constants/routes";
 
 interface SearchReviewListProps {
   reviews: ReviewResult[];
