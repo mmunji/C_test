@@ -17,4 +17,5 @@ interface MovieResult {
   id: number;
   title: string;
   poster_path: string;
+  overview: string;
 }

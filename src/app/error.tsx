@@ -12,11 +12,11 @@ export default function Error() {
 
   return (
     <div className="fixed left-0 top-0 z-50 flex h-full w-full items-center justify-center bg-BG">
-      <div className="flex w-80 flex-col items-center gap-[64px] Tablet:w-[360px]">
+      <div className="flex flex-col items-center gap-[64px]">
         <div className="relative h-8 w-48 Tablet:h-11 Tablet:w-[264px]">
           <Image src={FullLogo} alt="cinetalk logo" className="" fill />
         </div>
-        <section className="flex flex-col items-center gap-7">
+        <div className="flex flex-col items-center gap-7">
           <p className="text-center text-Primary Text-l-Bold Tablet:Text-xxl-Bold Desktop:Text-xxxl-Bold">
             서버 에러가 발생했어요.
           </p>
@@ -33,7 +33,7 @@ export default function Error() {
               {movieLine.movie}
             </p>
           </section>
-        </section>
+        </div>
         <section className="flex w-full flex-col gap-3 Tablet:gap-8">
           <section className="flex justify-center gap-3 Tablet:gap-4">
             <p className="text-Gray Text-s-Medium">문의</p>

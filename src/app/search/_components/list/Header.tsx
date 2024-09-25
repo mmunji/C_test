@@ -22,7 +22,7 @@ export default function SearchListHeader({
         `flex items-center justify-between ${tab === category && "hidden"}`,
       )}
     >
-      <div className="flex Mobile:h-[37px] Tablet:h-[40px]">
+      <div className="flex items-center">
         <h2 className="flex gap-2 Text-l-Bold">
           <strong>{category}</strong>
           <span className="inline-block ">{length}</span>

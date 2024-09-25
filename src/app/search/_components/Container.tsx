@@ -9,16 +9,22 @@ interface SearchContainerProps {
 }
 
 export default async function SearchContainer({ query }: SearchContainerProps) {
-  const [results, relatedKeywords] = await Promise.all([
-    searchPageAPIs.findResult(query),
+  const [movies, reviews, relatedKeywords] = await Promise.all([
+    searchPageAPIs.getMovies(query),
+    searchPageAPIs.getReviews(query),
     searchPageAPIs.getRelatedKeywords(query),
   ]);
-  const isEmpty = !results.movielist.length && !results.reviewlist.length;
+  const isEmpty = !movies.length && !reviews.length;
   return (
     <div className="mx-auto px-5 Tablet:px-6 Laptop:max-w-[1144px] Laptop:px-0 Desktop:max-w-[1560px]">
       <div className="">
         <h1 className="Text-l-Bold Tablet:Text-xl-Bold">
-          <strong className="mr-2 text-Primary">{query}</strong>
+          <strong className="mr-2 hidden text-Primary Tablet:inline-block">
+            {query}
+          </strong>
+          <strong className="mr-2 inline-block text-Primary Tablet:hidden">
+            {query.length > 13 ? `${query.slice(0, 13)}...` : query}
+          </strong>
           검색결과
         </h1>
         <div
@@ -29,8 +35,8 @@ export default async function SearchContainer({ query }: SearchContainerProps) {
         >
           <Tab>
             <TabButton isDefault>전체</TabButton>
-            <TabButton>영화 {results.movielist.length}</TabButton>
-            <TabButton>톡 {results.reviewlist.length}</TabButton>
+            <TabButton>영화 {movies.length}</TabButton>
+            <TabButton>톡 {reviews.length}</TabButton>
           </Tab>
         </div>
       </div>
@@ -38,8 +44,8 @@ export default async function SearchContainer({ query }: SearchContainerProps) {
         <SearchListContainer
           relatedKeywords={relatedKeywords}
           isEmpty={isEmpty}
-          movies={results.movielist}
-          revires={results.reviewlist}
+          movies={movies}
+          revires={reviews}
         />
       </div>
     </div>

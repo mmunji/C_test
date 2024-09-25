@@ -35,28 +35,29 @@ export default function SearchMovieList({
       >
         {movies.length ? (
           data.map((movie) => (
-            // {sortedMovieList?.length ? (
-            //   sortedMovieList.map((movie) => (
             <Link
               key={movie.id}
               href={`${ROUTES.DETAIL}/${movie.id}`}
               className="flex flex-col gap-1 Tablet:gap-2"
             >
               <div
-                className={clsx(
-                  `relative h-[230px] overflow-hidden rounded-lg Tablet:h-[341px] Tablet:rounded-xl Laptop:h-[260px] Desktop:h-[360px] ${!movie.poster_path && "bg-[#D9D9D9]"}`,
-                )}
+                className={
+                  "group relative h-[230px] overflow-hidden rounded-lg Tablet:h-[341px] Tablet:rounded-xl Laptop:h-[260px] Desktop:h-[360px]"
+                }
               >
-                {movie.poster_path && (
-                  <Image
-                    className="object-cover"
-                    src={`${movie?.poster_path ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}` : "/images/detail/default_profile.png"}`}
-                    alt={movie.title}
-                    fill
-                  />
-                )}
+                <Image
+                  className="object-cover group-hover:opacity-70 group-hover:blur-[3px]"
+                  src={`${movie?.poster_path ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}` : "/images/ssikongi/PNG/NoImage.png"}`}
+                  alt={movie.title}
+                  fill
+                />
+                <div className="absolute hidden px-5 py-7 text-Silver Text-m-Regular group-hover:inline-block Desktop:px-6 Desktop:py-8">
+                  <p className="line-clamp-[7] break-all Tablet:line-clamp-[11] Laptop:line-clamp-[8] Desktop:line-clamp-[12]">
+                    {movie.overview}
+                  </p>
+                </div>
               </div>
-              <p className="text-Gray_Orange Text-s-Medium Tablet:Text-m-Medium">
+              <p className="line-clamp-1 text-Gray_Orange Text-s-Medium Tablet:Text-m-Medium">
                 {movie.title}
               </p>
             </Link>

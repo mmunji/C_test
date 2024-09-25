@@ -1,10 +1,12 @@
 import clsx from "clsx";
 import Image from "next/image";
+import Link from "next/link";
 
 import SearchListHeader from "@/app/search/_components/list/Header";
 import SearchPlaceholder from "@/app/search/_components/placeholders/SearchPlaceholder";
 import useDeviceLimits from "@/app/search/_hooks/useDeviceLimits";
 import useQueryString from "@/app/search/_hooks/useQueryString";
+import ROUTES from "@/constants/routes";
 
 import { StarFillSm } from "../../../../../public/icons";
 
@@ -30,7 +32,7 @@ export default function SearchReviewList({
       const parts = text.split(new RegExp(`(${query})`, "gi"));
       return parts.map((part, index) =>
         part.toLowerCase() === query.toLowerCase() ? (
-          <span className="Text-m-Bold" key={index}>
+          <span className="Text-s-Bold Tablet:Text-m-Bold" key={index}>
             {part}
           </span>
         ) : (
@@ -54,7 +56,8 @@ export default function SearchReviewList({
       >
         {reviews?.length ? (
           data.map((talk) => (
-            <div
+            <Link
+              href={`${ROUTES.DETAIL}/${talk.reviewDTO.movieId}`}
               key={talk.reviewDTO.id}
               className="flex flex-col gap-2 rounded-xl bg-D1_Gray p-4 Tablet:gap-3 Tablet:px-7 Tablet:py-6"
             >
@@ -78,18 +81,20 @@ export default function SearchReviewList({
                     src={StarFillSm}
                   />
                   <span className="Text-xs-Regular Tablet:Text-s-Bold">
-                    {talk.reviewDTO.star}
+                    {Number.isInteger(talk.reviewDTO.star)
+                      ? `${talk.reviewDTO.star}.0`
+                      : talk.reviewDTO.star}
                   </span>
                 </div>
               </div>
               <div className="hidden h-[1px] w-full bg-D2_Gray Tablet:block" />
-              <div className="line-clamp-4 break-words text-Gray_Orange Text-s-Regular Tablet:line-clamp-4 Tablet:Text-m-Regular">
+              <div className="line-clamp-3 break-words text-Gray_Orange Text-s-Regular Tablet:line-clamp-4 Tablet:Text-m-Regular">
                 {highlightedText(talk.reviewDTO.content, query)}
               </div>
               <div className="text-L_Gray Text-s-Regular Tablet:Text-m-Medium">
                 {talk.reviewDTO.movienm} · {talk.reviewDTO.createdAt}
               </div>
-            </div>
+            </Link>
           ))
         ) : (
           <SearchPlaceholder isAlone relatedKeywords={relatedKeywords} />
