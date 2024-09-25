@@ -8,10 +8,15 @@ class CustomFetch {
   async fetch<T>(
     url: string,
     method: "GET" | "POST" | "PUT" | "PATCH" | "DELETE" = "GET",
+    options?: RequestInit | undefined,
   ) {
+    const fetchOptions: RequestInit = {
+      ...options,
+    };
     try {
       const res = await fetch(`${baseUrl}${url}`, {
         method,
+        ...fetchOptions,
       });
       return res.json() as T;
     } catch (error) {
