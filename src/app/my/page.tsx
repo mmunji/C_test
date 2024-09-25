@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import Badge from "@/app/my/_components/Badge";
+import Badge from "@/app/my/_components/badge/Badge";
 import UserInfo from "@/app/my/_components/UserInfo";
 import Activity from "@/app/my/activity/Activity";
 import ROUTES from "@/constants/routes";
@@ -29,7 +29,7 @@ export default function My() {
         </div>
         <div className="border-t border-D2_Gray">
           <Link
-            href={ROUTES.MY.favorites()}
+            href={ROUTES.MY.bookmark()}
             className="flex w-full items-center gap-2 px-5 py-4"
           >
             <Image src={Bookmark} width={24} height={24} alt="찜한 작품" />

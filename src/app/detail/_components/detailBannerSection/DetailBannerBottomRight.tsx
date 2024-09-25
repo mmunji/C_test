@@ -23,7 +23,6 @@ export default function DetailBannerBottomRight({
   const { activeCategoryTab, setActiveCategoryTab } = useCategoryTabStore();
   const { device } = useDevice();
   const [clickedTalk, setClickedTalk] = useState(false);
-
   useEffect(() => {
     if (activeCategoryTab === "톡" && clickedTalk) {
       smoothScroll("my-talk");
@@ -40,7 +39,6 @@ export default function DetailBannerBottomRight({
 
     smoothScroll("my-talk");
   };
-
   return (
     <section className="absolute bottom-[-60px] flex translate-y-[100%] Tablet:bottom-[-41px] Laptop:static Laptop:translate-y-0">
       <section className="mt-auto flex items-center gap-10 Laptop:gap-5 Desktop:gap-8">

@@ -4,7 +4,7 @@ import React from "react";
 
 import Dropdown from "@/components/dropdown/dropdown";
 import ROUTES from "@/constants/routes";
-import { deleteAccessToken } from "@/services/auth/actions";
+import { logout } from "@/services/my/actions";
 import useLoggedInStore from "@/stores/useLoggedIn";
 import useScrollStore from "@/stores/useScrollStore";
 
@@ -17,18 +17,18 @@ export default function HeaderDropdown({
 }) {
   const hasScrolledPast = useScrollStore((state) => state.hasScrolledPast);
   const dropdownMenu = [
-    { icon: User, content: "마이 페이지" },
-    { icon: LogOut, content: "로그 아웃" },
+    { icon: User, content: "마이페이지" },
+    { icon: LogOut, content: "로그아웃" },
   ];
   const pathname = usePathname();
   const router = useRouter();
-  const { logout } = useLoggedInStore();
+  const handleLogout = useLoggedInStore((state) => state.logout);
 
   const handleClickDropdown = (i: number) => {
     if (i === 0) router.push(ROUTES.MY.default);
     else if (i === 1) {
       logout();
-      deleteAccessToken();
+      handleLogout();
     }
   };
 
@@ -53,8 +53,8 @@ export default function HeaderDropdown({
             isFocused={m.content === "전체"}
           >
             <div className="flex items-center gap-2">
-              <Image src={m.icon} alt={m.content} className="mr-2 h-6 w-6" />
-              <p className="Text-m-Regular">{m.content}</p>
+              <Image src={m.icon} alt={m.content} className="h-6 w-6" />
+              <p className="min-w-fit Text-m-Regular">{m.content}</p>
             </div>
           </Dropdown.Item>
         ))}
