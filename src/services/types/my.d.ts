@@ -10,7 +10,7 @@ interface BadgeCount {
   count: number;
 }
 
-interface EarnedBadge {
+interface ObtainedBadge {
   genre_id: number;
   genre_name: string;
   badge_name: string;

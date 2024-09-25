@@ -27,7 +27,7 @@ export const myAPIs = {
   },
 
   getBadges: async () => {
-    const data = await customFetchInstance.authFetch<EarnedBadge[]>(
+    const data = await customFetchInstance.authFetch<ObtainedBadge[]>(
       "/my/BadgeByUser",
       "GET",
       {
