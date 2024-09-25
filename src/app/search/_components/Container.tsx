@@ -18,7 +18,12 @@ export default async function SearchContainer({ query }: SearchContainerProps) {
     <div className="mx-auto px-5 Tablet:px-6 Laptop:max-w-[1144px] Laptop:px-0 Desktop:max-w-[1560px]">
       <div className="">
         <h1 className="Text-l-Bold Tablet:Text-xl-Bold">
-          <strong className="mr-2 text-Primary">{query}</strong>
+          <strong className="mr-2 hidden text-Primary Tablet:inline-block">
+            {query}
+          </strong>
+          <strong className="mr-2 inline-block text-Primary Tablet:hidden">
+            {query.length > 13 ? `${query.slice(0, 13)}...` : query}
+          </strong>
           검색결과
         </h1>
         <div

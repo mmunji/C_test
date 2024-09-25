@@ -8,7 +8,7 @@ export const searchPageAPIs = {
     return data;
   },
   getRelatedKeywords: async (key: string): Promise<string[]> => {
-    const data = await new CustomFetch().fetch(`/find/findText?query=${key}`);
+    const data = await new CustomFetch().fetch(`/find/PopularFind`);
     return data;
   },
 };

@@ -7,9 +7,10 @@ export default function KeywordList({
 }: {
   relatedKeywords: string[];
 }) {
+  const shuffledKeywords = relatedKeywords.sort(() => 0.5 - Math.random());
   return (
     <div className="flex w-full flex-wrap justify-center gap-x-3 gap-y-2 Tablet:max-w-[541px] Tablet:gap-6">
-      {relatedKeywords.slice(0, 5).map((keyword) => (
+      {shuffledKeywords.slice(0, 5).map((keyword) => (
         <Link
           href={{
             pathname: ROUTES.SEARCH.default,
