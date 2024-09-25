@@ -67,19 +67,18 @@ export default function SearchReviewList({
                     alt={talk.userDTO.nickname}
                     width={24}
                     height={24}
-                    src={"/images/detail/default_profile2.png"}
+                    src={
+                      talk.userDTO.profile
+                        ? `data:image/png;base64,${talk.userDTO.profile}`
+                        : "/images/detail/default_profile2.png"
+                    }
                   />
                   <span className="text-Silver Text-s-Medium">
                     {talk.userDTO.nickname}
                   </span>
                 </div>
                 <div className="flex items-center">
-                  <Image
-                    alt="profile_image"
-                    width={16}
-                    height={16}
-                    src={StarFillSm}
-                  />
+                  <Image alt="star" width={16} height={16} src={StarFillSm} />
                   <span className="Text-xs-Regular Tablet:Text-s-Bold">
                     {Number.isInteger(talk.reviewDTO.star)
                       ? `${talk.reviewDTO.star}.0`
