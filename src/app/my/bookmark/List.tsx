@@ -1,14 +1,12 @@
 "use client";
-import clsx from "clsx";
-import Image from "next/image";
+
 import { useState } from "react";
 
 import { BookmarkMobileButtons } from "@/app/my/_components/buttons";
 import Placeholder from "@/app/my/_components/Placeholder";
 import BookmarkHeader from "@/app/my/bookmark/Header";
+import { BookMarkDefaultItem, BookmarkEditItem } from "@/app/my/bookmark/Item";
 import { deleteBookmark } from "@/services/my/actions";
-
-import { Check } from "../../../../public/icons";
 
 interface BookmarkListProps {
   movies: Bookmark[];
@@ -55,37 +53,18 @@ export default function BookmarkList({ movies }: BookmarkListProps) {
       />
       {movies.length ? (
         <div className="grid grid-cols-2 gap-2 Tablet:grid-cols-3 Tablet:gap-x-5 Tablet:gap-y-4 Laptop:grid-cols-4 Laptop:gap-x-6 Laptop:gap-y-5">
-          {movies.map((movie) => (
-            <button
-              disabled={!isEditing}
-              onClick={() => handleBookmarkAdd(movie.id)}
-              key={movie.id}
-              type="button"
-              className={clsx(
-                isEditing &&
-                  selectedMovieIds.includes(movie.id) &&
-                  "outline outline-2 outline-Primary Tablet:outline-4",
-                `relative h-[230px] w-full overflow-hidden rounded-xl Tablet:h-[288px] Laptop:h-[331px]`,
-              )}
-            >
-              <Image
-                fill
-                src={movie.poster_path}
-                alt={movie.poster_path}
-                className={clsx(
-                  isEditing &&
-                    selectedMovieIds.includes(movie.id) &&
-                    "brightness-50",
-                  `object-cover`,
-                )}
+          {movies.map((movie) => {
+            return isEditing ? (
+              <BookmarkEditItem
+                key={movie.id}
+                movie={movie}
+                onAddBookmark={handleBookmarkAdd}
+                isSelected={selectedMovieIds.includes(movie.id)}
               />
-              {selectedMovieIds.includes(movie.id) && isEditing && (
-                <div className="absolute right-2 top-2 rounded-lg bg-Primary">
-                  <Image src={Check} width={24} height={24} alt="CircleCheck" />
-                </div>
-              )}
-            </button>
-          ))}
+            ) : (
+              <BookMarkDefaultItem movie={movie} key={movie.id} />
+            );
+          })}
         </div>
       ) : (
         <div className="flex justify-center">
