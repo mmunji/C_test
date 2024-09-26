@@ -1,12 +1,11 @@
 import clsx from "clsx";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 import React, { ReactElement, useEffect } from "react";
 
 import Modal from "@/components/modal/modal";
 import ModalContext from "@/components/modal/ModalContext";
 import Portal from "@/components/modal/portal";
 import useModal from "@/components/modal/useModal";
-import useDevice from "@/hooks/useDevice";
 import useOutsideClick from "@/hooks/useOutsideClick";
 
 export interface WithChildren {
@@ -24,7 +23,6 @@ export default function ModalMain({
   isAlertModal,
   isOpen,
 }: ModalMainProps) {
-  const { isMobile } = useDevice();
   const {
     isChecked,
     toggleChceked,
@@ -121,7 +119,6 @@ export default function ModalMain({
             onSelectedIndexChange,
             isDropdownOpen,
             setIsDropdownOpen,
-            isMobile,
           }}
         >
           <Portal selector="portal">
@@ -131,13 +128,9 @@ export default function ModalMain({
                 className={clsx(
                   hasComponents.login && "px-10 py-16",
                   isAlertModal
-                    ? [
-                        isMobile
-                          ? "gap-4 px-6 pb-5 pt-6"
-                          : "gap-9 px-12 pb-10 pt-11",
-                      ]
+                    ? "gap-9 px-12 pb-10 pt-11"
                     : [!hasComponents.login && "gap-7 px-12 py-10"],
-                  `z-10 flex flex-col items-center rounded-xl bg-D1_Gray`,
+                  `fixed bottom-0 left-0 right-0 top-0 z-10 flex flex-col items-center rounded-xl bg-D1_Gray Tablet:static `,
                 )}
               >
                 {content}
@@ -148,14 +141,7 @@ export default function ModalMain({
                       <div className="flex w-full gap-3">{buttons}</div>
                     </div>
                   ) : (
-                    <div
-                      className={clsx(
-                        isMobile ? "w-[224px] gap-2" : "w-[372px] gap-3",
-                        `flex`,
-                      )}
-                    >
-                      {buttons}
-                    </div>
+                    <div className="flex w-[372px] gap-3">{buttons}</div>
                   ))}
               </div>
             </div>

@@ -20,7 +20,6 @@ interface ModalContextType {
   isAlertModal: boolean;
   isDropdownOpen: boolean;
   setIsDropdownOpen: Dispatch<SetStateAction<boolean>>;
-  isMobile: boolean;
 }
 
 const ModalContext = createContext<ModalContextType | null>(null);

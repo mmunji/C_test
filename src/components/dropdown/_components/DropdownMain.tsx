@@ -2,7 +2,6 @@ import React from "react";
 
 import DropdownContext from "@/components/dropdown/DropdownContext";
 import useDropdown from "@/components/dropdown/useDropdown";
-import useDevice from "@/hooks/useDevice";
 import useOutsideClick from "@/hooks/useOutsideClick";
 
 interface DropdownMainProps {
@@ -14,7 +13,6 @@ export default function DropdownMain({
   children,
   type = "text",
 }: DropdownMainProps) {
-  const { isMobile } = useDevice();
   const { toggleDropdown, isOpen } = useDropdown();
   const ref = useOutsideClick(() => {
     if (isOpen) toggleDropdown();
@@ -26,7 +24,6 @@ export default function DropdownMain({
         isOpen,
         toggleDropdown,
         type,
-        isMobile,
         height,
       }}
     >

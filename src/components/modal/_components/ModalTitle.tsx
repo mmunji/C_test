@@ -4,14 +4,12 @@ import { WithChildren } from "@/components/modal/_components/ModalMain";
 import { useModalContext } from "@/components/modal/ModalContext";
 
 export function ModalTitleWrapper({ children }: WithChildren) {
-  const { isAlertModal, isMobile } = useModalContext();
+  const { isAlertModal } = useModalContext();
   return (
     <>
       <div
         className={clsx(
-          isAlertModal
-            ? [isMobile ? "w-full gap-1" : "w-[360px] gap-3"]
-            : "gap-2",
+          isAlertModal ? "w-full gap-1 Tablet:w-[360px] Tablet:gap-3" : "gap-2",
           `flex flex-col items-center`,
         )}
       >
@@ -22,11 +20,12 @@ export function ModalTitleWrapper({ children }: WithChildren) {
 }
 
 export function ModalTitle({ children }: WithChildren) {
-  const { isMobile, hasDescription } = useModalContext();
+  const { hasDescription } = useModalContext();
   return (
     <div
       className={clsx(
-        `${isMobile ? "Text-m-Bold" : "Text-xl-Bold"} ${!hasDescription && "my-3"} text-Primary`,
+        !hasDescription && "my-3",
+        "text-Primary Text-m-Bold Tablet:Text-xl-Bold",
       )}
     >
       {children}
@@ -35,15 +34,8 @@ export function ModalTitle({ children }: WithChildren) {
 }
 
 export function ModalDescription({ children }: WithChildren) {
-  const { isMobile } = useModalContext();
-
   return (
-    <div
-      className={clsx(
-        isMobile ? "Text-s-Medium" : "Text-m-Medium",
-        `text-center`,
-      )}
-    >
+    <div className="text-center Text-s-Medium Tablet:Text-m-Medium">
       {children}
     </div>
   );

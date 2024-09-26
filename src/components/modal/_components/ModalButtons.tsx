@@ -1,4 +1,3 @@
-import clsx from "clsx";
 import Image from "next/image";
 
 import { WithChildren } from "@/components/modal/_components/ModalMain";
@@ -14,14 +13,8 @@ interface ModalCancelButtonProps extends WithChildren {}
 interface ModalChcekboxProps extends WithChildren {}
 
 export function ModalButton({ children, onClick }: ModalButtonProps) {
-  const {
-    hasCheckbox,
-    hasReport,
-    isChecked,
-    selectedIndex,
-    detailedReason,
-    isMobile,
-  } = useModalContext();
+  const { hasCheckbox, hasReport, isChecked, selectedIndex, detailedReason } =
+    useModalContext();
 
   const checkDisabled = () => {
     if (hasCheckbox) return !isChecked;
@@ -41,12 +34,7 @@ export function ModalButton({ children, onClick }: ModalButtonProps) {
     <button
       onClick={handleClick}
       disabled={checkDisabled()}
-      className={clsx(
-        isMobile
-          ? "rounded-lg px-9 py-2 Text-s-Medium"
-          : "rounded-xl px-5 py-3 Text-m-Medium",
-        `w-full bg-Primary text-white hover:bg-Shade_1 active:bg-Shade_3 disabled:bg-D2_Gray disabled:text-Gray`,
-      )}
+      className="w-full rounded-lg bg-Primary px-9 py-2 text-white Text-s-Medium hover:bg-Shade_1 active:bg-Shade_3 disabled:bg-D2_Gray disabled:text-Gray Tablet:rounded-xl Tablet:px-5 Tablet:py-3 Tablet:Text-m-Medium"
     >
       {children}
     </button>
@@ -54,16 +42,11 @@ export function ModalButton({ children, onClick }: ModalButtonProps) {
 }
 
 export function ModalCancelButton({ children }: ModalCancelButtonProps) {
-  const { onClose, isMobile } = useModalContext();
+  const { onClose } = useModalContext();
   return (
     <button
       onClick={onClose}
-      className={clsx(
-        isMobile
-          ? "whitespace-nowrap rounded-lg px-9 py-2 Text-s-Regular"
-          : "rounded-xl px-5 py-3 Text-m-Medium",
-        `w-full border border-Gray bg-none text-white hover:border-Silver active:bg-D1_Gray`,
-      )}
+      className="w-full whitespace-nowrap rounded-lg border border-Gray bg-none px-9 py-2 text-white Text-s-Regular hover:border-Silver active:bg-D1_Gray Tablet:whitespace-normal Tablet:rounded-xl Tablet:px-5 Tablet:py-3 Tablet:Text-m-Medium"
     >
       {children}
     </button>
