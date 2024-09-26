@@ -45,8 +45,10 @@ export default function HistoryLog({ log }: HistoryLogProps) {
           </div>
           <div className="flex flex-col gap-5 Tablet:gap-6">
             {review.map((movie, i) => {
-              let date: number | boolean = dayjs(movie.createdAt).date();
-              if (i) date = dayjs(review[i - 1].createdAt).date() === date;
+              let date: number | null = dayjs(movie.createdAt).date();
+              if (i)
+                date =
+                  dayjs(review[i - 1].createdAt).date() === date ? null : date;
               return (
                 <div key={movie.id} className="flex flex-col gap-2">
                   <div className="flex items-center gap-3 Tablet:gap-5">
