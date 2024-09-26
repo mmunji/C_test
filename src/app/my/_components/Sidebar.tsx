@@ -25,7 +25,7 @@ const LINKS = [
   },
   {
     href: ROUTES.MY.bookmark(),
-    name: "찜한 작품",
+    name: "찜한 영화",
     svg: Bookmark,
     acitveSvg: BookmarkPrimary,
   },

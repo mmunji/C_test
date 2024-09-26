@@ -1,7 +1,5 @@
 import customFetchInstance from "@/services/customFetch";
 
-type ActivityCount = "rateCount" | "reviewCount" | "bookmarkCount";
-
 export const myAPIs = {
   getUser: async () => {
     return customFetchInstance.authFetch<MyInfo>(
@@ -46,6 +44,21 @@ export const myAPIs = {
 
   getReportStatus: async () => {
     const data = await customFetchInstance.authFetch("/my/DamageByUser");
+    return data;
+  },
+
+  getReview: async () => {
+    const data = await customFetchInstance.authFetch<PostreviewDTO[]>(
+      "/my/ReviewByUser/asddddddd",
+      "GET",
+    );
+    return data;
+  },
+  getLog: async () => {
+    const data = await customFetchInstance.authFetch<Log[]>(
+      "/my/LogByUser/asdddddddd",
+      "GET",
+    );
     return data;
   },
 };

@@ -50,7 +50,7 @@ class CustomFetch {
       if (!res.ok) throw new Error(data?.message);
       return data as T;
     } catch (error) {
-      console.log({ error });
+      console.error({ error });
       throw error;
     }
   }

@@ -10,7 +10,6 @@ export default async function Badge() {
   const sortedReviewCounts = EMOJI_MAP.map((emoji) =>
     reviewCounts.find((review) => review.id === emoji.id),
   );
-  console.log({ badges, reviewCounts });
   return (
     <section className="flex flex-col gap-4 p-5 Tablet:p-0">
       <BadgeWarpper badges={badges} reviewCounts={sortedReviewCounts} />

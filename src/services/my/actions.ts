@@ -75,3 +75,12 @@ export const updateProfileImage = async (formData: FormData) => {
   if (data?.state) revalidatePath("/my");
   return data;
 };
+
+export const deleteReview = async (reviewId: number) => {
+  const data = await customFetchInstance.authFetch<{ state: boolean }>(
+    `/reviews/${reviewId}`,
+    "DELETE",
+  );
+  if (data.state) revalidatePath("/my");
+  return data;
+};
