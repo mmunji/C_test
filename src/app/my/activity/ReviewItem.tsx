@@ -93,11 +93,7 @@ export default function ReviewItem({ review }: ReviewItemProps) {
       </div>
 
       {isModalOpen && (
-        <Modal
-          isAlertModal
-          isOpen={isModalOpen}
-          onClose={() => setIsModalOpen(false)}
-        >
+        <Modal isAlertModal onClose={() => setIsModalOpen(false)}>
           <Modal.TitleWrapper>
             <Modal.Title>정말 삭제하시겠어요?</Modal.Title>
           </Modal.TitleWrapper>

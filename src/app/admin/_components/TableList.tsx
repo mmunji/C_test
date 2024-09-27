@@ -126,7 +126,6 @@ export default function TableList({ rowData, type }: TableListProps) {
       </div>
       {isReportModal && ReportContent ? (
         <ReportModal
-          isReportModal={isReportModal}
           setIsModal={setReportBackIsModal}
           ReportContent={ReportContent}
           setisReporttModal={setisReportModal}
@@ -135,7 +134,6 @@ export default function TableList({ rowData, type }: TableListProps) {
 
       {isListModal && ModalContent ? (
         <FeedBackModal
-          isListModal={isListModal}
           setIsModal={setFeedBackIsModal}
           ModalContent={ModalContent}
           setisListModal={setisListModal}

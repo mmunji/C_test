@@ -1,7 +1,6 @@
 import Modal from "@/components/modal/modal";
 
 interface FeedBackProps {
-  isListModal: boolean;
   setIsModal: (value: boolean) => void;
   setisListModal: (value: boolean) => void;
   ModalContent: {
@@ -12,13 +11,12 @@ interface FeedBackProps {
 }
 
 export default function FeedBackModal({
-  isListModal,
   setIsModal,
   ModalContent,
   setisListModal,
 }: FeedBackProps) {
   return (
-    <Modal isAlertModal isOpen={isListModal} onClose={() => setIsModal}>
+    <Modal isAlertModal onClose={() => setIsModal}>
       <Modal.TitleWrapper>
         <Modal.Title>피드백</Modal.Title>
         <Modal.Description>

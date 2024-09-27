@@ -4,9 +4,7 @@ import Image from "next/image";
 import { ButtonHTMLAttributes, useState } from "react";
 
 import Button from "@/components/buttons/Button";
-import LoadingSpinner, {
-  FullLoadingSpinner,
-} from "@/components/loadingSpinner/LoadingSpinner";
+import { FullLoadingSpinner } from "@/components/loadingSpinner/LoadingSpinner";
 import Modal from "@/components/modal/modal";
 import useDevice from "@/hooks/useDevice";
 import { deleteAccount, logout } from "@/services/my/actions";
@@ -109,17 +107,16 @@ export function DeleteAccountButton({
         <Modal
           title="회원탈퇴"
           isAlertModal={false}
-          isOpen={isConfirmModalOpen}
           onClose={() => setIsConfirmModalOpen(false)}
         >
-          <Modal.Img>
+          <Modal.Etc>
             <Image
               src={SadSsikongi}
               alt="SadSsikongi"
               width={168}
               height={150}
             />
-          </Modal.Img>
+          </Modal.Etc>
           <Modal.TitleWrapper>
             <Modal.Title>정말 씨네톡을 탈퇴 하시겠어요?</Modal.Title>
             <Modal.Description>
@@ -146,17 +143,16 @@ export function DeleteAccountButton({
       {isCompleteModalOpen && (
         <Modal
           isAlertModal={false}
-          isOpen={isCompleteModalOpen}
           onClose={() => setIsConfirmModalOpen(false)}
         >
-          <Modal.Img>
+          <Modal.Etc>
             <Image
               src={ByeSsikongi}
               alt="ByeSsikongi"
               width={139}
               height={150}
             />
-          </Modal.Img>
+          </Modal.Etc>
           <Modal.TitleWrapper>
             <Modal.Title>탈퇴가 완료되었어요.</Modal.Title>
             <Modal.Description>

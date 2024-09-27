@@ -1,6 +1,6 @@
 - Dropdown:
   - `type?: "genre" | "icon" | "text"` (default = text)
-- Dropdown.Trigger: 트리거 엘리먼트 만들어주시면 됩니다. ❗️이 컴포넌트의 높이를 기준으로 위치를 자동 조정합니다.❗️
+- Dropdown.Trigger: 트리거 엘리먼트 만들어주시면 됩니다. ❗️trigger 요소를 기준으로 높이를 자동 조정합니다.❗️
 - Dropdown.List: Item 컴포넌트 래퍼
   - `className?:className`: 클래스네임을 추가하면 위치 조정이 해제됩니다.
 - Dropdown.Item:
