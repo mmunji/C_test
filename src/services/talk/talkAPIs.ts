@@ -130,4 +130,20 @@ export const talkAPIs = {
     const data: Talk = await res.json();
     return data;
   },
+
+  addReply: async (parentReviewId: number, content: string) => {
+    const accessToken = tokenManager.getToken();
+
+    const res = await fetch(`${API_URL}/reviews/${parentReviewId}/comments`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        access: `${accessToken}`,
+      },
+      body: JSON.stringify({ content }),
+    });
+
+    const data = await res.json();
+    return { data, res };
+  },
 };

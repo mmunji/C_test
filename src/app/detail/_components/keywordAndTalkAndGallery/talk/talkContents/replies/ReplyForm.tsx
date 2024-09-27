@@ -4,20 +4,26 @@ import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import handleResizeTextareaHeight from "@/app/detail/utils/handleResizeTextareaHeight";
 import Button from "@/components/buttons/Button";
 import useDevice from "@/hooks/useDevice";
+import { useAddReply } from "@/services/talk/talkMutations";
 
 interface ReplyValue {
   replyValue: string;
 }
 
-export default function ReplyForm() {
+interface ReplyFormProps {
+  parentReviewId: number;
+}
+
+export default function ReplyForm({ parentReviewId }: ReplyFormProps) {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
-  const { handleSubmit, watch, control } = useForm<ReplyValue>();
+  const { handleSubmit, watch, control, setValue } = useForm<ReplyValue>();
   const { device } = useDevice();
+  const { mutate: addReply } = useAddReply(parentReviewId, setValue);
 
   const replyValue = watch("replyValue");
 
-  const onSubmit: SubmitHandler<ReplyValue> = (data) => {
-    console.log(data);
+  const onSubmit: SubmitHandler<ReplyValue> = () => {
+    addReply({ parentReviewId, content: replyValue });
   };
 
   const maxLines = 5;

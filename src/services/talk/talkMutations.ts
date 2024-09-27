@@ -1,5 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Dispatch, SetStateAction } from "react";
+import { UseFormSetValue } from "react-hook-form";
 
 import { talkAPIs } from "./talkAPIs";
 import { TALK_QUERY_KEYS } from "./talkQueryKeys";
@@ -73,6 +74,34 @@ export function useDislikeTalk(movieId: number) {
       queryClient.invalidateQueries({
         queryKey: TALK_QUERY_KEYS.infiniteTalks(movieId),
       });
+    },
+  });
+}
+
+interface ReplyValue {
+  replyValue: string;
+}
+
+export function useAddReply(
+  movieId: number,
+  setValue: UseFormSetValue<ReplyValue>,
+) {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: ({
+      parentReviewId,
+      content,
+    }: {
+      parentReviewId: number;
+      content: string;
+    }) => talkAPIs.addReply(parentReviewId, content),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: TALK_QUERY_KEYS.infiniteTalks(movieId),
+      });
+
+      setValue("replyValue", "");
     },
   });
 }

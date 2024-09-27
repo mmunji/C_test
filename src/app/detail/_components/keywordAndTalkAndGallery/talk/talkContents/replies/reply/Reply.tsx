@@ -11,8 +11,8 @@ interface ReplyProps {
 export default function Reply({ reply }: ReplyProps) {
   return (
     <section className="mt-5 Tablet:mt-6">
-      <ReplyHeader />
-      <ReplyBody />
+      <ReplyHeader reply={reply} />
+      <ReplyBody reply={reply} />
       <ReplyFooter />
     </section>
   );

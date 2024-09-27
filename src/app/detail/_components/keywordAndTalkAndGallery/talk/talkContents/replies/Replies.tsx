@@ -14,12 +14,10 @@ export default function Replies({ parentReviewId }: RepliesProps) {
   const { data } = useGetReplies(parentReviewId);
 
   const replies = data?.pages?.flatMap((page) => page.commentList) || [];
-  // console.log("답글", replies.length);
-  console.log(data);
 
   return (
     <div className="ml-9 mt-2 Tablet:ml-14 Laptop:ml-[52px]">
-      <ReplyForm />
+      <ReplyForm parentReviewId={parentReviewId} />
       {replies.length !== 0 &&
         replies.map((reply, i) => <Reply key={i} reply={reply} />)}
     </div>
