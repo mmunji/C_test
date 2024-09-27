@@ -28,7 +28,7 @@ export default function TalkContents({ talk, movieId }: TalkContentsProps) {
       <TalkContentsFooter
         {...{ talk, showSpoiler, showReplies, setShowReplies, movieId }}
       />
-      {showReplies && <Replies />}
+      {showReplies && <Replies movieId={movieId} parentReviewId={talk.id} />}
     </div>
   );
 }

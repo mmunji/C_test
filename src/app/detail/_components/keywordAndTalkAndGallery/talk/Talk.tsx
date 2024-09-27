@@ -1,9 +1,11 @@
 "use client";
 
+import { useQuery } from "@tanstack/react-query";
 import React, { useEffect } from "react";
 
 import useTotalTalksStore from "@/app/detail/_stores/useTotalTalksStore";
 import useDevice from "@/hooks/useDevice";
+import { talkAPIs } from "@/services/talk/talkAPIs";
 import { useGetTalkQuery } from "@/services/talk/talkQueries";
 
 import DividingLine from "../../common/DividingLine";
@@ -22,8 +24,13 @@ export default function Talk({ title, movieId, movieDetailData }: TalkProps) {
   const { data } = useGetTalkQuery(movieId);
   const { device } = useDevice();
   const id = device === "mobile" || device === "tablet" ? undefined : "my-talk";
-  const noTalk = data?.pages[0].reviewList.length === 0;
+  const noTalk = data?.pages?.[0]?.reviewList?.length === 0;
+
   const { setTotalTalks } = useTotalTalksStore();
+  const { data: myTalk } = useQuery({
+    queryKey: [""],
+    queryFn: () => talkAPIs.getMyTalk(movieId),
+  });
 
   useEffect(() => {
     if (data?.pages[0].totalElements) {
@@ -46,7 +53,7 @@ export default function Talk({ title, movieId, movieDetailData }: TalkProps) {
           <React.Fragment>
             {data?.pages.map((talkData, i) => (
               <React.Fragment key={i}>
-                {talkData.reviewList.map((talk, i) => (
+                {talkData?.reviewList?.map((talk, i) => (
                   <TalkContents movieId={movieId} talk={talk} key={i} />
                 ))}
               </React.Fragment>

@@ -1,5 +1,6 @@
 interface Talk {
   reviewList: ReviewList[];
+  commentList: ReviewList[];
   listSize: number;
   totalPage: number;
   totalElements: number;
@@ -18,4 +19,5 @@ interface ReviewList {
   spoiler: boolean;
   likeCount: number;
   dislikeCount: number;
+  commentCount: number;
 }

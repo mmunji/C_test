@@ -106,7 +106,7 @@ export default function TalkContentsFooter({
             "text-Gray": talk.spoiler && !showSpoiler,
           })}
         >
-          999+
+          {talk.commentCount}
         </p>
         <Image
           src={

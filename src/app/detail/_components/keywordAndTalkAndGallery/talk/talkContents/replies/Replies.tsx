@@ -1,17 +1,27 @@
 import React from "react";
 
+import { useGetReplies } from "@/services/talk/talkQueries";
+
 import Reply from "./reply/Reply";
 import ReplyForm from "./ReplyForm";
 
-export default function Replies() {
+interface RepliesProps {
+  movieId: number;
+  parentReviewId: number;
+}
+
+export default function Replies({ parentReviewId }: RepliesProps) {
+  const { data } = useGetReplies(parentReviewId);
+
+  const replies = data?.pages?.flatMap((page) => page.commentList) || [];
+  // console.log("답글", replies.length);
+  console.log(data);
+
   return (
     <div className="ml-9 mt-2 Tablet:ml-14 Laptop:ml-[52px]">
       <ReplyForm />
-      {Array(5)
-        .fill(null)
-        .map((_, i) => (
-          <Reply key={i} />
-        ))}
+      {replies.length !== 0 &&
+        replies.map((reply, i) => <Reply key={i} reply={reply} />)}
     </div>
   );
 }

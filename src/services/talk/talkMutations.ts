@@ -5,6 +5,7 @@ import { talkAPIs } from "./talkAPIs";
 import { TALK_QUERY_KEYS } from "./talkQueryKeys";
 
 export interface AddTalkParams {
+  movieName: string;
   movieId: number;
   ratingValue: number;
   talk: string;
@@ -20,6 +21,7 @@ export function useAddTalk(
 
   return useMutation({
     mutationFn: async ({
+      movieName,
       movieId,
       ratingValue,
       talk,
@@ -27,6 +29,7 @@ export function useAddTalk(
       genreList,
     }: AddTalkParams) => {
       const { res, data } = await talkAPIs.addTalks({
+        movieName,
         movieId,
         star: ratingValue,
         content: talk,
@@ -37,7 +40,7 @@ export function useAddTalk(
     },
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: TALK_QUERY_KEYS.infiniteMovieQueryKeys(movieId),
+        queryKey: TALK_QUERY_KEYS.infiniteTalks(movieId),
       });
 
       setShowTalkForm(false);
@@ -55,7 +58,7 @@ export function useLikeTalk(movieId: number) {
     mutationFn: (talkId: number) => talkAPIs.like(talkId),
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: TALK_QUERY_KEYS.infiniteMovieQueryKeys(movieId),
+        queryKey: TALK_QUERY_KEYS.infiniteTalks(movieId),
       });
     },
   });
@@ -68,7 +71,7 @@ export function useDislikeTalk(movieId: number) {
     mutationFn: (talkId: number) => talkAPIs.dislike(talkId),
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: TALK_QUERY_KEYS.infiniteMovieQueryKeys(movieId),
+        queryKey: TALK_QUERY_KEYS.infiniteTalks(movieId),
       });
     },
   });

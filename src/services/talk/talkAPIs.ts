@@ -4,7 +4,12 @@ import { tokenManager } from "../auth/tokenManager";
 
 export const talkAPIs = {
   getTalks: async (movieId: number, page: number) => {
+    const accessToken = tokenManager.getToken();
     const res = await fetch(`${API_URL}/reviews/${movieId}?page=${page}`, {
+      headers: {
+        "Content-Type": "application/json",
+        access: `${accessToken}`,
+      },
       cache: "no-store",
     });
 
@@ -35,12 +40,14 @@ export const talkAPIs = {
   },
 
   addTalks: async ({
+    movieName,
     movieId,
     star,
     content,
     spoiler,
     genreList,
   }: {
+    movieName: string;
     movieId: number;
     star: number;
     content: string;
@@ -56,6 +63,7 @@ export const talkAPIs = {
         access: `${accessToken}`,
       },
       body: JSON.stringify({
+        movieName,
         star,
         content,
         spoiler,
@@ -102,7 +110,24 @@ export const talkAPIs = {
       },
     });
 
-    const data = res.json();
+    const data = await res.json();
     return { res, data };
+  },
+
+  getReplies: async (parentReviewId: number, page: number) => {
+    const accessToken = tokenManager.getToken();
+
+    const res = await fetch(
+      `${API_URL}/reviews/${parentReviewId}/comments?page=${page}`,
+      {
+        method: "GET",
+        headers: {
+          access: `${accessToken}`,
+        },
+      },
+    );
+
+    const data: Talk = await res.json();
+    return data;
   },
 };

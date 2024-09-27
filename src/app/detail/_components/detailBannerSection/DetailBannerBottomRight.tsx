@@ -59,6 +59,7 @@ export default function DetailBannerBottomRight({
 
   const toggleBookmark = (movieId: number) => {
     if (handleNeedLogin()) return;
+
     bookmark(movieId);
   };
 
@@ -80,12 +81,12 @@ export default function DetailBannerBottomRight({
           className="cursor-pointer"
         >
           <Image
-            src={checkBookmark?.data ? HeartFillLg : HeartLineLg}
+            src={checkBookmark?.data.state ? HeartFillLg : HeartLineLg}
             alt="찜하기"
             className="m-1 h-8 w-8 Laptop:hidden"
           />
           <Image
-            src={checkBookmark?.data ? HeartFillXl : HeartLineXl}
+            src={checkBookmark?.data.state ? HeartFillXl : HeartLineXl}
             alt="찜하기"
             className="hidden Laptop:block"
           />
