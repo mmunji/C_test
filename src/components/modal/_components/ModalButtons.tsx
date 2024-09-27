@@ -34,7 +34,7 @@ export function ModalButton({ children, onClick }: ModalButtonProps) {
     <button
       onClick={handleClick}
       disabled={checkDisabled()}
-      className="w-full rounded-lg bg-Primary px-9 py-2 text-white Text-s-Medium hover:bg-Shade_1 active:bg-Shade_3 disabled:bg-D2_Gray disabled:text-Gray Tablet:rounded-xl Tablet:px-5 Tablet:py-3 Tablet:Text-m-Medium"
+      className="w-full rounded-xl bg-Primary px-5 py-3 text-white Text-s-Medium hover:bg-Shade_1 active:bg-Shade_3 disabled:bg-D2_Gray disabled:text-Gray Tablet:Text-m-Medium"
     >
       {children}
     </button>
@@ -46,7 +46,7 @@ export function ModalCancelButton({ children }: ModalCancelButtonProps) {
   return (
     <button
       onClick={onClose}
-      className="w-full whitespace-nowrap rounded-lg border border-Gray bg-none px-9 py-2 text-white Text-s-Regular hover:border-Silver active:bg-D1_Gray Tablet:whitespace-normal Tablet:rounded-xl Tablet:px-5 Tablet:py-3 Tablet:Text-m-Medium"
+      className="w-full whitespace-nowrap rounded-xl border border-Gray bg-none px-5 py-3 text-white Text-s-Medium hover:border-Silver active:bg-D1_Gray Tablet:whitespace-normal Tablet:Text-m-Medium"
     >
       {children}
     </button>

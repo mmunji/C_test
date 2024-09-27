@@ -9,8 +9,8 @@ export function ModalTitleWrapper({ children }: WithChildren) {
     <>
       <div
         className={clsx(
-          isAlertModal ? "w-full gap-1 Tablet:w-[360px] Tablet:gap-3" : "gap-2",
-          `flex flex-col items-center`,
+          isAlertModal && "w-full",
+          `flex flex-col items-center gap-2 Tablet:min-w-[360px]`,
         )}
       >
         {children}
@@ -25,7 +25,7 @@ export function ModalTitle({ children }: WithChildren) {
     <div
       className={clsx(
         !hasDescription && "my-3",
-        "text-Primary Text-m-Bold Tablet:Text-xl-Bold",
+        "text-Primary Text-l-Bold Tablet:Text-xl-Bold",
       )}
     >
       {children}

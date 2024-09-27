@@ -107,6 +107,7 @@ export function DeleteAccountButton({
       </button>
       {isConfirmModalOpen && (
         <Modal
+          title="회원탈퇴"
           isAlertModal={false}
           isOpen={isConfirmModalOpen}
           onClose={() => setIsConfirmModalOpen(false)}

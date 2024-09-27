@@ -1,4 +1,3 @@
-import clsx from "clsx";
 import { AnimatePresence } from "framer-motion";
 import React, { ReactElement, useEffect } from "react";
 
@@ -7,6 +6,7 @@ import ModalContext from "@/components/modal/ModalContext";
 import Portal from "@/components/modal/portal";
 import useModal from "@/components/modal/useModal";
 import useOutsideClick from "@/hooks/useOutsideClick";
+import { cn } from "@/utils/cn";
 
 export interface WithChildren {
   children: React.ReactNode;
@@ -15,6 +15,7 @@ interface ModalMainProps extends WithChildren {
   isAlertModal: boolean;
   onClose: () => void;
   isOpen: boolean;
+  title?: string;
 }
 
 export default function ModalMain({
@@ -22,6 +23,7 @@ export default function ModalMain({
   onClose,
   isAlertModal,
   isOpen,
+  title,
 }: ModalMainProps) {
   const {
     isChecked,
@@ -125,23 +127,33 @@ export default function ModalMain({
             <div className="fixed bottom-0 left-0 right-0 top-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-[4px]">
               <div
                 ref={ref}
-                className={clsx(
-                  hasComponents.login && "px-10 py-16",
+                className={cn(
+                  hasComponents.login && "Tablet:px-10 Tablet:py-16",
                   isAlertModal
-                    ? "gap-9 px-12 pb-10 pt-11"
-                    : [!hasComponents.login && "gap-7 px-12 py-10"],
-                  `fixed bottom-0 left-0 right-0 top-0 z-10 flex flex-col items-center rounded-xl bg-D1_Gray Tablet:static `,
+                    ? "Tablet:gap-9 Tablet:px-12 Tablet:pb-10 Tablet:pt-11"
+                    : [
+                        !hasComponents.login &&
+                          "Tablet:gap-7 Tablet:px-12 Tablet:py-10",
+                      ],
+                  `fixed bottom-0 left-0 right-0 top-0 z-10 flex flex-col items-center justify-center gap-0 bg-D1_Gray px-5 Tablet:static Tablet:rounded-xl`,
                 )}
               >
+                <div className="mb-auto mt-12 w-full text-left text-Silver Text-l-Bold Tablet:hidden">
+                  {title}
+                </div>
                 {content}
                 {buttons.length > 0 &&
                   (checkbox.length > 0 ? (
-                    <div className="flex w-[372px] flex-col items-center justify-center gap-5">
+                    <div className="mb-7 mt-auto flex w-full flex-col items-center justify-center gap-5 Tablet:mb-0">
                       <div className="flex items-center gap-2">{checkbox}</div>
-                      <div className="flex w-full gap-3">{buttons}</div>
+                      <div className="flex w-full gap-2 Tablet:gap-3">
+                        {buttons}
+                      </div>
                     </div>
                   ) : (
-                    <div className="flex w-[372px] gap-3">{buttons}</div>
+                    <div className="mb-7 mt-auto flex w-full gap-2 Tablet:mb-0 Tablet:gap-3">
+                      {buttons}
+                    </div>
                   ))}
               </div>
             </div>
