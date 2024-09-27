@@ -54,7 +54,7 @@ export default function SimilarTastesMoive() {
                       className={`h-[60px] w-[60px] rounded-[60px] border-2 bg-white  ${PickUserNumber == index ? "border-Primary" : "border-transparent"} `}
                       onClick={() => ChangePickNumber(index)}
                       style={{
-                        backgroundImage: `linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, rgba(0, 0, 0, 0.50) 100%), url(data:image/jpeg;base64,${Review.profile}`,
+                        backgroundImage: `linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, rgba(0, 0, 0, 0) 100%), url(data:image/jpeg;base64,${Review.profile}`,
                         backgroundSize: "cover",
                         backgroundPosition: "center",
                       }}

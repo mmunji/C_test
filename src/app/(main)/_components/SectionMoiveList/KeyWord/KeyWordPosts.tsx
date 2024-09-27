@@ -21,7 +21,7 @@ export default function KeyWordPosts({
   createdAt,
 }: KeyWordInfoProps) {
   return (
-    <div className="Text-s-Mediuim flex h-full w-full flex-col gap-2 rounded-xl bg-D1_Gray px-6 py-5">
+    <div className="Text-s-Mediuim flex h-full w-full flex-col gap-2 rounded-xl bg-D1_Gray px-4 py-4 Tablet:px-7 Tablet:py-6">
       <div className="flex justify-between">
         <h1 className="text-Silver Text-s-Medium">{nickname}</h1>
         <div className="flex text-Silver Text-s-Bold ">
@@ -29,7 +29,7 @@ export default function KeyWordPosts({
           {star}
         </div>
       </div>
-      <div className="line-clamp-2 h-12 text-Gray_Orange Text-s-Regular  Laptop:Text-m-Regular">
+      <div className="line-clamp-2 text-Gray_Orange Text-s-Regular  Laptop:Text-m-Regular">
         {content}
       </div>
       <span className="line-clamp-1 text-L_Gray Text-s-Regular  Laptop:Text-m-Regular">

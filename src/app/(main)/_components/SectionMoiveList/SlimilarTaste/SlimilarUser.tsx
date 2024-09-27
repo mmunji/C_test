@@ -17,6 +17,7 @@ interface UserPostType {
   evaluate: number;
   heart: number;
   Badge: BadgeDTO[];
+  profile: string;
 }
 
 export default function SlimilarUser({
@@ -27,17 +28,25 @@ export default function SlimilarUser({
   heart,
   Badge,
   onClick,
+  profile,
 }: UserPostType) {
   const [ItemHover, setItemHover] = useState(false);
   return (
     <div
-      className={`flex flex-col gap-5 rounded-xl  ${value != ClickIndex ? (ItemHover ? "bg-D2_Gray" : "bg-black") : "bg-D1_Gray"} h-full  px-3 py-6 text-Silver Text-m-Medium`}
+      className={`flex flex-col gap-5 rounded-xl  ${value != ClickIndex ? (ItemHover ? "bg-D2_Gray" : "bg-Black") : "bg-D1_Gray"} h-full  px-3 py-6 text-Silver Text-m-Medium`}
       onClick={onClick}
       onMouseEnter={() => setItemHover(true)}
       onMouseLeave={() => setItemHover(false)}
     >
       <div className="flex items-center gap-2">
-        <div className="h-[40px] w-[40px] rounded-[60px] border-2 " />
+        <div
+          className="h-[40px] w-[40px] rounded-[60px] "
+          style={{
+            backgroundImage: `linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, rgba(0, 0, 0, 0) 100%), url(data:image/jpeg;base64,${profile})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        />
         <span>{name}</span>
       </div>
       <div className="px2 flex gap-4">

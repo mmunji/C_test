@@ -31,10 +31,10 @@ export default function Footer() {
           지금까지 총<span className="text-Primary"> {Commnets} </span> 개의
           톡이 쌓였어요!
         </h1>
-        <div className="flex flex-1 justify-between gap-2 rounded-xl bg-D1_Gray py-2 pl-4 pr-3 Text-s-Regular Tablet:w-[512px] Desktop:w-[512px]">
+        <div className="flex w-full flex-1 justify-between gap-2 rounded-xl bg-D1_Gray py-2 pl-4 pr-3 Text-s-Regular Tablet:w-[512px] Desktop:w-[512px]">
           <input
-            placeholder="개선할 점이있나요? 피드백 해주세요 :)"
-            className="flex-1 bg-transparent   text-white Text-m-Regular placeholder:text-Gray"
+            placeholder="개선할 점이 있나요? 피드백 해주세요 ;)"
+            className="flex-1 bg-transparent    text-white Text-s-Regular placeholder:text-Gray  focus:outline-none Laptop:Text-m-Regular"
             value={FeedbackPost}
             onChange={setFeedBackPost}
           />

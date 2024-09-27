@@ -40,7 +40,7 @@ export default function RealTimeHotTalk({ ReviewList }: ReviewListType) {
             >
               <div className="flex w-[35px] items-center justify-center">
                 <Image src={StarFillSm} alt="star" className="h-4 w-4" />
-                <span className="Text-s-Regular">{Review.star}</span>
+                <span className="Text-s-Regular">{Review.star.toFixed(1)}</span>
               </div>
               <span className="line-clamp-1 w-48 flex-1  Text-s-Medium">
                 {Review.content}
