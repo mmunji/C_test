@@ -35,8 +35,11 @@ export default function TalkContentsFooter({
 }: TalkContentsFooterProps) {
   const [like, setLike] = useState(false);
   const [dislike, setDislike] = useState(false);
-  const { mutate: likeTalk } = useLikeTalk(movieId);
-  const { mutate: dislikeTalk } = useDislikeTalk(movieId);
+  const { mutate: likeTalk } = useLikeTalk({ type: "talk", movieId: movieId });
+  const { mutate: dislikeTalk } = useDislikeTalk({
+    type: "talk",
+    movieId: movieId,
+  });
 
   const handleClickLike = (talkId: number) => {
     likeTalk(talkId);

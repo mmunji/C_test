@@ -20,7 +20,8 @@ export default function ReplyBody({ reply }: ReplyBodyProps) {
         className={clsx(
           "text-Gray_Orange Text-s-Regular Tablet:Text-m-Medium",
           {
-            "line-clamp-3 h-[63px] overflow-hidden Tablet:h-[72px]": !showMore,
+            "line-clamp-3 max-h-[63px] overflow-hidden Tablet:max-h-[72px]":
+              !showMore,
           },
         )}
       >

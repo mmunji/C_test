@@ -52,28 +52,56 @@ export function useAddTalk(
   });
 }
 
-export function useLikeTalk(movieId: number) {
+export function useLikeTalk({
+  type,
+  movieId,
+  parentReviewId,
+}: {
+  type: "talk" | "reply";
+  movieId?: number;
+  parentReviewId?: number;
+}) {
   const queryClient = useQueryClient();
 
   return useMutation({
     mutationFn: (talkId: number) => talkAPIs.like(talkId),
     onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: TALK_QUERY_KEYS.infiniteTalks(movieId),
-      });
+      if (type === "talk") {
+        queryClient.invalidateQueries({
+          queryKey: TALK_QUERY_KEYS.infiniteTalks(movieId),
+        });
+      } else if (type === "reply") {
+        queryClient.invalidateQueries({
+          queryKey: TALK_QUERY_KEYS.infiniteMovieReplies(parentReviewId),
+        });
+      }
     },
   });
 }
 
-export function useDislikeTalk(movieId: number) {
+export function useDislikeTalk({
+  type,
+  movieId,
+  parentReviewId,
+}: {
+  type: "talk" | "reply";
+  movieId?: number;
+  parentReviewId?: number;
+}) {
   const queryClient = useQueryClient();
 
   return useMutation({
     mutationFn: (talkId: number) => talkAPIs.dislike(talkId),
     onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: TALK_QUERY_KEYS.infiniteTalks(movieId),
-      });
+      if (type === "talk") {
+        queryClient.invalidateQueries({
+          queryKey: TALK_QUERY_KEYS.infiniteTalks(movieId),
+        });
+      } else if (type === "reply") {
+        queryClient.invalidateQueries({
+          queryKey: TALK_QUERY_KEYS.infiniteMovieReplies(parentReviewId),
+        });
+      }
     },
   });
 }
