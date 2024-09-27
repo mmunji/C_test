@@ -5,6 +5,7 @@ import SmallBadge from "@/components/smallBadge/SmallBadge";
 import { myAPIs } from "@/services/my/myAPIs";
 
 import { AddPlus } from "../../../../public/icons";
+import { DefaultUserProfile } from "../../../../public/images";
 
 export default async function UserInfo() {
   const { getActivityCount, getUser, getBadges, getReportStatus } = myAPIs;
@@ -24,9 +25,9 @@ export default async function UserInfo() {
               <Image
                 alt="유저_프로필"
                 src={
-                  user?.profile
-                    ? `data:image/png;base64,${user?.profile}`
-                    : "/images/detail/default_profile2.png"
+                  user.profile
+                    ? `data:image/png;base64,${user.profile}`
+                    : DefaultUserProfile
                 }
                 fill
                 className="h-full w-full overflow-hidden object-cover"
@@ -54,7 +55,12 @@ export default async function UserInfo() {
               ))
             ) : (
               <div className="flex cursor-default items-center gap-1 rounded-lg border border-dashed border-Gray px-2 py-1 text-Gray Tablet:px-3 Tablet:py-2">
-                <Image src={AddPlus} alt="plus icon" width={16} height={16} />
+                <Image
+                  src={AddPlus}
+                  alt="뱃지 추가 아이콘"
+                  width={16}
+                  height={16}
+                />
                 <span className="Text-s-Medium Tablet:Text-m-Medium">
                   뱃지 추가 하기
                 </span>

@@ -5,6 +5,7 @@ import Link from "next/link";
 import ROUTES from "@/constants/routes";
 
 import { Check } from "../../../../public/icons";
+import { NoImageSsikongi } from "../../../../public/images";
 
 interface BookmarkItemProps {
   movie: Bookmark;
@@ -22,8 +23,8 @@ export function BookMarkDefaultItem({
     >
       <Image
         fill
-        src={movie.poster_path}
-        alt={movie.poster_path}
+        src={movie.poster_path || NoImageSsikongi}
+        alt={`${movie.id}의 영화 포스터`}
         className={"object-cover"}
       />
     </Link>
@@ -47,13 +48,13 @@ export function BookmarkEditItem({
     >
       <Image
         fill
-        src={movie.poster_path}
-        alt={movie.poster_path}
+        src={movie.poster_path || NoImageSsikongi}
+        alt={`${movie.id}의 영화 포스터`}
         className={clsx(isSelected && "brightness-50", `object-cover`)}
       />
       {isSelected && (
         <div className="absolute right-2 top-2 rounded-lg bg-Primary">
-          <Image src={Check} width={24} height={24} alt="CircleCheck" />
+          <Image src={Check} width={24} height={24} alt="선택 표시 아이콘" />
         </div>
       )}
     </button>

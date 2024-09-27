@@ -4,9 +4,7 @@ import Image from "next/image";
 import { ButtonHTMLAttributes, useState } from "react";
 
 import Button from "@/components/buttons/Button";
-import LoadingSpinner, {
-  FullLoadingSpinner,
-} from "@/components/loadingSpinner/LoadingSpinner";
+import { FullLoadingSpinner } from "@/components/loadingSpinner/LoadingSpinner";
 import Modal from "@/components/modal/modal";
 import useDevice from "@/hooks/useDevice";
 import { deleteAccount, logout } from "@/services/my/actions";
@@ -114,7 +112,7 @@ export function DeleteAccountButton({
           <Modal.Img>
             <Image
               src={SadSsikongi}
-              alt="SadSsikongi"
+              alt="씨네톡 로고 씨콩이가 우는 그림"
               width={168}
               height={150}
             />
@@ -151,7 +149,7 @@ export function DeleteAccountButton({
           <Modal.Img>
             <Image
               src={ByeSsikongi}
-              alt="ByeSsikongi"
+              alt="씨네톡 로고 씨콩이가 문열고 나가는 그림"
               width={139}
               height={150}
             />

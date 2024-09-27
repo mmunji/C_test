@@ -10,6 +10,7 @@ import Placeholder from "@/app/my/_components/Placeholder";
 import ROUTES from "@/constants/routes";
 
 import { StarFillMd } from "../../../../public/icons";
+import { NoImageSsikongi } from "../../../../public/images";
 
 interface HistoryLogProps {
   log: Log[];
@@ -72,8 +73,12 @@ export default function HistoryLog({ log }: HistoryLogProps) {
                       <Image
                         fill
                         className="rounded-lg object-cover"
-                        alt={movie.movienm}
-                        src={`${movie?.poster_path ? `https://image.tmdb.org/t/p/w342/${movie.poster_path}` : "/images/ssikongi/PNG/NoImage.png"}`}
+                        alt={`${movie.movienm} 영화 포스터`}
+                        src={
+                          movie.poster_path
+                            ? movie.poster_path
+                            : NoImageSsikongi
+                        }
                       />
                     </Link>
                     {movie.category === "keyword" ? (
@@ -82,7 +87,7 @@ export default function HistoryLog({ log }: HistoryLogProps) {
                       </span>
                     ) : (
                       <div className="flex items-center gap-1">
-                        <Image alt={"star"} src={StarFillMd} />
+                        <Image alt="별 아이콘" src={StarFillMd} />
                         <span className="text-Gray_Orange Text-m-Bold">
                           {Number.isInteger(movie.star)
                             ? `${movie.star}.0`
