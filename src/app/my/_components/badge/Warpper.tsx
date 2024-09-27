@@ -6,7 +6,7 @@ import BadgeItem from "@/app/my/_components/badge/Item";
 import BadgeTitle from "@/app/my/_components/badge/Title";
 
 interface BadgeProps {
-  badges: EarnedBadge[];
+  badges: ObtainedBadge[];
   reviewCounts: (BadgeCount | undefined)[];
 }
 
@@ -37,7 +37,9 @@ export default function BadgeWarpper({ badges, reviewCounts }: BadgeProps) {
       <div className="grid grid-cols-3 gap-3 Tablet:grid-cols-4 Tablet:gap-5 Laptop:grid-cols-6 Laptop:gap-x-6 Laptop:gap-y-4">
         {reviewCounts.map((review) => (
           <BadgeItem
-            isActive={!!selectedMovieIds.find((id) => id === review?.id)}
+            hasObtainedBefore={
+              !!badges.find((badge) => badge.genre_id === review?.id)
+            }
             isEditing={isEditing}
             toggleMovie={toggleMovie}
             isSelected={!!selectedMovieIds.find((id) => id === review?.id)}

@@ -20,6 +20,8 @@ export default function BestTalkPost({
         <div className="flex gap-1">
           {profileImg ? (
             <Image
+              width={300} // 임시
+              height={300} // 임시
               className="h-6 w-6 rounded-[60px]"
               src={`data:image/jpeg;base64,${profileImg}`}
               alt="Profile"

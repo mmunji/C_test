@@ -1,40 +1,39 @@
 import Image from "next/image";
 
+import ImageUploadForm from "@/app/my/_components/UploadForm";
 import SmallBadge from "@/components/smallBadge/SmallBadge";
 import { myAPIs } from "@/services/my/myAPIs";
 
-import { AddPlus, CameraMd, CameraSm } from "../../../../public/icons";
+import { AddPlus } from "../../../../public/icons";
+import { DefaultUserProfile } from "../../../../public/images";
 
 export default async function UserInfo() {
-  const { getActivityCount, getUser, getBadges } = myAPIs;
-  const [user, activityCount, badges] = await Promise.all([
+  const { getActivityCount, getUser, getBadges, getReportStatus } = myAPIs;
+  const [user, activityCount, badges, reportStatus] = await Promise.all([
     getUser(),
     getActivityCount(),
     getBadges(),
+    getReportStatus(),
   ]);
   const activeBadges = badges.filter((badge) => badge.use);
   return (
     <section className="mb-9 flex w-full flex-col items-center gap-7 px-5 Tablet:mb-0 Tablet:gap-[52px] Tablet:px-0">
       <div className="flex flex-col items-center gap-4 px-6 Tablet:gap-3 Tablet:px-0 Laptop:gap-4">
         <div className="flex justify-center">
-          <div className="relative h-16 w-16 rounded-full bg-[#D9D9D9]  Tablet:h-[100px] Tablet:w-[100px]">
-            <Image
-              alt="유저_프로필"
-              src="/images/detail/default_profile2.png"
-              fill
-              className="overflow-hidden"
-            />
-            <button
-              type="button"
-              className="absolute -bottom-[2px] right-[2px] flex h-7 w-7 translate-x-1/2 items-center justify-center rounded-full bg-Gray Tablet:h-10 Tablet:w-10"
-            >
-              <div className="block Tablet:hidden">
-                <Image src={CameraSm} alt="변경" />
-              </div>
-              <div className="hidden Tablet:block">
-                <Image src={CameraMd} alt="변경" />
-              </div>
-            </button>
+          <div className="relative">
+            <div className="relative h-16 w-16 overflow-hidden rounded-full Tablet:h-[100px] Tablet:w-[100px]">
+              <Image
+                alt="유저_프로필"
+                src={
+                  user.profile
+                    ? `data:image/png;base64,${user.profile}`
+                    : DefaultUserProfile
+                }
+                fill
+                className="h-full w-full overflow-hidden object-cover"
+              />
+            </div>
+            <ImageUploadForm />
           </div>
         </div>
         <div className="flex flex-col items-center gap-2 Tablet:gap-3 Laptop:gap-4">
@@ -56,7 +55,12 @@ export default async function UserInfo() {
               ))
             ) : (
               <div className="flex cursor-default items-center gap-1 rounded-lg border border-dashed border-Gray px-2 py-1 text-Gray Tablet:px-3 Tablet:py-2">
-                <Image src={AddPlus} alt="plus icon" width={16} height={16} />
+                <Image
+                  src={AddPlus}
+                  alt="뱃지 추가 아이콘"
+                  width={16}
+                  height={16}
+                />
                 <span className="Text-s-Medium Tablet:Text-m-Medium">
                   뱃지 추가 하기
                 </span>

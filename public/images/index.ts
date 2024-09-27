@@ -10,3 +10,5 @@ export { default as ShortLogo } from "./cinetalk_logo/PNG/Cinetalk_Logo_Short.pn
 export { default as WelcomeSsikongi } from "./ssikongi/PNG/Welcome.png";
 export { default as SadSsikongi } from "./ssikongi/SVG/Sad.svg";
 export { default as ByeSsikongi } from "./ssikongi/SVG/Bye.svg";
+export { default as NoImageSsikongi } from "./ssikongi/PNG/NoImage.png";
+export { default as DefaultUserProfile } from "./detail/default_profile2.png";

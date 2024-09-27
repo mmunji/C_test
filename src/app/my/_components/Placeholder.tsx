@@ -2,11 +2,11 @@ import Button from "@/components/buttons/Button";
 import ROUTES from "@/constants/routes";
 
 interface Props {
-  type: "rating" | "review" | "bookmark";
+  type: "log" | "review" | "bookmark";
 }
 
 const MESSAGES = {
-  rating: {
+  log: {
     title: "아직 영화를 평가한 적이 없어요.",
     desc: "영화에 대한 생각을 나눠보세요 :)",
     button: "평가 하러가기",

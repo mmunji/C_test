@@ -31,7 +31,7 @@ export default function Account({ email, nickname }: AccountProps) {
     setIsEditing(false);
   };
 
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+  const handleEscape = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Escape") reset();
   };
 
@@ -77,7 +77,7 @@ export default function Account({ email, nickname }: AccountProps) {
                   maxLength={10}
                   placeholder={nickname}
                   ref={nicknameRef}
-                  onKeyDown={handleKeyDown}
+                  onKeyDown={handleEscape}
                   type="text"
                   className="w-[180px] rounded-lg bg-Black py-1 pl-3 pr-[50px] text-Silver outline-none Text-s-Medium placeholder:text-Gray Tablet:pl-4 Tablet:Text-m-Medium"
                 />

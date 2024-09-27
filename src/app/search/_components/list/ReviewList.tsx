@@ -67,7 +67,11 @@ export default function SearchReviewList({
                     alt="유저 프로필 이미지"
                     width={24}
                     height={24}
-                    src={"/images/detail/default_profile2.png"}
+                    src={
+                      talk.userDTO.profile
+                        ? `data:image/png;base64,${talk.userDTO.profile}`
+                        : "/images/detail/default_profile2.png"
+                    }
                   />
                   <span className="text-Silver Text-s-Medium">
                     {talk.userDTO.nickname}

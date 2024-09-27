@@ -5,6 +5,16 @@ interface LoadingSpinnerProps {
   color: "primary" | "white";
 }
 
+export function FullLoadingSpinner() {
+  return (
+    <div className="fixed left-0 top-0 z-50 h-screen w-screen bg-black/40 backdrop-blur-[3px]">
+      <div className="fixed left-1/2 top-1/2 z-[51] -translate-x-1/2 -translate-y-1/2">
+        <LoadingSpinner size="3xl" color="primary" />
+      </div>
+    </div>
+  );
+}
+
 export default function LoadingSpinner({ size, color }: LoadingSpinnerProps) {
   return (
     <div
