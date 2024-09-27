@@ -72,7 +72,7 @@ export default function MasterPieceMoive() {
                       }}
                     >
                       <div className="flex  w-full items-center justify-between gap-1">
-                        <span className="line-clamp-1 Text-m-Medium">
+                        <span className="line-clamp-1 Text-s-Medium Tablet:Text-m-Medium">
                           {movie.movienm}
                         </span>
                         <div className="flex gap-1 Text-m-Medium">
@@ -81,7 +81,7 @@ export default function MasterPieceMoive() {
                             alt="star"
                             className="h-6 w-6"
                           />
-                          <span className="flex items-center Text-m-Bold ">
+                          <span className="flex items-center  Text-s-Bold Tablet:Text-m-Bold ">
                             {movie.StarAvg.toFixed(1)}
                           </span>
                         </div>

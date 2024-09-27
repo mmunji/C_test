@@ -28,15 +28,15 @@ export default function SlimilarMobilePost({
       <div className="flex flex-col gap-2">
         <div className="flex gap-3">
           <div
-            className="h-[40px] w-[40px] rounded-[60px]"
+            className="h-[40px] w-[40px] rounded-[60px] "
             style={{
-              backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0.0) 0%, rgba(0, 0, 0, 8) 100%), url(data:image/jpeg;base64,${selectedUser?.profile}`,
+              backgroundImage: `linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, rgba(0, 0, 0, 0) 100%), url(data:image/jpeg;base64,${selectedUser?.profile})`,
               backgroundSize: "cover",
               backgroundPosition: "center",
             }}
           />
           <div>
-            <span className="text-center text-Silver">
+            <span className="text-cente text-Silver Text-s-Medium ">
               {selectedUser?.nickname}
             </span>
             <div className="flex items-center   gap-2  text-Gray_Orange Text-s-Medium">

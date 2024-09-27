@@ -72,7 +72,7 @@ export default function MainBanner() {
                         }}
                       >
                         <div
-                          className="absolute inset-0  flex flex-col justify-between rounded-[20px] px-[20px] pb-2 pt-8  text-white Tablet:flex-row Tablet:px-9 Tablet:pb-7  Laptop:px-[74px]  Laptop:py-[40px]  Desktop:h-[637px] Desktop:px-[108px] Desktop:py-[60px]"
+                          className="absolute inset-0  flex flex-col justify-between rounded-[20px] px-5 pb-4 pt-8  text-white Tablet:flex-row Tablet:px-9 Tablet:pb-7  Laptop:px-[74px]  Laptop:py-[40px]  Desktop:h-[637px] Desktop:px-[108px] Desktop:py-[60px]"
                           style={{
                             backdropFilter: "blur(5px)",
                             background: "rgba(0, 0, 0, 0.50)",
@@ -84,7 +84,7 @@ export default function MainBanner() {
                             MovieName={BannerItem.movienm}
                             Rate={BannerItem.rate}
                           />
-                          <hr className="my-2 text-Opacity_W15" />
+                          {/* <div className="my-2 border-[1px] border-Opacity_W15" /> */}
                           <RealTimeHotTalk ReviewList={BannerItem.reviewList} />
                           {/* 실시간 핫한 톡 컴포넌트 */}
                         </div>
@@ -115,7 +115,7 @@ export default function MainBanner() {
             .swiper .swiper-pagination {
               position: relative;
               margin-top: 20px !important;
-              padding-right: 110px !important;
+              padding-right: 20px !important;
             }
             @media (min-width: 768px) {
               .swiper .swiper-pagination {

@@ -1,6 +1,7 @@
 import Image from "next/image";
 
-import { StarFillMd } from "@/../public/icons";
+import { StarFillMd, StarFillSm } from "@/../public/icons";
+import useDevice from "@/hooks/useDevice";
 
 import PostCard from "../PostCard";
 interface MovieBannerTypes {
@@ -22,8 +23,9 @@ export default function LeftMovePost({
   2. 나중에 테블릿 ,렙탑, 데탑 사즈로
 */
   }
+  const { device } = useDevice();
   return (
-    <div className="flex  w-[200px] flex-col gap-9 Tablet:w-[220px] Tablet:justify-end Laptop:w-[400px]">
+    <div className="flex  w-full flex-col gap-9 Tablet:w-[220px] Tablet:justify-end Laptop:w-[400px]">
       <div className="hidden Laptop:block ">
         <PostCard background={PostImg} />
       </div>
@@ -43,7 +45,11 @@ export default function LeftMovePost({
                 평점
               </h4>
               <h1 className=" texst-center  flex gap-1 text-Primary Text-s-Bold Laptop:Text-l-Bold">
-                <Image src={StarFillMd} alt="star" className="h-6 w-6" />
+                {device == "laptop" || device == "desktop" ? (
+                  <Image src={StarFillMd} alt="star" className="h-6 w-6" />
+                ) : (
+                  <Image src={StarFillSm} alt="star" className="h-4 w-4" />
+                )}
                 <span className="flex items-end">{Rate.toFixed(1)}</span>
               </h1>
             </li>
