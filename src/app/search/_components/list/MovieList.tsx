@@ -48,7 +48,7 @@ export default function SearchMovieList({
                 <Image
                   className="object-cover group-hover:opacity-70 group-hover:blur-[3px]"
                   src={`${movie?.poster_path ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}` : "/images/ssikongi/PNG/NoImage.png"}`}
-                  alt={movie.title}
+                  alt={`${movie.title} 포스터`}
                   fill
                 />
                 <div className="absolute z-[1] hidden px-5 py-7 text-Silver Text-m-Regular group-hover:flex Desktop:px-6 Desktop:py-8">

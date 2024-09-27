@@ -64,7 +64,7 @@ export default function SearchReviewList({
               <div className="flex justify-between">
                 <div className="flex items-center gap-2">
                   <Image
-                    alt={talk.userDTO.nickname}
+                    alt="유저 프로필 이미지"
                     width={24}
                     height={24}
                     src={"/images/detail/default_profile2.png"}
@@ -75,7 +75,7 @@ export default function SearchReviewList({
                 </div>
                 <div className="flex items-center">
                   <Image
-                    alt="profile_image"
+                    alt="별 아이콘"
                     width={16}
                     height={16}
                     src={StarFillSm}
