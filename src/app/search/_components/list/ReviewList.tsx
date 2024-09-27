@@ -24,7 +24,8 @@ export default function SearchReviewList({
     category: "talk",
     data: reviews,
   });
-  const data = tab === "전체" ? sortedMovieList : reviews;
+  const activeTab = !tab ? "전체" : tab;
+  const data = activeTab === "전체" ? sortedMovieList : reviews;
 
   const highlightedText = (text: string, query: string | null) => {
     if (!query) return text;
@@ -59,7 +60,7 @@ export default function SearchReviewList({
             <Link
               href={`${ROUTES.DETAIL}/${talk.reviewDTO.movieId}`}
               key={talk.reviewDTO.id}
-              className="flex flex-col gap-2 rounded-xl bg-D1_Gray p-4 Tablet:gap-3 Tablet:px-7 Tablet:py-6"
+              className="flex flex-col gap-2 rounded-xl bg-D1_Gray p-4 hover:bg-D2_Gray active:bg-D3_Gray Tablet:gap-3 Tablet:px-7 Tablet:py-6"
             >
               <div className="flex justify-between">
                 <div className="flex items-center gap-2">

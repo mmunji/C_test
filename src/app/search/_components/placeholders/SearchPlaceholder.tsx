@@ -33,8 +33,9 @@ export default function SearchPlaceholder({
   isAlone?: boolean;
 }) {
   const { tab } = useQueryString();
+  const activeTab = !tab ? "전체" : tab;
   const tabIndex = tab === "영화" ? 1 : tab === "톡" ? 2 : 0;
-  if (tab === "전체" && isAlone) {
+  if (activeTab === "전체" && isAlone) {
     return (
       <div className="text-Gray Text-m-Bold Tablet:Text-l-Bold">
         {TAB_MAP[tabIndex]} 검색 결과가 없어요.

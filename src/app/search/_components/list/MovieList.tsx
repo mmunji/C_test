@@ -22,7 +22,8 @@ export default function SearchMovieList({
     category: "movie",
     data: movies,
   });
-  const data = tab === "전체" ? sortedMovieList : movies;
+  const activeTab = !tab ? "전체" : tab;
+  const data = activeTab === "전체" ? sortedMovieList : movies;
   if (tab === "톡") return null;
   return (
     <div className="flex flex-col gap-3 Tablet:gap-2 Laptop:gap-5">

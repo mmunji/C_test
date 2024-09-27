@@ -16,6 +16,7 @@ export default function SearchListHeader({
   length,
 }: SearchTitleProps) {
   const { query, tab } = useQueryString();
+  const activeTab = !tab ? "전체" : tab;
   return (
     <div
       className={clsx(
@@ -28,7 +29,7 @@ export default function SearchListHeader({
           <span className="inline-block ">{length}</span>
         </h2>
       </div>
-      {tab === "전체" && length ? (
+      {activeTab === "전체" && length ? (
         <div className="">
           <Button
             href={{ query: { tab: category, query } }}

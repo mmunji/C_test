@@ -8,7 +8,6 @@ import Tab, { TabButton } from "@/app/search/_components/Tab";
 import useQueryString from "@/app/search/_hooks/useQueryString";
 import Button from "@/components/buttons/Button";
 import Dropdown from "@/components/dropdown/dropdown";
-import ROUTES from "@/constants/routes";
 
 import { Filter } from "../../../../public/icons";
 
@@ -25,6 +24,7 @@ export default function ActivityHeader({
 }: ActivityHeaderProps) {
   const searchParams = useSearchParams();
   const { tab, filter } = useQueryString();
+  const activeTab = !tab ? "톡" : tab;
   const router = useRouter();
   const pathname = usePathname();
   const handleChangeSort = (sort: "desc" | "asc" | "like") => {
@@ -57,7 +57,7 @@ export default function ActivityHeader({
           <Dropdown.Item onClick={() => handleChangeSort("asc")}>
             오래된순
           </Dropdown.Item>
-          {tab === "톡" && (
+          {activeTab === "톡" && (
             <Dropdown.Item onClick={() => handleChangeSort("like")}>
               좋아요순
             </Dropdown.Item>
