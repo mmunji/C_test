@@ -70,15 +70,6 @@ input::-webkit-search-results-decoration {
   .Text-xs-Regular {
     @apply text-xs font-Medium leading-150;
   }
-  .Emoji-l {
-    @apply font-appleSDGothicNeo text-E_lg font-Regular leading-none;
-  }
-  .Emoji-m {
-    @apply font-appleSDGothicNeo text-regular font-Regular leading-none;
-  }
-  .Emoji-s {
-    @apply font-appleSDGothicNeo text-xs font-Regular leading-none;
-  }
   .badge-gradient {
     background: linear-gradient(214deg, #9d3c1e 0%, #0c4b5f 100%);
   }

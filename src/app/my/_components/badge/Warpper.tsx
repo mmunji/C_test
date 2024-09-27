@@ -13,23 +13,23 @@ interface BadgeProps {
 export default function BadgeWarpper({ badges, reviewCounts }: BadgeProps) {
   const activeBadges = badges.filter((badge) => badge.use);
   const [isEditing, setIsEditing] = useState(false);
-  const [selectedMovieIds, setSelectedMovieIds] = useState<number[]>(
+  const [selectedBadgeIds, setSelectedBadgeIds] = useState<number[]>(
     activeBadges.map((badge) => badge.genre_id),
   );
 
   const toggleMovie = (id: number) => {
-    if (selectedMovieIds.includes(id))
-      return setSelectedMovieIds((prev) =>
+    if (selectedBadgeIds.includes(id))
+      return setSelectedBadgeIds((prev) =>
         prev.filter((prevId) => prevId !== id),
       );
-    setSelectedMovieIds((prev) => [...prev, id]);
+    setSelectedBadgeIds((prev) => [...prev, id]);
   };
 
   const toggleEditing = async () => setIsEditing((prev) => !prev);
   return (
     <>
       <BadgeTitle
-        selectedMovieIds={selectedMovieIds}
+        selectedBadgeIds={selectedBadgeIds}
         hasBadge={!!badges.length}
         toggleEditing={toggleEditing}
         isEditing={isEditing}
@@ -42,7 +42,7 @@ export default function BadgeWarpper({ badges, reviewCounts }: BadgeProps) {
             }
             isEditing={isEditing}
             toggleMovie={toggleMovie}
-            isSelected={!!selectedMovieIds.find((id) => id === review?.id)}
+            isSelected={!!selectedBadgeIds.find((id) => id === review?.id)}
             key={review?.name}
             badge={review}
           />
