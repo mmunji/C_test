@@ -51,7 +51,7 @@ export default function SearchMovieList({
                   alt={movie.title}
                   fill
                 />
-                <div className="absolute hidden px-5 py-7 text-Silver Text-m-Regular group-hover:inline-block Desktop:px-6 Desktop:py-8">
+                <div className="absolute z-[1] hidden px-5 py-7 text-Silver Text-m-Regular group-hover:flex Desktop:px-6 Desktop:py-8">
                   <p className="line-clamp-[7] break-all Tablet:line-clamp-[11] Laptop:line-clamp-[8] Desktop:line-clamp-[12]">
                     {movie.overview}
                   </p>
