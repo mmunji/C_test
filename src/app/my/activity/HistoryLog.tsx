@@ -1,5 +1,4 @@
 "use client";
-import clsx from "clsx";
 import dayjs from "dayjs";
 import Image from "next/image";
 import Link from "next/link";
@@ -19,10 +18,12 @@ interface HistoryLogProps {
 export default function HistoryLog({ log }: HistoryLogProps) {
   const searchParams = useSearchParams();
   const currentTab = searchParams.get("tab");
+  const currentFilter = searchParams.get("sort");
 
+  const sortedLog = currentFilter === "asc" ? log.reverse() : log;
   const groupedReviews = useMemo(
     () =>
-      log.reduce((acc: { [key: string]: Log[] }, review: Log) => {
+      sortedLog.reduce((acc: { [key: string]: Log[] }, review: Log) => {
         const day = dayjs(review.createdAt).format("YYYY.MM");
         if (!acc[day]) acc[day] = [];
         acc[day].push(review);

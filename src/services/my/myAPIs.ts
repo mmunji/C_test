@@ -49,14 +49,14 @@ export const myAPIs = {
 
   getReview: async () => {
     const data = await customFetchInstance.authFetch<PostreviewDTO[]>(
-      "/my/ReviewByUser/asddddddd",
+      "/my/ReviewByUser/desc",
       "GET",
     );
     return data;
   },
   getLog: async () => {
     const data = await customFetchInstance.authFetch<Log[]>(
-      "/my/LogByUser/asdddddddd",
+      "/my/LogByUser/desc",
       "GET",
     );
     return data;
