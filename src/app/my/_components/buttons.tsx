@@ -105,18 +105,18 @@ export function DeleteAccountButton({
       </button>
       {isConfirmModalOpen && (
         <Modal
+          title="회원탈퇴"
           isAlertModal={false}
-          isOpen={isConfirmModalOpen}
           onClose={() => setIsConfirmModalOpen(false)}
         >
-          <Modal.Img>
+          <Modal.Etc>
             <Image
               src={SadSsikongi}
               alt="씨네톡 로고 씨콩이가 우는 그림"
               width={168}
               height={150}
             />
-          </Modal.Img>
+          </Modal.Etc>
           <Modal.TitleWrapper>
             <Modal.Title>정말 씨네톡을 탈퇴 하시겠어요?</Modal.Title>
             <Modal.Description>
@@ -143,17 +143,16 @@ export function DeleteAccountButton({
       {isCompleteModalOpen && (
         <Modal
           isAlertModal={false}
-          isOpen={isCompleteModalOpen}
           onClose={() => setIsConfirmModalOpen(false)}
         >
-          <Modal.Img>
+          <Modal.Etc>
             <Image
               src={ByeSsikongi}
               alt="씨네톡 로고 씨콩이가 문열고 나가는 그림"
               width={139}
               height={150}
             />
-          </Modal.Img>
+          </Modal.Etc>
           <Modal.TitleWrapper>
             <Modal.Title>탈퇴가 완료되었어요.</Modal.Title>
             <Modal.Description>

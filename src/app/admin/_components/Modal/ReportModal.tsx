@@ -4,7 +4,6 @@ import dayjs from "dayjs";
 import Modal from "@/components/modal/modal";
 import { adminAPIs } from "@/services/admin/adminAPIs";
 interface ReportProps {
-  isReportModal: boolean;
   setIsModal: (value: boolean) => void;
   setisReporttModal: (value: boolean) => void;
   ReportContent: {
@@ -19,7 +18,6 @@ interface ReportProps {
 }
 
 export default function ReportModal({
-  isReportModal,
   setIsModal,
   ReportContent,
   setisReporttModal,
@@ -28,7 +26,7 @@ export default function ReportModal({
     adminAPIs.AdamageReport(ReportContent.id, ReportContent.category, "3");
   };
   return (
-    <Modal isAlertModal isOpen={isReportModal} onClose={() => setIsModal}>
+    <Modal isAlertModal onClose={() => setIsModal}>
       <Modal.TitleWrapper>
         <Modal.Title>댓글 신고</Modal.Title>
         <Modal.Description>
