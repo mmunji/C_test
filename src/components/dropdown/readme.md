@@ -27,7 +27,7 @@
 ### type === 'icon'
 
 ```jsx
-<Dropdown type="genre">
+<Dropdown type="icon">
   <Dropdown.Trigger>
     <div className="bg-blue-500 text-white">아무거나</div>
   </Dropdown.Trigger>
