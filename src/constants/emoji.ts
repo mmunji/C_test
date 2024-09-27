@@ -4,7 +4,7 @@ export const EMOJI_MAP = [
   { name: "수사대장", id: 80 },
   { name: "사랑꾼", id: 10749 },
   { name: "웃음사냥꾼", id: 35 },
-  { name: "호그와트생", id: 14 },
+  { name: "유니콘", id: 14 },
   { name: "유명한탐정", id: 9648 },
   { name: "신비주의", id: 878 },
   { name: "소오름", id: 27 },
