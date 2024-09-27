@@ -29,7 +29,7 @@ export default function HistoryLog({ log }: HistoryLogProps) {
         acc[day].push(review);
         return acc;
       }, {}),
-    [log],
+    [sortedLog],
   );
 
   if (currentTab !== "평가로그") return null;

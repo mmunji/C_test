@@ -1,7 +1,8 @@
+import Image from "next/image";
+
 import { EMOJI_MAP } from "@/constants/emoji";
 import { cn } from "@/utils/cn";
 import getEmoji from "@/utils/getEmoji";
-import Image from "next/image";
 
 interface BadgeItemProps {
   badge: BadgeCount | undefined;

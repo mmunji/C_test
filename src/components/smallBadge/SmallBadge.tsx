@@ -1,9 +1,10 @@
+import Image from "next/image";
 import React from "react";
+
+import { cn } from "@/utils/cn";
 
 import getEmoji from "../../utils/getEmoji";
 import hexToRGBA from "../../utils/hexToRGBA";
-import Image from "next/image";
-import { cn } from "@/utils/cn";
 
 interface SmallBadgeProps {
   content: Badge;

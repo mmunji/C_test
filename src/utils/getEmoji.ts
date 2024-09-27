@@ -1,7 +1,7 @@
 import { StaticImageData } from "next/image";
+
 import {
   ActionBadge,
-  TVBadge,
   AdventureBadge,
   AnimationBadge,
   ComedyBadge,
@@ -16,9 +16,10 @@ import {
   MusicBadge,
   MysteryBadge,
   RomanceBadge,
-  ThrillerBadge,
-  WesternBadge,
   SFBadge,
+  ThrillerBadge,
+  TVBadge,
+  WesternBadge,
 } from "../../public/images";
 
 export default function getEmoji(content: Badge) {
