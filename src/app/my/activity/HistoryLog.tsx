@@ -37,9 +37,9 @@ export default function HistoryLog({ log }: HistoryLogProps) {
       {Object.entries(groupedReviews).map(([yearMonth, review]) => (
         <div
           key={yearMonth}
-          className="relative flex flex-col gap-5 Tablet:gap-6"
+          className="relative mb-5 flex flex-col gap-5 Tablet:mb-6 Tablet:gap-6"
         >
-          <div className="absolute left-[30px] top-8 -z-10 h-[calc(100%-12px)] w-px bg-D2_Gray Tablet:left-[47px]"></div>
+          <div className="absolute left-[30px] top-8 -z-10 h-[calc(100%-16px)] w-px bg-D2_Gray Tablet:left-[47px] Tablet:h-[calc(100%-12px)]"></div>
           <div>
             <p className="text-Silver Text-l-Bold">{yearMonth}</p>
           </div>
