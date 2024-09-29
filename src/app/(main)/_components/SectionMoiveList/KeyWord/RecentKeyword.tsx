@@ -1,9 +1,12 @@
 "use client";
+import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import { movieAPIs } from "@/services/movie/movieAPIs";
 
+import { ChevronRight } from "../../../../../../public/icons";
 import RightKeyWords from "./RightKeyWords";
 export default function RecentKeyword() {
   const [MentionKeywords, setMentionKewords] = useState<MentionKeword[]>([]);
@@ -29,9 +32,14 @@ export default function RecentKeyword() {
   }
   return (
     <div className="flex flex-col gap-[20px]">
-      <h1 className="Text-l-Bold Laptop:Text-xxl-Bold Desktop:Text-xxl-Bold">
-        지금 많이 언급되는 키워드
-      </h1>
+      <div className="flex justify-between">
+        <h1 className="Text-l-Bold Laptop:Text-xxl-Bold Desktop:Text-xxl-Bold">
+          지금 많이 언급되는 키워드
+        </h1>
+        <span className="text-D3_Gray Text-xs-Regular Tablet:Text-s-Regular">
+          매일 밤 12시 업데이트
+        </span>
+      </div>
       <div className="flex flex-col items-start gap-[24px]  Laptop:flex-row">
         <div className="flex Laptop:hidden">
           <Swiper slidesPerView="auto" spaceBetween={1}>
@@ -72,6 +80,12 @@ export default function RecentKeyword() {
           ""
         )}
       </div>
+      <Link
+        className="flex items-center justify-end gap-1 text-Gray_Orange Text-m-Medium"
+        href={`search?query=${MentionKeywords[KeywordListNumber]?.keyword}`}
+      >
+        더보기 <Image src={ChevronRight} alt="화살표" />
+      </Link>
     </div>
   );
 }

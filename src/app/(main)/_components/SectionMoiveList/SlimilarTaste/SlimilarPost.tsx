@@ -59,6 +59,7 @@ export default function SlimilarPost({
                       heart={ReviewUser.reviewCount}
                       value={PickUserNumber}
                       Badge={ReviewUser.badges}
+                      profile={ReviewUser.profile}
                       ClickIndex={index}
                       onClick={() => ChangePickNumber(index)}
                     />

@@ -17,6 +17,7 @@ interface PostNumber {
   likeCount?: number;
   reviewCount?: number;
   background?: string;
+  MobilePost?: string;
 }
 
 export default function PostCard({
@@ -30,6 +31,7 @@ export default function PostCard({
   likeCount,
   reviewCount,
   background,
+  MobilePost,
 }: PostNumber) {
   const [onMouseHover, SetMouseHover] = useState(false);
   const HandleMouseOver = () => {
@@ -93,13 +95,13 @@ export default function PostCard({
       )}
       {PostType && onMouseHover ? (
         <div
-          className="line-clamp-6 flex h-[358px] w-[238px] items-center rounded-xl px-5 py-7  Text-m-Regular Tablet:h-[390px]  Tablet:w-[260px] Laptop:h-[260px] Laptop:w-[174px] Desktop:h-[360px] Desktop:w-[240px]"
+          className=" flex h-[358px] w-[238px] items-center rounded-xl px-5 py-7  Text-m-Regular Tablet:h-[390px]  Tablet:w-[260px] Laptop:h-[260px] Laptop:w-[174px] Desktop:h-[360px] Desktop:w-[240px]"
           style={{
             backdropFilter: "blur(5px)",
             background: "rgba(0, 0, 0, 0.50)",
           }}
         >
-          {content}
+          <span className="Desktop:line-clamp-9 line-clamp-6"> {content}</span>
         </div>
       ) : (
         ""

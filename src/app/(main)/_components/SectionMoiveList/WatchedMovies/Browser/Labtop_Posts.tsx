@@ -21,7 +21,11 @@ export default function Labtop_Posts({ MovieWatchMovies }: WatchMovieType) {
                     className={`${device == "laptop" ? "h-[328px] w-[174px]" : "h-[440px] w-[220px]"}`}
                   >
                     <div className="flex flex-col  gap-2 ">
-                      <PostCard PostType="Post" background={e.poster_path} />
+                      <PostCard
+                        PostType="Post"
+                        background={e.poster_path}
+                        content={e.overview}
+                      />
                       <div className="flex flex-col gap-1">
                         <span className="line-clamp-1 text-left text-Gray_Orange">
                           {e.movienm}

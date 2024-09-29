@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useCallback, useEffect, useState } from "react";
 
-import { ChevronDown } from "@/../public/icons";
+import { CaretDownMd, ChevronDown, Filter } from "@/../public/icons";
 import Button from "@/components/buttons/Button";
 import Dropdown from "@/components/dropdown/dropdown";
 import LoadingSpinner from "@/components/loadingSpinner/LoadingSpinner";
@@ -44,7 +44,7 @@ export default function MoiveTopRank() {
   const [MovieTopTenData, setMovieTopTenData] = useState<Movie_TopTen | null>(
     null,
   );
-
+  const [CategoryisOpen, setCategoryisOpen] = useState(false);
   // const MovieMasterPiece: MovieHidingPiece = await movieAPIs.getHidingPiece();
   useEffect(() => {
     const fetchMovie = async () => {
@@ -63,25 +63,37 @@ export default function MoiveTopRank() {
       <div className="flex justify-between">
         <div className="flex items-center gap-[24px]">
           <h1 className="Text-l-Bold Laptop:Text-xxl-Bold">영화 톡 TOP 10</h1>
-          <Dropdown type="genre">
-            <Dropdown.Trigger>
-              <div className="text-white">전체</div>
-            </Dropdown.Trigger>
+          <div className="flex gap-1">
+            <Dropdown type="genre">
+              <Dropdown.Trigger>
+                <button className="flex items-center gap-1 text-white">
+                  전체
+                  <Image
+                    src={CaretDownMd}
+                    alt="더보기"
+                    className="cursor-pointer"
+                  />
+                </button>
+              </Dropdown.Trigger>
 
-            <Dropdown.List>
-              {MovieGenreType.map((genre, index) => {
-                return (
-                  <Dropdown.Item
-                    key={index}
-                    onClick={() => setFilter(genre.index)}
-                  >
-                    {genre.name}
-                  </Dropdown.Item>
-                );
-              })}
-            </Dropdown.List>
-          </Dropdown>
+              <Dropdown.List>
+                {MovieGenreType.map((genre, index) => {
+                  return (
+                    <Dropdown.Item
+                      key={index}
+                      onClick={() => setFilter(genre.index)}
+                    >
+                      {genre.name}
+                    </Dropdown.Item>
+                  );
+                })}
+              </Dropdown.List>
+            </Dropdown>
+          </div>
         </div>
+        <span className="Text-xs-Medium text-D3_Gray Tablet:Text-s-Medium">
+          매월 업데이트
+        </span>
       </div>
       {!MovieTopTenData ? (
         <div className="flex items-center justify-center px-5 py-5">
