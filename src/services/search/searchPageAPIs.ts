@@ -14,7 +14,11 @@ export const searchPageAPIs = {
     return data;
   },
   getRelatedKeywords: async (key: string) => {
-    const data = await customFetchInstance.fetch<string[]>(`/find/PopularFind`);
+    const data = await customFetchInstance.fetch<string[]>(
+      `/find/PopularFind`,
+      "GET",
+      { next: { revalidate: 3600 } },
+    );
     return data;
   },
 };
