@@ -1,12 +1,13 @@
 import clsx from "clsx";
 import Image from "next/image";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 
 import SearchListHeader from "@/app/search/_components/list/Header";
 import SearchPlaceholder from "@/app/search/_components/placeholders/SearchPlaceholder";
 import useDeviceLimits from "@/app/search/_hooks/useDeviceLimits";
-import useQueryString from "@/app/search/_hooks/useQueryString";
 import ROUTES from "@/constants/routes";
+import useSearchTabStore from "@/stores/useTabStore";
 
 import { StarFillSm } from "../../../../../public/icons";
 
@@ -19,13 +20,14 @@ export default function SearchReviewList({
   reviews,
   relatedKeywords,
 }: SearchReviewListProps) {
-  const { query, tab } = useQueryString();
+  const searchParams = useSearchParams();
+  const query = searchParams.get("query");
+  const { activeSearchTab } = useSearchTabStore();
   const sortedMovieList = useDeviceLimits<ReviewResult>({
     category: "talk",
     data: reviews,
   });
-  const activeTab = !tab ? "전체" : tab;
-  const data = activeTab === "전체" ? sortedMovieList : reviews;
+  const data = activeSearchTab === "전체" ? sortedMovieList : reviews;
 
   const highlightedText = (text: string, query: string | null) => {
     if (!query) return text;
@@ -45,7 +47,7 @@ export default function SearchReviewList({
     return text;
   };
 
-  if (tab === "영화") return null;
+  if (activeSearchTab.includes("영화")) return null;
   return (
     <div className="flex flex-col gap-3 Tablet:gap-2 Laptop:gap-5">
       <SearchListHeader category="톡" length={reviews?.length} />

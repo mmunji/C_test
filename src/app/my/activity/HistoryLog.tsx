@@ -1,8 +1,6 @@
-"use client";
 import dayjs from "dayjs";
 import Image from "next/image";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
 import { useMemo } from "react";
 
 import Placeholder from "@/app/my/_components/Placeholder";
@@ -13,26 +11,21 @@ import { NoImageSsikongi } from "../../../../public/images";
 
 interface HistoryLogProps {
   log: Log[];
+  activeFilter: Filter;
 }
 
-export default function HistoryLog({ log }: HistoryLogProps) {
-  const searchParams = useSearchParams();
-  const currentTab = searchParams.get("tab");
-  const currentFilter = searchParams.get("sort");
-
-  const sortedLog = currentFilter === "asc" ? log.reverse() : log;
-  const groupedReviews = useMemo(
-    () =>
-      sortedLog.reduce((acc: { [key: string]: Log[] }, review: Log) => {
-        const day = dayjs(review.createdAt).format("YYYY.MM");
-        if (!acc[day]) acc[day] = [];
-        acc[day].push(review);
-        return acc;
-      }, {}),
-    [sortedLog],
+export default function HistoryLog({ log, activeFilter }: HistoryLogProps) {
+  const sortedLog = activeFilter === "asc" ? log.reverse() : log;
+  const groupedReviews = sortedLog.reduce(
+    (acc: { [key: string]: Log[] }, review: Log) => {
+      const day = dayjs(review.createdAt).format("YYYY.MM");
+      if (!acc[day]) acc[day] = [];
+      acc[day].push(review);
+      return acc;
+    },
+    {},
   );
 
-  if (currentTab !== "평가로그") return null;
   if (!log.length) return <Placeholder type="log" />;
   return (
     <div className="">

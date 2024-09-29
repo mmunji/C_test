@@ -5,8 +5,8 @@ import Link from "next/link";
 import SearchListHeader from "@/app/search/_components/list/Header";
 import SearchPlaceholder from "@/app/search/_components/placeholders/SearchPlaceholder";
 import useDeviceLimits from "@/app/search/_hooks/useDeviceLimits";
-import useQueryString from "@/app/search/_hooks/useQueryString";
 import ROUTES from "@/constants/routes";
+import useSearchTabStore from "@/stores/useTabStore";
 
 interface SearchMovieListProps {
   movies: MovieResult[];
@@ -17,14 +17,13 @@ export default function SearchMovieList({
   movies,
   relatedKeywords,
 }: SearchMovieListProps) {
-  const { tab } = useQueryString();
+  const { activeSearchTab } = useSearchTabStore();
   const sortedMovieList = useDeviceLimits<MovieResult>({
     category: "movie",
     data: movies,
   });
-  const activeTab = !tab ? "전체" : tab;
-  const data = activeTab === "전체" ? sortedMovieList : movies;
-  if (tab === "톡") return null;
+  const data = activeSearchTab === "전체" ? sortedMovieList : movies;
+  if (activeSearchTab.includes("톡")) return null;
   return (
     <div className="flex flex-col gap-3 Tablet:gap-2 Laptop:gap-5">
       <SearchListHeader category="영화" length={movies?.length} />

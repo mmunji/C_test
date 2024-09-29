@@ -1,8 +1,5 @@
-import { Suspense } from "react";
-
 import KeywordList from "@/app/search/_components/placeholders/KeywordList";
-import { KeywordsSkeleton } from "@/app/search/_components/skeletons/Skeleton";
-import useQueryString from "@/app/search/_hooks/useQueryString";
+import useSearchTabStore from "@/stores/useTabStore";
 
 const MESSAGE_MAP = [
   "아쉽게도 검색 결과가 없어요.",
@@ -32,10 +29,10 @@ export default function SearchPlaceholder({
   relatedKeywords: string[];
   isAlone?: boolean;
 }) {
-  const { tab } = useQueryString();
-  const activeTab = !tab ? "전체" : tab;
-  const tabIndex = tab === "영화" ? 1 : tab === "톡" ? 2 : 0;
-  if (activeTab === "전체" && isAlone) {
+  const { activeSearchTab } = useSearchTabStore();
+  const tabIndex =
+    activeSearchTab === "영화" ? 1 : activeSearchTab.includes("톡") ? 2 : 0;
+  if (activeSearchTab === "전체" && isAlone) {
     return (
       <div className="text-Gray Text-m-Bold Tablet:Text-l-Bold">
         {TAB_MAP[tabIndex]} 검색 결과가 없어요.

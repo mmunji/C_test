@@ -1,6 +1,4 @@
-import ActivityHeader from "@/app/my/activity/Header";
-import HistoryLog from "@/app/my/activity/HistoryLog";
-import ReviewList from "@/app/my/activity/ReviewList";
+import ActivityContainer from "@/app/my/activity/Container";
 import { myAPIs } from "@/services/my/myAPIs";
 import { cn } from "@/utils/cn";
 
@@ -23,9 +21,7 @@ export default async function Activity({ isMobile = false }: ActivityProps) {
       <h2 className="hidden Text-m-Bold Tablet:block Tablet:Text-l-Bold">
         내 활동
       </h2>
-      <ActivityHeader logLength={log.length} reviewLength={reviews.length} />
-      <ReviewList reviews={reviews} />
-      <HistoryLog log={log} />
+      <ActivityContainer log={log} reviews={reviews} />
     </section>
   );
 }

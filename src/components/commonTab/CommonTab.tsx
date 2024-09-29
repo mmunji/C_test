@@ -12,13 +12,15 @@ import useDevice from "@/hooks/useDevice";
 interface CastAndCrewTab {
   tabs: string[];
   activeTab: string;
-  setActiveTab: Dispatch<SetStateAction<string>>;
+  setActiveTab: (type: string) => void | Dispatch<SetStateAction<string>>;
+  cb?: () => void;
 }
 
 export default function CommonTab({
   tabs,
   activeTab,
   setActiveTab,
+  cb,
 }: PropsWithChildren<CastAndCrewTab>) {
   const [widths, setWidths] = useState<(number | undefined)[]>([]);
   const buttonRefs = useRef<(HTMLButtonElement | null)[]>([]);
@@ -39,7 +41,10 @@ export default function CommonTab({
             }}
             key={i}
             className={`px-3 pb-2 pt-1 Text-m-Bold Laptop:Text-l-Bold ${activeTab === tab ? "text-Silver" : "text-Gray"}`}
-            onClick={() => setActiveTab(tab)}
+            onClick={() => {
+              setActiveTab(tab);
+              cb && cb();
+            }}
           >
             {tab}
           </button>

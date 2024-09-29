@@ -1,64 +1,52 @@
-"use client";
-
 import Image from "next/image";
-import Link from "next/link";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
-import Tab, { TabButton } from "@/app/search/_components/Tab";
-import useQueryString from "@/app/search/_hooks/useQueryString";
 import Button from "@/components/buttons/Button";
+import CommonTab from "@/components/commonTab/CommonTab";
 import Dropdown from "@/components/dropdown/dropdown";
 
 import { Filter } from "../../../../public/icons";
 
 interface ActivityHeaderProps {
-  reviewLength: number;
-  logLength: number;
+  tabs: string[];
+  activeTab: string;
+  setActiveTab: React.Dispatch<React.SetStateAction<string>>;
+  activeFilter: Filter;
+  setActiveFilter: React.Dispatch<React.SetStateAction<Filter>>;
 }
 
 const filterMap = { desc: "최신순", asc: "오래된순", like: "좋아요순" };
 
 export default function ActivityHeader({
-  logLength,
-  reviewLength,
+  activeTab,
+  setActiveTab,
+  tabs,
+  activeFilter,
+  setActiveFilter,
 }: ActivityHeaderProps) {
-  const searchParams = useSearchParams();
-  const { tab, filter } = useQueryString();
-  const activeTab = !tab ? "톡" : tab;
-  const router = useRouter();
-  const pathname = usePathname();
-  const handleChangeSort = (sort: "desc" | "asc" | "like") => {
-    const params = new URLSearchParams(searchParams);
-    params.set("sort", sort);
-    router.push(`${pathname}?${params}`, { scroll: false });
-  };
   return (
     <div className="flex items-center justify-between">
-      <Tab>
-        <TabButton isDefault>톡 {reviewLength}</TabButton>
-        <TabButton>평가로그 {logLength}</TabButton>
-      </Tab>
+      <CommonTab
+        cb={() => setActiveFilter("desc")}
+        activeTab={activeTab}
+        setActiveTab={setActiveTab}
+        tabs={tabs}
+      />
       <Dropdown>
         <Dropdown.Trigger>
           <Button variant={"textIconL"} className="Text-s-Medium">
             <Image alt="필터 아이콘" src={Filter} />
-            <span>
-              {filterMap?.[filter as keyof typeof filterMap] ||
-                filterMap["desc"]}
-            </span>
+            <span>{filterMap[activeFilter]}</span>
           </Button>
         </Dropdown.Trigger>
         <Dropdown.List>
-          <Dropdown.Item onClick={() => handleChangeSort("desc")}>
-            <Link scroll={false} href={{ query: { tab, filter: "desc" } }}>
-              최신순
-            </Link>
+          <Dropdown.Item onClick={() => setActiveFilter("desc")}>
+            최신순
           </Dropdown.Item>
-          <Dropdown.Item onClick={() => handleChangeSort("asc")}>
+          <Dropdown.Item onClick={() => setActiveFilter("asc")}>
             오래된순
           </Dropdown.Item>
-          {activeTab === "톡" && (
-            <Dropdown.Item onClick={() => handleChangeSort("like")}>
+          {activeTab === tabs[0] && (
+            <Dropdown.Item onClick={() => setActiveFilter("like")}>
               좋아요순
             </Dropdown.Item>
           )}
