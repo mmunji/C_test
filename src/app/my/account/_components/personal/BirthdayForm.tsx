@@ -90,7 +90,7 @@ export default function BirthdayForm({ birthday }: BirthdayFormProps) {
 
   return (
     <form className="flex" onSubmit={handleBirthdaySubmit}>
-      <div className="flex flex-1 gap-5 Tablet:gap-1">
+      <div className="flex flex-1 items-center gap-5 Tablet:gap-1">
         <AccountFormLabel>생년월일</AccountFormLabel>
         {isEditing ? (
           <div className="flex flex-col Tablet:flex-row Tablet:gap-2">

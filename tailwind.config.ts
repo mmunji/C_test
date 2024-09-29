@@ -41,6 +41,15 @@ const config: Config = {
       fontFamily: {
         pretendard: ["var(--font-pretendard)"],
       },
+      height: {
+        xxxl: "48px",
+        xxl: "39px",
+        xl: "34px",
+        lg: "28px",
+        md: "24px",
+        sm: "21px",
+        xs: "17px",
+      },
       colors: {
         BG: "#262626",
         Black: "#1e1e1e",

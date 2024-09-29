@@ -54,7 +54,7 @@ export default async function UserInfo() {
                 </div>
               ))
             ) : (
-              <div className="flex cursor-default items-center gap-1 rounded-lg border border-dashed border-Gray px-2 py-1 text-Gray Tablet:px-3 Tablet:py-2">
+              <div className="flex cursor-default items-center gap-1 rounded-lg border-Gray px-2 py-1 text-Gray outline-dashed Tablet:px-3 Tablet:py-2">
                 <Image
                   src={AddPlus}
                   alt="뱃지 추가 아이콘"

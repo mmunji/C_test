@@ -5,7 +5,7 @@ export const myAPIs = {
     return customFetchInstance.authFetch<MyInfo>(
       "/my/userInfo",
       "GET",
-      {},
+      { next: { revalidate: 3600 } },
       true,
     );
   },

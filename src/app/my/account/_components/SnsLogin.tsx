@@ -1,15 +1,13 @@
 import Image from "next/image";
 
 import { LogoutButton } from "@/app/my/_components/buttons";
+import { myAPIs } from "@/services/my/myAPIs";
 
 import { Kakao, Naver } from "../../../../../public/icons";
 
-interface SnsLoginProps {
-  provider: string;
-}
-
-export default async function SnsLogin({ provider }: SnsLoginProps) {
-  const oauthProvider = provider === "kakao" ? "kakao" : "naver";
+export default async function SnsLogin() {
+  const user = await myAPIs.getUser();
+  const oauthProvider = user.provider === "kakao" ? "kakao" : "naver";
   return (
     <div className="flex items-center gap-3 rounded-xl bg-D1_Gray px-4 py-2 Text-s-Medium Tablet:px-8 Tablet:py-4 Tablet:Text-m-Medium">
       <div className="flex flex-1 items-center gap-4">
