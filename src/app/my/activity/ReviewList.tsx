@@ -9,7 +9,7 @@ interface ReviewListProps {
 export default function ReviewList({ reviews, activeFilter }: ReviewListProps) {
   const getSortedReviews = () => {
     let sortedReviews: PostreviewDTO[];
-    if (activeFilter === "asc") sortedReviews = reviews.reverse();
+    if (activeFilter === "asc") sortedReviews = [...reviews].reverse();
     else if (activeFilter === "like")
       sortedReviews = reviews.sort((a, b) => b.rateCount - a.rateCount);
     else sortedReviews = reviews;

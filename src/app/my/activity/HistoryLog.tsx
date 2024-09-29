@@ -1,7 +1,6 @@
 import dayjs from "dayjs";
 import Image from "next/image";
 import Link from "next/link";
-import { useMemo } from "react";
 
 import Placeholder from "@/app/my/_components/Placeholder";
 import ROUTES from "@/constants/routes";
@@ -15,7 +14,7 @@ interface HistoryLogProps {
 }
 
 export default function HistoryLog({ log, activeFilter }: HistoryLogProps) {
-  const sortedLog = activeFilter === "asc" ? log.reverse() : log;
+  const sortedLog = activeFilter === "asc" ? [...log].reverse() : log;
   const groupedReviews = sortedLog.reduce(
     (acc: { [key: string]: Log[] }, review: Log) => {
       const day = dayjs(review.createdAt).format("YYYY.MM");
