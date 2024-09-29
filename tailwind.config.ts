@@ -48,7 +48,7 @@ const config: Config = {
         lg: "28px",
         md: "24px",
         sm: "21px",
-        xs: "17px",
+        xs: "16.8px",
       },
       colors: {
         BG: "#262626",

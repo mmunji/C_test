@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 
 import KeywordList from "@/app/search/_components/placeholders/KeywordList";
-import { KeywordsSkeleton } from "@/app/search/_components/skeletons/Skeletons";
+import { KeywordsSkeleton } from "@/app/search/_components/skeletons/Skeleton";
 import useQueryString from "@/app/search/_hooks/useQueryString";
 
 const MESSAGE_MAP = [

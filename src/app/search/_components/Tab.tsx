@@ -5,6 +5,7 @@ import React, { useEffect, useRef, useState } from "react";
 
 import useQueryString from "@/app/search/_hooks/useQueryString";
 import useDevice from "@/hooks/useDevice";
+import { cn } from "@/utils/cn";
 
 export default function Tab({ children }: { children: React.ReactNode }) {
   const tabsRef = useRef<HTMLDivElement>(null);
@@ -40,16 +41,13 @@ export default function Tab({ children }: { children: React.ReactNode }) {
     .reduce((acc, width) => acc + width, 0);
 
   return (
-    <div
-      ref={tabsRef}
-      className="relative h-fit max-h-[40px] w-fit select-none text-md"
-    >
+    <div ref={tabsRef} className="relative w-fit select-none text-md">
       {children}
       <div
         style={{
           transform: `translateX(${translateX + tabWidths[activeTabIndex] / 2 - 10}px)`,
         }}
-        className="absolute -bottom-[4px] h-0.5 w-5 bg-Primary transition-all duration-300 ease-out"
+        className="absolute bottom-[3px] h-0.5 w-5 bg-Primary transition-all duration-300 ease-out"
       />
     </div>
   );
@@ -58,9 +56,11 @@ export default function Tab({ children }: { children: React.ReactNode }) {
 export function TabButton({
   children,
   isDefault = false,
+  isSearchPage = false,
 }: {
   children: React.ReactNode;
   isDefault?: boolean;
+  isSearchPage?: boolean;
 }) {
   const { query, tab } = useQueryString();
   const tabName = children?.toString().split(" ")[0];
@@ -68,7 +68,12 @@ export function TabButton({
   return (
     <Link
       scroll={false}
-      className={`px-3 pb-2 pt-1 Text-m-Bold Laptop:Text-l-Bold ${isActiveTab ? "text-Silver" : "text-Gray"}`}
+      className={cn(
+        `inline-block h-10 px-3 py-2 text-Gray Text-m-Medium Tablet:Text-l-Medium`,
+        isActiveTab && "text-Silver Text-m-Bold Tablet:Text-l-Bold",
+        isSearchPage && "Tablet:Text-m-Medium",
+        isSearchPage && isActiveTab && "Tablet:Text-m-Bold",
+      )}
       href={{ query: { tab: tabName, ...(query && { query }) } }}
     >
       {children}

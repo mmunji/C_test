@@ -93,7 +93,7 @@ export default function SearchReviewList({
                 </div>
               </div>
               <div className="hidden h-[1px] w-full bg-D2_Gray Tablet:block" />
-              <div className="line-clamp-3 break-words text-Gray_Orange Text-s-Regular Tablet:line-clamp-4 Tablet:Text-m-Regular">
+              <div className="line-clamp-3 h-[63px] break-words text-Gray_Orange Text-s-Regular Tablet:line-clamp-4 Tablet:h-[96px] Tablet:Text-m-Regular">
                 {highlightedText(talk.reviewDTO.content, query)}
               </div>
               <div className="text-L_Gray Text-s-Regular Tablet:Text-m-Medium">

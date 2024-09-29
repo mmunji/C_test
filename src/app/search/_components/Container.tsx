@@ -34,9 +34,11 @@ export default async function SearchContainer({ query }: SearchContainerProps) {
           )}
         >
           <Tab>
-            <TabButton isDefault>전체</TabButton>
-            <TabButton>영화 {movies.length}</TabButton>
-            <TabButton>톡 {reviews.length}</TabButton>
+            <TabButton isSearchPage isDefault>
+              전체
+            </TabButton>
+            <TabButton isSearchPage>영화 {movies.length}</TabButton>
+            <TabButton isSearchPage>톡 {reviews.length}</TabButton>
           </Tab>
         </div>
       </div>

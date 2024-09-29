@@ -65,10 +65,10 @@ input::-webkit-search-results-decoration {
     @apply text-sm font-Regular leading-150;
   }
   .Text-xs-Bold {
-    @apply text-xs font-Bold leading-150;
+    @apply text-xs font-Bold leading-140;
   }
   .Text-xs-Regular {
-    @apply text-xs font-Medium leading-150;
+    @apply text-xs font-Medium leading-140;
   }
   .badge-gradient {
     background: linear-gradient(214deg, #9d3c1e 0%, #0c4b5f 100%);
