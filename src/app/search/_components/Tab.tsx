@@ -13,14 +13,8 @@ export default function Tab({ movieLength, reviewLength }: TabProps) {
   const { activeSearchTab, setActiveSearchTab } = useSearchTabStore();
 
   useEffect(() => {
-    console.log("랜더링1");
-    setActiveSearchTab("전체");
-    return () => {
-      setActiveSearchTab("전체");
-    };
+    return () => setActiveSearchTab("전체");
   }, [setActiveSearchTab]);
-  console.log({ activeSearchTab });
-  console.log("랜더링2");
 
   return (
     <CommonTab

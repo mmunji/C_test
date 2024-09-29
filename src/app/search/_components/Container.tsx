@@ -9,6 +9,7 @@ interface SearchContainerProps {
 }
 
 export default async function SearchContainer({ query }: SearchContainerProps) {
+  await new Promise((resolve) => setTimeout(resolve, 5000));
   const [movies, reviews, relatedKeywords] = await Promise.all([
     searchPageAPIs.getMovies(query),
     searchPageAPIs.getReviews(query),

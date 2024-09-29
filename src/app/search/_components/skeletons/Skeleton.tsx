@@ -5,8 +5,8 @@ export function SearchSkeleton() {
     <div className="mx-auto px-5 Tablet:px-6 Laptop:max-w-[1144px] Laptop:px-0 Desktop:max-w-[1560px]">
       <div className="">
         <TextSkeleton className="h-lg w-[250px] Tablet:h-[33.6px]" />
-        <div className="my-3 flex h-10 items-center Tablet:mb-3 Tablet:mt-4 Laptop:mb-6 Laptop:mt-7 Desktop:mb-6 Desktop:mt-11">
-          <TextSkeleton className="h-6 w-[170px]" />
+        <div className="my-3 flex h-9 items-center Tablet:mb-3 Tablet:mt-4 Tablet:h-10 Laptop:mb-6 Laptop:mt-7 Desktop:mb-6 Desktop:mt-11">
+          <TextSkeleton className="h-md w-[150px] Tablet:h-lg Tablet:w-[160px] Laptop:h-xl Laptop:w-[190px]" />
         </div>
       </div>
       <div className="mb-[100px] Tablet:mb-[160px] Laptop:mb-[180px] Desktop:mb-[200px]">
@@ -21,11 +21,25 @@ export function SearchSkeleton() {
 function SearchMovieListSkeleton() {
   return (
     <div className="flex flex-col gap-3 Tablet:gap-2 Laptop:gap-5">
-      <div className="flex h-10 items-center justify-between">
-        <TextSkeleton className="h-lg w-[100px]" />
-        <TextSkeleton className="h-[21px] w-[80px] Laptop:h-6" />
+      <div className="flex h-[37px] items-center justify-between Tablet:h-10">
+        <TextSkeleton className="h-lg w-[60px]" />
+        <TextSkeleton className="h-6 w-[90px] Tablet:h-8" />
       </div>
-      <div className="grid grid-cols-2 gap-2 Tablet:grid-cols-3 Tablet:gap-5 Laptop:grid-cols-6 Desktop:gap-6">
+      <div className="grid grid-cols-2 gap-2 Tablet:hidden Tablet:grid-cols-3 Tablet:gap-5 Laptop:grid-cols-6 Desktop:gap-6">
+        {Array(4)
+          .fill("movieItem")
+          .map((_, i) => (
+            <SearchMovieItemSkeleton key={i} />
+          ))}
+      </div>
+      <div className="hidden grid-cols-2 gap-2 Tablet:grid Tablet:grid-cols-3 Tablet:gap-5 Laptop:hidden Laptop:grid-cols-6 Desktop:gap-6">
+        {Array(9)
+          .fill("movieItem")
+          .map((_, i) => (
+            <SearchMovieItemSkeleton key={i} />
+          ))}
+      </div>
+      <div className="hidden grid-cols-2 gap-2 Tablet:hidden Tablet:grid-cols-3 Tablet:gap-5 Laptop:grid Laptop:grid-cols-6 Desktop:gap-6">
         {Array(6)
           .fill("movieItem")
           .map((_, i) => (
@@ -54,12 +68,33 @@ function SearchMovieItemSkeleton() {
 function SearchReviewListSkeleton() {
   return (
     <div className="flex flex-col gap-3 Tablet:gap-2 Laptop:gap-5">
-      <div className="flex h-10 items-center justify-between">
-        <TextSkeleton className="h-lg w-[100px]" />
-        <TextSkeleton className="h-[21px] w-[80px] Laptop:h-6" />
+      <div className="flex h-[37px] items-center justify-between Tablet:h-10">
+        <TextSkeleton className="h-lg w-[60px]" />
+        <TextSkeleton className="h-6 w-[90px] Tablet:h-8" />
       </div>
-      <div className="flex flex-col gap-3 Tablet:grid Tablet:grid-cols-2 Tablet:gap-5 Laptop:grid-cols-3 Desktop:grid-cols-4">
+      <div className="flex flex-col gap-3 Tablet:hidden Tablet:grid-cols-2 Tablet:gap-5 Laptop:grid-cols-3 Desktop:grid-cols-4">
+        {Array(4)
+          .fill("reviewItem")
+          .map((_, i) => (
+            <SearchReviewItemSkeleton key={i} />
+          ))}
+      </div>
+      <div className="hidden flex-col gap-3 Tablet:grid Tablet:grid-cols-2 Tablet:gap-5 Laptop:hidden Laptop:grid-cols-3 Desktop:hidden Desktop:grid-cols-4">
+        {Array(6)
+          .fill("reviewItem")
+          .map((_, i) => (
+            <SearchReviewItemSkeleton key={i} />
+          ))}
+      </div>
+      <div className="hidden flex-col gap-3 Tablet:hidden Tablet:grid-cols-2 Tablet:gap-5 Laptop:grid Laptop:grid-cols-3 Desktop:hidden Desktop:grid-cols-4">
         {Array(9)
+          .fill("reviewItem")
+          .map((_, i) => (
+            <SearchReviewItemSkeleton key={i} />
+          ))}
+      </div>
+      <div className="hidden flex-col gap-3 Tablet:hidden Tablet:grid-cols-2 Tablet:gap-5 Laptop:hidden Laptop:grid-cols-3 Desktop:grid Desktop:grid-cols-4">
+        {Array(12)
           .fill("reviewItem")
           .map((_, i) => (
             <SearchReviewItemSkeleton key={i} />

@@ -11,7 +11,7 @@ export default async function Page({
 }) {
   return (
     <div className="mt-3 Tablet:mt-4 Laptop:mt-8 Desktop:mt-16">
-      <Suspense fallback={<SearchSkeleton />}>
+      <Suspense key={searchParams.query} fallback={<SearchSkeleton />}>
         <SearchContainer query={searchParams.query} />
       </Suspense>
       <Footer />

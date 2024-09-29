@@ -1,9 +1,5 @@
-import Image from "next/image";
-
 import { TextSkeleton } from "@/app/my/_components/skeletons/Skeleton";
 import Button from "@/components/buttons/Button";
-
-import { MoreHorizontal } from "../../../../../public/icons";
 
 export function UserInfoSkeletons() {
   return (
@@ -102,8 +98,8 @@ export function ActivitySkeleton({ isMobile = false }: { isMobile?: boolean }) {
         내 활동
       </h2>
       <div className="flex h-10 items-center justify-between">
-        <TextSkeleton className="h-md w-[150px] Tablet:h-lg" />
-        <TextSkeleton className="h-sm w-[90px] Tablet:h-md" />
+        <TextSkeleton className="h-md w-[150px] Tablet:h-lg Tablet:w-[160px] Laptop:h-xl Laptop:w-[180px]" />
+        <TextSkeleton className="h-md w-[90px] Tablet:h-lg" />
       </div>
       <div className="grid grid-cols-1 gap-5 Tablet:grid-cols-2 Tablet:gap-5 Laptop:gap-6">
         {Array(8)
