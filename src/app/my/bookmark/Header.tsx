@@ -27,7 +27,7 @@ export default function BookmarkHeader({
         ) : (
           <>
             <span className="hidden Tablet:block">
-              찜한 작품 {movies.length}개
+              찜한 영화 {movies.length}개
             </span>
             <span className="block Tablet:hidden">총 {movies.length}개</span>
           </>

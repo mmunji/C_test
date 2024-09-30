@@ -36,6 +36,14 @@ export default function BirthdayForm({ birthday }: BirthdayFormProps) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
+  const handleEscape = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Escape") {
+      setIsEditing(false);
+      setError(false);
+      setNewBirthday({ day, month, year });
+    }
+  };
+
   const handleBirthdaySubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     ["month", "day"].forEach((field) =>
@@ -82,12 +90,13 @@ export default function BirthdayForm({ birthday }: BirthdayFormProps) {
 
   return (
     <form className="flex" onSubmit={handleBirthdaySubmit}>
-      <div className="flex flex-1 gap-5 Tablet:gap-1">
+      <div className="flex flex-1 items-center gap-5 Tablet:gap-1">
         <AccountFormLabel>생년월일</AccountFormLabel>
         {isEditing ? (
           <div className="flex flex-col Tablet:flex-row Tablet:gap-2">
             <div className="flex h-10 items-center gap-1">
               <input
+                onKeyDown={handleEscape}
                 placeholder="년도"
                 type="string"
                 maxLength={4}
@@ -98,6 +107,7 @@ export default function BirthdayForm({ birthday }: BirthdayFormProps) {
               />
               <span className="mx-1 Text-s-Medium Tablet:Text-m-Medium">/</span>
               <input
+                onKeyDown={handleEscape}
                 placeholder="월"
                 type="string"
                 maxLength={2}
@@ -109,6 +119,7 @@ export default function BirthdayForm({ birthday }: BirthdayFormProps) {
               />
               <span className="mx-1 Text-s-Medium Tablet:Text-m-Medium">/</span>
               <input
+                onKeyDown={handleEscape}
                 placeholder="일"
                 type="string"
                 maxLength={2}

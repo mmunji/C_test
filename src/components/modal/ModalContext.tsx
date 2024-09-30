@@ -1,26 +1,10 @@
-import {
-  ChangeEvent,
-  createContext,
-  Dispatch,
-  SetStateAction,
-  useContext,
-} from "react";
+import { createContext, useContext } from "react";
 
 interface ModalContextType {
   isChecked: boolean;
-  toggleChceked: () => void;
   hasCheckbox: boolean;
-  hasReport: boolean;
-  hasDescription: boolean;
-  selectedIndex: number;
-  onDetailedReasonChange: (e: ChangeEvent<HTMLTextAreaElement>) => void;
-  detailedReason: string;
-  onSelectedIndexChange: (index: number) => void;
+  toggleCheckbox: () => void;
   onClose: () => void;
-  isAlertModal: boolean;
-  isDropdownOpen: boolean;
-  setIsDropdownOpen: Dispatch<SetStateAction<boolean>>;
-  isMobile: boolean;
 }
 
 const ModalContext = createContext<ModalContextType | null>(null);

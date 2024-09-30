@@ -1,5 +1,7 @@
-import clsx from "clsx";
+import Image from "next/image";
 import React from "react";
+
+import { cn } from "@/utils/cn";
 
 import getEmoji from "../../utils/getEmoji";
 import hexToRGBA from "../../utils/hexToRGBA";
@@ -20,26 +22,19 @@ export default function SmallBadge({
 
   return (
     <div
-      className={clsx(
-        "flex items-center justify-center gap-1 rounded-lg",
-        size === "xs" && "h-[21px]",
-        size === "sm" && "h-[29px]",
-        size === "md" && "h-10",
-        size === "md" ? "px-3" : "px-2",
+      className={cn(
+        "flex items-center justify-center gap-1 rounded-lg px-3 py-2",
+        size === "xs" && "px-2 py-[2px]",
+        size === "sm" && "px-2 py-1",
       )}
       style={{ backgroundColor: backgroundColor }}
     >
-      <p
-        className={clsx(
-          size === "xs" && "text-[14px]",
-          size === "md" && "text-[16px]",
-        )}
-      >
-        {emoji}
+      <p className={cn("relative h-3 w-3", size === "md" && "h-4 w-4")}>
+        <Image fill alt={`${content} 뱃지 이미지`} src={emoji} />
       </p>
       <p
-        className={clsx(
-          `text-Silver ${withoutContent && "hidden Tablet:block"}`,
+        className={cn(
+          `text-Silver Text-m-Medium ${withoutContent && "hidden Tablet:block"}`,
           size === "xs" && "Text-xs-Regular",
           size === "sm" && "Text-s-Medium",
         )}

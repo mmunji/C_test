@@ -4,7 +4,6 @@ interface DropdownContextType {
   isOpen: boolean;
   toggleDropdown: () => void;
   type: "genre" | "icon" | "text";
-  isMobile: boolean;
   height: number;
 }
 

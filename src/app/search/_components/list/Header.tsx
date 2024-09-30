@@ -1,8 +1,8 @@
 import clsx from "clsx";
 import Image from "next/image";
 
-import useQueryString from "@/app/search/_hooks/useQueryString";
 import Button from "@/components/buttons/Button";
+import useSearchTabStore from "@/stores/useTabStore";
 
 import { ChevronRightGrayMd } from "../../../../../public/icons";
 
@@ -15,11 +15,12 @@ export default function SearchListHeader({
   category,
   length,
 }: SearchTitleProps) {
-  const { query, tab } = useQueryString();
+  const { activeSearchTab, setActiveSearchTab } = useSearchTabStore();
+
   return (
     <div
       className={clsx(
-        `flex items-center justify-between ${tab === category && "hidden"}`,
+        `flex items-center justify-between ${activeSearchTab.includes(category) && "hidden"}`,
       )}
     >
       <div className="flex items-center">
@@ -28,10 +29,10 @@ export default function SearchListHeader({
           <span className="inline-block ">{length}</span>
         </h2>
       </div>
-      {tab === "전체" && length ? (
+      {activeSearchTab === "전체" && length ? (
         <div className="">
           <Button
-            href={{ query: { tab: category, query } }}
+            onClick={() => setActiveSearchTab(`${category} ${length}`)}
             variant={"textIconR"}
             className="h-fit text-Gray_Orange Text-s-Medium"
           >

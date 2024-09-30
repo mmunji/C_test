@@ -25,3 +25,5 @@ type Badge =
 interface ErrorResponse {
   message: string;
 }
+
+type Filter = "desc" | "asc" | "like";

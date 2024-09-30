@@ -5,8 +5,8 @@ import Link from "next/link";
 import SearchListHeader from "@/app/search/_components/list/Header";
 import SearchPlaceholder from "@/app/search/_components/placeholders/SearchPlaceholder";
 import useDeviceLimits from "@/app/search/_hooks/useDeviceLimits";
-import useQueryString from "@/app/search/_hooks/useQueryString";
 import ROUTES from "@/constants/routes";
+import useSearchTabStore from "@/stores/useTabStore";
 
 interface SearchMovieListProps {
   movies: MovieResult[];
@@ -17,13 +17,13 @@ export default function SearchMovieList({
   movies,
   relatedKeywords,
 }: SearchMovieListProps) {
-  const { tab } = useQueryString();
+  const { activeSearchTab } = useSearchTabStore();
   const sortedMovieList = useDeviceLimits<MovieResult>({
     category: "movie",
     data: movies,
   });
-  const data = tab === "전체" ? sortedMovieList : movies;
-  if (tab === "톡") return null;
+  const data = activeSearchTab === "전체" ? sortedMovieList : movies;
+  if (activeSearchTab.includes("톡")) return null;
   return (
     <div className="flex flex-col gap-3 Tablet:gap-2 Laptop:gap-5">
       <SearchListHeader category="영화" length={movies?.length} />
@@ -48,10 +48,10 @@ export default function SearchMovieList({
                 <Image
                   className="object-cover group-hover:opacity-70 group-hover:blur-[3px]"
                   src={`${movie?.poster_path ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}` : "/images/ssikongi/PNG/NoImage.png"}`}
-                  alt={movie.title}
+                  alt={`${movie.title} 포스터`}
                   fill
                 />
-                <div className="absolute hidden px-5 py-7 text-Silver Text-m-Regular group-hover:inline-block Desktop:px-6 Desktop:py-8">
+                <div className="absolute z-[1] hidden px-5 py-7 text-Silver Text-m-Regular group-hover:flex Desktop:px-6 Desktop:py-8">
                   <p className="line-clamp-[7] break-all Tablet:line-clamp-[11] Laptop:line-clamp-[8] Desktop:line-clamp-[12]">
                     {movie.overview}
                   </p>

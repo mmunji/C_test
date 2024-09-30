@@ -10,35 +10,35 @@ interface BadgeTitleProps {
   toggleEditing: () => void;
   isEditing: boolean;
   hasBadge: boolean;
-  selectedMovieIds: number[];
+  selectedBadgeIds: number[];
 }
 
 export default function BadgeTitle({
   hasBadge,
   isEditing,
   toggleEditing,
-  selectedMovieIds,
+  selectedBadgeIds,
 }: BadgeTitleProps) {
   const [loading, setLoading] = useState(false);
-  const isDisabled = selectedMovieIds.length > 3;
+  const isDisabled = selectedBadgeIds.length > 3;
   const getButtonText = () => {
     if (isEditing) {
       if (isDisabled) {
         return (
           <>
             너무 많아요{" "}
-            <span className="text-Error">{selectedMovieIds.length}/3</span>
+            <span className="text-Error">{selectedBadgeIds.length}/3</span>
           </>
         );
       }
-      return `완료 ${selectedMovieIds.length}/3`;
+      return `완료 ${selectedBadgeIds.length}/3`;
     }
     return "변경";
   };
   const handleSubmit = async () => {
     if (!isDisabled && isEditing) {
       setLoading(true);
-      await updateBadge(selectedMovieIds);
+      await updateBadge(selectedBadgeIds);
       setLoading(false);
     }
   };

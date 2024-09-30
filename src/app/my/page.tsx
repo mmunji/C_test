@@ -1,7 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
+import { Suspense } from "react";
 
 import Badge from "@/app/my/_components/badge/Badge";
+import {
+  ActivitySkeleton,
+  BadgeSkeleton,
+  UserInfoSkeletons,
+} from "@/app/my/_components/skeletons/My";
 import UserInfo from "@/app/my/_components/UserInfo";
 import Activity from "@/app/my/activity/Activity";
 import ROUTES from "@/constants/routes";
@@ -11,11 +17,17 @@ import { Archive, Bookmark, User } from "../../../public/icons";
 export default function My() {
   return (
     <div className="flex w-full flex-col Tablet:gap-20 Laptop:mt-9">
-      <UserInfo />
+      <Suspense fallback={<UserInfoSkeletons />}>
+        <UserInfo />
+      </Suspense>
       <div className="h-3 rounded-[3px] bg-Black Tablet:hidden" />
       <div className="flex flex-col Tablet:gap-20 Laptop:gap-[46px]">
-        <Badge />
-        <Activity />
+        <Suspense fallback={<BadgeSkeleton />}>
+          <Badge />
+        </Suspense>
+        <Suspense fallback={<ActivitySkeleton />}>
+          <Activity />
+        </Suspense>
       </div>
       <div className="border-b border-t border-D2_Gray Tablet:hidden">
         <div>
@@ -32,8 +44,8 @@ export default function My() {
             href={ROUTES.MY.bookmark()}
             className="flex w-full items-center gap-2 px-5 py-4"
           >
-            <Image src={Bookmark} width={24} height={24} alt="찜한 작품" />
-            <span className="Text-m-Medium">찜한 작품</span>
+            <Image src={Bookmark} width={24} height={24} alt="찜한 영화" />
+            <span className="Text-m-Medium">찜한 영화</span>
           </Link>
         </div>
         <div className="border-t border-D2_Gray">

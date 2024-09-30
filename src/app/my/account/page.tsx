@@ -1,29 +1,36 @@
 import Link from "next/link";
-import { redirect } from "next/navigation";
+import { Suspense } from "react";
 
 import { DeleteAccountButton } from "@/app/my/_components/buttons";
 import { AccountFormTitle } from "@/app/my/_components/Labels";
-import Account from "@/app/my/account/_components/Account";
+import AccountPersonalSkeleton, {
+  AccountFormSkeleton,
+  AccountSnsLoginSkeleton,
+} from "@/app/my/_components/skeletons/Account";
+import Account from "@/app/my/account/_components/account/Account";
 import Personal from "@/app/my/account/_components/personal/Personal";
 import SnsLogin from "@/app/my/account/_components/SnsLogin";
-import { myAPIs } from "@/services/my/myAPIs";
 
 export default async function Page() {
-  const user = await myAPIs.getUser();
-  if (!user) redirect("/");
   return (
     <div className="flex flex-col gap-10 px-5 Tablet:px-0">
       <div className="flex flex-col gap-3 Tablet:gap-5">
         <AccountFormTitle>계정</AccountFormTitle>
-        <Account email={user.email} nickname={user.nickname} />
+        <Suspense fallback={<AccountFormSkeleton />}>
+          <Account />
+        </Suspense>
       </div>
       <div className="flex flex-col gap-3 Tablet:gap-5">
         <AccountFormTitle>로그인 연동</AccountFormTitle>
-        <SnsLogin provider={user.provider} />
+        <Suspense fallback={<AccountSnsLoginSkeleton />}>
+          <SnsLogin />
+        </Suspense>
       </div>
       <div className="flex flex-col gap-3 Tablet:gap-5">
         <AccountFormTitle>개인 정보</AccountFormTitle>
-        <Personal birthday={user.birthday} gender={user.gender} />
+        <Suspense fallback={<AccountPersonalSkeleton />}>
+          <Personal />
+        </Suspense>
       </div>
       <div className="flex flex-col items-start text-Gray Text-s-Medium Tablet:Text-m-Medium">
         <DeleteAccountButton>회원탈퇴</DeleteAccountButton>
