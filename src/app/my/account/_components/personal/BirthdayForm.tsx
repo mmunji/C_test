@@ -44,8 +44,7 @@ export default function BirthdayForm({ birthday }: BirthdayFormProps) {
     }
   };
 
-  const handleBirthdaySubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const handleBirthdaySubmit = async () => {
     ["month", "day"].forEach((field) =>
       handlePadBirthday(field as keyof Birthday),
     );
@@ -89,7 +88,7 @@ export default function BirthdayForm({ birthday }: BirthdayFormProps) {
   };
 
   return (
-    <form className="flex" onSubmit={handleBirthdaySubmit}>
+    <div className="flex">
       <div className="flex flex-1 items-center gap-5 Tablet:gap-1">
         <AccountFormLabel>생년월일</AccountFormLabel>
         {isEditing ? (
@@ -144,13 +143,13 @@ export default function BirthdayForm({ birthday }: BirthdayFormProps) {
       </div>
       <Button
         disabled={loading}
-        type="submit"
+        onClick={handleBirthdaySubmit}
         size={!isMobile && isEditing && !error ? "md" : "none"}
         focus={isEditing && !error ? "1" : "none"}
         variant={!isMobile && isEditing && !error ? "orange" : "text"}
       >
         {isEditing ? (error ? "취소" : "완료") : "변경"}
       </Button>
-    </form>
+    </div>
   );
 }
