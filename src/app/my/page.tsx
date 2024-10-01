@@ -1,3 +1,4 @@
+import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { Suspense } from "react";
@@ -13,6 +14,10 @@ import Activity from "@/app/my/activity/Activity";
 import ROUTES from "@/constants/routes";
 
 import { Archive, Bookmark, User } from "../../../public/icons";
+
+export const metadata: Metadata = {
+  title: "씨네톡 - 마이페이지",
+};
 
 export default function My() {
   return (

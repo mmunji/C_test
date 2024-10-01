@@ -1,8 +1,20 @@
+import { Metadata } from "next";
 import { Suspense } from "react";
 
 import SearchContainer from "@/app/search/_components/Container";
 import { SearchSkeleton } from "@/app/search/_components/skeletons/Skeleton";
 import Footer from "@/components/footer/Footer";
+
+export async function generateMetadata({
+  searchParams,
+}: {
+  searchParams: { query: string };
+}): Promise<Metadata> {
+  return {
+    title: `${searchParams.query} - 씨네톡`,
+    description: `${searchParams.query} 영화 리뷰 검색 결과`,
+  };
+}
 
 export default async function Page({
   searchParams,
