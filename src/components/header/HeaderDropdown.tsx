@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
-import React from "react";
+import React, { useEffect } from "react";
 
 import Dropdown from "@/components/dropdown/dropdown";
 import ROUTES from "@/constants/routes";
@@ -31,6 +31,10 @@ export default function HeaderDropdown({
       handleLogout();
     }
   };
+
+  useEffect(() => {
+    router.prefetch(ROUTES.MY.default);
+  }, [router]);
 
   return (
     <Dropdown type="icon">
