@@ -48,8 +48,7 @@ export default function DropdownList({
       style={{ top: `${className ? "inherit" : height}px` }}
       className={twMerge(
         styles({ type }),
-        className ||
-          "left-1/2 -translate-x-1/2 Tablet:left-auto Tablet:right-0 Tablet:transform-none",
+        className || "left-1/2 -translate-x-1/2",
       )}
     >
       {children}

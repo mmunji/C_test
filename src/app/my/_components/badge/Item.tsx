@@ -35,10 +35,13 @@ export default function BadgeItem({
     >
       <div
         className={cn(
-          !hasBadge && "bg-[#1E1E1E]/80 blur-[4px]",
+          !hasBadge && "blur-[4px]",
           `relative h-11 w-11 Tablet:h-12 Tablet:w-12`,
         )}
       >
+        {!hasBadge && (
+          <div className="relative z-10 h-full w-full bg-[#1e1e1e]/80" />
+        )}
         <Image
           fill
           alt={`${badgeName} 뱃지 이미지`}

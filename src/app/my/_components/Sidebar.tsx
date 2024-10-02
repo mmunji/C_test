@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
+import Button from "@/components/buttons/Button";
 import ROUTES from "@/constants/routes";
 
 import {
@@ -44,16 +45,16 @@ export default function Sidebar() {
       <div className="hidden h-full w-[480px] flex-col overflow-y-scroll  px-20 pb-[164px] pt-16 Desktop:flex">
         <div className="flex flex-1 flex-col gap-[54px]">
           <h2 className="Text-xl-Bold">마이 페이지</h2>
-          <ul className="flex w-[320px] flex-col gap-6 Text-l-Bold">
+          <ul className="flex w-[320px] flex-col gap-6 text-Silver Text-l-Bold">
             {LINKS.map((link) => {
               const isActive = pathname === link.href;
               return (
-                <li className="" key={link.name}>
+                <li key={link.name}>
                   <Link
                     href={link.href}
                     className={clsx(
                       isActive && "bg-D2_Gray",
-                      `inline-flex w-full rounded-xl px-5 py-3 hover:bg-D1_Gray hover:text-Gray_Orange active:bg-D2_Gray active:text-Silver`,
+                      `inline-flex w-full rounded-xl px-5 py-3 hover:bg-D1_Gray active:bg-D2_Gray`,
                     )}
                   >
                     {link.name}
@@ -82,14 +83,14 @@ export default function Sidebar() {
           const isActive = pathname === link.href;
           return (
             <li key={link.name}>
-              <Link href={link.href} className="inline-flex p-2">
+              <Button href={link.href} variant={"icon"}>
                 <Image
                   src={isActive ? link.acitveSvg : link.svg}
                   width={24}
                   height={24}
                   alt={link.name}
                 />
-              </Link>
+              </Button>
             </li>
           );
         })}
