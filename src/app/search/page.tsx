@@ -13,6 +13,24 @@ export async function generateMetadata({
   return {
     title: `${searchParams.query} - 씨네톡`,
     description: `${searchParams.query} 영화 리뷰 검색 결과`,
+    openGraph: {
+      title: "씨네톡 - 키워드 하나로 완성되는 영화 리뷰 탐색",
+      description: `${searchParams.query} 영화 리뷰 검색 결과`,
+      url: `${process.env.NEXT_PUBLIC_CLIENT_URL}/search?query=${searchParams}`,
+      siteName: "씨네톡",
+      images: [
+        {
+          url: "/images/og/Opengraph__Image.jpg",
+        },
+      ],
+    },
+    twitter: {
+      images: [
+        {
+          url: "/images/og/Opengraph__Image.jpg",
+        },
+      ],
+    },
   };
 }
 

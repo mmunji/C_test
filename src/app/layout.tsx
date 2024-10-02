@@ -15,6 +15,11 @@ export const metadata: Metadata = {
   description:
     "키워드로 간편하게 영화 리뷰를 작성하고, 원하는 영화를 빠르게 찾아볼 수 있는 영화 커뮤니티! 쉽고 빠른 검색으로 다양한 영화 리뷰를 만나보세요!",
   openGraph: {
+    title: "씨네톡 - 키워드 하나로 완성되는 영화 리뷰 탐색",
+    description:
+      "키워드로 간편하게 영화 리뷰를 작성하고, 원하는 영화를 빠르게 찾아볼 수 있는 영화 커뮤니티! 쉽고 빠른 검색으로 다양한 영화 리뷰를 만나보세요!",
+    url: process.env.NEXT_PUBLIC_CLIENT_URL,
+    siteName: "씨네톡",
     images: [
       {
         url: "/images/og/Opengraph__Image.jpg",
