@@ -12,7 +12,7 @@ export default async function SearchContainer({ query }: SearchContainerProps) {
   const [movies, reviews, relatedKeywords] = await Promise.all([
     searchPageAPIs.getMovies(query),
     searchPageAPIs.getReviews(query),
-    searchPageAPIs.getRelatedKeywords(query),
+    searchPageAPIs.getRelatedKeywords(),
   ]);
   const isEmpty = !movies.length && !reviews.length;
   return (

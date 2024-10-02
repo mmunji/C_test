@@ -60,7 +60,7 @@ export default function AccountNicknameForm({ nickname }: AccountFormProps) {
     verify();
   }, [debouncedNickname, error, nickname]);
   return (
-    <form className="flex">
+    <div className="flex">
       <div className="flex flex-1 gap-5 Tablet:gap-1">
         <AccountFormLabel>닉네임</AccountFormLabel>
         {isEditing ? (
@@ -117,6 +117,6 @@ export default function AccountNicknameForm({ nickname }: AccountFormProps) {
           변경
         </NicknameChangeButton>
       )}
-    </form>
+    </div>
   );
 }

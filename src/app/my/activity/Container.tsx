@@ -17,6 +17,7 @@ export default function ActivityContainer({
   const tabs = [`톡 ${reviews.length}`, `평가 로그 ${log.length}`];
   const [activeTab, setActiveTab] = useState(tabs[0]);
   const [activeFilter, setActiveFilter] = useState<Filter>("desc");
+  console.log(activeTab);
   return (
     <>
       <ActivityHeader
@@ -27,7 +28,11 @@ export default function ActivityContainer({
         setActiveTab={setActiveTab}
       />
       {activeTab === tabs[0] ? (
-        <ReviewList activeFilter={activeFilter} reviews={reviews} />
+        <ReviewList
+          setActiveTab={setActiveTab}
+          activeFilter={activeFilter}
+          reviews={reviews}
+        />
       ) : (
         <HistoryLog activeFilter={activeFilter} log={log} />
       )}

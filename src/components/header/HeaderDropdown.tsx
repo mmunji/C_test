@@ -36,12 +36,11 @@ export default function HeaderDropdown({
     <Dropdown type="icon">
       <Dropdown.Trigger>
         <div className="flex items-center">
-          <div className="mr-3 h-[30px] w-[30px] rounded-full bg-[#d9d9d9]" />
-          <p
-            className={`mr-2 text-regular font-Medium ${pathname.includes(ROUTES.DETAIL) ? (hasScrolledPast ? "text-Silver" : "text-[rgba(255,255,255,0.6)]") : "text-Silver"}`}
+          <div
+            className={`mr-2 flex items-center gap-3 text-regular font-Medium ${pathname.includes(ROUTES.DETAIL) ? (hasScrolledPast ? "text-Silver" : "text-[rgba(255,255,255,0.6)]") : "text-Silver"}`}
           >
             {children}
-          </p>
+          </div>
           <Image src={CaretDownMd} alt="더보기" className="cursor-pointer" />
         </div>
       </Dropdown.Trigger>

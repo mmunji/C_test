@@ -19,7 +19,7 @@ export const changeUserInfo = async (
     `/my/userInfoMerge/${type}?value=${value}`,
     "PATCH",
   );
-  if (data?.state) revalidatePath("/my");
+  if (data?.state) revalidateTag("user");
   return data;
 };
 
@@ -30,21 +30,13 @@ export const verifyNickname = async (nickname: string) => {
   return data;
 };
 
-// export const addBookmark = async (movieId: string) => {
-//   const data = await customFetchInstance.authFetch(
-//     `/bookmark/${movieId}`,
-//     "POST",
-//   );
-//   return data;
-// };
-
 export const deleteBookmark = async (list: number[]) => {
   const queryString = list.map((id) => `BookmarkList=${id}`).join("&");
   const data = await customFetchInstance.authFetch<{ state: boolean }>(
     `/my/BookmarkDelete?${queryString}`,
     "DELETE",
   );
-  if (data?.state) revalidatePath("/my");
+  if (data?.state) revalidatePath("/my/bookmark");
   return data?.state;
 };
 
@@ -72,7 +64,7 @@ export const updateProfileImage = async (formData: FormData) => {
   const data = await customFetchInstance.authFetch<{
     state: boolean;
   }>(`/my/UserProfileChange`, "PATCH", { body: formData });
-  if (data?.state) revalidatePath("/my");
+  if (data?.state) revalidateTag("user");
   return data;
 };
 
@@ -81,6 +73,6 @@ export const deleteReview = async (reviewId: number) => {
     `/reviews/${reviewId}`,
     "DELETE",
   );
-  if (data.state) revalidatePath("/my");
+  if (data.state) revalidateTag("review");
   return data;
 };

@@ -19,9 +19,15 @@ import {
 
 interface ReviewItemProps {
   review: PostreviewDTO;
+  setActiveTab: React.Dispatch<React.SetStateAction<string>>;
+  reviewsLength: number;
 }
 
-export default function ReviewItem({ review }: ReviewItemProps) {
+export default function ReviewItem({
+  review,
+  setActiveTab,
+  reviewsLength,
+}: ReviewItemProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const router = useRouter();
 
@@ -99,8 +105,9 @@ export default function ReviewItem({ review }: ReviewItemProps) {
           </Modal.TitleWrapper>
           <Modal.CancelButton>아니요</Modal.CancelButton>
           <Modal.Button
-            onClick={() => {
-              deleteReview(review.review_id);
+            onClick={async () => {
+              const result = await deleteReview(review.review_id);
+              if (result.state) setActiveTab(`톡 ${reviewsLength - 1}`);
               setIsModalOpen(false);
             }}
           >

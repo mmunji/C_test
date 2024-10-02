@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import React, { Dispatch, SetStateAction } from "react";
 
 import ROUTES from "@/constants/routes";
@@ -22,7 +21,7 @@ export default function HeaderSearchDropdown({
   const { movieTitles } = useSearchMovieTitlesStore();
   useGetPopularSearchList(inputValue);
   console.log(movieTitles);
-  const router = useRouter();
+
   return (
     <ul className="absolute top-10 w-full rounded-b-[20px] bg-D2_Gray pb-2">
       {!inputValue && (
@@ -33,17 +32,17 @@ export default function HeaderSearchDropdown({
       )}
       <div className="flex flex-col">
         {movieTitles?.map((title, i) => (
-          <button
+          <Link
             key={i}
+            href={`${ROUTES.SEARCH.getById(title)}`}
             onClick={() => {
               setInputValue(title);
               searchAPIs.saveSearchMovies(title);
-              router.push(`${ROUTES.SEARCH.getById(title)}`);
             }}
-            className="w-full max-w-[calc(100%-32px)] cursor-pointer overflow-hidden text-ellipsis whitespace-nowrap py-1 pl-[64px] text-left font-Regular text-Silver hover:underline"
+            className="w-full max-w-[calc(100%-32px)] cursor-pointer overflow-hidden text-ellipsis whitespace-nowrap py-1 pl-[64px] font-Regular text-Silver hover:underline"
           >
             {title}
-          </button>
+          </Link>
         ))}
         {inputValue && movieTitles.length === 0 && (
           <p className="w-full max-w-[calc(100%-32px)] py-1 pl-[64px] font-Regular text-Silver">

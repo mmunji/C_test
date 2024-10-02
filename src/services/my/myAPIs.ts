@@ -5,7 +5,7 @@ export const myAPIs = {
     return customFetchInstance.authFetch<MyInfo>(
       "/my/userInfo",
       "GET",
-      { next: { revalidate: 3600 } },
+      { next: { revalidate: 3600, tags: ["user"] } },
       true,
     );
   },
@@ -51,14 +51,13 @@ export const myAPIs = {
     const data = await customFetchInstance.authFetch<PostreviewDTO[]>(
       "/my/ReviewByUser/desc",
       "GET",
+      { next: { tags: ["review"] } },
     );
     return data;
   },
   getLog: async () => {
-    const data = await customFetchInstance.authFetch<Log[]>(
-      "/my/LogByUser/desc",
-      "GET",
-    );
+    const data =
+      await customFetchInstance.authFetch<Log[]>("/my/LogByUser/desc");
     return data;
   },
 };

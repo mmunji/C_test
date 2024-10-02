@@ -4,9 +4,14 @@ import ReviewItem from "@/app/my/activity/ReviewItem";
 interface ReviewListProps {
   reviews: PostreviewDTO[];
   activeFilter: Filter;
+  setActiveTab: React.Dispatch<React.SetStateAction<string>>;
 }
 
-export default function ReviewList({ reviews, activeFilter }: ReviewListProps) {
+export default function ReviewList({
+  reviews,
+  activeFilter,
+  setActiveTab,
+}: ReviewListProps) {
   const getSortedReviews = () => {
     let sortedReviews: PostreviewDTO[];
     if (activeFilter === "asc") sortedReviews = [...reviews].reverse();
@@ -20,7 +25,12 @@ export default function ReviewList({ reviews, activeFilter }: ReviewListProps) {
   return (
     <div className="grid grid-cols-1 gap-5 Tablet:grid-cols-2 Tablet:gap-5 Laptop:gap-6">
       {getSortedReviews().map((review) => (
-        <ReviewItem key={review.review_id} review={review} />
+        <ReviewItem
+          reviewsLength={reviews.length}
+          setActiveTab={setActiveTab}
+          key={review.review_id}
+          review={review}
+        />
       ))}
     </div>
   );

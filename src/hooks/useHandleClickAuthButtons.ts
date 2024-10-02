@@ -1,7 +1,5 @@
 import { useRouter } from "next/navigation";
 
-import { API_URL } from "@/constants/api_url";
-
 export default function useHandleClickAuthButton() {
   const router = useRouter();
 
@@ -9,8 +7,13 @@ export default function useHandleClickAuthButton() {
     if (typeof window !== "undefined") {
       sessionStorage.setItem("prev-page", window.location.href);
       if (type === "kakao")
-        router.push(`${API_URL}/oauth2/authorization/kakao`);
-      else router.push(`${API_URL}/oauth2/authorization/naver`);
+        router.push(
+          `${process.env.NEXT_PUBLIC_API_URL}/oauth2/authorization/kakao?redirecturl=${process.env.NEXT_PUBLIC_CLIENT_URL}`,
+        );
+      else
+        router.push(
+          `${process.env.NEXT_PUBLIC_API_URL}/oauth2/authorization/naver?redirecturl=${process.env.NEXT_PUBLIC_CLIENT_URL}`,
+        );
     }
   };
 

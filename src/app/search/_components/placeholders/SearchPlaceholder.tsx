@@ -30,8 +30,11 @@ export default function SearchPlaceholder({
   isAlone?: boolean;
 }) {
   const { activeSearchTab } = useSearchTabStore();
-  const tabIndex =
-    activeSearchTab === "영화" ? 1 : activeSearchTab.includes("톡") ? 2 : 0;
+  const tabIndex = activeSearchTab.includes("영화")
+    ? 1
+    : activeSearchTab.includes("톡")
+      ? 2
+      : 0;
   if (activeSearchTab === "전체" && isAlone) {
     return (
       <div className="text-Gray Text-m-Bold Tablet:Text-l-Bold">
