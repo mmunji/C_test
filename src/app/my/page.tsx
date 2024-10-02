@@ -7,9 +7,8 @@ import Badge from "@/app/my/_components/badge/Badge";
 import {
   ActivitySkeleton,
   BadgeSkeleton,
-  UserInfoSkeletons,
 } from "@/app/my/_components/skeletons/My";
-import UserInfo from "@/app/my/_components/UserInfo";
+import UserInfo from "@/app/my/_components/userInfo/UserInfo";
 import Activity from "@/app/my/activity/Activity";
 import ROUTES from "@/constants/routes";
 
@@ -22,9 +21,7 @@ export const metadata: Metadata = {
 export default function My() {
   return (
     <div className="flex w-full flex-col Tablet:gap-20 Laptop:mt-9">
-      <Suspense fallback={<UserInfoSkeletons />}>
-        <UserInfo />
-      </Suspense>
+      <UserInfo />
       <div className="h-3 rounded-[3px] bg-Black Tablet:hidden" />
       <div className="flex flex-col Tablet:gap-20 Laptop:gap-[46px]">
         <Suspense fallback={<BadgeSkeleton />}>

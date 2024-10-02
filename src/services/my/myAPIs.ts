@@ -45,7 +45,7 @@ export const myAPIs = {
     return data;
   },
 
-  getReportStatus: async () => {
+  getPenaltyInfo: async () => {
     const data =
       await customFetchInstance.authFetch<ReportStatus>("/my/DamageByUser");
     return data;
