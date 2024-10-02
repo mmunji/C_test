@@ -19,8 +19,11 @@ export const myAPIs = {
   },
 
   getBookmark: async () => {
-    const data =
-      await customFetchInstance.authFetch<Bookmark[]>("/my/BookmarkByUser");
+    const data = await customFetchInstance.authFetch<Bookmark[]>(
+      "/my/BookmarkByUser",
+      "GET",
+      { next: { revalidate: 3600 } },
+    );
     return data;
   },
 
@@ -42,7 +45,7 @@ export const myAPIs = {
     return data;
   },
 
-  getReportStatus: async () => {
+  getPenaltyInfo: async () => {
     const data =
       await customFetchInstance.authFetch<ReportStatus>("/my/DamageByUser");
     return data;

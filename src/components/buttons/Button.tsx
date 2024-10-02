@@ -20,7 +20,7 @@ const ButtonVariants = cva(`flex justify-center whitespace-nowrap`, {
       orange:
         "text-Silver bg-Primary hover:bg-Shade_1 active:bg-Shade_3 disabled:bg-D2_Gray disabled:text-Gray",
       line: "inner-gray bg-transparent text-Gray_Orange hover:inner-silver hover:text-Silver active:bg-D1_Gray",
-      text: "p-2 ",
+      text: "p-2 text-Gray_Orange",
       textIconR: "p-2 pr-1",
       textIconL: "p-2 pl-1",
       arrow1:

@@ -1,52 +1,42 @@
 import { TextSkeleton } from "@/app/my/_components/skeletons/Skeleton";
 import Button from "@/components/buttons/Button";
 
-export function UserInfoSkeletons() {
+export function MyInfoActivityCountsSkeleton() {
   return (
-    <section className="mb-9 flex w-full flex-col items-center gap-7 px-5 Tablet:mb-0 Tablet:gap-[52px] Tablet:px-0">
-      <div className="flex flex-col items-center gap-4 px-6 Tablet:gap-3 Tablet:px-0 Laptop:gap-4">
-        <div className="flex justify-center">
-          <div className="relative">
-            <div className="relative h-16 w-16 overflow-hidden rounded-full Tablet:h-[100px] Tablet:w-[100px]">
-              <div className="h-full w-full animate-pulse overflow-hidden bg-D2_Gray object-cover" />
-            </div>
-          </div>
-        </div>
-        <div className="flex flex-col items-center gap-2 Tablet:gap-3 Laptop:gap-4">
-          <TextSkeleton className="h-md w-[250px] Tablet:h-xxl" />
-          <div className="flex items-center gap-1 Tablet:gap-4">
-            <div className="h-[29px] w-[90px] animate-pulse rounded-lg bg-D2_Gray Tablet:h-10" />
-            <div className="h-[29px] w-[90px] animate-pulse rounded-lg bg-D2_Gray Tablet:h-10" />
-            <div className="h-[29px] w-[90px] animate-pulse rounded-lg bg-D2_Gray Tablet:h-10" />
-          </div>
-        </div>
+    <div className="flex w-full justify-center gap-6 rounded-xl bg-D1_Gray p-3 Tablet:justify-between Tablet:gap-[41px] Tablet:px-[88px] Tablet:py-3 Laptop:px-[100px]">
+      <div className="relative flex w-[54px] flex-col items-center gap-0 py-0 Tablet:w-auto Tablet:gap-1 Tablet:px-3 Tablet:py-2">
+        <TextSkeleton className="h-md w-[50px] Tablet:h-lg" />
+        <span className="text-L_Gray Text-xs-Regular Tablet:Text-s-Regular Laptop:text-Silver Laptop:Text-m-Bold">
+          받은 좋아요
+        </span>
       </div>
-      <div className="flex w-full justify-center gap-6 rounded-xl bg-D1_Gray p-3 Tablet:justify-between Tablet:gap-[41px] Tablet:px-[88px] Tablet:py-3 Laptop:px-[100px]">
-        <div className="relative flex w-[54px] flex-col items-center gap-0 py-0 Tablet:w-auto Tablet:gap-1 Tablet:px-3 Tablet:py-2">
-          <TextSkeleton className="h-md w-[50px] Tablet:h-lg" />
-          <span className="text-L_Gray Text-xs-Regular Tablet:Text-s-Regular Laptop:text-Silver Laptop:Text-m-Bold">
-            받은 좋아요
-          </span>
-        </div>
-        <div className="w-[1px] bg-D2_Gray"></div>
-        <div className="relative flex w-[54px] flex-col items-center gap-0 py-0 Tablet:w-auto Tablet:gap-1 Tablet:px-3 Tablet:py-2">
-          <TextSkeleton className="h-md w-[50px] Tablet:h-lg" />
-          <span className="text-L_Gray Text-xs-Regular Tablet:Text-s-Regular Laptop:text-Silver Laptop:Text-m-Bold">
-            평가한 영화
-          </span>
-        </div>
-        <div className="w-[1px] bg-D2_Gray"></div>
-        <div className="relative flex w-[54px] flex-col items-center gap-0 py-0 Tablet:w-auto Tablet:gap-1 Tablet:px-3 Tablet:py-2">
-          <TextSkeleton className="h-md w-[50px] Tablet:h-lg" />
-          <span className="text-L_Gray Text-xs-Regular Tablet:Text-s-Regular Laptop:text-Silver Laptop:Text-m-Bold">
-            찜한 영화
-          </span>
-        </div>
+      <div className="w-[1px] bg-D2_Gray"></div>
+      <div className="relative flex w-[54px] flex-col items-center gap-0 py-0 Tablet:w-auto Tablet:gap-1 Tablet:px-3 Tablet:py-2">
+        <TextSkeleton className="h-md w-[50px] Tablet:h-lg" />
+        <span className="text-L_Gray Text-xs-Regular Tablet:Text-s-Regular Laptop:text-Silver Laptop:Text-m-Bold">
+          평가한 영화
+        </span>
       </div>
-    </section>
+      <div className="w-[1px] bg-D2_Gray"></div>
+      <div className="relative flex w-[54px] flex-col items-center gap-0 py-0 Tablet:w-auto Tablet:gap-1 Tablet:px-3 Tablet:py-2">
+        <TextSkeleton className="h-md w-[50px] Tablet:h-lg" />
+        <span className="text-L_Gray Text-xs-Regular Tablet:Text-s-Regular Laptop:text-Silver Laptop:Text-m-Bold">
+          찜한 영화
+        </span>
+      </div>
+    </div>
   );
 }
 
+export function MyInfoBadgeSkeleton() {
+  return (
+    <div className="flex items-center gap-1 Tablet:gap-4">
+      <div className="h-[29px] w-[90px] animate-pulse rounded-lg bg-D2_Gray Tablet:h-10" />
+      <div className="h-[29px] w-[90px] animate-pulse rounded-lg bg-D2_Gray Tablet:h-10" />
+      <div className="h-[29px] w-[90px] animate-pulse rounded-lg bg-D2_Gray Tablet:h-10" />
+    </div>
+  );
+}
 export function BadgeSkeleton() {
   return (
     <section className="flex flex-col gap-4 p-5 Tablet:p-0">

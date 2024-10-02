@@ -10,7 +10,7 @@ export function AccountFormSkeleton() {
         <div className="flex flex-1 gap-5 Tablet:gap-1">
           <AccountFormLabel>닉네임</AccountFormLabel>
           <div className="flex h-10 items-center">
-            <TextSkeleton className="h-sm Tablet:h-md w-[150px]" />
+            <TextSkeleton className="h-sm w-[150px] Tablet:h-md" />
           </div>
         </div>
         <NicknameChangeButton
@@ -26,7 +26,7 @@ export function AccountFormSkeleton() {
       <div className="flex items-center">
         <div className="flex h-10 flex-1 items-center gap-5 Tablet:gap-1">
           <AccountFormLabel>이메일</AccountFormLabel>
-          <TextSkeleton className="h-sm Tablet:h-md w-[150px]" />
+          <TextSkeleton className="h-sm w-[150px] Tablet:h-md" />
         </div>
       </div>
     </div>
@@ -38,7 +38,7 @@ export function AccountSnsLoginSkeleton() {
     <div className="flex items-center gap-3 rounded-xl bg-D1_Gray px-4 py-2 Text-s-Medium Tablet:px-8 Tablet:py-4 Tablet:Text-m-Medium">
       <div className="flex flex-1 items-center gap-4">
         <div className="my-1 flex h-8 w-8 animate-pulse items-center justify-center rounded-lg bg-D3_Gray Tablet:my-0 Tablet:h-10 Tablet:w-10"></div>
-        <TextSkeleton className="h-sm Tablet:h-md w-[150px]" />
+        <TextSkeleton className="h-sm w-[150px] Tablet:h-md" />
       </div>
       <Button disabled variant={"text"}>
         로그아웃
@@ -47,7 +47,7 @@ export function AccountSnsLoginSkeleton() {
   );
 }
 
-export default function AccountPersonalSkeleton() {
+export function AccountPersonalSkeleton() {
   return (
     <div className="flex flex-col gap-2 rounded-xl bg-D1_Gray px-4 py-2 Text-s-Medium Tablet:px-8 Tablet:py-4 Tablet:Text-m-Medium">
       <BirthdayFormSkeleton />
@@ -62,7 +62,7 @@ function BirthdayFormSkeleton() {
     <form className="flex">
       <div className="flex flex-1 items-center gap-5 Tablet:gap-1">
         <AccountFormLabel>생년월일</AccountFormLabel>
-        <TextSkeleton className="h-sm Tablet:h-md w-[150px]" />
+        <TextSkeleton className="h-sm w-[150px] Tablet:h-md" />
       </div>
       <Button
         disabled={true}
@@ -82,7 +82,7 @@ function GenderFormSkeleton() {
     <div className="flex items-center">
       <div className="flex flex-1 items-center gap-5 Tablet:gap-1">
         <AccountFormLabel>성별</AccountFormLabel>
-        <TextSkeleton className="h-sm Tablet:h-md w-[150px]" />
+        <TextSkeleton className="h-sm w-[150px] Tablet:h-md" />
       </div>
       <Button
         disabled={true}

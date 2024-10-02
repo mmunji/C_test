@@ -15,17 +15,15 @@ export default async function SearchContainer({ query }: SearchContainerProps) {
     searchPageAPIs.getRelatedKeywords(),
   ]);
   const isEmpty = !movies.length && !reviews.length;
+  const shuffledKeywords = relatedKeywords.sort(() => 0.5 - Math.random());
   return (
     <div className="mx-auto px-5 Tablet:px-6 Laptop:max-w-[1144px] Laptop:px-0 Desktop:max-w-[1560px]">
       <div className="">
-        <h1 className="Text-l-Bold Tablet:Text-xl-Bold">
-          <strong className="mr-2 hidden text-Primary Tablet:inline-block">
+        <h1 className="flex min-w-0 items-center Text-l-Bold Tablet:Text-xl-Bold">
+          <strong className="mr-2 overflow-hidden text-ellipsis whitespace-nowrap text-Primary">
             {query}
           </strong>
-          <strong className="mr-2 inline-block text-Primary Tablet:hidden">
-            {query.length > 13 ? `${query.slice(0, 13)}...` : query}
-          </strong>
-          검색결과
+          <span className="shrink-0">검색결과</span>
         </h1>
         <div
           className={clsx(
@@ -38,7 +36,7 @@ export default async function SearchContainer({ query }: SearchContainerProps) {
       </div>
       <div className="mb-[100px] Tablet:mb-[160px] Laptop:mb-[180px] Desktop:mb-[200px]">
         <SearchListContainer
-          relatedKeywords={relatedKeywords}
+          relatedKeywords={shuffledKeywords}
           movies={movies}
           reviews={reviews}
         />
