@@ -24,3 +24,12 @@ interface Log
     Pick<review, "id" | "star" | "content" | "createdAt"> {
   category: "keyword" | "review";
 }
+
+interface ReportStatus {
+  state?: boolean;
+  review_content?: string;
+  category?: string;
+  startDate?: string;
+  endDate?: string;
+  date?: number;
+}
