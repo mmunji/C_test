@@ -15,6 +15,7 @@ export default async function SearchContainer({ query }: SearchContainerProps) {
     searchPageAPIs.getRelatedKeywords(),
   ]);
   const isEmpty = !movies.length && !reviews.length;
+  const shuffledKeywords = relatedKeywords.sort(() => 0.5 - Math.random());
   return (
     <div className="mx-auto px-5 Tablet:px-6 Laptop:max-w-[1144px] Laptop:px-0 Desktop:max-w-[1560px]">
       <div className="">
@@ -38,7 +39,7 @@ export default async function SearchContainer({ query }: SearchContainerProps) {
       </div>
       <div className="mb-[100px] Tablet:mb-[160px] Laptop:mb-[180px] Desktop:mb-[200px]">
         <SearchListContainer
-          relatedKeywords={relatedKeywords}
+          relatedKeywords={shuffledKeywords}
           movies={movies}
           reviews={reviews}
         />
