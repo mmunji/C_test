@@ -125,7 +125,7 @@ export function DeleteAccountButton({
               씨네톡을 더이상 이용할 수 없어요.
             </Modal.Description>
           </Modal.TitleWrapper>
-          <Modal.Checkbox>네, 전부 삭제하고 탈퇴할래요</Modal.Checkbox>
+          <Modal.Checkbox>네, 동의하고 탈퇴할래요</Modal.Checkbox>
           <Modal.CancelButton>취소</Modal.CancelButton>
           <Modal.Button
             onClick={async () => {
