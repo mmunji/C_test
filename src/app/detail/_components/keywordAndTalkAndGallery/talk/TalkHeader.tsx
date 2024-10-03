@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 
 import useTotalTalksStore from "@/app/detail/_stores/useTotalTalksStore";
 import Button from "@/components/buttons/Button";
@@ -9,11 +9,17 @@ import { Filter } from "../../../../../../public/icons";
 
 interface TalkHeaderProps {
   title: string;
+  activeFilter: string;
+  filters: string[];
+  setActiveFilter: Dispatch<SetStateAction<string>>;
 }
 
-export default function TalkHeader({ title }: TalkHeaderProps) {
-  const filters = ["최신순", "좋아요순"];
-  const [activeFilter, setActiveFilter] = useState(filters[0]);
+export default function TalkHeader({
+  title,
+  activeFilter,
+  filters,
+  setActiveFilter,
+}: TalkHeaderProps) {
   const { totalTalks } = useTotalTalksStore();
 
   return (

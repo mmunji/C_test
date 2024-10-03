@@ -4,10 +4,10 @@ import { tokenManager } from "../auth/tokenManager";
 import { talkAPIs } from "./talkAPIs";
 import { TALK_QUERY_KEYS } from "./talkQueryKeys";
 
-export function useGetTalkQuery(movieId: number) {
+export function useGetTalkQuery(movieId: number, sort: "star" | "createdAt") {
   return useInfiniteQuery({
     queryKey: TALK_QUERY_KEYS.infiniteTalks(movieId),
-    queryFn: ({ pageParam }) => talkAPIs.getTalks(movieId, pageParam),
+    queryFn: ({ pageParam }) => talkAPIs.getTalks(movieId, pageParam, sort),
     initialPageParam: 0,
     getNextPageParam: (lastPage) => {
       return lastPage.isLast ? undefined : lastPage.totalPage + 1;

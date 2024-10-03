@@ -1,7 +1,7 @@
 "use client";
 
 import { useQuery } from "@tanstack/react-query";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 import useTotalTalksStore from "@/app/detail/_stores/useTotalTalksStore";
 import useDevice from "@/hooks/useDevice";
@@ -21,15 +21,21 @@ interface TalkProps {
 }
 
 export default function Talk({ title, movieId, movieDetailData }: TalkProps) {
-  const { data } = useGetTalkQuery(movieId);
+  const filters = ["최신순", "좋아요순"];
+  const [activeFilter, setActiveFilter] = useState(filters[0]);
+  const sort = activeFilter === "최신순" ? "createdAt" : "star";
+  const { data, refetch } = useGetTalkQuery(movieId, sort);
   const { device } = useDevice();
   const id = device === "mobile" || device === "tablet" ? undefined : "my-talk";
   const noTalk = data?.pages?.[0]?.reviewList?.length === 0;
 
+  useEffect(() => {
+    refetch();
+  }, [activeFilter, refetch]);
+
   const { setTotalTalks } = useTotalTalksStore();
 
   const { data: myTalk } = useGetMyTalk(movieId);
-  console.log("myTalk", myTalk);
 
   useEffect(() => {
     if (data?.pages[0].totalElements) {
@@ -45,7 +51,12 @@ export default function Talk({ title, movieId, movieDetailData }: TalkProps) {
       <DividingLine />
 
       <section className="Laptop:rounded-xl Laptop:bg-D1_Gray Laptop:p-8">
-        <TalkHeader title={title} />
+        <TalkHeader
+          title={title}
+          activeFilter={activeFilter}
+          filters={filters}
+          setActiveFilter={setActiveFilter}
+        />
         {noTalk ? (
           <NoTalk />
         ) : (
