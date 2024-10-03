@@ -134,6 +134,10 @@ export function useAddReply({
         queryKey: TALK_QUERY_KEYS.infiniteTalks(movieId),
       });
 
+      queryClient.invalidateQueries({
+        queryKey: TALK_QUERY_KEYS.infiniteMovieReplies(parentReviewId),
+      });
+
       setValue("replyValue", "");
     },
   });

@@ -21,6 +21,19 @@ export default function HeaderSearchDropdown({
   const { movieTitles } = useSearchMovieTitlesStore();
   useGetPopularSearchList(inputValue);
 
+  const highlightText = (text: string, highlight: string) => {
+    const parts = text.split(new RegExp(`(${highlight})`, "gi"));
+    return parts.map((part, i) =>
+      part.toLowerCase() === highlight.toLowerCase() ? (
+        <strong key={i} className="font-bold">
+          {part}
+        </strong>
+      ) : (
+        part
+      ),
+    );
+  };
+
   return (
     <ul className="absolute top-10 w-full rounded-b-[20px] bg-D2_Gray pb-2">
       {!inputValue && (
