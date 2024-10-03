@@ -110,10 +110,15 @@ interface ReplyValue {
   replyValue: string;
 }
 
-export function useAddReply(
-  movieId: number,
-  setValue: UseFormSetValue<ReplyValue>,
-) {
+export function useAddReply({
+  movieId,
+  parentReviewId,
+  setValue,
+}: {
+  movieId: number;
+  parentReviewId: number;
+  setValue: UseFormSetValue<ReplyValue>;
+}) {
   const queryClient = useQueryClient();
 
   return useMutation({

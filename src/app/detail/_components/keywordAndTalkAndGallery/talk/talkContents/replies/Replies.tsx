@@ -17,7 +17,7 @@ export default function Replies({ movieId, parentReviewId }: RepliesProps) {
 
   return (
     <div className="ml-9 mt-2 Tablet:ml-14 Laptop:ml-[52px]">
-      <ReplyForm parentReviewId={parentReviewId} />
+      <ReplyForm parentReviewId={parentReviewId} movieId={movieId} />
       {replies.length !== 0 &&
         replies.map((reply, i) => (
           <Reply

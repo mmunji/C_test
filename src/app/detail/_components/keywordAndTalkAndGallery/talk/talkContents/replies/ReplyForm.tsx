@@ -12,13 +12,18 @@ interface ReplyValue {
 
 interface ReplyFormProps {
   parentReviewId: number;
+  movieId: number;
 }
 
-export default function ReplyForm({ parentReviewId }: ReplyFormProps) {
+export default function ReplyForm({ parentReviewId, movieId }: ReplyFormProps) {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const { handleSubmit, watch, control, setValue } = useForm<ReplyValue>();
   const { device } = useDevice();
-  const { mutate: addReply } = useAddReply(parentReviewId, setValue);
+  const { mutate: addReply } = useAddReply({
+    movieId: movieId,
+    parentReviewId: parentReviewId,
+    setValue,
+  });
 
   const replyValue = watch("replyValue");
 
