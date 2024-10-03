@@ -11,9 +11,7 @@ import {
   StarFillMd,
   TmdbSm,
 } from "@/../public/icons";
-import Button from "@/components/buttons/Button";
 
-import useMovieSwiper from "../../../_hooks/useMovieSwiper";
 import PostCard from "../../PostCard";
 import Tablet_BestTalkPost from "./Post/Tablet_BestTalkPost";
 interface Tablet_BestMoiveProps {
@@ -22,7 +20,7 @@ interface Tablet_BestMoiveProps {
 
 export default function Tablet_BestMoive(MovieData: Tablet_BestMoiveProps) {
   return (
-    <div className="hidden  Tablet:flex Laptop:hidden">
+    <div className="hidden  h-[344px] Tablet:flex Laptop:hidden">
       <Swiper slidesPerView="auto" spaceBetween={20} className="relative">
         {Array.isArray(MovieData.MovieData) && MovieData.MovieData.length > 0
           ? MovieData.MovieData.map((MovieDetailData, index) => {
@@ -32,36 +30,38 @@ export default function Tablet_BestMoive(MovieData: Tablet_BestMoiveProps) {
                     <PostCard background={MovieDetailData.poster_path} />
                     <div className="flex flex-col justify-between gap-3">
                       <div className="flex flex-col gap-2">
-                        <div className="flex gap-3 Text-l-Bold">
-                          <h1 className="">{MovieDetailData.movienm}</h1>
-                          <div className="flex gap-[10px] text-sm">
+                        <div className="flex gap-3 ">
+                          <h1 className="Text-l-Bold">
+                            {MovieDetailData.movienm}
+                          </h1>
+                          <div className="flex items-center gap-[10px] Text-xs-Regular">
                             <span>
                               {dayjs(MovieDetailData.release_date).format(
                                 "YYYY",
                               )}
                             </span>
-                            <div className="border-[1px]"></div>
+                            <div className="h-3 border-[1px] border-L_Gray"></div>
                             <span>{MovieDetailData.genres[0].name}</span>
                           </div>
                         </div>
                         <div className="flex gap-5">
-                          <div className="flex gap-1 Text-l-Bold">
+                          <div className="flex gap-1 Text-m-Medium">
                             <Image
                               src={TmdbSm}
                               alt="white_ start"
                               className="h-6 w-6"
                             />
-                            <span>{MovieDetailData.tmdbrate}</span>
+                            <span>{MovieDetailData.tmdbrate.toFixed(1)}</span>
                           </div>
-                          <div className="flex gap-1">
+                          <div className="flex gap-1 Text-m-Medium">
                             <Image
                               src={StarFillMd}
                               alt="Primary_Start"
                               className="h-6 w-6"
                             />
-                            <span>{MovieDetailData.rate}</span>
+                            <span>{MovieDetailData.rate.toFixed(1)}</span>
                           </div>
-                          <div className="flex gap-1">
+                          <div className="flex gap-1 Text-m-Medium">
                             <Image
                               src={ChatLineLg}
                               alt="ChatBox"
@@ -79,9 +79,9 @@ export default function Tablet_BestMoive(MovieData: Tablet_BestMoiveProps) {
                               alt="베스트"
                               className="h-6 w-6"
                             />
-                            <h2>베스트 톡</h2>
+                            <h2 className="Text-m-Bold">베스트 톡</h2>
                           </div>
-                          <div className="flex gap-3">
+                          <div className="flex gap-4">
                             {MovieDetailData.reviewList.map(
                               (reviewData: MovieReviewDTO, index: number) => {
                                 return (

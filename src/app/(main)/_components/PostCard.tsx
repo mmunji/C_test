@@ -17,6 +17,7 @@ interface PostNumber {
   likeCount?: number;
   reviewCount?: number;
   background?: string;
+  MobilePost?: string;
 }
 
 export default function PostCard({
@@ -30,6 +31,7 @@ export default function PostCard({
   likeCount,
   reviewCount,
   background,
+  MobilePost,
 }: PostNumber) {
   const [onMouseHover, SetMouseHover] = useState(false);
   const HandleMouseOver = () => {
@@ -40,7 +42,7 @@ export default function PostCard({
   };
   return (
     <div
-      className="h-[358px] w-[238px] rounded-xl Tablet:h-[390px] Tablet:w-[260px] Laptop:h-[260px] Laptop:w-[174px] Desktop:h-[360px]  Desktop:w-[240px]"
+      className="h-[358px] w-[238px] cursor-pointer rounded-xl Tablet:h-[344px] Tablet:w-[260px] Laptop:h-[260px] Laptop:w-[174px]  Desktop:h-[360px] Desktop:w-[240px]"
       style={{
         backgroundImage: `linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, rgba(0, 0, 0, 0) 100%), url('${background ? background : "/images/detail/detail-poster-example.png"}')`,
         backgroundSize: "cover",
@@ -51,7 +53,7 @@ export default function PostCard({
       onMouseOut={HandleMouseOut}
     >
       {num ? (
-        <div className="Tablet:Text-I-Bold flex h-[30px] w-[30px] items-center justify-center rounded-bl-[12px] rounded-tl-[12px] bg-Primary Text-s-Bold">
+        <div className="flex h-[30px] w-[30px] items-center justify-center rounded-br-[12px] rounded-tl-[12px] bg-Primary Text-s-Bold Tablet:Text-l-Bold">
           {num}
         </div>
       ) : (
@@ -65,10 +67,10 @@ export default function PostCard({
             background: "rgba(0, 0, 0, 0.50)",
           }}
         >
-          <div className="flex flex-col items-center gap-2">
-            <GetRating StarRating={StarRating} ratingsize="Md" />
-            <div className="mt-4 flex flex-col gap-1">
-              <span className="Desktop:line-clamp-9 line-clamp-5 Text-m-Regular">
+          <div className="flex flex-col items-center gap-2 Desktop:gap-4">
+            <GetRating StarRating={StarRating} ratingsize="Md" space={true} />
+            <div className=" flex flex-col gap-1">
+              <span className="Desktop:line-clamp-9 line-clamp-5 w-full text-Silver Text-m-Regular Laptop:h-[121px] Desktop:w-[216px]">
                 {content}
               </span>
               <div className="flex justify-end text-Gray Text-xs-Regular">
@@ -76,14 +78,14 @@ export default function PostCard({
               </div>
             </div>
             <div className="w-full border-[1px] text-Gray" />
-            <div className="flex  justify-end gap-2 text-Gray_Orange Text-s-Medium">
+            <div className="flex  justify-end gap-2 Text-s-Medium">
               <div className="flex gap-1">
                 <Image src={ThumbsUpFillSm} alt="별" />
-                <span>{likeCount}</span>
+                <span className="text-Gray_Orange ">{likeCount}</span>
               </div>
               <div className="flex gap-1">
                 <Image src={ChatFillSm} alt="별" />
-                <span>{reviewCount}</span>
+                <span className="text-Gray_Orange ">{reviewCount}</span>
               </div>
             </div>
           </div>
@@ -93,13 +95,13 @@ export default function PostCard({
       )}
       {PostType && onMouseHover ? (
         <div
-          className="line-clamp-6 flex h-[358px] w-[238px] items-center rounded-xl px-5 py-7  Text-m-Regular Tablet:h-[390px]  Tablet:w-[260px] Laptop:h-[260px] Laptop:w-[174px] Desktop:h-[360px] Desktop:w-[240px]"
+          className=" flex h-[358px] w-[238px] items-center rounded-xl px-5 py-7  Text-m-Regular Tablet:h-[390px]  Tablet:w-[260px] Laptop:h-[260px] Laptop:w-[174px] Desktop:h-[360px] Desktop:w-[240px]"
           style={{
             backdropFilter: "blur(5px)",
             background: "rgba(0, 0, 0, 0.50)",
           }}
         >
-          {content}
+          <span className="Desktop:line-clamp-9 line-clamp-6"> {content}</span>
         </div>
       ) : (
         ""

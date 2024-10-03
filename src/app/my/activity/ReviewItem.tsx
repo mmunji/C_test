@@ -1,33 +1,58 @@
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 import Button from "@/components/buttons/Button";
 import Dropdown from "@/components/dropdown/dropdown";
 import Modal from "@/components/modal/modal";
+import ROUTES from "@/constants/routes";
+import { deleteReview } from "@/services/my/actions";
 
 import {
   ChatLineGrayOrangeSm,
   MoreHorizontal,
+  StarFillSm,
+  StarHalfSm,
   StarSm,
   ThumbsUpLineSm,
 } from "../../../../public/icons";
 
-export default function ReviewItem() {
+interface ReviewItemProps {
+  review: PostreviewDTO;
+  setActiveTab: React.Dispatch<React.SetStateAction<string>>;
+  reviewsLength: number;
+}
+
+export default function ReviewItem({
+  review,
+  setActiveTab,
+  reviewsLength,
+}: ReviewItemProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const router = useRouter();
+
+  const printStar = (star: number) => {
+    return Array(5)
+      .fill(0)
+      .map((_, i) => {
+        const remaining = star - i;
+        if (remaining >= 1) {
+          return <Image key={i} src={StarFillSm} alt="full star" />;
+        } else if (remaining >= 0.5) {
+          return <Image key={i} src={StarHalfSm} alt="half star" />;
+        } else {
+          return <Image key={i} src={StarSm} alt="empty star" />;
+        }
+      });
+  };
 
   return (
     <div className="flex flex-col gap-2 rounded-xl bg-D1_Gray px-5 pb-5 pt-3 Laptop:gap-4 Laptop:px-7 Laptop:pb-6 Laptop:pt-4">
       <div className="">
         <div className="flex items-center justify-between Laptop:mb-2">
           <div className="flex items-center gap-2">
-            <span className="Text-m-Medium">영화제목</span>
-            <div className="flex items-center">
-              {Array(5)
-                .fill(1)
-                .map((_, i) => (
-                  <Image key={i} src={StarSm} alt="별점" />
-                ))}
-            </div>
+            <span className="Text-m-Medium">{review.movienm}</span>
+            <div className="flex items-center">{printStar(review.star)}</div>
           </div>
           <div>
             <Dropdown>
@@ -37,7 +62,11 @@ export default function ReviewItem() {
                 </Button>
               </Dropdown.Trigger>
               <Dropdown.List>
-                <Dropdown.Item onClick={() => console.log("sdf")}>
+                <Dropdown.Item
+                  onClick={() =>
+                    router.push(`${ROUTES.DETAIL}/${review.movie_id}`)
+                  }
+                >
                   수정
                 </Dropdown.Item>
                 <Dropdown.Item onClick={() => setIsModalOpen(true)}>
@@ -47,44 +76,43 @@ export default function ReviewItem() {
             </Dropdown>
           </div>
         </div>
-        <div className="line-clamp-3 text-Gray_Orange Text-m-Regular Laptop:line-clamp-4">
-          내용은 3줄까지 보여집니다. 그 이상은 더보기로 볼 수 있습니다.내용은
-          3줄까지 보여집니다. 그 이상은 더보 볼 수 있습니다.내용은 3줄까지
-          보여집니다. 그 이상은 더보기로 볼 수 있습니다. 볼 수 있습니다.내용은
-          보여집니다. 그 이상은 더보기로 볼 수 있습니다. 볼 수 있습니다.내용은
-          보여집니다. 그 이상은 더보기로 볼 수 있습니다. 볼 수 있습니다.내용은
-          보여집니다. 그 이상은 더보기로 볼 수 있습니다. 볼 수 있습니다.내용은
-          보여집니다. 그 이상은 더보기로 볼 수 있습니다. 볼 수 있습니다.내용은
-          3줄까지 보여집니다. 그 이상은 더보기로 볼 수 있습니다.
+        <div className="line-clamp-3 min-h-[72px] text-Gray_Orange Text-m-Regular Laptop:line-clamp-4 Laptop:min-h-24">
+          {review.content}
         </div>
       </div>
       <div className="flex items-center justify-between border-t border-D2_Gray pt-3">
-        <div className="text-Gray Text-xs-Regular">YY.MM.DD 작성</div>
+        <div className="text-Gray Text-xs-Regular">{review.regDate} 작성</div>
         <div className="flex items-center gap-3">
           <div className="flex items-center gap-1">
             <Image alt="좋아요" src={ThumbsUpLineSm} />
-            <span className="text-Gray_Orange Text-s-Medium">0,000</span>
+            <span className="text-Gray_Orange Text-s-Medium">
+              {review.rateCount}
+            </span>
           </div>
           <div className="flex items-center gap-1">
             <Image alt="댓글" src={ChatLineGrayOrangeSm} />
-
-            <span className="text-Gray_Orange Text-s-Medium">0,000</span>
+            <span className="text-Gray_Orange Text-s-Medium">
+              {review.rereviewCount}
+            </span>
           </div>
         </div>
       </div>
 
       {isModalOpen && (
-        <Modal
-          isAlertModal
-          isOpen={isModalOpen}
-          onClose={() => setIsModalOpen(false)}
-        >
+        <Modal isAlertModal onClose={() => setIsModalOpen(false)}>
           <Modal.TitleWrapper>
             <Modal.Title>정말 삭제하시겠어요?</Modal.Title>
-            <Modal.Description>텍스트 텍스트</Modal.Description>
           </Modal.TitleWrapper>
           <Modal.CancelButton>아니요</Modal.CancelButton>
-          <Modal.Button onClick={() => console.log("sdfds")}>네</Modal.Button>
+          <Modal.Button
+            onClick={async () => {
+              const result = await deleteReview(review.review_id);
+              if (result.state) setActiveTab(`톡 ${reviewsLength - 1}`);
+              setIsModalOpen(false);
+            }}
+          >
+            네
+          </Modal.Button>
         </Modal>
       )}
     </div>

@@ -1,10 +1,7 @@
 "use client";
-import dayjs from "dayjs";
-import Image from "next/image";
+
 import { useState } from "react";
 import { Swiper, SwiperClass, SwiperSlide } from "swiper/react";
-
-import { StarXl } from "@/../public/icons";
 
 import PostRating from "../../../Rating/PostRating";
 interface WatchMovieType {

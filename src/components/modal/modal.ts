@@ -3,10 +3,9 @@ import {
   ModalCancelButton,
   ModalCheckbox,
 } from "@/components/modal/_components/ModalButtons";
-import ModalImg from "@/components/modal/_components/ModalImg";
+import ModalEtc from "@/components/modal/_components/ModalEtc";
 import ModalLogin from "@/components/modal/_components/ModalLogin";
 import ModalMain from "@/components/modal/_components/ModalMain";
-import ModalReport from "@/components/modal/_components/ModalReport";
 import {
   ModalDescription,
   ModalTitle,
@@ -17,11 +16,10 @@ const Modal = Object.assign(ModalMain, {
   TitleWrapper: ModalTitleWrapper,
   Title: ModalTitle,
   Description: ModalDescription,
-  Img: ModalImg,
+  Etc: ModalEtc,
   Button: ModalButton,
   CancelButton: ModalCancelButton,
   Checkbox: ModalCheckbox,
-  Report: ModalReport,
   Login: ModalLogin,
 });
 

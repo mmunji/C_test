@@ -1,11 +1,12 @@
 - Dropdown:
   - `type?: "genre" | "icon" | "text"` (default = text)
-- Dropdown.Trigger: 트리거 엘리먼트 만들어주시면 됩니다. ❗️이 컴포넌트의 높이를 기준으로 위치를 자동 조정합니다.❗️
+- Dropdown.Trigger: 트리거 엘리먼트 만들어주시면 됩니다. ❗️trigger 요소를 기준으로 높이를 자동 조정합니다.❗️
 - Dropdown.List: Item 컴포넌트 래퍼
   - `className?:className`: 클래스네임을 추가하면 위치 조정이 해제됩니다.
 - Dropdown.Item:
   - `onClick:fn` 핸들러 이벤트 설정해주세요.
   - `isFocused:boolean` focus의 경우 설정해주세요
+  - `href?:string` 이 값을 입력할 경우 button 대신 next/link로 설정됩니다.
 
 ### type === 'genre' | 'text'
 
@@ -27,7 +28,7 @@
 ### type === 'icon'
 
 ```jsx
-<Dropdown type="genre">
+<Dropdown type="icon">
   <Dropdown.Trigger>
     <div className="bg-blue-500 text-white">아무거나</div>
   </Dropdown.Trigger>

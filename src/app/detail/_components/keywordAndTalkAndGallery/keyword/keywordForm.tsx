@@ -95,11 +95,7 @@ export default function KeywordForm({ movieId, title }: KeywordFormProps) {
       </div>
 
       {isOpen && (
-        <Modal
-          isAlertModal={false}
-          isOpen={isOpen}
-          onClose={() => setIsOpen(false)}
-        >
+        <Modal isAlertModal={false} onClose={() => setIsOpen(false)}>
           <Modal.Login
             onKakaoLogin={() => handleClickAuthButton("kakao")}
             onNaverLogin={() => handleClickAuthButton("naver")}

@@ -30,7 +30,7 @@ export default function SimilarTastesMoive() {
   }, []);
   return (
     <div className="flex flex-col gap-5">
-      <div className="flex flex-col gap-5 Tablet:flex-row">
+      <div className="flex flex-col gap-5 Tablet:flex-row Tablet:items-center">
         <h1 className="Text-l-Bold Laptop:Text-xxl-Bold ">
           다른 사람들은 이런 영화를 평가했어요
         </h1>
@@ -45,7 +45,7 @@ export default function SimilarTastesMoive() {
         )}
       </div>
       <div className="flex gap-4 Laptop:hidden">
-        <Swiper slidesPerView="auto" spaceBetween={10}>
+        <Swiper slidesPerView="auto" spaceBetween={20}>
           {Array.isArray(ReviewUsers) && ReviewUsers.length > 0
             ? ReviewUsers.map((Review, index) => {
                 return (
@@ -54,12 +54,14 @@ export default function SimilarTastesMoive() {
                       className={`h-[60px] w-[60px] rounded-[60px] border-2 bg-white  ${PickUserNumber == index ? "border-Primary" : "border-transparent"} `}
                       onClick={() => ChangePickNumber(index)}
                       style={{
-                        backgroundImage: `linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, rgba(0, 0, 0, 0.50) 100%), url(data:image/jpeg;base64,${Review.profile}`,
+                        backgroundImage: `linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, rgba(0, 0, 0, 0) 100%), url(data:image/jpeg;base64,${Review.profile}`,
                         backgroundSize: "cover",
                         backgroundPosition: "center",
                       }}
                     ></div>
-                    <span className="mt-1 line-clamp-1 text-center Text-xs-Regular ">
+                    <span
+                      className={`mt-1 line-clamp-1 text-center  ${PickUserNumber == index ? " Text-xs-Bold" : "Text-xs-Regular"} `}
+                    >
                       {Review.nickname}
                     </span>
                   </SwiperSlide>

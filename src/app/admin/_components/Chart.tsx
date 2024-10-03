@@ -2,69 +2,73 @@
 
 import { ResponsiveLine } from "@nivo/line";
 
-const data = [
-  {
-    id: "키워드 수",
-    color: "hsl(280, 70%, 50%)",
-    data: [
-      { x: "1월", y: 76 },
-      { x: "2월", y: 222 },
-      { x: "3월", y: 84 },
-      { x: "4월", y: 270 },
-      { x: "5월", y: 107 },
-      { x: "6월", y: 297 },
-      { x: "7월", y: 215 },
-      { x: "8월", y: 266 },
-      { x: "9월", y: 272 },
-      { x: "10월", y: 77 },
-      { x: "11월", y: 127 },
-      { x: "12월", y: 33 },
-    ],
-  },
-  {
-    id: "신고 수",
-    color: "hsl(210, 70%, 50%)",
-    data: [
-      { x: "1월", y: 232 },
-      { x: "2월", y: 108 },
-      { x: "3월", y: 97 },
-      { x: "4월", y: 287 },
-      { x: "5월", y: 8 },
-      { x: "6월", y: 175 },
-      { x: "7월", y: 10 },
-      { x: "8월", y: 190 },
-      { x: "9월", y: 39 },
-      { x: "10월", y: 220 },
-      { x: "11월", y: 46 },
-      { x: "12월", y: 54 },
-    ],
-  },
-  {
-    id: "리뷰 수",
-    color: "hsl(35, 70%, 50%)",
-    data: [
-      { x: "1월", y: 220 },
-      { x: "2월", y: 260 },
-      { x: "3월", y: 280 },
-      { x: "4월", y: 61 },
-      { x: "5월", y: 147 },
-      { x: "6월", y: 253 },
-      { x: "7월", y: 161 },
-      { x: "8월", y: 189 },
-      { x: "9월", y: 25 },
-      { x: "10월", y: 249 },
-      { x: "11월", y: 172 },
-      { x: "12월", y: 127 },
-    ],
-  },
-];
+interface ChartPrpos {
+  Visitor: Users[] | undefined;
+  ReviewCount: Users[] | undefined;
+  KeywordCount: Users[] | undefined;
+}
+const monthMap: { [key: string]: string } = {
+  "01": "1월",
+  "02": "2월",
+  "03": "3월",
+  "04": "4월",
+  "05": "5월",
+  "06": "6월",
+  "07": "7월",
+  "08": "8월",
+  "09": "9월",
+  "10": "10월",
+  "11": "11월",
+  "12": "12월",
+};
+export function MyResponsiveLine({
+  Visitor,
+  ReviewCount,
+  KeywordCount,
+}: ChartPrpos) {
+  const chartData = [
+    {
+      id: "가입 수",
+      color: "hsl(280, 70%, 50%)",
+      data: Visitor
+        ? Visitor.slice()
+            .reverse()
+            .map(({ date, count }) => ({
+              x: monthMap[date.split("-")[1]],
+              y: count,
+            }))
+        : [], // Visitor 데이터가 없을 때 빈 배열 반환
+    },
+    {
+      id: "리뷰 수",
+      color: "hsl(280, 70%, 50%)",
+      data: ReviewCount
+        ? ReviewCount.slice()
+            .reverse()
+            .map(({ date, count }) => ({
+              x: monthMap[date.split("-")[1]],
+              y: count,
+            }))
+        : [],
+    },
+    {
+      id: "키워드 수",
+      color: "hsl(280, 70%, 50%)",
+      data: KeywordCount
+        ? KeywordCount.slice()
+            .reverse()
+            .map(({ date, count }) => ({
+              x: monthMap[date.split("-")[1]],
+              y: count,
+            }))
+        : [],
+    },
+  ];
 
-export function MyResponsiveLine() {
   return (
-    <div className="h-96 w-[1300px]">
-      {/* TailwindCSS로 높이 설정 */}
+    <div className="h-96 w-[1300px] bg-white">
       <ResponsiveLine
-        data={data}
+        data={chartData}
         margin={{ top: 10, right: 110, bottom: 50, left: 60 }}
         xScale={{ type: "point" }}
         yScale={{
@@ -82,7 +86,7 @@ export function MyResponsiveLine() {
           tickSize: 14,
           tickPadding: 5,
           tickRotation: 0,
-          legend: "달",
+          legend: "",
           legendOffset: 36,
           legendPosition: "middle",
         }}
@@ -92,7 +96,7 @@ export function MyResponsiveLine() {
             ticks: {
               text: {
                 fontSize: 18,
-                fill: "white",
+                fill: "black",
               },
             },
           },
@@ -101,7 +105,7 @@ export function MyResponsiveLine() {
         pointColor={{ theme: "background" }}
         pointBorderWidth={2}
         pointBorderColor={{ from: "serieColor" }}
-        pointLabel="y"
+        pointLabel="명"
         pointLabelYOffset={-12}
         enableCrosshair={true}
         useMesh={true}
@@ -121,7 +125,7 @@ export function MyResponsiveLine() {
 
             symbolShape: "circle",
             symbolBorderColor: "rgba(0, 0, 0, .5)",
-            itemTextColor: "white",
+            itemTextColor: "black",
 
             effects: [
               {
@@ -135,6 +139,17 @@ export function MyResponsiveLine() {
             ],
           },
         ]}
+        tooltip={({ point }) => (
+          <div
+            style={{
+              background: "white",
+              padding: "9px 12px",
+              border: "1px solid #ccc",
+            }}
+          >
+            <strong>{point.serieId}</strong>: {Number(point.data.yFormatted)}명
+          </div>
+        )}
       />
     </div>
   );

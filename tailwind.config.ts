@@ -39,8 +39,16 @@ const config: Config = {
         Regular: "400",
       },
       fontFamily: {
-        appleSDGothicNeo: ["var(--font-appleSDGothicNeo)"],
         pretendard: ["var(--font-pretendard)"],
+      },
+      height: {
+        xxxl: "48px",
+        xxl: "39px",
+        xl: "34px",
+        lg: "28px",
+        md: "24px",
+        sm: "21px",
+        xs: "16.8px",
       },
       colors: {
         BG: "#262626",
@@ -102,9 +110,6 @@ const config: Config = {
         ".Text-s-Regular": {},
         ".Text-xs-Bold": {},
         ".Text-xs-Regular": {},
-        ".Emoji-l": {},
-        ".Emoji-m": {},
-        ".Emoji-s": {},
         ".badge-gradient": {},
         ".input-scrollbar": {
           "&::-webkit-scrollbar": {

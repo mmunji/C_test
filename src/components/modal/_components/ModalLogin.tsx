@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { useState } from "react";
 
 import { useModalContext } from "@/components/modal/ModalContext";
 import SpeechBubble from "@/components/speechBubble/SpeechBubble";
@@ -10,22 +9,20 @@ interface ModalLoginProps {
   onKakaoLogin: () => void;
   onNaverLogin: () => void;
 }
-type LastSocialLogin = null | "kakao" | "naver";
 
 export default function ModalLogin({
   onKakaoLogin,
   onNaverLogin,
 }: ModalLoginProps) {
-  const [lastSocialLogin, setLastSocialLogin] =
-    useState<LastSocialLogin>("kakao");
+  const lastSocialLogin = localStorage.getItem("lastSocialLogin");
   const { onClose } = useModalContext();
 
   return (
-    <div className="relative flex flex-col gap-7">
+    <div className="flex flex-col gap-7 Tablet:relative">
       <button
         type="button"
         onClick={onClose}
-        className="absolute -right-6 -top-12 w-fit p-2"
+        className="absolute right-1 top-0 w-fit p-2 Tablet:-right-6 Tablet:-top-12"
       >
         <Image src={CloseLg} alt="닫기" width={24} height={24} />
       </button>
@@ -39,18 +36,18 @@ export default function ModalLogin({
       </div>
       <div className="flex flex-col items-center gap-9">
         <p>로그인하고 더 자유롭게 씨네톡을 사용하세요 :)</p>
-        <div className="flex flex-col gap-6">
+        <div className="mt-[167px] flex flex-col gap-6 Tablet:mt-0">
           <div className="relative">
             <button
               type="button"
               onClick={onKakaoLogin}
-              className="flex h-12 w-[360px] items-center justify-center gap-4 rounded-xl bg-Kakako text-[#000000d9] Text-m-Medium"
+              className="flex h-12 w-[320px] items-center  justify-center gap-4 rounded-xl bg-Kakako text-[#000000d9] Text-m-Medium Tablet:w-[360px]"
             >
               <Image src={Kakao} alt="카카오" width={18} height={18} />
               카카오로 시작하기
             </button>
             {lastSocialLogin === "kakao" && (
-              <div className="absolute bottom-[41px] left-1/2 z-10 -translate-x-1/2">
+              <div className="absolute bottom-[41px] z-10 flex w-full justify-center">
                 <SpeechBubble dir="bottom">
                   마지막에 로그인 했어요!
                 </SpeechBubble>
@@ -62,13 +59,13 @@ export default function ModalLogin({
             <button
               type="button"
               onClick={onNaverLogin}
-              className="flex h-12 w-[360px] items-center justify-center gap-4 rounded-xl bg-Naver text-White Text-m-Medium"
+              className="flex h-12 w-[320px] items-center justify-center gap-4 rounded-xl bg-Naver text-White Text-m-Medium Tablet:w-[360px]"
             >
               <Image src={Naver} alt="네이버" width={16} height={16} />
               네이버로 시작하기
             </button>
             {lastSocialLogin === "naver" && (
-              <div className="absolute bottom-[41px] left-1/2 z-10 -translate-x-1/2">
+              <div className="absolute bottom-[41px] z-10 flex w-full justify-center">
                 <SpeechBubble dir="bottom">
                   마지막에 로그인 했어요!
                 </SpeechBubble>

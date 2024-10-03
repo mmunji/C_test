@@ -1,6 +1,7 @@
 interface MentionKeword {
   reviewList: reviewDTO[];
   keyword: string;
+  count: number;
 }
 interface reviewDTO {
   nickname: string;
@@ -15,4 +16,5 @@ interface review {
   star: number;
   userId: number;
   parentReview: null;
+  createdAt: string;
 }
