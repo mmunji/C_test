@@ -1,9 +1,5 @@
-import Image from "next/image";
-
 import SmallBadge from "@/components/smallBadge/SmallBadge";
 import { myAPIs } from "@/services/my/myAPIs";
-
-import { AddPlus } from "../../../../../public/icons";
 
 export default async function Badges() {
   const badges = await myAPIs.getBadges();
@@ -23,10 +19,9 @@ export default async function Badges() {
           </div>
         ))
       ) : (
-        <div className="flex cursor-default items-center gap-1 rounded-lg border-Gray px-2 py-1 text-Gray outline-dashed outline-1 Tablet:px-3 Tablet:py-2">
-          <Image src={AddPlus} alt="뱃지 추가 아이콘" width={16} height={16} />
+        <div className="cursor-default rounded-lg border-Gray px-2 py-1 text-Gray outline-dashed outline-1 Tablet:px-3 Tablet:py-2">
           <span className="Text-s-Medium Tablet:Text-m-Medium">
-            뱃지 추가 하기
+            착용한 뱃지가 없어요
           </span>
         </div>
       )}
