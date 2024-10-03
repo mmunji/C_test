@@ -28,10 +28,12 @@ export function useGetReplies(parentReviewId: number) {
 
 export function useGetMyTalk(movieId: number) {
   const accessToken = tokenManager.getToken();
+
   return useQuery({
-    queryKey: TALK_QUERY_KEYS.my(movieId),
-    queryFn: () => {
-      return talkAPIs.getMyTalk(movieId);
+    queryKey: [TALK_QUERY_KEYS.my(accessToken as string), movieId],
+    queryFn: ({ queryKey }) => {
+      const [, movieId] = queryKey;
+      return talkAPIs.getMyTalk(movieId as number);
     },
     enabled: !!accessToken,
   });

@@ -6,7 +6,7 @@ import React, { useEffect } from "react";
 import useTotalTalksStore from "@/app/detail/_stores/useTotalTalksStore";
 import useDevice from "@/hooks/useDevice";
 import { talkAPIs } from "@/services/talk/talkAPIs";
-import { useGetTalkQuery } from "@/services/talk/talkQueries";
+import { useGetMyTalk, useGetTalkQuery } from "@/services/talk/talkQueries";
 
 import DividingLine from "../../common/DividingLine";
 import NoTalk from "./NoTalk";
@@ -27,10 +27,9 @@ export default function Talk({ title, movieId, movieDetailData }: TalkProps) {
   const noTalk = data?.pages?.[0]?.reviewList?.length === 0;
 
   const { setTotalTalks } = useTotalTalksStore();
-  const { data: myTalk } = useQuery({
-    queryKey: [""],
-    queryFn: () => talkAPIs.getMyTalk(movieId),
-  });
+
+  const { data: myTalk } = useGetMyTalk(movieId);
+  console.log("myTalk", myTalk);
 
   useEffect(() => {
     if (data?.pages[0].totalElements) {

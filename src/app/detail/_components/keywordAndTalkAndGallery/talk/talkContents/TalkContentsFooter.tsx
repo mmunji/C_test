@@ -61,12 +61,12 @@ export default function TalkContentsFooter({
     <section className="flex items-center justify-end Tablet:mt-2">
       <Button onClick={() => handleClickLike(talk.id)} variant="textIconL">
         <Image
-          src={like ? ThumbsUpFillSm : ThumbsUpLineSm}
+          src={talk.likeCheck ? ThumbsUpFillSm : ThumbsUpLineSm}
           alt="좋아요"
           className="Laptop:hidden"
         />
         <Image
-          src={like ? ThumbsUpFillMd : ThumbsUpLineMd}
+          src={talk.likeCheck ? ThumbsUpFillMd : ThumbsUpLineMd}
           alt="좋아요"
           className="hidden Laptop:block"
         />
@@ -76,12 +76,12 @@ export default function TalkContentsFooter({
       </Button>
       <Button onClick={() => handleClickDislike(talk.id)} variant="textIconL">
         <Image
-          src={dislike ? ThumbsDownFillSm : ThumbsDownLineSm}
+          src={talk.dislikeCheck ? ThumbsDownFillSm : ThumbsDownLineSm}
           alt="싫어요"
           className="Laptop:hidden"
         />
         <Image
-          src={dislike ? ThumbsDownFillMd : ThumbsDownLineMd}
+          src={talk.dislikeCheck ? ThumbsDownFillMd : ThumbsDownLineMd}
           alt="싫어요"
           className="hidden Laptop:block"
         />
