@@ -1,6 +1,6 @@
 import Image from "next/image";
-import { usePathname, useRouter } from "next/navigation";
-import React, { useEffect } from "react";
+import { usePathname } from "next/navigation";
+import React from "react";
 
 import Dropdown from "@/components/dropdown/dropdown";
 import ROUTES from "@/constants/routes";
@@ -10,31 +10,25 @@ import useScrollStore from "@/stores/useScrollStore";
 
 import { CaretDownMd, LogOut, User } from "../../../public/icons";
 
+const dropdownMenu = [
+  { icon: User, content: "마이페이지", href: ROUTES.MY.default },
+  { icon: LogOut, content: "로그아웃", href: "" },
+];
+
 export default function HeaderDropdown({
   children,
 }: {
   children: React.ReactNode;
 }) {
   const hasScrolledPast = useScrollStore((state) => state.hasScrolledPast);
-  const dropdownMenu = [
-    { icon: User, content: "마이페이지" },
-    { icon: LogOut, content: "로그아웃" },
-  ];
   const pathname = usePathname();
-  const router = useRouter();
   const handleLogout = useLoggedInStore((state) => state.logout);
 
-  const handleClickDropdown = (i: number) => {
-    if (i === 0) router.push(ROUTES.MY.default);
-    else if (i === 1) {
-      logout();
-      handleLogout();
-    }
+  const handleClickDropdown = (href: string | null) => {
+    if (href) return;
+    logout();
+    handleLogout();
   };
-
-  useEffect(() => {
-    router.prefetch(ROUTES.MY.default);
-  }, [router]);
 
   return (
     <Dropdown type="icon">
@@ -48,11 +42,12 @@ export default function HeaderDropdown({
           <Image src={CaretDownMd} alt="더보기" className="cursor-pointer" />
         </div>
       </Dropdown.Trigger>
-      <Dropdown.List>
-        {dropdownMenu.map((m, i) => (
+      <Dropdown.List className="left-1/2 top-[55px] -translate-x-1/2">
+        {dropdownMenu.map((m) => (
           <Dropdown.Item
             key={m.content}
-            onClick={() => handleClickDropdown(i)}
+            href={m.href}
+            onClick={() => handleClickDropdown(m.href)}
             isFocused={m.content === "전체"}
           >
             <div className="flex items-center gap-2">

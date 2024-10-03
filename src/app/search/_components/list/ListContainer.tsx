@@ -28,7 +28,7 @@ export default function SearchListContainer({
       <div
         className={clsx(
           activeSearchTab !== "전체" && "hidden",
-          "my-7 h-3 w-[500%] -translate-x-1/2 rounded-[3px] bg-Black Tablet:my-20 Laptop:h-[1px] Laptop:w-full Laptop:translate-x-0 Laptop:bg-Gray Desktop:my-[120px]",
+          "relative -left-5 my-7 h-3 w-screen rounded-[3px] bg-Black Tablet:my-20 Laptop:static Laptop:h-[1px] Laptop:w-full Laptop:bg-Gray Desktop:my-[120px]",
         )}
       />
       <SearchReviewList reviews={reviews} relatedKeywords={relatedKeywords} />

@@ -1,4 +1,5 @@
 import { cva } from "class-variance-authority";
+import Link from "next/link";
 
 import {
   ButtonType,
@@ -9,6 +10,7 @@ interface DropdownItemProps {
   children: React.ReactNode;
   onClick: () => void;
   isFocused?: boolean;
+  href?: string;
 }
 
 export type Status = "active" | "inactive";
@@ -34,13 +36,26 @@ export default function DropdownItem({
   children,
   onClick,
   isFocused = false,
+  href,
 }: DropdownItemProps) {
   const { type, toggleDropdown } = useDropdownContext();
   const handleClick = () => {
     onClick();
     toggleDropdown();
   };
-  return (
+
+  return href ? (
+    <Link
+      onClick={toggleDropdown}
+      href={href}
+      className={styles({
+        type,
+        isFocused: isFocused ? "active" : "inactive",
+      })}
+    >
+      {children}
+    </Link>
+  ) : (
     <button
       onClick={handleClick}
       type="button"

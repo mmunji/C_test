@@ -6,6 +6,7 @@
 - Dropdown.Item:
   - `onClick:fn` 핸들러 이벤트 설정해주세요.
   - `isFocused:boolean` focus의 경우 설정해주세요
+  - `href?:string` 이 값을 입력할 경우 button 대신 next/link로 설정됩니다.
 
 ### type === 'genre' | 'text'
 
