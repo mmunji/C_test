@@ -42,7 +42,7 @@ export default function HeaderDropdown({
           <Image src={CaretDownMd} alt="더보기" className="cursor-pointer" />
         </div>
       </Dropdown.Trigger>
-      <Dropdown.List className="left-1/2 top-[55px] -translate-x-1/2">
+      <Dropdown.List className="left-1/2 top-[47px] -translate-x-1/2">
         {dropdownMenu.map((m) => (
           <Dropdown.Item
             key={m.content}
