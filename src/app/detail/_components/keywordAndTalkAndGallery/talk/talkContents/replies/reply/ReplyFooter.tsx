@@ -55,12 +55,12 @@ export default function ReplyFooter({
         className="flex cursor-pointer items-center"
       >
         <Image
-          src={like ? ThumbsUpFillSm : ThumbsUpLineSm}
+          src={reply.likeCheck ? ThumbsUpFillSm : ThumbsUpLineSm}
           alt="좋아요"
           className="Tablet:hidden"
         />
         <Image
-          src={like ? ThumbsUpFillMd : ThumbsUpLineMd}
+          src={reply.likeCheck ? ThumbsUpFillMd : ThumbsUpLineMd}
           alt="좋아요"
           className="hidden Tablet:block"
         />
@@ -74,12 +74,12 @@ export default function ReplyFooter({
         className="flex cursor-pointer items-center"
       >
         <Image
-          src={disLike ? ThumbsDownFillSm : ThumbsDownLineSm}
+          src={reply.dislikeCheck ? ThumbsDownFillSm : ThumbsDownLineSm}
           alt="싫어요"
           className="Tablet:hidden"
         />
         <Image
-          src={disLike ? ThumbsDownFillMd : ThumbsDownLineMd}
+          src={reply.dislikeCheck ? ThumbsDownFillMd : ThumbsDownLineMd}
           alt="싫어요"
           className="hidden Tablet:block"
         />
