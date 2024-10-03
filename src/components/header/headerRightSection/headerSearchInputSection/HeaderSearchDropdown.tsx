@@ -20,7 +20,6 @@ export default function HeaderSearchDropdown({
 }: HeaderSearchDropdownProps) {
   const { movieTitles } = useSearchMovieTitlesStore();
   useGetPopularSearchList(inputValue);
-  console.log(movieTitles);
 
   return (
     <ul className="absolute top-10 w-full rounded-b-[20px] bg-D2_Gray pb-2">
