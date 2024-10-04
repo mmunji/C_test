@@ -32,7 +32,7 @@ export default function Rating({
     setIsOpen,
     showTalkForm,
     setShowTalkForm,
-  } = useRating();
+  } = useRating({ initialValue: 0 });
   const { handleClickAuthButton } = useHandleClickAuthButton();
 
   return (

@@ -8,6 +8,7 @@ import useNeedLogin from "@/hooks/useNeedLogin";
 import useSmoothScroll from "@/hooks/useSmoothScroll";
 import { useBookmarkMovie } from "@/services/movie/movieMutations";
 import { useCheckBookmark } from "@/services/movie/movieQueries";
+import { useGetMyStar } from "@/services/talk/talkQueries";
 import useLoggedInStore from "@/stores/useLoggedIn";
 
 import {
@@ -39,6 +40,7 @@ export default function DetailBannerBottomRight({
 
   const { mutate: bookmark } = useBookmarkMovie(movieId);
   const { data: checkBookmark } = useCheckBookmark(movieId);
+  const { data: myStar } = useGetMyStar(movieId);
 
   useEffect(() => {
     if (activeCategoryTab === "톡" && clickedTalk) {
@@ -69,7 +71,7 @@ export default function DetailBannerBottomRight({
         {loggedIn && (
           <section>
             <p className="flex h-10 w-10 items-center justify-center text-Silver Text-l-Bold Laptop:h-12 Laptop:w-12 Laptop:text-xl Laptop:font-Medium Laptop:leading-[28px]">
-              0.0
+              {myStar?.data.star || 0.0}
             </p>
             <p className="text-center text-L_Gray Text-xs-Regular Laptop:text-White Laptop:Text-s-Medium">
               내 평가

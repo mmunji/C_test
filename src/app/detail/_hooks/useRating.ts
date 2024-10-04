@@ -2,9 +2,13 @@ import { useEffect, useState } from "react";
 
 import useNeedLogin from "@/hooks/useNeedLogin";
 
-export default function useRating() {
+interface UseRatingProps {
+  initialValue?: number;
+}
+
+export default function useRating({ initialValue = 0 }: UseRatingProps) {
   const [showTalkForm, setShowTalkForm] = useState(false);
-  const [ratingValue, setRatingValue] = useState<number>(0);
+  const [ratingValue, setRatingValue] = useState<number>(initialValue);
   const [clickedValue, setClickedValue] = useState(false);
   const [driveTalkText, setDriveTalkText] = useState("");
   const [readyToRating, setReadyToRating] = useState(false);

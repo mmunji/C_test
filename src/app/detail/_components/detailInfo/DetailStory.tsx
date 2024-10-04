@@ -17,7 +17,7 @@ export default function DetailStory({ overview }: DetailStoryProps) {
 
   return (
     <div
-      className={`h-fit Laptop:w-[calc((100%-20px)/2)] Desktop:w-[768px] ${!showMoreButton && "pb-5 Laptop:pb-[32px]"} rounded-[12px] bg-Black px-4 pt-5 Laptop:w-1/2 Laptop:bg-D1_Gray Laptop:px-8 Laptop:pt-7`}
+      className={`h-fit Laptop:w-[calc((100%-20px)/2)] Desktop:w-[768px] ${!showMoreButton && "pb-5 Laptop:pb-[32px]"} w-full rounded-[12px] bg-Black px-4 pt-5 Laptop:w-1/2 Laptop:bg-D1_Gray Laptop:px-8 Laptop:pt-7`}
     >
       <p
         ref={contentRef}

@@ -7,8 +7,10 @@ import useTotalTalksStore from "@/app/detail/_stores/useTotalTalksStore";
 import useDevice from "@/hooks/useDevice";
 import { talkAPIs } from "@/services/talk/talkAPIs";
 import { useGetMyTalk, useGetTalkQuery } from "@/services/talk/talkQueries";
+import useLoggedInStore from "@/stores/useLoggedIn";
 
 import DividingLine from "../../common/DividingLine";
+import MyTalk from "./myTalk/MyTalk";
 import NoTalk from "./NoTalk";
 import Rating from "./rating/Rating";
 import TalkContents from "./talkContents/TalkContents";
@@ -28,6 +30,7 @@ export default function Talk({ title, movieId, movieDetailData }: TalkProps) {
   const { device } = useDevice();
   const id = device === "mobile" || device === "tablet" ? undefined : "my-talk";
   const noTalk = data?.pages?.[0]?.reviewList?.length === 0;
+  const { loggedIn } = useLoggedInStore();
 
   useEffect(() => {
     refetch();
@@ -35,7 +38,9 @@ export default function Talk({ title, movieId, movieDetailData }: TalkProps) {
 
   const { setTotalTalks } = useTotalTalksStore();
 
-  const { data: myTalk } = useGetMyTalk(movieId);
+  const { data: myTalkData } = useGetMyTalk(movieId);
+
+  const myTalk: MyTalk = myTalkData?.data;
 
   useEffect(() => {
     if (data?.pages[0].totalElements) {
@@ -47,7 +52,11 @@ export default function Talk({ title, movieId, movieDetailData }: TalkProps) {
 
   return (
     <section id={id}>
-      <Rating {...{ title, movieId, movieDetailData }} />
+      {myTalk ? (
+        <MyTalk myTalk={myTalk} />
+      ) : (
+        <Rating {...{ title, movieId, movieDetailData }} />
+      )}
       <DividingLine />
 
       <section className="Laptop:rounded-xl Laptop:bg-D1_Gray Laptop:p-8">

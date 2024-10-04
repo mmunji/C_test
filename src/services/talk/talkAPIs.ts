@@ -42,7 +42,7 @@ export const talkAPIs = {
       throw new Error("Network response was not ok");
     }
 
-    const data: Talk = await res.json();
+    const data = await res.json();
     return { data, res };
   },
 
@@ -149,6 +149,24 @@ export const talkAPIs = {
       },
       body: JSON.stringify({ content }),
     });
+
+    const data = await res.json();
+    return { data, res };
+  },
+
+  getMyStar: async (movieId: number) => {
+    const accessToken = tokenManager.getToken();
+    const res = await fetch(`${API_URL}/reviews/star?movieId=${movieId}`, {
+      headers: {
+        "Content-Type": "application/json",
+        access: `${accessToken}`,
+      },
+      cache: "no-store",
+    });
+
+    if (!res.ok) {
+      throw new Error("Network response was not ok");
+    }
 
     const data = await res.json();
     return { data, res };

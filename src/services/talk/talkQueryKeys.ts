@@ -5,7 +5,8 @@ export const TALK_QUERY_KEYS = {
     movieId,
     talkId,
   ],
-  my: (accessToken: string) => [...TALK_QUERY_KEYS.all(), accessToken],
+  myStar: (accessToken: string) => ["myStar", accessToken],
+  myTalk: (accessToken: string) => ["myTalk", accessToken],
   infiniteTalks: (movieId?: number) => [...TALK_QUERY_KEYS.all(), movieId],
   infiniteMovieReplies: (parentReviewId?: number) => [
     ...TALK_QUERY_KEYS.all(),

@@ -8,6 +8,13 @@ interface Talk {
   isLast: boolean;
 }
 
+interface MyTalk {
+  content: string;
+  createTime: string;
+  reviewId: number;
+  star: number;
+}
+
 interface ReviewList {
   id: number;
   nickName: string;

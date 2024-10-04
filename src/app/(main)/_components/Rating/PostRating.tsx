@@ -7,7 +7,7 @@ export default function PostRating() {
     clickedValue,
     setClickedValue,
     handleDriveTalk,
-  } = useRating();
+  } = useRating({ initialValue: 0 });
   return (
     <>
       <div className="mx-auto flex  gap-1 Desktop:hidden">
