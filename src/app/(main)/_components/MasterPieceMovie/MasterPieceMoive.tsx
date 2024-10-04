@@ -47,18 +47,8 @@ export default function MasterPieceMoive() {
         </span>
       </div>
 
-      <div
-        className="flex  gap-2 Laptop:hidden  "
-        onMouseEnter={() => sethovered(true)}
-        onMouseLeave={() => sethovered(false)}
-      >
-        <Swiper
-          slidesPerView="auto"
-          spaceBetween={20}
-          onSwiper={(e) => {
-            setSwiper(e);
-          }}
-        >
+      <div className="flex  gap-2 Laptop:hidden  ">
+        <Swiper slidesPerView="auto" spaceBetween={20}>
           {Array.isArray(MoviePiece) && MoviePiece.length > 0
             ? MoviePiece.map((movie, index) => (
                 <SwiperSlide key={index} style={{ width: "156px" }}>
@@ -66,7 +56,7 @@ export default function MasterPieceMoive() {
                     <div
                       className="flex h-[230px] w-[156px] items-end  justify-between rounded-xl  px-2 pb-2 Text-s-Bold Tablet:h-[240px] Tablet:w-[165px]"
                       style={{
-                        backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0.0) 0%, rgba(0, 0, 0, 0.7) 70%), url('${movie?.movieposter ? movie?.movieposter : "/images/detail/detail-poster-example.png"}')`,
+                        backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0.0) 0%, rgba(0, 0, 0, 0.7) 70%), url('${movie?.movieposter ? movie?.movieposter : "/images/ssikongi/PNG/NoImage.png"}')`,
                         backgroundSize: "cover",
                         backgroundPosition: "center",
                       }}
@@ -91,25 +81,6 @@ export default function MasterPieceMoive() {
                 </SwiperSlide>
               ))
             : null}
-          {swiper && !swiper.isBeginning && (
-            <Button
-              onClick={() => swiper.slidePrev()}
-              variant="arrow1"
-              className={`absolute left-2 top-1/2 z-[10]  transform   transition-opacity duration-300 ${hovered ? "opacity-100" : "opacity-10"} `}
-            >
-              <Image src={ChevronLeftMd} alt="이전" />
-            </Button>
-          )}
-
-          {swiper && !swiper.isEnd && (
-            <Button
-              onClick={() => swiper.slideNext()}
-              variant="arrow2"
-              className={`absolute right-4 top-1/2 z-[10]   transform transition-opacity duration-300${hovered ? "opacity-100" : "opacity-10"}  `}
-            >
-              <Image src={ChevronRightMd} alt="다음" />
-            </Button>
-          )}
         </Swiper>
       </div>
 

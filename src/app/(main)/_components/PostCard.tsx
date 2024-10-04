@@ -44,7 +44,7 @@ export default function PostCard({
     <div
       className="h-[358px] w-[238px] cursor-pointer rounded-xl Tablet:h-[344px] Tablet:w-[260px] Laptop:h-[260px] Laptop:w-[174px]  Desktop:h-[360px] Desktop:w-[240px]"
       style={{
-        backgroundImage: `linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, rgba(0, 0, 0, 0) 100%), url('${background ? background : "/images/detail/detail-poster-example.png"}')`,
+        backgroundImage: `linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, rgba(0, 0, 0, 0) 100%), url('${background ? background : "/images/ssikongi/PNG/NoImage.png"}')`,
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}

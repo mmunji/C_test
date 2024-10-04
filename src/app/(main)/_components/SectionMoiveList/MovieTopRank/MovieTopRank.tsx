@@ -15,7 +15,7 @@ import Mobile_BestMovie from "./Mobile_BestMovie";
 import Tablet_BestMoive from "./Tablet_BestMoive";
 export default function MoiveTopRank() {
   const [filter, setFilter] = useState(0);
-
+  const [filterName, setfilterName] = useState("전체");
   const MovieGenreType = [
     {
       name: "전체",
@@ -44,8 +44,7 @@ export default function MoiveTopRank() {
   const [MovieTopTenData, setMovieTopTenData] = useState<Movie_TopTen | null>(
     null,
   );
-  const [CategoryisOpen, setCategoryisOpen] = useState(false);
-  // const MovieMasterPiece: MovieHidingPiece = await movieAPIs.getHidingPiece();
+
   useEffect(() => {
     const fetchMovie = async () => {
       try {
@@ -66,14 +65,14 @@ export default function MoiveTopRank() {
           <div className="flex gap-1">
             <Dropdown type="genre">
               <Dropdown.Trigger>
-                <button className="flex items-center gap-1 text-white">
-                  전체
+                <span className="flex items-center gap-1 text-white">
+                  {MovieGenreType[filter].name}
                   <Image
                     src={CaretDownMd}
                     alt="더보기"
                     className="cursor-pointer"
                   />
-                </button>
+                </span>
               </Dropdown.Trigger>
 
               <Dropdown.List>

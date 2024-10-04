@@ -81,7 +81,7 @@ export default function RecentKeyword() {
         )}
       </div>
       <Link
-        className="flex items-center justify-end gap-1 text-Gray_Orange Text-m-Medium"
+        className="hidden items-center justify-end gap-1 text-Gray_Orange Text-m-Medium Laptop:flex"
         href={`search?query=${MentionKeywords[KeywordListNumber]?.keyword}`}
       >
         더보기 <Image src={ChevronRight} alt="화살표" />

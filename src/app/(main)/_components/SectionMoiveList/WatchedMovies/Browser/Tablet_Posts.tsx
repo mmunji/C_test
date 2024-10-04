@@ -32,7 +32,7 @@ export default function Tablet_Posts({ MovieWatchMovies }: WatchMovieType) {
                     <div
                       className="h-[280px] w-[200px] rounded-xl"
                       style={{
-                        backgroundImage: `linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, rgba(0, 0, 0, 0) 100%), url('${e.poster_path})`,
+                        backgroundImage: `linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, rgba(0, 0, 0, 0) 100%), url('${e.poster_path ? e.poster_path : "/images/ssikongi/PNG/NoImage.png"})`,
                         backgroundSize: "cover",
                         backgroundPosition: "center",
                       }}
@@ -47,7 +47,6 @@ export default function Tablet_Posts({ MovieWatchMovies }: WatchMovieType) {
                         </div>
                       </div>
                       <div>
-                        <h1 className=" text-center Text-l-Bold">0.0</h1>
                         <div className="flex ">
                           <PostRating />
                         </div>

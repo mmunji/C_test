@@ -67,7 +67,7 @@ export default function SlimilarMobilePost({
                 <SmallBadge
                   key={index}
                   content={selectedUser.badges[index]?.badge_name}
-                  size="xs"
+                  size="sm"
                 />
               );
             })}
@@ -84,7 +84,7 @@ export default function SlimilarMobilePost({
                 <div
                   className="flex h-[230px] w-[156px]   flex-col justify-end rounded-2xl px-3  py-4 Text-s-Bold Tablet:h-[240px]"
                   style={{
-                    backgroundImage: `linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, rgba(0, 0, 0, 0.80) 100%), url(${ReviewUser.poster_id})`,
+                    backgroundImage: `linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, rgba(0, 0, 0, 0.80) 100%), url(${ReviewUser.poster_id ? ReviewUser.poster_id : "/images/ssikongi/PNG/NoImage.png"})`,
                     backgroundSize: "cover",
                     backgroundPosition: "center",
                   }}

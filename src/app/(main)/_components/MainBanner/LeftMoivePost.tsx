@@ -44,7 +44,7 @@ export default function LeftMovePost({
               <h4 className="Laptop:Text-s-Mediuim text-center Text-xs-Regular">
                 평점
               </h4>
-              <h1 className=" texst-center  flex gap-1 text-Primary Text-s-Bold Laptop:Text-l-Bold">
+              <h1 className=" flex items-center  text-center text-Primary Text-s-Bold Laptop:gap-1 Laptop:Text-l-Bold">
                 {device == "laptop" || device == "desktop" ? (
                   <Image src={StarFillMd} alt="star" className="h-6 w-6" />
                 ) : (
