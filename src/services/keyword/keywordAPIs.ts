@@ -51,4 +51,21 @@ export const keywordAPIs = {
 
     return { data, res };
   },
+
+  editKeyword: async (keyWordId: number, keyword: string) => {
+    const accessToken = tokenManager.getToken();
+    const res = await fetch(`${API_URL}/keywords/${keyWordId}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        access: `${accessToken}`,
+      },
+      body: JSON.stringify({
+        keyword: keyword,
+      }),
+    });
+    const data = await res.json();
+
+    return { data, res };
+  },
 };

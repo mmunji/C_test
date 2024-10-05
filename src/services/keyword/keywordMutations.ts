@@ -35,3 +35,29 @@ export function useAddKeyword(
     },
   });
 }
+
+export function useEditKeyword(
+  setValue: Dispatch<SetStateAction<string>>,
+  movieId: number,
+  keywordId: number,
+) {
+  const router = useRouter();
+  const queryClient = useQueryClient();
+  const accessToken = tokenManager.getToken();
+  return useMutation({
+    mutationFn: async ({ value }: addKeywordParams) => {
+      const { data, res } = await keywordAPIs.editKeyword(keywordId, value);
+      if (!res.ok) throw new Error(data?.message);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: KEYWORD_QUERY_KEYS.myKeyword(accessToken, movieId),
+      });
+      router.refresh();
+      setValue("");
+    },
+    onError: (error) => {
+      alert(error);
+    },
+  });
+}
