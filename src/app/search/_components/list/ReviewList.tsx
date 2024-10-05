@@ -67,6 +67,7 @@ export default function SearchReviewList({
               <div className="flex justify-between">
                 <div className="flex items-center gap-2">
                   <Image
+                    className="rounded-full object-cover"
                     alt="유저 프로필 이미지"
                     width={24}
                     height={24}
