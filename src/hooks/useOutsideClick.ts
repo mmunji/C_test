@@ -19,8 +19,6 @@ export default function useClickOutside(callback: () => void) {
         ref.current &&
         !ref.current.contains(e.target as Node)
       ) {
-        e.preventDefault();
-        e.stopPropagation();
         callback();
       }
       initialClickOutside.current = false;

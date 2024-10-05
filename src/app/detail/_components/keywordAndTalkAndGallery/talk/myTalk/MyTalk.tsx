@@ -11,7 +11,6 @@ import {
   SquareCheckMd,
   SquareCheckSm,
 } from "../../../../../../../public/icons";
-import TalkContentsRatingStar from "../talkContents/talkContentsHeader/TalkContentsRatingStar";
 
 interface MyTalkProps {
   myTalk: MyTalk | undefined;
@@ -33,20 +32,21 @@ function MyTalk({ myTalk }: MyTalkProps) {
       <div className="mx-auto mb-5 flex flex-col items-center gap-3 Laptop:hidden">
         <p className="text-Primary Text-m-Bold">{myTalk?.star}점</p>
         <div className="flex">
-          {[...Array(5)].map((_, i) => (
-            <RatingStar
-              key={i}
-              {...{
-                index: i,
-                ratingValue,
-                setRatingValue,
-                clickedValue,
-                setClickedValue,
-                handleDriveTalk,
-                ratingSize: "",
-              }}
-            />
-          ))}
+          {clickedEdit ? (
+            [...Array(5)].map((_, i) => (
+              <RatingStar
+                key={i}
+                index={i}
+                ratingValue={ratingValue}
+                setRatingValue={setRatingValue}
+                clickedValue={clickedValue}
+                setClickedValue={setClickedValue}
+                ratingSize=""
+              />
+            ))
+          ) : (
+            <FixedRating star={myTalk?.star || 0} />
+          )}
         </div>
       </div>
 
@@ -54,20 +54,21 @@ function MyTalk({ myTalk }: MyTalkProps) {
         <div className="mx-auto hidden flex-col items-center gap-3 Laptop:flex">
           <p className="text-Primary Text-l-Bold">{myTalk?.star}점</p>
           <div className="flex">
-            {[...Array(5)].map((_, i) => (
-              <RatingStar
-                key={i}
-                {...{
-                  index: i,
-                  ratingValue,
-                  setRatingValue,
-                  clickedValue,
-                  setClickedValue,
-                  handleDriveTalk,
-                  ratingSize: "",
-                }}
-              />
-            ))}
+            {clickedEdit ? (
+              [...Array(5)].map((_, i) => (
+                <RatingStar
+                  key={i}
+                  index={i}
+                  ratingValue={ratingValue}
+                  setRatingValue={setRatingValue}
+                  clickedValue={clickedValue}
+                  setClickedValue={setClickedValue}
+                  ratingSize=""
+                />
+              ))
+            ) : (
+              <FixedRating star={myTalk?.star || 0} />
+            )}
           </div>
         </div>
         <div className="flex flex-col gap-2 Laptop:mt-5 Laptop:gap-3 Laptop:rounded-xl Laptop:bg-[rgba(0,0,0,0.2)] Laptop:px-6 Laptop:py-5">
@@ -134,3 +135,21 @@ function MyTalk({ myTalk }: MyTalkProps) {
 }
 
 export default MyTalk;
+
+function FixedRating({ star }: { star: number }) {
+  return (
+    <div className="flex">
+      {[...Array(5)].map((_, i) => (
+        <RatingStar
+          key={i}
+          index={i}
+          ratingValue={star}
+          setRatingValue={() => {}}
+          clickedValue={true}
+          setClickedValue={() => {}}
+          ratingSize=""
+        />
+      ))}
+    </div>
+  );
+}
