@@ -27,11 +27,11 @@ export default function Mobile_Posts({ MovieWatchMovies }: WatchMovieType) {
                   className="justify-cente flex flex-col items-center gap-3"
                 >
                   <div>
-                    <div className="flex flex-col gap-3 ">
+                    <div className="flex flex-col  gap-3 ">
                       <div
-                        className="h-[230px] w-[153px] rounded-xl  "
+                        className="mx-auto h-[230px] w-[153px] rounded-xl "
                         style={{
-                          backgroundImage: `linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, rgba(0, 0, 0, 0) 100%), url('${e.poster_path})`,
+                          backgroundImage: `linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, rgba(0, 0, 0, 0) 100%), url('${e.poster_path ? e.poster_path : "/images/ssikongi/PNG/NoImage.png"})`,
                           backgroundSize: "cover",
                           backgroundPosition: "center",
                         }}

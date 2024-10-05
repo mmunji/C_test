@@ -12,6 +12,7 @@ import {
   TmdbSm,
 } from "@/../public/icons";
 
+import { NoImageSsikongi } from "../../../../../../public/images";
 import PostCard from "../../PostCard";
 import Tablet_BestTalkPost from "./Post/Tablet_BestTalkPost";
 interface Tablet_BestMoiveProps {
@@ -27,7 +28,17 @@ export default function Tablet_BestMoive(MovieData: Tablet_BestMoiveProps) {
               return (
                 <SwiperSlide key={index}>
                   <div className=" flex w-full gap-5">
-                    <PostCard background={MovieDetailData.poster_path} />
+                    {MovieDetailData.poster_path ? (
+                      <PostCard background={MovieDetailData.poster_path} />
+                    ) : (
+                      <div>
+                        <Image
+                          src={NoImageSsikongi}
+                          alt="포스터"
+                          className="h-[358px] w-[238px] cursor-pointer rounded-xl Tablet:h-[344px] Tablet:w-[260px] Laptop:h-[260px] Laptop:w-[174px]  Desktop:h-[360px] Desktop:w-[240px]"
+                        />
+                      </div>
+                    )}
                     <div className="flex flex-col justify-between gap-3">
                       <div className="flex flex-col gap-2">
                         <div className="flex gap-3 ">

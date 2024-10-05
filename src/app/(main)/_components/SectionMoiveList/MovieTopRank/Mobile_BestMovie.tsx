@@ -42,7 +42,7 @@ export default function Mobile_BestMovie(MovieData: Mobile_BestMoiveProps) {
                     <div
                       className="flex h-[358px] w-[238x] flex-col  justify-between rounded-xl pb-[14px]   Text-s-Bold Tablet:h-[240px] Tablet:w-[165px]"
                       style={{
-                        backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0.0) 0%, rgba(0, 0, 0, 0.7) 70%), url('${MovieDetailData.poster_path ? MovieDetailData.poster_path : "/images/detail/detail-poster-example.png"}')`,
+                        backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0.0) 0%, rgba(0, 0, 0, 0.7) 70%), url('${MovieDetailData.poster_path ? MovieDetailData.poster_path : "/images/ssikongi/PNG/NoImage.png"}')`,
                         backgroundSize: "cover",
                         backgroundPosition: "center",
                       }}

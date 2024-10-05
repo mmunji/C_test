@@ -51,7 +51,7 @@ export default function Footer() {
         <div className="flex items-center  gap-4 Text-s-Bold">
           <span>문의</span>
           <a
-            className="inline-block py-2 underline"
+            className="inline-block py-2 underline Text-s-Regular"
             href="http://pf.kakao.com/_xmWUxmG"
             target="_blank"
           >
@@ -82,7 +82,7 @@ export default function Footer() {
           <div className="flex gap-5">
             <span className="Text-s-Bold">UXUI</span>
             <div className="flex gap-3 Text-s-Medium">
-              <span>깁호산나</span>
+              <span>김호산나</span>
             </div>
           </div>
         </div>

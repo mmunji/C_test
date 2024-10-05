@@ -21,6 +21,7 @@ import {
 import Button from "@/components/buttons/Button";
 import useDevice from "@/hooks/useDevice";
 
+import { NoImageSsikongi } from "../../../../../../public/images";
 import PostCard from "../../PostCard";
 import BestTalkPost from "./Post/BestTalkPost";
 interface Desktop_BestMoiveProps {
@@ -68,11 +69,21 @@ export default function DeskTop_BestMovie(MovieData: Desktop_BestMoiveProps) {
                   } transition-opacity duration-700 ease-in`}
                   style={{ width: StatePost === index ? "240px" : "240px" }} // 원하는 고정 너비
                 >
-                  <PostCard
-                    num={index + 1}
-                    onClick={() => onHandlePost(index)}
-                    background={MovieDetailData.poster_path}
-                  />
+                  {MovieDetailData.poster_path ? (
+                    <PostCard
+                      num={index + 1}
+                      onClick={() => onHandlePost(index)}
+                      background={MovieDetailData.poster_path}
+                    />
+                  ) : (
+                    <div>
+                      <Image
+                        src={NoImageSsikongi}
+                        alt="포스터"
+                        className="h-[358px] w-[238px] cursor-pointer rounded-xl Tablet:h-[344px] Tablet:w-[260px] Laptop:h-[260px] Laptop:w-[174px]  Desktop:h-[360px] Desktop:w-[240px]"
+                      />
+                    </div>
+                  )}
                 </div>
                 <div
                   className={`${
