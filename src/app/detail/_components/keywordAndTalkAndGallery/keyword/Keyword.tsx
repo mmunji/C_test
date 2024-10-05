@@ -4,9 +4,11 @@ import clsx from "clsx";
 import { useEffect, useState } from "react";
 
 import arrangeCenterHighKeyword from "@/app/detail/utils/arrangeCenterHighKeyword";
+import { useGetMyKeyword } from "@/services/keyword/keywordQueries";
 
 import SpeechBubble from "../../../../../components/speechBubble/SpeechBubble";
 import KeywordForm from "./keywordForm";
+import MyKeyword from "./myKeyword/MyKeyword";
 import NewKeyword from "./NewKeyword";
 import Nokeyword from "./Nokeyword";
 
@@ -27,6 +29,8 @@ export default function Keyword({
 }: KeywordProps) {
   const top10s = keywordsData.slice(0, 10);
   const [shuffledTop26s, setShuffledTop26s] = useState(keywordsData);
+  const { data: myKeyword } = useGetMyKeyword(movieId);
+  const [isClickedEdit, setIsClickedEdit] = useState(false);
 
   const top1 = top10s[0];
   const top2 = top10s[1];
@@ -92,7 +96,25 @@ export default function Keyword({
         </SpeechBubble>
       </div>
 
-      <KeywordForm movieId={movieId} title={title} />
+      {!myKeyword && !isClickedEdit ? (
+        <KeywordForm movieId={movieId} title={title} />
+      ) : (
+        !isClickedEdit && (
+          <MyKeyword
+            myKeyword={myKeyword}
+            isClickedEdit={isClickedEdit}
+            setIsClickedEdit={setIsClickedEdit}
+          />
+        )
+      )}
+
+      {isClickedEdit && (
+        <KeywordForm
+          movieId={movieId}
+          title={title}
+          initialValue={myKeyword?.keyword}
+        />
+      )}
       {!noKeyword && <NewKeyword latestKeywords={latestKeywords} />}
     </section>
   );

@@ -16,13 +16,18 @@ import SpeechBubble from "../../../../../components/speechBubble/SpeechBubble";
 interface KeywordFormProps {
   movieId: number;
   title: string;
+  initialValue?: string;
 }
 
-export default function KeywordForm({ movieId, title }: KeywordFormProps) {
+export default function KeywordForm({
+  movieId,
+  title,
+  initialValue = "",
+}: KeywordFormProps) {
   const [focused, setFocused] = useState(false);
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState(initialValue);
   const { device } = useDevice();
-  const { mutate: addKeyword, isPending } = useAddKeyword(setValue);
+  const { mutate: addKeyword, isPending } = useAddKeyword(setValue, movieId);
   const { handleClickAuthButton } = useHandleClickAuthButton();
   const { isOpen, setIsOpen, handleNeedLogin } = useNeedLogin();
 
