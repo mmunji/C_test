@@ -23,7 +23,10 @@ export function BookMarkDefaultItem({
     >
       <Image
         fill
-        src={movie.poster_path || NoImageSsikongi}
+        src={
+          `https://image.tmdb.org/t/p/w500/${movie.poster_path}` ||
+          NoImageSsikongi
+        }
         alt={`${movie.id}의 영화 포스터`}
         className={"object-cover"}
       />
@@ -48,7 +51,10 @@ export function BookmarkEditItem({
     >
       <Image
         fill
-        src={movie.poster_path || NoImageSsikongi}
+        src={
+          `https://image.tmdb.org/t/p/w500/${movie.poster_path}` ||
+          NoImageSsikongi
+        }
         alt={`${movie.id}의 영화 포스터`}
         className={clsx(isSelected && "brightness-50", `object-cover`)}
       />

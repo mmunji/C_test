@@ -69,7 +69,7 @@ export default function HistoryLog({ log, activeFilter }: HistoryLogProps) {
                         alt={`${movie.movienm} 영화 포스터`}
                         src={
                           movie.poster_path
-                            ? movie.poster_path
+                            ? `https://image.tmdb.org/t/p/w342/${movie.poster_path}`
                             : NoImageSsikongi
                         }
                       />
