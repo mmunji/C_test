@@ -22,6 +22,7 @@ export default function BadgeItem({
   const badgeName = EMOJI_MAP.find((emoji) => emoji.id === badge?.id)?.name;
   const hasBadge = hasObtainedBefore || (badge?.count && badge.count >= 10);
   if (!badgeName || !badge) return null;
+
   return (
     <button
       onClick={() => {
@@ -51,7 +52,14 @@ export default function BadgeItem({
       <div className="flex flex-col items-center gap-1">
         <p className="Text-s-Bold">{hasBadge ? badgeName : "???"}</p>
         <div className="flex items-center gap-1">
-          <span className="text-Gray_Orange Text-xs-Regular">{badge.name}</span>
+          <span className="hidden text-Gray_Orange Text-xs-Regular Tablet:inline">
+            {badge.name}
+          </span>
+          <span className="inline text-Gray_Orange Text-xs-Regular Tablet:hidden">
+            {badge.name === "애니메이션" || badge.name === "다큐멘터리"
+              ? badge.name.slice(0, 2)
+              : badge.name}
+          </span>
           <span
             className={cn(
               {
