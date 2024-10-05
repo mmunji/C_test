@@ -2,6 +2,9 @@ import clsx from "clsx";
 import Image from "next/image";
 import React, { Dispatch, SetStateAction, useState } from "react";
 
+import Button from "@/components/buttons/Button";
+import { useDislikeTalk, useLikeTalk } from "@/services/talk/talkMutations";
+
 import {
   CaretDownGraySm,
   CaretDownSm,
@@ -20,6 +23,7 @@ interface TalkContentsFooterProps {
   showSpoiler: boolean;
   showReplies: boolean;
   setShowReplies: Dispatch<SetStateAction<boolean>>;
+  movieId: number;
 }
 
 export default function TalkContentsFooter({
@@ -27,18 +31,26 @@ export default function TalkContentsFooter({
   showSpoiler,
   showReplies,
   setShowReplies,
+  movieId,
 }: TalkContentsFooterProps) {
   const [like, setLike] = useState(false);
-  const [disLike, setDisLike] = useState(false);
+  const [dislike, setDislike] = useState(false);
+  const { mutate: likeTalk } = useLikeTalk({ type: "talk", movieId: movieId });
+  const { mutate: dislikeTalk } = useDislikeTalk({
+    type: "talk",
+    movieId: movieId,
+  });
 
-  const handleClickLike = () => {
-    setDisLike(false);
+  const handleClickLike = (talkId: number) => {
+    likeTalk(talkId);
+    setDislike(false);
     setLike(!like);
   };
 
-  const handleClickDisLike = () => {
+  const handleClickDislike = async (talkId: number) => {
+    dislikeTalk(talkId);
     setLike(false);
-    setDisLike(!disLike);
+    setDislike(!dislike);
   };
 
   const handleClickReplies = () => {
@@ -47,58 +59,47 @@ export default function TalkContentsFooter({
 
   return (
     <section className="flex items-center justify-end Tablet:mt-2">
-      <section
-        onClick={handleClickLike}
-        className="my-2 ml-1 mr-2 flex cursor-pointer items-center gap-1"
-      >
+      <Button onClick={() => handleClickLike(talk.id)} variant="textIconL">
         <Image
-          src={like ? ThumbsUpFillSm : ThumbsUpLineSm}
+          src={talk.likeCheck ? ThumbsUpFillSm : ThumbsUpLineSm}
           alt="좋아요"
           className="Laptop:hidden"
         />
         <Image
-          src={like ? ThumbsUpFillMd : ThumbsUpLineMd}
+          src={talk.likeCheck ? ThumbsUpFillMd : ThumbsUpLineMd}
           alt="좋아요"
           className="hidden Laptop:block"
         />
         <p className="select-none text-Gray_Orange Text-xs-Regular Tablet:Text-s-Medium">
           {talk.likeCount}
         </p>
-      </section>
-      <section
-        onClick={handleClickDisLike}
-        className="my-2 ml-1 mr-2 flex cursor-pointer items-center gap-1"
-      >
+      </Button>
+      <Button onClick={() => handleClickDislike(talk.id)} variant="textIconL">
         <Image
-          src={disLike ? ThumbsDownFillSm : ThumbsDownLineSm}
+          src={talk.dislikeCheck ? ThumbsDownFillSm : ThumbsDownLineSm}
           alt="싫어요"
           className="Laptop:hidden"
         />
         <Image
-          src={disLike ? ThumbsDownFillMd : ThumbsDownLineMd}
+          src={talk.dislikeCheck ? ThumbsDownFillMd : ThumbsDownLineMd}
           alt="싫어요"
           className="hidden Laptop:block"
         />
         <p className="select-none text-Gray_Orange Text-xs-Regular Tablet:Text-s-Medium">
           {talk.dislikeCount}
         </p>
-      </section>
-      <button
+      </Button>
+
+      <Button
         disabled={!showSpoiler}
         onClick={handleClickReplies}
-        className={clsx("mx-1 my-2 flex items-center", {
-          "cursor-pointer": talk.spoiler ? showSpoiler : true,
-          "cursor-default": talk.spoiler && !showSpoiler,
-        })}
+        variant="textIconR"
       >
         <p
-          className={clsx(
-            "mr-1 select-none Text-xs-Regular Tablet:Text-s-Medium",
-            {
-              "text-Gray_Orange": talk.spoiler ? showSpoiler : true,
-              "text-Gray": talk.spoiler && !showSpoiler,
-            },
-          )}
+          className={clsx("select-none Text-xs-Regular Tablet:Text-s-Medium", {
+            "text-Gray_Orange": talk.spoiler ? showSpoiler : true,
+            "text-Gray": talk.spoiler && !showSpoiler,
+          })}
         >
           답글
         </p>
@@ -108,7 +109,7 @@ export default function TalkContentsFooter({
             "text-Gray": talk.spoiler && !showSpoiler,
           })}
         >
-          999+
+          {talk.commentCount}
         </p>
         <Image
           src={
@@ -121,7 +122,7 @@ export default function TalkContentsFooter({
           alt="더보기"
           className={`${showReplies && "rotate-180"} transition-all`}
         />
-      </button>
+      </Button>
     </section>
   );
 }

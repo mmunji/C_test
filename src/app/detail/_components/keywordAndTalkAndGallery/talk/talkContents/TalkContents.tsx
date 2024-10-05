@@ -7,9 +7,10 @@ import TalkContentsHeader from "./talkContentsHeader/TalkContentsHeader";
 
 interface TalkContentsProps {
   talk: ReviewList;
+  movieId: number;
 }
 
-export default function TalkContents({ talk }: TalkContentsProps) {
+export default function TalkContents({ talk, movieId }: TalkContentsProps) {
   const spoiler = talk.spoiler;
   const [showSpoiler, setShowSpoiler] = useState(false);
   const [showReplies, setShowReplies] = useState(false);
@@ -25,9 +26,9 @@ export default function TalkContents({ talk }: TalkContentsProps) {
         {...{ talk, showSpoiler, setShowSpoiler, showReplies }}
       />
       <TalkContentsFooter
-        {...{ talk, showSpoiler, showReplies, setShowReplies }}
+        {...{ talk, showSpoiler, showReplies, setShowReplies, movieId }}
       />
-      {showReplies && <Replies />}
+      {showReplies && <Replies movieId={movieId} parentReviewId={talk.id} />}
     </div>
   );
 }

@@ -4,6 +4,7 @@ import Modal from "@/components/modal/modal";
 import RatingStar from "@/components/rating/RatingStar";
 import SpeechBubble from "@/components/speechBubble/SpeechBubble";
 import useHandleClickAuthButton from "@/hooks/useHandleClickAuthButtons";
+import { useGetMyTalk } from "@/services/talk/talkQueries";
 
 import DriveCommentText from "./DriveCommentText";
 import TalkForm from "./talkForm/TalkForm";
@@ -31,7 +32,7 @@ export default function Rating({
     setIsOpen,
     showTalkForm,
     setShowTalkForm,
-  } = useRating();
+  } = useRating({ initialValue: 0 });
   const { handleClickAuthButton } = useHandleClickAuthButton();
 
   return (

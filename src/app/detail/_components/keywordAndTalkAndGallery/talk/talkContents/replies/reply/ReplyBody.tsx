@@ -3,16 +3,15 @@ import React, { useState } from "react";
 
 import useNeedTalkMoreButton from "@/app/detail/_hooks/useNeedTalkMoreButton";
 
-export default function ReplyBody() {
+interface ReplyBodyProps {
+  reply: ReviewList;
+}
+
+export default function ReplyBody({ reply }: ReplyBodyProps) {
   const [showMore, setShowMore] = useState(false);
   const { contentRef, showMoreButton } = useNeedTalkMoreButton("reply");
 
-  const reply = `
-  3줄까지만 보여줍니다. 여행은 새로운 경험과 추억을 선사하지만, 올바른
-  준비가 필수입니다. 이번 블로그 포스트에서는 여행자가 가져가야 할 10가지
-  필수 아이템을 상세히 소개합니다. 첫째, 편안한 여행을 위한 양질의 여행
-  가방. 두 번째는 다양한 환경에 대비할 수 있는 다용도 의류. 세 번째
-  `;
+  const replyContent = `${reply.content}`;
 
   return (
     <div className="relative mt-[6px] Tablet:mt-2">
@@ -21,11 +20,12 @@ export default function ReplyBody() {
         className={clsx(
           "text-Gray_Orange Text-s-Regular Tablet:Text-m-Medium",
           {
-            "line-clamp-3 h-[63px] overflow-hidden Tablet:h-[72px]": !showMore,
+            "line-clamp-3 max-h-[63px] overflow-hidden Tablet:max-h-[72px]":
+              !showMore,
           },
         )}
       >
-        {reply}
+        {replyContent}
       </p>
       {!showMore && showMoreButton && (
         <button

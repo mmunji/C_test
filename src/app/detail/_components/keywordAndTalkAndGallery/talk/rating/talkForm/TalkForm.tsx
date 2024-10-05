@@ -40,14 +40,22 @@ export default function TalkForm({
       spoiler: false,
     },
   });
-  const { mutate: mutateAddTalk } = useAddTalk(setShowTalkForm);
+  const { mutate: mutateAddTalk } = useAddTalk(movieId, setShowTalkForm);
+  const movieName = movieDetailData.title;
 
   const onSubmit: SubmitHandler<AddTalkValues> = () => {
     if (readyToSubmit) {
       if (filterAbuse(talk)) return;
       const genreList = movieDetailData?.genreDTOList.map((el) => el.id);
 
-      mutateAddTalk({ movieId, ratingValue, talk, spoiler, genreList });
+      mutateAddTalk({
+        movieName,
+        movieId,
+        ratingValue,
+        talk,
+        spoiler,
+        genreList,
+      });
     }
   };
 

@@ -1,6 +1,8 @@
 import Image from "next/image";
 import React, { useState } from "react";
 
+import { useDislikeTalk, useLikeTalk } from "@/services/talk/talkMutations";
+
 import {
   ThumbsDownFillMd,
   ThumbsDownFillSm,
@@ -12,18 +14,38 @@ import {
   ThumbsUpLineSm,
 } from "../../../../../../../../../public/icons";
 
-export default function ReplyFooter() {
+interface ReplyFooterProps {
+  reply: ReviewList;
+  movieId: number;
+  parentReviewId: number;
+}
+
+export default function ReplyFooter({
+  reply,
+  movieId,
+  parentReviewId,
+}: ReplyFooterProps) {
   const [like, setLike] = useState(false);
   const [disLike, setDislike] = useState(false);
+  const { mutate: likeReply } = useLikeTalk({
+    type: "reply",
+    parentReviewId: parentReviewId,
+  });
+  const { mutate: dislikeReply } = useDislikeTalk({
+    type: "reply",
+    parentReviewId: parentReviewId,
+  });
 
   const handleClickLike = () => {
     setDislike(false);
     setLike(!like);
+    likeReply(reply.id);
   };
 
   const handleClickDislike = () => {
     setLike(false);
     setDislike(!disLike);
+    dislikeReply(reply.id);
   };
 
   return (
@@ -33,17 +55,17 @@ export default function ReplyFooter() {
         className="flex cursor-pointer items-center"
       >
         <Image
-          src={like ? ThumbsUpFillSm : ThumbsUpLineSm}
+          src={reply.likeCheck ? ThumbsUpFillSm : ThumbsUpLineSm}
           alt="좋아요"
           className="Tablet:hidden"
         />
         <Image
-          src={like ? ThumbsUpFillMd : ThumbsUpLineMd}
+          src={reply.likeCheck ? ThumbsUpFillMd : ThumbsUpLineMd}
           alt="좋아요"
           className="hidden Tablet:block"
         />
         <p className="select-none text-Gray_Orange Text-xs-Regular Tablet:Text-s-Medium">
-          0,000
+          {reply.likeCount}
         </p>
       </section>
 
@@ -52,17 +74,17 @@ export default function ReplyFooter() {
         className="flex cursor-pointer items-center"
       >
         <Image
-          src={disLike ? ThumbsDownFillSm : ThumbsDownLineSm}
+          src={reply.dislikeCheck ? ThumbsDownFillSm : ThumbsDownLineSm}
           alt="싫어요"
           className="Tablet:hidden"
         />
         <Image
-          src={disLike ? ThumbsDownFillMd : ThumbsDownLineMd}
+          src={reply.dislikeCheck ? ThumbsDownFillMd : ThumbsDownLineMd}
           alt="싫어요"
           className="hidden Tablet:block"
         />
         <p className="select-none text-Gray_Orange Text-xs-Regular Tablet:Text-s-Medium">
-          0,000
+          {reply.dislikeCount}
         </p>
       </section>
     </section>
