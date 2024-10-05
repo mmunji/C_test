@@ -7,8 +7,12 @@ import { CircleWarning } from "../../../../../public/icons";
 export default async function PenaltyInfo() {
   const reportStatus = await myAPIs.getPenaltyInfo();
 
-  if (!reportStatus?.date) return null;
+  const truncateText = (text: string | undefined | null, maxLength: number) => {
+    if (!text) return null;
+    return text.length > maxLength ? `${text.slice(0, maxLength)}...` : text;
+  };
 
+  if (!reportStatus?.date) return null;
   return (
     <div className="flex items-start gap-3 rounded-xl bg-Black px-4 py-3 Tablet:px-5 Tablet:py-4">
       <Image alt="경고 아이콘" src={CircleWarning} />
@@ -20,7 +24,10 @@ export default async function PenaltyInfo() {
           {reportStatus.date}일)
         </div>
         <div className="text-Gray Text-xs-Regular Laptop:Text-s-Regular">
-          <p>신고 대상 : {reportStatus.review_content}</p>
+          <p>
+            신고 대상 : {truncateText(reportStatus.movienm, 5)} - ‘
+            {truncateText(reportStatus.review_content, 30)}’
+          </p>
           <p>사유 : {reportStatus.category}</p>
           <p>자세한 내용은 씨네톡 카카오톡 채널로 문의 바랍니다.</p>
         </div>
