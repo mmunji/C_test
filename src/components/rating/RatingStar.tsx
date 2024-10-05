@@ -67,7 +67,6 @@ export default function RatingStar({
       onClick={() => {
         setRatingValue(ratingValue);
         setClickedValue(!clickedValue);
-        if (!readyToRating) return;
       }}
     >
       <div
