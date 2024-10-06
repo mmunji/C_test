@@ -20,12 +20,13 @@ export default function DetailBannerSection({
   movieDetailData,
 }: DetailBannerSectionProps) {
   const { gradientStyle, setGradientStyle } = usePaletteStore();
-  const posterImage = movieDetailData.posterImg;
+  const posterImage =
+    "https://image.tmdb.org/t/p/w220_and_h330_face" +
+    movieDetailData.posterImg.split("/original")[1];
   const backgroundImage = movieDetailData.backGroundImg;
   const { device } = useDevice();
   const isSm = device === "mobile" || device === "tablet";
   const pathname = usePathname();
-
   useEffect(() => {
     if (gradientStyle) setGradientStyle("");
     // eslint-disable-next-line react-hooks/exhaustive-deps
