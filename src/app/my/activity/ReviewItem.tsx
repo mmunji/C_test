@@ -47,11 +47,11 @@ export default function ReviewItem({
   };
 
   return (
-    <div className="flex flex-col gap-2 rounded-xl bg-D1_Gray px-5 pb-5 pt-3 Laptop:gap-4 Laptop:px-7 Laptop:pb-6 Laptop:pt-4">
+    <div className="flex flex-col justify-between gap-2 rounded-xl bg-D1_Gray px-5 pb-5 pt-3 Laptop:gap-4 Laptop:px-7 Laptop:pb-6 Laptop:pt-4">
       <div className="">
-        <div className="flex items-center justify-between Laptop:mb-2">
+        <div className="flex h-10 items-center justify-between Laptop:mb-2">
           <div className="flex items-center gap-2">
-            <span className="Text-m-Medium">{review.movienm}</span>
+            <span className="line-clamp-1 Text-m-Medium">{review.movienm}</span>
             <div className="flex items-center">{printStar(review.star)}</div>
           </div>
           <div>
