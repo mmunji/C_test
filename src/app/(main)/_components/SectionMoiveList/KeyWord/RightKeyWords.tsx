@@ -13,7 +13,7 @@ export default function RightKeyWords({ keywordInfo }: KeyWordInfoProps) {
         {Array(3)
           .fill(0)
           .map((_, index) => {
-            if (!keywordInfo?.reviewList[index]) {
+            if (!keywordInfo?.reviewList?.[index]) {
               return null;
             }
             return (
@@ -34,7 +34,7 @@ export default function RightKeyWords({ keywordInfo }: KeyWordInfoProps) {
         {Array(6)
           .fill(0)
           .map((_, index) => {
-            if (!keywordInfo?.reviewList[index]) {
+            if (!keywordInfo?.reviewList?.[index]) {
               return null;
             }
             return (
@@ -55,7 +55,7 @@ export default function RightKeyWords({ keywordInfo }: KeyWordInfoProps) {
         {Array(8)
           .fill(0)
           .map((_, index) => {
-            if (!keywordInfo?.reviewList[index]) {
+            if (!keywordInfo?.reviewList?.[index]) {
               return null;
             }
             return (
@@ -73,7 +73,7 @@ export default function RightKeyWords({ keywordInfo }: KeyWordInfoProps) {
           })}
       </div>
       <div className="hidden  grid-cols-5 gap-6 Desktop:grid">
-        {keywordInfo?.reviewList.map((movie, index) => {
+        {keywordInfo?.reviewList?.map((movie, index) => {
           if (!movie) {
             return null;
           }
