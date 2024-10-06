@@ -48,15 +48,15 @@ export default function MainBanner() {
         </div>
       ) : (
         <Swiper
-          rewind={true}
           spaceBetween={20} // 슬라이드 사이 간격
-          slidesPerView="auto" // 보여질 슬라이드 수
+          slidesPerView={2.5} // 보여질 슬라이드 수
           pagination={true}
           centeredSlides={true}
           autoHeight={true}
+          loop={true}
           modules={[Autoplay, Pagination]}
           className="h-[450px] Tablet:h-[500px]  Laptop:h-[510px] Desktop:h-[690px]"
-          // autoplay={{ delay: 5000, disableOnInteraction: false }}
+          // autoplay={{ delay: 1000, disableOnInteraction: false }}
         >
           {Array.isArray(MovieBanner) && MovieBanner.length > 0
             ? MovieBanner.map((BannerItem, index) => {
@@ -66,7 +66,7 @@ export default function MainBanner() {
                       <div
                         className=" h-[421px] rounded-[20px]  Tablet:h-[360px]  Laptop:h-[489px] Laptop:px-[74px] Desktop:h-[637px]"
                         style={{
-                          backgroundImage: `linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, rgba(0, 0, 0, 0.50) 100%), url(${BannerItem.backdrop_path})`,
+                          backgroundImage: `linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, rgba(0, 0, 0, 0.50) 100%), url( https://image.tmdb.org/t/p/original/${BannerItem.backdrop_path})`,
                           backgroundSize: "cover",
                           backgroundPosition: "center",
                         }}
@@ -84,7 +84,6 @@ export default function MainBanner() {
                             MovieName={BannerItem.movienm}
                             Rate={BannerItem.rate}
                           />
-                          {/* <div className="my-2 border-[1px] border-Opacity_W15" /> */}
                           <RealTimeHotTalk ReviewList={BannerItem.reviewList} />
                           {/* 실시간 핫한 톡 컴포넌트 */}
                         </div>
