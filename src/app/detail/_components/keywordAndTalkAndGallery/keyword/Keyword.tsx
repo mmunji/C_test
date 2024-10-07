@@ -52,6 +52,8 @@ export default function Keyword({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [keywordsData]);
 
+  console.log(myKeyword);
+
   return (
     <section className="flex flex-col items-center Laptop:relative Laptop:rounded-xl Laptop:bg-D1_Gray Laptop:p-10 Desktop:p-[60px]">
       {noKeyword ? (
@@ -96,12 +98,12 @@ export default function Keyword({
         </SpeechBubble>
       </div>
 
-      {!myKeyword && !isClickedEdit ? (
+      {!myKeyword?.res.ok && !isClickedEdit ? (
         <KeywordForm movieId={movieId} title={title} />
       ) : (
         !isClickedEdit && (
           <MyKeyword
-            myKeyword={myKeyword}
+            myKeyword={myKeyword?.data}
             isClickedEdit={isClickedEdit}
             setIsClickedEdit={setIsClickedEdit}
           />
@@ -112,7 +114,10 @@ export default function Keyword({
         <KeywordForm
           movieId={movieId}
           title={title}
-          initialValue={myKeyword?.keyword}
+          initialValue={myKeyword?.data.keyword}
+          myKeywordId={myKeyword?.data.keywordId}
+          isClickedEdit={isClickedEdit}
+          setIsClickedEdit={setIsClickedEdit}
         />
       )}
       {!noKeyword && <NewKeyword latestKeywords={latestKeywords} />}

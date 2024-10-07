@@ -1,5 +1,13 @@
 import { josa } from "es-hangul";
-import { ChangeEvent, FormEvent, useState } from "react";
+import {
+  ChangeEvent,
+  Dispatch,
+  FormEvent,
+  SetStateAction,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 
 import Button from "@/components/buttons/Button";
 import LoadingSpinner from "@/components/loadingSpinner/LoadingSpinner";
@@ -7,8 +15,10 @@ import Modal from "@/components/modal/modal";
 import useDevice from "@/hooks/useDevice";
 import useHandleClickAuthButton from "@/hooks/useHandleClickAuthButtons";
 import useNeedLogin from "@/hooks/useNeedLogin";
-import { tokenManager } from "@/services/auth/tokenManager";
-import { useAddKeyword } from "@/services/keyword/keywordMutations";
+import {
+  useAddKeyword,
+  useEditKeyword,
+} from "@/services/keyword/keywordMutations";
 import filterAbuse from "@/utils/filterAbuse";
 
 import SpeechBubble from "../../../../../components/speechBubble/SpeechBubble";
@@ -17,19 +27,35 @@ interface KeywordFormProps {
   movieId: number;
   title: string;
   initialValue?: string;
+  myKeywordId?: number | null;
+  isClickedEdit?: boolean;
+  setIsClickedEdit?: Dispatch<SetStateAction<boolean>>;
 }
 
 export default function KeywordForm({
   movieId,
   title,
   initialValue = "",
+  myKeywordId,
+  isClickedEdit,
+  setIsClickedEdit,
 }: KeywordFormProps) {
+  const inputRef = useRef<HTMLInputElement>(null);
   const [focused, setFocused] = useState(false);
   const [value, setValue] = useState(initialValue);
   const { device } = useDevice();
   const { mutate: addKeyword, isPending } = useAddKeyword(setValue, movieId);
   const { handleClickAuthButton } = useHandleClickAuthButton();
   const { isOpen, setIsOpen, handleNeedLogin } = useNeedLogin();
+  const { mutate: editKeyword } = useEditKeyword(
+    setIsClickedEdit,
+    movieId,
+    myKeywordId,
+  );
+
+  useEffect(() => {
+    if (isClickedEdit) inputRef.current?.focus();
+  }, [isClickedEdit]);
 
   const sliceTitleMap: { [key: string]: number } = {
     mobile: 10,
@@ -60,7 +86,8 @@ export default function KeywordForm({
     e.preventDefault();
     if (handleNeedLogin()) return;
     if (filterAbuse(value)) return;
-    addKeyword({ movieId, value });
+    if (initialValue === "") addKeyword({ movieId, value });
+    else editKeyword({ movieId: movieId, value: value });
   };
 
   const josaTitle = josa(quotedFormattedTitle, "은/는");
@@ -74,6 +101,7 @@ export default function KeywordForm({
       </div>
       <div className="relative w-full overflow-hidden rounded-xl ">
         <input
+          ref={inputRef}
           type="text"
           placeholder={`${device === "tablet" ? quotedTitle : josaTitle} 한 단어로?`}
           maxLength={5}
