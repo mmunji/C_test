@@ -23,7 +23,7 @@ export default function AccountNicknameForm({ nickname }: AccountFormProps) {
   const [error, setError] = useState<null | string>(null);
   const [loading, setLoading] = useState(false);
   const debouncedNickname = useDebounce(newNickname, 500);
-  const { setMyInfo } = useMyInfoStore();
+  const setMyInfo = useMyInfoStore((state) => state.setMyInfo);
   const reset = () => {
     setError(null);
     setNewNickname(nickname);
@@ -41,15 +41,17 @@ export default function AccountNicknameForm({ nickname }: AccountFormProps) {
     const result = nicknameSchema.safeParse({ nickname: value });
     if (!result.success) return setError("닉네임이 올바르지 않습니다,");
   };
+
   const handleSubmit = async () => {
     if (error) return reset();
     setLoading(true);
     const result = await changeUserInfo(newNickname, "nickname");
-    useMyInfoStore.getState().setMyInfo({ nickname: newNickname });
+    setMyInfo({ nickname: newNickname });
     setLoading(false);
     if (result.state) return setIsEditing(false);
     setError("이미 사용 중인 닉네임이에요.");
   };
+
   useEffect(() => {
     if (isEditing) nicknameRef.current?.focus();
   }, [isEditing]);

@@ -7,6 +7,7 @@ export default async function Badge() {
     myAPIs.getReviewCounts(),
     myAPIs.getBadges(),
   ]);
+
   const sortedReviewCounts = EMOJI_MAP.map((emoji) =>
     reviewCounts.find((review) => review.id === emoji.id),
   );
