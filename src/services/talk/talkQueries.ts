@@ -30,7 +30,7 @@ export function useGetMyTalk(movieId: number) {
   const accessToken = tokenManager.getToken();
 
   return useQuery({
-    queryKey: [TALK_QUERY_KEYS.myTalk(accessToken as string), movieId],
+    queryKey: TALK_QUERY_KEYS.myTalk(movieId),
     queryFn: ({ queryKey }) => {
       const [, movieId] = queryKey;
       return talkAPIs.getMyTalk(movieId as number);
@@ -43,7 +43,7 @@ export function useGetMyStar(movieId: number) {
   const accessToken = tokenManager.getToken();
 
   return useQuery({
-    queryKey: [TALK_QUERY_KEYS.myStar(accessToken as string), movieId],
+    queryKey: TALK_QUERY_KEYS.myStar(movieId),
     queryFn: ({ queryKey }) => {
       const [, movieId] = queryKey;
       return talkAPIs.getMyStar(movieId as number);

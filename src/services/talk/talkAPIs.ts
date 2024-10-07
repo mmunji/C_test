@@ -87,8 +87,37 @@ export const talkAPIs = {
     const res = await fetch(`${API_URL}/reviews/${talkId}`, {
       method: "DELETE",
       headers: {
+        "Content-Type": "application/json",
         access: `${accessToken}`,
       },
+    });
+
+    const data = res.json();
+    return { res, data };
+  },
+
+  editTalk: async (
+    talkId: number | undefined,
+    movieName: string | undefined,
+    star: number | undefined,
+    content: string | undefined,
+    spoiler: boolean | undefined,
+    genreList: number[],
+  ) => {
+    const accessToken = tokenManager.getToken();
+    const res = await fetch(`${API_URL}/reviews/${talkId}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        access: `${accessToken}`,
+      },
+      body: JSON.stringify({
+        movieName: movieName,
+        star: star,
+        content: content,
+        spoiler: spoiler,
+        genreList: genreList,
+      }),
     });
 
     const data = res.json();
