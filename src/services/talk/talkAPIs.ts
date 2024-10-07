@@ -82,7 +82,7 @@ export const talkAPIs = {
     return { data, res };
   },
 
-  removeTalk: async (talkId: number) => {
+  removeTalk: async (talkId: number | undefined) => {
     const accessToken = tokenManager.getToken();
     const res = await fetch(`${API_URL}/reviews/${talkId}`, {
       method: "DELETE",

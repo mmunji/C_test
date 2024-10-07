@@ -41,6 +41,12 @@ export function useAddTalk(
     },
     onSuccess: () => {
       queryClient.invalidateQueries({
+        queryKey: TALK_QUERY_KEYS.myTalk(movieId),
+      });
+      queryClient.invalidateQueries({
+        queryKey: TALK_QUERY_KEYS.myStar(movieId),
+      });
+      queryClient.invalidateQueries({
         queryKey: TALK_QUERY_KEYS.infiniteTalks(movieId),
       });
 
@@ -178,6 +184,32 @@ export function useEditTalk(
       });
 
       setClickedEdit(false);
+    },
+  });
+}
+
+export function useRemoveTalk(
+  setClickedEdit: Dispatch<SetStateAction<boolean>>,
+  movieId: number,
+) {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: ({ talkId }: { talkId: number | undefined }) =>
+      talkAPIs.removeTalk(talkId),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: TALK_QUERY_KEYS.myTalk(movieId),
+      });
+      queryClient.invalidateQueries({
+        queryKey: TALK_QUERY_KEYS.myStar(movieId),
+      });
+      queryClient.invalidateQueries({
+        queryKey: TALK_QUERY_KEYS.infiniteTalks(movieId),
+      });
+
+      setClickedEdit(false);
+      location.reload();
     },
   });
 }

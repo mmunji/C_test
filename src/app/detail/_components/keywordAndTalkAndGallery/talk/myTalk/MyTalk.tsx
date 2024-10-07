@@ -5,7 +5,7 @@ import useRating from "@/app/detail/_hooks/useRating";
 import Button from "@/components/buttons/Button";
 import RatingStar from "@/components/rating/RatingStar";
 import WithLineBreak from "@/components/withLineBreak/WithLineBreak";
-import { useEditTalk } from "@/services/talk/talkMutations";
+import { useEditTalk, useRemoveTalk } from "@/services/talk/talkMutations";
 
 import {
   SquareCheckFillMd,
@@ -34,6 +34,7 @@ function MyTalk({ myTalk, movieId, movieDetailData }: MyTalkProps) {
     myTalk?.spoiler,
   );
 
+  const { mutate: removeTalk } = useRemoveTalk(setClickedEdit, movieId);
   const { mutate: editTalk } = useEditTalk(setClickedEdit, movieId);
 
   const genreList = movieDetailData.genreDTOList.map((el) => el.id);
@@ -47,6 +48,10 @@ function MyTalk({ myTalk, movieId, movieDetailData }: MyTalkProps) {
       spoiler: isSpoiler,
       star: ratingValue,
     });
+  };
+
+  const submitRemoveTalk = () => {
+    removeTalk({ talkId: myTalk?.reviewId });
   };
 
   return (
@@ -124,7 +129,11 @@ function MyTalk({ myTalk, movieId, movieDetailData }: MyTalkProps) {
               <p className="select-none Text-m-Regular">스포일러</p>
             </div>
 
-            <Button size={"md"} className="text-Error">
+            <Button
+              onClick={submitRemoveTalk}
+              size={"md"}
+              className="text-Error"
+            >
               삭제
             </Button>
             <Button onClick={submitEditTalk} variant={"orange"} size={"md"}>
@@ -156,7 +165,7 @@ function MyTalk({ myTalk, movieId, movieDetailData }: MyTalkProps) {
             <p className="select-none Text-s-Regular">스포일러</p>
           </div>
 
-          <Button size={"sm"} className="text-Error">
+          <Button onClick={submitRemoveTalk} size={"sm"} className="text-Error">
             삭제
           </Button>
           <Button onClick={submitEditTalk} variant={"orange"} size={"sm"}>
