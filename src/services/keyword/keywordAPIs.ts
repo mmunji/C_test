@@ -23,7 +23,7 @@ export const keywordAPIs = {
     });
     const data = await res.json();
 
-    return data;
+    return { data, res };
   },
 
   getLatestKeyword: async (movieId: number) => {
@@ -52,7 +52,10 @@ export const keywordAPIs = {
     return { data, res };
   },
 
-  editKeyword: async (keyWordId: number, keyword: string) => {
+  editKeyword: async (
+    keyWordId: number | null | undefined,
+    keyword: string,
+  ) => {
     const accessToken = tokenManager.getToken();
     const res = await fetch(`${API_URL}/keywords/${keyWordId}`, {
       method: "PATCH",

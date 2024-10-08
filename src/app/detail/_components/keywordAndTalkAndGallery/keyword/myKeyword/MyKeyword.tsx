@@ -13,6 +13,7 @@ interface MyKeywordProps {
 }
 
 interface MyKeyword {
+  keywordId: number | null;
   keyword: string;
   count: number;
 }

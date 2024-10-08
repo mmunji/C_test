@@ -37,9 +37,9 @@ export function useAddKeyword(
 }
 
 export function useEditKeyword(
-  setValue: Dispatch<SetStateAction<string>>,
+  setIsClickedEdit: Dispatch<SetStateAction<boolean>> | undefined,
   movieId: number,
-  keywordId: number,
+  keywordId: number | null | undefined,
 ) {
   const router = useRouter();
   const queryClient = useQueryClient();
@@ -53,8 +53,8 @@ export function useEditKeyword(
       queryClient.invalidateQueries({
         queryKey: KEYWORD_QUERY_KEYS.myKeyword(accessToken, movieId),
       });
+      if (setIsClickedEdit) setIsClickedEdit(false);
       router.refresh();
-      setValue("");
     },
     onError: (error) => {
       alert(error);

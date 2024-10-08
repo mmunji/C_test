@@ -9,10 +9,13 @@ interface Talk {
 }
 
 interface MyTalk {
+  badgeList: string[];
+  nickName: string;
   content: string;
   createTime: string;
   reviewId: number;
   star: number;
+  spoiler: false;
 }
 
 interface ReviewList {
