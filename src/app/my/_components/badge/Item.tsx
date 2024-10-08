@@ -30,24 +30,26 @@ export default function BadgeItem({
         toggleMovie(badge.id);
       }}
       className={cn(
-        isEditing && "hover:bg-D2_Gray active:bg-D3_Gray",
-        `${isSelected ? "badge-gradient" : "bg-Black"} ${isEditing && hasBadge ? "cursor-pointer" : "cursor-default"} flex flex-col items-center justify-center gap-3 rounded-xl py-3 Tablet:gap-4 Tablet:py-7`,
+        "flex cursor-default flex-col items-center justify-center gap-3 rounded-xl bg-Black py-3 Tablet:gap-4 Tablet:py-7",
+        isSelected && "badge-gradient",
+        isEditing &&
+          hasBadge &&
+          "cursor-pointer hover:bg-D2_Gray active:bg-D3_Gray",
       )}
     >
-      <div
-        className={cn(
-          !hasBadge && "blur-[4px]",
-          `relative h-11 w-11 Tablet:h-12 Tablet:w-12`,
-        )}
-      >
+      <div className="relative h-[60px] w-[60px]">
         {!hasBadge && (
-          <div className="relative z-10 h-full w-full bg-[#1e1e1e]/80" />
+          <div className="absolute z-[1] h-full w-full bg-[#1e1e1e]/80 backdrop-blur-sm" />
         )}
-        <Image
-          fill
-          alt={`${badgeName} 뱃지 이미지`}
-          src={getEmoji(badgeName)}
-        />
+        <div className="flex h-full w-full items-center justify-center">
+          <div className="relative h-11 w-11 Tablet:h-12 Tablet:w-12">
+            <Image
+              fill
+              alt={`${badgeName} 뱃지 이미지`}
+              src={getEmoji(badgeName)}
+            />
+          </div>
+        </div>
       </div>
       <div className="flex flex-col items-center gap-1">
         <p className="Text-s-Bold">{hasBadge ? badgeName : "???"}</p>
@@ -62,11 +64,9 @@ export default function BadgeItem({
           </span>
           <span
             className={cn(
-              {
-                "hidden text-Silver Text-xs-Bold Tablet:inline-block": hasBadge,
-              },
-              { "text-Gray_Orange Text-xs-Regular": !hasBadge },
-              { "text-Primary Text-xs-Bold": isSelected },
+              "text-Gray_Orange Text-xs-Regular",
+              hasBadge && "hidden text-Silver Text-xs-Bold Tablet:inline-block",
+              isSelected && "text-Primary Text-xs-Bold",
             )}
           >
             {hasBadge
