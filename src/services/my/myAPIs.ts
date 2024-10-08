@@ -22,7 +22,7 @@ export const myAPIs = {
     const data = await customFetchInstance.authFetch<Bookmark[]>(
       "/my/BookmarkByUser",
       "GET",
-      { next: { revalidate: 3600 } },
+      // { next: { revalidate: 3600 } },
     );
     return data;
   },
