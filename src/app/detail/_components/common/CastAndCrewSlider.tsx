@@ -64,7 +64,7 @@ export default function CastAndCrewSlider({
                   height={100}
                   src={profileImage}
                   alt={el.name}
-                  className="h-[112px] rounded-[8px]"
+                  className="h-[112px] rounded-[8px] object-cover"
                 />
                 <section className="flex h-[79px] flex-col px-2 py-2">
                   <p className="line-clamp-2 h-10 overflow-hidden text-ellipsis break-all leading-[150%] text-Silver Text-s-Medium">
@@ -93,7 +93,7 @@ export default function CastAndCrewSlider({
                   height={100}
                   src={profileImage}
                   alt={el.name}
-                  className="h-[112px] rounded-[8px]"
+                  className="h-[112px] rounded-[8px] object-cover"
                 />
                 <section className="flex h-[79px] flex-col px-2 py-2">
                   <p className="line-clamp-2 h-10 overflow-hidden text-ellipsis break-all leading-[150%] text-Silver Text-s-Medium">
