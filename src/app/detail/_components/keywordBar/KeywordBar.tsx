@@ -41,7 +41,7 @@ export default function KeywordBar({ title, top1Keyword }: KeywordBarProps) {
               {gradientStyle !== "" && sentence1}
             </span>
             <span className="text-regular font-Bold text-Primary Laptop:text-xl">
-              {gradientStyle !== "" && `${top1Keyword.keyword} 향`}
+              {gradientStyle !== "" && `${top1Keyword.keyword}`}
             </span>
           </section>
         </div>
