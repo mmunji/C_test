@@ -4,6 +4,7 @@ import Modal from "@/components/modal/modal";
 import RatingStar from "@/components/rating/RatingStar";
 import SpeechBubble from "@/components/speechBubble/SpeechBubble";
 import useHandleClickAuthButton from "@/hooks/useHandleClickAuthButtons";
+import useNeedLogin from "@/hooks/useNeedLogin";
 import { useGetMyTalk } from "@/services/talk/talkQueries";
 
 import DriveCommentText from "./DriveCommentText";
