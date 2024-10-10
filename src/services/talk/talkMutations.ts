@@ -224,10 +224,15 @@ export function useReportTalk(
       category,
       content,
     }: {
-      talkId: number | null;
+      talkId?: number | null;
       category: string;
       content: string;
-    }) => talkAPIs.reportTalk(talkId, category, content),
+    }) =>
+      talkAPIs.reportTalk({
+        talkId: talkId,
+        category: category,
+        content: content,
+      }),
     onSuccess: () => {
       setOpen(false);
       setOpenReportComplete(true);

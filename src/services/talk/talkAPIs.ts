@@ -96,11 +96,15 @@ export const talkAPIs = {
     return { res, data };
   },
 
-  reportTalk: async (
-    talkId: number | null,
-    category: string,
-    content: string,
-  ) => {
+  reportTalk: async ({
+    talkId,
+    category,
+    content,
+  }: {
+    talkId?: number | null;
+    category: string;
+    content: string;
+  }) => {
     const accessToken = tokenManager.getToken();
     const res = await fetch(`${API_URL}/reports/${talkId}`, {
       method: "POST",
