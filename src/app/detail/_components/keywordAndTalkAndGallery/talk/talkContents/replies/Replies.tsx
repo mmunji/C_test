@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Dispatch, SetStateAction } from "react";
 
 import { useGetReplies } from "@/services/talk/talkQueries";
 
@@ -8,9 +8,16 @@ import ReplyForm from "./ReplyForm";
 interface RepliesProps {
   movieId: number;
   parentReviewId: number;
+  setOpen: Dispatch<SetStateAction<boolean>>;
+  setTalkId: Dispatch<SetStateAction<number | null>>;
 }
 
-export default function Replies({ movieId, parentReviewId }: RepliesProps) {
+export default function Replies({
+  movieId,
+  parentReviewId,
+  setOpen,
+  setTalkId,
+}: RepliesProps) {
   const { data } = useGetReplies(parentReviewId);
 
   const replies = data?.pages?.flatMap((page) => page.commentList) || [];
@@ -25,6 +32,8 @@ export default function Replies({ movieId, parentReviewId }: RepliesProps) {
             reply={reply}
             movieId={movieId}
             parentReviewId={parentReviewId}
+            setOpen={setOpen}
+            setTalkId={setTalkId}
           />
         ))}
     </div>

@@ -2,6 +2,8 @@ import Image from "next/image";
 import React, { Dispatch, SetStateAction, useState } from "react";
 
 import Button from "@/components/buttons/Button";
+import LoadingSpinner from "@/components/loadingSpinner/LoadingSpinner";
+import { useReportTalk } from "@/services/talk/talkMutations";
 import { cn } from "@/utils/cn";
 
 import { CaretDownMd } from "../../../../../../../public/icons";
@@ -18,11 +20,22 @@ const REPORT_TYPE = [
 
 interface ReportModalProps {
   setOpen: Dispatch<SetStateAction<boolean>>;
+  talkId: number | null;
+  setOpenReportComplete: Dispatch<SetStateAction<boolean>>;
 }
 
-export default function ReportModal({ setOpen }: ReportModalProps) {
+export default function ReportModal({
+  setOpen,
+  talkId,
+  setOpenReportComplete,
+}: ReportModalProps) {
   const [reportType, setReportType] = useState(REPORT_TYPE[0]);
   const [openDropdown, setOpenDropdown] = useState(false);
+  const [content, setContent] = useState("");
+  const { mutate: reportTalk, isPending } = useReportTalk(
+    setOpen,
+    setOpenReportComplete,
+  );
 
   return (
     <>
@@ -71,8 +84,8 @@ export default function ReportModal({ setOpen }: ReportModalProps) {
           <p className="text-Gray Text-m-Medium">자세한 사유</p>
           <div className="mt-2 h-[88px] w-full rounded-xl bg-D2_Gray p-3 text-[14px] input-scrollbar Tablet:h-[100px] Tablet:text-[16px]">
             <textarea
-              name=""
-              id=""
+              value={content}
+              onChange={(e) => setContent(e.target.value)}
               placeholder="신고 유형을 먼저 선택해주세요."
               className="h-full w-full resize-none bg-transparent pr-3 leading-[22px] placeholder:text-Gray focus:outline-none Tablet:leading-[26px]"
             />
@@ -87,8 +100,28 @@ export default function ReportModal({ setOpen }: ReportModalProps) {
           >
             취소
           </Button>
-          <Button variant={"orange"} className="w-full rounded-xl px-5 py-3">
-            제출하기
+          <Button
+            onClick={() =>
+              reportTalk({
+                talkId: talkId,
+                category: reportType,
+                content: content,
+              })
+            }
+            disabled={
+              reportType === REPORT_TYPE[0] ||
+              (reportType === REPORT_TYPE[REPORT_TYPE.length - 1] &&
+                content === "") ||
+              isPending
+            }
+            variant={"orange"}
+            className="w-full rounded-xl px-5 py-3"
+          >
+            {isPending ? (
+              <LoadingSpinner size={"sm"} color={"primary"} />
+            ) : (
+              "제출하기"
+            )}
           </Button>
         </div>
       </div>

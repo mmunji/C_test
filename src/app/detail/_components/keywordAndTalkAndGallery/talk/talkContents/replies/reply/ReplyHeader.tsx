@@ -1,15 +1,23 @@
 import Image from "next/image";
-import React from "react";
+import React, { Dispatch, SetStateAction } from "react";
 
+import Button from "@/components/buttons/Button";
+import Dropdown from "@/components/dropdown/dropdown";
 import formatDate from "@/utils/formatDate";
 
 import { MoreHorizontal } from "../../../../../../../../../public/icons";
 
 interface ReplyHeaderProps {
   reply: ReviewList;
+  setOpen: Dispatch<SetStateAction<boolean>>;
+  setTalkId: Dispatch<SetStateAction<number | null>>;
 }
 
-export default function ReplyHeader({ reply }: ReplyHeaderProps) {
+export default function ReplyHeader({
+  reply,
+  setOpen,
+  setTalkId,
+}: ReplyHeaderProps) {
   return (
     <div className="flex h-10 items-center justify-between">
       <section className="flex items-center gap-2">
@@ -21,8 +29,23 @@ export default function ReplyHeader({ reply }: ReplyHeaderProps) {
           {formatDate(reply.createdAt)}
         </p>
       </section>
-
-      <Image src={MoreHorizontal} alt="" className="m-2" />
+      <Dropdown type="text">
+        <Dropdown.Trigger>
+          <Button variant="text" className="my-auto h-fit">
+            <Image src={MoreHorizontal} alt="메뉴" />
+          </Button>
+        </Dropdown.Trigger>
+        <Dropdown.List>
+          <Dropdown.Item
+            onClick={() => {
+              setTalkId(reply.id);
+              setOpen(true);
+            }}
+          >
+            신고
+          </Dropdown.Item>
+        </Dropdown.List>
+      </Dropdown>
     </div>
   );
 }

@@ -10,6 +10,7 @@ import DividingLine from "../../common/DividingLine";
 import MyTalk from "./myTalk/MyTalk";
 import NoTalk from "./NoTalk";
 import Rating from "./rating/Rating";
+import ReportCompleteModal from "./ReportCompleteModal";
 import ReportModal from "./reportModal/ReportModal";
 import TalkContents from "./talkContents/TalkContents";
 import TalkHeader from "./TalkHeader";
@@ -29,6 +30,8 @@ export default function Talk({ title, movieId, movieDetailData }: TalkProps) {
   const id = device === "mobile" || device === "tablet" ? undefined : "my-talk";
   const noTalk = data?.pages?.[0]?.reviewList?.length === 0;
   const [open, setOpen] = useState(false);
+  const [openReportComplete, setOpenReportComplete] = useState(false);
+  const [talkId, setTalkId] = useState<number | null>(null);
 
   useEffect(() => {
     refetch();
@@ -80,6 +83,7 @@ export default function Talk({ title, movieId, movieDetailData }: TalkProps) {
                     movieId={movieId}
                     talk={talk}
                     setOpen={setOpen}
+                    setTalkId={setTalkId}
                   />
                 ))}
               </React.Fragment>
@@ -88,7 +92,16 @@ export default function Talk({ title, movieId, movieDetailData }: TalkProps) {
         )}
       </section>
 
-      {open && <ReportModal setOpen={setOpen} />}
+      {open && (
+        <ReportModal
+          setOpen={setOpen}
+          talkId={talkId}
+          setOpenReportComplete={setOpenReportComplete}
+        />
+      )}
+      {openReportComplete && (
+        <ReportCompleteModal setOpenReportComplete={setOpenReportComplete} />
+      )}
     </section>
   );
 }

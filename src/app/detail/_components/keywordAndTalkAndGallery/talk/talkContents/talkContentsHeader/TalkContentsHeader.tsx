@@ -14,11 +14,13 @@ import TalkContentsRatingStar from "./TalkContentsRatingStar";
 interface TalkContentsHeaderProps {
   talk: ReviewList;
   setOpen: Dispatch<SetStateAction<boolean>>;
+  setTalkId: Dispatch<SetStateAction<number | null>>;
 }
 
 export default function TalkContentsHeader({
   talk,
   setOpen,
+  setTalkId,
 }: TalkContentsHeaderProps) {
   const { myInfo } = useMyInfoStore();
   const isMyTalk = myInfo.nickname === talk.nickName;
@@ -91,7 +93,14 @@ export default function TalkContentsHeader({
             </Button>
           </Dropdown.Trigger>
           <Dropdown.List>
-            <Dropdown.Item onClick={() => setOpen(true)}>신고</Dropdown.Item>
+            <Dropdown.Item
+              onClick={() => {
+                setTalkId(talk.id);
+                setOpen(true);
+              }}
+            >
+              신고
+            </Dropdown.Item>
           </Dropdown.List>
         </Dropdown>
       )}

@@ -213,3 +213,24 @@ export function useRemoveTalk(
     },
   });
 }
+
+export function useReportTalk(
+  setOpen: Dispatch<SetStateAction<boolean>>,
+  setOpenReportComplete: Dispatch<SetStateAction<boolean>>,
+) {
+  return useMutation({
+    mutationFn: ({
+      talkId,
+      category,
+      content,
+    }: {
+      talkId: number | null;
+      category: string;
+      content: string;
+    }) => talkAPIs.reportTalk(talkId, category, content),
+    onSuccess: () => {
+      setOpen(false);
+      setOpenReportComplete(true);
+    },
+  });
+}
