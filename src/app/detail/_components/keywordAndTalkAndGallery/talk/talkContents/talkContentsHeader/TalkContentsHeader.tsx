@@ -1,7 +1,8 @@
 import Image from "next/image";
-import React from "react";
+import React, { Dispatch, SetStateAction } from "react";
 
 import Button from "@/components/buttons/Button";
+import Dropdown from "@/components/dropdown/dropdown";
 import SmallBadge from "@/components/smallBadge/SmallBadge";
 import useMyInfoStore from "@/stores/useMyInfoStore";
 import { cn } from "@/utils/cn";
@@ -12,9 +13,13 @@ import TalkContentsRatingStar from "./TalkContentsRatingStar";
 
 interface TalkContentsHeaderProps {
   talk: ReviewList;
+  setOpen: Dispatch<SetStateAction<boolean>>;
 }
 
-export default function TalkContentsHeader({ talk }: TalkContentsHeaderProps) {
+export default function TalkContentsHeader({
+  talk,
+  setOpen,
+}: TalkContentsHeaderProps) {
   const { myInfo } = useMyInfoStore();
   const isMyTalk = myInfo.nickname === talk.nickName;
 
@@ -79,9 +84,16 @@ export default function TalkContentsHeader({ talk }: TalkContentsHeaderProps) {
       </section>
 
       {!isMyTalk && (
-        <Button variant="icon" className="my-auto h-fit">
-          <Image src={MoreHorizontal} alt="메뉴" />
-        </Button>
+        <Dropdown type="text">
+          <Dropdown.Trigger>
+            <Button variant="text" className="my-auto h-fit">
+              <Image src={MoreHorizontal} alt="메뉴" />
+            </Button>
+          </Dropdown.Trigger>
+          <Dropdown.List>
+            <Dropdown.Item onClick={() => setOpen(true)}>신고</Dropdown.Item>
+          </Dropdown.List>
+        </Dropdown>
       )}
     </div>
   );

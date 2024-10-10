@@ -1,4 +1,4 @@
-import { useLayoutEffect, useState } from "react";
+import { Dispatch, SetStateAction, useLayoutEffect, useState } from "react";
 
 import Replies from "./replies/Replies";
 import TalkContentsBody from "./TalkContentsBody";
@@ -8,9 +8,14 @@ import TalkContentsHeader from "./talkContentsHeader/TalkContentsHeader";
 interface TalkContentsProps {
   talk: ReviewList;
   movieId: number;
+  setOpen: Dispatch<SetStateAction<boolean>>;
 }
 
-export default function TalkContents({ talk, movieId }: TalkContentsProps) {
+export default function TalkContents({
+  talk,
+  movieId,
+  setOpen,
+}: TalkContentsProps) {
   const spoiler = talk.spoiler;
   const [showSpoiler, setShowSpoiler] = useState(false);
   const [showReplies, setShowReplies] = useState(false);
@@ -21,7 +26,7 @@ export default function TalkContents({ talk, movieId }: TalkContentsProps) {
 
   return (
     <div className="border-b-[1px] border-D1_Gray py-5 first:mt-4 last:border-b-0 Tablet:mt-5 Tablet:py-6 Laptop:border-D2_Gray">
-      <TalkContentsHeader talk={talk} />
+      <TalkContentsHeader talk={talk} setOpen={setOpen} />
       <TalkContentsBody
         {...{ talk, showSpoiler, setShowSpoiler, showReplies }}
       />
