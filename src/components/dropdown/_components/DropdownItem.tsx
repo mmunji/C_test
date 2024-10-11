@@ -5,12 +5,14 @@ import {
   ButtonType,
   useDropdownContext,
 } from "@/components/dropdown/DropdownContext";
+import { cn } from "@/utils/cn";
 
 interface DropdownItemProps {
   children: React.ReactNode;
   onClick: () => void;
   isFocused?: boolean;
   href?: string;
+  className?: string;
 }
 
 export type Status = "active" | "inactive";
@@ -37,6 +39,7 @@ export default function DropdownItem({
   onClick,
   isFocused = false,
   href,
+  className,
 }: DropdownItemProps) {
   const { type, toggleDropdown } = useDropdownContext();
   const handleClick = () => {
@@ -48,10 +51,13 @@ export default function DropdownItem({
     <Link
       onClick={toggleDropdown}
       href={href}
-      className={styles({
-        type,
-        isFocused: isFocused ? "active" : "inactive",
-      })}
+      className={cn(
+        styles({
+          type,
+          isFocused: isFocused ? "active" : "inactive",
+        }),
+        className,
+      )}
     >
       {children}
     </Link>
@@ -59,10 +65,13 @@ export default function DropdownItem({
     <button
       onClick={handleClick}
       type="button"
-      className={styles({
-        type,
-        isFocused: isFocused ? "active" : "inactive",
-      })}
+      className={cn(
+        styles({
+          type,
+          isFocused: isFocused ? "active" : "inactive",
+        }),
+        className,
+      )}
     >
       {children}
     </button>

@@ -11,7 +11,7 @@ import Badges from "@/app/my/_components/userInfo/Badges";
 import PenaltyInfo from "@/app/my/_components/userInfo/PenaltyInfo";
 import { myAPIs } from "@/services/my/myAPIs";
 
-import { DefaultUserProfile } from "../../../../../public/images";
+import { ProfileBlue } from "../../../../../public/images";
 
 export default async function UserInfo() {
   const user = await myAPIs.getUser();
@@ -30,7 +30,7 @@ export default async function UserInfo() {
                   src={
                     user.profile
                       ? `data:image/png;base64,${user.profile}`
-                      : DefaultUserProfile
+                      : ProfileBlue
                   }
                   fill
                   className="h-full w-full overflow-hidden object-cover"
