@@ -18,7 +18,7 @@ export default function KeywordBar({ title, top1Keyword }: KeywordBarProps) {
   return (
     <>
       {gradientStyle === "" ? (
-        <div className="mb-4 flex h-12 w-full items-center justify-center rounded-xl Laptop:mb-[52px] Laptop:h-[74px]">
+        <div className="mb-4 flex h-12 w-full items-center justify-center rounded-xl bg-D2_Gray Laptop:mb-[52px] Laptop:h-[74px]">
           <div className="Tablet:hidden">
             <LoadingSpinner size="sm" color="primary" />
           </div>
@@ -41,7 +41,7 @@ export default function KeywordBar({ title, top1Keyword }: KeywordBarProps) {
               {gradientStyle !== "" && sentence1}
             </span>
             <span className="text-regular font-Bold text-Primary Laptop:text-xl">
-              {gradientStyle !== "" && `${top1Keyword.keyword} 향`}
+              {gradientStyle !== "" && `${top1Keyword.keyword}`}
             </span>
           </section>
         </div>

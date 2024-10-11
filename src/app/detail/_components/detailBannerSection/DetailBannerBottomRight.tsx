@@ -113,7 +113,11 @@ export default function DetailBannerBottomRight({
         </section>
       </section>
       <Image
-        src={movieDetailData.posterImg}
+        src={
+          movieDetailData.posterImg.includes("null")
+            ? "/images/ssikongi/PNG/NoImage.png"
+            : movieDetailData.posterImg
+        }
         alt="포스터"
         width={500}
         height={500}

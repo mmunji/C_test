@@ -96,6 +96,32 @@ export const talkAPIs = {
     return { res, data };
   },
 
+  reportTalk: async ({
+    talkId,
+    category,
+    content,
+  }: {
+    talkId?: number | null;
+    category: string;
+    content: string;
+  }) => {
+    const accessToken = tokenManager.getToken();
+    const res = await fetch(`${API_URL}/reports/${talkId}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        access: `${accessToken}`,
+      },
+      body: JSON.stringify({
+        category: category,
+        content: content,
+      }),
+    });
+
+    const data = res.json();
+    return { res, data };
+  },
+
   editTalk: async (
     talkId: number | undefined,
     movieName: string | undefined,
