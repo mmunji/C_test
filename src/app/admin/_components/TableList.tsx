@@ -95,7 +95,6 @@ export default function TableList({ rowData, type }: TableListProps) {
   const setReportBackIsModal = (params: any) => {
     setReportContent(params.data);
     setisReportModal((prev) => !prev);
-    console.log("report");
   };
 
   return (

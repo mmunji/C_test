@@ -11,7 +11,7 @@ export async function generateMetadata({
   searchParams: { query: string };
 }): Promise<Metadata> {
   return {
-    title: `${searchParams.query} - 씨네톡`,
+    title: `${searchParams.query} - 씨네톡 검색`,
     description: `${searchParams.query} 영화 리뷰 검색 결과`,
     openGraph: {
       images: [

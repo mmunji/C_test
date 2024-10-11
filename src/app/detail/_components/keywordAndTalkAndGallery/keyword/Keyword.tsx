@@ -58,8 +58,6 @@ export default function Keyword({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [keywordsData]);
 
-  console.log(myKeyword);
-
   return (
     <div className="flex flex-col">
       <section className="flex flex-col items-center Laptop:relative Laptop:rounded-xl Laptop:bg-D1_Gray Laptop:p-10 Desktop:p-[60px]">
