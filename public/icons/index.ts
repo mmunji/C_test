@@ -94,3 +94,4 @@ export { default as VideoPlay } from "./interaction/video_play.svg";
 export { default as ChevronRightGrayMd } from "./arrow/chevron_right_gray_md.svg";
 export { default as CircleWarning } from "./interaction/circle_warning.svg";
 export { default as Report } from "./interaction/report.svg";
+export { default as UserSquare } from "./interaction/user/user_square.svg";
