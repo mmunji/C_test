@@ -10,6 +10,7 @@ import ROUTES from "@/constants/routes";
 import useSearchTabStore from "@/stores/useTabStore";
 
 import { StarFillSm } from "../../../../../public/icons";
+import { ProfileBlue } from "../../../../../public/images";
 
 interface SearchReviewListProps {
   reviews: ReviewResult[];
@@ -74,7 +75,7 @@ export default function SearchReviewList({
                     src={
                       talk.userDTO.profile
                         ? `data:image/png;base64,${talk.userDTO.profile}`
-                        : "/images/detail/default_profile2.png"
+                        : ProfileBlue
                     }
                   />
                   <span className="text-Silver Text-s-Medium">
