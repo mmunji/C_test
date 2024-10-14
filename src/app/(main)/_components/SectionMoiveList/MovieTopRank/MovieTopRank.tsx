@@ -48,7 +48,9 @@ export default function MoiveTopRank() {
   useEffect(() => {
     const fetchMovie = async () => {
       try {
-        const response = await movieAPIs.getMovieTopTen(filter);
+        const response = await movieAPIs.getMovieTopTen(
+          MovieGenreType[filter].index,
+        );
         setMovieTopTenData(response);
       } catch (error) {
         console.error("영화를 가져오는 중 오류 발생:", error);
@@ -78,10 +80,7 @@ export default function MoiveTopRank() {
               <Dropdown.List>
                 {MovieGenreType.map((genre, index) => {
                   return (
-                    <Dropdown.Item
-                      key={index}
-                      onClick={() => setFilter(genre.index)}
-                    >
+                    <Dropdown.Item key={index} onClick={() => setFilter(index)}>
                       {genre.name}
                     </Dropdown.Item>
                   );
