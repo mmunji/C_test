@@ -1,5 +1,4 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { revalidateTag } from "next/cache";
 import { useRouter } from "next/navigation";
 import { Dispatch, SetStateAction } from "react";
 
@@ -27,7 +26,7 @@ export function useAddKeyword(
       if (!res.ok) throw new Error(data?.message);
     },
     onSuccess: () => {
-      revalidateMyPage();
+      revalidateMyPage("my");
       queryClient.invalidateQueries({
         queryKey: KEYWORD_QUERY_KEYS.myKeyword(accessToken, movieId),
       });
@@ -54,7 +53,7 @@ export function useEditKeyword(
       if (!res.ok) throw new Error(data?.message);
     },
     onSuccess: () => {
-      revalidateMyPage();
+      revalidateMyPage("my");
       queryClient.invalidateQueries({
         queryKey: KEYWORD_QUERY_KEYS.myKeyword(accessToken, movieId),
       });
