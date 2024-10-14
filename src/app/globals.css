@@ -76,9 +76,6 @@ input::-webkit-search-results-decoration {
   .inner-gray {
     box-shadow: inset 0 0 0 1px theme(colors.Gray);
   }
-  .inner-silver {
-    box-shadow: inset 0 0 0 1px theme(colors.Silver);
-  }
   .inner-gray-orange {
     box-shadow: inset 0 0 0 1px theme(colors.Gray_Orange);
   }
