@@ -48,7 +48,7 @@ export default function RecentKeyword() {
                   return (
                     <SwiperSlide key={index} style={{ width: "100px" }}>
                       <div
-                        className={`Text-S-Bold  ${KeywordListNumber == index ? "bg-D1_Gray text-Silver" : "text-L_Gray"} w-[90px]  rounded-[36px] px-3 py-2 text-center text-base`}
+                        className={`Text-s-Bold  ${KeywordListNumber == index ? "bg-D1_Gray text-Silver" : "text-L_Gray"} w-[90px]  rounded-[36px] px-3 py-2 text-center text-base`}
                         onClick={() => HandleKeywords(index)}
                       >
                         {mention.keyword} {mention.count}
@@ -81,10 +81,11 @@ export default function RecentKeyword() {
         )}
       </div>
       <Link
-        className="hidden items-center justify-end gap-1 text-Gray_Orange Text-m-Medium Laptop:flex"
+        className="hidden items-center justify-end gap-2 text-Gray_Orange Text-m-Medium Laptop:flex"
         href={`search?query=${MentionKeywords[KeywordListNumber]?.keyword}`}
       >
-        더보기 <Image src={ChevronRight} alt="화살표" />
+        더보기{" "}
+        <Image src={ChevronRight} alt="화살표" style={{ color: "#CCC5C0" }} />
       </Link>
     </div>
   );

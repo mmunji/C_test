@@ -42,7 +42,7 @@ export default function Mobile_BestMovie(MovieData: Mobile_BestMoiveProps) {
                     <div
                       className="flex h-[358px] w-[238x] flex-col  justify-between rounded-xl pb-[14px]   Text-s-Bold Tablet:h-[240px] Tablet:w-[165px]"
                       style={{
-                        backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0.0) 0%, rgba(0, 0, 0, 0.7) 70%), url('${MovieDetailData.poster_path ? MovieDetailData.poster_path : "/images/ssikongi/PNG/NoImage.png"}')`,
+                        backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0.0) 0%, rgba(0, 0, 0, 0.7) 70%), url('${MovieDetailData.poster_path ? `https://image.tmdb.org/t/p/original/${MovieDetailData.poster_path}` : "/images/ssikongi/PNG/NoImage.png"}')`,
                         backgroundSize: "cover",
                         backgroundPosition: "center",
                       }}
@@ -54,11 +54,11 @@ export default function Mobile_BestMovie(MovieData: Mobile_BestMoiveProps) {
                         <h2 className="text-Silver Text-m-Bold">
                           {MovieDetailData.movienm}
                         </h2>
-                        <div className="er flex gap-[10px] Text-xs-Regular">
+                        <div className="flex items-center   gap-[10px] Text-xs-Regular">
                           <span className="text-Silver">
                             {dayjs(MovieDetailData.release_date).format("YYYY")}
                           </span>
-                          <div className="border-[1px] border-Gray_Orange"></div>
+                          <div className="h-3 w-[1px] border-[1px] border-Gray_Orange"></div>
                           <span className="text-Silver">
                             {MovieDetailData.genres[0]
                               ? MovieDetailData.genres[0].name
@@ -67,7 +67,7 @@ export default function Mobile_BestMovie(MovieData: Mobile_BestMoiveProps) {
                         </div>
                         <div>
                           <div className="flex gap-5">
-                            <div className="flex items-center gap-1 text-E_md">
+                            <div className="flex items-center gap-[2px]  text-E_md">
                               <Image
                                 src={TmdbSm}
                                 alt="white_ start"
@@ -77,7 +77,7 @@ export default function Mobile_BestMovie(MovieData: Mobile_BestMoiveProps) {
                                 {MovieDetailData.tmdbrate.toFixed(1)}
                               </span>
                             </div>
-                            <div className="flex items-center gap-1">
+                            <div className="r flex items-center gap-[2px] ">
                               <Image
                                 src={StarFillSm}
                                 alt="Primary_Start"
@@ -87,7 +87,7 @@ export default function Mobile_BestMovie(MovieData: Mobile_BestMoiveProps) {
                                 {MovieDetailData.rate.toFixed(1)}
                               </span>
                             </div>
-                            <div className="flex items-center gap-1">
+                            <div className="flex items-center gap-[2px]">
                               <Image
                                 src={ChatLineSm}
                                 alt="ChatBox"
@@ -104,7 +104,7 @@ export default function Mobile_BestMovie(MovieData: Mobile_BestMoiveProps) {
                     <div className="flex flex-col gap-2 px-4">
                       <div className="flex justify-between   Text-xs-Regular">
                         <div className="flex items-center  rounded bg-Primary px-1  text-White">
-                          Best
+                          BEST
                         </div>
                         <div className="flex items-center justify-center gap-1 text-L_Gray">
                           <Image
@@ -124,7 +124,7 @@ export default function Mobile_BestMovie(MovieData: Mobile_BestMoiveProps) {
                             backgroundPosition: "center",
                           }}
                         />
-                        <span className="line-clamp-2 Text-s-Regular">
+                        <span className="line-clamp-2 text-Silver Text-s-Regular">
                           {MovieDetailData.reviewList[0].content}
                         </span>
                       </div>

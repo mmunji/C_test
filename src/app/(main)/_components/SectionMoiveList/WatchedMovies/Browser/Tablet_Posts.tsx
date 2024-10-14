@@ -32,7 +32,7 @@ export default function Tablet_Posts({ MovieWatchMovies }: WatchMovieType) {
                     <div
                       className="h-[280px] w-[200px] rounded-xl"
                       style={{
-                        backgroundImage: `linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, rgba(0, 0, 0, 0) 100%), url('${e.poster_path ? e.poster_path : "/images/ssikongi/PNG/NoImage.png"})`,
+                        backgroundImage: `linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, rgba(0, 0, 0, 0) 100%), url('${e.poster_path ? `https://image.tmdb.org/t/p/original/${e.poster_path}` : "/images/ssikongi/PNG/NoImage.png"})`,
                         backgroundSize: "cover",
                         backgroundPosition: "center",
                       }}
@@ -65,7 +65,7 @@ export default function Tablet_Posts({ MovieWatchMovies }: WatchMovieType) {
       </div>
       <div className="hidden Tablet:flex Laptop:hidden">
         <button
-          className="mx-auto mt-5 w-[392px] rounded-xl border-[1px] border-L_Gray px-5 py-3 text-L_Gray Text-s-Regular  "
+          className="mx-auto mt-5 w-[392px] rounded-xl border-[1px] border-D2_Gray px-5 py-3 text-L_Gray Text-s-Regular  "
           onClick={() => {
             if (swiper) {
               swiper.slideNext();

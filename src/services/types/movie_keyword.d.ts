@@ -6,6 +6,7 @@ interface MentionKeword {
 interface reviewDTO {
   nickname: string;
   review: review;
+  profile: string;
 }
 interface review {
   content: string;

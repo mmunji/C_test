@@ -26,6 +26,7 @@ export default function RightKeyWords({ keywordInfo }: KeyWordInfoProps) {
                 content={keywordInfo?.reviewList[index]?.review?.content}
                 keyword={keyword}
                 createdAt={keywordInfo?.reviewList[index]?.review?.createdAt}
+                profile={keywordInfo?.reviewList[index]?.profile}
               />
             );
           })}
@@ -47,6 +48,7 @@ export default function RightKeyWords({ keywordInfo }: KeyWordInfoProps) {
                 content={keywordInfo?.reviewList[index]?.review?.content}
                 keyword={keyword}
                 createdAt={keywordInfo?.reviewList[index]?.review?.createdAt}
+                profile={keywordInfo?.reviewList[index]?.profile}
               />
             );
           })}
@@ -68,6 +70,7 @@ export default function RightKeyWords({ keywordInfo }: KeyWordInfoProps) {
                 content={keywordInfo?.reviewList[index]?.review?.content}
                 keyword={keyword}
                 createdAt={keywordInfo?.reviewList[index]?.review?.createdAt}
+                profile={keywordInfo?.reviewList[index]?.profile}
               />
             );
           })}
@@ -87,6 +90,7 @@ export default function RightKeyWords({ keywordInfo }: KeyWordInfoProps) {
               content={movie.review?.content}
               keyword={keyword}
               createdAt={movie.review?.createdAt}
+              profile={movie.profile}
             />
           );
         })}

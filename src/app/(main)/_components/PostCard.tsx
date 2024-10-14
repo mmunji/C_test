@@ -78,7 +78,7 @@ export default function PostCard({
               </div>
             </div>
             <div className="w-full border-[1px] text-Gray" />
-            <div className="flex  justify-end gap-2 Text-s-Medium">
+            <div className="flex   gap-2 Text-s-Medium">
               <div className="flex gap-1">
                 <Image src={ThumbsUpFillSm} alt="별" />
                 <span className="text-Gray_Orange ">{likeCount}</span>

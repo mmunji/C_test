@@ -93,17 +93,17 @@ export default function Laptop_BestMovie(MovieData: Laptop_BestMoiveProps) {
                         : "visibility-hidden opacity-0"
                     } flex flex-col justify-between transition-opacity duration-700 ease-in`}
                   >
-                    <div className="flex flex-col gap-3">
-                      <div className="flex items-end gap-3">
-                        <h1 className="Text-xl-Bold">
+                    <div className="flex flex-col gap-3 ">
+                      <div className="flex items-center gap-3">
+                        <h1 className="text-Silver Text-xl-Bold">
                           {MovieDetailData.movienm}
                         </h1>
-                        <div className=" flex gap-[10px] Text-xs-Regular">
-                          <span className="text-Gray_Orange">
+                        <div className=" flex items-center gap-[10px] text-Gray_Orange Text-xs-Regular">
+                          <span className="">
                             {dayjs(MovieDetailData.release_date).format("YYYY")}
                           </span>
-                          <div className="border-[1px] border-Gray_Orange"></div>
-                          <span className="text-Gray_Orange">
+                          <div className="h-3 w-[1px] border-[1px] border-Gray_Orange"></div>
+                          <span className="">
                             {MovieDetailData.genres[0]
                               ? MovieDetailData.genres[0].name
                               : ""}
@@ -167,6 +167,7 @@ export default function Laptop_BestMovie(MovieData: Laptop_BestMoiveProps) {
                               star={reviewData.star}
                               content={reviewData.content}
                               likeCount={reviewData.likeCount}
+                              profileImg={reviewData.profile}
                             />
                           );
                         },

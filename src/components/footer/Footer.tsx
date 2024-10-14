@@ -31,7 +31,7 @@ export default function Footer() {
           지금까지 총<span className="text-Primary"> {Commnets} </span> 개의
           톡이 쌓였어요!
         </h1>
-        <div className="flex w-full flex-1 justify-between gap-2 rounded-xl bg-D1_Gray py-2 pl-4 pr-3 Text-s-Regular Tablet:w-[512px] Desktop:w-[512px]">
+        <div className="flex w-full flex-1 justify-between gap-2 rounded-xl bg-D1_Gray py-2 pl-4 pr-3 Text-s-Regular  Desktop:w-[512px]">
           <input
             placeholder="개선할 점이 있나요? 피드백 해주세요 ;)"
             className="flex-1 bg-transparent    text-white Text-s-Regular placeholder:text-Gray  focus:outline-none Laptop:Text-m-Regular"
@@ -39,7 +39,7 @@ export default function Footer() {
             onChange={setFeedBackPost}
           />
           <button
-            className="rounded-lg bg-D2_Gray  px-3 py-1 text-Gray "
+            className="rounded-lg bg-D2_Gray  px-3 py-1 text-Gray  Text-s-Medium"
             onClick={FeedBackSubmit}
           >
             보내기
@@ -55,7 +55,7 @@ export default function Footer() {
             href="http://pf.kakao.com/_xmWUxmG"
             target="_blank"
           >
-            씨네톡 카카오톡 오픈 채팅방
+            씨네톡 카카오톡 채널
           </a>
         </div>
 

@@ -41,7 +41,7 @@ export default function MainBanner() {
     fetchMovie();
   }, []);
   return (
-    <div className=" mt-2 h-[450px]  Tablet:h-[460px] Laptop:mt-9 Laptop:h-[600px] Desktop:h-[690px] ">
+    <div className=" ml-5 mt-2  h-[450px] Tablet:h-[460px] Laptop:mt-9 Laptop:h-[600px] Desktop:h-[690px]">
       {!MovieBanner ? (
         <div className="flex items-center justify-center px-5 py-5">
           <LoadingSpinner size="2xl" color="primary" />
@@ -49,14 +49,22 @@ export default function MainBanner() {
       ) : (
         <Swiper
           spaceBetween={20} // 슬라이드 사이 간격
-          slidesPerView={2.5} // 보여질 슬라이드 수
+          slidesPerView={"auto"} // 보여질 슬라이드 수
           pagination={true}
           centeredSlides={true}
           autoHeight={true}
-          loop={true}
+          rewind={true}
+          // loop={true}
           modules={[Autoplay, Pagination]}
           className="h-[450px] Tablet:h-[500px]  Laptop:h-[510px] Desktop:h-[690px]"
           // autoplay={{ delay: 1000, disableOnInteraction: false }}
+          // breakpoints={{
+          //   360: { slidesPerView: 1 },
+          //   1280: { slidesPerView: 2.1 },
+          //   1440: { slidesPerView: "auto" },
+          //   1680: { slidesPerView: 1.5 },
+          //   1960: { slidesPerView: "auto" },
+          // }}
         >
           {Array.isArray(MovieBanner) && MovieBanner.length > 0
             ? MovieBanner.map((BannerItem, index) => {
@@ -84,6 +92,7 @@ export default function MainBanner() {
                             MovieName={BannerItem.movienm}
                             Rate={BannerItem.rate}
                           />
+                          <div className="h-[1px] border-[1px] border-[#FFFFFF] opacity-15 Tablet:hidden"></div>
                           <RealTimeHotTalk ReviewList={BannerItem.reviewList} />
                           {/* 실시간 핫한 톡 컴포넌트 */}
                         </div>
@@ -95,58 +104,50 @@ export default function MainBanner() {
             : ""}
           <style jsx global>{`
             .swiper-pagination-bullet {
-              width: 33.3px !important; /* 너비 조절 */
+              width: 22px !important; /* 너비 조절 */
               height: 4px !important;
               border-radius: 22px !important; /* 너비 조절 */
               background-color: #545250;
             }
             .swiper-pagination-bullet-active {
               background-color: #ff7a00;
-              width: 33px !important; /* 너비 조절 */
+              width: 22px !important; /* 너비 조절 */
             }
             .swiper-pagination-fraction,
             .swiper-pagination-custom,
             .swiper-horizontal > .swiper-pagination-bullets,
             .swiper-pagination-bullets.swiper-pagination-horizontal {
               display: flex !important;
-              justify-content: flex-end !important;
+              justify-content: center !important;
             }
             .swiper .swiper-pagination {
               position: relative;
               margin-top: 20px !important;
-              padding-right: 20px !important;
             }
             @media (min-width: 768px) {
               .swiper .swiper-pagination {
                 position: relative;
-                padding-right: 30px !important;
               }
             }
             @media (min-width: 1439px) {
               .responsive-slide {
                 width: 1144px !important;
               }
-              .swiper .swiper-pagination {
-                position: relative;
-                padding-right: 220px !important;
-              }
             }
             @media (min-width: 1280px) {
               .responsive-slide {
                 width: 1144px !important;
               }
-              .swiper .swiper-pagination {
-                position: relative;
-                padding-right: 80px !important;
+              .swiper-pagination-bullet {
+                width: 33.3px !important; /* 너비 조절 */
+              }
+              .swiper-pagination-bullet-active {
+                width: 33px !important; /* 너비 조절 */
               }
             }
             @media (min-width: 1920px) {
               .responsive-slide {
                 width: 1560px !important;
-              }
-              .swiper .swiper-pagination {
-                position: relative;
-                padding-right: 280px !important;
               }
             }
           `}</style>

@@ -54,15 +54,15 @@ export default function MasterPieceMoive() {
                 <SwiperSlide key={index} style={{ width: "156px" }}>
                   <Link href={`detail/${movie.movieid}`}>
                     <div
-                      className="flex h-[230px] w-[156px] items-end  justify-between rounded-xl  px-2 pb-2 Text-s-Bold Tablet:h-[240px] Tablet:w-[165px]"
+                      className="flex h-[230px] w-[156px] items-end  justify-between rounded-xl   Text-s-Bold Tablet:h-[240px] Tablet:w-[165px]"
                       style={{
-                        backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0.0) 0%, rgba(0, 0, 0, 0.7) 70%), url('${movie?.movieposter ? movie?.movieposter : "/images/ssikongi/PNG/NoImage.png"}')`,
+                        backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0.0) 0%, rgba(0, 0, 0, 0.7) 70%), url('${movie?.movieposter ? `https://image.tmdb.org/t/p/original/${movie?.movieposter}` : "/images/ssikongi/PNG/NoImage.png"}')`,
                         backgroundSize: "cover",
                         backgroundPosition: "center",
                       }}
                     >
-                      <div className="flex  w-full items-center justify-between gap-1">
-                        <span className="line-clamp-1 Text-s-Medium Tablet:Text-m-Medium">
+                      <div className="flex  w-full items-center justify-between gap-1 px-3 pb-3">
+                        <span className="line-clamp-1 text-Silver Text-s-Medium Tablet:Text-m-Medium">
                           {movie.movienm}
                         </span>
                         <div className="flex gap-1 Text-m-Medium">
@@ -71,7 +71,7 @@ export default function MasterPieceMoive() {
                             alt="star"
                             className="h-6 w-6"
                           />
-                          <span className="flex items-center  Text-s-Bold Tablet:Text-m-Bold ">
+                          <span className="flex items-center  text-Silver Text-s-Bold Tablet:Text-m-Bold ">
                             {movie.StarAvg.toFixed(1)}
                           </span>
                         </div>
@@ -91,7 +91,7 @@ export default function MasterPieceMoive() {
       >
         <Swiper
           slidesPerView="auto"
-          spaceBetween={device == "laptop" ? 20 : 100}
+          spaceBetween={device == "laptop" ? 20 : 24}
           className="gap-5  Laptop:gap-5 Desktop:gap-6"
           modules={[Pagination]}
           onSwiper={(e) => {
@@ -100,7 +100,10 @@ export default function MasterPieceMoive() {
         >
           {Array.isArray(MoviePiece) && MoviePiece.length > 0
             ? MoviePiece.map((movie, index) => (
-                <SwiperSlide key={index} className="w-[174px]">
+                <SwiperSlide
+                  key={index}
+                  className="w-[174px] Desktop:w-[240px]"
+                >
                   <Link href={`detail/${movie.movieid}`}>
                     <div className="flex w-[174px] flex-col Desktop:w-[240px]">
                       <PostCard
