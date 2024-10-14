@@ -11,10 +11,11 @@ export const myAPIs = {
   },
 
   getActivityCount: async () => {
-    const data =
-      await customFetchInstance.authFetch<Record<ActivityCount, number>>(
-        "/my/CountSumByUser",
-      );
+    const data = await customFetchInstance.authFetch<
+      Record<ActivityCount, number>
+    >("/my/CountSumByUser", "GET", {
+      next: { tags: ["my"] },
+    });
     return data;
   },
 
@@ -22,7 +23,7 @@ export const myAPIs = {
     const data = await customFetchInstance.authFetch<Bookmark[]>(
       "/my/BookmarkByUser",
       "GET",
-      // { next: { revalidate: 3600 } },
+      { next: { revalidate: 3600, tags: ["my"] } },
     );
     return data;
   },
@@ -32,7 +33,7 @@ export const myAPIs = {
       "/my/BadgeByUser",
       "GET",
       {
-        next: { tags: ["badges"] },
+        next: { revalidate: 3600, tags: ["badges"] },
       },
     );
     return data;
@@ -41,6 +42,8 @@ export const myAPIs = {
   getReviewCounts: async () => {
     const data = await customFetchInstance.authFetch<BadgeCount[]>(
       "/my/ReviewByGenreFromUser",
+      "GET",
+      { next: { revalidate: 3600, tags: ["my"] } },
     );
     return data;
   },
@@ -55,13 +58,16 @@ export const myAPIs = {
     const data = await customFetchInstance.authFetch<PostreviewDTO[]>(
       "/my/ReviewByUser/desc",
       "GET",
-      { next: { tags: ["review"] } },
+      { next: { revalidate: 3600, tags: ["my"] } },
     );
     return data;
   },
   getLog: async () => {
-    const data =
-      await customFetchInstance.authFetch<Log[]>("/my/LogByUser/desc");
+    const data = await customFetchInstance.authFetch<Log[]>(
+      "/my/LogByUser/desc",
+      "GET",
+      { next: { revalidate: 3600, tags: ["my"] } },
+    );
     return data;
   },
 };
