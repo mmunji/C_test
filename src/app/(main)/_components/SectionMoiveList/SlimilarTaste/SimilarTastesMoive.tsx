@@ -5,6 +5,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 
 import SpeechBubble from "@/components/speechBubble/SpeechBubble";
 import useDevice from "@/hooks/useDevice";
+import { tokenManager } from "@/services/auth/tokenManager";
 import { movieAPIs } from "@/services/movie/movieAPIs";
 
 import SlimilarPost from "./SlimilarPost";
@@ -12,6 +13,7 @@ export default function SimilarTastesMoive() {
   const [PickUserNumber, setPickUserNumber] = useState<number>(0);
   const { device } = useDevice();
   const [ReviewUsers, setReviewUsers] = useState<MovieReviewRecommed[]>([]);
+  const accessToken = tokenManager.getToken();
   const ChangePickNumber = (index: number) => {
     setPickUserNumber(index);
   };
@@ -34,7 +36,17 @@ export default function SimilarTastesMoive() {
         <h1 className="Text-l-Bold Laptop:Text-xxl-Bold ">
           다른 사람들은 이런 영화를 평가했어요
         </h1>
-        {device == "mobile" ? (
+        {accessToken ? (
+          device == "mobile" ? (
+            <SpeechBubble dir="top">
+              톡을 많이 작성할수록 내 취향에 비슷해져요.
+            </SpeechBubble>
+          ) : (
+            <SpeechBubble dir="left">
+              톡을 많이 작성할수록 내 취향에 비슷해져요.
+            </SpeechBubble>
+          )
+        ) : device == "mobile" ? (
           <SpeechBubble dir="top">
             로그인 하고 별을 눌러 평가해보세요 :)
           </SpeechBubble>
