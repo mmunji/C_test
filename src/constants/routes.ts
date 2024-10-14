@@ -16,6 +16,7 @@ const ROUTES = {
     without_nickname: () => `${ROUTES.REDIRECT.default}/without-nickname`,
   },
   SIGN_UP_COMPLETE: "/sign-up-complete",
+  ADMIN: "/admin",
 };
 
 export default ROUTES;

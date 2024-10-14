@@ -14,9 +14,9 @@ export default async function PenaltyInfo() {
 
   if (!reportStatus?.date) return null;
   return (
-    <div className="flex items-start gap-3 rounded-xl bg-Black px-4 py-3 Tablet:px-5 Tablet:py-4">
+    <div className="flex w-full items-start gap-3 rounded-xl bg-Black px-4 py-3 Tablet:px-5 Tablet:py-4">
       <Image alt="경고 아이콘" src={CircleWarning} />
-      <div className="flex flex-col gap-2 Laptop:gap-1">
+      <div className="flex w-full flex-col gap-2 Laptop:gap-1">
         <div className="text-Gray_Orange Text-s-Regular Laptop:Text-m-Regular">
           다른 회원으로부터 접수된 신고로 인해 회원님의 서비스 이용(리뷰 및
           답글)이 <span className="text-Error">임시 제한</span>되었습니다. (기간

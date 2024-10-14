@@ -53,7 +53,11 @@ export default function ReviewItem({
             </div>
             <span className="line-clamp-1 Text-m-Medium">{review.movienm}</span>
           </div>
-          <div>
+          <div
+            onClick={(e) => {
+              e.preventDefault();
+            }}
+          >
             <Dropdown>
               <Dropdown.Trigger>
                 <Button variant={"icon"}>
