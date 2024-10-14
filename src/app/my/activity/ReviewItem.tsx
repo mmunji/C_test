@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -39,7 +40,10 @@ export default function ReviewItem({
   };
 
   return (
-    <div className="flex flex-col justify-between gap-2 rounded-xl bg-D1_Gray px-5 pb-4 pt-2 Laptop:gap-4 Laptop:px-7 Laptop:pb-6 Laptop:pt-4">
+    <Link
+      href={`${ROUTES.DETAIL}/${review.movie_id}`}
+      className="flex flex-col justify-between gap-2 rounded-xl bg-D1_Gray px-5 pb-4 pt-2 Laptop:gap-4 Laptop:px-7 Laptop:pb-6 Laptop:pt-4"
+    >
       <div className="">
         <div className="flex h-10 items-center justify-between gap-2 Laptop:mb-2">
           <div className="flex items-center gap-2">
@@ -71,7 +75,7 @@ export default function ReviewItem({
             </Dropdown>
           </div>
         </div>
-        <div className="line-clamp-3 min-h-[72px] text-Gray_Orange Text-m-Regular Laptop:line-clamp-4 Laptop:min-h-24">
+        <div className="line-clamp-3 min-h-[72px] whitespace-pre-line text-Gray_Orange Text-m-Regular Laptop:line-clamp-4 Laptop:min-h-24">
           {review.content}
         </div>
       </div>
@@ -106,6 +110,6 @@ export default function ReviewItem({
           </Modal.Button>
         </Modal>
       )}
-    </div>
+    </Link>
   );
 }
