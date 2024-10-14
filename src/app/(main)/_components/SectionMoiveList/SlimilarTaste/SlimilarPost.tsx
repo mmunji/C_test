@@ -43,7 +43,7 @@ export default function SlimilarPost({
       <div className=" hidden justify-between Laptop:flex">
         <Swiper
           slidesPerView="auto"
-          spaceBetween={40}
+          spaceBetween={device == "laptop" ? 20 : 24}
           className="flex  rounded-xl"
         >
           {Array.isArray(ReviewUsers) && ReviewUsers.length > 0
@@ -51,7 +51,7 @@ export default function SlimilarPost({
                 return (
                   <SwiperSlide
                     key={index}
-                    className="w-[344px] Desktop:w-[372px]  "
+                    className="w-[368px] Desktop:w-[372px]  "
                   >
                     <SlimilarUser
                       name={ReviewUser.nickname}
@@ -79,7 +79,7 @@ export default function SlimilarPost({
         >
           <Swiper
             slidesPerView="auto"
-            spaceBetween={device == "laptop" ? 20 : 100}
+            spaceBetween={device == "laptop" ? 20 : 24}
             className="flex  rounded-xl"
             onSwiper={(e) => setSwiper(e)}
           >
@@ -91,7 +91,7 @@ export default function SlimilarPost({
                     return (
                       <SwiperSlide
                         key={index}
-                        className=" h-[292px] w-[174px] Desktop:h-[396px]"
+                        className={`${device == "laptop" ? "h-[296px] w-[174px]" : "h-[396px] w-[240px]"} `}
                       >
                         <Link href={`detail/${_.movie_id}`}>
                           <div className="flex flex-col gap-2">

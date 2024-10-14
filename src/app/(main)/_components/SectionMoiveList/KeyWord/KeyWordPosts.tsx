@@ -9,6 +9,7 @@ interface KeyWordInfoProps {
   id: number;
   nickname: string;
   createdAt: string;
+  profile?: string;
 }
 
 export default function KeyWordPosts({
@@ -19,14 +20,25 @@ export default function KeyWordPosts({
   nickname,
   keyword,
   createdAt,
+  profile,
 }: KeyWordInfoProps) {
   return (
     <div className="Text-s-Mediuim flex h-full w-full flex-col gap-2 rounded-xl bg-D1_Gray px-4 py-4 Tablet:px-7 Tablet:py-6">
       <div className="flex justify-between">
-        <h1 className="text-Silver Text-s-Medium">{nickname}</h1>
+        <div className="flex items-center gap-2">
+          <div
+            className="h-[24px] w-[24px] rounded-[60px] "
+            style={{
+              backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0.0) 0%, rgba(0, 0, 0, 0) 100%), url(data:image/jpeg;base64,${profile}`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
+          />
+          <h1 className="text-Silver Text-s-Medium">{nickname}</h1>
+        </div>
         <div className="flex text-Silver Text-s-Bold ">
           <Image src={StarFillSm} alt="주황별" />
-          {star}
+          {star.toFixed(1)}
         </div>
       </div>
       <div className="line-clamp-2 text-Gray_Orange Text-s-Regular  Laptop:Text-m-Regular">

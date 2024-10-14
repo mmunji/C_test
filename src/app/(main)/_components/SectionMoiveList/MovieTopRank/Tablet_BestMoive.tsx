@@ -29,7 +29,10 @@ export default function Tablet_BestMoive(MovieData: Tablet_BestMoiveProps) {
                 <SwiperSlide key={index}>
                   <div className=" flex w-full gap-5">
                     {MovieDetailData.poster_path ? (
-                      <PostCard background={MovieDetailData.poster_path} />
+                      <PostCard
+                        num={index + 1}
+                        background={MovieDetailData.poster_path}
+                      />
                     ) : (
                       <div>
                         <Image
@@ -56,7 +59,7 @@ export default function Tablet_BestMoive(MovieData: Tablet_BestMoiveProps) {
                           </div>
                         </div>
                         <div className="flex gap-5">
-                          <div className="flex gap-1 Text-m-Medium">
+                          <div className="flex items-center gap-1  Text-m-Medium">
                             <Image
                               src={TmdbSm}
                               alt="white_ start"
@@ -64,7 +67,7 @@ export default function Tablet_BestMoive(MovieData: Tablet_BestMoiveProps) {
                             />
                             <span>{MovieDetailData.tmdbrate.toFixed(1)}</span>
                           </div>
-                          <div className="flex gap-1 Text-m-Medium">
+                          <div className="flex items-center  gap-1 Text-m-Medium">
                             <Image
                               src={StarFillMd}
                               alt="Primary_Start"
@@ -72,7 +75,7 @@ export default function Tablet_BestMoive(MovieData: Tablet_BestMoiveProps) {
                             />
                             <span>{MovieDetailData.rate.toFixed(1)}</span>
                           </div>
-                          <div className="flex gap-1 Text-m-Medium">
+                          <div className="flex items-center gap-1 Text-m-Medium">
                             <Image
                               src={ChatLineLg}
                               alt="ChatBox"
@@ -90,7 +93,7 @@ export default function Tablet_BestMoive(MovieData: Tablet_BestMoiveProps) {
                               alt="베스트"
                               className="h-6 w-6"
                             />
-                            <h2 className="Text-m-Bold">베스트 톡</h2>
+                            <h2 className="Text-m-Bold">BEST 톡</h2>
                           </div>
                           <div className="flex gap-4">
                             {MovieDetailData.reviewList.map(

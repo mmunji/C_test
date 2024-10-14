@@ -41,27 +41,31 @@ export default function LeftMovePost({
         <div>
           <ul className="flex gap-9   Tablet:gap-9 Laptop:gap-12">
             <li className="flex flex-col gap-2 text-Silver ">
-              <h4 className="Laptop:Text-s-Mediuim text-center Text-xs-Regular">
+              <h4 className="text-center Text-xs-Regular Laptop:Text-s-Medium">
                 평점
               </h4>
-              <h1 className=" flex items-center  text-center text-Primary Text-s-Bold Laptop:gap-1 Laptop:Text-l-Bold">
+              <div className=" h-[21px]text-center flex items-center text-Primary Text-s-Bold Laptop:gap-1 Laptop:Text-l-Bold">
                 {device == "laptop" || device == "desktop" ? (
                   <Image src={StarFillMd} alt="star" className="h-6 w-6" />
                 ) : (
                   <Image src={StarFillSm} alt="star" className="h-4 w-4" />
                 )}
-                <span className="flex items-end">{Rate.toFixed(1)}</span>
-              </h1>
+                <span className="flex items-center ">{Rate.toFixed(1)}</span>
+              </div>
             </li>
             <li className="flex flex-col gap-2  text-Silver">
-              <h4 className="text-center Text-xs-Regular ">Best 키워드</h4>
-              <h1 className="text-center Text-m-Bold Laptop:Text-l-Bold">
+              <h4 className="text-center Text-xs-Regular Laptop:Text-s-Medium ">
+                Best 키워드
+              </h4>
+              <h1 className="text-center Text-s-Bold Laptop:Text-l-Bold">
                 {keyword}
               </h1>
             </li>
             <li className="flex flex-col gap-2  text-Silver">
-              <h4 className="text-center Text-xs-Regular">장르</h4>
-              <h1 className="text-center Text-m-Bold Laptop:Text-l-Bold">
+              <h4 className="text-center Text-xs-Regular Laptop:Text-s-Medium">
+                장르
+              </h4>
+              <h1 className="text-center Text-s-Bold Laptop:Text-l-Bold">
                 판타지
               </h1>
             </li>

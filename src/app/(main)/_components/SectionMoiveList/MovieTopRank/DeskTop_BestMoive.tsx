@@ -93,15 +93,15 @@ export default function DeskTop_BestMovie(MovieData: Desktop_BestMoiveProps) {
                   } flex flex-col justify-between transition-opacity duration-700 ease-in`}
                 >
                   <div className="flex flex-col gap-3">
-                    <div className="flex items-end gap-3">
+                    <div className="flex items-center gap-3">
                       <h1 className="Text-xxl-Bold">
                         {MovieDetailData.movienm}
                       </h1>
-                      <div className="flex gap-[10px] text-Gray_Orange Text-s-Regular">
+                      <div className="flex items-center gap-[10px] text-Gray_Orange Text-s-Regular">
                         <span>
                           {dayjs(MovieDetailData.release_date).format("YYYY")}
                         </span>
-                        <div className="border-[1px] border-Gray_Orange "></div>
+                        <div className="flex h-3 w-[1px] items-center border-[1px] border-Gray_Orange"></div>
                         <span>{MovieDetailData.genres[0].name}</span>
                       </div>
                     </div>
@@ -142,7 +142,7 @@ export default function DeskTop_BestMovie(MovieData: Desktop_BestMoiveProps) {
                         href={`detail/${MovieDetailData.movieId}`}
                         className="flex items-center text-Gray_Orange"
                       >
-                        자세히보기{" "}
+                        자세히보기
                         <Image
                           src={ChevronRightMd}
                           alt="화살표"
@@ -170,7 +170,7 @@ export default function DeskTop_BestMovie(MovieData: Desktop_BestMoiveProps) {
           <Button
             onClick={() => swiper.slidePrev()}
             variant="arrow1"
-            className={`absolute left-2 top-1/2 z-[10]  transform   transition-opacity duration-300 ${hovered ? "opacity-15" : "opacity-10"} `}
+            className={`absolute left-2 top-1/2 z-[10]  transform   transition-opacity duration-300 ${hovered ? "opacity-15" : "opacity-0"} `}
           >
             <Image
               src={ChevronLeftMd}
@@ -184,7 +184,7 @@ export default function DeskTop_BestMovie(MovieData: Desktop_BestMoiveProps) {
           <Button
             onClick={() => swiper.slideNext()}
             variant="arrow2"
-            className={`absolute right-4 top-1/2 z-[10]   transform transition-opacity duration-300${hovered ? "opacity-15" : "opacity-10"}  `}
+            className={`absolute right-4 top-1/2 z-[10]   transform transition-opacity duration-300${hovered ? "opacity-15" : "opacity-0"}  `}
           >
             <Image
               src={ChevronRightMd}

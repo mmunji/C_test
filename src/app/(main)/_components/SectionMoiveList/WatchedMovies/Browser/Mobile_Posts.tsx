@@ -13,8 +13,8 @@ export default function Mobile_Posts({ MovieWatchMovies }: WatchMovieType) {
     <div className="rounded-xl bg-D1_Gray px-3 py-7 Tablet:hidden ">
       <Swiper
         slidesPerView={1}
-        spaceBetween={20}
-        className="flex  rounded-xl px-[12px]  py-[24px]"
+        spaceBetween={100}
+        className="flex  rounded-xl px-[12px]  py-[28px]"
         onSwiper={(e) => {
           setSwiper(e);
         }}
@@ -31,7 +31,7 @@ export default function Mobile_Posts({ MovieWatchMovies }: WatchMovieType) {
                       <div
                         className="mx-auto h-[230px] w-[153px] rounded-xl "
                         style={{
-                          backgroundImage: `linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, rgba(0, 0, 0, 0) 100%), url('${e.poster_path ? e.poster_path : "/images/ssikongi/PNG/NoImage.png"})`,
+                          backgroundImage: `linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, rgba(0, 0, 0, 0) 100%), url('${e.poster_path ? `https://image.tmdb.org/t/p/original/${e.poster_path}` : "/images/ssikongi/PNG/NoImage.png"})`,
                           backgroundSize: "cover",
                           backgroundPosition: "center",
                         }}
@@ -53,7 +53,7 @@ export default function Mobile_Posts({ MovieWatchMovies }: WatchMovieType) {
                     </div>
                   </div>
                   <button
-                    className="w-full rounded-xl border-[1px] border-L_Gray  px-5 py-3 text-L_Gray Text-s-Regular "
+                    className="w-[295px] rounded-xl border-[1px] border-D3_Gray  px-5 py-3 text-L_Gray Text-s-Regular "
                     onClick={() => {
                       if (swiper) {
                         swiper.slideNext();

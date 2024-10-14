@@ -74,7 +74,7 @@ export default function SlimilarMobilePost({
         </div>
       </div>
       <div>
-        <Swiper slidesPerView="auto" spaceBetween={10}>
+        <Swiper slidesPerView="auto" spaceBetween={20}>
           {selectedUser?.reviews?.map((ReviewUser, index) => {
             return (
               <SwiperSlide
@@ -84,13 +84,13 @@ export default function SlimilarMobilePost({
                 <div
                   className="flex h-[230px] w-[156px]   flex-col justify-end rounded-2xl px-3  py-4 Text-s-Bold Tablet:h-[240px]"
                   style={{
-                    backgroundImage: `linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, rgba(0, 0, 0, 0.80) 100%), url(${ReviewUser.poster_id ? ReviewUser.poster_id : "/images/ssikongi/PNG/NoImage.png"})`,
+                    backgroundImage: `linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, rgba(0, 0, 0, 0.80) 100%), url(${ReviewUser.poster_id ? `https://image.tmdb.org/t/p/original/${ReviewUser.poster_id}` : "/images/ssikongi/PNG/NoImage.png"})`,
                     backgroundSize: "cover",
                     backgroundPosition: "center",
                   }}
                 >
-                  <div className="flex justify-between ">
-                    <h1 className="text-L_Gray Text-xs-Regular">
+                  <div className="flex h-[17px]  justify-between">
+                    <h1 className="line-clamp-1 text-L_Gray Text-s-Medium Tablet:Text-m-Regular">
                       {ReviewUser.movienm}
                     </h1>
                     <div className="flex  items-center gap-[2px] text-Silver">
@@ -102,9 +102,9 @@ export default function SlimilarMobilePost({
                       <span>{ReviewUser.star}</span>
                     </div>
                   </div>
-                  <span className=" line-clamp-1  h-[42px] text-Silver  Text-s-Regular">
+                  <div className=" line-clamp-2 flex h-[42px] items-center   text-Silver  Text-s-Regular Tablet:Text-m-Regular">
                     {ReviewUser.content}
-                  </span>
+                  </div>
                 </div>
                 <div className="flex justify-end  gap-2 text-L_Gray Text-xs-Regular">
                   <div className="flex  items-center gap-1 text-L_Gray">
