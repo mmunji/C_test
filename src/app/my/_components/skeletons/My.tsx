@@ -68,7 +68,11 @@ export function BadgeSkeleton() {
 function BadgeItemSkeleton() {
   return (
     <div className="flex flex-col items-center justify-center gap-3 rounded-xl bg-Black py-3 Tablet:gap-4 Tablet:py-7">
-      <div className="h-11 w-11 animate-pulse rounded-lg bg-D2_Gray Tablet:h-12 Tablet:w-12" />
+      <div className="relative h-[60px] w-[60px]">
+        <div className="flex h-full w-full items-center justify-center">
+          <div className="relative h-11 w-11 animate-pulse rounded-lg bg-D2_Gray Tablet:h-12 Tablet:w-12" />
+        </div>
+      </div>
       <div className="flex flex-col items-center gap-1">
         <TextSkeleton className="h-sm w-[35px]" />
         <div className="flex items-center gap-1">

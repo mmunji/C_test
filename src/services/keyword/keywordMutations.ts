@@ -2,6 +2,8 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { Dispatch, SetStateAction } from "react";
 
+import { revalidateMyPage } from "@/services/my/actions";
+
 import { tokenManager } from "../auth/tokenManager";
 import { keywordAPIs } from "./keywordAPIs";
 import { KEYWORD_QUERY_KEYS } from "./keywordQueryKeys";
@@ -24,6 +26,7 @@ export function useAddKeyword(
       if (!res.ok) throw new Error(data?.message);
     },
     onSuccess: () => {
+      revalidateMyPage("my");
       queryClient.invalidateQueries({
         queryKey: KEYWORD_QUERY_KEYS.myKeyword(accessToken, movieId),
       });
@@ -37,9 +40,9 @@ export function useAddKeyword(
 }
 
 export function useEditKeyword(
-  setValue: Dispatch<SetStateAction<string>>,
+  setIsClickedEdit: Dispatch<SetStateAction<boolean>> | undefined,
   movieId: number,
-  keywordId: number,
+  keywordId: number | null | undefined,
 ) {
   const router = useRouter();
   const queryClient = useQueryClient();
@@ -50,14 +53,29 @@ export function useEditKeyword(
       if (!res.ok) throw new Error(data?.message);
     },
     onSuccess: () => {
+      revalidateMyPage("my");
       queryClient.invalidateQueries({
         queryKey: KEYWORD_QUERY_KEYS.myKeyword(accessToken, movieId),
       });
+      if (setIsClickedEdit) setIsClickedEdit(false);
       router.refresh();
-      setValue("");
     },
     onError: (error) => {
       alert(error);
+    },
+  });
+}
+
+export function useReportKeyword(
+  setOpen: Dispatch<SetStateAction<boolean>>,
+  setOpenReportComplete: Dispatch<SetStateAction<boolean>>,
+) {
+  return useMutation({
+    mutationFn: ({ content, movieId }: { content: string; movieId: number }) =>
+      keywordAPIs.reportKeyword(movieId, content),
+    onSuccess: () => {
+      setOpen(false);
+      setOpenReportComplete(true);
     },
   });
 }

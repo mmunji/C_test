@@ -4,7 +4,6 @@ import { myAPIs } from "@/services/my/myAPIs";
 export default async function Badges() {
   const badges = await myAPIs.getBadges();
   const activeBadges = badges.filter((badge) => badge.use);
-
   return (
     <div className="flex items-center gap-1 Tablet:gap-4">
       {activeBadges.length ? (

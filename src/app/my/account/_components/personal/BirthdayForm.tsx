@@ -2,7 +2,7 @@
 
 import dayjs from "dayjs";
 import customParseFormat from "dayjs/plugin/customParseFormat";
-import { FormEvent, useState } from "react";
+import { useState } from "react";
 
 import { AccountFormLabel } from "@/app/my/_components/Labels";
 import Button from "@/components/buttons/Button";
@@ -141,15 +141,26 @@ export default function BirthdayForm({ birthday }: BirthdayFormProps) {
           </span>
         )}
       </div>
-      <Button
-        disabled={loading}
-        onClick={handleBirthdaySubmit}
-        size={!isMobile && isEditing && !error ? "md" : "none"}
-        focus={isEditing && !error ? "1" : "none"}
-        variant={!isMobile && isEditing && !error ? "orange" : "text"}
-      >
-        {isEditing ? (error ? "취소" : "완료") : "변경"}
-      </Button>
+      {isEditing ? (
+        <Button
+          disabled={loading}
+          onClick={handleBirthdaySubmit}
+          size={!isMobile && !error ? "md" : "none"}
+          focus={!error ? "1" : "none"}
+          variant={!isMobile && !error ? "orange" : "text"}
+        >
+          {error ? "취소" : "완료"}
+        </Button>
+      ) : (
+        <Button
+          onClick={() => setIsEditing(true)}
+          size={"none"}
+          focus={"none"}
+          variant={"text"}
+        >
+          변경
+        </Button>
+      )}
     </div>
   );
 }

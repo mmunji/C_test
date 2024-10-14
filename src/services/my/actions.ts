@@ -1,5 +1,5 @@
 "use server";
-import { revalidatePath, revalidateTag } from "next/cache";
+import { revalidateTag } from "next/cache";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
@@ -36,7 +36,7 @@ export const deleteBookmark = async (list: number[]) => {
     `/my/BookmarkDelete?${queryString}`,
     "DELETE",
   );
-  if (data?.state) revalidatePath("/my/bookmark");
+  if (data?.state) revalidateTag("my");
   return data?.state;
 };
 
@@ -73,6 +73,10 @@ export const deleteReview = async (reviewId: number) => {
     `/reviews/${reviewId}`,
     "DELETE",
   );
-  if (data.state) revalidateTag("review");
+  if (data.state) revalidateTag("my");
   return data;
+};
+
+export const revalidateMyPage = (tag: "user" | "my") => {
+  revalidateTag(tag);
 };

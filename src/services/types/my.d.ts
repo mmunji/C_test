@@ -27,6 +27,7 @@ interface Log
 
 interface ReportStatus {
   state?: boolean;
+  movienm?: null | string;
   review_content?: string;
   category?: string;
   startDate?: string;

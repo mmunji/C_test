@@ -1,18 +1,17 @@
 "use client";
 
-import { useQuery } from "@tanstack/react-query";
 import React, { useEffect, useState } from "react";
 
 import useTotalTalksStore from "@/app/detail/_stores/useTotalTalksStore";
 import useDevice from "@/hooks/useDevice";
-import { talkAPIs } from "@/services/talk/talkAPIs";
 import { useGetMyTalk, useGetTalkQuery } from "@/services/talk/talkQueries";
-import useLoggedInStore from "@/stores/useLoggedIn";
 
 import DividingLine from "../../common/DividingLine";
 import MyTalk from "./myTalk/MyTalk";
 import NoTalk from "./NoTalk";
 import Rating from "./rating/Rating";
+import ReportCompleteModal from "./ReportCompleteModal";
+import ReportModal from "./reportModal/ReportModal";
 import TalkContents from "./talkContents/TalkContents";
 import TalkHeader from "./TalkHeader";
 
@@ -30,7 +29,9 @@ export default function Talk({ title, movieId, movieDetailData }: TalkProps) {
   const { device } = useDevice();
   const id = device === "mobile" || device === "tablet" ? undefined : "my-talk";
   const noTalk = data?.pages?.[0]?.reviewList?.length === 0;
-  const { loggedIn } = useLoggedInStore();
+  const [open, setOpen] = useState(false);
+  const [openReportComplete, setOpenReportComplete] = useState(false);
+  const [talkId, setTalkId] = useState<number | null>(null);
 
   useEffect(() => {
     refetch();
@@ -53,7 +54,11 @@ export default function Talk({ title, movieId, movieDetailData }: TalkProps) {
   return (
     <section id={id}>
       {myTalk ? (
-        <MyTalk myTalk={myTalk} />
+        <MyTalk
+          myTalk={myTalk}
+          movieDetailData={movieDetailData}
+          movieId={movieId}
+        />
       ) : (
         <Rating {...{ title, movieId, movieDetailData }} />
       )}
@@ -72,14 +77,33 @@ export default function Talk({ title, movieId, movieDetailData }: TalkProps) {
           <React.Fragment>
             {data?.pages.map((talkData, i) => (
               <React.Fragment key={i}>
-                {talkData?.reviewList?.map((talk, i) => (
-                  <TalkContents movieId={movieId} talk={talk} key={i} />
+                {talkData?.reviewList?.map((talk) => (
+                  <TalkContents
+                    key={talk.id}
+                    movieId={movieId}
+                    talk={talk}
+                    setOpen={setOpen}
+                    setTalkId={setTalkId}
+                  />
                 ))}
               </React.Fragment>
             ))}
           </React.Fragment>
         )}
       </section>
+
+      {open && (
+        <ReportModal
+          movieId={movieId}
+          type="talk"
+          setOpen={setOpen}
+          talkId={talkId}
+          setOpenReportComplete={setOpenReportComplete}
+        />
+      )}
+      {openReportComplete && (
+        <ReportCompleteModal setOpenReportComplete={setOpenReportComplete} />
+      )}
     </section>
   );
 }

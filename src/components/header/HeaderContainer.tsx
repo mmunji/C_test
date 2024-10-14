@@ -5,7 +5,7 @@ import HeaderAuthButtons from "@/components/header/headerRightSection/HeaderAuth
 import HeaderAuthedUserSection from "@/components/header/headerRightSection/HeaderAuthedUserSection";
 import { myAPIs } from "@/services/my/myAPIs";
 
-import { DefaultUserProfile } from "../../../public/images";
+import { ProfileBlue } from "../../../public/images";
 
 export default async function HeaderContainer() {
   const user = await myAPIs.getUser();
@@ -21,7 +21,7 @@ export default async function HeaderContainer() {
               src={
                 user.profile
                   ? `data:image/png;base64,${user.profile}`
-                  : DefaultUserProfile
+                  : ProfileBlue
               }
             />
           </div>

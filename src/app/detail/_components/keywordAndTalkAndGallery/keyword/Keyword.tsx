@@ -1,12 +1,16 @@
 "use client";
 
 import clsx from "clsx";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 
 import arrangeCenterHighKeyword from "@/app/detail/utils/arrangeCenterHighKeyword";
 import { useGetMyKeyword } from "@/services/keyword/keywordQueries";
 
+import { Report } from "../../../../../../public/icons";
 import SpeechBubble from "../../../../../components/speechBubble/SpeechBubble";
+import ReportCompleteModal from "../talk/ReportCompleteModal";
+import ReportModal from "../talk/reportModal/ReportModal";
 import KeywordForm from "./keywordForm";
 import MyKeyword from "./myKeyword/MyKeyword";
 import NewKeyword from "./NewKeyword";
@@ -31,6 +35,8 @@ export default function Keyword({
   const [shuffledTop26s, setShuffledTop26s] = useState(keywordsData);
   const { data: myKeyword } = useGetMyKeyword(movieId);
   const [isClickedEdit, setIsClickedEdit] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [openReportComplete, setOpenReportComplete] = useState(false);
 
   const top1 = top10s[0];
   const top2 = top10s[1];
@@ -53,69 +59,102 @@ export default function Keyword({
   }, [keywordsData]);
 
   return (
-    <section className="flex flex-col items-center Laptop:relative Laptop:rounded-xl Laptop:bg-D1_Gray Laptop:p-10 Desktop:p-[60px]">
-      {noKeyword ? (
-        <Nokeyword />
-      ) : (
-        <div className="mb-7 flex flex-wrap justify-center py-6 Tablet:mb-8 Tablet:max-w-[554px] Laptop:max-w-fit Laptop:py-0 Desktop:mb-5">
-          {shuffledTop26s?.map((keyword, i) => (
-            <p
-              className={clsx(
-                `mr-2 flex h-12 items-center leading-[140%] last:mr-0 ${keyword !== top1 && keyword !== top2 && keyword !== top3 && keyword !== top4 && keyword !== top5 && keyword !== top6 && keyword !== top7 && keyword !== top8 && keyword !== top8 && keyword !== top9 && keyword !== top10 && getRandomTextSize()} text-Gray_Orange`,
-                keyword === top1 &&
-                  "h-12 leading-[140%] text-Primary Text-xxxl-Bold",
-                keyword === top2 &&
-                  "h-12 text-[32px] font-extrabold leading-[140%] text-Tint_2",
-                keyword === top3 &&
-                  "h-12 text-[30px] font-extrabold leading-[140%] text-Tint_2",
-                keyword === top4 &&
-                  "h-12 text-[28px] font-extrabold leading-[140%] text-Tint_3",
-                keyword === top5 &&
-                  "h-12 text-[26px] font-extrabold leading-[140%] text-Tint_3",
-                keyword === top6 &&
-                  "h-12 text-[24px] font-extrabold leading-[140%] text-Tint_3",
-                keyword === top7 &&
-                  "h-12 text-[22px] font-extrabold leading-[140%] text-Tint_4",
-                keyword === top8 &&
-                  "h-12 text-[20px] font-extrabold leading-[140%] text-Tint_4",
-                keyword === top9 &&
-                  "h-12 text-[20px] font-extrabold leading-[140%] text-Tint_4",
-                keyword === top10 &&
-                  "h-12 text-[20px] font-extrabold leading-[140%] text-Tint_4",
-              )}
-              key={i}
-            >
-              {keyword?.keyword}
-            </p>
-          ))}
+    <div className="flex flex-col">
+      <section className="flex flex-col items-center Laptop:relative Laptop:rounded-xl Laptop:bg-D1_Gray Laptop:p-10 Desktop:p-[60px]">
+        {noKeyword ? (
+          <Nokeyword />
+        ) : (
+          <div className="mb-7 flex flex-wrap justify-center py-6 Tablet:mb-8 Tablet:max-w-[554px] Laptop:max-w-fit Laptop:py-0 Desktop:mb-5">
+            {shuffledTop26s?.map((keyword, i) => (
+              <p
+                className={clsx(
+                  `mr-2 flex h-12 items-center leading-[140%] last:mr-0 ${keyword !== top1 && keyword !== top2 && keyword !== top3 && keyword !== top4 && keyword !== top5 && keyword !== top6 && keyword !== top7 && keyword !== top8 && keyword !== top8 && keyword !== top9 && keyword !== top10 && getRandomTextSize()} text-Gray_Orange`,
+                  keyword === top1 &&
+                    "h-12 leading-[140%] text-Primary Text-xxxl-Bold",
+                  keyword === top2 &&
+                    "h-12 text-[32px] font-extrabold leading-[140%] text-Tint_2",
+                  keyword === top3 &&
+                    "h-12 text-[30px] font-extrabold leading-[140%] text-Tint_2",
+                  keyword === top4 &&
+                    "h-12 text-[28px] font-extrabold leading-[140%] text-Tint_3",
+                  keyword === top5 &&
+                    "h-12 text-[26px] font-extrabold leading-[140%] text-Tint_3",
+                  keyword === top6 &&
+                    "h-12 text-[24px] font-extrabold leading-[140%] text-Tint_3",
+                  keyword === top7 &&
+                    "h-12 text-[22px] font-extrabold leading-[140%] text-Tint_4",
+                  keyword === top8 &&
+                    "h-12 text-[20px] font-extrabold leading-[140%] text-Tint_4",
+                  keyword === top9 &&
+                    "h-12 text-[20px] font-extrabold leading-[140%] text-Tint_4",
+                  keyword === top10 &&
+                    "h-12 text-[20px] font-extrabold leading-[140%] text-Tint_4",
+                )}
+                key={i}
+              >
+                {keyword?.keyword}
+              </p>
+            ))}
+          </div>
+        )}
+        <div className="hidden w-[305px] Laptop:absolute Laptop:left-1/2 Laptop:top-0 Laptop:block Laptop:translate-x-[-50%] Laptop:translate-y-[-50%]">
+          <SpeechBubble dir="bottom">
+            떠오르는 단어를 작성하거나, 키워드를 눌러보세요!
+          </SpeechBubble>
         </div>
-      )}
-      <div className="hidden w-[305px] Laptop:absolute Laptop:left-1/2 Laptop:top-0 Laptop:block Laptop:translate-x-[-50%] Laptop:translate-y-[-50%]">
-        <SpeechBubble dir="bottom">
-          떠오르는 단어를 작성하거나, 키워드를 눌러보세요!
-        </SpeechBubble>
-      </div>
 
-      {!myKeyword && !isClickedEdit ? (
-        <KeywordForm movieId={movieId} title={title} />
-      ) : (
-        !isClickedEdit && (
-          <MyKeyword
-            myKeyword={myKeyword}
+        {!myKeyword?.res.ok && !isClickedEdit ? (
+          <KeywordForm movieId={movieId} title={title} />
+        ) : (
+          !isClickedEdit && (
+            <MyKeyword
+              myKeyword={myKeyword?.data}
+              isClickedEdit={isClickedEdit}
+              setIsClickedEdit={setIsClickedEdit}
+            />
+          )
+        )}
+
+        {isClickedEdit && (
+          <KeywordForm
+            movieId={movieId}
+            title={title}
+            initialValue={myKeyword?.data.keyword}
+            myKeywordId={myKeyword?.data.keywordId}
             isClickedEdit={isClickedEdit}
             setIsClickedEdit={setIsClickedEdit}
           />
-        )
-      )}
+        )}
+        {!noKeyword && <NewKeyword latestKeywords={latestKeywords} />}
+      </section>
 
-      {isClickedEdit && (
-        <KeywordForm
+      <div
+        onClick={() => setOpen(true)}
+        className="mx-auto mt-4 cursor-pointer Laptop:mx-0 Laptop:ml-auto Laptop:mt-1"
+      >
+        <div className="flex items-center">
+          <Image
+            width={100}
+            height={100}
+            src={Report}
+            alt="신고하기"
+            className="h-4 w-4"
+          />
+          <p className="text-[14px] text-Gray underline">신고하기</p>
+        </div>
+      </div>
+
+      {open && (
+        <ReportModal
           movieId={movieId}
-          title={title}
-          initialValue={myKeyword?.keyword}
+          type="keyword"
+          setOpen={setOpen}
+          setOpenReportComplete={setOpenReportComplete}
         />
       )}
-      {!noKeyword && <NewKeyword latestKeywords={latestKeywords} />}
-    </section>
+      {openReportComplete && (
+        <ReportCompleteModal setOpenReportComplete={setOpenReportComplete} />
+      )}
+    </div>
   );
 }

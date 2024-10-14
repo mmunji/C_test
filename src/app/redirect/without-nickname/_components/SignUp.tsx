@@ -5,6 +5,7 @@ import React, { FormEvent, useState } from "react";
 import Button from "@/components/buttons/Button";
 import ROUTES from "@/constants/routes";
 import { authAPIS } from "@/services/auth/authAPIs";
+import { revalidateMyPage } from "@/services/my/actions";
 import useMyInfoStore from "@/stores/useMyInfoStore";
 
 import { FullLogo } from "../../../../../public/images";
@@ -48,6 +49,7 @@ export default function SignUp({ userInfo }: SignUpProps) {
         router.push(`${ROUTES.SIGN_UP_COMPLETE}?nickname=${nickname}`);
       }
       setMyInfo({ nickname: nickname, birthday: birthday, gender: gender });
+      revalidateMyPage("user");
     } catch (error) {
       alert(error);
     }

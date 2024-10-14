@@ -3,6 +3,7 @@ import { Dispatch, SetStateAction, useState } from "react";
 
 import useNeedTalkMoreButton from "@/app/detail/_hooks/useNeedTalkMoreButton";
 import WithLineBreak from "@/components/withLineBreak/WithLineBreak";
+import { cn } from "@/utils/cn";
 
 interface TalkContentsBodyProps {
   talk: ReviewList;
@@ -22,7 +23,12 @@ export default function TalkContentsBody({
   );
 
   return (
-    <div className="relative ml-[34px] mt-2 Tablet:mb-2 Tablet:ml-14">
+    <div
+      className={cn(
+        "relative ml-[34px] mt-2 Tablet:mb-2 Tablet:ml-14",
+        talk.badgeList.length === 0 && "mt-0",
+      )}
+    >
       {talk.spoiler && !showSpoiler ? (
         <section className="flex gap-2">
           <p className="text-Primary Text-s-Regular Tablet:Text-m-Medium">

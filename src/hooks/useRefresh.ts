@@ -6,7 +6,7 @@ import { tokenManager } from "@/services/auth/tokenManager";
 import useLoggedInStore from "@/stores/useLoggedIn";
 
 export default function useRefresh() {
-  const NINE_MINUTES = 60 * 1000;
+  const NINE_MINUTES = 9 * 60 * 1000;
   const { loggedIn } = useLoggedInStore();
 
   useEffect(() => {

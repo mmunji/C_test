@@ -2,6 +2,8 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Dispatch, SetStateAction } from "react";
 import { UseFormSetValue } from "react-hook-form";
 
+import { revalidateMyPage } from "@/services/my/actions";
+
 import { talkAPIs } from "./talkAPIs";
 import { TALK_QUERY_KEYS } from "./talkQueryKeys";
 
@@ -40,6 +42,13 @@ export function useAddTalk(
       if (!res.ok) throw new Error(data?.message);
     },
     onSuccess: () => {
+      revalidateMyPage("my");
+      queryClient.invalidateQueries({
+        queryKey: TALK_QUERY_KEYS.myTalk(movieId),
+      });
+      queryClient.invalidateQueries({
+        queryKey: TALK_QUERY_KEYS.myStar(movieId),
+      });
       queryClient.invalidateQueries({
         queryKey: TALK_QUERY_KEYS.infiniteTalks(movieId),
       });
@@ -130,6 +139,7 @@ export function useAddReply({
       content: string;
     }) => talkAPIs.addReply(parentReviewId, content),
     onSuccess: () => {
+      revalidateMyPage("my");
       queryClient.invalidateQueries({
         queryKey: TALK_QUERY_KEYS.infiniteTalks(movieId),
       });
@@ -139,6 +149,99 @@ export function useAddReply({
       });
 
       setValue("replyValue", "");
+    },
+  });
+}
+
+export function useEditTalk(
+  setClickedEdit: Dispatch<SetStateAction<boolean>>,
+  movieId: number,
+) {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: ({
+      talkId,
+      movieName,
+      star,
+      content,
+      spoiler,
+      genreList,
+    }: {
+      talkId: number | undefined;
+      movieName: string | undefined;
+      star: number | undefined;
+      content: string | undefined;
+      spoiler: boolean | undefined;
+      genreList: number[];
+    }) =>
+      talkAPIs.editTalk(talkId, movieName, star, content, spoiler, genreList),
+    onSuccess: () => {
+      revalidateMyPage("my");
+      queryClient.invalidateQueries({
+        queryKey: TALK_QUERY_KEYS.myTalk(movieId),
+      });
+      queryClient.invalidateQueries({
+        queryKey: TALK_QUERY_KEYS.myStar(movieId),
+      });
+      queryClient.invalidateQueries({
+        queryKey: TALK_QUERY_KEYS.infiniteTalks(movieId),
+      });
+
+      setClickedEdit(false);
+    },
+  });
+}
+
+export function useRemoveTalk(
+  setClickedEdit: Dispatch<SetStateAction<boolean>>,
+  movieId: number,
+) {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: ({ talkId }: { talkId: number | undefined }) =>
+      talkAPIs.removeTalk(talkId),
+    onSuccess: () => {
+      revalidateMyPage("my");
+      queryClient.invalidateQueries({
+        queryKey: TALK_QUERY_KEYS.myTalk(movieId),
+      });
+      queryClient.invalidateQueries({
+        queryKey: TALK_QUERY_KEYS.myStar(movieId),
+      });
+      queryClient.invalidateQueries({
+        queryKey: TALK_QUERY_KEYS.infiniteTalks(movieId),
+      });
+
+      setClickedEdit(false);
+      location.reload();
+    },
+  });
+}
+
+export function useReportTalk(
+  setOpen: Dispatch<SetStateAction<boolean>>,
+  setOpenReportComplete: Dispatch<SetStateAction<boolean>>,
+) {
+  return useMutation({
+    mutationFn: ({
+      talkId,
+      category,
+      content,
+    }: {
+      talkId?: number | null;
+      category: string;
+      content: string;
+    }) =>
+      talkAPIs.reportTalk({
+        talkId: talkId,
+        category: category,
+        content: content,
+      }),
+    onSuccess: () => {
+      setOpen(false);
+      setOpenReportComplete(true);
     },
   });
 }

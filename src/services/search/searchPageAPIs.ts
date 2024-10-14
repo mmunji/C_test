@@ -4,6 +4,8 @@ export const searchPageAPIs = {
   getMovies: async (key: string) => {
     const data = await customFetchInstance.fetch<MovieResult[]>(
       `/find/findMovie?query=${key}`,
+      "GET",
+      { cache: "no-store" },
     );
     return data;
   },

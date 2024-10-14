@@ -1,89 +1,47 @@
-import React from "react";
+import { Metadata } from "next";
+import React, { Suspense } from "react";
 
-import { keywordAPIs } from "@/services/keyword/keywordAPIs";
 import { movieAPIs } from "@/services/movie/movieAPIs";
-import { talkAPIs } from "@/services/talk/talkAPIs";
 
-import DetailBannerSection from "../_components/detailBannerSection/DetailBannerSection";
-import DetailInfo from "../_components/detailInfo/DetailInfo";
-import TrailerAndPhoto from "../_components/keywordAndTalkAndGallery/gallery/trailerAndPhoto/TrailerAndPhoto";
-import Keyword from "../_components/keywordAndTalkAndGallery/keyword/Keyword";
-import KeywordAndTalkAndGallery from "../_components/keywordAndTalkAndGallery/KeywordAndTalkAndGallery";
-import Talk from "../_components/keywordAndTalkAndGallery/talk/Talk";
-import KeywordBar from "../_components/keywordBar/KeywordBar";
+import DetailPage from "../_components/DetailPage";
+import DetailPageSkeleton from "../_components/skeleton/DetailPageSkeleton";
 
-export default async function Detail({
+const MAX_LENGTH = 60;
+export async function generateMetadata({
   params,
 }: {
   params: { movieId: string };
-}) {
-  const movieId = Number(params.movieId);
-  const movieDetailData: MovieDetailData =
-    await movieAPIs.getMovieDetail(movieId);
-  const keywordsData: Keyword[] = await keywordAPIs.getKeyword(movieId);
-  const latestKeywordData = await keywordAPIs.getLatestKeyword(movieId);
+}): Promise<Metadata> {
+  const movie = await movieAPIs.getMovieDetail(+params.movieId);
+  return {
+    title: `${movie.title} - 씨네톡`,
+    description:
+      movie.overview.length > MAX_LENGTH
+        ? movie.overview.slice(0, MAX_LENGTH) + "..."
+        : movie.overview,
+    openGraph: {
+      images: [
+        {
+          url: movie.posterImg,
+        },
+      ],
+    },
+    twitter: {
+      images: [
+        {
+          url: movie.posterImg,
+        },
+      ],
+    },
+  };
+}
 
-  const noKeyword = keywordsData?.length === 0;
-  const top1Keyword = keywordsData.sort((a, b) => b.count - a.count)[0];
-  const movieTitle = movieDetailData.title;
-
+function page({ params }: { params: { movieId: string } }) {
   return (
-    <div className="bg-BG">
-      <DetailBannerSection
-        movieId={movieId}
-        movieDetailData={movieDetailData}
-      />
-      <div className="mx-5 mb-[100px] mt-[137px] Tablet:mx-6 Tablet:mb-40 Tablet:mt-[118px] Laptop:mx-[68px] Laptop:mb-[180px] Laptop:mt-7 Desktop:mx-auto Desktop:mb-[200px] Desktop:w-[1560px]">
-        {!noKeyword && (
-          <KeywordBar title={movieDetailData.title} top1Keyword={top1Keyword} />
-        )}
-        <section className="flex w-full flex-col Laptop:gap-[100px]">
-          <DetailInfo movieDetailData={movieDetailData} />
-
-          <div className="hidden Laptop:block">
-            <TrailerAndPhoto
-              trailerAndPhoto={{
-                trailer: movieDetailData.videoList,
-                photo: movieDetailData.imageDTOList,
-              }}
-            />
-          </div>
-
-          <section className="hidden Laptop:flex Laptop:gap-7 Desktop:gap-9">
-            <div className="w-[67.74%]">
-              <Talk
-                {...{
-                  title: movieTitle,
-                  movieId,
-                  movieDetailData,
-                }}
-              />
-            </div>
-            <div className="w-[32.26%]">
-              <Keyword
-                {...{
-                  keywordsData,
-                  noKeyword,
-                  movieId,
-                  title: movieTitle,
-                  latestKeywords: latestKeywordData,
-                }}
-              />
-            </div>
-          </section>
-
-          <KeywordAndTalkAndGallery
-            {...{
-              movieDetailData,
-              keywordsData,
-              noKeyword,
-              movieId,
-              title: movieTitle,
-              latestKeywords: latestKeywordData,
-            }}
-          />
-        </section>
-      </div>
-    </div>
+    <Suspense fallback={<DetailPageSkeleton />}>
+      <DetailPage params={params} />
+    </Suspense>
   );
 }
+
+export default page;

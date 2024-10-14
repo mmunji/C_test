@@ -8,7 +8,7 @@ export default async function ActivityCounts() {
         <span className="Text-m-Bold Tablet:Text-l-Bold">
           {activityCount.rateCount}
         </span>
-        <span className="text-L_Gray Text-xs-Regular Tablet:text-Silver Tablet:Text-m-Bold">
+        <span className="whitespace-nowrap text-L_Gray Text-xs-Regular Tablet:text-Silver Tablet:Text-m-Bold">
           받은 좋아요
         </span>
       </div>
@@ -17,7 +17,7 @@ export default async function ActivityCounts() {
         <span className="Text-m-Bold Tablet:Text-l-Bold">
           {activityCount.reviewCount}
         </span>
-        <span className="text-L_Gray Text-xs-Regular Tablet:text-Silver Tablet:Text-m-Bold">
+        <span className="whitespace-nowrap text-L_Gray Text-xs-Regular Tablet:text-Silver Tablet:Text-m-Bold">
           평가한 영화
         </span>
       </div>
@@ -26,7 +26,7 @@ export default async function ActivityCounts() {
         <span className="Text-m-Bold Tablet:Text-l-Bold">
           {activityCount.bookmarkCount}
         </span>
-        <span className="text-L_Gray Text-xs-Regular Tablet:text-Silver Tablet:Text-m-Bold">
+        <span className="whitespace-nowrap text-L_Gray Text-xs-Regular Tablet:text-Silver Tablet:Text-m-Bold">
           찜한 영화
         </span>
       </div>
