@@ -3,6 +3,7 @@ import React, { Dispatch, SetStateAction, useState } from "react";
 
 import Button from "@/components/buttons/Button";
 import LoadingSpinner from "@/components/loadingSpinner/LoadingSpinner";
+import { useReportKeyword } from "@/services/keyword/keywordMutations";
 import { useReportTalk } from "@/services/talk/talkMutations";
 import { cn } from "@/utils/cn";
 
@@ -19,6 +20,7 @@ const REPORT_TYPE = [
 ];
 
 interface ReportModalProps {
+  movieId: number;
   type: "talk" | "keyword";
   setOpen: Dispatch<SetStateAction<boolean>>;
   talkId?: number | null;
@@ -26,6 +28,7 @@ interface ReportModalProps {
 }
 
 export default function ReportModal({
+  movieId,
   type,
   setOpen,
   talkId,
@@ -34,10 +37,12 @@ export default function ReportModal({
   const [reportType, setReportType] = useState(REPORT_TYPE[0]);
   const [openDropdown, setOpenDropdown] = useState(false);
   const [content, setContent] = useState("");
-  const { mutate: reportTalk, isPending } = useReportTalk(
+  const { mutate: reportTalk, isPending: isReportTalkPending } = useReportTalk(
     setOpen,
     setOpenReportComplete,
   );
+  const { mutate: reportKeyword, isPending: isReportKeywordPending } =
+    useReportKeyword(setOpen, setOpenReportComplete);
   const placeHolder =
     type === "talk"
       ? reportType === REPORT_TYPE[0]
@@ -45,12 +50,12 @@ export default function ReportModal({
         : "자세한 사유를 작성해주세요."
       : "자세한 사유를 작성해주세요.";
 
-  const disabled =
+  const reportTalkdisabled =
     type === "talk"
       ? reportType === REPORT_TYPE[0] ||
         (reportType === REPORT_TYPE[REPORT_TYPE.length - 1] &&
           content === "") ||
-        isPending
+        isReportTalkPending
       : content === "";
 
   return (
@@ -125,19 +130,35 @@ export default function ReportModal({
           >
             취소
           </Button>
+
           <Button
-            onClick={() =>
-              reportTalk({
-                talkId: talkId,
-                category: reportType,
-                content: content,
-              })
+            onClick={() => {
+              type === "talk"
+                ? reportTalk({
+                    talkId: talkId,
+                    category: reportType,
+                    content: content,
+                  })
+                : reportKeyword({
+                    movieId: movieId,
+                    content: content,
+                  });
+            }}
+            disabled={
+              type === "talk"
+                ? reportTalkdisabled || isReportTalkPending
+                : content === "" || isReportKeywordPending
             }
-            disabled={disabled}
             variant={"orange"}
             className="w-full rounded-xl px-5 py-3"
           >
-            {isPending ? (
+            {type === "talk" ? (
+              isReportTalkPending ? (
+                <LoadingSpinner size={"sm"} color={"primary"} />
+              ) : (
+                "제출하기"
+              )
+            ) : isReportKeywordPending ? (
               <LoadingSpinner size={"sm"} color={"primary"} />
             ) : (
               "제출하기"

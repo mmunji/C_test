@@ -36,7 +36,8 @@ interface MovieDetailData {
   releaseDate: string;
   status: string;
   contentRating: string;
-  score: number;
+  cinetalkScore: number;
+  tmdbScore: number;
   runningTime: number;
   imageDTOList: ImageDTO[];
   videoList: string[];

@@ -35,6 +35,25 @@ export const keywordAPIs = {
     return data;
   },
 
+  reportKeyword: async (movieId: number, content: string) => {
+    const accessToken = tokenManager.getToken();
+    console.log("신고!");
+    const res = await fetch(`${API_URL}/reports/keywords/${movieId}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        access: `${accessToken}`,
+      },
+      body: JSON.stringify({
+        movieId: movieId,
+        content: content,
+      }),
+    });
+    const data = await res.json();
+
+    return data;
+  },
+
   addKeyword: async (movieId: number, keyword: string) => {
     const accessToken = tokenManager.getToken();
     const res = await fetch(`${API_URL}/keywords/${movieId}/save`, {

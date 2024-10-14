@@ -18,7 +18,7 @@ export default function KeywordBar({ title, top1Keyword }: KeywordBarProps) {
   return (
     <>
       {gradientStyle === "" ? (
-        <div className="mb-4 flex h-12 w-full items-center justify-center rounded-xl bg-D2_Gray Laptop:mb-[52px] Laptop:h-[74px]">
+        <div className="mb-4 flex h-12 w-full animate-pulse items-center justify-center rounded-xl bg-D2_Gray Laptop:mb-[52px] Laptop:h-[74px]">
           <div className="Tablet:hidden">
             <LoadingSpinner size="sm" color="primary" />
           </div>
