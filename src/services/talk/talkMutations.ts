@@ -1,4 +1,5 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { revalidateTag } from "next/cache";
 import { Dispatch, SetStateAction } from "react";
 import { UseFormSetValue } from "react-hook-form";
 
@@ -40,6 +41,7 @@ export function useAddTalk(
       if (!res.ok) throw new Error(data?.message);
     },
     onSuccess: () => {
+      revalidateTag("my");
       queryClient.invalidateQueries({
         queryKey: TALK_QUERY_KEYS.myTalk(movieId),
       });
@@ -136,6 +138,7 @@ export function useAddReply({
       content: string;
     }) => talkAPIs.addReply(parentReviewId, content),
     onSuccess: () => {
+      revalidateTag("my");
       queryClient.invalidateQueries({
         queryKey: TALK_QUERY_KEYS.infiniteTalks(movieId),
       });
@@ -173,6 +176,7 @@ export function useEditTalk(
     }) =>
       talkAPIs.editTalk(talkId, movieName, star, content, spoiler, genreList),
     onSuccess: () => {
+      revalidateTag("my");
       queryClient.invalidateQueries({
         queryKey: TALK_QUERY_KEYS.myTalk(movieId),
       });
@@ -198,6 +202,7 @@ export function useRemoveTalk(
     mutationFn: ({ talkId }: { talkId: number | undefined }) =>
       talkAPIs.removeTalk(talkId),
     onSuccess: () => {
+      revalidateTag("my");
       queryClient.invalidateQueries({
         queryKey: TALK_QUERY_KEYS.myTalk(movieId),
       });

@@ -1,4 +1,5 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { revalidateTag } from "next/cache";
 
 import { movieAPIs } from "./movieAPIs";
 import { MOVIE_QUERY_KEYS } from "./movieQueryKeys";
@@ -15,6 +16,7 @@ export function useBookmarkMovie(movieId: number) {
       queryClient.invalidateQueries({
         queryKey: MOVIE_QUERY_KEYS.bookmark.detail(movieId),
       });
+      revalidateTag("my");
     },
     onError: (error) => {
       alert(error);
