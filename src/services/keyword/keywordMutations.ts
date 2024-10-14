@@ -3,6 +3,8 @@ import { revalidateTag } from "next/cache";
 import { useRouter } from "next/navigation";
 import { Dispatch, SetStateAction } from "react";
 
+import { revalidateMyPage } from "@/services/my/actions";
+
 import { tokenManager } from "../auth/tokenManager";
 import { keywordAPIs } from "./keywordAPIs";
 import { KEYWORD_QUERY_KEYS } from "./keywordQueryKeys";
@@ -25,7 +27,7 @@ export function useAddKeyword(
       if (!res.ok) throw new Error(data?.message);
     },
     onSuccess: () => {
-      revalidateTag("my");
+      revalidateMyPage();
       queryClient.invalidateQueries({
         queryKey: KEYWORD_QUERY_KEYS.myKeyword(accessToken, movieId),
       });
@@ -52,7 +54,7 @@ export function useEditKeyword(
       if (!res.ok) throw new Error(data?.message);
     },
     onSuccess: () => {
-      revalidateTag("my");
+      revalidateMyPage();
       queryClient.invalidateQueries({
         queryKey: KEYWORD_QUERY_KEYS.myKeyword(accessToken, movieId),
       });
