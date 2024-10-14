@@ -106,7 +106,7 @@ export const talkAPIs = {
     content: string;
   }) => {
     const accessToken = tokenManager.getToken();
-    const res = await fetch(`${API_URL}/reports/${talkId}`, {
+    const res = await fetch(`${API_URL}/reports/reviews/${talkId}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

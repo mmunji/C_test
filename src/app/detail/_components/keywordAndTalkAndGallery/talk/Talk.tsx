@@ -94,6 +94,7 @@ export default function Talk({ title, movieId, movieDetailData }: TalkProps) {
 
       {open && (
         <ReportModal
+          movieId={movieId}
           type="talk"
           setOpen={setOpen}
           talkId={talkId}

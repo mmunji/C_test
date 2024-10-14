@@ -148,6 +148,7 @@ export default function Keyword({
 
       {open && (
         <ReportModal
+          movieId={movieId}
           type="keyword"
           setOpen={setOpen}
           setOpenReportComplete={setOpenReportComplete}

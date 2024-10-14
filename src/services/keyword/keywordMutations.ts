@@ -61,3 +61,17 @@ export function useEditKeyword(
     },
   });
 }
+
+export function useReportKeyword(
+  setOpen: Dispatch<SetStateAction<boolean>>,
+  setOpenReportComplete: Dispatch<SetStateAction<boolean>>,
+) {
+  return useMutation({
+    mutationFn: ({ content, movieId }: { content: string; movieId: number }) =>
+      keywordAPIs.reportKeyword(movieId, content),
+    onSuccess: () => {
+      setOpen(false);
+      setOpenReportComplete(true);
+    },
+  });
+}
