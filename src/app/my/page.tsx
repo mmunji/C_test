@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 
 export default function My() {
   return (
-    <div className="flex w-full flex-col Tablet:gap-20 Laptop:mt-9">
+    <div className="flex w-full flex-col Tablet:gap-20">
       <UserInfo />
       <div className="h-3 rounded-[3px] bg-Black Tablet:hidden" />
       <div className="flex flex-col Tablet:gap-20 Laptop:gap-[46px]">
