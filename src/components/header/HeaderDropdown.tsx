@@ -8,18 +8,22 @@ import { logout } from "@/services/my/actions";
 import useLoggedInStore from "@/stores/useLoggedIn";
 import useScrollStore from "@/stores/useScrollStore";
 
-import {
-  BestTalkFire,
-  CaretDownMd,
-  HeartFillMd,
-  LogOut,
-  User,
-} from "../../../public/icons";
+import { BestTalkFire, CaretDownMd, LogOut, User } from "../../../public/icons";
 
 const dropdownMenu = [
-  { icon: User, content: "마이페이지", href: ROUTES.MY.default },
-  { icon: LogOut, content: "로그아웃", href: "" },
-  { icon: BestTalkFire, content: "관리자", href: ROUTES.ADMIN },
+  {
+    icon: User,
+    content: "마이페이지",
+    href: ROUTES.MY.default,
+    requiresAdmin: false,
+  },
+  { icon: LogOut, content: "로그아웃", href: "", requiresAdmin: false },
+  {
+    icon: BestTalkFire,
+    content: "관리자",
+    href: ROUTES.ADMIN,
+    requiresAdmin: true,
+  },
 ];
 
 export default function HeaderDropdown({
@@ -38,7 +42,9 @@ export default function HeaderDropdown({
     logout();
     handleLogout();
   };
-
+  const filteredMenu = dropdownMenu.filter(
+    (item) => !item.requiresAdmin || isAdmin,
+  );
   return (
     <Dropdown type="icon">
       <Dropdown.Trigger>
@@ -52,23 +58,20 @@ export default function HeaderDropdown({
         </div>
       </Dropdown.Trigger>
       <Dropdown.List className="left-1/2 top-[43px] -translate-x-1/2">
-        {dropdownMenu.map((m, i) => {
-          // if (!isAdmin && i === dropdownMenu.length - 1) return null;
-          return (
-            <Dropdown.Item
-              className="justify-start"
-              key={m.content}
-              href={m.href}
-              onClick={() => handleClickDropdown(m.href)}
-              isFocused={m.content === "전체"}
-            >
-              <div className="flex items-center gap-2">
-                <Image src={m.icon} alt={m.content} className="h-6 w-6" />
-                <p className="min-w-fit Text-m-Regular">{m.content}</p>
-              </div>
-            </Dropdown.Item>
-          );
-        })}
+        {filteredMenu.map((m, i) => (
+          <Dropdown.Item
+            className="justify-start"
+            key={m.content}
+            href={m.href}
+            onClick={() => handleClickDropdown(m.href)}
+            isFocused={m.content === "전체"}
+          >
+            <div className="flex items-center gap-2">
+              <Image src={m.icon} alt={m.content} className="h-6 w-6" />
+              <p className="min-w-fit Text-m-Regular">{m.content}</p>
+            </div>
+          </Dropdown.Item>
+        ))}
       </Dropdown.List>
     </Dropdown>
   );
