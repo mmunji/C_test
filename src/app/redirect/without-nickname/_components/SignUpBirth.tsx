@@ -10,32 +10,47 @@ interface BirthValues {
 interface SignUpBirthProps {
   birthValues: BirthValues;
   setBirthValues: Dispatch<SetStateAction<BirthValues>>;
+  birthError: boolean;
+  setBirthError: Dispatch<SetStateAction<boolean>>;
 }
 
 export default function SignUpBirth({
   birthValues,
   setBirthValues,
+  birthError,
+  setBirthError,
 }: SignUpBirthProps) {
-  const [error, setError] = useState(false);
   const today = dayjs();
   const hundredYearsAgo = today.subtract(100, "year");
 
-  const validateBirthday = (name: keyof BirthValues, value: string) => {
-    const userBirthday = `${name === "year" ? value : birthValues.year}/${name === "month" ? value : birthValues.month}/${name === "day" ? value : birthValues.day}`;
+  const validateBirthday = (year: string, month: string, day: string) => {
+    if (!year || !month || !day) {
+      setBirthError(true);
+      return;
+    }
+
+    const isMonthValid = /^\d{2}$/.test(month) && +month >= 1 && +month <= 12;
+    const isDayValid = /^\d{2}$/.test(day) && +day >= 1 && +day <= 31;
+
+    if (!isMonthValid || !isDayValid) {
+      setBirthError(true);
+      return;
+    }
+
+    const userBirthday = `${year}/${month}/${day}`;
 
     if (
-      (name === "year" && +value < hundredYearsAgo.year()) ||
-      dayjs(userBirthday).isAfter(today) ||
-      dayjs(userBirthday).isBefore(hundredYearsAgo) ||
-      !dayjs(
+      dayjs(
         userBirthday,
         ["YYYY/MM/DD", "YYYY/MM/D", "YYYY/M/DD"],
         true,
-      ).isValid()
+      ).isValid() &&
+      !dayjs(userBirthday).isAfter(today) &&
+      !dayjs(userBirthday).isBefore(hundredYearsAgo)
     ) {
-      setError(true);
+      setBirthError(false);
     } else {
-      setError(false);
+      setBirthError(true);
     }
   };
 
@@ -44,7 +59,8 @@ export default function SignUpBirth({
     const filteredValue = value.replace(/\D/g, "");
     setBirthValues((prev) => {
       const newBirthValues = { ...prev, [name]: filteredValue };
-      validateBirthday(name as keyof BirthValues, filteredValue);
+      const { year, month, day } = newBirthValues;
+      validateBirthday(year, month, day);
       return newBirthValues;
     });
   };
@@ -61,7 +77,7 @@ export default function SignUpBirth({
             onChange={handleChange}
             maxLength={4}
             placeholder="YYYY"
-            className={`h-12 w-full rounded-xl border-[1px] ${error ? "border-red-500" : "border-Gray"} bg-transparent p-3 text-center outline-none Text-m-Medium placeholder:text-Gray`}
+            className={`h-12 w-full rounded-xl border-[1px] ${birthError ? "border-red-500" : "border-Gray"} bg-transparent p-3 text-center outline-none Text-m-Medium placeholder:text-Gray`}
           />
           <p className="text-Gray Text-m-Medium">년</p>
         </section>
@@ -73,7 +89,7 @@ export default function SignUpBirth({
             onChange={handleChange}
             maxLength={2}
             placeholder="MM"
-            className={`h-12 w-full rounded-xl border-[1px] ${error ? "border-red-500" : "border-Gray"} bg-transparent p-3 text-center outline-none Text-m-Medium placeholder:text-Gray`}
+            className={`h-12 w-full rounded-xl border-[1px] ${birthError ? "border-red-500" : "border-Gray"} bg-transparent p-3 text-center outline-none Text-m-Medium placeholder:text-Gray`}
           />
           <p className="text-Gray Text-m-Medium">월</p>
         </section>
@@ -85,12 +101,12 @@ export default function SignUpBirth({
             onChange={handleChange}
             maxLength={2}
             placeholder="DD"
-            className={`h-12 w-full rounded-xl border-[1px] ${error ? "border-red-500" : "border-Gray"} bg-transparent p-3 text-center outline-none Text-m-Medium placeholder:text-Gray`}
+            className={`h-12 w-full rounded-xl border-[1px] ${birthError ? "border-red-500" : "border-Gray"} bg-transparent p-3 text-center outline-none Text-m-Medium placeholder:text-Gray`}
           />
           <p className="text-Gray Text-m-Medium">일</p>
         </section>
       </section>
-      {error && (
+      {birthError && (
         <p className="mt-2 text-red-500 Text-xs-Regular">
           올바른 생년월일을 입력하세요.
         </p>
