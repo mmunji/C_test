@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import SmallBadge from "@/components/smallBadge/SmallBadge";
 import { API_URL } from "@/constants/api_url";
 import { tokenManager } from "@/services/auth/tokenManager";
+import { cn } from "@/utils/cn";
 
 export default function TalkFormHeader() {
   const accessToken = tokenManager.getToken();
@@ -40,17 +41,19 @@ export default function TalkFormHeader() {
 
   return (
     <div className="absolute left-5 top-4 flex items-center Tablet:top-5">
-      <p className="mr-3 text-Silver Text-s-Bold">{myData?.nickname}</p>
+      <p
+        className={cn(
+          "mr-3 text-Silver Text-s-Bold",
+          badges?.length === 0 && "mt-1",
+        )}
+      >
+        {myData?.nickname}
+      </p>
 
       {Array.isArray(badges) && badges.length > 0 && (
         <section className="flex h-full gap-1">
           {badges?.map((el, i) => (
-            <SmallBadge
-              key={i}
-              content={el.badge_name}
-              withoutContent
-              size="sm"
-            />
+            <SmallBadge key={i} content={"액션가면"} withoutContent size="sm" />
           ))}
         </section>
       )}
