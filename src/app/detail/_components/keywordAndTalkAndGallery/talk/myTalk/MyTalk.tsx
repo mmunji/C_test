@@ -13,6 +13,7 @@ import {
   SquareCheckMd,
   SquareCheckSm,
 } from "../../../../../../../public/icons";
+import DeleteTalkModal from "./DeleteTalkModal";
 
 interface MyTalkProps {
   myTalk: MyTalk | undefined;
@@ -33,8 +34,12 @@ function MyTalk({ myTalk, movieId, movieDetailData }: MyTalkProps) {
   const [isSpoiler, setIsSpoiler] = useState<boolean | undefined>(
     myTalk?.spoiler,
   );
+  const [openDeleteModal, setOpenDeleteModal] = useState(false);
 
-  const { mutate: removeTalk } = useRemoveTalk(setClickedEdit, movieId);
+  const { mutate: removeTalk, isPending } = useRemoveTalk(
+    setClickedEdit,
+    movieId,
+  );
   const { mutate: editTalk } = useEditTalk(setClickedEdit, movieId);
 
   const genreList = movieDetailData.genreDTOList.map((el) => el.id);
@@ -130,7 +135,7 @@ function MyTalk({ myTalk, movieId, movieDetailData }: MyTalkProps) {
             </div>
 
             <Button
-              onClick={submitRemoveTalk}
+              onClick={() => setOpenDeleteModal(true)}
               size={"md"}
               className="text-Error"
             >
@@ -165,7 +170,11 @@ function MyTalk({ myTalk, movieId, movieDetailData }: MyTalkProps) {
             <p className="select-none Text-s-Regular">스포일러</p>
           </div>
 
-          <Button onClick={submitRemoveTalk} size={"sm"} className="text-Error">
+          <Button
+            onClick={() => setOpenDeleteModal(true)}
+            size={"sm"}
+            className="text-Error"
+          >
             삭제
           </Button>
           <Button onClick={submitEditTalk} variant={"orange"} size={"sm"}>
@@ -180,6 +189,14 @@ function MyTalk({ myTalk, movieId, movieDetailData }: MyTalkProps) {
         >
           수정
         </Button>
+      )}
+
+      {openDeleteModal && (
+        <DeleteTalkModal
+          onClick={submitRemoveTalk}
+          setOpenDeleteModal={setOpenDeleteModal}
+          isPending={isPending}
+        />
       )}
     </div>
   );
