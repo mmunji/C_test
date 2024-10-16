@@ -9,13 +9,18 @@ export const talkAPIs = {
     sort: "star" | "createdAt" = "createdAt",
   ) => {
     const accessToken = tokenManager.getToken();
+    const headers: Record<string, string> = {
+      "Content-Type": "application/json",
+    };
+
+    if (accessToken) {
+      headers.access = accessToken;
+    }
+
     const res = await fetch(
       `${API_URL}/reviews/${movieId}?page=${page}&sort=${sort}`,
       {
-        headers: {
-          "Content-Type": "application/json",
-          access: `${accessToken}`,
-        },
+        headers,
         cache: "no-store",
       },
     );

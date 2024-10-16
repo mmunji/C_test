@@ -32,4 +32,5 @@ interface ReviewList {
   commentCount: number;
   likeCheck: boolean;
   dislikeCheck: boolean;
+  mine: boolean;
 }

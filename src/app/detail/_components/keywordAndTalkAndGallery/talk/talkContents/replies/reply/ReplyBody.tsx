@@ -11,7 +11,7 @@ export default function ReplyBody({ reply }: ReplyBodyProps) {
   const [showMore, setShowMore] = useState(false);
   const { contentRef, showMoreButton } = useNeedTalkMoreButton("reply");
 
-  const replyContent = `${reply.content}`;
+  const replyContent = `${reply?.content}`;
 
   return (
     <div className="relative mt-[6px] Tablet:mt-2">

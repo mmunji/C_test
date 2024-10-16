@@ -39,13 +39,13 @@ export default function ReplyFooter({
   const handleClickLike = () => {
     setDislike(false);
     setLike(!like);
-    likeReply(reply.id);
+    likeReply(reply?.id);
   };
 
   const handleClickDislike = () => {
     setLike(false);
     setDislike(!disLike);
-    dislikeReply(reply.id);
+    dislikeReply(reply?.id);
   };
 
   return (
@@ -55,17 +55,17 @@ export default function ReplyFooter({
         className="flex cursor-pointer items-center"
       >
         <Image
-          src={reply.likeCheck ? ThumbsUpFillSm : ThumbsUpLineSm}
+          src={reply?.likeCheck ? ThumbsUpFillSm : ThumbsUpLineSm}
           alt="좋아요"
           className="Tablet:hidden"
         />
         <Image
-          src={reply.likeCheck ? ThumbsUpFillMd : ThumbsUpLineMd}
+          src={reply?.likeCheck ? ThumbsUpFillMd : ThumbsUpLineMd}
           alt="좋아요"
           className="hidden Tablet:block"
         />
         <p className="select-none text-Gray_Orange Text-xs-Regular Tablet:Text-s-Medium">
-          {reply.likeCount}
+          {reply?.likeCount}
         </p>
       </section>
 
@@ -74,17 +74,17 @@ export default function ReplyFooter({
         className="flex cursor-pointer items-center"
       >
         <Image
-          src={reply.dislikeCheck ? ThumbsDownFillSm : ThumbsDownLineSm}
+          src={reply?.dislikeCheck ? ThumbsDownFillSm : ThumbsDownLineSm}
           alt="싫어요"
           className="Tablet:hidden"
         />
         <Image
-          src={reply.dislikeCheck ? ThumbsDownFillMd : ThumbsDownLineMd}
+          src={reply?.dislikeCheck ? ThumbsDownFillMd : ThumbsDownLineMd}
           alt="싫어요"
           className="hidden Tablet:block"
         />
         <p className="select-none text-Gray_Orange Text-xs-Regular Tablet:Text-s-Medium">
-          {reply.dislikeCount}
+          {reply?.dislikeCount}
         </p>
       </section>
     </section>
