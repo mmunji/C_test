@@ -1,17 +1,24 @@
+import dayjs from "dayjs";
 import Image from "next/image";
 import React, { useState } from "react";
 
 import useRating from "@/app/detail/_hooks/useRating";
 import Button from "@/components/buttons/Button";
 import RatingStar from "@/components/rating/RatingStar";
+import SmallBadge from "@/components/smallBadge/SmallBadge";
 import WithLineBreak from "@/components/withLineBreak/WithLineBreak";
 import { useEditTalk, useRemoveTalk } from "@/services/talk/talkMutations";
+import { cn } from "@/utils/cn";
 
 import {
   SquareCheckFillMd,
   SquareCheckFillSm,
   SquareCheckMd,
   SquareCheckSm,
+  ThumbsDownLineMd,
+  ThumbsDownLineSm,
+  ThumbsUpLineMd,
+  ThumbsUpLineSm,
 } from "../../../../../../../public/icons";
 import DeleteTalkModal from "./DeleteTalkModal";
 
@@ -106,7 +113,29 @@ function MyTalk({ myTalk, movieId, movieDetailData }: MyTalkProps) {
           </div>
         </div>
         <div className="flex flex-col gap-2 Laptop:mt-5 Laptop:gap-3 Laptop:rounded-xl Laptop:bg-[rgba(0,0,0,0.2)] Laptop:px-6 Laptop:py-5">
-          <p className="text-Silver Text-s-Bold">{myTalk?.nickName}</p>
+          <div className="flex justify-between">
+            <div className="flex items-center gap-1">
+              <p className="mr-1 text-Silver Text-s-Bold">{myTalk?.nickName}</p>
+
+              {Array.isArray(myTalk?.badgeList) &&
+                myTalk.badgeList.length > 0 && (
+                  <section className="flex h-full gap-1">
+                    {myTalk?.badgeList?.map((el, i) => (
+                      <SmallBadge
+                        key={i}
+                        content={el}
+                        withoutContent
+                        size="sm"
+                      />
+                    ))}
+                  </section>
+                )}
+            </div>
+
+            <p className="hidden text-Gray Text-s-Medium Tablet:block">
+              {dayjs(myTalk?.createTime).format("YY.MM.DD")} 작성
+            </p>
+          </div>
 
           {clickedEdit ? (
             <textarea
@@ -120,6 +149,67 @@ function MyTalk({ myTalk, movieId, movieDetailData }: MyTalkProps) {
             </div>
           )}
         </div>
+
+        {!clickedEdit && (
+          <section className="hidden items-center justify-end Tablet:mt-2 Tablet:flex">
+            <Button
+              variant="textIconL"
+              className="cursor-default hover:bg-transparent active:bg-transparent"
+            >
+              <Image
+                src={ThumbsUpLineSm}
+                alt="좋아요"
+                className="Laptop:hidden"
+              />
+              <Image
+                src={ThumbsUpLineMd}
+                alt="좋아요"
+                className="hidden Laptop:block"
+              />
+              <p className="select-none text-Gray_Orange Text-xs-Regular Tablet:Text-s-Medium">
+                {myTalk?.likeCount}
+              </p>
+            </Button>
+            <Button
+              variant="textIconL"
+              className="cursor-default hover:bg-transparent active:bg-transparent"
+            >
+              <Image
+                src={ThumbsDownLineSm}
+                alt="싫어요"
+                className="Laptop:hidden"
+              />
+              <Image
+                src={ThumbsDownLineMd}
+                alt="싫어요"
+                className="hidden Laptop:block"
+              />
+              <p className="select-none text-Gray_Orange Text-xs-Regular Tablet:Text-s-Medium">
+                {myTalk?.dislikeCount}
+              </p>
+            </Button>
+
+            <Button
+              variant="textIconR"
+              className="cursor-default hover:bg-transparent active:bg-transparent"
+            >
+              <p
+                className={cn(
+                  "select-none text-Gray_Orange Text-xs-Regular Tablet:Text-s-Medium",
+                )}
+              >
+                답글
+              </p>
+              <p
+                className={cn(
+                  "text-Gray_Orange Text-xs-Regular Tablet:Text-s-Medium",
+                )}
+              >
+                {myTalk?.commentCount}
+              </p>
+            </Button>
+          </section>
+        )}
         {clickedEdit ? (
           <div className="ml-auto hidden items-center gap-3 Laptop:flex">
             <div

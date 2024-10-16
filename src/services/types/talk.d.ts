@@ -13,6 +13,9 @@ interface MyTalk {
   nickName: string;
   content: string;
   createTime: string;
+  likeCount: number;
+  dislikeCount: number;
+  commentCount: number;
   reviewId: number;
   star: number;
   spoiler: false;

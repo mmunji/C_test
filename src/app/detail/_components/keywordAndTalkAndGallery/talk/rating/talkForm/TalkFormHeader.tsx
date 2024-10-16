@@ -53,7 +53,12 @@ export default function TalkFormHeader() {
       {Array.isArray(badges) && badges.length > 0 && (
         <section className="flex h-full gap-1">
           {badges?.map((el, i) => (
-            <SmallBadge key={i} content={"액션가면"} withoutContent size="sm" />
+            <SmallBadge
+              key={i}
+              content={el.badge_name}
+              withoutContent
+              size="sm"
+            />
           ))}
         </section>
       )}
