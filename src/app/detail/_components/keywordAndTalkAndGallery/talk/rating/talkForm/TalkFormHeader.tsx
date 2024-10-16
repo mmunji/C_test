@@ -42,7 +42,7 @@ export default function TalkFormHeader() {
     <div className="absolute left-5 top-4 flex items-center Tablet:top-5">
       <p className="mr-3 text-Silver Text-s-Bold">{myData?.nickname}</p>
 
-      {badges?.length !== 0 && (
+      {Array.isArray(badges) && badges.length > 0 && (
         <section className="flex h-full gap-1">
           {badges?.map((el, i) => (
             <SmallBadge
