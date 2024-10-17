@@ -63,14 +63,14 @@ export default function Talk({ title, movieId, movieDetailData }: TalkProps) {
 
   return (
     <section id={id}>
-      {myTalk ? (
+      {myTalk && myTalk.content !== "" ? (
         <MyTalk
           myTalk={myTalk}
           movieDetailData={movieDetailData}
           movieId={movieId}
         />
       ) : (
-        <Rating {...{ title, movieId, movieDetailData }} />
+        <Rating {...{ title, movieId, movieDetailData, myTalk }} />
       )}
       <DividingLine />
 

@@ -3,7 +3,7 @@ import { Dispatch, SetStateAction, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 
 import Button from "@/components/buttons/Button";
-import { useAddTalk } from "@/services/talk/talkMutations";
+import { useAddTalk, useEditTalk } from "@/services/talk/talkMutations";
 import filterAbuse from "@/utils/filterAbuse";
 import hexToRGBA from "@/utils/hexToRGBA";
 
@@ -25,6 +25,7 @@ interface TalkFormProps {
   ratingValue: number;
   movieDetailData: MovieDetailData;
   setShowTalkForm: Dispatch<SetStateAction<boolean>>;
+  myTalk: MyTalk;
 }
 
 export default function TalkForm({
@@ -32,6 +33,7 @@ export default function TalkForm({
   ratingValue,
   movieDetailData,
   setShowTalkForm,
+  myTalk,
 }: TalkFormProps) {
   const [readyToSubmit, setReadyToSubmit] = useState(true);
   const { register, handleSubmit, watch, setValue } = useForm<AddTalkValues>({
@@ -40,27 +42,27 @@ export default function TalkForm({
       spoiler: false,
     },
   });
-  const { mutate: mutateAddTalk } = useAddTalk(movieId, setShowTalkForm);
+  const { mutate: editTalk } = useEditTalk({ movieId });
   const movieName = movieDetailData.title;
+  const talk = watch("talk");
+  const spoiler = watch("spoiler");
+  const genreList = movieDetailData.genreDTOList.map((el) => el.id);
 
   const onSubmit: SubmitHandler<AddTalkValues> = () => {
     if (readyToSubmit) {
       if (filterAbuse(talk)) return;
       const genreList = movieDetailData?.genreDTOList.map((el) => el.id);
 
-      mutateAddTalk({
-        movieName,
-        movieId,
-        ratingValue,
-        talk,
-        spoiler,
-        genreList,
+      editTalk({
+        content: talk,
+        talkId: myTalk.reviewId,
+        movieName: movieName,
+        genreList: genreList,
+        spoiler: spoiler,
+        star: myTalk.star,
       });
     }
   };
-
-  const talk = watch("talk");
-  const spoiler = watch("spoiler");
 
   const toggleSpoiler = () => {
     setValue("spoiler", !spoiler);
