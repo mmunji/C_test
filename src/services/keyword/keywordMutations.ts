@@ -79,3 +79,21 @@ export function useReportKeyword(
     },
   });
 }
+
+export function useLikeKeyword({ movieId }: { movieId: number }) {
+  const router = useRouter();
+  const accessToken = tokenManager.getToken();
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: (keywordId: number) => {
+      return keywordAPIs.likeKeyword(keywordId);
+    },
+    onSuccess: () => {
+      router.refresh();
+      queryClient.invalidateQueries({
+        queryKey: KEYWORD_QUERY_KEYS.myKeyword(accessToken, movieId),
+      });
+    },
+  });
+}

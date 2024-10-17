@@ -34,8 +34,6 @@ export default function ReplyForm({ parentReviewId, movieId }: ReplyFormProps) {
   const replyValue = watch("replyValue");
 
   const onSubmit: SubmitHandler<ReplyValue> = () => {
-    if (handleNeedLogin()) return;
-
     addReply(
       { parentReviewId, content: replyValue },
       {
@@ -64,6 +62,12 @@ export default function ReplyForm({ parentReviewId, movieId }: ReplyFormProps) {
                 {...field}
                 rows={1}
                 ref={textareaRef}
+                onFocus={() => {
+                  if (handleNeedLogin()) {
+                    textareaRef.current?.blur();
+                    return;
+                  }
+                }}
                 placeholder="답글을 작성해주세요."
                 className="my-3 w-[calc(100%-71px)] resize-none bg-transparent pl-4 pr-2 leading-[21px] text-Gray_Orange outline-none Text-s-Regular input-scrollbar placeholder:text-Gray Tablet:w-[calc(100%-90px)] Tablet:pr-3 Tablet:leading-[24px] Tablet:Text-m-Regular"
                 onChange={(e) => {

@@ -95,4 +95,18 @@ export const keywordAPIs = {
 
     return { data, res };
   },
+
+  likeKeyword: async (keywordId: number) => {
+    const accessToken = tokenManager.getToken();
+    const res = await fetch(`${API_URL}/keywords/count/${keywordId}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        access: `${accessToken}`,
+      },
+    });
+    const data = await res.json();
+
+    return { data, res };
+  },
 };
