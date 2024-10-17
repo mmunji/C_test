@@ -42,8 +42,11 @@ export default function useLogin(type: "with-nickname" | "without-nickname") {
           }
           setLoggedIn(true);
 
-          if (type === "with-nickname") router.push(prevPage);
-          else {
+          if (type === "with-nickname") {
+            setTimeout(() => {
+              router.push(prevPage);
+            }, 500);
+          } else {
             setUserInfo({
               nickname: data.nickname,
               birthday: data.birthday,

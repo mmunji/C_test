@@ -7,9 +7,9 @@ import { AccountFormLabel } from "@/app/my/_components/Labels";
 import useDebounce from "@/hooks/useDebounce";
 import { changeUserInfo, verifyNickname } from "@/services/my/actions";
 import useMyInfoStore from "@/stores/useMyInfoStore";
-import { nincknameRegex } from "@/utils/regex";
+import { nicknameRegex } from "@/utils/regex";
 const nicknameSchema = z.object({
-  nickname: z.string().regex(nincknameRegex),
+  nickname: z.string().regex(nicknameRegex),
 });
 
 interface AccountFormProps {
