@@ -4,10 +4,7 @@ import { tokenManager } from "../auth/tokenManager";
 export const movieAPIs = {
   getMovieDetail: async (movieId: number) => {
     const res = await fetch(`${API_URL}/movie/${movieId}`, {
-      headers: {
-        method: "GET",
-        "Content-Type": "application/json",
-      },
+      cache: "no-store",
     });
     const data: MovieDetailData = await res.json();
     return data;
