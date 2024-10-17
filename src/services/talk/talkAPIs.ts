@@ -35,11 +35,16 @@ export const talkAPIs = {
 
   getMyTalk: async (movieId: number) => {
     const accessToken = tokenManager.getToken();
+    const headers: Record<string, string> = {
+      "Content-Type": "application/json",
+    };
+
+    if (accessToken) {
+      headers.access = accessToken;
+    }
+
     const res = await fetch(`${API_URL}/reviews/my?movieId=${movieId}`, {
-      headers: {
-        "Content-Type": "application/json",
-        access: `${accessToken}`,
-      },
+      headers,
       cache: "no-store",
     });
 
@@ -221,11 +226,16 @@ export const talkAPIs = {
 
   getMyStar: async (movieId: number) => {
     const accessToken = tokenManager.getToken();
+    const headers: Record<string, string> = {
+      "Content-Type": "application/json",
+    };
+
+    if (accessToken) {
+      headers.access = accessToken;
+    }
+
     const res = await fetch(`${API_URL}/reviews/star?movieId=${movieId}`, {
-      headers: {
-        "Content-Type": "application/json",
-        access: `${accessToken}`,
-      },
+      headers,
       cache: "no-store",
     });
 
