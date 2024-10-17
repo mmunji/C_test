@@ -1,4 +1,6 @@
+"use client";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 
 import { StarFillSm } from "@/../public/icons";
 interface KeyWordInfoProps {
@@ -10,6 +12,7 @@ interface KeyWordInfoProps {
   nickname: string;
   createdAt: string;
   profile?: string;
+  isVisible?: boolean;
 }
 
 export default function KeyWordPosts({
@@ -21,9 +24,12 @@ export default function KeyWordPosts({
   keyword,
   createdAt,
   profile,
+  isVisible,
 }: KeyWordInfoProps) {
   return (
-    <div className="Text-s-Mediuim flex h-full w-full flex-col gap-2 rounded-xl bg-D1_Gray px-4 py-4 Tablet:px-7 Tablet:py-6">
+    <div
+      className={`${isVisible ? "scale-100 opacity-100" : "scale-10 opacity-0"}  transition-transfor Text-s-Mediuim flex  h-full w-full flex-col gap-2 rounded-xl bg-D1_Gray px-4 py-4 duration-700 ease-in-out Tablet:px-7 Tablet:py-6 `}
+    >
       <div className="flex justify-between">
         <div className="flex items-center gap-2">
           <div

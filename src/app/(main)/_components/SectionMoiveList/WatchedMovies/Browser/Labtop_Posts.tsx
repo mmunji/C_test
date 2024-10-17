@@ -31,7 +31,11 @@ export default function Labtop_Posts({ MovieWatchMovies }: WatchMovieType) {
                           {e.movienm}
                         </span>
                         <div className="flex items-center justify-center">
-                          <PostRating />
+                          <PostRating
+                            movienm={e.movienm}
+                            movieId={e.movieId}
+                            StarReview={true}
+                          />
                         </div>
                       </div>
                     </div>

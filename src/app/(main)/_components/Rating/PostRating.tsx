@@ -1,6 +1,17 @@
 import useRating from "@/app/detail/_hooks/useRating";
 import RatingStar from "@/components/rating/RatingStar";
-export default function PostRating() {
+
+interface StarMoiveType {
+  movienm?: string;
+  movieId?: number;
+  StarReview?: boolean;
+}
+
+export default function PostRating({
+  movienm,
+  movieId,
+  StarReview,
+}: StarMoiveType) {
   const {
     ratingValue,
     setRatingValue,
@@ -17,6 +28,9 @@ export default function PostRating() {
         {[...Array(5)].map((_, i) => (
           <RatingStar
             key={i}
+            movienm={movienm}
+            movieId={movieId}
+            StarReview={StarReview}
             {...{
               index: i,
               ratingValue,
@@ -33,6 +47,9 @@ export default function PostRating() {
         {[...Array(5)].map((_, i) => (
           <RatingStar
             key={i}
+            movienm={movienm}
+            movieId={movieId}
+            StarReview={StarReview}
             {...{
               index: i,
               ratingValue,
@@ -49,6 +66,9 @@ export default function PostRating() {
         {[...Array(5)].map((_, i) => (
           <RatingStar
             key={i}
+            movienm={movienm}
+            movieId={movieId}
+            StarReview={StarReview}
             {...{
               index: i,
               ratingValue,
