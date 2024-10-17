@@ -224,6 +224,25 @@ export const talkAPIs = {
     return { data, res };
   },
 
+  editReply: async (
+    talkId: number | undefined,
+    content: string | undefined,
+  ) => {
+    const accessToken = tokenManager.getToken();
+
+    const res = await fetch(`${API_URL}/reviews/comments/${talkId}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        access: `${accessToken}`,
+      },
+      body: JSON.stringify({ content }),
+    });
+
+    const data = await res.json();
+    return { data, res };
+  },
+
   getMyStar: async (movieId: number) => {
     const accessToken = tokenManager.getToken();
     const headers: Record<string, string> = {

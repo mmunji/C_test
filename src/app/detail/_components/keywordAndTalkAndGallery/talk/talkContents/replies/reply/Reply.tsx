@@ -29,8 +29,15 @@ export default function Reply({
         setTalkId={setTalkId}
         movieId={movieId}
         setEditReply={setEditReply}
+        parentReviewId={parentReviewId}
       />
-      <ReplyBody reply={reply} editReply={editReply} />
+      <ReplyBody
+        reply={reply}
+        editReply={editReply}
+        setEditReply={setEditReply}
+        movieId={movieId}
+        parentReviewId={parentReviewId}
+      />
       <ReplyFooter
         reply={reply}
         movieId={movieId}

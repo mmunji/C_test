@@ -13,5 +13,6 @@ export function useGetMyKeyword(movieId: number) {
 
       return { data, res };
     },
+    enabled: !!accessToken,
   });
 }

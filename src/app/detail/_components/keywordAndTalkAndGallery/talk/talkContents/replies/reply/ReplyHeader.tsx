@@ -15,6 +15,7 @@ interface ReplyHeaderProps {
   setTalkId: Dispatch<SetStateAction<number | null>>;
   movieId: number;
   setEditReply: Dispatch<SetStateAction<boolean>>;
+  parentReviewId: number;
 }
 
 export default function ReplyHeader({
@@ -23,14 +24,19 @@ export default function ReplyHeader({
   setTalkId,
   movieId,
   setEditReply,
+  parentReviewId,
 }: ReplyHeaderProps) {
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
   const { mutate: removeTalk, isPending } = useRemoveTalk({
+    parentReviewId: parentReviewId,
+    setOpenDeleteModal: setOpenDeleteModal,
     movieId: movieId,
+    type: "reply",
   });
   const submitRemoveTalk = () => {
     removeTalk({ talkId: reply.id });
   };
+
   return (
     <>
       <div className="flex h-10 items-center justify-between">

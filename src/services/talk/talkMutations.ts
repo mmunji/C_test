@@ -202,13 +202,49 @@ export function useEditTalk(
     },
   });
 }
+export function useEditReply(
+  setEditReply: Dispatch<SetStateAction<boolean>>,
+  movieId: number,
+  parentReviewId: number,
+) {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: ({
+      talkId,
+      content,
+    }: {
+      talkId: number | undefined;
+      content: string | undefined;
+    }) => talkAPIs.editReply(talkId, content),
+    onSuccess: () => {
+      revalidateMyPage("my");
+
+      queryClient.invalidateQueries({
+        queryKey: TALK_QUERY_KEYS.infiniteMovieReplies(parentReviewId),
+      });
+
+      queryClient.invalidateQueries({
+        queryKey: TALK_QUERY_KEYS.infiniteTalks(movieId),
+      });
+
+      setEditReply(false);
+    },
+  });
+}
 
 export function useRemoveTalk({
+  setOpenDeleteModal,
   setClickedEdit,
   movieId,
+  type,
+  parentReviewId,
 }: {
+  setOpenDeleteModal: Dispatch<SetStateAction<boolean>>;
   setClickedEdit?: (clickedEditMyTalk: boolean) => void;
   movieId: number;
+  type: "talk" | "reply";
+  parentReviewId?: number;
 }) {
   const queryClient = useQueryClient();
 
@@ -218,6 +254,9 @@ export function useRemoveTalk({
     onSuccess: () => {
       revalidateMyPage("my");
       queryClient.invalidateQueries({
+        queryKey: TALK_QUERY_KEYS.infiniteMovieReplies(parentReviewId),
+      });
+      queryClient.invalidateQueries({
         queryKey: TALK_QUERY_KEYS.myTalk(movieId),
       });
       queryClient.invalidateQueries({
@@ -226,9 +265,10 @@ export function useRemoveTalk({
       queryClient.invalidateQueries({
         queryKey: TALK_QUERY_KEYS.infiniteTalks(movieId),
       });
+      setOpenDeleteModal(false);
 
       if (setClickedEdit) setClickedEdit(false);
-      location.reload();
+      if (type === "talk") location.reload();
     },
   });
 }

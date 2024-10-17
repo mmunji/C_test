@@ -1,22 +1,39 @@
 import clsx from "clsx";
-import React, { useEffect, useRef, useState } from "react";
+import React, {
+  Dispatch,
+  SetStateAction,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 
 import useNeedTalkMoreButton from "@/app/detail/_hooks/useNeedTalkMoreButton";
 import handleResizeTextareaHeight from "@/app/detail/utils/handleResizeTextareaHeight";
 import Button from "@/components/buttons/Button";
+import WithLineBreak from "@/components/withLineBreak/WithLineBreak";
 import useDevice from "@/hooks/useDevice";
+import { useEditReply } from "@/services/talk/talkMutations";
 
 interface ReplyBodyProps {
   reply: ReviewList;
   editReply: boolean;
+  setEditReply: Dispatch<SetStateAction<boolean>>;
+  movieId: number;
+  parentReviewId: number;
 }
 
 interface ReplyValue {
   replyValue: string;
 }
 
-export default function ReplyBody({ reply, editReply }: ReplyBodyProps) {
+export default function ReplyBody({
+  reply,
+  editReply,
+  setEditReply,
+  movieId,
+  parentReviewId,
+}: ReplyBodyProps) {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const { handleSubmit, watch, control, setValue } = useForm<ReplyValue>({
     defaultValues: {
@@ -24,8 +41,16 @@ export default function ReplyBody({ reply, editReply }: ReplyBodyProps) {
     },
   });
   const [showMore, setShowMore] = useState(false);
-  const { contentRef, showMoreButton } = useNeedTalkMoreButton("reply");
+  const { contentRef, showMoreButton } = useNeedTalkMoreButton({
+    type: "reply",
+    replyContent: reply.content,
+  });
   const { device } = useDevice();
+  const { mutate: handleEditReply } = useEditReply(
+    setEditReply,
+    movieId,
+    parentReviewId,
+  );
 
   const replyContent = `${reply?.content}`;
 
@@ -34,12 +59,22 @@ export default function ReplyBody({ reply, editReply }: ReplyBodyProps) {
 
   const replyValue = watch("replyValue");
   const onSubmit: SubmitHandler<ReplyValue> = () => {
-    // addReply({ parentReviewId, content: replyValue });
+    handleEditReply({
+      content: replyValue,
+      talkId: reply.id,
+    });
   };
 
   useEffect(() => {
     if (editReply) textareaRef.current?.focus();
   }, [editReply]);
+
+  useEffect(() => {
+    if (editReply && textareaRef.current) {
+      textareaRef.current.focus();
+      handleResizeTextareaHeight(maxLines, lineHeight, textareaRef);
+    }
+  }, [editReply, lineHeight]);
 
   return (
     <>
@@ -102,7 +137,7 @@ export default function ReplyBody({ reply, editReply }: ReplyBodyProps) {
               },
             )}
           >
-            {replyContent}
+            {WithLineBreak(replyContent)}
           </p>
 
           {!showMore && showMoreButton && (

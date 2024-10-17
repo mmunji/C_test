@@ -32,7 +32,9 @@ export default function TalkContentsHeader({
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
 
   const { mutate: removeTalk, isPending } = useRemoveTalk({
+    setOpenDeleteModal: setOpenDeleteModal,
     movieId: movieId,
+    type: "talk",
   });
 
   const submitRemoveTalk = () => {

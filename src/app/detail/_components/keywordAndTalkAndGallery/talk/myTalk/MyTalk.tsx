@@ -46,8 +46,10 @@ function MyTalk({ myTalk, movieId, movieDetailData }: MyTalkProps) {
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
 
   const { mutate: removeTalk, isPending } = useRemoveTalk({
+    setOpenDeleteModal: setOpenDeleteModal,
     setClickedEdit: setClickedEditMyTalk,
     movieId: movieId,
+    type: "talk",
   });
   const { mutate: editTalk } = useEditTalk(setClickedEditMyTalk, movieId);
 
