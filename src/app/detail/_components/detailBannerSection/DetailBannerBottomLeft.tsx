@@ -37,7 +37,12 @@ export default function DetailBannerBottomLeft({
     formattedGenreText,
   ];
 
-  console.log(movieDetailData.cinetalkScore, movieDetailData.tmdbScore);
+  console.log(
+    "씨네톡 평점",
+    movieDetailData.cinetalkScore,
+    "tmdb 평점",
+    movieDetailData.tmdbScore,
+  );
 
   return (
     <section className="mt-auto flex flex-col gap-1">
