@@ -164,7 +164,7 @@ export function useAddReply({
 }
 
 export function useEditTalk(
-  setClickedEdit: Dispatch<SetStateAction<boolean>>,
+  setClickedEdit: (clickedEditMyTalk: boolean) => void,
   movieId: number,
 ) {
   const queryClient = useQueryClient();
@@ -203,10 +203,13 @@ export function useEditTalk(
   });
 }
 
-export function useRemoveTalk(
-  setClickedEdit: Dispatch<SetStateAction<boolean>>,
-  movieId: number,
-) {
+export function useRemoveTalk({
+  setClickedEdit,
+  movieId,
+}: {
+  setClickedEdit?: (clickedEditMyTalk: boolean) => void;
+  movieId: number;
+}) {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -224,7 +227,7 @@ export function useRemoveTalk(
         queryKey: TALK_QUERY_KEYS.infiniteTalks(movieId),
       });
 
-      setClickedEdit(false);
+      if (setClickedEdit) setClickedEdit(false);
       location.reload();
     },
   });
