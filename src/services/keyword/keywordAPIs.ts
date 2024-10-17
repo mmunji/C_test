@@ -14,7 +14,7 @@ export const keywordAPIs = {
 
   getMyKeyword: async (movieId: number) => {
     const accessToken = tokenManager.getToken();
-    if (!accessToken) return;
+
     const headers: Record<string, string> = {
       "Content-Type": "application/json",
     };
