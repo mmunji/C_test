@@ -37,6 +37,8 @@ export default function DetailBannerBottomLeft({
     formattedGenreText,
   ];
 
+  console.log(movieDetailData.cinetalkScore, movieDetailData.tmdbScore);
+
   return (
     <section className="mt-auto flex flex-col gap-1">
       <section className="mb-2 flex flex-col-reverse items-center gap-1 Laptop:mb-0 Laptop:flex-row Laptop:gap-4">
