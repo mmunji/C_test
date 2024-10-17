@@ -183,14 +183,19 @@ export const talkAPIs = {
 
   getReplies: async (parentReviewId: number, page: number) => {
     const accessToken = tokenManager.getToken();
+    const headers: Record<string, string> = {
+      "Content-Type": "application/json",
+    };
+
+    if (accessToken) {
+      headers.access = accessToken;
+    }
 
     const res = await fetch(
       `${API_URL}/reviews/${parentReviewId}/comments?page=${page}`,
       {
         method: "GET",
-        headers: {
-          access: `${accessToken}`,
-        },
+        headers,
       },
     );
 
