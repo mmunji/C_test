@@ -14,6 +14,9 @@ export default function SimilarTastesMoive() {
   const { device } = useDevice();
   const [ReviewUsers, setReviewUsers] = useState<MovieReviewRecommed[]>([]);
   const accessToken = tokenManager.getToken();
+  const [message, setmessage] = useState(
+    "로그인 하고 별을 눌러 평가해보세요 :",
+  );
   const ChangePickNumber = (index: number) => {
     setPickUserNumber(index);
   };
@@ -27,7 +30,9 @@ export default function SimilarTastesMoive() {
         console.error("영화를 가져오는 중 오류 발생:", error);
       }
     };
-
+    if (accessToken) {
+      setmessage("톡을 많이 작성할수록 내 취향에 비슷해져요.");
+    }
     fetchMovie();
   }, []);
   return (
@@ -36,24 +41,10 @@ export default function SimilarTastesMoive() {
         <h1 className="Text-l-Bold Laptop:Text-xxl-Bold ">
           다른 사람들은 이런 영화를 평가했어요
         </h1>
-        {accessToken ? (
-          device == "mobile" ? (
-            <SpeechBubble dir="top">
-              톡을 많이 작성할수록 내 취향에 비슷해져요.
-            </SpeechBubble>
-          ) : (
-            <SpeechBubble dir="left">
-              톡을 많이 작성할수록 내 취향에 비슷해져요.
-            </SpeechBubble>
-          )
-        ) : device == "mobile" ? (
-          <SpeechBubble dir="top">
-            로그인 하고 별을 눌러 평가해보세요 :)
-          </SpeechBubble>
+        {device == "mobile" ? (
+          <SpeechBubble dir="top">{message}</SpeechBubble>
         ) : (
-          <SpeechBubble dir="left">
-            로그인 하고 별을 눌러 평가해보세요 :)
-          </SpeechBubble>
+          <SpeechBubble dir="left">{message}</SpeechBubble>
         )}
       </div>
       <div className="flex gap-4 Laptop:hidden">

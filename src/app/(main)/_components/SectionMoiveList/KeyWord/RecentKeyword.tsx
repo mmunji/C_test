@@ -68,7 +68,7 @@ export default function RecentKeyword() {
                     className={`Text-m-Bold Tablet:Text-s-Bold  Laptop:Text-l-Bold  ${KeywordListNumber == index ? "bg-D1_Gray text-Silver" : "text-L_Gray"}  rounded-xl px-5 py-2 text-center Laptop:w-[178px] Desktop:w-[240px] `}
                     onClick={() => HandleKeywords(index)}
                   >
-                    {mention.keyword} {mention.count}
+                    {mention.keyword}
                   </div>
                 );
               })

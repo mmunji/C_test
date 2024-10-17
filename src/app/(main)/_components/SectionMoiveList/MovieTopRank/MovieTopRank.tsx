@@ -15,7 +15,7 @@ import Mobile_BestMovie from "./Mobile_BestMovie";
 import Tablet_BestMoive from "./Tablet_BestMoive";
 export default function MoiveTopRank() {
   const [filter, setFilter] = useState(0);
-  const [filterName, setfilterName] = useState("전체");
+
   const MovieGenreType = [
     {
       name: "전체",

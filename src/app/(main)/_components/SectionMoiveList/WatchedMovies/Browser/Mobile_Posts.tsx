@@ -48,7 +48,11 @@ export default function Mobile_Posts({ MovieWatchMovies }: WatchMovieType) {
                     <div>
                       <h1 className="mt-5 text-center Text-l-Bold">{e.rate}</h1>
                       <div className="flex ">
-                        <PostRating />
+                        <PostRating
+                          movienm={e.movienm}
+                          movieId={e.movieId}
+                          StarReview={true}
+                        />
                       </div>
                     </div>
                   </div>

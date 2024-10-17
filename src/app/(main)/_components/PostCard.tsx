@@ -7,7 +7,7 @@ import { ChatFillSm, StarFillMd, ThumbsUpFillSm } from "@/../public/icons";
 import GetRating from "./Rating/GetRating";
 interface PostNumber {
   num?: number;
-  onClick?: () => void;
+  onMouseEnter?: () => void;
   Hover?: () => void;
   StarPostType?: string;
   PostType?: string;
@@ -22,7 +22,7 @@ interface PostNumber {
 
 export default function PostCard({
   num,
-  onClick,
+  onMouseEnter,
   PostType,
   StarPostType,
   StarRating,
@@ -48,7 +48,7 @@ export default function PostCard({
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
-      onClick={onClick}
+      onMouseEnter={onMouseEnter}
       onMouseOver={HandleMouseOver}
       onMouseOut={HandleMouseOut}
     >

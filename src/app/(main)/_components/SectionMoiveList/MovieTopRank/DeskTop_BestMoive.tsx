@@ -32,6 +32,7 @@ export default function DeskTop_BestMovie(MovieData: Desktop_BestMoiveProps) {
   const [StatePost, SetStatePost] = useState(0);
   const [swiper, setSwiper] = useState<SwiperClass>();
   const [hovered, sethovered] = useState(false);
+
   const onHandlePost = (index: number) => {
     SetStatePost(index);
   };
@@ -61,29 +62,31 @@ export default function DeskTop_BestMovie(MovieData: Desktop_BestMoiveProps) {
               }}
             >
               <div
-                className={`flex gap-6 ${StatePost === index ? "w-[768px]" : "w-[240px]"} transition-opacity duration-700 ease-in`}
+                className={`flex gap-6 ${StatePost === index ? "w-[768px]" : "w-[240px]"} transition-opacity duration-700 ease-in-out`}
               >
                 <div
                   className={`${
                     StatePost === index ? "scale-100" : ""
-                  } transition-opacity duration-700 ease-in`}
+                  } transition-opacity duration-500 ease-in-out`}
                   style={{ width: StatePost === index ? "240px" : "240px" }} // 원하는 고정 너비
                 >
-                  {MovieDetailData.poster_path ? (
-                    <PostCard
-                      num={index + 1}
-                      onClick={() => onHandlePost(index)}
-                      background={MovieDetailData.poster_path}
-                    />
-                  ) : (
-                    <div>
-                      <Image
-                        src={NoImageSsikongi}
-                        alt="포스터"
-                        className="h-[358px] w-[238px] cursor-pointer rounded-xl Tablet:h-[344px] Tablet:w-[260px] Laptop:h-[260px] Laptop:w-[174px]  Desktop:h-[360px] Desktop:w-[240px]"
+                  <Link href={`detail/${MovieDetailData.movieId}`}>
+                    {MovieDetailData.poster_path ? (
+                      <PostCard
+                        num={index + 1}
+                        onMouseEnter={() => onHandlePost(index)}
+                        background={MovieDetailData.poster_path}
                       />
-                    </div>
-                  )}
+                    ) : (
+                      <div>
+                        <Image
+                          src={NoImageSsikongi}
+                          alt="포스터"
+                          className="h-[358px] w-[238px] cursor-pointer rounded-xl Tablet:h-[344px] Tablet:w-[260px] Laptop:h-[260px] Laptop:w-[174px]  Desktop:h-[360px] Desktop:w-[240px]"
+                        />
+                      </div>
+                    )}
+                  </Link>
                 </div>
                 <div
                   className={`${
