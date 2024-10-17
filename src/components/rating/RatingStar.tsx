@@ -9,6 +9,7 @@ import {
   StarLg,
   StarXl,
 } from "@/../public/icons";
+import { talkAPIs } from "@/services/talk/talkAPIs";
 
 interface StarProps {
   index: number;
@@ -18,6 +19,9 @@ interface StarProps {
   setClickedValue: Dispatch<SetStateAction<boolean>>;
   ratingSize: string;
   readyToRating?: boolean;
+  StarReview?: boolean;
+  movienm?: string;
+  movieId?: number;
 }
 
 export default function RatingStar({
@@ -28,6 +32,9 @@ export default function RatingStar({
   setClickedValue,
   ratingSize,
   readyToRating,
+  StarReview,
+  movienm,
+  movieId,
 }: StarProps) {
   let src;
   let alt;
@@ -57,6 +64,18 @@ export default function RatingStar({
       alt = "큰 빈 별";
     }
   }
+  const AddStarReview = async (star: number) => {
+    if (StarReview) {
+      await talkAPIs.addTalks({
+        movieName: movienm!,
+        movieId: movieId!,
+        star: star,
+        content: "",
+        spoiler: false,
+        genreList: [],
+      });
+    }
+  };
 
   return (
     <div
@@ -67,6 +86,7 @@ export default function RatingStar({
       onClick={() => {
         setRatingValue(ratingValue);
         setClickedValue(!clickedValue);
+        AddStarReview(ratingValue);
       }}
     >
       <div

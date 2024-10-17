@@ -1,7 +1,7 @@
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
-import { setAccessToken } from "@/services/auth/actions";
+import { revalidateUser, setAccessToken } from "@/services/auth/actions";
 import { authAPIS } from "@/services/auth/authAPIs";
 import { tokenManager } from "@/services/auth/tokenManager";
 import useLoggedInStore from "@/stores/useLoggedIn";
@@ -35,9 +35,10 @@ export default function useLogin(type: "with-nickname" | "without-nickname") {
         if (res.ok && prevPage) {
           const accessToken = res.headers.get("access");
           if (accessToken) {
+            setAccessToken(accessToken);
+            revalidateUser();
             tokenManager.setToken(accessToken);
             localStorage.setItem("lastSocialLogin", data.provider);
-            setAccessToken(accessToken);
           }
           setLoggedIn(true);
 

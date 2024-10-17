@@ -68,7 +68,6 @@ export default function TableList({ rowData, type }: TableListProps) {
   } | null>(null);
   // 검색 기능 구현
 
-  // const [ReportContent, setReportContent] = useState("");
   const onSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
     setSearchText(value);

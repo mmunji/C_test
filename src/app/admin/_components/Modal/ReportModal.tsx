@@ -1,5 +1,6 @@
 "use client";
 import dayjs from "dayjs";
+import { useState } from "react";
 
 import Modal from "@/components/modal/modal";
 import { adminAPIs } from "@/services/admin/adminAPIs";
@@ -22,9 +23,21 @@ export default function ReportModal({
   ReportContent,
   setisReporttModal,
 }: ReportProps) {
-  const PostReport = () => {
-    adminAPIs.AdamageReport(ReportContent.id, ReportContent.category, "3");
+  const [isOpen, setIsOpen] = useState(false);
+  const [reportTime, setreportTime] = useState("신고기간");
+  const toggleDropdown = () => {
+    setIsOpen(!isOpen);
   };
+  const reportday = ["1", "3", "5", "10"];
+  const PostReport = async () => {
+    await adminAPIs.AdamageReport(
+      ReportContent.id,
+      ReportContent.category,
+      reportTime == "신고기간" ? "" : reportTime,
+    );
+    setisReporttModal(false);
+  };
+
   return (
     <Modal isAlertModal onClose={() => setIsModal}>
       <Modal.TitleWrapper>
@@ -43,7 +56,29 @@ export default function ReportModal({
           신고한 리뷰 : {ReportContent.content}
         </Modal.Description>
         <Modal.Description>
-          <div></div>
+          <div className="flex flex-col  gap-1">
+            <button
+              onClick={toggleDropdown}
+              className=" w-full justify-center rounded-md border  bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+            >
+              {reportTime}
+            </button>
+            <div className="flex gap-3">
+              {isOpen
+                ? reportday.map((day, index) => {
+                    return (
+                      <button
+                        key={index}
+                        onClick={() => setreportTime(day)}
+                        className="rounded-md border-2 px-2"
+                      >
+                        {day}
+                      </button>
+                    );
+                  })
+                : " "}
+            </div>
+          </div>
         </Modal.Description>
         <Modal.Description>{ReportContent.review_content}</Modal.Description>
       </Modal.TitleWrapper>

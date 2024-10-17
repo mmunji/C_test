@@ -48,7 +48,11 @@ export default function Tablet_Posts({ MovieWatchMovies }: WatchMovieType) {
                       </div>
                       <div>
                         <div className="flex ">
-                          <PostRating />
+                          <PostRating
+                            movienm={e.movienm}
+                            movieId={e.movieId}
+                            StarReview={true}
+                          />
                         </div>
                         <div className="mt-2">
                           <SpeechBubble dir="top">

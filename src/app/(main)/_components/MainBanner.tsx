@@ -57,14 +57,7 @@ export default function MainBanner() {
           // loop={true}
           modules={[Autoplay, Pagination]}
           className="h-[450px] Tablet:h-[500px]  Laptop:h-[510px] Desktop:h-[690px]"
-          // autoplay={{ delay: 1000, disableOnInteraction: false }}
-          // breakpoints={{
-          //   360: { slidesPerView: 1 },
-          //   1280: { slidesPerView: 2.1 },
-          //   1440: { slidesPerView: "auto" },
-          //   1680: { slidesPerView: 1.5 },
-          //   1960: { slidesPerView: "auto" },
-          // }}
+          autoplay={{ delay: 2000, disableOnInteraction: false }}
         >
           {Array.isArray(MovieBanner) && MovieBanner.length > 0
             ? MovieBanner.map((BannerItem, index) => {
