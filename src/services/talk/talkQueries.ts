@@ -9,8 +9,12 @@ export function useGetTalkQuery(movieId: number, sort: "star" | "createdAt") {
     queryKey: TALK_QUERY_KEYS.infiniteTalks(movieId),
     queryFn: ({ pageParam }) => talkAPIs.getTalks(movieId, pageParam, sort),
     initialPageParam: 0,
-    getNextPageParam: (lastPage) => {
-      return lastPage.isLast ? undefined : lastPage.totalPage + 1;
+    getNextPageParam: (lastPage, pages) => {
+      if (!lastPage.isLast) {
+        return pages.length + 0;
+      } else {
+        return undefined;
+      }
     },
   });
 }
