@@ -85,15 +85,17 @@ export default function Talk({ title, movieId, movieDetailData }: TalkProps) {
           <NoTalk />
         ) : (
           <React.Fragment>
-            {allTalks.map((talk) => (
-              <TalkContents
-                key={talk.id}
-                movieId={movieId}
-                talk={talk}
-                setOpen={setOpen}
-                setTalkId={setTalkId}
-              />
-            ))}
+            {allTalks
+              .filter((el) => el.content !== "")
+              .map((talk) => (
+                <TalkContents
+                  key={talk.id}
+                  movieId={movieId}
+                  talk={talk}
+                  setOpen={setOpen}
+                  setTalkId={setTalkId}
+                />
+              ))}
             <div ref={ref} />
           </React.Fragment>
         )}

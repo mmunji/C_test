@@ -46,7 +46,6 @@ export default function TalkForm({
   const movieName = movieDetailData.title;
   const talk = watch("talk");
   const spoiler = watch("spoiler");
-  const genreList = movieDetailData.genreDTOList.map((el) => el.id);
 
   const onSubmit: SubmitHandler<AddTalkValues> = () => {
     if (readyToSubmit) {
