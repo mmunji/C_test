@@ -75,6 +75,9 @@ export function useLikeTalk({
   return useMutation({
     mutationFn: (talkId: number) => talkAPIs.like(talkId),
     onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: TALK_QUERY_KEYS.myTalk(movieId),
+      });
       if (type === "talk") {
         queryClient.invalidateQueries({
           queryKey: TALK_QUERY_KEYS.infiniteTalks(movieId),
@@ -102,6 +105,9 @@ export function useDislikeTalk({
   return useMutation({
     mutationFn: (talkId: number) => talkAPIs.dislike(talkId),
     onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: TALK_QUERY_KEYS.myTalk(movieId),
+      });
       if (type === "talk") {
         queryClient.invalidateQueries({
           queryKey: TALK_QUERY_KEYS.infiniteTalks(movieId),
@@ -140,6 +146,10 @@ export function useAddReply({
     }) => talkAPIs.addReply(parentReviewId, content),
     onSuccess: () => {
       revalidateMyPage("my");
+      queryClient.invalidateQueries({
+        queryKey: TALK_QUERY_KEYS.myTalk(movieId),
+      });
+
       queryClient.invalidateQueries({
         queryKey: TALK_QUERY_KEYS.infiniteTalks(movieId),
       });
