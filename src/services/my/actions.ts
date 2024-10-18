@@ -6,9 +6,9 @@ import { redirect } from "next/navigation";
 import { tokenKey } from "@/constants/token";
 import customFetchInstance from "@/services/customFetch";
 
-export const logout = async () => {
+export const logout = async (isOnMyPage = false) => {
   cookies().delete(tokenKey);
-  redirect("/");
+  if (isOnMyPage) redirect("/");
 };
 
 export const changeUserInfo = async (

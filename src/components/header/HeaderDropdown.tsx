@@ -39,7 +39,7 @@ export default function HeaderDropdown({
 
   const handleClickDropdown = (href: string | null) => {
     if (href) return;
-    logout();
+    logout(pathname.includes("/my"));
     handleLogout();
   };
   const filteredMenu = dropdownMenu.filter(

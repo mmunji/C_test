@@ -36,18 +36,21 @@ export default function BirthdayForm({ birthday }: BirthdayFormProps) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
+  const handleReset = () => {
+    setIsEditing(false);
+    setError(false);
+    setNewBirthday({ day, month, year });
+  };
+
   const handleEscape = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Escape") {
-      setIsEditing(false);
-      setError(false);
-      setNewBirthday({ day, month, year });
-    }
+    if (e.key === "Escape") handleReset();
   };
 
   const handleBirthdaySubmit = async () => {
     ["month", "day"].forEach((field) =>
       handlePadBirthday(field as keyof Birthday),
     );
+    if (error) return handleReset();
     const { year, month, day } = newBirthday;
     setLoading(true);
     const result = await changeUserInfo(`${year}-${month}-${day}`, "birthday");

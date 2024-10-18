@@ -98,7 +98,7 @@ export default function Keyword({
           </div>
         )}
         <div className="hidden w-[305px] Laptop:absolute Laptop:left-1/2 Laptop:top-0 Laptop:block Laptop:translate-x-[-50%] Laptop:translate-y-[-50%]">
-          <SpeechBubble dir="bottom">
+          <SpeechBubble id="Keyword" dir="bottom">
             떠오르는 단어를 작성하거나, 키워드를 눌러보세요!
           </SpeechBubble>
         </div>

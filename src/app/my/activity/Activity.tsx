@@ -11,6 +11,8 @@ export default async function Activity({ isMobile = false }: ActivityProps) {
     myAPIs.getReview(),
     myAPIs.getLog(),
   ]);
+
+  const nonEmptyReviews = reviews.filter((review) => review.content);
   return (
     <section
       className={cn(
@@ -21,7 +23,7 @@ export default async function Activity({ isMobile = false }: ActivityProps) {
       <h2 className="hidden Text-m-Bold Tablet:block Tablet:Text-l-Bold">
         내 활동
       </h2>
-      <ActivityContainer log={log} reviews={reviews} />
+      <ActivityContainer log={log} reviews={nonEmptyReviews} />
     </section>
   );
 }
