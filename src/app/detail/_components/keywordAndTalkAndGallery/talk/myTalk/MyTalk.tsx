@@ -22,6 +22,7 @@ import {
   ThumbsUpLineSm,
 } from "../../../../../../../public/icons";
 import DeleteTalkModal from "../DeleteTalkModal";
+import FixedRating from "../rating/FixedRating";
 
 interface MyTalkProps {
   myTalk: MyTalk | undefined;
@@ -51,7 +52,10 @@ function MyTalk({ myTalk, movieId, movieDetailData }: MyTalkProps) {
     movieId: movieId,
     type: "talk",
   });
-  const { mutate: editTalk } = useEditTalk(setClickedEditMyTalk, movieId);
+  const { mutate: editTalk } = useEditTalk({
+    movieId: movieId,
+    setClickedEdit: setClickedEditMyTalk,
+  });
 
   const genreList = movieDetailData.genreDTOList.map((el) => el.id);
 
@@ -301,21 +305,3 @@ function MyTalk({ myTalk, movieId, movieDetailData }: MyTalkProps) {
 }
 
 export default MyTalk;
-
-function FixedRating({ star }: { star: number }) {
-  return (
-    <div className="flex">
-      {[...Array(5)].map((_, i) => (
-        <RatingStar
-          key={i}
-          index={i}
-          ratingValue={star}
-          setRatingValue={() => {}}
-          clickedValue={true}
-          setClickedValue={() => {}}
-          ratingSize=""
-        />
-      ))}
-    </div>
-  );
-}

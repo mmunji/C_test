@@ -5,6 +5,10 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 
 import arrangeCenterHighKeyword from "@/app/detail/utils/arrangeCenterHighKeyword";
+import Modal from "@/components/modal/modal";
+import useHandleClickAuthButton from "@/hooks/useHandleClickAuthButtons";
+import useNeedLogin from "@/hooks/useNeedLogin";
+import { useLikeKeyword } from "@/services/keyword/keywordMutations";
 import { useGetMyKeyword } from "@/services/keyword/keywordQueries";
 
 import { Report } from "../../../../../../public/icons";
@@ -37,6 +41,8 @@ export default function Keyword({
   const [isClickedEdit, setIsClickedEdit] = useState(false);
   const [open, setOpen] = useState(false);
   const [openReportComplete, setOpenReportComplete] = useState(false);
+  const { handleNeedLogin, isOpen, setIsOpen } = useNeedLogin();
+  const { handleClickAuthButton } = useHandleClickAuthButton();
 
   const top1 = top10s[0];
   const top2 = top10s[1];
@@ -58,6 +64,8 @@ export default function Keyword({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [keywordsData]);
 
+  const { mutate: likeKeyword, data } = useLikeKeyword({ movieId: movieId });
+
   return (
     <div className="flex flex-col">
       <section className="flex flex-col items-center Laptop:relative Laptop:rounded-xl Laptop:bg-D1_Gray Laptop:p-10 Desktop:p-[60px]">
@@ -67,8 +75,16 @@ export default function Keyword({
           <div className="mb-7 flex flex-wrap justify-center py-6 Tablet:mb-8 Tablet:max-w-[554px] Laptop:max-w-fit Laptop:py-0 Desktop:mb-5">
             {shuffledTop26s?.map((keyword, i) => (
               <p
+                onClick={() => {
+                  if (handleNeedLogin()) return;
+                  likeKeyword(Number(keyword.keywordId));
+                  if (
+                    data?.data.message === "해당 키워드를 이미 클릭하셨습니다."
+                  )
+                    return alert("이미 좋아요를 한 키워드입니다.");
+                }}
                 className={clsx(
-                  `mr-2 flex h-12 items-center leading-[140%] last:mr-0 ${keyword !== top1 && keyword !== top2 && keyword !== top3 && keyword !== top4 && keyword !== top5 && keyword !== top6 && keyword !== top7 && keyword !== top8 && keyword !== top8 && keyword !== top9 && keyword !== top10 && getRandomTextSize()} text-Gray_Orange`,
+                  `mr-2 flex h-12 cursor-pointer items-center leading-[140%] last:mr-0 ${keyword !== top1 && keyword !== top2 && keyword !== top3 && keyword !== top4 && keyword !== top5 && keyword !== top6 && keyword !== top7 && keyword !== top8 && keyword !== top8 && keyword !== top9 && keyword !== top10 && getRandomTextSize()} text-Gray_Orange`,
                   keyword === top1 &&
                     "h-12 leading-[140%] text-Primary Text-xxxl-Bold",
                   keyword === top2 &&
@@ -154,6 +170,14 @@ export default function Keyword({
       )}
       {openReportComplete && (
         <ReportCompleteModal setOpenReportComplete={setOpenReportComplete} />
+      )}
+      {isOpen && (
+        <Modal isAlertModal={false} onClose={() => setIsOpen(false)}>
+          <Modal.Login
+            onKakaoLogin={() => handleClickAuthButton("kakao")}
+            onNaverLogin={() => handleClickAuthButton("naver")}
+          />
+        </Modal>
       )}
     </div>
   );

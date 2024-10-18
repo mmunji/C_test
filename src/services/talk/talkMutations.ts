@@ -163,10 +163,13 @@ export function useAddReply({
   });
 }
 
-export function useEditTalk(
-  setClickedEdit: (clickedEditMyTalk: boolean) => void,
-  movieId: number,
-) {
+export function useEditTalk({
+  setClickedEdit,
+  movieId,
+}: {
+  setClickedEdit?: (clickedEditMyTalk: boolean) => void;
+  movieId?: number;
+}) {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -192,13 +195,13 @@ export function useEditTalk(
         queryKey: TALK_QUERY_KEYS.myTalk(movieId),
       });
       queryClient.invalidateQueries({
-        queryKey: TALK_QUERY_KEYS.myStar(movieId),
+        queryKey: TALK_QUERY_KEYS.myStar(movieId as number),
       });
       queryClient.invalidateQueries({
         queryKey: TALK_QUERY_KEYS.infiniteTalks(movieId),
       });
 
-      setClickedEdit(false);
+      if (setClickedEdit) setClickedEdit(false);
     },
   });
 }

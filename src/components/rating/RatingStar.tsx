@@ -22,6 +22,7 @@ interface StarProps {
   StarReview?: boolean;
   movienm?: string;
   movieId?: number;
+  genreList?: number[];
 }
 
 export default function RatingStar({
@@ -35,6 +36,7 @@ export default function RatingStar({
   StarReview,
   movienm,
   movieId,
+  genreList,
 }: StarProps) {
   let src;
   let alt;
@@ -72,7 +74,7 @@ export default function RatingStar({
         star: star,
         content: "",
         spoiler: false,
-        genreList: [],
+        genreList: genreList || [],
       });
     }
   };
