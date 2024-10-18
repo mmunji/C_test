@@ -10,17 +10,21 @@ import {
   SpeechBubbleTop,
 } from "../../../public/icons";
 
+type NudgeId = "Keyword" | "Rating" | "SimilarTastesMovie" | "WatchedMovie";
+
 interface SpeechBubbleProps {
   dir: "top" | "bottom" | "left";
+  id: NudgeId | null;
   exit?: boolean;
 }
 
 export default function SpeechBubble({
   children,
   dir,
+  id,
   exit,
 }: PropsWithChildren<SpeechBubbleProps>) {
-  const [clickExit, setClickExiit] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
 
   const arrowMap = {
     top: SpeechBubbleTop,
@@ -30,13 +34,19 @@ export default function SpeechBubble({
 
   const arrowSrc = arrowMap[dir];
 
+  const handleClose = () => {
+    if (id) localStorage.setItem(`nudge-${id}`, "hidden");
+    setIsVisible(false);
+  };
+
   useEffect(() => {
-    if (exit) setClickExiit(true);
-  }, [exit]);
+    const target = localStorage.getItem(`nudge-${id}`);
+    setIsVisible(!target || target !== "hidden");
+  }, [id]);
 
   return (
     <AnimatePresence>
-      {!clickExit && (
+      {isVisible && (
         <motion.div
           animate={{ opacity: 1 }}
           exit={{
@@ -53,7 +63,7 @@ export default function SpeechBubble({
             src={CloseSm}
             alt="닫기"
             className="h-6 w-6 cursor-pointer"
-            onClick={() => setClickExiit(true)}
+            onClick={handleClose}
           />
 
           <Image

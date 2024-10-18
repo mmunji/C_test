@@ -55,7 +55,7 @@ export default function Tablet_Posts({ MovieWatchMovies }: WatchMovieType) {
                           />
                         </div>
                         <div className="mt-2">
-                          <SpeechBubble dir="top">
+                          <SpeechBubble id={"WatchedMovie"} dir="top">
                             로그인 하고 별을 눌러 평가해보세요 :)
                           </SpeechBubble>
                         </div>

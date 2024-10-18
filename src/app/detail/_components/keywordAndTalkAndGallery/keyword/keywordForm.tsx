@@ -95,7 +95,7 @@ export default function KeywordForm({
   return (
     <form onSubmit={handleSubmit} className="relative w-full Laptop:static">
       <div className="absolute left-1/2 top-[-13px] w-[305px] translate-x-[-50%] translate-y-[-100%] Laptop:hidden">
-        <SpeechBubble dir="bottom">
+        <SpeechBubble id="Keyword" dir="bottom">
           떠오르는 단어를 작성하거나, 키워드를 눌러보세요!
         </SpeechBubble>
       </div>

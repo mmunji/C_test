@@ -48,7 +48,7 @@ export default function ModalLogin({
             </button>
             {lastSocialLogin === "kakao" && (
               <div className="absolute bottom-[41px] z-10 flex w-full justify-center">
-                <SpeechBubble dir="bottom">
+                <SpeechBubble id={null} dir="bottom">
                   마지막에 로그인 했어요!
                 </SpeechBubble>
               </div>
@@ -66,7 +66,7 @@ export default function ModalLogin({
             </button>
             {lastSocialLogin === "naver" && (
               <div className="absolute bottom-[41px] z-10 flex w-full justify-center">
-                <SpeechBubble dir="bottom">
+                <SpeechBubble id={null} dir="bottom">
                   마지막에 로그인 했어요!
                 </SpeechBubble>
               </div>
