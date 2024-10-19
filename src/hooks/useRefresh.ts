@@ -19,7 +19,7 @@ export default function useRefresh() {
           setAccessToken(accessToken);
         }
 
-        if (res.status === 401) logout();
+        if (!res.ok) logout();
       }
     };
 
