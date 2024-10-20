@@ -10,6 +10,7 @@ import {
   StarXl,
 } from "@/../public/icons";
 import { talkAPIs } from "@/services/talk/talkAPIs";
+import { useAddTalk } from "@/services/talk/talkMutations";
 
 interface StarProps {
   index: number;
@@ -66,13 +67,16 @@ export default function RatingStar({
       alt = "큰 빈 별";
     }
   }
+
+  const { mutate: addTalks } = useAddTalk(movieId as number);
+
   const AddStarReview = async (star: number) => {
     if (StarReview) {
-      await talkAPIs.addTalks({
+      addTalks({
         movieName: movienm!,
         movieId: movieId!,
-        star: star,
-        content: "",
+        ratingValue: star,
+        talk: "",
         spoiler: false,
         genreList: genreList || [],
       });
