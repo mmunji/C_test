@@ -24,7 +24,7 @@ export default function SpeechBubble({
   id,
   exit,
 }: PropsWithChildren<SpeechBubbleProps>) {
-  const [isVisible, setIsVisible] = useState(true);
+  const [isVisible, setIsVisible] = useState(false);
 
   const arrowMap = {
     top: SpeechBubbleTop,
