@@ -8,17 +8,30 @@ import { logout } from "@/services/my/actions";
 import useLoggedInStore from "@/stores/useLoggedIn";
 import useScrollStore from "@/stores/useScrollStore";
 
-import { CaretDownMd, LogOut, User } from "../../../public/icons";
+import { BestTalkFire, CaretDownMd, LogOut, User } from "../../../public/icons";
 
 const dropdownMenu = [
-  { icon: User, content: "마이페이지", href: ROUTES.MY.default },
-  { icon: LogOut, content: "로그아웃", href: "" },
+  {
+    icon: User,
+    content: "마이페이지",
+    href: ROUTES.MY.default,
+    requiresAdmin: false,
+  },
+  { icon: LogOut, content: "로그아웃", href: "", requiresAdmin: false },
+  {
+    icon: BestTalkFire,
+    content: "관리자",
+    href: ROUTES.ADMIN,
+    requiresAdmin: true,
+  },
 ];
 
 export default function HeaderDropdown({
   children,
+  isAdmin,
 }: {
   children: React.ReactNode;
+  isAdmin: boolean;
 }) {
   const hasScrolledPast = useScrollStore((state) => state.hasScrolledPast);
   const pathname = usePathname();
@@ -26,10 +39,12 @@ export default function HeaderDropdown({
 
   const handleClickDropdown = (href: string | null) => {
     if (href) return;
-    logout();
+    logout(pathname.includes("/my"));
     handleLogout();
   };
-
+  const filteredMenu = dropdownMenu.filter(
+    (item) => !item.requiresAdmin || isAdmin,
+  );
   return (
     <Dropdown type="icon">
       <Dropdown.Trigger>
@@ -43,8 +58,9 @@ export default function HeaderDropdown({
         </div>
       </Dropdown.Trigger>
       <Dropdown.List className="left-1/2 top-[43px] -translate-x-1/2">
-        {dropdownMenu.map((m) => (
+        {filteredMenu.map((m, i) => (
           <Dropdown.Item
+            className="justify-start"
             key={m.content}
             href={m.href}
             onClick={() => handleClickDropdown(m.href)}

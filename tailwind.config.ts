@@ -83,6 +83,8 @@ const config: Config = {
         Opacity_W10: "rgba(255, 255, 255, 0.10)",
         Opacity_W15: "rgba(255, 255, 255, 0.15)",
         Opacity_W20: "rgba(255, 255, 255, 0.20)",
+        Opacity_B10: "rgba(0, 0, 0, 0.10)",
+        Opacity_B20: "rgba(0, 0, 0, 0.20)",
       },
       backgroundImage: {
         "detail-gradient":
@@ -124,7 +126,6 @@ const config: Config = {
           },
         },
         ".inner-gray": {},
-        ".inner-silver": {},
         ".inner-gray-orange": {},
         ".inner-none": {},
         ".inner-d3-gray": {},

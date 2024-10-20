@@ -15,7 +15,8 @@ export default function WatchedMoive() {
     if (accessToken) {
       setmessage("톡을 많이 작성할수록 내 취향에 비슷해져요.");
     }
-  }, []);
+  }, [accessToken]);
+
   return (
     <div className="flex flex-col gap-5">
       <div className="flex flex-col gap-1 text-center  Laptop:flex-row Laptop:gap-5 Laptop:text-left">
@@ -24,9 +25,13 @@ export default function WatchedMoive() {
         </h1>
         <div className="hidden  Laptop:block">
           {accessToken ? (
-            <SpeechBubble dir="left">{message}</SpeechBubble>
+            <SpeechBubble id={"WatchedMovie"} dir="left">
+              {message}
+            </SpeechBubble>
           ) : (
-            <SpeechBubble dir="left">{message}</SpeechBubble>
+            <SpeechBubble id={"WatchedMovie"} dir="left">
+              {message}
+            </SpeechBubble>
           )}
         </div>
         <span className=" text-L_Gray Text-m-Regular Laptop:hidden  ">

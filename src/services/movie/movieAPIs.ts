@@ -3,7 +3,9 @@ import { API_URL } from "@/constants/api_url";
 import { tokenManager } from "../auth/tokenManager";
 export const movieAPIs = {
   getMovieDetail: async (movieId: number) => {
-    const res = await fetch(`${API_URL}/movie/${movieId}`);
+    const res = await fetch(`${API_URL}/movie/${movieId}`, {
+      cache: "no-store",
+    });
     const data: MovieDetailData = await res.json();
     return data;
   },

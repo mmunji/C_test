@@ -9,12 +9,7 @@ import { useEffect, useState } from "react";
 import { Pagination } from "swiper/modules";
 import { Swiper, SwiperClass, SwiperSlide } from "swiper/react";
 
-import {
-  ChevronLeftMd,
-  ChevronRightMd,
-  HeartLineMd,
-  StarFillMd,
-} from "@/../public/icons";
+import { ChevronLeftMd, ChevronRightMd, StarFillMd } from "@/../public/icons";
 import Button from "@/components/buttons/Button";
 import useDevice from "@/hooks/useDevice";
 import { movieAPIs } from "@/services/movie/movieAPIs";

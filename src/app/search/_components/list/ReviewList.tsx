@@ -63,7 +63,7 @@ export default function SearchReviewList({
             <Link
               href={`${ROUTES.DETAIL}/${talk.reviewDTO.movieId}`}
               key={talk.reviewDTO.id}
-              className="flex flex-col gap-2 rounded-xl bg-D1_Gray p-4 hover:bg-D2_Gray active:bg-D3_Gray Tablet:gap-3 Tablet:px-7 Tablet:py-6"
+              className="group flex flex-col gap-2 rounded-xl bg-D1_Gray p-4 hover:bg-D2_Gray active:bg-D3_Gray Tablet:gap-3 Tablet:px-7 Tablet:py-6"
             >
               <div className="flex justify-between">
                 <div className="flex items-center gap-2">
@@ -96,7 +96,7 @@ export default function SearchReviewList({
                   </span>
                 </div>
               </div>
-              <div className="hidden h-[1px] w-full bg-D2_Gray Tablet:block" />
+              <div className="hidden h-[1px] w-full bg-D2_Gray group-hover:bg-D1_Gray group-active:bg-D2_Gray Tablet:block" />
               <div className="line-clamp-3 h-[63px] break-words text-Gray_Orange Text-s-Regular Tablet:line-clamp-4 Tablet:h-[96px] Tablet:Text-m-Regular">
                 {highlightedText(talk.reviewDTO.content, query)}
               </div>

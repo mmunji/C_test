@@ -28,7 +28,12 @@ export default function TalkContents({
 
   return (
     <div className="border-b-[1px] border-D1_Gray py-5 first:mt-4 last:border-b-0 Tablet:mt-5 Tablet:py-6 Laptop:border-D2_Gray">
-      <TalkContentsHeader talk={talk} setOpen={setOpen} setTalkId={setTalkId} />
+      <TalkContentsHeader
+        talk={talk}
+        setOpen={setOpen}
+        setTalkId={setTalkId}
+        movieId={movieId}
+      />
       <TalkContentsBody
         {...{ talk, showSpoiler, setShowSpoiler, showReplies }}
       />

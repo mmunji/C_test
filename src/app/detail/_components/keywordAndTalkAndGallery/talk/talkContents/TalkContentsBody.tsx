@@ -17,10 +17,10 @@ export default function TalkContentsBody({
   setShowSpoiler,
 }: TalkContentsBodyProps) {
   const [showMore, setShowMore] = useState(false);
-  const { contentRef, showMoreButton } = useNeedTalkMoreButton(
-    "talk",
-    showSpoiler,
-  );
+  const { contentRef, showMoreButton } = useNeedTalkMoreButton({
+    type: "talk",
+    showSpoiler: showSpoiler,
+  });
 
   return (
     <div

@@ -18,7 +18,7 @@ export function LogoutButton() {
     <Button
       variant={"text"}
       onClick={() => {
-        logout();
+        logout(true);
         handleLogout();
       }}
     >

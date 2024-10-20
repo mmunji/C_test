@@ -5,6 +5,7 @@ import { useRef, useState } from "react";
 import DropdownTrigger from "@/components/dropdown/_components/DropdownTrigger";
 import Dropdown from "@/components/dropdown/dropdown";
 import { FullLoadingSpinner } from "@/components/loadingSpinner/LoadingSpinner";
+import Modal from "@/components/modal/modal";
 import { updateProfileImage } from "@/services/my/actions";
 import { getRandomProfileImage } from "@/utils/fn";
 
@@ -16,15 +17,21 @@ import {
 } from "../../../../public/icons";
 
 export default function ImageUploadForm() {
+  const [isImageErrorAlertOpen, setisImageErrorAlertOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const handleImageUpload = () => {
     inputRef.current?.click();
   };
   const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (!e.currentTarget.files) return;
+    if (!e.target.files) return;
+    const target = e.target.files[0];
+    if (!target?.name.match(/\.(jpg|jpeg|png)$/)) {
+      setisImageErrorAlertOpen(true);
+      return false;
+    }
     const formData = new FormData();
-    formData.append("profile", e.currentTarget.files[0]);
+    formData.append("profile", e.target.files[0]);
     setLoading(true);
     await updateProfileImage(formData);
     setLoading(false);
@@ -94,6 +101,16 @@ export default function ImageUploadForm() {
           </Dropdown.Item>
         </Dropdown.List>
       </Dropdown>
+      {isImageErrorAlertOpen && (
+        <Modal isAlertModal onClose={() => setisImageErrorAlertOpen(false)}>
+          <Modal.TitleWrapper>
+            <Modal.Title>이미지 형식이 올바르지 않습니다.</Modal.Title>
+          </Modal.TitleWrapper>
+          <Modal.Button onClick={() => setisImageErrorAlertOpen(false)}>
+            확인
+          </Modal.Button>
+        </Modal>
+      )}
       {loading && <FullLoadingSpinner />}
     </>
   );

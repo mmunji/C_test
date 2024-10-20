@@ -2,10 +2,15 @@ import { useEffect, useRef, useState } from "react";
 
 import useDevice from "@/hooks/useDevice";
 
-export default function useNeedTalkMoreButton(
-  type: "talk" | "reply",
-  showSpoiler?: boolean,
-) {
+export default function useNeedTalkMoreButton({
+  type,
+  showSpoiler,
+  replyContent,
+}: {
+  type: "talk" | "reply";
+  showSpoiler?: boolean;
+  replyContent?: string;
+}) {
   const { device } = useDevice();
   const contentRef = useRef<HTMLParagraphElement>(null);
   const [contentHeight, setContentHeight] = useState(0);
@@ -34,7 +39,7 @@ export default function useNeedTalkMoreButton(
     return () => {
       resizeObserver.unobserve(contentElement);
     };
-  }, [contentHeight, type, showSpoiler]);
+  }, [contentHeight, type, showSpoiler, replyContent]);
 
   useEffect(() => {
     const isShowMoreButtonNeeded = (contentHeight: number) => {

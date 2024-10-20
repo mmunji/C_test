@@ -32,7 +32,6 @@ export default function DetailBannerBottomLeft({
   const movieInfo = [
     yearOfReleaseDate,
     `${movieDetailData.runningTime}분`,
-    "00.0만명",
     contentRating,
     formattedGenreText,
   ];
@@ -81,11 +80,6 @@ export default function DetailBannerBottomLeft({
               )}
             </p>
           ))}
-          {/* <p
-            className={`px-3 text-L_Gray Text-xs-Regular last:after:border-none Laptop:px-[10px] Laptop:text-Silver Laptop:Text-m-Medium`}
-          >
-            {formattedGenreText}
-          </p> */}
         </section>
       </section>
     </section>

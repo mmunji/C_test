@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction } from "react";
+import React, { Dispatch, SetStateAction, useState } from "react";
 
 import ReplyBody from "./ReplyBody";
 import ReplyFooter from "./ReplyFooter";
@@ -19,10 +19,25 @@ export default function Reply({
   setOpen,
   setTalkId,
 }: ReplyProps) {
+  const [editReply, setEditReply] = useState(false);
+
   return (
     <section className="mt-5 Tablet:mt-6">
-      <ReplyHeader reply={reply} setOpen={setOpen} setTalkId={setTalkId} />
-      <ReplyBody reply={reply} />
+      <ReplyHeader
+        reply={reply}
+        setOpen={setOpen}
+        setTalkId={setTalkId}
+        movieId={movieId}
+        setEditReply={setEditReply}
+        parentReviewId={parentReviewId}
+      />
+      <ReplyBody
+        reply={reply}
+        editReply={editReply}
+        setEditReply={setEditReply}
+        movieId={movieId}
+        parentReviewId={parentReviewId}
+      />
       <ReplyFooter
         reply={reply}
         movieId={movieId}

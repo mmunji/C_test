@@ -14,11 +14,17 @@ export const keywordAPIs = {
 
   getMyKeyword: async (movieId: number) => {
     const accessToken = tokenManager.getToken();
+
+    const headers: Record<string, string> = {
+      "Content-Type": "application/json",
+    };
+
+    if (accessToken) {
+      headers.access = accessToken;
+    }
+
     const res = await fetch(`${API_URL}/keywords/${movieId}/myKeyword`, {
-      headers: {
-        "Content-Type": "application/json",
-        access: `${accessToken}`,
-      },
+      headers,
       cache: "no-store",
     });
     const data = await res.json();
@@ -37,7 +43,6 @@ export const keywordAPIs = {
 
   reportKeyword: async (movieId: number, content: string) => {
     const accessToken = tokenManager.getToken();
-    console.log("신고!");
     const res = await fetch(`${API_URL}/reports/keywords/${movieId}`, {
       method: "POST",
       headers: {
@@ -85,6 +90,20 @@ export const keywordAPIs = {
       body: JSON.stringify({
         keyword: keyword,
       }),
+    });
+    const data = await res.json();
+
+    return { data, res };
+  },
+
+  likeKeyword: async (keywordId: number) => {
+    const accessToken = tokenManager.getToken();
+    const res = await fetch(`${API_URL}/keywords/count/${keywordId}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        access: `${accessToken}`,
+      },
     });
     const data = await res.json();
 

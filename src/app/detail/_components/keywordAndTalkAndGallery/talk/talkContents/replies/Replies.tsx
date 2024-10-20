@@ -1,5 +1,6 @@
 import React, { Dispatch, SetStateAction } from "react";
 
+import useInfiniteScroll from "@/hooks/useInfiniteScroll";
 import { useGetReplies } from "@/services/talk/talkQueries";
 
 import Reply from "./reply/Reply";
@@ -18,7 +19,11 @@ export default function Replies({
   setOpen,
   setTalkId,
 }: RepliesProps) {
-  const { data } = useGetReplies(parentReviewId);
+  const { data, fetchNextPage, hasNextPage } = useGetReplies(parentReviewId);
+  const { ref } = useInfiniteScroll<HTMLDivElement>({
+    fetchData: fetchNextPage,
+    hasNextPage: hasNextPage,
+  });
 
   const replies = data?.pages?.flatMap((page) => page.commentList) || [];
 
@@ -36,6 +41,8 @@ export default function Replies({
             setTalkId={setTalkId}
           />
         ))}
+
+      <div ref={ref} />
     </div>
   );
 }

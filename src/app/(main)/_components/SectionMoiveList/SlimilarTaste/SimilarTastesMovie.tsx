@@ -1,5 +1,4 @@
 "use client";
-import Image from "next/image";
 import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -34,7 +33,7 @@ export default function SimilarTastesMovie() {
       setmessage("톡을 많이 작성할수록 내 취향에 비슷해져요.");
     }
     fetchMovie();
-  }, []);
+  }, [accessToken]);
   return (
     <div className="flex flex-col gap-5">
       <div className="flex flex-col gap-5 Tablet:flex-row Tablet:items-center">
@@ -42,9 +41,13 @@ export default function SimilarTastesMovie() {
           다른 사람들은 이런 영화를 평가했어요
         </h1>
         {device == "mobile" ? (
-          <SpeechBubble dir="top">{message}</SpeechBubble>
+          <SpeechBubble id={"SimilarTastesMovie"} dir="top">
+            {message}
+          </SpeechBubble>
         ) : (
-          <SpeechBubble dir="left">{message}</SpeechBubble>
+          <SpeechBubble id={"SimilarTastesMovie"} dir="left">
+            {message}
+          </SpeechBubble>
         )}
       </div>
       <div className="flex gap-4 Laptop:hidden">

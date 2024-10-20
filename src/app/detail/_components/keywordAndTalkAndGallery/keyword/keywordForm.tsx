@@ -71,9 +71,6 @@ export default function KeywordForm({
       ? title.split("").splice(0, sliceNumber).join("") + "..."
       : title;
 
-  const quotedTitle = `'${title}'`;
-  const quotedFormattedTitle = `'${formattedTitle}'`;
-
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.value.length > 5) {
       e.target.value = e.target.value.slice(0, 5);
@@ -84,18 +81,18 @@ export default function KeywordForm({
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (handleNeedLogin()) return;
     if (filterAbuse(value)) return;
     if (initialValue === "") addKeyword({ movieId, value });
     else editKeyword({ movieId: movieId, value: value });
   };
 
-  const josaTitle = josa(quotedFormattedTitle, "은/는");
+  const josaTitle = josa(formattedTitle, "은/는");
+  const fullJosaTitle = josa(title, "은/는");
 
   return (
     <form onSubmit={handleSubmit} className="relative w-full Laptop:static">
       <div className="absolute left-1/2 top-[-13px] w-[305px] translate-x-[-50%] translate-y-[-100%] Laptop:hidden">
-        <SpeechBubble dir="bottom">
+        <SpeechBubble id="Keyword" dir="bottom">
           떠오르는 단어를 작성하거나, 키워드를 눌러보세요!
         </SpeechBubble>
       </div>
@@ -103,10 +100,17 @@ export default function KeywordForm({
         <input
           ref={inputRef}
           type="text"
-          placeholder={`${device === "tablet" ? quotedTitle : josaTitle} 한 단어로?`}
+          placeholder={`${device === "tablet" ? `${fullJosaTitle}` : `${josaTitle}`} 한 단어로?`}
           maxLength={5}
           value={value}
-          onFocus={() => setFocused(true)}
+          onFocus={() => {
+            if (handleNeedLogin()) {
+              inputRef.current?.blur();
+              return;
+            }
+
+            setFocused(true);
+          }}
           onChange={(e) => handleChange(e)}
           className="h-[45px] w-full bg-[rgba(0,0,0,0.20)] py-2 pl-4 pr-3 text-Gray_Orange outline-none Text-s-Medium placeholder:text-Gray Tablet:Text-m-Medium"
         />

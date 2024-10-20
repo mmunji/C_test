@@ -1,5 +1,6 @@
 "use server";
 
+import { revalidateTag } from "next/cache";
 import { cookies } from "next/headers";
 
 import { tokenKey } from "@/constants/token";
@@ -14,4 +15,8 @@ export const setAccessToken = (token: string) => {
 
 export const deleteAccessToken = () => {
   cookies().delete(tokenKey);
+};
+
+export const revalidateUser = () => {
+  revalidateTag("user");
 };

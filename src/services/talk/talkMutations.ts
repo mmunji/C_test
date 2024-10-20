@@ -18,7 +18,7 @@ export interface AddTalkParams {
 
 export function useAddTalk(
   movieId: number,
-  setShowTalkForm: Dispatch<SetStateAction<boolean>>,
+  setShowTalkForm?: Dispatch<SetStateAction<boolean>>,
 ) {
   const queryClient = useQueryClient();
 
@@ -53,7 +53,7 @@ export function useAddTalk(
         queryKey: TALK_QUERY_KEYS.infiniteTalks(movieId),
       });
 
-      setShowTalkForm(false);
+      if (setShowTalkForm) setShowTalkForm(false);
     },
     onError: (error) => {
       alert(error);
@@ -75,6 +75,9 @@ export function useLikeTalk({
   return useMutation({
     mutationFn: (talkId: number) => talkAPIs.like(talkId),
     onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: TALK_QUERY_KEYS.myTalk(movieId),
+      });
       if (type === "talk") {
         queryClient.invalidateQueries({
           queryKey: TALK_QUERY_KEYS.infiniteTalks(movieId),
@@ -102,6 +105,9 @@ export function useDislikeTalk({
   return useMutation({
     mutationFn: (talkId: number) => talkAPIs.dislike(talkId),
     onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: TALK_QUERY_KEYS.myTalk(movieId),
+      });
       if (type === "talk") {
         queryClient.invalidateQueries({
           queryKey: TALK_QUERY_KEYS.infiniteTalks(movieId),
@@ -141,6 +147,10 @@ export function useAddReply({
     onSuccess: () => {
       revalidateMyPage("my");
       queryClient.invalidateQueries({
+        queryKey: TALK_QUERY_KEYS.myTalk(movieId),
+      });
+
+      queryClient.invalidateQueries({
         queryKey: TALK_QUERY_KEYS.infiniteTalks(movieId),
       });
 
@@ -153,10 +163,13 @@ export function useAddReply({
   });
 }
 
-export function useEditTalk(
-  setClickedEdit: Dispatch<SetStateAction<boolean>>,
-  movieId: number,
-) {
+export function useEditTalk({
+  setClickedEdit,
+  movieId,
+}: {
+  setClickedEdit?: (clickedEditMyTalk: boolean) => void;
+  movieId?: number;
+}) {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -182,21 +195,60 @@ export function useEditTalk(
         queryKey: TALK_QUERY_KEYS.myTalk(movieId),
       });
       queryClient.invalidateQueries({
-        queryKey: TALK_QUERY_KEYS.myStar(movieId),
+        queryKey: TALK_QUERY_KEYS.myStar(movieId as number),
       });
       queryClient.invalidateQueries({
         queryKey: TALK_QUERY_KEYS.infiniteTalks(movieId),
       });
 
-      setClickedEdit(false);
+      if (setClickedEdit) setClickedEdit(false);
+    },
+  });
+}
+export function useEditReply(
+  setEditReply: Dispatch<SetStateAction<boolean>>,
+  movieId: number,
+  parentReviewId: number,
+) {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: ({
+      talkId,
+      content,
+    }: {
+      talkId: number | undefined;
+      content: string | undefined;
+    }) => talkAPIs.editReply(talkId, content),
+    onSuccess: () => {
+      revalidateMyPage("my");
+
+      queryClient.invalidateQueries({
+        queryKey: TALK_QUERY_KEYS.infiniteMovieReplies(parentReviewId),
+      });
+
+      queryClient.invalidateQueries({
+        queryKey: TALK_QUERY_KEYS.infiniteTalks(movieId),
+      });
+
+      setEditReply(false);
     },
   });
 }
 
-export function useRemoveTalk(
-  setClickedEdit: Dispatch<SetStateAction<boolean>>,
-  movieId: number,
-) {
+export function useRemoveTalk({
+  setOpenDeleteModal,
+  setClickedEdit,
+  movieId,
+  type,
+  parentReviewId,
+}: {
+  setOpenDeleteModal: Dispatch<SetStateAction<boolean>>;
+  setClickedEdit?: (clickedEditMyTalk: boolean) => void;
+  movieId: number;
+  type: "talk" | "reply";
+  parentReviewId?: number;
+}) {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -204,6 +256,9 @@ export function useRemoveTalk(
       talkAPIs.removeTalk(talkId),
     onSuccess: () => {
       revalidateMyPage("my");
+      queryClient.invalidateQueries({
+        queryKey: TALK_QUERY_KEYS.infiniteMovieReplies(parentReviewId),
+      });
       queryClient.invalidateQueries({
         queryKey: TALK_QUERY_KEYS.myTalk(movieId),
       });
@@ -213,9 +268,10 @@ export function useRemoveTalk(
       queryClient.invalidateQueries({
         queryKey: TALK_QUERY_KEYS.infiniteTalks(movieId),
       });
+      setOpenDeleteModal(false);
 
-      setClickedEdit(false);
-      location.reload();
+      if (setClickedEdit) setClickedEdit(false);
+      if (type === "talk") location.reload();
     },
   });
 }

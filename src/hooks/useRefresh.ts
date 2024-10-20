@@ -7,7 +7,7 @@ import useLoggedInStore from "@/stores/useLoggedIn";
 
 export default function useRefresh() {
   const NINE_MINUTES = 9 * 60 * 1000;
-  const { loggedIn } = useLoggedInStore();
+  const { loggedIn, logout } = useLoggedInStore();
 
   useEffect(() => {
     const refresh = async () => {
@@ -18,13 +18,17 @@ export default function useRefresh() {
           tokenManager.setToken(accessToken);
           setAccessToken(accessToken);
         }
+
+        if (!res.ok) logout();
       }
     };
+
+    refresh();
 
     const interval = setInterval(() => {
       refresh();
     }, NINE_MINUTES);
 
     return () => clearInterval(interval);
-  }, [NINE_MINUTES, loggedIn]);
+  }, [NINE_MINUTES, loggedIn, logout]);
 }

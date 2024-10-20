@@ -37,6 +37,8 @@ export default function SignUp({ userInfo }: SignUpProps) {
   });
   const [gender, setGender] = useState(userInfo.gender);
   const { setMyInfo } = useMyInfoStore();
+  const [nickError, setNickError] = useState(false);
+  const [birthError, setBirthError] = useState(false);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -46,7 +48,9 @@ export default function SignUp({ userInfo }: SignUpProps) {
       const { res } = await authAPIS.signUp(nickname, gender, birthday);
 
       if (res.ok) {
-        router.push(`${ROUTES.SIGN_UP_COMPLETE}?nickname=${nickname}`);
+        setTimeout(() => {
+          router.push(`${ROUTES.SIGN_UP_COMPLETE}?nickname=${nickname}`);
+        }, 500);
       }
       setMyInfo({ nickname: nickname, birthday: birthday, gender: gender });
       revalidateMyPage("user");
@@ -59,7 +63,7 @@ export default function SignUp({ userInfo }: SignUpProps) {
     <div className="fixed inset-0 z-[99] min-h-[100vh] w-full overflow-y-auto bg-BG Tablet:flex Tablet:items-center">
       <form
         onSubmit={handleSubmit}
-        className="mx-5 flex h-full flex-col Tablet:mx-auto Tablet:h-[686px] Tablet:w-[504px] Tablet:rounded-xl Tablet:bg-D1_Gray Tablet:px-[72px] Tablet:py-[64px] Laptop:h-[545px] Laptop:w-[464px] Laptop:px-[52px] Laptop:py-10 Desktop:h-[686px] Desktop:w-[504px] Desktop:px-[72px] Desktop:py-[64px]"
+        className="mx-5 flex h-full flex-col Tablet:mx-auto Tablet:h-auto Tablet:w-[504px] Tablet:rounded-xl Tablet:bg-D1_Gray Tablet:px-[72px] Tablet:py-[64px] Laptop:w-[464px] Laptop:px-[52px] Laptop:py-10 Desktop:w-[504px] Desktop:px-[72px] Desktop:py-[64px]"
       >
         <Image
           src={FullLogo}
@@ -68,19 +72,27 @@ export default function SignUp({ userInfo }: SignUpProps) {
         />
         <div className="mt-11 Tablet:mt-[52px] Laptop:mt-8 Desktop:mt-[52px]">
           <SignUpTitle />
-          <SignUpNickname nickname={nickname} setNickname={setNickname} />
+          <SignUpNickname
+            nickname={nickname}
+            setNickname={setNickname}
+            nickError={nickError}
+            setNickError={setNickError}
+          />
           <SignUpBirth
             birthValues={birthValues}
             setBirthValues={setBirthValues}
+            birthError={birthError}
+            setBirthError={setBirthError}
           />
           <SignUpGender gender={gender} setGender={setGender} />
         </div>
 
         <Button
+          disabled={nickError || birthError}
           type="submit"
           size="lg"
           variant="orange"
-          className="fixed bottom-0 left-0 w-full Tablet:static Tablet:mt-auto"
+          className="fixed bottom-0 left-0 mt-6 w-full Tablet:static Tablet:mt-8 Laptop:mt-7 Desktop:mt-8"
         >
           회원가입
         </Button>

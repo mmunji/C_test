@@ -9,13 +9,18 @@ export const talkAPIs = {
     sort: "star" | "createdAt" = "createdAt",
   ) => {
     const accessToken = tokenManager.getToken();
+    const headers: Record<string, string> = {
+      "Content-Type": "application/json",
+    };
+
+    if (accessToken) {
+      headers.access = accessToken;
+    }
+
     const res = await fetch(
       `${API_URL}/reviews/${movieId}?page=${page}&sort=${sort}`,
       {
-        headers: {
-          "Content-Type": "application/json",
-          access: `${accessToken}`,
-        },
+        headers,
         cache: "no-store",
       },
     );
@@ -30,11 +35,16 @@ export const talkAPIs = {
 
   getMyTalk: async (movieId: number) => {
     const accessToken = tokenManager.getToken();
+    const headers: Record<string, string> = {
+      "Content-Type": "application/json",
+    };
+
+    if (accessToken) {
+      headers.access = accessToken;
+    }
+
     const res = await fetch(`${API_URL}/reviews/my?movieId=${movieId}`, {
-      headers: {
-        "Content-Type": "application/json",
-        access: `${accessToken}`,
-      },
+      headers,
       cache: "no-store",
     });
 
@@ -178,14 +188,19 @@ export const talkAPIs = {
 
   getReplies: async (parentReviewId: number, page: number) => {
     const accessToken = tokenManager.getToken();
+    const headers: Record<string, string> = {
+      "Content-Type": "application/json",
+    };
+
+    if (accessToken) {
+      headers.access = accessToken;
+    }
 
     const res = await fetch(
       `${API_URL}/reviews/${parentReviewId}/comments?page=${page}`,
       {
         method: "GET",
-        headers: {
-          access: `${accessToken}`,
-        },
+        headers,
       },
     );
 
@@ -209,13 +224,37 @@ export const talkAPIs = {
     return { data, res };
   },
 
-  getMyStar: async (movieId: number) => {
+  editReply: async (
+    talkId: number | undefined,
+    content: string | undefined,
+  ) => {
     const accessToken = tokenManager.getToken();
-    const res = await fetch(`${API_URL}/reviews/star?movieId=${movieId}`, {
+
+    const res = await fetch(`${API_URL}/reviews/comments/${talkId}`, {
+      method: "PATCH",
       headers: {
         "Content-Type": "application/json",
         access: `${accessToken}`,
       },
+      body: JSON.stringify({ content }),
+    });
+
+    const data = await res.json();
+    return { data, res };
+  },
+
+  getMyStar: async (movieId: number) => {
+    const accessToken = tokenManager.getToken();
+    const headers: Record<string, string> = {
+      "Content-Type": "application/json",
+    };
+
+    if (accessToken) {
+      headers.access = accessToken;
+    }
+
+    const res = await fetch(`${API_URL}/reviews/star?movieId=${movieId}`, {
+      headers,
       cache: "no-store",
     });
 
