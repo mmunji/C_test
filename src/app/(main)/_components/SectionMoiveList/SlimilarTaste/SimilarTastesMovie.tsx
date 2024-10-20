@@ -9,7 +9,7 @@ import { tokenManager } from "@/services/auth/tokenManager";
 import { movieAPIs } from "@/services/movie/movieAPIs";
 
 import SlimilarPost from "./SlimilarPost";
-export default function SimilarTastesMoive() {
+export default function SimilarTastesMovie() {
   const [PickUserNumber, setPickUserNumber] = useState<number>(0);
   const { device } = useDevice();
   const [ReviewUsers, setReviewUsers] = useState<MovieReviewRecommed[]>([]);
