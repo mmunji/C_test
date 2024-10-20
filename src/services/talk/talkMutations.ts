@@ -18,7 +18,7 @@ export interface AddTalkParams {
 
 export function useAddTalk(
   movieId: number,
-  setShowTalkForm: Dispatch<SetStateAction<boolean>>,
+  setShowTalkForm?: Dispatch<SetStateAction<boolean>>,
 ) {
   const queryClient = useQueryClient();
 
@@ -53,7 +53,7 @@ export function useAddTalk(
         queryKey: TALK_QUERY_KEYS.infiniteTalks(movieId),
       });
 
-      setShowTalkForm(false);
+      if (setShowTalkForm) setShowTalkForm(false);
     },
     onError: (error) => {
       alert(error);
