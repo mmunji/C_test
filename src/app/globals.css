@@ -21,6 +21,13 @@ input::-webkit-search-results-decoration {
   display: none;
 }
 
+.swiper-pagination-bullet {
+  @apply flex h-1 w-[33px] rounded-[22px] bg-D3_Gray !important;
+}
+.swiper-pagination-bullet-active {
+  @apply bg-Primary !important;
+}
+
 @layer utilities {
   .item-border:not(:last-child)::after {
     content: "";
