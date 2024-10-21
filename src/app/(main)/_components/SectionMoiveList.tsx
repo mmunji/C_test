@@ -1,7 +1,7 @@
 import MasterPieceMoive from "./MasterPieceMovie/MasterPieceMoive";
 import RecentKeyword from "./SectionMoiveList/KeyWord/RecentKeyword";
 import MoiveTopRank from "./SectionMoiveList/MovieTopRank/MovieTopRank";
-import SimilarTastesMoive from "./SectionMoiveList/SlimilarTaste/SimilarTastesMoive";
+import SimilarTastesMovie from "./SectionMoiveList/SlimilarTaste/SimilarTastesMovie";
 import WatchedMoive from "./SectionMoiveList/WatchedMovies/WatchedMoive";
 export default function SectionMoiveList() {
   return (
@@ -13,7 +13,7 @@ export default function SectionMoiveList() {
       {/*씨네톡 속 숨겨진 명작  컴포넌트 */}
       <MasterPieceMoive />
       {/* 나와 취향이 비슷한 사람들 (다른 사람들은 이런 영화를 평가했어요)  컴포넌트 */}
-      <SimilarTastesMoive />
+      <SimilarTastesMovie />
       {/*혹시 이 영화 보셨나요? */}
       <WatchedMoive />
       <div></div>

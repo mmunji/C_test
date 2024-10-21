@@ -44,10 +44,15 @@ export default function SlimilarPost({
         <Swiper
           slidesPerView="auto"
           spaceBetween={device == "laptop" ? 20 : 24}
-          className="flex  rounded-xl"
+          className=" flex rounded-xl"
+          centeredSlides={false}
+          initialSlide={0}
         >
           {Array.isArray(ReviewUsers) && ReviewUsers.length > 0
             ? ReviewUsers.map((ReviewUser, index) => {
+                if (!ReviewUser) {
+                  return null;
+                }
                 return (
                   <SwiperSlide
                     key={index}

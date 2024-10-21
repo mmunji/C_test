@@ -40,6 +40,7 @@ export function useAddTalk(
         genreList,
       });
       if (!res.ok) throw new Error(data?.message);
+      return data;
     },
     onSuccess: () => {
       revalidateMyPage("my");
@@ -52,7 +53,6 @@ export function useAddTalk(
       queryClient.invalidateQueries({
         queryKey: TALK_QUERY_KEYS.infiniteTalks(movieId),
       });
-
       if (setShowTalkForm) setShowTalkForm(false);
     },
     onError: (error) => {
