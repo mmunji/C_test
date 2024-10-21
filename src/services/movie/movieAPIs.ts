@@ -26,7 +26,7 @@ export const movieAPIs = {
   },
   getMovieMainBanner: async () => {
     const res = await fetch(`${API_URL}/movie/MainBanner`);
-    const data: BannerDTO = await res.json();
+    const data: BannerDTO[] = await res.json();
     return data;
   },
   getMovieTopTen: async (genreId: number) => {
