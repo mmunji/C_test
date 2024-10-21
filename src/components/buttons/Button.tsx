@@ -47,7 +47,7 @@ const ButtonVariants = cva(`flex justify-center whitespace-nowrap`, {
     {
       variant: ["text", "textIconL", "textIconR"],
       className:
-        "Text-s-Medium h-10 Tablet:h-auto items-center rounded-lg Tablet:Text-m-Medium hover:bg-Opacity_W10 hover:text-Silver active:bg-Opacity_W15 disabled:text-Gray",
+        "Text-s-Medium h-10 text-Gray_Orange Tablet:h-auto items-center rounded-lg Tablet:Text-m-Medium hover:bg-Opacity_W10 hover:text-Silver active:bg-Opacity_W15 disabled:text-Gray",
     },
     {
       variant: ["text", "textIconL", "textIconR"],
