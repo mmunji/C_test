@@ -14,13 +14,7 @@ dayjs.extend(relativeTime);
 dayjs.locale("ko");
 
 interface ReviewListType {
-  ReviewList: [
-    {
-      content: string;
-      createdAt: string;
-      star: number;
-    },
-  ];
+  ReviewList: BannerReviewDTO[];
 }
 
 export default function RealTimeHotTalk({ ReviewList }: ReviewListType) {

@@ -20,11 +20,14 @@ input::-webkit-search-results-button,
 input::-webkit-search-results-decoration {
   display: none;
 }
-
-.swiper-pagination-bullet {
-  @apply flex h-1 w-[33px] rounded-[22px] bg-D3_Gray !important;
+#containerForBullets {
+  @apply absolute -bottom-3 left-[calc(100%-78px)] z-50 flex w-[74px] items-center gap-1 Laptop:-bottom-4 Laptop:left-[calc(100%-108px)]  Laptop:w-[108px] !important;
 }
-.swiper-pagination-bullet-active {
+
+.swiper-custom-bullet {
+  @apply flex h-1 w-full cursor-pointer rounded-[22px] bg-D3_Gray !important;
+}
+.swiper-custom-bullet-active {
   @apply bg-Primary !important;
 }
 

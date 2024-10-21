@@ -5,7 +5,7 @@ import SimilarTastesMovie from "./SectionMoiveList/SlimilarTaste/SimilarTastesMo
 import WatchedMoive from "./SectionMoiveList/WatchedMovies/WatchedMoive";
 export default function SectionMoiveList() {
   return (
-    <div className="mt-10 flex flex-col gap-[68px]  px-5 Laptop:gap-[150px]   Laptop:px-[68px] Desktop:gap-[150px] Desktop:px-[180px]">
+    <div className="ablet:gap-[100px] mt-[65px] flex flex-col gap-[68px] px-5 Tablet:mt-[84px] Laptop:mt-[77px] Laptop:gap-[120px] Laptop:px-[68px] Desktop:mt-[120px] Desktop:gap-[140px] Desktop:px-[180px]">
       {/* 영화TOP4 전체  컴포넌트 */}
       <MoiveTopRank />
       {/* 지금 많이 언급되는 키워드  컴포넌트 */}
