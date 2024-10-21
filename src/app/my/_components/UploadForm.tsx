@@ -104,7 +104,10 @@ export default function ImageUploadForm() {
       {isImageErrorAlertOpen && (
         <Modal isAlertModal onClose={() => setisImageErrorAlertOpen(false)}>
           <Modal.TitleWrapper>
-            <Modal.Title>이미지 형식이 올바르지 않습니다.</Modal.Title>
+            <Modal.Title>이미지 형식이 올바르지 않아요.</Modal.Title>
+            <Modal.Description>
+              JPG, JPEG, PNG 형식의 확장자만 가능해요.
+            </Modal.Description>
           </Modal.TitleWrapper>
           <Modal.Button onClick={() => setisImageErrorAlertOpen(false)}>
             확인

@@ -139,9 +139,9 @@ export default function Laptop_BestMovie(MovieData: Laptop_BestMoiveProps) {
                         </div>
                       </div>
                     </div>
-                    <div className=" flex w-[368px] flex-col  gap-2  Desktop:w-[504px] ">
-                      <div className="flex justify-between">
-                        <div className="flex gap-1">
+                    <div className="w-[368px] Desktop:w-[504px] ">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-1">
                           <Image
                             src={BestTalkFire}
                             alt=""
@@ -151,29 +151,29 @@ export default function Laptop_BestMovie(MovieData: Laptop_BestMoiveProps) {
                         </div>
                         <Link
                           href={`detail/${MovieDetailData.movieId}`}
-                          className="flex items-center text-Gray_Orange Text-s-Medium"
+                          className="flex items-center gap-1 p-2 pr-1"
                         >
-                          자세히보기
-                          <Image
-                            src={ChevronRightMd}
-                            alt="화살표"
-                            style={{ color: "#CCC5C0" }}
-                          />
+                          <span className="text-Gray_Orange Text-s-Medium">
+                            자세히보기
+                          </span>
+                          <Image src={ChevronRightMd} alt="화살표" />
                         </Link>
                       </div>
-                      {MovieDetailData.reviewList.map(
-                        (reviewData: MovieReviewDTO, index: number) => {
-                          return (
-                            <BestTalkPost
-                              key={index}
-                              star={reviewData.star}
-                              content={reviewData.content}
-                              likeCount={reviewData.likeCount}
-                              profileImg={reviewData.profile}
-                            />
-                          );
-                        },
-                      )}
+                      <div className="flex flex-col gap-2">
+                        {MovieDetailData.reviewList.map(
+                          (reviewData: MovieReviewDTO, index: number) => {
+                            return (
+                              <BestTalkPost
+                                key={index}
+                                star={reviewData.star}
+                                content={reviewData.content}
+                                likeCount={reviewData.likeCount}
+                                profileImg={reviewData.profile}
+                              />
+                            );
+                          },
+                        )}
+                      </div>
                     </div>
                   </div>
                 </div>

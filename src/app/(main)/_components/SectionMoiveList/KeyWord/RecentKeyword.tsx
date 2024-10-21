@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 
+import Button from "@/components/buttons/Button";
 import { movieAPIs } from "@/services/movie/movieAPIs";
 
 import { ChevronRight } from "../../../../../../public/icons";
@@ -59,7 +60,6 @@ export default function RecentKeyword() {
               : ""}
           </Swiper>
         </div>
-
         <div className="Text-S-Bold  hidden gap-3 Laptop:flex Laptop:flex-col Laptop:gap-5">
           {Array.isArray(MentionKeywords) && MentionKeywords.length > 0
             ? MentionKeywords.map((mention, index) => {
@@ -81,13 +81,15 @@ export default function RecentKeyword() {
           ""
         )}
       </div>
-      <Link
-        className="hidden items-center justify-end gap-2 text-Gray_Orange Text-m-Medium Laptop:flex "
-        href={`search?query=${MentionKeywords[KeywordListNumber]?.keyword}`}
-      >
-        더보기{" "}
-        <Image src={ChevronRight} alt="화살표" style={{ color: "#CCC5C0" }} />
-      </Link>
+      <div className="flex justify-end">
+        <Link
+          href={`search?query=${MentionKeywords[KeywordListNumber]?.keyword}`}
+          className="hidden w-fit items-center gap-1 p-2 pr-1 Laptop:flex"
+        >
+          <span className="text-Gray_Orange Text-m-Medium">더보기</span>
+          <Image src={ChevronRight} alt="화살표" />
+        </Link>
+      </div>
     </div>
   );
 }

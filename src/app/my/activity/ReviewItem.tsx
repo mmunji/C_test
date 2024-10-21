@@ -42,7 +42,7 @@ export default function ReviewItem({
   return (
     <Link
       href={`${ROUTES.DETAIL}/${review.movie_id}`}
-      className="flex flex-col justify-between gap-2 rounded-xl bg-D1_Gray px-5 pb-4 pt-2 Laptop:gap-4 Laptop:px-7 Laptop:pb-6 Laptop:pt-4"
+      className="group flex flex-col justify-between gap-2 rounded-xl bg-D1_Gray px-5 pb-4 pt-2 hover:bg-D2_Gray active:bg-D3_Gray Laptop:gap-4 Laptop:px-7 Laptop:pb-6 Laptop:pt-4"
     >
       <div className="">
         <div className="flex h-10 items-center justify-between gap-2 Laptop:mb-2">
@@ -83,7 +83,7 @@ export default function ReviewItem({
           {review.content}
         </div>
       </div>
-      <div className="flex items-center justify-between border-t border-D2_Gray pt-3">
+      <div className="flex items-center justify-between border-t border-D2_Gray pt-3 group-hover:border-D1_Gray group-active:border-D2_Gray">
         <div className="text-Gray Text-xs-Regular">{review.regDate} 작성</div>
         <div className="flex items-center gap-3">
           <div className="flex items-center gap-1">
