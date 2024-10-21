@@ -6,5 +6,11 @@ interface BannerDTO {
   genres: GenreDto[];
   rate: number;
   keyword: string;
-  reviewList: BannerReviewDTO[];
+  reviewList: BannerReview[];
+}
+
+interface BannerReview {
+  star: number;
+  content: string;
+  createdAt: string;
 }

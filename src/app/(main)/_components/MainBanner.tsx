@@ -20,7 +20,6 @@ interface BannerType {
 
 export default function MainBanner({ data }: BannerType) {
   const { device } = useDevice();
-
   return (
     <div className="relative w-full">
       <div id="containerForBullets" />
