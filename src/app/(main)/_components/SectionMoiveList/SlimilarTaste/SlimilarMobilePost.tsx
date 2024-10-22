@@ -11,17 +11,17 @@ import {
 } from "../../../../../../public/icons";
 
 interface UserPostTypes {
-  UserPost: MovieReviewRecommed;
+  UserPost: MovieReviewRecommed[];
   PickUserNumber: number;
 }
 export default function SlimilarMobilePost({
   UserPost,
   PickUserNumber,
 }: UserPostTypes) {
-  // const selectedUser =
-  //   UserPost && UserPost.length > PickUserNumber
-  //     ? UserPost[PickUserNumber]
-  //     : null;
+  const selectedUser =
+    UserPost && UserPost.length > PickUserNumber
+      ? UserPost[PickUserNumber]
+      : null;
 
   return (
     <div>
@@ -30,14 +30,14 @@ export default function SlimilarMobilePost({
           <div
             className="h-[40px] w-[40px] rounded-[60px] "
             style={{
-              backgroundImage: `linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, rgba(0, 0, 0, 0) 100%), url(data:image/jpeg;base64,${UserPost?.profile})`,
+              backgroundImage: `linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, rgba(0, 0, 0, 0) 100%), url(data:image/jpeg;base64,${selectedUser?.profile})`,
               backgroundSize: "cover",
               backgroundPosition: "center",
             }}
           />
           <div>
             <span className="text-cente text-Silver Text-s-Medium ">
-              {UserPost?.nickname}
+              {selectedUser?.nickname}
             </span>
             <div className="flex items-center   gap-2  text-Gray_Orange Text-s-Medium">
               <span className="flex items-center gap-1">
@@ -46,36 +46,36 @@ export default function SlimilarMobilePost({
                   alt="글 쓰기"
                   className="h-4 w-4"
                 />
-                {UserPost?.reviewCount}
+                {selectedUser?.reviewCount}
               </span>
               <div className="h-4 border-r-[1px] border-D2_Gray"></div>
               <span className="flex items-center gap-1">
                 <Image src={ThumbsUpFillSm} alt="좋아요" className="h-4 w-4" />
-                {UserPost?.null ? UserPost?.null : "0"}
+                {selectedUser?.null ? selectedUser?.null : "0"}
               </span>
             </div>
           </div>
         </div>
         <div className="flex gap-1 Text-xs-Regular">
-          {/* {Array(3)
+          {Array(3)
             .fill(0)
             .map((_, index) => {
-              if (!UserPost?.badges[index]) {
+              if (!selectedUser?.badges[index]) {
                 return null;
               }
               return (
                 <SmallBadge
                   key={index}
-                  content={UserPost?.badges[index]?.badge_name}
+                  content={selectedUser?.badges[index]?.badge_name}
                   size="sm"
                 />
               );
-            })} */}
+            })}
         </div>
       </div>
       <div>
         <Swiper slidesPerView="auto" spaceBetween={20}>
-          {UserPost?.reviews?.map((ReviewUser, index) => {
+          {selectedUser?.reviews?.map((ReviewUser, index) => {
             return (
               <SwiperSlide
                 key={index}

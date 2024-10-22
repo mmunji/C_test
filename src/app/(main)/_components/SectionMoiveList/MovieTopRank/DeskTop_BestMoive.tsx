@@ -97,7 +97,7 @@ export default function DeskTop_BestMovie(MovieData: Desktop_BestMoiveProps) {
                 >
                   <div className="flex flex-col gap-3">
                     <div className="flex items-center gap-3">
-                      <h1 className="Text-xxl-Bold">
+                      <h1 className="line-clamp-1 w-[380px] Text-xxl-Bold">
                         {MovieDetailData.movienm}
                       </h1>
                       <div className="flex items-center gap-[10px] text-Gray_Orange Text-s-Regular">

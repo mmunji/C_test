@@ -10,12 +10,12 @@ import { movieAPIs } from "@/services/movie/movieAPIs";
 import SlimilarPost from "./SlimilarPost";
 
 interface SimilarTastesMovieType {
-  data: MovieReviewRecommed;
+  data: MovieReviewRecommed[];
 }
 export default function SimilarTastesMovie({ data }: SimilarTastesMovieType) {
   const [PickUserNumber, setPickUserNumber] = useState<number>(0);
   const { device } = useDevice();
-  const [ReviewUsers, setReviewUsers] = useState<MovieReviewRecommed>(data);
+  const [ReviewUsers, setReviewUsers] = useState<MovieReviewRecommed[]>(data);
   const accessToken = tokenManager.getToken();
   const [message, setmessage] = useState(
     "로그인 하고 별을 눌러 평가해보세요 :",
@@ -60,7 +60,7 @@ export default function SimilarTastesMovie({ data }: SimilarTastesMovieType) {
                 return (
                   <SwiperSlide key={index} className=" w-[60px]">
                     <div
-                      className={`h-[60px] w-[60px] rounded-[60px] border-2 bg-white  ${PickUserNumber == index ? "border-Primary" : "border-transparent"} `}
+                      className={`h-[60px] w-[60px] rounded-[60px]    ${PickUserNumber == index ? "border-2 border-Primary" : "border-transparent"} `}
                       onClick={() => ChangePickNumber(index)}
                       style={{
                         backgroundImage: `linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, rgba(0, 0, 0, 0) 100%), url(data:image/jpeg;base64,${Review.profile}`,

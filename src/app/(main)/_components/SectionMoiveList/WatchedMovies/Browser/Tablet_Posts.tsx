@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import { useState } from "react";
 import { Swiper, SwiperClass, SwiperSlide } from "swiper/react";
 
@@ -29,15 +30,17 @@ export default function Tablet_Posts({ MovieWatchMovies }: WatchMovieType) {
                     key={index}
                     className="flex items-center justify-center "
                   >
-                    <div
-                      className="h-[280px] w-[200px] rounded-xl"
-                      style={{
-                        backgroundImage: `linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, rgba(0, 0, 0, 0) 100%), url('${e.poster_path ? `https://image.tmdb.org/t/p/original/${e.poster_path}` : "/images/ssikongi/PNG/NoImage.png"})`,
-                        backgroundSize: "cover",
-                        backgroundPosition: "center",
-                      }}
-                    />
-                    <div className="] flex w-[337px] flex-col items-center justify-center gap-8 px-5">
+                    <Link href={`/detail/${e.movieId}`}>
+                      <div
+                        className="h-[280px] w-[200px] rounded-xl"
+                        style={{
+                          backgroundImage: `linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, rgba(0, 0, 0, 0) 100%), url('${e.poster_path ? `https://image.tmdb.org/t/p/original/${e.poster_path}` : "/images/ssikongi/PNG/NoImage.png"})`,
+                          backgroundSize: "cover",
+                          backgroundPosition: "center",
+                        }}
+                      />
+                    </Link>
+                    <div className=" flex w-[337px] flex-col items-center justify-center gap-8 px-5">
                       <div className="flex flex-col items-center justify-center gap-2 ">
                         <h1 className="Text-l-Medium">{e.movienm}</h1>
                         <div className="flex items-center gap-[10px] text-L_Gray Text-s-Regular">

@@ -16,7 +16,7 @@ import SlimilarMobilePost from "./SlimilarMobilePost";
 import SlimilarUser from "./SlimilarUser";
 
 interface ReviewUsersProps {
-  ReviewUsers: MovieReviewRecommed;
+  ReviewUsers: MovieReviewRecommed[];
   setPickUserNumber: Dispatch<SetStateAction<number>>;
   PickUserNumber: number;
   ChangePickNumber: (index: number) => void;

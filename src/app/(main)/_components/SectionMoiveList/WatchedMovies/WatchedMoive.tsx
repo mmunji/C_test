@@ -1,22 +1,17 @@
-"use client";
 import { Suspense, useEffect, useState } from "react";
 
 import SpeechBubble from "@/components/speechBubble/SpeechBubble";
 import { tokenManager } from "@/services/auth/tokenManager";
+import { myAPIs } from "@/services/my/myAPIs";
 
 import WatchedSkeleton from "../../MainSkeleton/WatchedMoive/WatchedSkeleton";
 import MoviePosts from "./MoviePosts";
 
-export default function WatchedMoive() {
-  const accessToken = tokenManager.getToken();
-  const [message, setmessage] = useState(
-    "로그인 하고 별을 눌러 평가해보세요 :",
-  );
-  useEffect(() => {
-    if (accessToken) {
-      setmessage("톡을 많이 작성할수록 내 취향에 비슷해져요.");
-    }
-  }, [accessToken]);
+export default async function WatchedMoive() {
+  const data = await myAPIs.getUser();
+  let message = data
+    ? "톡을 많이 작성할수록 내 취향에 비슷해져요"
+    : "로그인 하고 별을 눌러 평가해보세요 ";
 
   return (
     <div className="flex flex-col gap-5">
@@ -25,7 +20,7 @@ export default function WatchedMoive() {
           혹시 이 영화 보셨나요?
         </h1>
         <div className="hidden  Laptop:block">
-          {accessToken ? (
+          {data ? (
             <SpeechBubble id={"WatchedMovie"} dir="left">
               {message}
             </SpeechBubble>

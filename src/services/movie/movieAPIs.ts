@@ -15,9 +15,13 @@ export const movieAPIs = {
     return data;
   },
   getMentionKeword: async () => {
-    const res = await fetch(`${API_URL}/movie/MentionKeword`);
-    const data: MentionKeword[] = await res.json();
-    return data;
+    const res = await fetch(`${API_URL}/movie/MentionKeword`, {
+      cache: "no-store",
+    });
+    const string = await res.text();
+    const json =
+      string === "" ? null : (JSON.parse(string) as StateTO | MentionKeword[]);
+    return json;
   },
   getMovieReviewComments: async () => {
     const res = await fetch(`${API_URL}/movie/TotalReviewCount`);
@@ -62,7 +66,7 @@ export const movieAPIs = {
           },
         }))
       : (res = await fetch(`${API_URL}/movie/top-reviewers`));
-    const data: MovieReviewRecommed = await res.json();
+    const data: MovieReviewRecommed[] = await res.json();
     return data;
   },
   postFeedBack: async (content: string) => {
