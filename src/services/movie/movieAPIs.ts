@@ -16,7 +16,7 @@ export const movieAPIs = {
   },
   getMentionKeword: async () => {
     const res = await fetch(`${API_URL}/movie/MentionKeword`);
-    const data: MentionKeword[] | boolean = await res.json();
+    const data: MentionKeword[] = await res.json();
     return data;
   },
   getMovieReviewComments: async () => {
