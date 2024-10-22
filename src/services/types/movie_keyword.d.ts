@@ -3,6 +3,10 @@ interface MentionKeword {
   keyword: string;
   count: number;
 }
+interface StateTO {
+  state: boolean;
+}
+
 interface reviewDTO {
   nickname: string;
   review: review;

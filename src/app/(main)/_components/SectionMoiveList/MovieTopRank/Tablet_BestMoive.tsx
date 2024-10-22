@@ -48,7 +48,7 @@ export default function Tablet_BestMoive(MovieData: Tablet_BestMoiveProps) {
                     <div className="flex flex-col justify-between gap-3">
                       <div className="flex flex-col gap-2">
                         <div className="flex gap-3 ">
-                          <h1 className="line-clamp-1 Text-l-Bold">
+                          <h1 className="line-clamp-1 w-[366px] Text-l-Bold">
                             {MovieDetailData.movienm}
                           </h1>
                           <div className="flex items-center gap-[10px] Text-xs-Regular">
