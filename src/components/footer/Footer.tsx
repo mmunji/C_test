@@ -5,6 +5,8 @@ import { useEffect, useState } from "react";
 import useInput from "@/hooks/useInput";
 import { movieAPIs } from "@/services/movie/movieAPIs";
 
+import Button from "../buttons/Button";
+
 export default function Footer() {
   const [FeedbackPost, setFeedBackPost] = useInput("");
   const [Commnets, setCommnets] = useState(0);
@@ -41,12 +43,20 @@ export default function Footer() {
             value={FeedbackPost}
             onChange={setFeedBackPost}
           />
-          <button
-            className="rounded-lg bg-D2_Gray  px-3 py-1 text-Gray  Text-s-Medium"
+          <Button
+            size={"sm"}
+            variant={"orange"}
+            disabled={!FeedbackPost}
             onClick={FeedBackSubmit}
           >
             보내기
-          </button>
+          </Button>
+          {/* <button
+            className="rounded-lg bg-D2_Gray   px-3 py-1 text-Gray  Text-s-Medium"
+            onClick={FeedBackSubmit}
+          >
+            보내기
+          </button> */}
         </div>
       </div>
       <hr className="border-Gray" />
