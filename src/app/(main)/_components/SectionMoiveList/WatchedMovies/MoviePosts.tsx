@@ -5,7 +5,6 @@ import Labtop_Posts from "./Browser/Labtop_Posts";
 import Mobile_Posts from "./Browser/Mobile_Posts";
 import Tablet_Posts from "./Browser/Tablet_Posts";
 export default async function MoviePosts() {
-  await delay(15000000);
   const data = await movieAPIs.getWatchMovie();
 
   return (
