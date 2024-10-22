@@ -1,9 +1,10 @@
 "use client";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 
 import SpeechBubble from "@/components/speechBubble/SpeechBubble";
 import { tokenManager } from "@/services/auth/tokenManager";
 
+import WatchedSkeleton from "../../MainSkeleton/WatchedMoive/WatchedSkeleton";
 import MoviePosts from "./MoviePosts";
 
 export default function WatchedMoive() {
@@ -38,7 +39,9 @@ export default function WatchedMoive() {
           간편하게 영화를 평가해보세요!
         </span>
       </div>
-      <MoviePosts />
+      <Suspense fallback={<WatchedSkeleton />}>
+        <MoviePosts />
+      </Suspense>
     </div>
   );
 }

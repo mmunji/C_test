@@ -5,32 +5,25 @@ import "swiper/css/pagination";
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { Pagination } from "swiper/modules";
 import { Swiper, SwiperClass, SwiperSlide } from "swiper/react";
 
 import { ChevronLeftMd, ChevronRightMd, StarFillMd } from "@/../public/icons";
 import Button from "@/components/buttons/Button";
 import useDevice from "@/hooks/useDevice";
-import { movieAPIs } from "@/services/movie/movieAPIs";
 
 import PostCard from "../PostCard";
-export default function MasterPieceMoive() {
-  const [MoviePiece, setMoviePiece] = useState<MovieHidingPiece | null>(null);
+
+interface MasterPieceMoiveType {
+  data: MovieHidingPiece | null;
+}
+
+export default function MasterPieceMoive({ data }: MasterPieceMoiveType) {
   const [swiper, setSwiper] = useState<SwiperClass>();
   const [hovered, sethovered] = useState(false);
   const { device } = useDevice();
-  useEffect(() => {
-    const fetchMovie = async () => {
-      try {
-        const response = await movieAPIs.getHidingPiece();
-        setMoviePiece(response);
-      } catch (error) {
-        console.error("영화를 가져오는 중 오류 발생:", error);
-      }
-    };
-    fetchMovie();
-  }, []);
+
   return (
     <div className="flex flex-col gap-[20px]">
       <div className="flex flex-col gap-1">
@@ -44,8 +37,8 @@ export default function MasterPieceMoive() {
 
       <div className="flex  gap-2 Laptop:hidden  ">
         <Swiper slidesPerView="auto" spaceBetween={20}>
-          {Array.isArray(MoviePiece) && MoviePiece.length > 0
-            ? MoviePiece.map((movie, index) => (
+          {Array.isArray(data) && data.length > 0
+            ? data.map((movie, index) => (
                 <SwiperSlide key={index} style={{ width: "156px" }}>
                   <Link href={`detail/${movie.movieid}`}>
                     <div
@@ -93,8 +86,8 @@ export default function MasterPieceMoive() {
             setSwiper(e);
           }}
         >
-          {Array.isArray(MoviePiece) && MoviePiece.length > 0
-            ? MoviePiece.map((movie, index) => (
+          {Array.isArray(data) && data.length > 0
+            ? data.map((movie, index) => (
                 <SwiperSlide
                   key={index}
                   className="w-[174px] Desktop:w-[240px]"

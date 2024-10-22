@@ -13,7 +13,12 @@ import DeskTop_BestMovie from "./DeskTop_BestMoive";
 import Laptop_BestMovie from "./Laptop_BestMovie";
 import Mobile_BestMovie from "./Mobile_BestMovie";
 import Tablet_BestMoive from "./Tablet_BestMoive";
-export default function MoiveTopRank() {
+
+interface MoiveTopRankType {
+  data: Movie_TopTen | null;
+}
+
+export default function MoiveTopRank({ data }: MoiveTopRankType) {
   const [filter, setFilter] = useState(0);
 
   const MovieGenreType = [
@@ -42,23 +47,20 @@ export default function MoiveTopRank() {
   ];
 
   const [MovieTopTenData, setMovieTopTenData] = useState<Movie_TopTen | null>(
-    null,
+    data,
   );
 
-  useEffect(() => {
-    const fetchMovie = async () => {
-      try {
-        const response = await movieAPIs.getMovieTopTen(
-          MovieGenreType[filter].index,
-        );
-        setMovieTopTenData(response);
-      } catch (error) {
-        console.error("영화를 가져오는 중 오류 발생:", error);
-      }
-    };
+  const fetchMovie = async () => {
+    try {
+      const response = await movieAPIs.getMovieTopTen(
+        MovieGenreType[filter].index,
+      );
+      setMovieTopTenData(response);
+    } catch (error) {
+      console.error("영화를 가져오는 중 오류 발생:", error);
+    }
+  };
 
-    fetchMovie();
-  }, [filter]);
   return (
     <div className="flex flex-col gap-4  ">
       <div className="flex justify-between">
@@ -80,7 +82,12 @@ export default function MoiveTopRank() {
               <Dropdown.List>
                 {MovieGenreType.map((genre, index) => {
                   return (
-                    <Dropdown.Item key={index} onClick={() => setFilter(index)}>
+                    <Dropdown.Item
+                      key={index}
+                      onClick={() => {
+                        setFilter(index), fetchMovie();
+                      }}
+                    >
                       {genre.name}
                     </Dropdown.Item>
                   );
@@ -93,19 +100,14 @@ export default function MoiveTopRank() {
           매월 업데이트
         </span>
       </div>
-      {!MovieTopTenData ? (
-        <div className="flex items-center justify-center px-5 py-5">
-          <LoadingSpinner size="2xl" color="primary" />
-        </div>
-      ) : (
-        <div>
-          {/* 모바일 */}
-          <Tablet_BestMoive MovieData={MovieTopTenData} />
-          <DeskTop_BestMovie MovieData={MovieTopTenData} />
-          <Laptop_BestMovie MovieData={MovieTopTenData} />
-          <Mobile_BestMovie MovieData={MovieTopTenData} />
-        </div>
-      )}
+
+      <div>
+        {/* 모바일 */}
+        <Tablet_BestMoive MovieData={MovieTopTenData} />
+        <DeskTop_BestMovie MovieData={MovieTopTenData} />
+        <Laptop_BestMovie MovieData={MovieTopTenData} />
+        <Mobile_BestMovie MovieData={MovieTopTenData} />
+      </div>
     </div>
   );
 }

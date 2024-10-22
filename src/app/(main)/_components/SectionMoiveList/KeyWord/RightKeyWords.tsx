@@ -3,11 +3,16 @@ import { useEffect, useState } from "react";
 
 import KeyWordPosts from "./KeyWordPosts";
 interface KeyWordInfoProps {
-  keywordInfo: MentionKeword;
+  keywordInfo: MentionKeword[];
+
+  keywordIndex: number;
 }
 
-export default function RightKeyWords({ keywordInfo }: KeyWordInfoProps) {
-  const keyword = keywordInfo?.keyword;
+export default function RightKeyWords({
+  keywordInfo,
+  keywordIndex,
+}: KeyWordInfoProps) {
+  const keyword = keywordInfo[keywordIndex]?.keyword;
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -25,20 +30,31 @@ export default function RightKeyWords({ keywordInfo }: KeyWordInfoProps) {
         {Array(3)
           .fill(0)
           .map((_, index) => {
-            if (!keywordInfo?.reviewList?.[index]) {
+            if (!keywordInfo[keywordIndex]?.reviewList?.[index]) {
               return null;
             }
             return (
               <KeyWordPosts
                 key={index}
-                id={keywordInfo?.reviewList[index]?.review.id}
-                nickname={keywordInfo?.reviewList[index]?.nickname}
-                movieName={keywordInfo?.reviewList[index]?.review?.movienm}
-                star={keywordInfo?.reviewList[index]?.review?.star}
-                content={keywordInfo?.reviewList[index]?.review?.content}
+                id={keywordInfo[keywordIndex]?.reviewList[index]?.review.id}
+                nickname={
+                  keywordInfo[keywordIndex]?.reviewList[index]?.nickname
+                }
+                movieName={
+                  keywordInfo[keywordIndex]?.reviewList[index]?.review?.movienm
+                }
+                star={
+                  keywordInfo[keywordIndex]?.reviewList[index]?.review?.star
+                }
+                content={
+                  keywordInfo[keywordIndex]?.reviewList[index]?.review?.content
+                }
                 keyword={keyword}
-                createdAt={keywordInfo?.reviewList[index]?.review?.createdAt}
-                profile={keywordInfo?.reviewList[index]?.profile}
+                createdAt={
+                  keywordInfo[keywordIndex]?.reviewList[index]?.review
+                    ?.createdAt
+                }
+                profile={keywordInfo[keywordIndex]?.reviewList[index]?.profile}
                 isVisible={isVisible}
               />
             );
@@ -48,20 +64,31 @@ export default function RightKeyWords({ keywordInfo }: KeyWordInfoProps) {
         {Array(6)
           .fill(0)
           .map((_, index) => {
-            if (!keywordInfo?.reviewList?.[index]) {
+            if (!keywordInfo[keywordIndex]?.reviewList?.[index]) {
               return null;
             }
             return (
               <KeyWordPosts
                 key={index}
-                id={keywordInfo?.reviewList[index]?.review.id}
-                nickname={keywordInfo?.reviewList[index]?.nickname}
-                movieName={keywordInfo?.reviewList[index]?.review?.movienm}
-                star={keywordInfo?.reviewList[index]?.review?.star}
-                content={keywordInfo?.reviewList[index]?.review?.content}
+                id={keywordInfo[keywordIndex]?.reviewList[index]?.review.id}
+                nickname={
+                  keywordInfo[keywordIndex]?.reviewList[index]?.nickname
+                }
+                movieName={
+                  keywordInfo[keywordIndex]?.reviewList[index]?.review?.movienm
+                }
+                star={
+                  keywordInfo[keywordIndex]?.reviewList[index]?.review?.star
+                }
+                content={
+                  keywordInfo[keywordIndex]?.reviewList[index]?.review?.content
+                }
                 keyword={keyword}
-                createdAt={keywordInfo?.reviewList[index]?.review?.createdAt}
-                profile={keywordInfo?.reviewList[index]?.profile}
+                createdAt={
+                  keywordInfo[keywordIndex]?.reviewList[index]?.review
+                    ?.createdAt
+                }
+                profile={keywordInfo[keywordIndex]?.reviewList[index]?.profile}
                 isVisible={isVisible}
               />
             );
@@ -73,29 +100,40 @@ export default function RightKeyWords({ keywordInfo }: KeyWordInfoProps) {
         {Array(8)
           .fill(0)
           .map((_, index) => {
-            if (!keywordInfo?.reviewList?.[index]) {
+            if (!keywordInfo[keywordIndex]?.reviewList?.[index]) {
               return null;
             }
             return (
               <KeyWordPosts
                 key={index}
-                id={keywordInfo?.reviewList[index]?.review.id}
-                nickname={keywordInfo?.reviewList[index]?.nickname}
-                movieName={keywordInfo?.reviewList[index]?.review?.movienm}
-                star={keywordInfo?.reviewList[index]?.review?.star}
-                content={keywordInfo?.reviewList[index]?.review?.content}
+                id={keywordInfo[keywordIndex]?.reviewList[index]?.review.id}
+                nickname={
+                  keywordInfo[keywordIndex]?.reviewList[index]?.nickname
+                }
+                movieName={
+                  keywordInfo[keywordIndex]?.reviewList[index]?.review?.movienm
+                }
+                star={
+                  keywordInfo[keywordIndex]?.reviewList[index]?.review?.star
+                }
+                content={
+                  keywordInfo[keywordIndex]?.reviewList[index]?.review?.content
+                }
                 keyword={keyword}
-                createdAt={keywordInfo?.reviewList[index]?.review?.createdAt}
-                profile={keywordInfo?.reviewList[index]?.profile}
+                createdAt={
+                  keywordInfo[keywordIndex]?.reviewList[index]?.review
+                    ?.createdAt
+                }
+                profile={keywordInfo[keywordIndex]?.reviewList[index]?.profile}
                 isVisible={isVisible}
               />
             );
           })}
       </div>
       <div
-        className={` m hidden transform  grid-cols-5  gap-6 transition-opacity duration-700 ease-in Desktop:grid `}
+        className={`  hidden transform  grid-cols-5  gap-6 transition-opacity duration-700 ease-in Desktop:grid `}
       >
-        {keywordInfo?.reviewList?.map((movie, index) => {
+        {keywordInfo[keywordIndex]?.reviewList.map((movie, index) => {
           if (!movie) {
             return null;
           }

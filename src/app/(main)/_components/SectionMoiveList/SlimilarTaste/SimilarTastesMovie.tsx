@@ -8,10 +8,14 @@ import { tokenManager } from "@/services/auth/tokenManager";
 import { movieAPIs } from "@/services/movie/movieAPIs";
 
 import SlimilarPost from "./SlimilarPost";
-export default function SimilarTastesMovie() {
+
+interface SimilarTastesMovieType {
+  data: MovieReviewRecommed;
+}
+export default function SimilarTastesMovie({ data }: SimilarTastesMovieType) {
   const [PickUserNumber, setPickUserNumber] = useState<number>(0);
   const { device } = useDevice();
-  const [ReviewUsers, setReviewUsers] = useState<MovieReviewRecommed[]>([]);
+  const [ReviewUsers, setReviewUsers] = useState<MovieReviewRecommed>(data);
   const accessToken = tokenManager.getToken();
   const [message, setmessage] = useState(
     "로그인 하고 별을 눌러 평가해보세요 :",
@@ -19,20 +23,19 @@ export default function SimilarTastesMovie() {
   const ChangePickNumber = (index: number) => {
     setPickUserNumber(index);
   };
+  // const fetchMovie = async () => {
+  //   try {
+  //     // 실제 API 호출로 `movieAPIs.getHidingPiece`를 대체합니다.
+  //     const data = await movieAPIs.getPeopleReviewers();
+  //     setReviewUsers(data);
+  //   } catch (error) {
+  //     console.error("영화를 가져오는 중 오류 발생:", error);
+  //   }
+  // };
   useEffect(() => {
-    const fetchMovie = async () => {
-      try {
-        // 실제 API 호출로 `movieAPIs.getHidingPiece`를 대체합니다.
-        const response = await movieAPIs.getPeopleReviewers();
-        setReviewUsers(response);
-      } catch (error) {
-        console.error("영화를 가져오는 중 오류 발생:", error);
-      }
-    };
     if (accessToken) {
       setmessage("톡을 많이 작성할수록 내 취향에 비슷해져요.");
     }
-    fetchMovie();
   }, [accessToken]);
   return (
     <div className="flex flex-col gap-5">
@@ -79,7 +82,7 @@ export default function SimilarTastesMovie() {
       <SlimilarPost
         PickUserNumber={PickUserNumber}
         setPickUserNumber={setPickUserNumber}
-        ReviewUsers={ReviewUsers!}
+        ReviewUsers={data!}
         ChangePickNumber={ChangePickNumber}
       />
     </div>
