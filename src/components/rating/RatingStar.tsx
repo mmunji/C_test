@@ -9,6 +9,7 @@ import {
   StarLg,
   StarXl,
 } from "@/../public/icons";
+import { revalidateMyPage } from "@/services/my/actions";
 import { talkAPIs } from "@/services/talk/talkAPIs";
 import { useAddTalk } from "@/services/talk/talkMutations";
 
@@ -82,6 +83,7 @@ export default function RatingStar({
       });
       if (!data.message) {
         alert("피드백 완료! 소중한 의견 감사합니다 🦑");
+        revalidateMyPage("my");
       } else {
         alert(data.message);
       }

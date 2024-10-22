@@ -4,6 +4,9 @@ import { delay } from "@/utils/fn";
 import RecentKeyword from "./RecentKeyword";
 
 export default async function RecentKeywordWapper() {
-  const data = await movieAPIs.getMentionKeword();
+  const data: MentionKeword[] | boolean = await movieAPIs.getMentionKeword();
+  if (typeof data == false) {
+    return null;
+  }
   return <RecentKeyword data={data} />;
 }
