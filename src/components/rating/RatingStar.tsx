@@ -68,7 +68,7 @@ export default function RatingStar({
     }
   }
 
-  // const { mutate: addTalks } = useAddTalk(movieId as number);
+  const { mutate: addTalks } = useAddTalk(movieId as number);
 
   const AddStarReview = async (star: number) => {
     if (StarReview) {

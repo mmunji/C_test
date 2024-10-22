@@ -97,7 +97,7 @@ export default function Laptop_BestMovie(MovieData: Laptop_BestMoiveProps) {
                   >
                     <div className="flex flex-col gap-3 ">
                       <div className="flex items-center gap-3">
-                        <h1 className="text-Silver Text-xl-Bold">
+                        <h1 className="line-clamp-1 text-Silver Text-xl-Bold">
                           {MovieDetailData.movienm}
                         </h1>
                         <div className=" flex items-center gap-[10px] text-Gray_Orange Text-xs-Regular">

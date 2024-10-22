@@ -53,7 +53,7 @@ export default function Mobile_BestMovie(MovieData: Mobile_BestMoiveProps) {
                           {index + 1}
                         </div>
                         <div className="flex flex-col gap-1 px-4">
-                          <h2 className="text-Silver Text-m-Bold">
+                          <h2 className="line-clamp-1  text-Silver Text-m-Bold">
                             {MovieDetailData.movienm}
                           </h2>
                           <div className="flex items-center   gap-[10px] Text-xs-Regular">
