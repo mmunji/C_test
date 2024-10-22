@@ -10,12 +10,12 @@ import { movieAPIs } from "@/services/movie/movieAPIs";
 import SlimilarPost from "./SlimilarPost";
 
 interface SimilarTastesMovieType {
-  data: MovieReviewRecommed;
+  data: MovieReviewRecommed[];
 }
 export default function SimilarTastesMovie({ data }: SimilarTastesMovieType) {
   const [PickUserNumber, setPickUserNumber] = useState<number>(0);
   const { device } = useDevice();
-  const [ReviewUsers, setReviewUsers] = useState<MovieReviewRecommed>(data);
+  const [ReviewUsers, setReviewUsers] = useState<MovieReviewRecommed[]>(data);
   const accessToken = tokenManager.getToken();
   const [message, setmessage] = useState(
     "로그인 하고 별을 눌러 평가해보세요 :",

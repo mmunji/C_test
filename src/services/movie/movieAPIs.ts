@@ -62,7 +62,7 @@ export const movieAPIs = {
           },
         }))
       : (res = await fetch(`${API_URL}/movie/top-reviewers`));
-    const data: MovieReviewRecommed = await res.json();
+    const data: MovieReviewRecommed[] = await res.json();
     return data;
   },
   postFeedBack: async (content: string) => {
