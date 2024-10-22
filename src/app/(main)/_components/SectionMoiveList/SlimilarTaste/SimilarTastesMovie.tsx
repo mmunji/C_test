@@ -60,7 +60,7 @@ export default function SimilarTastesMovie({ data }: SimilarTastesMovieType) {
                 return (
                   <SwiperSlide key={index} className=" w-[60px]">
                     <div
-                      className={`h-[60px] w-[60px] rounded-[60px] border-2 bg-white  ${PickUserNumber == index ? "border-Primary" : "border-transparent"} `}
+                      className={`h-[60px] w-[60px] rounded-[60px]    ${PickUserNumber == index ? "border-2 border-Primary" : "border-transparent"} `}
                       onClick={() => ChangePickNumber(index)}
                       style={{
                         backgroundImage: `linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, rgba(0, 0, 0, 0) 100%), url(data:image/jpeg;base64,${Review.profile}`,

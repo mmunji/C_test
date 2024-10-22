@@ -50,16 +50,18 @@ export default function MoiveTopRank({ data }: MoiveTopRankType) {
     data,
   );
 
-  const fetchMovie = async () => {
+  const fetchMovie = async (index: number) => {
     try {
       const response = await movieAPIs.getMovieTopTen(
-        MovieGenreType[filter].index,
+        MovieGenreType[index].index,
       );
       setMovieTopTenData(response);
     } catch (error) {
       console.error("영화를 가져오는 중 오류 발생:", error);
     }
   };
+
+  useEffect(() => {}, [filter]);
 
   return (
     <div className="flex flex-col gap-4  ">
@@ -85,7 +87,7 @@ export default function MoiveTopRank({ data }: MoiveTopRankType) {
                     <Dropdown.Item
                       key={index}
                       onClick={() => {
-                        setFilter(index), fetchMovie();
+                        setFilter(index), fetchMovie(index);
                       }}
                     >
                       {genre.name}
