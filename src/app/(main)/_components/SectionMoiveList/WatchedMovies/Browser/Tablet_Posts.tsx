@@ -1,10 +1,13 @@
 "use client";
+import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { Swiper, SwiperClass, SwiperSlide } from "swiper/react";
 
 import SpeechBubble from "@/components/speechBubble/SpeechBubble";
+import { getTmdbPosterUrl } from "@/utils/tmdb";
 
+import { NoImageSsikongi } from "../../../../../../../public/images";
 import PostRating from "../../../Rating/PostRating";
 interface WatchMovieType {
   MovieWatchMovies: WatchMovie | null;
@@ -31,6 +34,20 @@ export default function Tablet_Posts({ MovieWatchMovies }: WatchMovieType) {
                     className="flex items-center justify-center "
                   >
                     <Link href={`/detail/${e.movieId}`}>
+                      <div className="flex justify-center">
+                        <Image
+                          height={280}
+                          width={200}
+                          className="rounded-xl"
+                          src={
+                            e.poster_path
+                              ? getTmdbPosterUrl("original", e.poster_path)
+                              : NoImageSsikongi
+                          }
+                          alt="영화 포스터"
+                        />
+                      </div>
+                      {/*                    
                       <div
                         className="h-[280px] w-[200px] rounded-xl"
                         style={{
@@ -38,7 +55,7 @@ export default function Tablet_Posts({ MovieWatchMovies }: WatchMovieType) {
                           backgroundSize: "cover",
                           backgroundPosition: "center",
                         }}
-                      />
+                      /> */}
                     </Link>
                     <div className=" flex w-[337px] flex-col items-center justify-center gap-8 px-5">
                       <div className="flex flex-col items-center justify-center gap-2 ">
