@@ -41,7 +41,7 @@ export default function MainBanner({ data }: BannerType) {
             <SwiperSlide key={index}>
               <Link href={`detail/${BannerItem.movieId}`}>
                 <div
-                  className="relative h-[374px] w-full overflow-hidden rounded-[20px] Tablet:h-[360px] Laptop:h-[489px] Desktop:h-[637px]"
+                  className="relative h-[421px] w-full overflow-hidden rounded-[20px] Tablet:h-[360px] Laptop:h-[489px] Desktop:h-[637px]"
                   style={{
                     backgroundImage: `${device == "laptop" || device == "desktop" ? `linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, rgba(0, 0, 0, 0.50) 100%), url( https://image.tmdb.org/t/p/original/${BannerItem.backdrop_path})` : `linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, rgba(0, 0, 0, 1) 100%), url(https://image.tmdb.org/t/p/original/${BannerItem.backdrop_path})`} `,
                     backgroundSize: "cover",

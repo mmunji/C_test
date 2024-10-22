@@ -1,43 +1,22 @@
-"use client";
-
-import Image from "next/image";
-import { useEffect, useState } from "react";
-
-import { StarXl } from "@/../public/icons";
 import { movieAPIs } from "@/services/movie/movieAPIs";
+import { delay } from "@/utils/fn";
 
-import PostCard from "../../PostCard";
-import PostRating from "../../Rating/PostRating";
 import Labtop_Posts from "./Browser/Labtop_Posts";
 import Mobile_Posts from "./Browser/Mobile_Posts";
 import Tablet_Posts from "./Browser/Tablet_Posts";
-export default function MoviePosts() {
-  const [MovieWatchMovie, setMovieWatchMovie] = useState<WatchMovie | null>(
-    null,
-  );
-
-  useEffect(() => {
-    const fetchMovie = async () => {
-      try {
-        const response = await movieAPIs.getWatchMovie();
-        setMovieWatchMovie(response);
-      } catch (error) {
-        console.error("영화를 가져오는 중 오류 발생:", error);
-      }
-    };
-
-    fetchMovie();
-  }, []);
+export default async function MoviePosts() {
+  await delay(15000000);
+  const data = await movieAPIs.getWatchMovie();
 
   return (
     <div>
       {/* Mobile */}
-      <Mobile_Posts MovieWatchMovies={MovieWatchMovie} />
+      <Mobile_Posts MovieWatchMovies={data} />
       {/* Tablet */}
-      <Tablet_Posts MovieWatchMovies={MovieWatchMovie} />
+      <Tablet_Posts MovieWatchMovies={data} />
 
       {/* Laptop , Desktop */}
-      <Labtop_Posts MovieWatchMovies={MovieWatchMovie} />
+      <Labtop_Posts MovieWatchMovies={data} />
     </div>
   );
 }

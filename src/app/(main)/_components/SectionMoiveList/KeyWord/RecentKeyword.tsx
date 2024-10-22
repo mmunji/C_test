@@ -4,31 +4,19 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-import Button from "@/components/buttons/Button";
-import { movieAPIs } from "@/services/movie/movieAPIs";
-
 import { ChevronRight } from "../../../../../../public/icons";
 import RightKeyWords from "./RightKeyWords";
-export default function RecentKeyword() {
-  const [MentionKeywords, setMentionKewords] = useState<MentionKeword[]>([]);
+interface RecentKeywordType {
+  data: MentionKeword[];
+}
+
+export default function RecentKeyword({ data }: RecentKeywordType) {
   const [KeywordListNumber, setKeywordListNumber] = useState<number>(0);
   const HandleKeywords = (index: number) => {
     setKeywordListNumber(index);
   };
-  useEffect(() => {
-    const fetchMovie = async () => {
-      try {
-        // 실제 API 호출로 `movieAPIs.getHidingPiece`를 대체합니다.
-        const response = await movieAPIs.getMentionKeword();
-        setMentionKewords(Array.isArray(response) ? response : [response]);
-      } catch (error) {
-        console.error("영화를 가져오는 중 오류 발생:", error);
-      }
-    };
 
-    fetchMovie();
-  }, []);
-  if (!MentionKeywords) {
+  if (!data) {
     return null;
   }
   return (
@@ -44,8 +32,8 @@ export default function RecentKeyword() {
       <div className="flex flex-col items-start gap-[24px]  Laptop:flex-row">
         <div className="flex Laptop:hidden">
           <Swiper slidesPerView="auto" spaceBetween={1}>
-            {Array.isArray(MentionKeywords) && MentionKeywords.length > 0
-              ? MentionKeywords.map((mention, index) => {
+            {Array.isArray(data) && data.length > 0
+              ? data.map((mention, index) => {
                   return (
                     <SwiperSlide key={index} style={{ width: "100px" }}>
                       <div
@@ -61,8 +49,8 @@ export default function RecentKeyword() {
           </Swiper>
         </div>
         <div className="Text-S-Bold  hidden gap-3 Laptop:flex Laptop:flex-col Laptop:gap-5">
-          {Array.isArray(MentionKeywords) && MentionKeywords.length > 0
-            ? MentionKeywords.map((mention, index) => {
+          {Array.isArray(data) && data.length > 0
+            ? data.map((mention, index) => {
                 return (
                   <div
                     key={index}
@@ -75,15 +63,15 @@ export default function RecentKeyword() {
               })
             : ""}
         </div>
-        {MentionKeywords ? (
-          <RightKeyWords keywordInfo={MentionKeywords[KeywordListNumber]} />
+        {data ? (
+          <RightKeyWords keywordInfo={data!} keywordIndex={KeywordListNumber} />
         ) : (
           ""
         )}
       </div>
       <div className="flex justify-end">
         <Link
-          href={`search?query=${MentionKeywords[KeywordListNumber]?.keyword}`}
+          href={`search?query=${data[KeywordListNumber]?.keyword}`}
           className="hidden w-fit items-center gap-1 p-2 pr-1 Laptop:flex"
         >
           <span className="text-Gray_Orange Text-m-Medium">더보기</span>
