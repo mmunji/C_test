@@ -100,12 +100,12 @@ export default function BadgeTitle({
         {isEditing && (
           <motion.div
             className="fixed z-50 w-[calc(100%-40px)]"
-            initial={{ bottom: "-60px" }}
+            initial={{ bottom: "-160px" }}
             animate={{
               bottom: 40,
               transition: {
                 type: "spring",
-                duration: 0.6,
+                duration: 0.25,
                 damping: 20,
                 mass: 1,
                 stiffness: 177.8,
