@@ -23,7 +23,7 @@ export default async function Page() {
       </div>
       <div className="flex flex-col items-start text-Gray Text-s-Medium Tablet:Text-m-Medium">
         <DeleteAccountButton>회원탈퇴</DeleteAccountButton>
-        <div className="block py-2 Desktop:hidden">개인정보 처리방침</div>
+        {/* <div className="block py-2 Desktop:hidden">개인정보 처리방침</div> */}
         <div className="block Desktop:hidden">
           문의{" "}
           <Link
@@ -31,7 +31,7 @@ export default async function Page() {
             href="http://pf.kakao.com/_xmWUxmG"
             target="_blank"
           >
-            카카오톡 1:1 오픈 채팅방
+            씨네톡 카카오톡 채널
           </Link>
         </div>
       </div>

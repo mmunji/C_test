@@ -65,15 +65,15 @@ export default function Sidebar() {
           </ul>
         </div>
         <div className="flex flex-col gap-4 border-t border-Gray text-Gray Text-m-Medium">
-          <span className="mt-[52px]">개인정보 처리방침</span>
-          <span className="">
+          {/* <span className="mt-[52px]">개인정보 처리방침</span> */}
+          <span className="mt-[52px]">
             문의{" "}
             <Link
               className="underline"
               href="http://pf.kakao.com/_xmWUxmG"
               target="_blank"
             >
-              카카오톡 1:1 오픈 채팅방
+              씨네톡 카카오톡 채널
             </Link>
           </span>
         </div>

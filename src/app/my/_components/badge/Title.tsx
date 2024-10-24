@@ -1,5 +1,6 @@
 "use client";
 
+import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 
 import Button from "@/components/buttons/Button";
@@ -43,7 +44,7 @@ export default function BadgeTitle({
     }
   };
   return (
-    <div className="relative flex items-end gap-1">
+    <div className="relative flex w-full items-end gap-1">
       <div className="flex flex-1 flex-col gap-1">
         <h2 className="Text-m-Bold Tablet:Text-l-Bold">내 뱃지</h2>
         <div className="flex items-center justify-between gap-2">
@@ -95,30 +96,57 @@ export default function BadgeTitle({
           </>
         )}
       </div>
-      <div
-        className={cn(
-          isEditing ? "flex" : "hidden",
-          isDisabled ? "bg-D1_Error" : "bg-D1_Gray",
-          `fixed top-[587px] z-50 h-14 w-[calc(100%-40px)] items-center justify-between rounded-xl px-4 py-2 shadow-[0_4px_10px_0_rgba(0,0,0,0.3)] Tablet:hidden`,
+      <AnimatePresence>
+        {isEditing && (
+          <motion.div
+            className="fixed z-50 w-[calc(100%-40px)]"
+            initial={{ bottom: "-60px" }}
+            animate={{
+              bottom: 40,
+              transition: {
+                type: "spring",
+                duration: 0.6,
+                damping: 20,
+                mass: 1,
+                stiffness: 177.8,
+              },
+            }}
+            exit={{
+              opacity: 0,
+              transition: {
+                duration: 0.2,
+                damping: 60,
+                mass: 1,
+                stiffness: 1600,
+              },
+            }}
+          >
+            <div
+              className={cn(
+                isDisabled ? "bg-D1_Error" : "bg-D1_Gray",
+                `flex h-14 items-center justify-between rounded-xl px-4 py-2 shadow-[0_4px_10px_0_rgba(0,0,0,0.3)] Tablet:hidden`,
+              )}
+            >
+              <span>
+                {isDisabled
+                  ? "뱃지는 3개까지만 선택 가능 해요 :("
+                  : "아직 뱃지가 저장 되지 않았어요."}
+              </span>
+              <Button
+                onClick={() => {
+                  toggleEditing();
+                  handleSubmit();
+                }}
+                size={"sm"}
+                variant={"orange"}
+                disabled={isDisabled}
+              >
+                저장
+              </Button>
+            </div>
+          </motion.div>
         )}
-      >
-        <span>
-          {isDisabled
-            ? "뱃지는 3개까지만 선택 가능 해요 :("
-            : "아직 뱃지가 저장 되지 않았어요."}
-        </span>
-        <Button
-          onClick={() => {
-            toggleEditing();
-            handleSubmit();
-          }}
-          size={"sm"}
-          variant={"orange"}
-          disabled={isDisabled}
-        >
-          저장
-        </Button>
-      </div>
+      </AnimatePresence>
     </div>
   );
 }

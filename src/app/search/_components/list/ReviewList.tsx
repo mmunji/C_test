@@ -67,17 +67,18 @@ export default function SearchReviewList({
             >
               <div className="flex justify-between">
                 <div className="flex items-center gap-2">
-                  <Image
-                    className="rounded-full object-cover"
-                    alt="유저 프로필 이미지"
-                    width={24}
-                    height={24}
-                    src={
-                      talk.userDTO.profile
-                        ? `data:image/png;base64,${talk.userDTO.profile}`
-                        : ProfileBlue
-                    }
-                  />
+                  <div className="relative h-6 w-6 overflow-hidden rounded-full">
+                    <Image
+                      className="object-cover"
+                      alt="유저 프로필 이미지"
+                      fill
+                      src={
+                        talk.userDTO.profile
+                          ? `data:image/png;base64,${talk.userDTO.profile}`
+                          : ProfileBlue
+                      }
+                    />
+                  </div>
                   <span className="text-Silver Text-s-Medium">
                     {talk.userDTO.nickname}
                   </span>
