@@ -32,6 +32,7 @@ export default function PostRating({
             movieId={movieId}
             StarReview={StarReview}
             {...{
+              type: "main",
               index: i,
               ratingValue,
               setRatingValue,
@@ -51,6 +52,7 @@ export default function PostRating({
             movieId={movieId}
             StarReview={StarReview}
             {...{
+              type: "main",
               index: i,
               ratingValue,
               setRatingValue,
@@ -70,6 +72,7 @@ export default function PostRating({
             movieId={movieId}
             StarReview={StarReview}
             {...{
+              type: "main",
               index: i,
               ratingValue,
               setRatingValue,
