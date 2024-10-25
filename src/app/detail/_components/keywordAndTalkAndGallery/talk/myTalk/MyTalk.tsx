@@ -83,6 +83,7 @@ function MyTalk({ myTalk, movieId, movieDetailData }: MyTalkProps) {
             {clickedEditMyTalk ? (
               [...Array(5)].map((_, i) => (
                 <RatingStar
+                  type="detail"
                   key={i}
                   index={i}
                   ratingValue={ratingValue}
@@ -108,6 +109,7 @@ function MyTalk({ myTalk, movieId, movieDetailData }: MyTalkProps) {
                 [...Array(5)].map((_, i) => (
                   <RatingStar
                     key={i}
+                    type="detail"
                     index={i}
                     ratingValue={ratingValue}
                     setRatingValue={setRatingValue}
