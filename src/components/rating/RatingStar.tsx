@@ -73,20 +73,14 @@ export default function RatingStar({
 
   const AddStarReview = async (star: number) => {
     if (StarReview) {
-      const { data } = await talkAPIs.addTalks({
+      addTalks({
         movieName: movienm!,
         movieId: movieId!,
-        star: star,
-        content: "",
+        ratingValue: star,
+        talk: "",
         spoiler: false,
         genreList: genreList || [],
       });
-      if (!data.message) {
-        alert("피드백 완료! 소중한 의견 감사합니다 🦑");
-        revalidateMyPage("my");
-      } else {
-        alert(data.message);
-      }
     }
   };
 
