@@ -14,6 +14,7 @@ import { talkAPIs } from "@/services/talk/talkAPIs";
 import { useAddTalk } from "@/services/talk/talkMutations";
 
 interface StarProps {
+  type: "main" | "detail";
   index: number;
   ratingValue: number;
   setRatingValue: Dispatch<SetStateAction<number>>;
@@ -28,6 +29,7 @@ interface StarProps {
 }
 
 export default function RatingStar({
+  type,
   ratingValue,
   index,
   setRatingValue,
@@ -82,7 +84,9 @@ export default function RatingStar({
         genreList: genreList || [],
       });
       if (!data.message) {
-        alert("피드백 완료! 소중한 의견 감사합니다 🦑");
+        if (type === "main") {
+          alert("피드백 완료! 소중한 의견 감사합니다 🦑");
+        }
         revalidateMyPage("my");
       } else {
         alert(data.message);

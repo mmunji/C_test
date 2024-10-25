@@ -59,6 +59,7 @@ export default function Rating({
             <RatingStar
               key={i}
               {...{
+                type: "detail",
                 movienm: movieDetailData.title,
                 index: i,
                 ratingValue,
