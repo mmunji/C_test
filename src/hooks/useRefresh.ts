@@ -21,7 +21,9 @@ export default function useRefresh() {
       }
     };
 
-    refresh();
+    setTimeout(() => {
+      refresh();
+    }, 500);
 
     const interval = setInterval(() => {
       refresh();
