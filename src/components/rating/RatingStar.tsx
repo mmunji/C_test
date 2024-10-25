@@ -71,22 +71,27 @@ export default function RatingStar({
 
   const { mutate: addTalks } = useAddTalk(movieId as number);
 
-  const AddStarReview = async (star: number) => {
+  const AddStarReview = (star: number) => {
     if (StarReview) {
-      const { data } = await talkAPIs.addTalks({
-        movieName: movienm!,
-        movieId: movieId!,
-        star: star,
-        content: "",
-        spoiler: false,
-        genreList: genreList || [],
-      });
-      if (!data.message) {
-        alert("피드백 완료! 소중한 의견 감사합니다 🦑");
-        revalidateMyPage("my");
-      } else {
-        alert(data.message);
-      }
+      addTalks(
+        {
+          movieName: movienm!,
+          movieId: movieId!,
+          ratingValue: star,
+          talk: "",
+          spoiler: false,
+          genreList: genreList || [],
+        },
+        {
+          onSuccess: () => {
+            alert("피드백 완료! 소중한 의견 감사합니다 🦑");
+            revalidateMyPage("my");
+          },
+          onError: (error) => {
+            alert(error instanceof Error ? error.message : "피드백 전송 실패");
+          },
+        },
+      );
     }
   };
 
