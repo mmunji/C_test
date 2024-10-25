@@ -67,7 +67,7 @@ export default function Rating({
                 setClickedValue,
                 ratingSize: "Xl",
                 readyToRating,
-                StarReview: false,
+                StarReview: true,
                 movieId: movieId,
                 genreList: genreList,
               }}
