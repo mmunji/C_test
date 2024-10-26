@@ -18,7 +18,7 @@ export default function Header({ children }: { children: React.ReactNode }) {
   const [clickSearchIcon, setClickSearchIcon] = useState(false);
   const pathname = usePathname();
   const router = useRouter();
-  // useRefresh();
+  useRefresh();
   useHeaderScrollThreshold();
   const hasScrolledPast = useScrollStore((state) => state.hasScrolledPast);
 
