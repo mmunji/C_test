@@ -85,6 +85,7 @@ export default function RatingStar({
       });
       if (!data.message) {
         if (type === "main") {
+          ratingValue = 0;
           alert("피드백 완료! 소중한 의견 감사합니다 🦑");
         }
         revalidateMyPage("my");

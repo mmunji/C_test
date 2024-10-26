@@ -7,7 +7,7 @@ import useDevice from "@/hooks/useDevice";
 import PostCard from "../../../PostCard";
 import PostRating from "../../../Rating/PostRating";
 interface WatchMovieType {
-  MovieWatchMovies: WatchMovie | null;
+  MovieWatchMovies: WatchMovie[];
 }
 export default function Labtop_Posts({ MovieWatchMovies }: WatchMovieType) {
   const { device } = useDevice();
@@ -17,7 +17,7 @@ export default function Labtop_Posts({ MovieWatchMovies }: WatchMovieType) {
         {Array.isArray(MovieWatchMovies) && MovieWatchMovies.length > 0
           ? MovieWatchMovies.map((e, index) => {
               return (
-                <Link key={index} href={`detail/${e.movieId}`}>
+                <Link key={e.movieId} href={`detail/${e.movieId}`}>
                   <SwiperSlide
                     className={`${device == "laptop" ? "h-[328px] w-[174px]" : "h-[440px] w-[240px]"}`}
                   >

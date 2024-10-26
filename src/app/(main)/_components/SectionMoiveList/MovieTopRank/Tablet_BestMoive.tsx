@@ -45,9 +45,9 @@ export default function Tablet_BestMoive(MovieData: Tablet_BestMoiveProps) {
                         </div>
                       )}
                     </Link>
-                    <div className="flex flex-col justify-between gap-3">
+                    <div className="flex w-full flex-col justify-between gap-3">
                       <div className="flex flex-col gap-2">
-                        <div className="flex gap-3 ">
+                        <div className="flex justify-between gap-3 ">
                           <h1 className="line-clamp-1 w-[366px] Text-l-Bold">
                             {MovieDetailData.movienm}
                           </h1>
@@ -58,7 +58,9 @@ export default function Tablet_BestMoive(MovieData: Tablet_BestMoiveProps) {
                               )}
                             </span>
                             <div className="h-3 border-[1px] border-L_Gray"></div>
-                            <span>{MovieDetailData.genres[0].name}</span>
+                            <span className="w-10">
+                              {MovieDetailData.genres[0].name}
+                            </span>
                           </div>
                         </div>
                         <div className="flex gap-5">
@@ -88,7 +90,7 @@ export default function Tablet_BestMoive(MovieData: Tablet_BestMoiveProps) {
                           </div>
                         </div>
                       </div>
-                      <div className="flex flex-col">
+                      <div className="flex w-full flex-col">
                         <div className="flex flex-col gap-3">
                           <div className="flex gap-1">
                             <Image

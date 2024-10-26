@@ -15,7 +15,6 @@ export default function RecentKeyword({ data }: RecentKeywordType) {
   const HandleKeywords = (index: number) => {
     setKeywordListNumber(index);
   };
-
   if (!data) {
     return null;
   }
@@ -29,23 +28,21 @@ export default function RecentKeyword({ data }: RecentKeywordType) {
           매일 밤 12시 업데이트
         </span>
       </div>
-      <div className="flex flex-col items-start gap-[24px]  Laptop:flex-row">
-        <div className="flex Laptop:hidden">
-          <Swiper slidesPerView="auto" spaceBetween={1}>
-            {Array.isArray(data) && data.length > 0
-              ? data.map((mention, index) => {
-                  return (
-                    <SwiperSlide key={index} style={{ width: "100px" }}>
-                      <div
-                        className={`Text-s-Bold  ${KeywordListNumber == index ? "bg-D1_Gray text-Silver" : "text-L_Gray"} w-[90px] cursor-pointer rounded-[36px] px-3 py-2 text-center text-base`}
-                        onClick={() => HandleKeywords(index)}
-                      >
-                        {mention.keyword} {mention.count}
-                      </div>
-                    </SwiperSlide>
-                  );
-                })
-              : ""}
+      <div className="flex  flex-col items-start  gap-[24px] Laptop:flex-row">
+        <div className="flex h-full w-full Laptop:hidden">
+          <Swiper slidesPerView="auto" spaceBetween={12}>
+            {data.map((mention, index) => {
+              return (
+                <SwiperSlide key={index} className="w-[104px]">
+                  <div
+                    className={`Text-s-Bold  ${KeywordListNumber == index ? "bg-D1_Gray text-Silver" : "text-L_Gray"}  rounded-[36px] px-3 py-2 text-center `}
+                    onClick={() => HandleKeywords(index)}
+                  >
+                    {mention.keyword}
+                  </div>
+                </SwiperSlide>
+              );
+            })}
           </Swiper>
         </div>
         <div className="Text-S-Bold  hidden gap-3 Laptop:flex Laptop:flex-col Laptop:gap-5">

@@ -130,7 +130,7 @@ export default function Mobile_BestMovie(MovieData: Mobile_BestMoiveProps) {
                               backgroundPosition: "center",
                             }}
                           />
-                          <span className="line-clamp-2 text-Silver Text-s-Regular">
+                          <span className="line-clamp-2 w-[174px] text-Silver Text-s-Regular">
                             {MovieDetailData.reviewList[0].content}
                           </span>
                         </div>
