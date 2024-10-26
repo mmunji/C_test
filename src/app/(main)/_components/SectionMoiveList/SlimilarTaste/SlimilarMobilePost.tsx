@@ -82,7 +82,7 @@ export default function SlimilarMobilePost({
                 className="mt-5  flex h-[250px] w-[156px] flex-col  gap-1 Tablet:h-[261px]"
               >
                 <div
-                  className="flex h-[230px] w-[156px]   flex-col justify-end rounded-2xl px-3  py-4 Text-s-Bold Tablet:h-[240px]"
+                  className="flex h-[230px] w-[156px] flex-col  justify-end gap-1 rounded-2xl px-3  py-4 Text-s-Bold Tablet:h-[240px]"
                   style={{
                     backgroundImage: `linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, rgba(0, 0, 0, 0.80) 100%), url(${ReviewUser.poster_id ? `https://image.tmdb.org/t/p/original/${ReviewUser.poster_id}` : "/images/ssikongi/PNG/NoImage.png"})`,
                     backgroundSize: "cover",
