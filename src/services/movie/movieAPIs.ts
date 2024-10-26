@@ -51,7 +51,7 @@ export const movieAPIs = {
         }))
       : (res = await fetch(`${API_URL}/movie/HoxyWatching`));
 
-    const data: WatchMovie = await res.json();
+    const data: WatchMovie[] = await res.json();
     return data;
   },
   getPeopleReviewers: async () => {

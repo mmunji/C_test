@@ -49,7 +49,7 @@ export default function KeyWordPosts({
             {star.toFixed(1)}
           </div>
         </div>
-        <div className="line-clamp-2 text-Gray_Orange Text-s-Regular  Laptop:Text-m-Regular">
+        <div className="line-clamp-2 h-[42px] text-Gray_Orange Text-s-Regular  Tablet:h-[48px] Laptop:Text-m-Regular">
           {content}
         </div>
         <span className="line-clamp-1 text-L_Gray Text-s-Regular  Laptop:Text-m-Regular">
