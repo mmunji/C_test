@@ -6,7 +6,6 @@ import { useCallback, useEffect, useState } from "react";
 import { CaretDownMd, ChevronDown, Filter } from "@/../public/icons";
 import Button from "@/components/buttons/Button";
 import Dropdown from "@/components/dropdown/dropdown";
-import LoadingSpinner from "@/components/loadingSpinner/LoadingSpinner";
 import { movieAPIs } from "@/services/movie/movieAPIs";
 
 import DeskTop_BestMovie from "./DeskTop_BestMoive";
