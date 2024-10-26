@@ -18,9 +18,9 @@ export default function SectionMoiveList() {
         <MovieTopWapper />
       </Suspense>
       {/* 지금 많이 언급되는 키워드  컴포넌트 */}
-      {/* <Suspense fallback={<KeywordSkeleton />}>
+      <Suspense fallback={<KeywordSkeleton />}>
         <RecentKeywordWapper />
-      </Suspense> */}
+      </Suspense>
       {/*씨네톡 속 숨겨진 명작  컴포넌트 */}
       <Suspense fallback={<MasterPieceSkeleton />}>
         <MasterPieceMoiveWapper />
