@@ -40,7 +40,9 @@ export default function useLogin(type: "with-nickname" | "without-nickname") {
             tokenManager.setToken(accessToken);
             localStorage.setItem("lastSocialLogin", data.provider);
           }
-          setLoggedIn(true);
+          setTimeout(() => {
+            setLoggedIn(true);
+          }, 250);
 
           if (type === "with-nickname") {
             setTimeout(() => {
