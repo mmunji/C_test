@@ -17,16 +17,12 @@ import {
   ThumbsUpFillSm,
   TmdbSm,
 } from "@/../public/icons";
-import LoadingSpinner from "@/components/loadingSpinner/LoadingSpinner";
 
 import PostCard from "../../PostCard";
 interface Mobile_BestMoiveProps {
   MovieData: Movie_TopTen | null;
 }
 export default function Mobile_BestMovie(MovieData: Mobile_BestMoiveProps) {
-  if (MovieData == null) {
-    return <LoadingSpinner size="sm" color="primary" />;
-  }
   return (
     <div className="flex Tablet:hidden">
       <Swiper

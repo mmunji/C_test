@@ -5,12 +5,14 @@ interface StarMoiveType {
   movienm?: string;
   movieId?: number;
   StarReview?: boolean;
+  handleMovieList?: (text: string) => void;
 }
 
 export default function PostRating({
   movienm,
   movieId,
   StarReview,
+  handleMovieList,
 }: StarMoiveType) {
   const {
     ratingValue,
@@ -31,6 +33,7 @@ export default function PostRating({
             movienm={movienm}
             movieId={movieId}
             StarReview={StarReview}
+            handleMovieList={handleMovieList}
             {...{
               type: "main",
               index: i,
@@ -51,6 +54,7 @@ export default function PostRating({
             movienm={movienm}
             movieId={movieId}
             StarReview={StarReview}
+            handleMovieList={handleMovieList}
             {...{
               type: "main",
               index: i,
@@ -71,6 +75,7 @@ export default function PostRating({
             movienm={movienm}
             movieId={movieId}
             StarReview={StarReview}
+            handleMovieList={handleMovieList}
             {...{
               type: "main",
               index: i,

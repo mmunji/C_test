@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import { Swiper, SwiperClass, SwiperSlide } from "swiper/react";
+import { toast, ToastContainer } from "react-toastify";
 
 import { getTmdbPosterUrl } from "@/utils/tmdb";
 
@@ -20,61 +20,77 @@ export default function Mobile_Posts({ MovieWatchMovies }: WatchMovieType) {
       setMovieNumber((prev) => prev + 1);
     }
   };
-  return (
-    <div className="rounded-xl bg-D1_Gray px-3 py-7 Tablet:hidden ">
-      <div className="flex flex-col rounded-xl px-[12px]  py-[28px]">
-        <div>
-          <div className="flex flex-col justify-center gap-3 ">
-            <div className="flex justify-center">
-              <Image
-                height={230}
-                width={153}
-                className="rounded-xl"
-                src={
-                  MovieWatchMovies[MovieNumber].poster_path
-                    ? getTmdbPosterUrl(
-                        "original",
-                        MovieWatchMovies[MovieNumber].poster_path,
-                      )
-                    : NoImageSsikongi
-                }
-                alt="영화 포스터"
-              />
-            </div>
+  const handleToast = (text: string) => {
+    toast(`${text}`, {
+      hideProgressBar: true,
+      style: {
+        backgroundColor: "#403E3C",
+        color: "#E9E9E9",
+        borderRadius: "12px",
+      },
+    });
+    handleMovieList();
+  };
 
-            <div className="flex flex-col items-center justify-center gap-2">
-              <h1 className="Text-m-Medium">{MovieWatchMovies[0].movienm}</h1>
-              <div className="flex gap-[10px] text-L_Gray Text-xs-Regular">
-                <span>{MovieWatchMovies[MovieNumber].release_date}</span>
-                <span>|</span>
-                <span>{MovieWatchMovies[MovieNumber].genres[0].name}</span>
+  return (
+    <div className="rounded-xl bg-D1_Gray px-3 py-7 Tablet:hidden">
+      <div className="relative overflow-hidden rounded-xl">
+        <div
+          className="flex transition-transform duration-500 ease-in-out"
+          style={{ transform: `translateX(-${MovieNumber * 100}%)` }}
+        >
+          {MovieWatchMovies.map((movie, index) => (
+            <div
+              key={index}
+              className="w-full flex-shrink-0 px-[12px] py-[28px]"
+            >
+              <div className="flex flex-col justify-center gap-3">
+                <div className="flex justify-center">
+                  <Image
+                    height={230}
+                    width={153}
+                    className="rounded-xl"
+                    src={
+                      movie.poster_path
+                        ? getTmdbPosterUrl("original", movie.poster_path)
+                        : NoImageSsikongi
+                    }
+                    alt="영화 포스터"
+                  />
+                </div>
+
+                <div className="flex flex-col items-center justify-center gap-2">
+                  <h1 className="Text-m-Medium">{movie.movienm}</h1>
+                  <div className="flex gap-[10px] text-L_Gray Text-xs-Regular">
+                    <span>{movie.release_date}</span>
+                    <span>|</span>
+                    <span>{movie.genres[0].name}</span>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <h1 className="mt-5 text-center Text-l-Bold">{movie.rate}</h1>
+                <div className="flex items-center justify-center">
+                  <PostRating
+                    movienm={movie.movienm}
+                    movieId={movie.movieId}
+                    StarReview={true}
+                    handleMovieList={handleToast}
+                  />
+                </div>
               </div>
             </div>
-          </div>
-          <div>
-            <h1 className="mt-5 text-center Text-l-Bold">
-              {MovieWatchMovies[MovieNumber].rate}
-            </h1>
-            <div
-              className=" flex items-center justify-center"
-              onClick={handleMovieList}
-            >
-              <PostRating
-                movienm={MovieWatchMovies[MovieNumber].movienm}
-                movieId={MovieWatchMovies[MovieNumber].movieId}
-                StarReview={true}
-              />
-            </div>
-          </div>
+          ))}
         </div>
 
         <button
-          className="mx-auto mt-7 w-full max-w-[352px] rounded-xl border-[1px] border-D3_Gray  px-5 py-3 text-L_Gray Text-s-Regular "
+          className="mx-auto w-full max-w-[352px] rounded-xl border-[1px] border-D3_Gray px-5 py-3 text-L_Gray Text-s-Regular"
           onClick={handleMovieList}
         >
           아직 안봤어요
         </button>
       </div>
+      <ToastContainer position="bottom-center" autoClose={3000} />
     </div>
   );
 }
