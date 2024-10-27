@@ -8,7 +8,6 @@ interface ToastStore {
     remove: (id: string) => void;
   };
 }
-
 const delay = 3000;
 const useToastStore = create<ToastStore>()(
   devtools((set) => ({

@@ -18,7 +18,7 @@ export default function Toast() {
         {toast.map((item) => (
           <motion.div
             key={item.id}
-            className="fixed left-1/2 z-[999999] flex w-[320px] -translate-x-1/2 items-center justify-between rounded-xl bg-D2_Gray p-4 shadow-[0_4px_10px_0_rgba(0,0,0,0.3)] Text-s-Medium Tablet:left-auto Tablet:right-[100px] Tablet:w-[400px] Tablet:translate-x-0"
+            className="fixed left-1/2 z-[999999] flex w-[320px] -translate-x-1/2 items-center justify-between rounded-xl bg-D2_Gray p-4 shadow-[0_4px_10px_0_rgba(0,0,0,0.3)] Text-s-Medium Laptop:left-auto Laptop:right-[100px] Laptop:w-[400px] Laptop:translate-x-0 Laptop:Text-m-Medium"
             initial={{ bottom: "-160px" }}
             animate={{
               bottom: 40,
