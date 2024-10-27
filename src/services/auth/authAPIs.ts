@@ -17,7 +17,7 @@ export const authAPIS = {
         "Content-Type": "application/json",
       },
     });
-    const data = res.json();
+    const data = await res.json();
     return { res, data };
   },
 
