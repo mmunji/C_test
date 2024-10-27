@@ -2,8 +2,8 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import { toast, ToastContainer } from "react-toastify";
 
+import { useToastActions } from "@/stores/useToast";
 import { getTmdbPosterUrl } from "@/utils/tmdb";
 
 import { NoImageSsikongi } from "../../../../../../../public/images";
@@ -13,6 +13,7 @@ interface WatchMovieType {
 }
 export default function Mobile_Posts({ MovieWatchMovies }: WatchMovieType) {
   const [MovieNumber, setMovieNumber] = useState(0);
+  const { add } = useToastActions();
   const handleMovieList = () => {
     if (MovieWatchMovies.length == MovieNumber + 1) {
       return null;
@@ -21,14 +22,7 @@ export default function Mobile_Posts({ MovieWatchMovies }: WatchMovieType) {
     }
   };
   const handleToast = (text: string) => {
-    toast(`${text}`, {
-      hideProgressBar: true,
-      style: {
-        backgroundColor: "#403E3C",
-        color: "#E9E9E9",
-        borderRadius: "12px",
-      },
-    });
+    add(text);
     handleMovieList();
   };
 
@@ -90,7 +84,6 @@ export default function Mobile_Posts({ MovieWatchMovies }: WatchMovieType) {
           아직 안봤어요
         </button>
       </div>
-      <ToastContainer position="bottom-center" autoClose={3000} />
     </div>
   );
 }

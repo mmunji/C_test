@@ -1,9 +1,9 @@
 "use client";
 import Link from "next/link";
-import { toast, ToastContainer } from "react-toastify";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import useDevice from "@/hooks/useDevice";
+import { useToastActions } from "@/stores/useToast";
 
 import PostCard from "../../../PostCard";
 import PostRating from "../../../Rating/PostRating";
@@ -12,11 +12,9 @@ interface WatchMovieType {
 }
 export default function Labtop_Posts({ MovieWatchMovies }: WatchMovieType) {
   const { device } = useDevice();
+  const { add } = useToastActions();
   const handleToast = (text: string) => {
-    toast(`${text}`, {
-      hideProgressBar: true,
-      style: { backgroundColor: "#403E3C", color: "#E9E9E9" },
-    });
+    add(text);
   };
   return (
     <div className=" hidden  w-full gap-[24px] rounded-xl   Laptop:flex">
@@ -56,7 +54,6 @@ export default function Labtop_Posts({ MovieWatchMovies }: WatchMovieType) {
             })
           : ""}
       </Swiper>
-      <ToastContainer position="bottom-right" autoClose={3000} />
     </div>
   );
 }
