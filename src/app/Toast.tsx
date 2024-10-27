@@ -19,7 +19,7 @@ export default function Toast() {
           <motion.div
             key={item.id}
             className="fixed left-1/2 z-[999999] flex w-[320px] -translate-x-1/2 items-center justify-between rounded-xl bg-D2_Gray p-4 shadow-[0_4px_10px_0_rgba(0,0,0,0.3)] Text-s-Medium Laptop:left-auto Laptop:right-[100px] Laptop:w-[400px] Laptop:translate-x-0 Laptop:Text-m-Medium"
-            initial={{ bottom: "-160px" }}
+            initial={{ bottom: "-260px" }}
             animate={{
               bottom: 40,
               transition: {
@@ -32,6 +32,7 @@ export default function Toast() {
             }}
             exit={{
               opacity: 0,
+              bottom: "-160px",
               transition: {
                 duration: 0.3,
                 damping: 60,
