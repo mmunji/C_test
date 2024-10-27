@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import { ChevronRight } from "../../../../../../public/icons";
@@ -15,9 +15,7 @@ export default function RecentKeyword({ data }: RecentKeywordType) {
   const HandleKeywords = (index: number) => {
     setKeywordListNumber(index);
   };
-  if (!data) {
-    return null;
-  }
+
   return (
     <div className="flex flex-col gap-[20px]">
       <div className="flex justify-between">
@@ -31,7 +29,7 @@ export default function RecentKeyword({ data }: RecentKeywordType) {
       <div className="flex  flex-col items-start  gap-[24px] Laptop:flex-row">
         <div className="flex h-full w-full Laptop:hidden">
           <Swiper slidesPerView="auto" spaceBetween={12}>
-            {data.map((mention, index) => {
+            {data?.map((mention, index) => {
               return (
                 <SwiperSlide key={index} className="w-[104px]">
                   <div

@@ -20,10 +20,12 @@ export const movieAPIs = {
     const res = await fetch(`${API_URL}/movie/MentionKeword`, {
       cache: "no-store",
     });
-    const string = await res.text();
-    const json =
-      string === "" ? null : (JSON.parse(string) as StateTO | MentionKeword[]);
-    return json;
+    const data: { message: string } | MentionKeword[] = await res.json();
+    return data;
+    // const string = await res.text();
+    // const json =
+    //   string === "" ? null : (JSON.parse(string) as StateTO | MentionKeword[]);
+    // return json;
   },
   getMovieReviewComments: async () => {
     const res = await fetch(`${API_URL}/movie/TotalReviewCount`, {
