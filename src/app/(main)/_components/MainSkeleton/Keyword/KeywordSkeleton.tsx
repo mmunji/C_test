@@ -1,4 +1,5 @@
 import LaptopKeyword from "./LaptopKeyword";
+import MobileKeyword from "./MobileKeyword";
 import TabletKeyword from "./TabletKeyword";
 
 export default function KeywordSkeleton() {
@@ -9,6 +10,7 @@ export default function KeywordSkeleton() {
       </h1>
       <div>
         <LaptopKeyword />
+        <MobileKeyword />
         <TabletKeyword />
       </div>
     </div>

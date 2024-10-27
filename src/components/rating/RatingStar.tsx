@@ -26,6 +26,7 @@ interface StarProps {
   movienm?: string;
   movieId?: number;
   genreList?: number[];
+  handleMovieList?: (text: string) => void;
 }
 
 export default function RatingStar({
@@ -41,6 +42,7 @@ export default function RatingStar({
   movienm,
   movieId,
   genreList,
+  handleMovieList,
 }: StarProps) {
   let src;
   let alt;
@@ -85,7 +87,8 @@ export default function RatingStar({
       });
       if (!data.message) {
         if (type === "main") {
-          alert("피드백 완료! 소중한 의견 감사합니다 🦑");
+          ratingValue = 0;
+          handleMovieList?.("별점 평가 완료! 💫");
         }
         revalidateMyPage("my");
       } else {

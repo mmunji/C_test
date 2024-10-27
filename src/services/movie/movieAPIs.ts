@@ -10,7 +10,9 @@ export const movieAPIs = {
     return data;
   },
   getHidingPiece: async () => {
-    const res = await fetch(`${API_URL}/movie/HidingPiece`);
+    const res = await fetch(`${API_URL}/movie/HidingPiece`, {
+      cache: "no-store",
+    });
     const data: MovieHidingPiece = await res.json();
     return data;
   },
@@ -24,7 +26,9 @@ export const movieAPIs = {
     return json;
   },
   getMovieReviewComments: async () => {
-    const res = await fetch(`${API_URL}/movie/TotalReviewCount`);
+    const res = await fetch(`${API_URL}/movie/TotalReviewCount`, {
+      cache: "no-store",
+    });
     const data: number = await res.json();
     return data;
   },
@@ -48,10 +52,11 @@ export const movieAPIs = {
             "Content-Type": "application/json",
             access: `${accessToken}`,
           },
+          cache: "no-store",
         }))
       : (res = await fetch(`${API_URL}/movie/HoxyWatching`));
 
-    const data: WatchMovie = await res.json();
+    const data: WatchMovie[] = await res.json();
     return data;
   },
   getPeopleReviewers: async () => {

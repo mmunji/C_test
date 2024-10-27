@@ -5,7 +5,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import SpeechBubble from "@/components/speechBubble/SpeechBubble";
 import useDevice from "@/hooks/useDevice";
 import { tokenManager } from "@/services/auth/tokenManager";
-import { movieAPIs } from "@/services/movie/movieAPIs";
 
 import SlimilarPost from "./SlimilarPost";
 
@@ -23,15 +22,7 @@ export default function SimilarTastesMovie({ data }: SimilarTastesMovieType) {
   const ChangePickNumber = (index: number) => {
     setPickUserNumber(index);
   };
-  // const fetchMovie = async () => {
-  //   try {
-  //     // 실제 API 호출로 `movieAPIs.getHidingPiece`를 대체합니다.
-  //     const data = await movieAPIs.getPeopleReviewers();
-  //     setReviewUsers(data);
-  //   } catch (error) {
-  //     console.error("영화를 가져오는 중 오류 발생:", error);
-  //   }
-  // };
+
   useEffect(() => {
     if (accessToken) {
       setmessage("톡을 많이 작성할수록 내 취향에 비슷해져요.");

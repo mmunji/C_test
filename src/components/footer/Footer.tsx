@@ -1,15 +1,18 @@
 "use client";
-import Link from "next/link";
-import { useEffect, useState } from "react";
 
+import { useEffect, useState } from "react";
+import { toast, ToastContainer } from "react-toastify";
+
+import useDevice from "@/hooks/useDevice";
 import useInput from "@/hooks/useInput";
 import { movieAPIs } from "@/services/movie/movieAPIs";
 
 import Button from "../buttons/Button";
 
 export default function Footer() {
-  const [FeedbackPost, setFeedBackPost] = useInput("");
+  const [FeedbackPost, setFeedBackPost, handlesetValue] = useInput("");
   const [Commnets, setCommnets] = useState(0);
+  const { device } = useDevice();
   useEffect(() => {
     const fetchMovie = async () => {
       try {
@@ -26,7 +29,11 @@ export default function Footer() {
   const FeedBackSubmit = async () => {
     const result = await movieAPIs.postFeedBack(FeedbackPost);
     if (result.state) {
-      alert("피드백 완료! 소중한 의견 감사합니다 🦑");
+      toast(`피드백 완료! 소중한 의견 감사합니다 🦑`, {
+        hideProgressBar: true,
+        style: { backgroundColor: "#403E3C", color: "#E9E9E9" },
+      });
+      handlesetValue("");
     }
   };
   return (
@@ -51,12 +58,6 @@ export default function Footer() {
           >
             보내기
           </Button>
-          {/* <button
-            className="rounded-lg bg-D2_Gray   px-3 py-1 text-Gray  Text-s-Medium"
-            onClick={FeedBackSubmit}
-          >
-            보내기
-          </button> */}
         </div>
       </div>
       <hr className="border-Gray" />
@@ -104,6 +105,10 @@ export default function Footer() {
           Copyright ⓒ 2024 cinetalk. All rights reserved
         </span>
       </div>
+      <ToastContainer
+        position={`${device == "mobile" || device == "tablet" ? "bottom-center" : "bottom-right"}`}
+        autoClose={3000}
+      />
     </div>
   );
 }
