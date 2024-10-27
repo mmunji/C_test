@@ -1,18 +1,17 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { toast, ToastContainer } from "react-toastify";
 
-import useDevice from "@/hooks/useDevice";
 import useInput from "@/hooks/useInput";
 import { movieAPIs } from "@/services/movie/movieAPIs";
+import { useToastActions } from "@/stores/useToast";
 
 import Button from "../buttons/Button";
 
 export default function Footer() {
   const [FeedbackPost, setFeedBackPost, handlesetValue] = useInput("");
   const [Commnets, setCommnets] = useState(0);
-  const { device } = useDevice();
+  const { add } = useToastActions();
   useEffect(() => {
     const fetchMovie = async () => {
       try {
@@ -29,10 +28,7 @@ export default function Footer() {
   const FeedBackSubmit = async () => {
     const result = await movieAPIs.postFeedBack(FeedbackPost);
     if (result.state) {
-      toast(`피드백 완료! 소중한 의견 감사합니다 🦑`, {
-        hideProgressBar: true,
-        style: { backgroundColor: "#403E3C", color: "#E9E9E9" },
-      });
+      add("피드백 완료! 소중한 의견 감사합니다 🦑");
       handlesetValue("");
     }
   };
@@ -100,15 +96,10 @@ export default function Footer() {
             </div>
           </div>
         </div>
-
         <span className="Text-s-Medium">
           Copyright ⓒ 2024 cinetalk. All rights reserved
         </span>
       </div>
-      <ToastContainer
-        position={`${device == "mobile" || device == "tablet" ? "bottom-center" : "bottom-right"}`}
-        autoClose={3000}
-      />
     </div>
   );
 }

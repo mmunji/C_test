@@ -8,6 +8,7 @@ import type { Metadata } from "next";
 
 import GoogleAnalytics from "@/components/googleanalytics/GoogleAnalytics";
 import HeaderContainer from "@/components/header/HeaderContainer";
+import Toast from "@/components/Toast";
 import ReactQueryProvier from "@/react-query/ReactQueryProvider";
 import { pretendard } from "@/utils/fonts";
 export const metadata: Metadata = {
@@ -52,6 +53,7 @@ export default function RootLayout({
           <HeaderContainer />
           {children}
           <div id="portal" />
+          <Toast />
         </ReactQueryProvier>
         {process.env.REACT_APP_GA_TRACKING_ID ? (
           <GoogleAnalytics gaId={process.env.REACT_APP_GA_TRACKING_ID} />

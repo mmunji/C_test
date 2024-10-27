@@ -1,13 +1,11 @@
 "use client";
 
-import "react-toastify/dist/ReactToastify.css";
-
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import { toast, ToastContainer } from "react-toastify";
 
 import SpeechBubble from "@/components/speechBubble/SpeechBubble";
+import { useToastActions } from "@/stores/useToast";
 import { getTmdbPosterUrl } from "@/utils/tmdb";
 
 import { NoImageSsikongi } from "../../../../../../../public/images";
@@ -17,7 +15,7 @@ interface WatchMovieType {
 }
 export default function Tablet_Posts({ MovieWatchMovies }: WatchMovieType) {
   const [MovieNumber, setMovieNumber] = useState(0);
-
+  const { add } = useToastActions();
   const handleMovieList = () => {
     if (MovieWatchMovies.length === MovieNumber + 1) {
       return null;
@@ -26,10 +24,7 @@ export default function Tablet_Posts({ MovieWatchMovies }: WatchMovieType) {
     }
   };
   const handleToast = (text: string) => {
-    toast(`${text}`, {
-      hideProgressBar: true,
-      style: { backgroundColor: "#403E3C", color: "#E9E9E9" },
-    });
+    add(text);
   };
 
   return (
@@ -92,7 +87,6 @@ export default function Tablet_Posts({ MovieWatchMovies }: WatchMovieType) {
         >
           아직 안봤어요
         </button>
-        <ToastContainer position="bottom-center" autoClose={3000} />
       </div>
     </div>
   );

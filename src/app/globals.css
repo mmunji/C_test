@@ -23,9 +23,6 @@ input::-webkit-search-results-decoration {
 #containerForBullets {
   @apply absolute -bottom-3 left-[calc(100%-78px)] flex w-[74px] items-center gap-1 Laptop:-bottom-4 Laptop:left-[calc(100%-108px)]  Laptop:w-[108px] !important;
 }
-.Toastify__close-button {
-  @apply text-[#e9e9e9]   opacity-[1];
-}
 
 .swiper-custom-bullet {
   @apply flex h-1 w-full cursor-pointer rounded-[22px] bg-D3_Gray !important;
