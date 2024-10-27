@@ -6,9 +6,9 @@ import "swiper/css/scrollbar";
 
 import type { Metadata } from "next";
 
+import Toast from "@/app/Toast";
 import GoogleAnalytics from "@/components/googleanalytics/GoogleAnalytics";
 import HeaderContainer from "@/components/header/HeaderContainer";
-import Toast from "@/components/Toast";
 import ReactQueryProvier from "@/react-query/ReactQueryProvider";
 import { pretendard } from "@/utils/fonts";
 export const metadata: Metadata = {
