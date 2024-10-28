@@ -36,7 +36,7 @@ export default function RightKeyWords({
             return (
               <KeyWordPosts
                 key={index}
-                id={keywordInfo[keywordIndex]?.reviewList[index]?.id}
+                id={keywordInfo[keywordIndex]?.reviewList[index]?.movieId}
                 nickname={
                   keywordInfo[keywordIndex]?.reviewList[index]?.nickname
                 }
@@ -65,7 +65,7 @@ export default function RightKeyWords({
             return (
               <KeyWordPosts
                 key={index}
-                id={keywordInfo[keywordIndex]?.reviewList[index]?.id}
+                id={keywordInfo[keywordIndex]?.reviewList[index]?.movieId}
                 nickname={
                   keywordInfo[keywordIndex]?.reviewList[index]?.nickname
                 }
@@ -96,7 +96,7 @@ export default function RightKeyWords({
             return (
               <KeyWordPosts
                 key={index}
-                id={keywordInfo[keywordIndex]?.reviewList[index]?.id}
+                id={keywordInfo[keywordIndex]?.reviewList[index]?.movieId}
                 nickname={
                   keywordInfo[keywordIndex]?.reviewList[index]?.nickname
                 }
@@ -125,7 +125,7 @@ export default function RightKeyWords({
           return (
             <KeyWordPosts
               key={index}
-              id={movie.id}
+              id={movie.movieId}
               nickname={movie.nickname}
               movieName={movie.movienm}
               star={movie.star}
