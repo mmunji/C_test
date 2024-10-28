@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { movieAPIs } from "@/services/movie/movieAPIs";
 import { delay } from "@/utils/fn";
 
-import WatchedSkeleton from "../../MainSkeleton/WatchedMoive/WatchedSkeleton";
+import SimilarTasteSkleton from "../../MainSkeleton/SimilarTaste/SimilarTasteSkleton";
 import SimilarTastesMovie from "./SimilarTastesMovie";
 
 export default async function SimilarTastesMovieWapper() {
@@ -30,7 +30,7 @@ export default async function SimilarTastesMovieWapper() {
   }, []);
 
   return isLoading ? (
-    <WatchedSkeleton />
+    <SimilarTasteSkleton />
   ) : (
     <SimilarTastesMovie data={PeopleReviewers} />
   );
