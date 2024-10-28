@@ -18,7 +18,7 @@ export default function MovieCategory() {
     <div className="absolute left-[350px] top-[700px] grid grid-cols-2 gap-[12px] rounded-xl bg-D1_Gray p-2 ">
       {category.map((title, index) => {
         return (
-          <button key={index} className="px-[24px] py-[8px] hover:bg-D2_Gray">
+          <button key={title} className="px-[24px] py-[8px] hover:bg-D2_Gray">
             {title}
           </button>
         );

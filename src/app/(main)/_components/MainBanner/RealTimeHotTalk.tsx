@@ -29,7 +29,7 @@ export default function RealTimeHotTalk({ ReviewList }: ReviewListType) {
           if (index > 2) return null;
           return (
             <li
-              key={index}
+              key={Review.content}
               className={`items- center flex  justify-between gap-2 text-Silver Text-xs-Regular Tablet:w-[331px] Tablet:Text-s-Regular`}
             >
               <div className="flex w-[35px] items-center justify-center">
@@ -52,7 +52,7 @@ export default function RealTimeHotTalk({ ReviewList }: ReviewListType) {
         {ReviewList.map((ReviewData, index) => {
           return (
             <li
-              key={index}
+              key={ReviewData.content}
               className="flex items-center justify-between gap-5 text-Silver Text-s-Regular"
             >
               <GetRating

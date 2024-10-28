@@ -49,7 +49,7 @@ export default function SimilarTastesMovie({ data }: SimilarTastesMovieType) {
           {Array.isArray(ReviewUsers) && ReviewUsers.length > 0
             ? ReviewUsers.map((Review, index) => {
                 return (
-                  <SwiperSlide key={index} className=" w-[60px]">
+                  <SwiperSlide key={Review.userId} className=" w-[60px]">
                     <div
                       className={`h-[60px] w-[60px] rounded-[60px]    ${PickUserNumber == index ? "border-2 border-Primary" : "border-transparent"} `}
                       onClick={() => ChangePickNumber(index)}

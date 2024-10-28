@@ -56,7 +56,7 @@ export default function DeskTop_BestMovie(MovieData: Desktop_BestMoiveProps) {
           MovieData.MovieData.length > 0 &&
           MovieData.MovieData.map((MovieDetailData, index) => (
             <SwiperSlide
-              key={index}
+              key={MovieDetailData.id}
               style={{
                 width: StatePost === index ? "768px" : "240px",
               }}
@@ -155,7 +155,7 @@ export default function DeskTop_BestMovie(MovieData: Desktop_BestMoiveProps) {
                       {MovieDetailData.reviewList.map(
                         (reviewData: MovieReviewDTO, index: number) => (
                           <BestTalkPost
-                            key={index}
+                            key={reviewData.content}
                             star={reviewData.star}
                             content={reviewData.content}
                             likeCount={reviewData.likeCount}

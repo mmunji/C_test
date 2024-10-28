@@ -39,7 +39,7 @@ export default function MasterPieceMoive({ data }: MasterPieceMoiveType) {
         <Swiper slidesPerView="auto" spaceBetween={20}>
           {Array.isArray(data) && data.length > 0
             ? data.map((movie, index) => (
-                <SwiperSlide key={index} style={{ width: "156px" }}>
+                <SwiperSlide key={movie.movieid} style={{ width: "156px" }}>
                   <Link href={`detail/${movie.movieid}`}>
                     <div
                       className="flex h-[230px] w-[156px] items-end  justify-between rounded-xl   Text-s-Bold Tablet:h-[240px] Tablet:w-[165px]"
@@ -89,7 +89,7 @@ export default function MasterPieceMoive({ data }: MasterPieceMoiveType) {
           {Array.isArray(data) && data.length > 0
             ? data.map((movie, index) => (
                 <SwiperSlide
-                  key={index}
+                  key={movie.movieid}
                   className="w-[174px] Desktop:w-[240px]"
                 >
                   <Link href={`detail/${movie.movieid}`}>
