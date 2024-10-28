@@ -4,7 +4,7 @@ import SpeechBubble from "@/components/speechBubble/SpeechBubble";
 import { tokenManager } from "@/services/auth/tokenManager";
 import { myAPIs } from "@/services/my/myAPIs";
 
-import WatchedSkeleton from "../../MainSkeleton/WatchedMoive/WatchedSkeleton";
+// import WatchedSkeleton from "../../MainSkeleton/WatchedMoive/WatchedSkeleton";
 import MoviePosts from "./MoviePosts";
 
 export default async function WatchedMoive() {
@@ -34,9 +34,9 @@ export default async function WatchedMoive() {
           간편하게 영화를 평가해보세요!
         </span>
       </div>
-      <Suspense fallback={<WatchedSkeleton />}>
-        <MoviePosts />
-      </Suspense>
+      {/* <Suspense fallback={<WatchedSkeleton />}> */}
+      <MoviePosts />
+      {/* </Suspense> */}
     </div>
   );
 }

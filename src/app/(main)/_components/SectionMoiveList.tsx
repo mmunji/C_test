@@ -26,9 +26,8 @@ export default function SectionMoiveList() {
         <MasterPieceMoiveWapper />
       </Suspense>
       {/* 나와 취향이 비슷한 사람들 (다른 사람들은 이런 영화를 평가했어요)  컴포넌트 */}
-      <Suspense fallback={<SimilarTasteSkleton />}>
-        <SimilarTastesMovieWapper />
-      </Suspense>
+
+      <SimilarTastesMovieWapper />
       {/*혹시 이 영화 보셨나요? */}
       <WatchedMoive />
       <div></div>

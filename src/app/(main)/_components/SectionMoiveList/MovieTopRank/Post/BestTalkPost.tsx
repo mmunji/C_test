@@ -5,7 +5,7 @@ import { StarFillSm, ThumbsUpLineMd } from "@/../public/icons";
 interface ReviewType {
   star: number;
   content: string;
-  likeCount: number;
+  likeCount?: number;
   profileImg?: string;
 }
 
@@ -36,7 +36,7 @@ export default function BestTalkPost({
       <div className="line-clamp-1 flex-1 text-Gray_Orange">{content}</div>
       <div className="flex items-center justify-center gap-1 Text-s-Medium">
         <Image src={ThumbsUpLineMd} alt="" />
-        <span>{likeCount}</span>
+        {likeCount && <span>{likeCount}</span>}
       </div>
     </div>
   );

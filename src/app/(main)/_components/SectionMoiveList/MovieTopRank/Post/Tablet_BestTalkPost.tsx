@@ -5,7 +5,7 @@ import GetRating from "../../../Rating/GetRating";
 interface ReviewType {
   star: number;
   content: string;
-  likeCount: number;
+  likeCount?: number;
   profileImg?: string;
 }
 export default function Tablet_BestTalkPost({
@@ -24,7 +24,7 @@ export default function Tablet_BestTalkPost({
       <GetRating StarRating={star} ratingsize="Sm" space={false} />
       <div className="flex flex-col gap-1">
         <div className="line-clamp-3 h-[63px] text-Gray_Orange Text-s-Regular">
-          {content}
+          <span className="line-clamp-3"> {content}</span>
         </div>
         <div className="flex justify-end gap-1">
           <Image

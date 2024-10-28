@@ -102,8 +102,8 @@ export default function SlimilarMobilePost({
                       <span>{ReviewUser.star}</span>
                     </div>
                   </div>
-                  <div className=" line-clamp-2 flex h-[42px] items-center   text-Silver  Text-s-Regular Tablet:Text-m-Regular">
-                    {ReviewUser.content}
+                  <div className=" flex items-center   text-Silver  Text-s-Regular Tablet:Text-m-Regular">
+                    <span className=" line-clamp-2">{ReviewUser.content}</span>
                   </div>
                 </div>
                 <div className="flex justify-end  gap-2 text-L_Gray Text-xs-Regular">
