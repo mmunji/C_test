@@ -1,3 +1,4 @@
+"use client";
 import { useEffect, useState } from "react";
 
 import { movieAPIs } from "@/services/movie/movieAPIs";
@@ -6,7 +7,7 @@ import { delay } from "@/utils/fn";
 import SimilarTasteSkleton from "../../MainSkeleton/SimilarTaste/SimilarTasteSkleton";
 import SimilarTastesMovie from "./SimilarTastesMovie";
 
-export default async function SimilarTastesMovieWapper() {
+export default function SimilarTastesMovieWapper() {
   const [PeopleReviewers, setPeopleReviewers] = useState<MovieReviewRecommed[]>(
     [],
   );
