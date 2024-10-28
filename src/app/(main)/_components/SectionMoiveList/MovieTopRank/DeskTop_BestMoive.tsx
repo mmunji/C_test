@@ -155,7 +155,7 @@ export default function DeskTop_BestMovie(MovieData: Desktop_BestMoiveProps) {
                       {MovieDetailData.reviewList.map(
                         (reviewData: MovieReviewDTO, index: number) => (
                           <BestTalkPost
-                            key={reviewData.content}
+                            key={index}
                             star={reviewData.star}
                             content={reviewData.content}
                             likeCount={reviewData.likeCount}

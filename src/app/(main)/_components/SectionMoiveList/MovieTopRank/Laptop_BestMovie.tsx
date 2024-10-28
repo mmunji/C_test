@@ -164,7 +164,7 @@ export default function Laptop_BestMovie(MovieData: Laptop_BestMoiveProps) {
                           (reviewData: MovieReviewDTO, index: number) => {
                             return (
                               <BestTalkPost
-                                key={reviewData.content}
+                                key={index}
                                 star={reviewData.star}
                                 content={reviewData.content}
                                 likeCount={reviewData.likeCount}

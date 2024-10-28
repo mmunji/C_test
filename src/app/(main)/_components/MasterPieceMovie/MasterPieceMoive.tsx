@@ -36,10 +36,18 @@ export default function MasterPieceMoive({ data }: MasterPieceMoiveType) {
       </div>
 
       <div className="flex  gap-2 Laptop:hidden  ">
-        <Swiper slidesPerView="auto" spaceBetween={20}>
+        <Swiper
+          slidesPerView="auto"
+          spaceBetween={20}
+          centeredSlides={false}
+          style={{ justifyContent: "start" }}
+        >
           {Array.isArray(data) && data.length > 0
             ? data.map((movie, index) => (
-                <SwiperSlide key={movie.movieid} style={{ width: "156px" }}>
+                <SwiperSlide
+                  key={movie.movieid}
+                  style={{ width: "156px", justifyContent: "start" }}
+                >
                   <Link href={`detail/${movie.movieid}`}>
                     <div
                       className="flex h-[230px] w-[156px] items-end  justify-between rounded-xl   Text-s-Bold Tablet:h-[240px] Tablet:w-[165px]"
@@ -85,6 +93,7 @@ export default function MasterPieceMoive({ data }: MasterPieceMoiveType) {
           onSwiper={(e) => {
             setSwiper(e);
           }}
+          style={{ justifyContent: "start" }}
         >
           {Array.isArray(data) && data.length > 0
             ? data.map((movie, index) => (

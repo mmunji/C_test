@@ -36,23 +36,18 @@ export default function RightKeyWords({
             return (
               <KeyWordPosts
                 key={index}
-                id={keywordInfo[keywordIndex]?.reviewList[index]?.review.id}
+                id={keywordInfo[keywordIndex]?.reviewList[index]?.id}
                 nickname={
                   keywordInfo[keywordIndex]?.reviewList[index]?.nickname
                 }
                 movieName={
-                  keywordInfo[keywordIndex]?.reviewList[index]?.review?.movienm
+                  keywordInfo[keywordIndex]?.reviewList[index]?.movienm
                 }
-                star={
-                  keywordInfo[keywordIndex]?.reviewList[index]?.review?.star
-                }
-                content={
-                  keywordInfo[keywordIndex]?.reviewList[index]?.review?.content
-                }
+                star={keywordInfo[keywordIndex]?.reviewList[index]?.star}
+                content={keywordInfo[keywordIndex]?.reviewList[index]?.content}
                 keyword={keyword}
                 createdAt={
-                  keywordInfo[keywordIndex]?.reviewList[index]?.review
-                    ?.createdAt
+                  keywordInfo[keywordIndex]?.reviewList[index]?.createdAt
                 }
                 profile={keywordInfo[keywordIndex]?.reviewList[index]?.profile}
                 isVisible={isVisible}
@@ -70,23 +65,18 @@ export default function RightKeyWords({
             return (
               <KeyWordPosts
                 key={index}
-                id={keywordInfo[keywordIndex]?.reviewList[index]?.review.id}
+                id={keywordInfo[keywordIndex]?.reviewList[index]?.id}
                 nickname={
                   keywordInfo[keywordIndex]?.reviewList[index]?.nickname
                 }
                 movieName={
-                  keywordInfo[keywordIndex]?.reviewList[index]?.review?.movienm
+                  keywordInfo[keywordIndex]?.reviewList[index]?.movienm
                 }
-                star={
-                  keywordInfo[keywordIndex]?.reviewList[index]?.review?.star
-                }
-                content={
-                  keywordInfo[keywordIndex]?.reviewList[index]?.review?.content
-                }
+                star={keywordInfo[keywordIndex]?.reviewList[index]?.star}
+                content={keywordInfo[keywordIndex]?.reviewList[index]?.content}
                 keyword={keyword}
                 createdAt={
-                  keywordInfo[keywordIndex]?.reviewList[index]?.review
-                    ?.createdAt
+                  keywordInfo[keywordIndex]?.reviewList[index]?.createdAt
                 }
                 profile={keywordInfo[keywordIndex]?.reviewList[index]?.profile}
                 isVisible={isVisible}
@@ -106,23 +96,18 @@ export default function RightKeyWords({
             return (
               <KeyWordPosts
                 key={index}
-                id={keywordInfo[keywordIndex]?.reviewList[index]?.review.id}
+                id={keywordInfo[keywordIndex]?.reviewList[index]?.id}
                 nickname={
                   keywordInfo[keywordIndex]?.reviewList[index]?.nickname
                 }
                 movieName={
-                  keywordInfo[keywordIndex]?.reviewList[index]?.review?.movienm
+                  keywordInfo[keywordIndex]?.reviewList[index]?.movienm
                 }
-                star={
-                  keywordInfo[keywordIndex]?.reviewList[index]?.review?.star
-                }
-                content={
-                  keywordInfo[keywordIndex]?.reviewList[index]?.review?.content
-                }
+                star={keywordInfo[keywordIndex]?.reviewList[index]?.star}
+                content={keywordInfo[keywordIndex]?.reviewList[index]?.content}
                 keyword={keyword}
                 createdAt={
-                  keywordInfo[keywordIndex]?.reviewList[index]?.review
-                    ?.createdAt
+                  keywordInfo[keywordIndex]?.reviewList[index]?.createdAt
                 }
                 profile={keywordInfo[keywordIndex]?.reviewList[index]?.profile}
                 isVisible={isVisible}
@@ -140,13 +125,13 @@ export default function RightKeyWords({
           return (
             <KeyWordPosts
               key={index}
-              id={movie.review.id}
+              id={movie.id}
               nickname={movie.nickname}
-              movieName={movie.review?.movienm}
-              star={movie.review?.star}
-              content={movie.review?.content}
+              movieName={movie.movienm}
+              star={movie.star}
+              content={movie.content}
               keyword={keyword}
-              createdAt={movie.review?.createdAt}
+              createdAt={movie.createdAt}
               profile={movie.profile}
               isVisible={isVisible}
             />

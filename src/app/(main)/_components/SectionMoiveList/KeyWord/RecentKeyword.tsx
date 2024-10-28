@@ -31,7 +31,7 @@ export default function RecentKeyword({ data }: RecentKeywordType) {
           <Swiper slidesPerView="auto" spaceBetween={12}>
             {data?.map((mention, index) => {
               return (
-                <SwiperSlide key={mention.count} className="w-[104px]">
+                <SwiperSlide key={index} className="w-[104px]">
                   <div
                     className={`Text-s-Bold  ${KeywordListNumber == index ? "bg-D1_Gray text-Silver" : "text-L_Gray"}  rounded-[36px] px-3 py-2 text-center `}
                     onClick={() => HandleKeywords(index)}
@@ -48,7 +48,7 @@ export default function RecentKeyword({ data }: RecentKeywordType) {
             ? data.map((mention, index) => {
                 return (
                   <div
-                    key={mention.count}
+                    key={index}
                     className={`cursor-pointer Text-m-Bold Tablet:Text-s-Bold  Laptop:Text-l-Bold  ${KeywordListNumber == index ? "bg-D1_Gray text-Silver" : "text-L_Gray"}  rounded-xl px-5 py-2 text-center Laptop:w-[178px] Desktop:w-[240px] `}
                     onClick={() => HandleKeywords(index)}
                   >
