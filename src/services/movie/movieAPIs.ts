@@ -20,7 +20,7 @@ export const movieAPIs = {
     const res = await fetch(`${API_URL}/movie/MentionKeword`, {
       cache: "no-store",
     });
-    const data: { message: string } | MentionKeword[] = await res.json();
+    const data: { state: string } | MentionKeword[] = await res.json();
     return data;
     // const string = await res.text();
     // const json =
@@ -45,6 +45,10 @@ export const movieAPIs = {
     return data;
   },
   getWatchMovie: async () => {
+    // const data = await customFetchInstanc.authFetch<WatchMovie[]>(
+    //   "/movie/HoxyWatching",
+    // );
+    // return data;
     const accessToken = tokenManager.getToken();
     let res = null;
     accessToken
@@ -56,7 +60,9 @@ export const movieAPIs = {
           },
           cache: "no-store",
         }))
-      : (res = await fetch(`${API_URL}/movie/HoxyWatching`));
+      : (res = await fetch(`${API_URL}/movie/HoxyWatching`, {
+          cache: "no-store",
+        }));
 
     const data: WatchMovie[] = await res.json();
     return data;
@@ -71,6 +77,7 @@ export const movieAPIs = {
             "Content-Type": "application/json",
             access: `${accessToken}`,
           },
+          cache: "no-store",
         }))
       : (res = await fetch(`${API_URL}/movie/top-reviewers`));
     const data: MovieReviewRecommed[] = await res.json();

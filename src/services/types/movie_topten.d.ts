@@ -17,6 +17,6 @@ interface MovieReviewDTO {
   reviewId: number;
   star: number;
   content: string;
-  likeCount: number;
+  likeCount?: number;
   profile: string;
 }
