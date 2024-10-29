@@ -24,7 +24,7 @@ interface Mobile_BestMoiveProps {
 }
 export default function Mobile_BestMovie(MovieData: Mobile_BestMoiveProps) {
   return (
-    <div className="flex Tablet:hidden">
+    <div className="block Tablet:hidden">
       <Swiper
         slidesPerView="auto"
         spaceBetween={20}
@@ -35,7 +35,7 @@ export default function Mobile_BestMovie(MovieData: Mobile_BestMoiveProps) {
           ? MovieData.MovieData.map((MovieDetailData, index) => {
               return (
                 <SwiperSlide
-                  key={MovieDetailData.id}
+                  key={MovieDetailData.movieId}
                   style={{ width: "238px" }}
                 >
                   <Link href={`detail/${MovieDetailData.movieId}`}>
@@ -115,7 +115,7 @@ export default function Mobile_BestMovie(MovieData: Mobile_BestMoiveProps) {
                               alt="white_ start"
                               className="h-4 w-4"
                             />
-                            {MovieDetailData.reviewList.likeCount && (
+                            {MovieDetailData.reviewList[0].likeCount && (
                               <span>
                                 {MovieDetailData.reviewList[0].likeCount}
                               </span>
@@ -123,7 +123,7 @@ export default function Mobile_BestMovie(MovieData: Mobile_BestMoiveProps) {
                           </div>
                         </div>
                         <div className="flex h-[42px] items-center gap-2">
-                          {MovieDetailData?.reviewList.profile && (
+                          {MovieDetailData?.reviewList[0].profile && (
                             <div
                               className="h-[24px] w-[24px] rounded-[60px] "
                               style={{
@@ -135,7 +135,7 @@ export default function Mobile_BestMovie(MovieData: Mobile_BestMoiveProps) {
                           )}
 
                           <span className="line-clamp-2 w-[174px] text-Silver Text-s-Regular">
-                            {MovieDetailData.reviewList.content &&
+                            {MovieDetailData.reviewList[0].content &&
                               MovieDetailData.reviewList[0].content}
                           </span>
                         </div>

@@ -28,14 +28,14 @@ export default function Tablet_Posts({ MovieWatchMovies }: WatchMovieType) {
   };
 
   return (
-    <div>
+    <div className="flex flex-col justify-center">
       <div className="mx-auto hidden w-[537px] items-center rounded-xl bg-D1_Gray Tablet:flex Laptop:hidden">
         <div
           className="flex transition-transform duration-500 ease-in-out"
           style={{ transform: `translateX(-${MovieNumber * 100}%)` }} // 슬라이드 애니메이션
         >
           {MovieWatchMovies.map((movie, index) => (
-            <div key={index} className="flex w-full flex-shrink-0">
+            <div key={movie.movieId} className="flex w-full flex-shrink-0">
               <Link href={`/detail/${movie.movieId}`}>
                 <div className="flex justify-center">
                   <Image
@@ -80,9 +80,9 @@ export default function Tablet_Posts({ MovieWatchMovies }: WatchMovieType) {
           ))}
         </div>
       </div>
-      <div className="hidden Tablet:flex Laptop:hidden">
+      <div className="hidden w-full justify-center Tablet:flex Laptop:hidden">
         <button
-          className="mx-auto mt-5 w-[392px] rounded-xl border-[1px] border-D2_Gray px-5 py-3 text-L_Gray Text-s-Regular"
+          className="mt-5 w-[392px] rounded-xl border-[1px] border-D2_Gray px-5 py-3 text-L_Gray Text-s-Regular"
           onClick={handleMovieList}
         >
           아직 안봤어요

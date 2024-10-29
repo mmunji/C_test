@@ -9,7 +9,7 @@ export default function LaptopSimilarTaste() {
         {Array(4)
           .fill(0)
           .map((index, _) => {
-            return <SimilarTasteTitle key={index} />;
+            return <SimilarTasteTitle key={_} />;
           })}
       </div>
       <div className="flex  w-full animate-pulse flex-col gap-4 rounded-xl bg-D2_Gray px-6 pb-5 pt-6">
@@ -18,7 +18,7 @@ export default function LaptopSimilarTaste() {
           {Array(6)
             .fill(0)
             .map((index, _) => {
-              return <PostCardSkeleton color={"D3"} key={index} />;
+              return <PostCardSkeleton color={"D3"} key={_} />;
             })}
         </div>
       </div>

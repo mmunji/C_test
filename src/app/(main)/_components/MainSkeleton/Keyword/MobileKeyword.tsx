@@ -8,7 +8,7 @@ export default function MobileKeyword() {
           .map((index, _) => {
             return (
               <div
-                key={index}
+                key={_}
                 className="h-7 w-[80px] animate-pulse rounded-[39px] bg-D2_Gray"
               ></div>
             );
@@ -20,7 +20,7 @@ export default function MobileKeyword() {
           .map((index, _) => {
             return (
               <div
-                key={index}
+                key={_}
                 className=" w-full animate-pulse flex-col gap-2 rounded-xl bg-D2_Gray   px-7 py-6 "
               >
                 <div className="flex flex-col gap-4">

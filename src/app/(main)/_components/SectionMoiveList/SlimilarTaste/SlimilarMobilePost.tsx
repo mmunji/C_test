@@ -73,12 +73,12 @@ export default function SlimilarMobilePost({
             })}
         </div>
       </div>
-      <div>
+      <div className="block">
         <Swiper slidesPerView="auto" spaceBetween={20}>
           {selectedUser?.reviews?.map((ReviewUser, index) => {
             return (
               <SwiperSlide
-                key={ReviewUser.movie_id}
+                key={ReviewUser.review_id}
                 className="mt-5  flex h-[250px] w-[156px] flex-col  gap-1 Tablet:h-[261px]"
               >
                 <div

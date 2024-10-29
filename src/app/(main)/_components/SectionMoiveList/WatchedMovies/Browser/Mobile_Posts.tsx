@@ -27,7 +27,7 @@ export default function Mobile_Posts({ MovieWatchMovies }: WatchMovieType) {
   };
 
   return (
-    <div className="rounded-xl bg-D1_Gray px-3 py-7 Tablet:hidden">
+    <div className="justify-center rounded-xl bg-D1_Gray px-3 py-7 Tablet:hidden">
       <div className="relative overflow-hidden rounded-xl">
         <div
           className="flex transition-transform duration-500 ease-in-out"
@@ -35,7 +35,7 @@ export default function Mobile_Posts({ MovieWatchMovies }: WatchMovieType) {
         >
           {MovieWatchMovies.map((movie, index) => (
             <div
-              key={index}
+              key={movie.movieId}
               className="w-full flex-shrink-0 px-[12px] py-[28px]"
             >
               <div className="flex flex-col justify-center gap-3">
@@ -76,13 +76,14 @@ export default function Mobile_Posts({ MovieWatchMovies }: WatchMovieType) {
             </div>
           ))}
         </div>
-
-        <button
-          className="mx-auto w-full max-w-[352px] rounded-xl border-[1px] border-D3_Gray px-5 py-3 text-L_Gray Text-s-Regular"
-          onClick={handleMovieList}
-        >
-          아직 안봤어요
-        </button>
+        <div className="flex w-full justify-center ">
+          <button
+            className=" w-full  max-w-[352px] rounded-xl border-[1px] border-D3_Gray px-5 py-3 text-L_Gray Text-s-Regular"
+            onClick={handleMovieList}
+          >
+            아직 안봤어요
+          </button>
+        </div>
       </div>
     </div>
   );

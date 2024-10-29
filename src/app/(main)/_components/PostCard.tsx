@@ -61,13 +61,13 @@ export default function PostCard({
       )}
       {StarPostType && onMouseHover ? (
         <div
-          className="flex h-[358px] w-[238px] flex-col items-center rounded-xl px-5 py-7 Text-m-Regular  Tablet:h-[390px] Tablet:w-[260px] Laptop:h-[260px] Laptop:w-[174px] Desktop:h-[360px] Desktop:w-[240px]"
+          className="flex h-[358px] w-[238px] flex-col items-center rounded-xl  Text-m-Regular  Tablet:h-[390px] Tablet:w-[260px] Laptop:h-[260px] Laptop:w-[174px] Desktop:h-[360px] Desktop:w-[240px]"
           style={{
             backdropFilter: "blur(5px)",
             background: "rgba(0, 0, 0, 0.50)",
           }}
         >
-          <div className="flex flex-col items-center gap-2 Desktop:gap-4">
+          <div className="flex flex-col items-center  gap-2 px-5 py-7 Desktop:gap-4 Desktop:px-6 Desktop:py-8">
             <GetRating StarRating={StarRating} ratingsize="Md" space={true} />
             <div className=" flex flex-col gap-1">
               <span className="Desktop:line-clamp-9 line-clamp-5 w-full text-Silver Text-m-Regular Laptop:h-[121px] Desktop:w-[216px]">
@@ -78,12 +78,12 @@ export default function PostCard({
               </div>
             </div>
             <div className="w-full border-[1px] text-Gray" />
-            <div className="flex   gap-2 Text-s-Medium">
-              <div className="flex gap-1">
+            <div className="flex w-full justify-end gap-2 Text-s-Medium">
+              <div className="flex  gap-1">
                 <Image src={ThumbsUpFillSm} alt="별" />
                 <span className="text-Gray_Orange ">{likeCount}</span>
               </div>
-              <div className="flex gap-1">
+              <div className="flex  gap-1">
                 <Image src={ChatFillSm} alt="별" />
                 <span className="text-Gray_Orange ">{reviewCount}</span>
               </div>
@@ -95,7 +95,7 @@ export default function PostCard({
       )}
       {PostType && onMouseHover ? (
         <div
-          className=" flex h-[358px] w-[238px] items-center rounded-xl px-5 py-7  Text-m-Regular Tablet:h-[390px]  Tablet:w-[260px] Laptop:h-[260px] Laptop:w-[174px] Desktop:h-[360px] Desktop:w-[240px]"
+          className=" flex h-[358px] w-[238px] items-center rounded-xl px-5 py-7 Text-m-Regular Tablet:h-[390px]  Tablet:w-[260px] Laptop:h-[260px]  Laptop:w-[174px] Desktop:h-[360px] Desktop:w-[240px] Desktop:px-6 Desktop:py-8"
           style={{
             backdropFilter: "blur(5px)",
             background: "rgba(0, 0, 0, 0.50)",

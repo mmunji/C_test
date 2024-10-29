@@ -8,7 +8,7 @@ export default function TabletSimilarTaste() {
           .fill(0)
           .map((index, _) => {
             return (
-              <div key={index} className="flex flex-col gap-1 ">
+              <div key={_} className="flex flex-col gap-1 ">
                 <div className="h-[60px] w-[60px] animate-pulse rounded-[60px] bg-D2_Gray  " />
                 <div className="mx-auto h-5 w-[48px] animate-pulse rounded-lg  bg-D2_Gray " />
               </div>
@@ -27,7 +27,7 @@ export default function TabletSimilarTaste() {
           {Array(4)
             .fill(0)
             .map((index, _) => {
-              return <PostCardSkeleton color={"D3"} key={index} />;
+              return <PostCardSkeleton color={"D3"} key={_} />;
             })}
         </div>
       </div>

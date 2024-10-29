@@ -18,7 +18,7 @@ export default function DesktopMovieTop() {
               .map((index, _) => {
                 return (
                   <div
-                    key={index}
+                    key={_}
                     className="h-[40px] w-[368px] animate-pulse rounded-xl bg-D2_Gray Desktop:h-[59px]  Desktop:w-[504px] "
                   />
                 );
@@ -28,7 +28,7 @@ export default function DesktopMovieTop() {
         {Array(3)
           .fill("MovieTop2")
           .map((index, _) => {
-            return <PostCardSkeleton key={index} />;
+            return <PostCardSkeleton key={_} />;
           })}
       </div>
     </div>

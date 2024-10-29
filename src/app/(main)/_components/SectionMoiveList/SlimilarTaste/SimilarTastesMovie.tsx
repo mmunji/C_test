@@ -44,7 +44,7 @@ export default function SimilarTastesMovie({ data }: SimilarTastesMovieType) {
           </SpeechBubble>
         )}
       </div>
-      <div className="flex gap-4 Laptop:hidden">
+      <div className="block gap-4 Laptop:hidden">
         <Swiper slidesPerView="auto" spaceBetween={20}>
           {Array.isArray(ReviewUsers) && ReviewUsers.length > 0
             ? ReviewUsers.map((Review, index) => {
