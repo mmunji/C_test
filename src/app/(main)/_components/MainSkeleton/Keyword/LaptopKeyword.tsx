@@ -13,7 +13,7 @@ export default function LaptopKeyword() {
           .map((index, _) => {
             return (
               <div
-                key={index}
+                key={_}
                 className="h-11 w-[174px] animate-pulse rounded-lg bg-D2_Gray"
               />
             );
@@ -25,7 +25,7 @@ export default function LaptopKeyword() {
           .map((index, _) => {
             return (
               <div
-                key={index}
+                key={_}
                 className=" h-full w-full animate-pulse flex-col gap-2 rounded-xl bg-D2_Gray   px-7 pt-6 "
               >
                 <div className="flex flex-col gap-4">
@@ -43,7 +43,7 @@ export default function LaptopKeyword() {
           .map((index, _) => {
             return (
               <div
-                key={index}
+                key={_}
                 className=" h-full w-full animate-pulse flex-col gap-2 rounded-xl bg-D2_Gray   px-7 pt-6 "
               >
                 <div className="flex flex-col gap-4">

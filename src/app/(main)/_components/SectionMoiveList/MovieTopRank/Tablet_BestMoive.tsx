@@ -27,7 +27,7 @@ export default function Tablet_BestMoive(MovieData: Tablet_BestMoiveProps) {
         {Array.isArray(MovieData.MovieData) && MovieData.MovieData.length > 0
           ? MovieData.MovieData.map((MovieDetailData, index) => {
               return (
-                <SwiperSlide key={MovieDetailData.id}>
+                <SwiperSlide key={MovieDetailData.movieId}>
                   <div className=" flex w-full gap-5">
                     <Link href={`detail/${MovieDetailData.movieId}`}>
                       {MovieDetailData.poster_path ? (
@@ -105,7 +105,7 @@ export default function Tablet_BestMoive(MovieData: Tablet_BestMoiveProps) {
                               (reviewData: MovieReviewDTO, index: number) => {
                                 return (
                                   <Tablet_BestTalkPost
-                                    key={reviewData.content}
+                                    key={reviewData.reviewId}
                                     star={reviewData.star}
                                     content={reviewData.content}
                                     likeCount={reviewData.likeCount}

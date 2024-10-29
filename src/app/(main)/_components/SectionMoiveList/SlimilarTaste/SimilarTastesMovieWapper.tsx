@@ -19,6 +19,7 @@ export default function SimilarTastesMovieWapper() {
       try {
         const response: MovieReviewRecommed[] =
           await movieAPIs.getPeopleReviewers();
+
         setPeopleReviewers(response);
       } catch (error) {
         console.error("Failed to fetch movie data", error);

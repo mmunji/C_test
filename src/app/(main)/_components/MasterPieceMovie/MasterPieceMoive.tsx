@@ -40,7 +40,7 @@ export default function MasterPieceMoive({ data }: MasterPieceMoiveType) {
           slidesPerView="auto"
           spaceBetween={20}
           centeredSlides={false}
-          style={{ justifyContent: "start" }}
+          style={{ display: "flex", justifyContent: "start" }}
         >
           {Array.isArray(data) && data.length > 0
             ? data.map((movie, index) => (
@@ -89,11 +89,12 @@ export default function MasterPieceMoive({ data }: MasterPieceMoiveType) {
           slidesPerView="auto"
           spaceBetween={device == "laptop" ? 20 : 24}
           className="gap-5  Laptop:gap-5 Desktop:gap-6"
+          centeredSlides={false}
+          slidesOffsetBefore={0}
           modules={[Pagination]}
           onSwiper={(e) => {
             setSwiper(e);
           }}
-          style={{ justifyContent: "start" }}
         >
           {Array.isArray(data) && data.length > 0
             ? data.map((movie, index) => (

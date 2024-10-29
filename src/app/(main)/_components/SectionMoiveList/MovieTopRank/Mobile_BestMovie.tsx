@@ -35,7 +35,7 @@ export default function Mobile_BestMovie(MovieData: Mobile_BestMoiveProps) {
           ? MovieData.MovieData.map((MovieDetailData, index) => {
               return (
                 <SwiperSlide
-                  key={MovieDetailData.id}
+                  key={MovieDetailData.movieId}
                   style={{ width: "238px" }}
                 >
                   <Link href={`detail/${MovieDetailData.movieId}`}>

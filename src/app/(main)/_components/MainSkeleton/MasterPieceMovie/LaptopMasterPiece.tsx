@@ -1,7 +1,5 @@
 "use client";
 
-import useDevice from "@/hooks/useDevice";
-
 import PostCardSkeleton from "../PostCardSkeleton";
 
 export default function LaptopMasterPiece() {
@@ -9,23 +7,23 @@ export default function LaptopMasterPiece() {
     <div>
       <div className="flex w-full gap-6 Tablet:hidden">
         {Array(2)
-          .fill("PostCard")
+          .fill(0)
           .map((index, _) => {
-            return <PostCardSkeleton key={index} />;
+            return <PostCardSkeleton key={_} />;
           })}
       </div>
       <div className=" hidden w-full gap-4 Tablet:flex Laptop:hidden">
         {Array(4)
-          .fill("PostCard")
+          .fill(0)
           .map((index, _) => {
-            return <PostCardSkeleton key={index} />;
+            return <PostCardSkeleton key={_} />;
           })}
       </div>
       <div className="hidden w-full gap-6 Laptop:flex">
         {Array(6)
-          .fill("PostCard")
+          .fill(0)
           .map((index, _) => {
-            return <PostCardSkeleton key={index} />;
+            return <PostCardSkeleton key={_} />;
           })}
       </div>
     </div>

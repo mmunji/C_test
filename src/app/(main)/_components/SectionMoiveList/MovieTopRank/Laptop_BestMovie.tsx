@@ -56,7 +56,7 @@ export default function Laptop_BestMovie(MovieData: Laptop_BestMoiveProps) {
           MovieData.MovieData.map((MovieDetailData, index) => {
             return (
               <SwiperSlide
-                key={MovieDetailData.id}
+                key={MovieDetailData.movieId}
                 style={{
                   width: StatePost === index ? "562px" : "174px",
                 }}
@@ -164,7 +164,7 @@ export default function Laptop_BestMovie(MovieData: Laptop_BestMoiveProps) {
                           (reviewData: MovieReviewDTO, index: number) => {
                             return (
                               <BestTalkPost
-                                key={index}
+                                key={reviewData.reviewId}
                                 star={reviewData.star}
                                 content={reviewData.content}
                                 likeCount={reviewData.likeCount}

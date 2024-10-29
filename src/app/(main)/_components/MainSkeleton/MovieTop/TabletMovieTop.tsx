@@ -17,7 +17,7 @@ export default function TabletMovieTop() {
               .map((index, _) => {
                 return (
                   <div
-                    key={index}
+                    key={_}
                     className="flex w-[147px] animate-pulse  flex-col items-center justify-between rounded-xl bg-D2_Gray  px-4 py-5 "
                   >
                     <div className="flex flex-col gap-2">
