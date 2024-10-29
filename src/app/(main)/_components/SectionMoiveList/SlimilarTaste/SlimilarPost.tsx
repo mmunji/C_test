@@ -55,7 +55,7 @@ export default function SlimilarPost({
                 }
                 return (
                   <SwiperSlide
-                    key={index}
+                    key={ReviewUser.userId}
                     className="w-[368px] Desktop:w-[372px]  "
                   >
                     <SlimilarUser

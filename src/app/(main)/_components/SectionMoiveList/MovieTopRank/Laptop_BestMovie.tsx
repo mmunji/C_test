@@ -56,7 +56,7 @@ export default function Laptop_BestMovie(MovieData: Laptop_BestMoiveProps) {
           MovieData.MovieData.map((MovieDetailData, index) => {
             return (
               <SwiperSlide
-                key={index}
+                key={MovieDetailData.id}
                 style={{
                   width: StatePost === index ? "562px" : "174px",
                 }}

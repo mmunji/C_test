@@ -17,15 +17,21 @@ export const movieAPIs = {
     return data;
   },
   getMentionKeword: async () => {
-    const res = await fetch(`${API_URL}/movie/MentionKeword`, {
-      cache: "no-store",
-    });
-    const data: { state: string } | MentionKeword[] = await res.json();
-    return data;
-    // const string = await res.text();
-    // const json =
-    //   string === "" ? null : (JSON.parse(string) as StateTO | MentionKeword[]);
-    // return json;
+    try {
+      const res = await fetch(`${API_URL}/movie/MentionKeword`, {
+        cache: "no-store",
+      });
+
+      if (!res.ok) {
+        throw new Error(` ${res.status}`);
+      }
+
+      const data: { state: string } | MentionKeword[] = await res.json();
+      return data;
+    } catch (error) {
+      console.error("Error :", error);
+      return { state: "error" }; // 기본값이나 에러 상태 반환
+    }
   },
   getMovieReviewComments: async () => {
     const res = await fetch(`${API_URL}/movie/TotalReviewCount`, {

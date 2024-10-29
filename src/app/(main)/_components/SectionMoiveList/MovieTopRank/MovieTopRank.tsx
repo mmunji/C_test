@@ -84,7 +84,7 @@ export default function MoiveTopRank({ data }: MoiveTopRankType) {
                 {MovieGenreType.map((genre, index) => {
                   return (
                     <Dropdown.Item
-                      key={index}
+                      key={genre.index}
                       onClick={() => {
                         setFilter(index), fetchMovie(index);
                       }}

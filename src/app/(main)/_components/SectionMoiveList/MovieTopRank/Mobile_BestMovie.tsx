@@ -34,7 +34,10 @@ export default function Mobile_BestMovie(MovieData: Mobile_BestMoiveProps) {
         {Array.isArray(MovieData.MovieData) && MovieData.MovieData.length > 0
           ? MovieData.MovieData.map((MovieDetailData, index) => {
               return (
-                <SwiperSlide key={index} style={{ width: "238px" }}>
+                <SwiperSlide
+                  key={MovieDetailData.id}
+                  style={{ width: "238px" }}
+                >
                   <Link href={`detail/${MovieDetailData.movieId}`}>
                     <div className="flex w-[238px] flex-col gap-4  rounded-xl bg-Black pb-4 ">
                       <div

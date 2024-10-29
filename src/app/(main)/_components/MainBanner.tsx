@@ -36,9 +36,9 @@ export default function MainBanner({ data }: BannerType) {
         modules={[Autoplay, Pagination]} // 필요한 모듈 추가
         autoplay={{ delay: 2000, disableOnInteraction: false }}
       >
-        {data?.map((BannerItem, index) => {
+        {data?.map((BannerItem) => {
           return (
-            <SwiperSlide key={index}>
+            <SwiperSlide key={BannerItem.movieId}>
               <Link href={`detail/${BannerItem.movieId}`}>
                 <div
                   className="relative h-[421px] w-full overflow-hidden rounded-[20px] Tablet:h-[360px] Laptop:h-[489px] Desktop:h-[637px]"
