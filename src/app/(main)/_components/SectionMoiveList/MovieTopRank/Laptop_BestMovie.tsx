@@ -38,7 +38,7 @@ export default function Laptop_BestMovie(MovieData: Laptop_BestMoiveProps) {
   };
   return (
     <div
-      className="relative hidden h-[calc(260px)]  Laptop:flex Desktop:hidden"
+      className="relative hidden h-[calc(260px)]  Laptop:block Desktop:hidden"
       onMouseEnter={() => sethovered(true)}
       onMouseLeave={() => sethovered(false)}
     >

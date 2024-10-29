@@ -22,7 +22,7 @@ interface Tablet_BestMoiveProps {
 
 export default function Tablet_BestMoive(MovieData: Tablet_BestMoiveProps) {
   return (
-    <div className="hidden  h-[344px] Tablet:flex Laptop:hidden">
+    <div className="hidden  h-[344px] Tablet:block Laptop:hidden">
       <Swiper slidesPerView="auto" spaceBetween={20} className="relative">
         {Array.isArray(MovieData.MovieData) && MovieData.MovieData.length > 0
           ? MovieData.MovieData.map((MovieDetailData, index) => {

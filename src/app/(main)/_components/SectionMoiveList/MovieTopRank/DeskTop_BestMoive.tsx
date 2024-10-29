@@ -39,7 +39,7 @@ export default function DeskTop_BestMovie(MovieData: Desktop_BestMoiveProps) {
 
   return (
     <div
-      className=" hidden Desktop:flex "
+      className=" hidden Desktop:block "
       onMouseEnter={() => sethovered(true)}
       onMouseLeave={() => sethovered(false)}
     >

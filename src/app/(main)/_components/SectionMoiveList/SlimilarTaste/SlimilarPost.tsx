@@ -40,7 +40,7 @@ export default function SlimilarPost({
           PickUserNumber={PickUserNumber}
         />
       </div>
-      <div className=" hidden justify-between Laptop:flex">
+      <div className=" hidden justify-between Laptop:block">
         <Swiper
           slidesPerView="auto"
           spaceBetween={device == "laptop" ? 20 : 24}
@@ -78,7 +78,7 @@ export default function SlimilarPost({
       <div className="hidden flex-col gap-[16px] rounded-xl bg-D1_Gray  px-[24px]  py-[28px] text-white Laptop:flex">
         <h1 className="text-Silver Text-xl-Bold">닉네임님의 최근 톡</h1>
         <div
-          className="flex gap-[24px]"
+          className="block gap-[24px]"
           onMouseEnter={() => sethovered(true)}
           onMouseLeave={() => sethovered(false)}
         >

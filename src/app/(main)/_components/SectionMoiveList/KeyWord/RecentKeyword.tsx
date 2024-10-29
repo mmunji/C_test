@@ -59,7 +59,7 @@ export default function RecentKeyword({ data }: RecentKeywordType) {
             : ""}
         </div>
         {data ? (
-          <RightKeyWords keywordInfo={data!} keywordIndex={KeywordListNumber} />
+          <RightKeyWords keywordInfo={data} keywordIndex={KeywordListNumber} />
         ) : (
           ""
         )}

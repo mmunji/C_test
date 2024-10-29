@@ -41,20 +41,20 @@ export const movieAPIs = {
     return data;
   },
   getMovieMainBanner: async () => {
-    const res = await fetch(`${API_URL}/movie/MainBanner`);
+    const res = await fetch(`${API_URL}/movie/MainBanner`, {
+      cache: "no-store",
+    });
     const data: BannerDTO[] = await res.json();
     return data;
   },
   getMovieTopTen: async (genreId: number) => {
-    const res = await fetch(`${API_URL}/movie/TopTenTalk?genreId=${genreId}`);
+    const res = await fetch(`${API_URL}/movie/TopTenTalk?genreId=${genreId}`, {
+      cache: "no-store",
+    });
     const data: Movie_TopTen = await res.json();
     return data;
   },
   getWatchMovie: async () => {
-    // const data = await customFetchInstanc.authFetch<WatchMovie[]>(
-    //   "/movie/HoxyWatching",
-    // );
-    // return data;
     const accessToken = tokenManager.getToken();
     let res = null;
     accessToken

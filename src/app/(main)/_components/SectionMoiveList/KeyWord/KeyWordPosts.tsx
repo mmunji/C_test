@@ -1,7 +1,6 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
 
 import { StarFillSm } from "@/../public/icons";
 interface KeyWordInfoProps {
@@ -27,6 +26,24 @@ export default function KeyWordPosts({
   profile,
   isVisible,
 }: KeyWordInfoProps) {
+  const highlightedText = (text: string, query: string | null) => {
+    if (!query) return text;
+    if (text.includes(query)) {
+      const parts = text.split(new RegExp(`(${query})`, "gi"));
+      return parts.map((part, index) =>
+        part.toLowerCase() === query.toLowerCase() ? (
+          <span className="Text-s-Bold Tablet:Text-m-Bold" key={index}>
+            {part}
+          </span>
+        ) : (
+          part
+        ),
+      );
+    }
+
+    return text;
+  };
+
   return (
     <Link href={`/detail/${id}`}>
       <div
@@ -50,7 +67,9 @@ export default function KeyWordPosts({
           </div>
         </div>
         <div className=" h-[42px] text-Gray_Orange Text-s-Regular  Tablet:h-[48px] Laptop:Text-m-Regular">
-          <span className="line-clamp-2">{content}</span>
+          <span className="line-clamp-2">
+            {highlightedText(content, keyword!)}
+          </span>
         </div>
         <span className="line-clamp-1 text-L_Gray Text-s-Regular  Laptop:Text-m-Regular">
           {movieName} · {createdAt}

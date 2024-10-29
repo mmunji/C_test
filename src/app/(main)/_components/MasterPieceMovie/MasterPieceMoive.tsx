@@ -35,13 +35,8 @@ export default function MasterPieceMoive({ data }: MasterPieceMoiveType) {
         </span>
       </div>
 
-      <div className="flex  gap-2 Laptop:hidden  ">
-        <Swiper
-          slidesPerView="auto"
-          spaceBetween={20}
-          centeredSlides={false}
-          style={{ display: "flex", justifyContent: "start" }}
-        >
+      <div className=" block gap-2 Laptop:hidden  ">
+        <Swiper slidesPerView="auto" spaceBetween={20} centeredSlides={false}>
           {Array.isArray(data) && data.length > 0
             ? data.map((movie, index) => (
                 <SwiperSlide
@@ -81,14 +76,14 @@ export default function MasterPieceMoive({ data }: MasterPieceMoiveType) {
       </div>
 
       <div
-        className="hidden Laptop:flex"
+        className="hidden Laptop:block"
         onMouseEnter={() => sethovered(true)}
         onMouseLeave={() => sethovered(false)}
       >
         <Swiper
           slidesPerView="auto"
           spaceBetween={device == "laptop" ? 20 : 24}
-          className="gap-5  Laptop:gap-5 Desktop:gap-6"
+          className=" gap-5 Laptop:gap-5 Desktop:gap-6"
           centeredSlides={false}
           slidesOffsetBefore={0}
           modules={[Pagination]}
