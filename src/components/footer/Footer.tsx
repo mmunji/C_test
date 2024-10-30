@@ -32,7 +32,7 @@ export default function Footer() {
   }, []);
   const FeedBackSubmit = async () => {
     const token = tokenManager.getToken();
-    if (token) {
+    if (!token) {
       setIsOpen(true);
     } else {
       const result = await movieAPIs.postFeedBack(FeedbackPost);
