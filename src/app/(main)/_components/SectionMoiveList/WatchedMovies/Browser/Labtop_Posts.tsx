@@ -16,6 +16,7 @@ export default function Labtop_Posts({ MovieWatchMovies }: WatchMovieType) {
   const handleToast = (text: string) => {
     add(text);
   };
+
   return (
     <div className=" hidden  w-full gap-[24px] rounded-xl   Laptop:block">
       <Swiper slidesPerView="auto" spaceBetween={device == "laptop" ? 20 : 24}>

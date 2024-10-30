@@ -22,7 +22,7 @@ export default function MainBanner({ data }: BannerType) {
   const { device } = useDevice();
   return (
     <div className="relative w-full">
-      <div id="containerForBullets block" />
+      <div id="containerForBullets" />
       <Swiper
         spaceBetween={20} // 슬라이드 사이 간격
         slidesPerView={1} // 보여질 슬라이드 수
