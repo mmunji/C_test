@@ -8,6 +8,7 @@ import SpeechBubble from "@/components/speechBubble/SpeechBubble";
 import useHandleClickAuthButton from "@/hooks/useHandleClickAuthButtons";
 import useNeedLogin from "@/hooks/useNeedLogin";
 import { useGetMyTalk } from "@/services/talk/talkQueries";
+import useLoggedInStore from "@/stores/useLoggedIn";
 
 import DriveCommentText from "./DriveCommentText";
 import FixedRating from "./FixedRating";
@@ -42,6 +43,7 @@ export default function Rating({
   const { handleClickAuthButton } = useHandleClickAuthButton();
   const genreList = movieDetailData.genreDTOList.map((el) => el.id);
   const [isLoading, setIsLoading] = useState(false);
+  const { loggedIn } = useLoggedInStore();
 
   useEffect(() => {
     if (clickedValue) {
@@ -90,7 +92,7 @@ export default function Rating({
         )}
       </div>
 
-      {isLoading && (
+      {isLoading && loggedIn && (
         <>
           <Button
             variant="line"
