@@ -19,6 +19,7 @@ export default function SimilarTastesMovie({ data }: SimilarTastesMovieType) {
   const [message, setmessage] = useState(
     "로그인 하고 별을 눌러 평가해보세요 :",
   );
+  const [title, settitle] = useState("다른 사람들은 이런 영화를 평가했어요");
   const ChangePickNumber = (index: number) => {
     setPickUserNumber(index);
   };
@@ -26,14 +27,13 @@ export default function SimilarTastesMovie({ data }: SimilarTastesMovieType) {
   useEffect(() => {
     if (accessToken) {
       setmessage("톡을 많이 작성할수록 내 취향에 비슷해져요.");
+      settitle("나와 취향이 비슷한 사람들");
     }
   }, [accessToken]);
   return (
     <div className="flex flex-col gap-5">
       <div className="flex flex-col gap-5 Tablet:flex-row Tablet:items-center">
-        <h1 className="Text-l-Bold Laptop:Text-xxl-Bold ">
-          다른 사람들은 이런 영화를 평가했어요
-        </h1>
+        <h1 className="Text-l-Bold Laptop:Text-xxl-Bold ">{title}</h1>
         {device == "mobile" ? (
           <SpeechBubble id={"SimilarTastesMovie"} dir="top">
             {message}
