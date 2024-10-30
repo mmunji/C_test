@@ -78,7 +78,9 @@ function MyTalk({ myTalk, movieId, movieDetailData }: MyTalkProps) {
     <>
       <div className="flex flex-col gap-2">
         <div className="mx-auto mb-5 flex flex-col items-center gap-3 Laptop:hidden">
-          <p className="text-Primary Text-m-Bold">{myTalk?.star}점</p>
+          <p className="text-Primary Text-m-Bold Laptop:Text-l-Bold">
+            {myTalk?.star}점
+          </p>
           <div className="flex">
             {clickedEditMyTalk ? (
               [...Array(5)].map((_, i) => (

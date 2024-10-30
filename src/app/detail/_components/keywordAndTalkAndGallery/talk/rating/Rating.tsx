@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+
 import useRating from "@/app/detail/_hooks/useRating";
 import Button from "@/components/buttons/Button";
 import Modal from "@/components/modal/modal";
@@ -39,6 +41,17 @@ export default function Rating({
   } = useRating({ initialValue: 0 });
   const { handleClickAuthButton } = useHandleClickAuthButton();
   const genreList = movieDetailData.genreDTOList.map((el) => el.id);
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    if (clickedValue) {
+      setIsLoading(true);
+    }
+
+    if (myTalk) {
+      setIsLoading(false);
+    }
+  }, [clickedValue, myTalk]);
 
   return (
     <div className="relative flex w-full flex-col justify-center rounded-xl py-3 Tablet:py-8 Laptop:mb-6 Laptop:bg-D1_Gray Laptop:px-7 Laptop:py-8">
@@ -77,21 +90,38 @@ export default function Rating({
         )}
       </div>
 
-      {myTalk && myTalk.content === "" && !showTalkForm && (
+      {isLoading && (
         <>
           <Button
             variant="line"
             size="lg"
-            onClick={() => setShowTalkForm(true)}
             className="mx-auto hidden bg-transparent Laptop:mt-6 Laptop:block"
           >
-            톡 작성하기
+            별점 저장중...
           </Button>
           <Button
             variant="line"
             size="sm"
-            onClick={() => setShowTalkForm(true)}
             className="mx-auto bg-transparent Laptop:hidden"
+          >
+            별점 저장중...
+          </Button>
+        </>
+      )}
+
+      {myTalk && myTalk.content === "" && !showTalkForm && (
+        <>
+          <Button
+            size="lg"
+            onClick={() => setShowTalkForm(true)}
+            className="mx-auto hidden bg-D2_Gray Laptop:mt-6 Laptop:block"
+          >
+            톡 작성하기
+          </Button>
+          <Button
+            size="sm"
+            onClick={() => setShowTalkForm(true)}
+            className="mx-auto bg-D2_Gray Laptop:hidden"
           >
             톡 작성하기
           </Button>
