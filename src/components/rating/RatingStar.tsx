@@ -78,22 +78,33 @@ export default function RatingStar({
   const { loggedIn } = useLoggedInStore();
   const AddStarReview = async (star: number) => {
     if (StarReview && loggedIn) {
-      const { data } = await talkAPIs.addTalks({
-        movieName: movienm!,
-        movieId: movieId!,
-        star: star,
-        content: "",
-        spoiler: false,
-        genreList: genreList || [],
-      });
-      if (!data.message) {
-        if (type === "main") {
-          ratingValue = 0;
-          handleMovieList?.("별점 평가 완료! 💫");
-        }
-        revalidateMyPage("my");
+      if (type === "detail") {
+        addTalks({
+          genreList: genreList || [],
+          movieId: movieId!,
+          movieName: movienm!,
+          ratingValue: star,
+          spoiler: false,
+          talk: "",
+        });
       } else {
-        alert(data.message);
+        const { data } = await talkAPIs.addTalks({
+          movieName: movienm!,
+          movieId: movieId!,
+          star: star,
+          content: "",
+          spoiler: false,
+          genreList: genreList || [],
+        });
+        if (!data.message) {
+          if (type === "main") {
+            ratingValue = 0;
+            handleMovieList?.("별점 평가 완료! 💫");
+          }
+          revalidateMyPage("my");
+        } else {
+          alert(data.message);
+        }
       }
     }
   };
