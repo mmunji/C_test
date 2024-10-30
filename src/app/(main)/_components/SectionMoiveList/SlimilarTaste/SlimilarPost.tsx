@@ -76,7 +76,9 @@ export default function SlimilarPost({
       </div>
 
       <div className="hidden flex-col gap-[16px] rounded-xl bg-D1_Gray  px-[24px]  py-[28px] text-white Laptop:flex">
-        <h1 className="text-Silver Text-xl-Bold">닉네임님의 최근 톡</h1>
+        <h1 className="text-Silver Text-xl-Bold">
+          {ReviewUsers[PickUserNumber].nickname}님의 최근 톡
+        </h1>
         <div
           className="block gap-[24px]"
           onMouseEnter={() => sethovered(true)}
