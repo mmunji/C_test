@@ -32,7 +32,7 @@ export default function CommonSearchInput({
       onChange={(e: ChangeEvent<HTMLInputElement>) =>
         setInputValue(e.target.value)
       }
-      placeholder="‘파묘’ 궁금하지 않으세요?"
+      placeholder="어떤 영화가 궁금하신가요?"
       onFocus={() => setIsInputFocused(true)}
       onBlur={() => {
         setTimeout(() => {
