@@ -12,6 +12,7 @@ import {
 import { revalidateMyPage } from "@/services/my/actions";
 import { talkAPIs } from "@/services/talk/talkAPIs";
 import { useAddTalk } from "@/services/talk/talkMutations";
+import useLoggedInStore from "@/stores/useLoggedIn";
 
 interface StarProps {
   type: "main" | "detail";
@@ -74,9 +75,9 @@ export default function RatingStar({
   }
 
   const { mutate: addTalks } = useAddTalk(movieId as number);
-
+  const { loggedIn } = useLoggedInStore();
   const AddStarReview = async (star: number) => {
-    if (StarReview) {
+    if (StarReview && loggedIn) {
       const { data } = await talkAPIs.addTalks({
         movieName: movienm!,
         movieId: movieId!,
