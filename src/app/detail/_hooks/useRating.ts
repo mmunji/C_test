@@ -1,9 +1,30 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-export default function useRating() {
-  const [ratingValue, setRatingValue] = useState<number>(0);
+import useNeedLogin from "@/hooks/useNeedLogin";
+
+interface UseRatingProps {
+  initialValue?: number;
+}
+
+export default function useRating({ initialValue = 0 }: UseRatingProps) {
+  const [showTalkForm, setShowTalkForm] = useState(false);
+  const [ratingValue, setRatingValue] = useState<number>(initialValue);
   const [clickedValue, setClickedValue] = useState(false);
   const [driveTalkText, setDriveTalkText] = useState("");
+  const [readyToRating, setReadyToRating] = useState(false);
+  const { isOpen, setIsOpen, handleNeedLogin } = useNeedLogin();
+
+  useEffect(() => {
+    if (clickedValue) {
+      if (handleNeedLogin()) {
+        setClickedValue(false);
+        setReadyToRating(false);
+      } else {
+        setClickedValue(true);
+        setReadyToRating(true);
+      }
+    }
+  }, [clickedValue, handleNeedLogin]);
 
   const handleDriveTalk = () => {
     if (ratingValue === 0.5 || ratingValue === 1 || ratingValue === 1.5) {
@@ -19,6 +40,15 @@ export default function useRating() {
     }
   };
 
+  useEffect(() => {
+    if (clickedValue && !showTalkForm) handleDriveTalk();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [clickedValue, showTalkForm]);
+
+  useEffect(() => {
+    if (showTalkForm) setDriveTalkText("");
+  }, [setDriveTalkText, showTalkForm]);
+
   return {
     ratingValue,
     setRatingValue,
@@ -26,6 +56,11 @@ export default function useRating() {
     setClickedValue,
     driveTalkText,
     setDriveTalkText,
+    readyToRating,
+    isOpen,
+    setIsOpen,
+    showTalkForm,
+    setShowTalkForm,
     handleDriveTalk,
   };
 }

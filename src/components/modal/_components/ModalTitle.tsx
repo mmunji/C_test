@@ -1,50 +1,19 @@
-import clsx from "clsx";
-
-import { WithChildren } from "@/components/modal/_components/ModalMain";
-import { useModalContext } from "@/components/modal/ModalContext";
-
-export function ModalTitleWrapper({ children }: WithChildren) {
-  const { isAlertModal, isMobile } = useModalContext();
+export function ModalTitleWrapper({ children }: { children: React.ReactNode }) {
   return (
-    <>
-      <div
-        className={clsx(
-          isAlertModal
-            ? [isMobile ? "w-full gap-1" : "w-[360px] gap-3"]
-            : "gap-2",
-          `flex flex-col items-center`,
-        )}
-      >
-        {children}
-      </div>
-    </>
-  );
-}
-
-export function ModalTitle({ children }: WithChildren) {
-  const { isMobile, hasDescription } = useModalContext();
-  return (
-    <div
-      className={clsx(
-        `${isMobile ? "Text-m-Bold" : "Text-xl-Bold"} ${!hasDescription && "my-3"} text-Primary`,
-      )}
-    >
+    <div className="flex min-h-12 flex-col items-center justify-center gap-2 Tablet:min-h-[66px] Tablet:min-w-[360px] ">
       {children}
     </div>
   );
 }
 
-export function ModalDescription({ children }: WithChildren) {
-  const { isMobile } = useModalContext();
-
+export function ModalTitle({ children }: { children: React.ReactNode }) {
   return (
-    <div
-      className={clsx(
-        isMobile ? "Text-s-Medium" : "Text-m-Medium",
-        `text-center`,
-      )}
-    >
+    <div className="min-w-[216px] text-center text-Primary Text-l-Bold Tablet:Text-xl-Bold">
       {children}
     </div>
   );
+}
+
+export function ModalDescription({ children }: { children: React.ReactNode }) {
+  return <div className="text-center Text-m-Medium">{children}</div>;
 }

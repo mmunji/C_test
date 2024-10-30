@@ -5,8 +5,18 @@ const ROUTES = {
     default: "/my",
     activity: () => `${ROUTES.MY.default}/activity`,
     account: () => `${ROUTES.MY.default}/account`,
-    favorites: () => `${ROUTES.MY.default}/favorites`,
+    bookmark: () => `${ROUTES.MY.default}/bookmark`,
   },
+  SEARCH: {
+    default: "/search",
+    getById: (title: string) => `${ROUTES.SEARCH.default}?query=${title}`,
+  },
+  REDIRECT: {
+    default: "/redirect",
+    without_nickname: () => `${ROUTES.REDIRECT.default}/without-nickname`,
+  },
+  SIGN_UP_COMPLETE: "/sign-up-complete",
+  ADMIN: "/admin",
 };
 
 export default ROUTES;

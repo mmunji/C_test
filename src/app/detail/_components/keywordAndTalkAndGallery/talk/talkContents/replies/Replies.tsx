@@ -1,17 +1,48 @@
-import React from "react";
+import React, { Dispatch, SetStateAction } from "react";
+
+import useInfiniteScroll from "@/hooks/useInfiniteScroll";
+import { useGetReplies } from "@/services/talk/talkQueries";
 
 import Reply from "./reply/Reply";
 import ReplyForm from "./ReplyForm";
 
-export default function Replies() {
+interface RepliesProps {
+  movieId: number;
+  parentReviewId: number;
+  setOpen: Dispatch<SetStateAction<boolean>>;
+  setTalkId: Dispatch<SetStateAction<number | null>>;
+}
+
+export default function Replies({
+  movieId,
+  parentReviewId,
+  setOpen,
+  setTalkId,
+}: RepliesProps) {
+  const { data, fetchNextPage, hasNextPage } = useGetReplies(parentReviewId);
+  const { ref } = useInfiniteScroll<HTMLDivElement>({
+    fetchData: fetchNextPage,
+    hasNextPage: hasNextPage,
+  });
+
+  const replies = data?.pages?.flatMap((page) => page.commentList) || [];
+
   return (
     <div className="ml-9 mt-2 Tablet:ml-14 Laptop:ml-[52px]">
-      <ReplyForm />
-      {Array(5)
-        .fill(null)
-        .map((_, i) => (
-          <Reply key={i} />
+      <ReplyForm parentReviewId={parentReviewId} movieId={movieId} />
+      {replies.length !== 0 &&
+        replies.map((reply, i) => (
+          <Reply
+            key={i}
+            reply={reply}
+            movieId={movieId}
+            parentReviewId={parentReviewId}
+            setOpen={setOpen}
+            setTalkId={setTalkId}
+          />
         ))}
+
+      <div ref={ref} />
     </div>
   );
 }

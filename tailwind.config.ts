@@ -1,6 +1,9 @@
 import type { Config } from "tailwindcss";
 
 const config: Config = {
+  future: {
+    hoverOnlyWhenSupported: true,
+  },
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -36,8 +39,16 @@ const config: Config = {
         Regular: "400",
       },
       fontFamily: {
-        appleSDGothicNeo: ["var(--font-appleSDGothicNeo)"],
         pretendard: ["var(--font-pretendard)"],
+      },
+      height: {
+        xxxl: "48px",
+        xxl: "39px",
+        xl: "34px",
+        lg: "28px",
+        md: "24px",
+        sm: "21px",
+        xs: "16.8px",
       },
       colors: {
         BG: "#262626",
@@ -58,7 +69,7 @@ const config: Config = {
         Shade_3: "#91461d",
         Shade_4: "7a3f1d",
         Shade_5: "#7a3f1d",
-        Error: "#FF2B56",
+        Error: "#EF2247",
         D1_Error: "#832D2B",
         D2_Error: "#362524",
         Success: "#2E7D31",
@@ -72,6 +83,8 @@ const config: Config = {
         Opacity_W10: "rgba(255, 255, 255, 0.10)",
         Opacity_W15: "rgba(255, 255, 255, 0.15)",
         Opacity_W20: "rgba(255, 255, 255, 0.20)",
+        Opacity_B10: "rgba(0, 0, 0, 0.10)",
+        Opacity_B20: "rgba(0, 0, 0, 0.20)",
       },
       backgroundImage: {
         "detail-gradient":
@@ -79,6 +92,10 @@ const config: Config = {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+      },
+      boxShadow: {},
+      transitionProperty: {
+        height: "height",
       },
     },
   },
@@ -98,10 +115,23 @@ const config: Config = {
         ".Text-s-Regular": {},
         ".Text-xs-Bold": {},
         ".Text-xs-Regular": {},
-        ".Emoji-l": {},
-        ".Emoji-m": {},
-        ".Emoji-s": {},
         ".badge-gradient": {},
+        ".input-scrollbar": {
+          "&::-webkit-scrollbar": {
+            width: "2px",
+          },
+          "&::-webkit-scrollbar-track": {
+            background: "transparent",
+          },
+          "&::-webkit-scrollbar-thumb": {
+            backgroundColor: "#545250",
+            borderRadius: "2px",
+          },
+        },
+        ".inner-gray": {},
+        ".inner-gray-orange": {},
+        ".inner-none": {},
+        ".inner-d3-gray": {},
       });
     },
   ],

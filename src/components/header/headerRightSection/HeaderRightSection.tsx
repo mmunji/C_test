@@ -1,11 +1,16 @@
-import { usePathname } from "next/navigation";
-import React, { Dispatch, SetStateAction, useState } from "react";
+import { usePathname, useSearchParams } from "next/navigation";
+import React, {
+  Dispatch,
+  SetStateAction,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 
 import ROUTES from "@/constants/routes";
-import useLoggedInStore from "@/stores/useLoggedIn";
+import useIsInputFocused from "@/hooks/useIsInputFocused";
+import useSearchMovies from "@/hooks/useSearchMovies";
 
-import HeaderAuthButtons from "./HeaderAuthButtons";
-import HeaderAuthedUserSection from "./HeaderAuthedUserSection";
 import HeaderSearchInputSection from "./HeaderSearchInputSection";
 import MobileHeaderRightSection from "./mobileHeaderRightSection/MobileHeaderRightSection";
 
@@ -13,17 +18,37 @@ interface HeaderRightSectionProps {
   hasScrolledPast: boolean;
   clickSearchIcon: boolean;
   setClickSearchIcon: Dispatch<SetStateAction<boolean>>;
+  children: React.ReactNode;
 }
 
 export default function HeaderRightSection({
   hasScrolledPast,
   clickSearchIcon,
+  children,
   setClickSearchIcon,
 }: HeaderRightSectionProps) {
-  const { loggedIn, setLoggedIn } = useLoggedInStore();
   const pathname = usePathname();
-  const [inputFocused, setInputFocused] = useState(false);
   const [inputValue, setInputValue] = useState("");
+  const inputRef = useRef<HTMLInputElement | null>(null);
+  const { isInputFocused, setIsInputFocused } = useIsInputFocused(inputRef);
+  const searchParams = useSearchParams();
+  const searchQuery = searchParams.get("query");
+
+  useSearchMovies(inputValue);
+
+  useEffect(() => {
+    if (isInputFocused) {
+      inputRef.current?.focus();
+    }
+  }, [isInputFocused, hasScrolledPast]);
+
+  useEffect(() => {
+    if (!pathname.includes(ROUTES.SEARCH.default)) {
+      setInputValue("");
+    } else {
+      if (searchQuery) setInputValue(searchQuery);
+    }
+  }, [pathname, searchQuery]);
 
   return (
     <section
@@ -34,21 +59,22 @@ export default function HeaderRightSection({
           hasScrolledPast,
           inputValue,
           setInputValue,
-          inputFocused,
-          setInputFocused,
+          isInputFocused,
+          setIsInputFocused,
+          inputRef,
         }}
       />
 
       <MobileHeaderRightSection
-        clickSearchIcon={clickSearchIcon}
-        setClickSearchIcon={setClickSearchIcon}
+        {...{
+          clickSearchIcon,
+          setClickSearchIcon,
+          inputValue,
+          setInputValue,
+        }}
       />
 
-      {loggedIn ? (
-        <HeaderAuthedUserSection hasScrolledPast={hasScrolledPast} />
-      ) : (
-        <HeaderAuthButtons hasScrolledPast={hasScrolledPast} />
-      )}
+      {children}
     </section>
   );
 }

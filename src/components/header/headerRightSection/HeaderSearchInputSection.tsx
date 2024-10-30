@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import React, { Dispatch, SetStateAction } from "react";
+import React, { Dispatch, RefObject, SetStateAction } from "react";
 
 import ROUTES from "@/constants/routes";
 
@@ -14,16 +14,18 @@ interface HeaderSearchInputProps {
   hasScrolledPast: boolean;
   inputValue: string;
   setInputValue: Dispatch<SetStateAction<string>>;
-  inputFocused: boolean;
-  setInputFocused: Dispatch<SetStateAction<boolean>>;
+  isInputFocused: boolean;
+  setIsInputFocused: Dispatch<SetStateAction<boolean>>;
+  inputRef: RefObject<HTMLInputElement | null>;
 }
 
 export default function HeaderSearchInputSection({
   hasScrolledPast,
   inputValue,
   setInputValue,
-  inputFocused,
-  setInputFocused,
+  isInputFocused,
+  setIsInputFocused,
+  inputRef,
 }: HeaderSearchInputProps) {
   const pathname = usePathname();
 
@@ -33,17 +35,18 @@ export default function HeaderSearchInputSection({
         <RenderSearchInput
           {...{
             hasScrolledPast,
-            inputFocused,
+            isInputFocused,
             inputValue,
-            setInputFocused,
+            setIsInputFocused,
             setInputValue,
+            inputRef,
           }}
         />
 
         <Image
           src={
-            !inputFocused
-              ? pathname === ROUTES.DETAIL
+            !isInputFocused
+              ? pathname.includes(ROUTES.DETAIL)
                 ? hasScrolledPast
                   ? Search
                   : SearchWhite
@@ -55,7 +58,9 @@ export default function HeaderSearchInputSection({
         />
       </div>
 
-      {inputFocused && <HeaderSearchDropdown inputValue={inputValue} />}
+      {isInputFocused && (
+        <HeaderSearchDropdown {...{ inputValue, setInputValue }} />
+      )}
     </div>
   );
 }

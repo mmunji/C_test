@@ -2,21 +2,35 @@
 
 import React, { useState } from "react";
 
-import DetailActiveTab from "../../../common/DetailActiveTab";
+import CommonTab from "../../../../../../components/commonTab/CommonTab";
 import TrailerAndPhotoSlider from "../../../common/TraillerAndPhotoSlider";
 
-export default function TrailerAndPhoto() {
-  const tabs = ["예고편", "포토"];
+interface TrailerAndPhotoProps {
+  trailerAndPhoto: TrailerAndPhoto;
+}
+
+interface TrailerAndPhoto {
+  trailer: string[];
+  photo: DetailImageDTO[];
+}
+
+export default function TrailerAndPhoto({
+  trailerAndPhoto,
+}: TrailerAndPhotoProps) {
+  const tabs = ["포토", "관련 영상"];
   const [activeTab, setActiveTab] = useState(tabs[0]);
+  const { trailer } = trailerAndPhoto;
+  const { photo } = trailerAndPhoto;
 
   return (
-    <div>
-      <DetailActiveTab {...{ tabs, activeTab, setActiveTab }}>
-        <div
-          className={`absolute bottom-[3px] h-0.5 w-5 bg-Primary transition-all duration-300 ease-out ${activeTab === tabs[0] ? "translate-x-[22.5px] Laptop:translate-x-[27.75px]" : "translate-x-[82px] Laptop:translate-x-[95px]"}`}
-        />
-      </DetailActiveTab>
-      <TrailerAndPhotoSlider />
+    <div className="w-full">
+      <CommonTab {...{ tabs, activeTab, setActiveTab }} />
+      {activeTab === tabs[0] && (
+        <TrailerAndPhotoSlider type="photo" photo={photo} />
+      )}
+      {activeTab === tabs[1] && (
+        <TrailerAndPhotoSlider type="trailer" trailer={trailer} />
+      )}
     </div>
   );
 }

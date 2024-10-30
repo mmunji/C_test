@@ -1,27 +1,62 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import useRating from "@/app/detail/_hooks/useRating";
+import Button from "@/components/buttons/Button";
+import Modal from "@/components/modal/modal";
+import RatingStar from "@/components/rating/RatingStar";
+import SpeechBubble from "@/components/speechBubble/SpeechBubble";
+import useHandleClickAuthButton from "@/hooks/useHandleClickAuthButtons";
+import useNeedLogin from "@/hooks/useNeedLogin";
+import { useGetMyTalk } from "@/services/talk/talkQueries";
 
 import DriveCommentText from "./DriveCommentText";
-import RatingStar from "./RatingStar";
+import FixedRating from "./FixedRating";
 import TalkForm from "./talkForm/TalkForm";
 import TextBeforeRating from "./TextBeforeRating";
 
-export default function Rating() {
+interface RatingProps {
+  title: string;
+  movieId: number;
+  movieDetailData: MovieDetailData;
+  myTalk: MyTalk;
+}
+
+export default function Rating({
+  title,
+  movieId,
+  movieDetailData,
+  myTalk,
+}: RatingProps) {
   const {
     ratingValue,
     setRatingValue,
     clickedValue,
     setClickedValue,
     driveTalkText,
-    handleDriveTalk,
-  } = useRating();
-  const [showTalkForm, setShowTalkForm] = useState(false);
+    readyToRating,
+    isOpen,
+    setIsOpen,
+    showTalkForm,
+    setShowTalkForm,
+  } = useRating({ initialValue: 0 });
+  const { handleClickAuthButton } = useHandleClickAuthButton();
+  const genreList = movieDetailData.genreDTOList.map((el) => el.id);
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    if (clickedValue) {
+      setIsLoading(true);
+    }
+
+    if (myTalk) {
+      setIsLoading(false);
+    }
+  }, [clickedValue, myTalk]);
 
   return (
-    <div className="flex w-full flex-col justify-center rounded-xl py-3 Tablet:py-8 Laptop:mb-6 Laptop:bg-D1_Gray Laptop:px-7 Laptop:py-8">
+    <div className="relative flex w-full flex-col justify-center rounded-xl py-3 Tablet:py-8 Laptop:mb-6 Laptop:bg-D1_Gray Laptop:px-7 Laptop:py-8">
       {driveTalkText === "" ? (
-        <TextBeforeRating />
+        <TextBeforeRating title={title} />
       ) : (
         <DriveCommentText
           ratingValue={ratingValue}
@@ -30,30 +65,97 @@ export default function Rating() {
       )}
 
       <div className="mx-auto mb-6 flex cursor-pointer Laptop:mb-0">
-        {[...Array(5)].map((_, i) => (
-          <RatingStar
-            key={i}
-            {...{
-              index: i,
-              ratingValue,
-              setRatingValue,
-              clickedValue,
-              setClickedValue,
-              handleDriveTalk,
-            }}
-          />
-        ))}
+        {myTalk ? (
+          <FixedRating star={myTalk?.star || 0} />
+        ) : (
+          [...Array(5)].map((_, i) => (
+            <RatingStar
+              key={i}
+              {...{
+                type: "detail",
+                movienm: movieDetailData.title,
+                index: i,
+                ratingValue,
+                setRatingValue,
+                clickedValue,
+                setClickedValue,
+                ratingSize: "Xl",
+                readyToRating,
+                StarReview: true,
+                movieId: movieId,
+                genreList: genreList,
+              }}
+            />
+          ))
+        )}
       </div>
 
-      {clickedValue && !showTalkForm && (
-        <button
-          onClick={() => setShowTalkForm(true)}
-          className="mx-auto flex h-[37px] w-[94px] items-center justify-center rounded-xl border-[1px] border-Gray Text-s-Medium Laptop:mt-6 Laptop:h-12 Laptop:w-[180px] Laptop:rounded-xl Laptop:border-[1px] Laptop:Text-m-Medium"
-        >
-          톡 작성하기
-        </button>
+      {isLoading && (
+        <>
+          <Button
+            variant="line"
+            size="lg"
+            className="mx-auto hidden bg-transparent Laptop:mt-6 Laptop:block"
+          >
+            별점 저장중...
+          </Button>
+          <Button
+            variant="line"
+            size="sm"
+            className="mx-auto bg-transparent Laptop:hidden"
+          >
+            별점 저장중...
+          </Button>
+        </>
       )}
-      {showTalkForm && <TalkForm />}
+
+      {myTalk && myTalk.content === "" && !showTalkForm && (
+        <>
+          <Button
+            size="lg"
+            onClick={() => setShowTalkForm(true)}
+            className="mx-auto hidden bg-D2_Gray Laptop:mt-6 Laptop:block"
+          >
+            톡 작성하기
+          </Button>
+          <Button
+            size="sm"
+            onClick={() => setShowTalkForm(true)}
+            className="mx-auto bg-D2_Gray Laptop:hidden"
+          >
+            톡 작성하기
+          </Button>
+        </>
+      )}
+
+      {showTalkForm && (
+        <TalkForm
+          {...{
+            movieId,
+            ratingValue,
+            movieDetailData,
+            setShowTalkForm,
+            myTalk,
+          }}
+        />
+      )}
+
+      {!clickedValue && !showTalkForm && !myTalk && (
+        <div className="absolute bottom-0 left-1/2 w-[243px] translate-x-[-50%] translate-y-[50%] Tablet:bottom-5 Laptop:bottom-0">
+          <SpeechBubble id={"Rating"} exit={clickedValue} dir="top">
+            먼저 별점을 매기고 톡을 작성해주세요.
+          </SpeechBubble>
+        </div>
+      )}
+
+      {isOpen && (
+        <Modal isAlertModal={false} onClose={() => setIsOpen(false)}>
+          <Modal.Login
+            onKakaoLogin={() => handleClickAuthButton("kakao")}
+            onNaverLogin={() => handleClickAuthButton("naver")}
+          />
+        </Modal>
+      )}
     </div>
   );
 }

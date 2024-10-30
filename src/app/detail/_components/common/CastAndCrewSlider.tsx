@@ -3,11 +3,22 @@ import { A11y, Navigation, Pagination, Scrollbar } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import useDetailSwiper from "@/app/detail/_hooks/useDetailSwiper";
-import { castAndCrew } from "@/app/detail/fakeData";
+import Button from "@/components/buttons/Button";
 
 import { ChevronLeftMd, ChevronRightMd } from "../../../../../public/icons";
+import { DefaultProfile } from "../../../../../public/images";
 
-export default function CastAndCrewSlider() {
+interface CastAndCrewSliderProps {
+  type: "cast" | "crew";
+  cast?: DetailCastDTO[];
+  crew?: DetailCrewDTO[];
+}
+
+export default function CastAndCrewSlider({
+  type,
+  cast,
+  crew,
+}: CastAndCrewSliderProps) {
   const {
     hovered,
     setHovered,
@@ -18,6 +29,9 @@ export default function CastAndCrewSlider() {
     handlePrev,
     castAndCrewSpaceBetween,
   } = useDetailSwiper("castAndCrew");
+
+  const twentyCast = cast?.slice(0, 32);
+  const twentyCrew = crew?.slice(0, 32);
 
   return (
     <div
@@ -34,44 +48,84 @@ export default function CastAndCrewSlider() {
           setSwiper(e);
         }}
       >
-        {castAndCrew.map((el, i) => (
-          <SwiperSlide
-            key={i}
-            className="min-h-[196px] max-w-[82px] rounded-[8px] bg-D1_Gray"
-          >
-            <Image
-              src={el.src}
-              alt={el.name}
-              className="h-[112px] rounded-[8px]"
-            />
-            <section className="h-[79px] px-2 pb-3 pt-2">
-              <p className="mb-2 line-clamp-2 overflow-hidden text-ellipsis text-center text-Silver Text-s-Medium">
-                {el.name}
-              </p>
-              <p className="overflow-hidden text-ellipsis whitespace-nowrap text-L_Gray Text-xs-Regular">
-                {el.casting}
-              </p>
-            </section>
-          </SwiperSlide>
-        ))}
+        {type === "crew" &&
+          twentyCrew?.map((el, i) => {
+            const profileImage = el?.profilePath
+              ? el.profilePath
+              : DefaultProfile;
+
+            return (
+              <SwiperSlide
+                key={i}
+                className="min-h-[196px] max-w-[82px] rounded-[8px] bg-D1_Gray"
+              >
+                <Image
+                  width={100}
+                  height={100}
+                  src={profileImage}
+                  alt={el.name}
+                  className="h-[112px] rounded-[8px] object-cover"
+                />
+                <section className="flex h-[79px] flex-col px-2 py-2">
+                  <p className="line-clamp-2 h-10 overflow-hidden text-ellipsis break-all leading-[150%] text-Silver Text-s-Medium">
+                    {el.name}
+                  </p>
+                  <p className="mt-auto overflow-hidden text-ellipsis whitespace-nowrap leading-[140%] text-L_Gray Text-xs-Regular">
+                    {el.job}
+                  </p>
+                </section>
+              </SwiperSlide>
+            );
+          })}
+        {type === "cast" &&
+          twentyCast?.map((el, i) => {
+            const profileImage = el?.profilePath
+              ? el.profilePath
+              : DefaultProfile;
+
+            return (
+              <SwiperSlide
+                key={i}
+                className="min-h-[196px] max-w-[82px] rounded-[8px] bg-D1_Gray"
+              >
+                <Image
+                  width={100}
+                  height={100}
+                  src={profileImage}
+                  alt={el.name}
+                  className="h-[112px] rounded-[8px] object-cover"
+                />
+                <section className="flex h-[79px] flex-col px-2 py-2">
+                  <p className="line-clamp-2 h-10 overflow-hidden text-ellipsis break-all leading-[150%] text-Silver Text-s-Medium">
+                    {el.name}
+                  </p>
+                  <p className="mt-auto overflow-hidden text-ellipsis whitespace-nowrap leading-[140%] text-L_Gray Text-xs-Regular">
+                    {el.character}
+                  </p>
+                </section>
+              </SwiperSlide>
+            );
+          })}
       </Swiper>
 
       {swiper && !swiper.isBeginning && (
-        <button
+        <Button
           onClick={handlePrev}
-          className={`absolute hidden Laptop:flex ${hovered ? "opacity-100" : "opacity-0"} left-0 top-1/2 z-[5] flex h-11 w-11 translate-x-[-50%] translate-y-[-50%] items-center justify-center rounded-full bg-[#FFFFFF19] transition-opacity duration-300`}
+          variant="arrow1"
+          className={`absolute hidden Laptop:flex ${hovered ? "opacity-100" : "opacity-0"} left-0 top-1/2 z-[5] translate-x-[-50%] translate-y-[-50%] transition-opacity duration-300`}
         >
           <Image src={ChevronLeftMd} alt="이전" />
-        </button>
+        </Button>
       )}
 
       {swiper && !swiper.isEnd && (
-        <button
+        <Button
           onClick={handleNext}
-          className={`absolute hidden Laptop:flex ${hovered ? "opacity-100" : "opacity-0"} right-0 top-1/2 z-[5] flex h-11 w-11 translate-x-[50%] translate-y-[-50%] items-center justify-center rounded-full bg-[#FFFFFF19] transition-opacity duration-300`}
+          variant="arrow2"
+          className={`absolute hidden Laptop:flex ${hovered ? "opacity-100" : "opacity-0"} right-0 top-1/2 z-[5] translate-x-[50%] translate-y-[-50%] transition-opacity duration-300`}
         >
           <Image src={ChevronRightMd} alt="다음" />
-        </button>
+        </Button>
       )}
     </div>
   );

@@ -1,7 +1,10 @@
 import Image from "next/image";
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 
+import Button from "@/components/buttons/Button";
+import { useAddTalk, useEditTalk } from "@/services/talk/talkMutations";
+import filterAbuse from "@/utils/filterAbuse";
 import hexToRGBA from "@/utils/hexToRGBA";
 
 import {
@@ -17,13 +20,48 @@ interface AddTalkValues {
   spoiler: boolean;
 }
 
-export default function TalkForm() {
+interface TalkFormProps {
+  movieId: number;
+  ratingValue: number;
+  movieDetailData: MovieDetailData;
+  setShowTalkForm: Dispatch<SetStateAction<boolean>>;
+  myTalk: MyTalk;
+}
+
+export default function TalkForm({
+  movieId,
+  ratingValue,
+  movieDetailData,
+  setShowTalkForm,
+  myTalk,
+}: TalkFormProps) {
   const [readyToSubmit, setReadyToSubmit] = useState(true);
-  const { register, handleSubmit, watch, setValue } = useForm<AddTalkValues>();
-  const onSubmit: SubmitHandler<AddTalkValues> = (data) => {
-    if (readyToSubmit) console.log(data);
-  };
+  const { register, handleSubmit, watch, setValue } = useForm<AddTalkValues>({
+    defaultValues: {
+      talk: "",
+      spoiler: false,
+    },
+  });
+  const { mutate: editTalk } = useEditTalk({ movieId });
+  const movieName = movieDetailData.title;
+  const talk = watch("talk");
   const spoiler = watch("spoiler");
+
+  const onSubmit: SubmitHandler<AddTalkValues> = () => {
+    if (readyToSubmit) {
+      if (filterAbuse(talk)) return;
+      const genreList = movieDetailData?.genreDTOList.map((el) => el.id);
+
+      editTalk({
+        content: talk,
+        talkId: myTalk.reviewId,
+        movieName: movieName,
+        genreList: genreList,
+        spoiler: spoiler,
+        star: myTalk.star,
+      });
+    }
+  };
 
   const toggleSpoiler = () => {
     setValue("spoiler", !spoiler);
@@ -41,14 +79,14 @@ export default function TalkForm() {
       className="mx-auto flex w-full flex-col gap-3 Laptop:mt-7"
     >
       <div
-        className="relative h-[182px] w-full overflow-hidden rounded-xl"
+        className="relative h-[174px] w-full overflow-hidden rounded-xl Tablet:h-[201px]"
         style={{ backgroundColor: backgroundColor }}
       >
         <TalkFormHeader />
         <textarea
           {...register("talk", { required: true })}
           placeholder="영화에 대해 이야기 해볼까요?"
-          className="absolute bottom-5 left-0 h-[calc(100%-64px)] w-full resize-none bg-transparent px-5 outline-none"
+          className="absolute bottom-5 left-0 h-[105px] w-[calc(100%-20px)] resize-none bg-transparent px-5 leading-[21px] outline-none Text-s-Regular input-scrollbar placeholder:text-D3_Gray placeholder:Text-s-Regular Tablet:h-[120px] Tablet:w-[calc(100%-24px)] Tablet:leading-[24px] Tablet:Text-m-Medium Tablet:placeholder:Text-m-Medium"
         />
       </div>
 
@@ -70,12 +108,25 @@ export default function TalkForm() {
           <button className="text-Gray_Orange Text-s-Regular">스포일러</button>
         </section>
 
-        <button
+        <Button
+          disabled={!talk}
+          size="sm"
+          variant="orange"
           type="submit"
-          className="flex h-[29px] w-12 items-center justify-center rounded-lg bg-Primary text-Silver Text-s-Medium"
+          className="Laptop:hidden"
         >
           등록
-        </button>
+        </Button>
+
+        <Button
+          disabled={!talk}
+          size="md"
+          variant="orange"
+          type="submit"
+          className="hidden Laptop:block"
+        >
+          등록
+        </Button>
       </section>
     </form>
   );

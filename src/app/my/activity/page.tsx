@@ -1,18 +1,16 @@
-"use client";
-import { useRouter } from "next/navigation";
+import { Suspense } from "react";
 
-import Activity from "@/app/my/activity";
-import ROUTES from "@/constants/routes";
-import useDevice from "@/hooks/useDevice";
+import { ActivitySkeleton } from "@/app/my/_components/skeletons/My";
+import Activity from "@/app/my/activity/Activity";
+import ActivityMobilePageGuard from "@/app/my/activity/MobilePageGuard";
 
 export default function Page() {
-  const router = useRouter();
-  const { device } = useDevice();
-
-  if (device && device !== "mobile") {
-    router.push(ROUTES.MY.default);
-    return null;
-  }
-
-  return <Activity />;
+  return (
+    <>
+      <ActivityMobilePageGuard />
+      <Suspense fallback={<ActivitySkeleton isMobile />}>
+        <Activity isMobile />
+      </Suspense>
+    </>
+  );
 }

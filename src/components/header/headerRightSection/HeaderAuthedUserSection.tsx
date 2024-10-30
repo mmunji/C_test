@@ -1,29 +1,18 @@
-import Image from "next/image";
-import { usePathname } from "next/navigation";
-import React from "react";
-
-import ROUTES from "@/constants/routes";
-
-import { CaretDownMd } from "../../../../public/icons";
+"use client";
+import HeaderDropdown from "@/components/header/HeaderDropdown";
 
 interface HeaderAuthedUserSectionProps {
-  hasScrolledPast: boolean;
+  children: React.ReactNode;
+  isAdmin: boolean;
 }
 
 function HeaderAuthedUserSection({
-  hasScrolledPast,
+  children,
+  isAdmin,
 }: HeaderAuthedUserSectionProps) {
-  const pathname = usePathname();
   return (
     <section className="hidden items-center Laptop:flex">
-      <div className="mr-3 h-[30px] w-[30px] rounded-full bg-[#d9d9d9]" />
-
-      <p
-        className={`mr-2 text-regular font-Medium ${pathname === ROUTES.DETAIL ? (hasScrolledPast ? "text-Silver" : "text-[rgba(255,255,255,0.6)]") : "text-Silver"}`}
-      >
-        닉네임
-      </p>
-      <Image src={CaretDownMd} alt="더보기" className="cursor-pointer" />
+      <HeaderDropdown isAdmin={isAdmin}>{children}</HeaderDropdown>
     </section>
   );
 }

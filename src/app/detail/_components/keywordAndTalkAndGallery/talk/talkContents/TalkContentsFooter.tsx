@@ -2,6 +2,12 @@ import clsx from "clsx";
 import Image from "next/image";
 import React, { Dispatch, SetStateAction, useState } from "react";
 
+import Button from "@/components/buttons/Button";
+import Modal from "@/components/modal/modal";
+import useHandleClickAuthButton from "@/hooks/useHandleClickAuthButtons";
+import useNeedLogin from "@/hooks/useNeedLogin";
+import { useDislikeTalk, useLikeTalk } from "@/services/talk/talkMutations";
+
 import {
   CaretDownGraySm,
   CaretDownSm,
@@ -16,29 +22,42 @@ import {
 } from "../../../../../../../public/icons";
 
 interface TalkContentsFooterProps {
-  spoiler: boolean;
+  talk: ReviewList;
   showSpoiler: boolean;
   showReplies: boolean;
   setShowReplies: Dispatch<SetStateAction<boolean>>;
+  movieId: number;
 }
 
 export default function TalkContentsFooter({
-  spoiler,
+  talk,
   showSpoiler,
   showReplies,
   setShowReplies,
+  movieId,
 }: TalkContentsFooterProps) {
-  const [liked, setLiked] = useState(false);
-  const [disliked, setDisliked] = useState(false);
+  const [like, setLike] = useState(false);
+  const [dislike, setDislike] = useState(false);
+  const { mutate: likeTalk } = useLikeTalk({ type: "talk", movieId: movieId });
+  const { mutate: dislikeTalk } = useDislikeTalk({
+    type: "talk",
+    movieId: movieId,
+  });
+  const { handleNeedLogin, isOpen, setIsOpen } = useNeedLogin();
+  const { handleClickAuthButton } = useHandleClickAuthButton();
 
-  const handleClickLike = () => {
-    setDisliked(false);
-    setLiked(!liked);
+  const handleClickLike = (talkId: number) => {
+    if (handleNeedLogin()) return;
+    likeTalk(talkId);
+    setDislike(false);
+    setLike(!like);
   };
 
-  const handleClickDislike = () => {
-    setLiked(false);
-    setDisliked(!disliked);
+  const handleClickDislike = async (talkId: number) => {
+    if (handleNeedLogin()) return;
+    dislikeTalk(talkId);
+    setLike(false);
+    setDislike(!dislike);
   };
 
   const handleClickReplies = () => {
@@ -46,81 +65,84 @@ export default function TalkContentsFooter({
   };
 
   return (
-    <section className="flex items-center justify-end Tablet:mt-2">
-      <section
-        onClick={handleClickLike}
-        className="my-2 ml-1 mr-2 flex cursor-pointer items-center gap-1"
-      >
-        <Image
-          src={liked ? ThumbsUpFillSm : ThumbsUpLineSm}
-          alt="좋아요"
-          className="Laptop:hidden"
-        />
-        <Image
-          src={liked ? ThumbsUpFillMd : ThumbsUpLineMd}
-          alt="좋아요"
-          className="hidden Laptop:block"
-        />
-        <p className="select-none text-Gray_Orange Text-xs-Regular Tablet:Text-s-Medium">
-          0,000
-        </p>
-      </section>
-      <section
-        onClick={handleClickDislike}
-        className="my-2 ml-1 mr-2 flex cursor-pointer items-center gap-1"
-      >
-        <Image
-          src={disliked ? ThumbsDownFillSm : ThumbsDownLineSm}
-          alt="싫어요"
-          className="Laptop:hidden"
-        />
-        <Image
-          src={disliked ? ThumbsDownFillMd : ThumbsDownLineMd}
-          alt="싫어요"
-          className="hidden Laptop:block"
-        />
-        <p className="select-none text-Gray_Orange Text-xs-Regular Tablet:Text-s-Medium">
-          0,000
-        </p>
-      </section>
-      <button
-        disabled={!showSpoiler}
-        onClick={handleClickReplies}
-        className={clsx("mx-1 my-2 flex items-center", {
-          "cursor-pointer": spoiler ? showSpoiler : true,
-          "cursor-default": spoiler && !showSpoiler,
-        })}
-      >
-        <p
-          className={clsx(
-            "mr-1 select-none Text-xs-Regular Tablet:Text-s-Medium",
-            {
-              "text-Gray_Orange": spoiler ? showSpoiler : true,
-              "text-Gray": spoiler && !showSpoiler,
-            },
-          )}
+    <>
+      <section className="flex items-center justify-end Tablet:mt-2">
+        <Button onClick={() => handleClickLike(talk.id)} variant="textIconL">
+          <Image
+            src={talk.likeCheck ? ThumbsUpFillSm : ThumbsUpLineSm}
+            alt="좋아요"
+            className="Laptop:hidden"
+          />
+          <Image
+            src={talk.likeCheck ? ThumbsUpFillMd : ThumbsUpLineMd}
+            alt="좋아요"
+            className="hidden Laptop:block"
+          />
+          <p className="select-none text-Gray_Orange Text-xs-Regular Tablet:Text-s-Medium">
+            {talk.likeCount}
+          </p>
+        </Button>
+        <Button onClick={() => handleClickDislike(talk.id)} variant="textIconL">
+          <Image
+            src={talk.dislikeCheck ? ThumbsDownFillSm : ThumbsDownLineSm}
+            alt="싫어요"
+            className="Laptop:hidden"
+          />
+          <Image
+            src={talk.dislikeCheck ? ThumbsDownFillMd : ThumbsDownLineMd}
+            alt="싫어요"
+            className="hidden Laptop:block"
+          />
+          <p className="select-none text-Gray_Orange Text-xs-Regular Tablet:Text-s-Medium">
+            {talk.dislikeCount}
+          </p>
+        </Button>
+
+        <Button
+          disabled={!showSpoiler}
+          onClick={handleClickReplies}
+          variant="textIconR"
         >
-          답글
-        </p>
-        <p
-          className={clsx("Text-xs-Regular Tablet:Text-s-Medium", {
-            "text-Gray_Orange": spoiler ? showSpoiler : true,
-            "text-Gray": spoiler && !showSpoiler,
-          })}
-        >
-          999+
-        </p>
-        <Image
-          src={
-            spoiler
-              ? showSpoiler
-                ? CaretDownSm
-                : CaretDownGraySm
-              : CaretDownSm
-          }
-          alt="더보기"
-        />
-      </button>
-    </section>
+          <p
+            className={clsx(
+              "select-none Text-xs-Regular Tablet:Text-s-Medium",
+              {
+                "text-Gray_Orange": talk.spoiler ? showSpoiler : true,
+                "text-Gray": talk.spoiler && !showSpoiler,
+              },
+            )}
+          >
+            답글
+          </p>
+          <p
+            className={clsx("Text-xs-Regular Tablet:Text-s-Medium", {
+              "text-Gray_Orange": talk.spoiler ? showSpoiler : true,
+              "text-Gray": talk.spoiler && !showSpoiler,
+            })}
+          >
+            {talk.commentCount}
+          </p>
+          <Image
+            src={
+              talk.spoiler
+                ? showSpoiler
+                  ? CaretDownSm
+                  : CaretDownGraySm
+                : CaretDownSm
+            }
+            alt="더보기"
+            className={`${showReplies && "rotate-180"} transition-all`}
+          />
+        </Button>
+      </section>
+      {isOpen && (
+        <Modal isAlertModal={false} onClose={() => setIsOpen(false)}>
+          <Modal.Login
+            onKakaoLogin={() => handleClickAuthButton("kakao")}
+            onNaverLogin={() => handleClickAuthButton("naver")}
+          />
+        </Modal>
+      )}
+    </>
   );
 }

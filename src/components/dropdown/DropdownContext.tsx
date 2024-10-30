@@ -4,8 +4,10 @@ interface DropdownContextType {
   isOpen: boolean;
   toggleDropdown: () => void;
   type: "genre" | "icon" | "text";
-  isMobile: boolean;
+  height: number;
 }
+
+export type ButtonType = DropdownContextType["type"];
 
 const DropdownContext = createContext<DropdownContextType | null>(null);
 
