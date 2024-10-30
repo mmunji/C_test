@@ -6,7 +6,7 @@ import { useModalContext } from "@/components/modal/ModalContext";
 import { SquareCheckFillMd, SquareCheckMd } from "../../../../public/icons";
 
 interface ModalButtonProps {
-  onClick: () => void;
+  onClick: (e: React.MouseEvent) => void;
   children: React.ReactNode;
   disabled?: boolean;
 }
