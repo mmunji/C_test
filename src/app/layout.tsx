@@ -15,6 +15,12 @@ export const metadata: Metadata = {
   title: "씨네톡 - 키워드 하나로 완성되는 영화 리뷰 탐색",
   description:
     "키워드로 간편하게 영화 리뷰를 작성하고, 원하는 영화를 빠르게 찾아볼 수 있는 영화 커뮤니티! 쉽고 빠른 검색으로 다양한 영화 리뷰를 만나보세요!",
+  verification: {
+    google: "Uyr0KRU8qs3xU0rPHGx7ZUd-bDPlEdO1SvVUN-W4aIQ",
+    other: {
+      "naver-site-verification": "e00565ef51f40695d09f2c0635a0ecb62bf52ca7",
+    },
+  },
   openGraph: {
     images: [
       {
