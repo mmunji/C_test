@@ -32,7 +32,7 @@ export default function KeyWordPosts({
       const parts = text.split(new RegExp(`(${query})`, "gi"));
       return parts.map((part, index) =>
         part.toLowerCase() === query.toLowerCase() ? (
-          <span className="Text-s-Bold Tablet:Text-m-Bold" key={index}>
+          <span className="Text-s-Bold Laptop:Text-m-Bold" key={index}>
             {part}
           </span>
         ) : (
