@@ -29,15 +29,21 @@ export default function SignUpBirth({
       return;
     }
 
-    const isMonthValid = /^\d{2}$/.test(month) && +month >= 1 && +month <= 12;
-    const isDayValid = /^\d{2}$/.test(day) && +day >= 1 && +day <= 31;
+    // month와 day를 두 자리로 패딩 처리
+    const paddedMonth = month.padStart(2, "0");
+    const paddedDay = day.padStart(2, "0");
+
+    const isMonthValid =
+      /^\d{2}$/.test(paddedMonth) && +paddedMonth >= 1 && +paddedMonth <= 12;
+    const isDayValid =
+      /^\d{2}$/.test(paddedDay) && +paddedDay >= 1 && +paddedDay <= 31;
 
     if (!isMonthValid || !isDayValid) {
       setBirthError(true);
       return;
     }
 
-    const userBirthday = `${year}/${month}/${day}`;
+    const userBirthday = `${year}/${paddedMonth}/${paddedDay}`;
 
     if (
       dayjs(
@@ -69,7 +75,7 @@ export default function SignUpBirth({
     const { name, value } = e.target;
 
     if (name === "month" || name === "day") {
-      const formattedValue = value.padStart(2, "0");
+      const formattedValue = value.padStart(2, "0"); // 한 자리일 경우 앞에 0을 추가
       setBirthValues((prev) => ({
         ...prev,
         [name]: formattedValue,
