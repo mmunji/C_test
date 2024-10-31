@@ -65,6 +65,18 @@ export default function SignUpBirth({
     });
   };
 
+  const handleBlur = (e: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+
+    if (name === "month" || name === "day") {
+      const formattedValue = value.padStart(2, "0");
+      setBirthValues((prev) => ({
+        ...prev,
+        [name]: formattedValue,
+      }));
+    }
+  };
+
   return (
     <section className="mt-6 Tablet:mt-8 Laptop:mt-7 Desktop:mt-8">
       <p className="text-White Text-xs-Regular">생년월일</p>
@@ -87,6 +99,7 @@ export default function SignUpBirth({
             name="month"
             value={birthValues.month}
             onChange={handleChange}
+            onBlur={handleBlur}
             maxLength={2}
             placeholder="MM"
             className={`h-12 w-full rounded-xl border-[1px] ${birthError ? "border-red-500" : "border-Gray"} bg-transparent p-3 text-center outline-none Text-m-Medium placeholder:text-Gray`}
@@ -99,6 +112,7 @@ export default function SignUpBirth({
             name="day"
             value={birthValues.day}
             onChange={handleChange}
+            onBlur={handleBlur}
             maxLength={2}
             placeholder="DD"
             className={`h-12 w-full rounded-xl border-[1px] ${birthError ? "border-red-500" : "border-Gray"} bg-transparent p-3 text-center outline-none Text-m-Medium placeholder:text-Gray`}
