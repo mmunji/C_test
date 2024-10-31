@@ -29,15 +29,21 @@ export default function SignUpBirth({
       return;
     }
 
-    const isMonthValid = /^\d{2}$/.test(month) && +month >= 1 && +month <= 12;
-    const isDayValid = /^\d{2}$/.test(day) && +day >= 1 && +day <= 31;
+    // month와 day를 두 자리로 패딩 처리
+    const paddedMonth = month.padStart(2, "0");
+    const paddedDay = day.padStart(2, "0");
+
+    const isMonthValid =
+      /^\d{2}$/.test(paddedMonth) && +paddedMonth >= 1 && +paddedMonth <= 12;
+    const isDayValid =
+      /^\d{2}$/.test(paddedDay) && +paddedDay >= 1 && +paddedDay <= 31;
 
     if (!isMonthValid || !isDayValid) {
       setBirthError(true);
       return;
     }
 
-    const userBirthday = `${year}/${month}/${day}`;
+    const userBirthday = `${year}/${paddedMonth}/${paddedDay}`;
 
     if (
       dayjs(
@@ -65,6 +71,18 @@ export default function SignUpBirth({
     });
   };
 
+  const handleBlur = (e: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+
+    if (name === "month" || name === "day") {
+      const formattedValue = value.padStart(2, "0"); // 한 자리일 경우 앞에 0을 추가
+      setBirthValues((prev) => ({
+        ...prev,
+        [name]: formattedValue,
+      }));
+    }
+  };
+
   return (
     <section className="mt-6 Tablet:mt-8 Laptop:mt-7 Desktop:mt-8">
       <p className="text-White Text-xs-Regular">생년월일</p>
@@ -87,6 +105,7 @@ export default function SignUpBirth({
             name="month"
             value={birthValues.month}
             onChange={handleChange}
+            onBlur={handleBlur}
             maxLength={2}
             placeholder="MM"
             className={`h-12 w-full rounded-xl border-[1px] ${birthError ? "border-red-500" : "border-Gray"} bg-transparent p-3 text-center outline-none Text-m-Medium placeholder:text-Gray`}
@@ -99,6 +118,7 @@ export default function SignUpBirth({
             name="day"
             value={birthValues.day}
             onChange={handleChange}
+            onBlur={handleBlur}
             maxLength={2}
             placeholder="DD"
             className={`h-12 w-full rounded-xl border-[1px] ${birthError ? "border-red-500" : "border-Gray"} bg-transparent p-3 text-center outline-none Text-m-Medium placeholder:text-Gray`}
