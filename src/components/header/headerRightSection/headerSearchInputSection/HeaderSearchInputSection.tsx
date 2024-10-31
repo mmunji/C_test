@@ -17,6 +17,7 @@ interface HeaderSearchInputProps {
   isInputFocused: boolean;
   setIsInputFocused: Dispatch<SetStateAction<boolean>>;
   inputRef: RefObject<HTMLInputElement | null>;
+  randomMovie: string;
 }
 
 export default function HeaderSearchInputSection({
@@ -26,6 +27,7 @@ export default function HeaderSearchInputSection({
   isInputFocused,
   setIsInputFocused,
   inputRef,
+  randomMovie,
 }: HeaderSearchInputProps) {
   const pathname = usePathname();
 
@@ -40,6 +42,7 @@ export default function HeaderSearchInputSection({
             setIsInputFocused,
             setInputValue,
             inputRef,
+            randomMovie,
           }}
         />
 
