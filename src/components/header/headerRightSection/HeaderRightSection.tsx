@@ -1,3 +1,4 @@
+import { useQuery } from "@tanstack/react-query";
 import { usePathname, useSearchParams } from "next/navigation";
 import React, {
   Dispatch,
@@ -10,6 +11,7 @@ import React, {
 import ROUTES from "@/constants/routes";
 import useIsInputFocused from "@/hooks/useIsInputFocused";
 import useSearchMovies from "@/hooks/useSearchMovies";
+import { movieAPIs } from "@/services/movie/movieAPIs";
 
 import HeaderSearchInputSection from "./HeaderSearchInputSection";
 import MobileHeaderRightSection from "./mobileHeaderRightSection/MobileHeaderRightSection";
@@ -33,6 +35,20 @@ export default function HeaderRightSection({
   const { isInputFocused, setIsInputFocused } = useIsInputFocused(inputRef);
   const searchParams = useSearchParams();
   const searchQuery = searchParams.get("query");
+
+  const [randomMovie, setRandomMovie] = useState("");
+
+  const { data: movieTopTen } = useQuery<any>({
+    queryKey: ["movie-top-ten"],
+    queryFn: () => movieAPIs.getMovieTopTen(0),
+  });
+
+  useEffect(() => {
+    if (movieTopTen) {
+      const randomIndex = Math.floor(Math.random() * movieTopTen.length);
+      setRandomMovie(movieTopTen[randomIndex].movienm);
+    }
+  }, [movieTopTen]);
 
   useSearchMovies(inputValue);
 
@@ -62,6 +78,7 @@ export default function HeaderRightSection({
           isInputFocused,
           setIsInputFocused,
           inputRef,
+          randomMovie,
         }}
       />
 
@@ -71,6 +88,7 @@ export default function HeaderRightSection({
           setClickSearchIcon,
           inputValue,
           setInputValue,
+          randomMovie,
         }}
       />
 

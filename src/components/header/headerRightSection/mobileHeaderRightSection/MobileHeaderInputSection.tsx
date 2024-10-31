@@ -18,6 +18,7 @@ interface MobileHeaderInputSectionProps {
   setInputFocused: Dispatch<SetStateAction<boolean>>;
   inputValue: string;
   setInputValue: Dispatch<SetStateAction<string>>;
+  randomMovie: string;
 }
 
 export default function MobileHeaderInputSection({
@@ -27,6 +28,7 @@ export default function MobileHeaderInputSection({
   inputValue,
   setInputValue,
   clickSearchIcon,
+  randomMovie,
 }: MobileHeaderInputSectionProps) {
   const inputRef = useRef<HTMLInputElement>(null);
   const { handleKeyPress } = usePressEnterSearch(
@@ -50,7 +52,11 @@ export default function MobileHeaderInputSection({
           onChange={(e: ChangeEvent<HTMLInputElement>) =>
             setInputValue(e.target.value)
           }
-          placeholder="어떤 영화가 궁금하신가요?"
+          placeholder={
+            randomMovie === ""
+              ? "어떤 영화가 궁금하신가요?"
+              : `'${randomMovie}' 궁금하지 않으세요?`
+          }
           onFocus={() => setInputFocused(true)}
           onBlur={() => {
             setTimeout(() => {

@@ -17,6 +17,7 @@ interface MobileHeaderRightSectionProps {
   setClickSearchIcon: Dispatch<SetStateAction<boolean>>;
   inputValue: string;
   setInputValue: Dispatch<SetStateAction<string>>;
+  randomMovie: string;
 }
 
 function MobileHeaderRightSection({
@@ -24,6 +25,7 @@ function MobileHeaderRightSection({
   setClickSearchIcon,
   inputValue,
   setInputValue,
+  randomMovie,
 }: MobileHeaderRightSectionProps) {
   const pathname = usePathname();
   const [inputFocused, setInputFocused] = useState(false);
@@ -55,6 +57,7 @@ function MobileHeaderRightSection({
               setInputFocused,
               setClickSearchIcon,
               clickSearchIcon,
+              randomMovie,
             }}
           />
         ) : (

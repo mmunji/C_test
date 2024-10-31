@@ -13,6 +13,7 @@ interface RenderSearchInputProps {
   setIsInputFocused: Dispatch<SetStateAction<boolean>>;
   isInputFocused: boolean;
   inputRef: RefObject<HTMLInputElement | null>;
+  randomMovie: string;
 }
 
 function RenderSearchInput({
@@ -22,6 +23,7 @@ function RenderSearchInput({
   setInputValue,
   isInputFocused,
   inputRef,
+  randomMovie,
 }: RenderSearchInputProps) {
   const pathname = usePathname();
   const { handleKeyPress } = usePressEnterSearch(
@@ -41,6 +43,7 @@ function RenderSearchInput({
               isInputFocused,
               setIsInputFocused,
               inputRef,
+              randomMovie,
             }}
           />
         ) : (
@@ -51,7 +54,11 @@ function RenderSearchInput({
             onChange={(e: ChangeEvent<HTMLInputElement>) =>
               setInputValue(e.target.value)
             }
-            placeholder="어떤 영화가 궁금하신가요?"
+            placeholder={
+              randomMovie === ""
+                ? "어떤 영화가 궁금하신가요?"
+                : `'${randomMovie}' 궁금하지 않으세요?`
+            }
             onFocus={() => setIsInputFocused(true)}
             onBlur={() => {
               setTimeout(() => {
@@ -73,6 +80,7 @@ function RenderSearchInput({
             isInputFocused,
             setIsInputFocused,
             inputRef,
+            randomMovie,
           }}
         />
       )}
