@@ -47,7 +47,7 @@ export default function ReplyHeader({
             alt={reply?.nickName}
             id="replyimg"
             src={`data:image/jpeg;base64,${reply?.profileImage}`}
-            className="mt-1 h-7 w-7 rounded-full Tablet:mr-2 Tablet:h-[30px] Tablet:w-[30px]"
+            className="mt-1 h-7 w-7 overflow-hidden rounded-full Tablet:mr-2 Tablet:h-[30px] Tablet:w-[30px]"
           />
 
           <p className="text-Gray_Orange Text-xs-Regular Tablet:Text-s-Medium">

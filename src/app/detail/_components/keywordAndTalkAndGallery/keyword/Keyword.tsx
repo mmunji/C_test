@@ -43,6 +43,12 @@ export default function Keyword({
   const [openReportComplete, setOpenReportComplete] = useState(false);
   const { handleNeedLogin, isOpen, setIsOpen } = useNeedLogin();
   const { handleClickAuthButton } = useHandleClickAuthButton();
+  const initialValue = myKeyword?.data.keyword;
+  const [value, setValue] = useState(initialValue);
+
+  useEffect(() => {
+    setValue(initialValue);
+  }, [initialValue, isClickedEdit]);
 
   const top1 = top10s[0];
   const top2 = top10s[1];
@@ -77,7 +83,13 @@ export default function Keyword({
               <p
                 onClick={() => {
                   if (handleNeedLogin()) return;
-                  likeKeyword(Number(keyword.keywordId));
+                  if (
+                    myKeyword?.data.message === "해당 키워드를 찾을 수 없습니다"
+                  ) {
+                    setValue(keyword.keyword);
+                  } else {
+                    likeKeyword(Number(keyword.keywordId));
+                  }
                   if (
                     data?.data.message === "해당 키워드를 이미 클릭하셨습니다."
                   )
@@ -120,7 +132,13 @@ export default function Keyword({
         </div>
 
         {!myKeyword?.res.ok && !isClickedEdit ? (
-          <KeywordForm movieId={movieId} title={title} />
+          <KeywordForm
+            value={value}
+            setValue={setValue}
+            movieId={movieId}
+            title={title}
+            initialValue={initialValue}
+          />
         ) : (
           !isClickedEdit && (
             <MyKeyword
@@ -135,10 +153,12 @@ export default function Keyword({
           <KeywordForm
             movieId={movieId}
             title={title}
-            initialValue={myKeyword?.data.keyword}
+            value={value}
+            setValue={setValue}
             myKeywordId={myKeyword?.data.keywordId}
             isClickedEdit={isClickedEdit}
             setIsClickedEdit={setIsClickedEdit}
+            initialValue={initialValue}
           />
         )}
         {!noKeyword && <NewKeyword latestKeywords={latestKeywords} />}

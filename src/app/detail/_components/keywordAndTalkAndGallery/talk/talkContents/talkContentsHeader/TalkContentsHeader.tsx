@@ -50,7 +50,7 @@ export default function TalkContentsHeader({
         )}
       >
         <section className="flex gap-2 Tablet:gap-4">
-          <div className="mt-1 h-7 w-7 rounded-full Tablet:mt-[7px] Tablet:h-10 Tablet:w-10">
+          <div className="mt-1 h-7 w-7 overflow-hidden rounded-full Tablet:mt-[7px] Tablet:h-10 Tablet:w-10">
             <Image
               width={100}
               height={100}
