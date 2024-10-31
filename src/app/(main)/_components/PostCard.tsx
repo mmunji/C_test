@@ -69,7 +69,7 @@ export default function PostCard({
         >
           <div className="flex flex-col items-center  gap-2 px-5 py-7 Desktop:gap-4 Desktop:px-6 Desktop:py-8">
             <GetRating StarRating={StarRating} ratingsize="Md" space={true} />
-            <div className=" flex flex-col gap-1">
+            <div className=" flex w-full flex-col gap-1">
               <span className="Desktop:line-clamp-9 line-clamp-5 w-full text-Silver Text-m-Regular Laptop:h-[121px] Desktop:w-[216px]">
                 {content}
               </span>

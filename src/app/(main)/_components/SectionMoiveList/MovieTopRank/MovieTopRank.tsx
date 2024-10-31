@@ -97,7 +97,7 @@ export default function MoiveTopRank({ data }: MoiveTopRankType) {
             </Dropdown>
           </div>
         </div>
-        <span className="Text-xs-Medium text-D3_Gray Tablet:Text-s-Medium">
+        <span className="text-D3_Gray Text-xs-Regular Tablet:Text-s-Medium">
           매월 업데이트
         </span>
       </div>

@@ -1,5 +1,7 @@
 import useRating from "@/app/detail/_hooks/useRating";
+import Modal from "@/components/modal/modal";
 import RatingStar from "@/components/rating/RatingStar";
+import useHandleClickAuthButton from "@/hooks/useHandleClickAuthButtons";
 
 interface StarMoiveType {
   movienm?: string;
@@ -20,7 +22,10 @@ export default function PostRating({
     clickedValue,
     setClickedValue,
     handleDriveTalk,
+    isOpen,
+    setIsOpen,
   } = useRating({ initialValue: 0 });
+  const { handleClickAuthButton } = useHandleClickAuthButton();
   return (
     <div className="flex flex-col ">
       <span className="text-center Text-l-Bold Laptop:hidden">
@@ -89,6 +94,14 @@ export default function PostRating({
           />
         ))}
       </div>
+      {isOpen && (
+        <Modal isAlertModal={false} onClose={() => setIsOpen(false)}>
+          <Modal.Login
+            onKakaoLogin={() => handleClickAuthButton("kakao")}
+            onNaverLogin={() => handleClickAuthButton("naver")}
+          />
+        </Modal>
+      )}
     </div>
   );
 }

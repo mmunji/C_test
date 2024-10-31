@@ -31,7 +31,8 @@ export default function ReviewItem({
   const [isModalOpen, setIsModalOpen] = useState(false);
   const router = useRouter();
 
-  const handleDeleteReview = async () => {
+  const handleDeleteReview = async (e: React.MouseEvent) => {
+    e.stopPropagation();
     setLoading(true);
     const result = await deleteReview(review.review_id);
     setLoading(false);

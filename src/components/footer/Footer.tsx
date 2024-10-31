@@ -2,16 +2,21 @@
 
 import { useEffect, useState } from "react";
 
+import useHandleClickAuthButton from "@/hooks/useHandleClickAuthButtons";
 import useInput from "@/hooks/useInput";
+import { tokenManager } from "@/services/auth/tokenManager";
 import { movieAPIs } from "@/services/movie/movieAPIs";
 import { useToastActions } from "@/stores/useToast";
 
 import Button from "../buttons/Button";
+import Modal from "../modal/modal";
 
 export default function Footer() {
   const [FeedbackPost, setFeedBackPost, handlesetValue] = useInput("");
   const [Commnets, setCommnets] = useState(0);
   const { add } = useToastActions();
+  const [isOpen, setIsOpen] = useState(false);
+  const { handleClickAuthButton } = useHandleClickAuthButton();
   useEffect(() => {
     const fetchMovie = async () => {
       try {
@@ -26,10 +31,15 @@ export default function Footer() {
     fetchMovie();
   }, []);
   const FeedBackSubmit = async () => {
-    const result = await movieAPIs.postFeedBack(FeedbackPost);
-    if (result.state) {
-      add("피드백 완료! 소중한 의견 감사합니다 🦑");
-      handlesetValue("");
+    const token = tokenManager.getToken();
+    if (!token) {
+      setIsOpen(true);
+    } else {
+      const result = await movieAPIs.postFeedBack(FeedbackPost);
+      if (result.state) {
+        add("피드백 완료! 소중한 의견 감사합니다 🦑");
+        handlesetValue("");
+      }
     }
   };
   return (
@@ -56,6 +66,14 @@ export default function Footer() {
           </Button>
         </div>
       </div>
+      {isOpen && (
+        <Modal isAlertModal={false} onClose={() => setIsOpen(false)}>
+          <Modal.Login
+            onKakaoLogin={() => handleClickAuthButton("kakao")}
+            onNaverLogin={() => handleClickAuthButton("naver")}
+          />
+        </Modal>
+      )}
       <hr className="border-Gray" />
       <div className="flex flex-col gap-1 text-Gray Tablet:gap-5">
         <div className="flex items-center  gap-4 Text-s-Bold">

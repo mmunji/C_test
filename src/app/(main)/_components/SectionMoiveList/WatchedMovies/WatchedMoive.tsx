@@ -12,7 +12,6 @@ import MoviePosts from "./MoviePosts";
 
 export default function WatchedMoive() {
   const [accsstoken, setaccsstoken] = useState<string | null>("");
-
   const [WatchMovieData, setWatchMovieData] = useState<WatchMovie[]>([]);
 
   const [isLoading, setIsLoading] = useState(true);
