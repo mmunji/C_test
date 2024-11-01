@@ -32,12 +32,15 @@ export default function SimilarTastesMovie({ data }: SimilarTastesMovieType) {
   }, [accessToken]);
   return (
     <div className="flex flex-col gap-5">
-      <div className="flex flex-col gap-5 Tablet:flex-row Tablet:items-center">
+      <div className=" relative flex   flex-col gap-5 Tablet:flex-row Tablet:items-center">
         <h1 className="Text-l-Bold Laptop:Text-xxl-Bold ">{title}</h1>
+
         {device == "mobile" ? (
-          <SpeechBubble id={"SimilarTastesMovie"} dir="top">
-            {message}
-          </SpeechBubble>
+          <div className="absolute -bottom-11">
+            <SpeechBubble id={"SimilarTastesMovie"} dir="top">
+              {message}
+            </SpeechBubble>
+          </div>
         ) : (
           <SpeechBubble id={"SimilarTastesMovie"} dir="left">
             {message}

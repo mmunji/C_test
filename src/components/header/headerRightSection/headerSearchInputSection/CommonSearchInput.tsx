@@ -9,6 +9,7 @@ interface CommonSearchInputProps {
   isInputFocused: boolean;
   setIsInputFocused: Dispatch<SetStateAction<boolean>>;
   inputRef: RefObject<HTMLInputElement | null>;
+  randomMovie: string;
 }
 
 export default function CommonSearchInput({
@@ -17,6 +18,7 @@ export default function CommonSearchInput({
   isInputFocused,
   setIsInputFocused,
   inputRef,
+  randomMovie,
 }: CommonSearchInputProps) {
   const { handleKeyPress } = usePressEnterSearch(
     setIsInputFocused,
@@ -32,7 +34,13 @@ export default function CommonSearchInput({
       onChange={(e: ChangeEvent<HTMLInputElement>) =>
         setInputValue(e.target.value)
       }
-      placeholder="어떤 영화가 궁금하신가요?"
+
+      placeholder={
+        randomMovie === ""
+          ? "어떤 영화가 궁금하신가요?"
+          : `'${randomMovie}' 궁금하지 않으세요?`
+      }
+
       onFocus={() => setIsInputFocused(true)}
       onBlur={() => {
         setTimeout(() => {

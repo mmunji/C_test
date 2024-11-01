@@ -51,13 +51,13 @@ export default function KeyWordPosts({
       >
         <div className="flex justify-between">
           <div className="flex items-center gap-2">
-            <div
-              className="h-[24px] w-[24px] rounded-[60px] "
-              style={{
-                backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0.0) 0%, rgba(0, 0, 0, 0) 100%), url(data:image/jpeg;base64,${profile}`,
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-              }}
+            <Image
+              height={24}
+              width={24}
+              className="rounded-[60px]"
+              src={`data:image/jpeg;base64,${profile}
+          `}
+              alt="영화 포스터"
             />
             <h1 className="text-Silver Text-s-Medium">{nickname}</h1>
           </div>

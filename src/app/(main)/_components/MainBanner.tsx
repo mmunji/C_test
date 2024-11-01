@@ -34,7 +34,7 @@ export default function MainBanner({ data }: BannerType) {
           bulletActiveClass: "swiper-custom-bullet-active",
         }} // pagination 설정
         modules={[Autoplay, Pagination]} // 필요한 모듈 추가
-        autoplay={{ delay: 2000, disableOnInteraction: false }}
+        autoplay={{ delay: 8000, disableOnInteraction: false }}
       >
         {data?.map((BannerItem) => {
           return (
