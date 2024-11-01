@@ -16,10 +16,13 @@ export default function Tablet_BestTalkPost({
 }: ReviewType) {
   return (
     <div className="flex h-[184px] w-full flex-col items-center justify-center gap-2 rounded-3xl bg-D1_Gray px-4 pb-4 pt-5">
-      <img
-        className="h-[30px] w-[30px] rounded-[60px]"
-        src={`data:image/jpeg;base64,${profileImg}`}
-        alt="Profile"
+      <Image
+        height={30}
+        width={30}
+        className="rounded-[60px]"
+        src={`data:image/jpeg;base64,${profileImg}
+            `}
+        alt="영화 포스터"
       />
       <GetRating StarRating={star} ratingsize="Sm" space={false} />
       <div className="flex flex-col gap-1">
