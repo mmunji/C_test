@@ -124,13 +124,13 @@ export default function Mobile_BestMovie(MovieData: Mobile_BestMoiveProps) {
                         </div>
                         <div className="flex h-[42px] items-center gap-2">
                           {MovieDetailData?.reviewList[0]?.profile && (
-                            <div
-                              className="h-[24px] w-[24px] rounded-[60px] "
-                              style={{
-                                backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0.0) 0%, rgba(0, 0, 0, 0) 100%), url(data:image/jpeg;base64,${MovieDetailData?.reviewList[0]?.profile}`,
-                                backgroundSize: "cover",
-                                backgroundPosition: "center",
-                              }}
+                            <Image
+                              height={24}
+                              width={24}
+                              className="rounded-[60px]"
+                              src={`data:image/jpeg;base64,${MovieDetailData?.reviewList[0]?.profile}
+          `}
+                              alt="영화 포스터"
                             />
                           )}
 
