@@ -1,8 +1,11 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
+import SpeechBubble from "@/components/speechBubble/SpeechBubble";
+import useDevice from "@/hooks/useDevice";
+import { tokenManager } from "@/services/auth/tokenManager";
 import { useToastActions } from "@/stores/useToast";
 import { getTmdbPosterUrl } from "@/utils/tmdb";
 
@@ -14,6 +17,11 @@ interface WatchMovieType {
 export default function Mobile_Posts({ MovieWatchMovies }: WatchMovieType) {
   const [MovieNumber, setMovieNumber] = useState(0);
   const { add } = useToastActions();
+  const { device } = useDevice();
+  const [message, setmessage] = useState(
+    "로그인 하고 별을 눌러 평가해보세요 :",
+  );
+  const accessToken = tokenManager.getToken();
   const handleMovieList = () => {
     if (MovieWatchMovies.length == MovieNumber + 1) {
       return null;
@@ -25,7 +33,11 @@ export default function Mobile_Posts({ MovieWatchMovies }: WatchMovieType) {
     add(text);
     handleMovieList();
   };
-
+  useEffect(() => {
+    if (accessToken) {
+      setmessage("슬라이드하여 별점을 조절하세요");
+    }
+  }, [accessToken]);
   return (
     <div className="justify-center rounded-xl bg-D1_Gray px-3 py-7 Tablet:hidden">
       <div className="relative overflow-hidden rounded-xl">
@@ -75,6 +87,17 @@ export default function Mobile_Posts({ MovieWatchMovies }: WatchMovieType) {
               </div>
             </div>
           ))}
+        </div>
+        <div className="relative flex justify-center">
+          {device == "mobile" ? (
+            <div className="absolute -bottom-2 ">
+              <SpeechBubble id={"SimilarTastesMovie"} dir="top">
+                {message}
+              </SpeechBubble>
+            </div>
+          ) : (
+            ""
+          )}
         </div>
         <div className="flex w-full justify-center ">
           <button
