@@ -47,10 +47,6 @@ export default function RootLayout({
           name="viewport"
           content="initial-scale=1.0, user-scalable=no, maximum-scale=1, width=device-width"
         />
-        <meta
-          name="naver-site-verification"
-          content="3d7bd077a15043f6be4a2ce60ce6b6853a6376cd"
-        />
       </head>
       <body className={pretendard.variable}>
         <ReactQueryProvier>
