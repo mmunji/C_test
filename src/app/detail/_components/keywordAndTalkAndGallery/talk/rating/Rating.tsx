@@ -97,14 +97,14 @@ export default function Rating({
           <Button
             variant="line"
             size="lg"
-            className="mx-auto hidden bg-transparent Laptop:mt-6 Laptop:block"
+            className="mx-auto hidden bg-transparent hover:bg-transparent active:bg-transparent Laptop:mt-6 Laptop:block"
           >
             별점 저장중...
           </Button>
           <Button
             variant="line"
             size="sm"
-            className="mx-auto bg-transparent Laptop:hidden"
+            className="mx-auto bg-transparent hover:bg-transparent active:bg-transparent Laptop:hidden"
           >
             별점 저장중...
           </Button>

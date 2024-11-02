@@ -87,8 +87,10 @@ export default function Talk({ title, movieId, movieDetailData }: TalkProps) {
           <React.Fragment>
             {allTalks
               .filter((el) => el.content !== "")
-              .map((talk) => (
+              .map((talk, i) => (
                 <TalkContents
+                  index={i}
+                  length={allTalks.length}
                   key={talk.id}
                   movieId={movieId}
                   talk={talk}
