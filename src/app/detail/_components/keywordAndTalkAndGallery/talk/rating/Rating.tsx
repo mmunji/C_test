@@ -67,7 +67,7 @@ export default function Rating({
       )}
 
       <div className="mx-auto mb-6 flex cursor-pointer Laptop:mb-0">
-        {myTalk ? (
+        {myTalk && !showTalkForm ? (
           <FixedRating star={myTalk?.star || 0} />
         ) : (
           [...Array(5)].map((_, i) => (
@@ -83,7 +83,7 @@ export default function Rating({
                 setClickedValue,
                 ratingSize: "Xl",
                 readyToRating,
-                StarReview: true,
+                StarReview: showTalkForm ? false : true,
                 movieId: movieId,
                 genreList: genreList,
               }}
