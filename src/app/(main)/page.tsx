@@ -1,23 +1,19 @@
-"use client";
-
 import { Suspense } from "react";
 
 import Footer from "../../components/footer/Footer";
-import SignUp from "../redirect/without-nickname/_components/SignUp";
 import BannerWapper from "./_components/BannerWapper";
 import Banner from "./_components/MainSkeleton/Skeleton";
 import SectionMoiveList from "./_components/SectionMoiveList";
 export default function Main() {
   return (
     <div className="bg-BG text-white ">
-      <SignUp userInfo={{ nickname: "", birthday: "", gender: "" }} />
-      {/* <div>
+      <div>
         <Suspense fallback={<Banner />}>
           <BannerWapper />
         </Suspense>
       </div>
       <SectionMoiveList />
-      <Footer /> */}
+      <Footer />
     </div>
   );
 }
