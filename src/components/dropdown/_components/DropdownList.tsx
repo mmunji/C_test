@@ -19,7 +19,7 @@ const styles = cva<{
     variants: {
       type: {
         genre:
-          "grid grid-cols-2 p-2 min-w-[158px] gap-x-2 gap-y-1 Tablet:min-w-[198px] Tablet:gap-x-5 Tablet:gap-y-3",
+          "grid grid-cols-2 p-2 gap-x-2 gap-y-1 Tablet:gap-x-5 Tablet:gap-y-3",
         icon: "",
         text: "",
       },
