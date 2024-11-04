@@ -71,12 +71,12 @@ export default function TalkContentsFooter({
           <Image
             src={talk.likeCheck ? ThumbsUpFillSm : ThumbsUpLineSm}
             alt="좋아요"
-            className="Laptop:hidden"
+            className="Tablet:hidden"
           />
           <Image
             src={talk.likeCheck ? ThumbsUpFillMd : ThumbsUpLineMd}
             alt="좋아요"
-            className="hidden Laptop:block"
+            className="hidden Tablet:block"
           />
           <p className="select-none text-Gray_Orange Text-xs-Regular Tablet:Text-s-Medium">
             {talk.likeCount}
@@ -86,12 +86,12 @@ export default function TalkContentsFooter({
           <Image
             src={talk.dislikeCheck ? ThumbsDownFillSm : ThumbsDownLineSm}
             alt="싫어요"
-            className="Laptop:hidden"
+            className="Tablet:hidden"
           />
           <Image
             src={talk.dislikeCheck ? ThumbsDownFillMd : ThumbsDownLineMd}
             alt="싫어요"
-            className="hidden Laptop:block"
+            className="hidden Tablet:block"
           />
           <p className="select-none text-Gray_Orange Text-xs-Regular Tablet:Text-s-Medium">
             {talk.dislikeCount}
