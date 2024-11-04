@@ -9,7 +9,7 @@ import { cn } from "@/utils/cn";
 
 interface ModalMainProps {
   isAlertModal: boolean;
-  onClose: () => void;
+  onClose: (e?: React.MouseEvent) => void;
   title?: string;
   children: React.ReactNode;
 }
