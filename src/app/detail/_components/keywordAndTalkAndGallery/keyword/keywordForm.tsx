@@ -120,7 +120,7 @@ export default function KeywordForm({
 
         <section className="absolute right-3 top-1/2 flex translate-y-[-50%] items-center gap-2">
           {focused && (
-            <p className="text-Gray Text-s-Regular">{value?.length}/5</p>
+            <p className="text-Gray Text-s-Regular">{value?.length || 0}/5</p>
           )}
           <Button
             size="sm"

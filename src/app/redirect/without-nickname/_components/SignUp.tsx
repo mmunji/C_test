@@ -70,7 +70,7 @@ export default function SignUp({ userInfo }: SignUpProps) {
           alt="logo"
           className="mx-auto hidden h-[34px] w-[204px] Tablet:block"
         />
-        <div className="mt-11 Tablet:mt-[52px] Laptop:mt-8 Desktop:mt-[52px]">
+        <div className="mt-11 Tablet:mt-10 Laptop:mt-6 Desktop:mt-10">
           <SignUpTitle />
           <SignUpNickname
             nickname={nickname}
@@ -96,7 +96,7 @@ export default function SignUp({ userInfo }: SignUpProps) {
           type="submit"
           size="lg"
           variant="orange"
-          className="fixed bottom-0 left-0 mt-6 w-full Tablet:static Tablet:mt-8 Laptop:mt-7 Desktop:mt-8"
+          className="fixed bottom-0 left-0 mt-6 w-full Tablet:static Tablet:mt-10 Laptop:mt-6 Desktop:mt-10"
         >
           회원가입
         </Button>

@@ -10,7 +10,7 @@ interface SignUpGenderProps {
 
 export default function SignUpGender({ gender, setGender }: SignUpGenderProps) {
   return (
-    <section className="mt-6 Tablet:mt-5">
+    <section className="mt-6 Tablet:mt-7 Laptop:mt-5 Desktop:mt-7">
       <p className="text-White Text-xs-Regular">성별</p>
       <section className="mt-1 flex gap-3">
         <Button
