@@ -77,6 +77,6 @@ export const deleteReview = async (reviewId: number) => {
   return data;
 };
 
-export const revalidateMyPage = (tag: "user" | "my") => {
+export const revalidateMyPage = (tag: "user" | "my" | "badges") => {
   revalidateTag(tag);
 };
