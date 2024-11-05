@@ -17,6 +17,13 @@ export default function Footer() {
   const { add } = useToastActions();
   const [isOpen, setIsOpen] = useState(false);
   const { handleClickAuthButton } = useHandleClickAuthButton();
+  const UserCheck = () => {
+    const token = tokenManager.getToken();
+    if (!token) {
+      setIsOpen(true);
+    }
+  };
+
   useEffect(() => {
     const fetchMovie = async () => {
       try {
@@ -31,15 +38,10 @@ export default function Footer() {
     fetchMovie();
   }, []);
   const FeedBackSubmit = async () => {
-    const token = tokenManager.getToken();
-    if (!token) {
-      setIsOpen(true);
-    } else {
-      const result = await movieAPIs.postFeedBack(FeedbackPost);
-      if (result.state) {
-        add("피드백 완료! 소중한 의견 감사합니다 🦑");
-        handlesetValue("");
-      }
+    const result = await movieAPIs.postFeedBack(FeedbackPost);
+    if (result.state) {
+      add("피드백 완료! 소중한 의견 감사합니다 🦑");
+      handlesetValue("");
     }
   };
   return (
@@ -49,18 +51,20 @@ export default function Footer() {
           지금까지 총<span className="text-Primary"> {Commnets} </span> 개의
           톡이 쌓였어요!
         </h1>
-        <div className="flex w-full flex-1 justify-between gap-2 rounded-xl bg-D1_Gray py-2 pl-4 pr-3 Text-s-Regular  Laptop:w-[512px]">
+        <div className="flex w-full  justify-between gap-2  rounded-xl bg-D1_Gray py-2 pl-4 pr-3 Text-s-Regular  Laptop:w-[512px]">
           <input
             placeholder="개선할 점이 있나요? 피드백 해주세요 ;)"
-            className="flex-1 bg-transparent    text-white Text-s-Regular placeholder:text-Gray  focus:outline-none Laptop:Text-m-Regular"
+            className="min-w-0  flex-grow overflow-hidden bg-transparent  text-white Text-s-Regular placeholder:text-ellipsis  placeholder:text-Gray focus:outline-none Laptop:Text-m-Regular"
             value={FeedbackPost}
             onChange={setFeedBackPost}
+            onClick={UserCheck}
           />
           <Button
             size={"sm"}
             variant={"orange"}
             disabled={!FeedbackPost}
             onClick={FeedBackSubmit}
+            className="flex-shrink-0"
           >
             보내기
           </Button>

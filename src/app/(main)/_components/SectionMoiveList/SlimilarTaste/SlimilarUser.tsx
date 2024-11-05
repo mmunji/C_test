@@ -38,7 +38,7 @@ export default function SlimilarUser({
       onMouseEnter={() => setItemHover(true)}
       onMouseLeave={() => setItemHover(false)}
     >
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-2 px-2">
         <div
           className="h-[40px] w-[40px] rounded-[60px] "
           style={{
@@ -49,7 +49,7 @@ export default function SlimilarUser({
         />
         <span>{name}</span>
       </div>
-      <div className="px2 flex gap-4">
+      <div className="flex gap-4 px-2">
         <div className="flex items-center gap-1">
           <Image src={EditPencilLineFill} alt="펜슬" />
           평가한 영화 {heart ? heart : 0}

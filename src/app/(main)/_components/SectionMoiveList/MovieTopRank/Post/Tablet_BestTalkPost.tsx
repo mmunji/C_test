@@ -15,7 +15,7 @@ export default function Tablet_BestTalkPost({
   profileImg,
 }: ReviewType) {
   return (
-    <div className="flex h-[184px] w-full flex-col items-center justify-center gap-2 rounded-3xl bg-D1_Gray px-4 pb-4 pt-5">
+    <div className="flex h-[184px] w-full flex-col items-center justify-center gap-2 rounded-xl bg-D1_Gray px-4 pb-4 pt-5">
       <Image
         height={30}
         width={30}

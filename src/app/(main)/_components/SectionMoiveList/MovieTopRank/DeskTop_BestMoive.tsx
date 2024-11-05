@@ -27,7 +27,10 @@ import BestTalkPost from "./Post/BestTalkPost";
 interface Desktop_BestMoiveProps {
   MovieData: Movie_TopTen | null;
 }
-export default function DeskTop_BestMovie(MovieData: Desktop_BestMoiveProps) {
+export default function DeskTop_BestMovie(
+  MovieData: Desktop_BestMoiveProps,
+  GenreType: string,
+) {
   SwiperCore.use([Pagination]);
   const [StatePost, SetStatePost] = useState(0);
   const [swiper, setSwiper] = useState<SwiperClass>();
@@ -96,16 +99,28 @@ export default function DeskTop_BestMovie(MovieData: Desktop_BestMoiveProps) {
                   } flex flex-col justify-between transition-opacity duration-700 ease-in`}
                 >
                   <div className="flex flex-col gap-3">
-                    <div className="flex items-center gap-3">
-                      <h1 className="line-clamp-1 w-[380px] Text-xxl-Bold">
-                        {MovieDetailData.movienm}
-                      </h1>
-                      <div className="flex items-center gap-[10px] text-Gray_Orange Text-s-Regular">
+                    <div className="flex items-center justify-between  gap-3">
+                      <Link href={`detail/${MovieDetailData.movieId}`}>
+                        <h1 className="line-clamp-1 w-[310px]  Text-xxl-Bold">
+                          {MovieDetailData.movienm}
+                        </h1>
+                      </Link>
+                      <div className="flex w-full items-center justify-end gap-[10px] text-Gray_Orange Text-s-Regular">
                         <span>
                           {dayjs(MovieDetailData.release_date).format("YYYY")}
                         </span>
-                        <div className="flex h-3 w-[1px] items-center border-[1px] border-Gray_Orange"></div>
-                        <span>{MovieDetailData.genres[0].name}</span>
+                        <div className="flex h-3 w-[1px] items-center border-[1px] border-L_Gray"></div>
+                        <div className="flex  ">
+                          {MovieDetailData.genres.map(
+                            (genre: MovieGenreDto, index: number) => (
+                              <span className="Text-s-Regular" key={index}>
+                                {genre.name}
+                                {index < MovieDetailData.genres.length - 1 &&
+                                  " / "}
+                              </span>
+                            ),
+                          )}
+                        </div>
                       </div>
                     </div>
                     <div className="flex gap-5">

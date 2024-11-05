@@ -7,7 +7,7 @@ export default function DesktopMovieTop() {
     <div className="hidden  w-full  Laptop:flex">
       <div className="flex w-full  gap-6 ">
         <PostCardSkeleton />
-        <div className="flex w-2/5 flex-col  justify-between">
+        <div className="flex w-[504px] flex-col  justify-between">
           <div className="flex  flex-col gap-3">
             <div className="h-[30px] w-[100px] animate-pulse rounded-lg bg-D2_Gray Desktop:h-[40px]  " />
             <div className="h-[24px] w-[200px] animate-pulse rounded-lg   bg-D2_Gray  "></div>
