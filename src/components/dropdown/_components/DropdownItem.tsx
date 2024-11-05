@@ -25,7 +25,7 @@ const styles = cva<{
   {
     variants: {
       type: {
-        genre: "Tablet:px-6 Tablet:py-2 p-2",
+        genre: "Tablet:py-2 py-2 w-[75px] Tablet:w-[89px]",
         icon: "item-border p-3",
         text: "item-border px-3 py-2",
       },

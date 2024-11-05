@@ -70,7 +70,7 @@ export default function SignUp({ userInfo }: SignUpProps) {
           alt="logo"
           className="mx-auto hidden h-[34px] w-[204px] Tablet:block"
         />
-        <div className="mt-11 Tablet:mt-[52px] Laptop:mt-8 Desktop:mt-[52px]">
+        <div className="mt-11 Tablet:mt-10 Laptop:mt-6 Desktop:mt-10">
           <SignUpTitle />
           <SignUpNickname
             nickname={nickname}
@@ -85,6 +85,10 @@ export default function SignUp({ userInfo }: SignUpProps) {
             setBirthError={setBirthError}
           />
           <SignUpGender gender={gender} setGender={setGender} />
+          <p className="mt-2 text-[12px] font-normal leading-[140%] text-Gray">
+            수집된 정보는 씨네톡 내 유저 통계 기반 영화 추천의 용도로 수집되며
+            씨네톡 외 다른 곳에는 일절 사용되지 않습니다.{" "}
+          </p>
         </div>
 
         <Button
@@ -92,7 +96,7 @@ export default function SignUp({ userInfo }: SignUpProps) {
           type="submit"
           size="lg"
           variant="orange"
-          className="fixed bottom-0 left-0 mt-6 w-full Tablet:static Tablet:mt-8 Laptop:mt-7 Desktop:mt-8"
+          className="fixed bottom-0 left-0 mt-6 w-full Tablet:static Tablet:mt-10 Laptop:mt-6 Desktop:mt-10"
         >
           회원가입
         </Button>

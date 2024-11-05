@@ -48,6 +48,7 @@ export default function TalkForm({
   const spoiler = watch("spoiler");
 
   const onSubmit: SubmitHandler<AddTalkValues> = () => {
+    if (ratingValue === 0) return alert("0점은 등록하실 수 없습니다.");
     if (readyToSubmit) {
       if (filterAbuse(talk)) return;
       const genreList = movieDetailData?.genreDTOList.map((el) => el.id);
@@ -58,7 +59,7 @@ export default function TalkForm({
         movieName: movieName,
         genreList: genreList,
         spoiler: spoiler,
-        star: myTalk.star,
+        star: ratingValue,
       });
     }
   };

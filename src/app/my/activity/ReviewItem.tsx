@@ -31,7 +31,8 @@ export default function ReviewItem({
   const [isModalOpen, setIsModalOpen] = useState(false);
   const router = useRouter();
 
-  const handleDeleteReview = async () => {
+  const handleDeleteReview = async (e: React.MouseEvent) => {
+    e.stopPropagation();
     setLoading(true);
     const result = await deleteReview(review.review_id);
     setLoading(false);
@@ -53,11 +54,7 @@ export default function ReviewItem({
             </div>
             <span className="line-clamp-1 Text-m-Medium">{review.movienm}</span>
           </div>
-          <div
-            onClick={(e) => {
-              e.preventDefault();
-            }}
-          >
+          <div onClick={(e) => e.preventDefault()}>
             <Dropdown>
               <Dropdown.Trigger>
                 <Button variant={"icon"}>
@@ -102,7 +99,13 @@ export default function ReviewItem({
       </div>
 
       {isModalOpen && (
-        <Modal isAlertModal onClose={() => setIsModalOpen(false)}>
+        <Modal
+          isAlertModal
+          onClose={(e) => {
+            e?.stopPropagation();
+            setIsModalOpen(false);
+          }}
+        >
           <Modal.TitleWrapper>
             <Modal.Title>
               {loading ? "삭제 중..." : "정말 삭제하시겠어요?"}

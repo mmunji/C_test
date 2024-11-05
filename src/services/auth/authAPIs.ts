@@ -21,6 +21,12 @@ export const authAPIS = {
     return { res, data };
   },
 
+  checkNick: async (nickname: string) => {
+    const res = await fetch(`${API_URL}/my/NicknameCheck?nickname=${nickname}`);
+    const data = await res.json();
+    return { res, data };
+  },
+
   signUp: async (nickname: string, gender: string, birthday: string) => {
     const accessToken = tokenManager.getToken();
     const res = await fetch(`${API_URL}/my/nickNameMerge`, {

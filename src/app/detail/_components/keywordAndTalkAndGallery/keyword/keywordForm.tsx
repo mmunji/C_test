@@ -26,23 +26,26 @@ import SpeechBubble from "../../../../../components/speechBubble/SpeechBubble";
 interface KeywordFormProps {
   movieId: number;
   title: string;
-  initialValue?: string;
   myKeywordId?: number | null;
   isClickedEdit?: boolean;
   setIsClickedEdit?: Dispatch<SetStateAction<boolean>>;
+  value: string;
+  setValue: Dispatch<SetStateAction<string>>;
+  initialValue: string;
 }
 
 export default function KeywordForm({
   movieId,
   title,
-  initialValue = "",
   myKeywordId,
   isClickedEdit,
   setIsClickedEdit,
+  value,
+  setValue,
+  initialValue,
 }: KeywordFormProps) {
   const inputRef = useRef<HTMLInputElement>(null);
   const [focused, setFocused] = useState(false);
-  const [value, setValue] = useState(initialValue);
   const { device } = useDevice();
   const { mutate: addKeyword, isPending } = useAddKeyword(setValue, movieId);
   const { handleClickAuthButton } = useHandleClickAuthButton();
@@ -82,7 +85,7 @@ export default function KeywordForm({
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (filterAbuse(value)) return;
-    if (initialValue === "") addKeyword({ movieId, value });
+    if (initialValue === undefined) addKeyword({ movieId, value });
     else editKeyword({ movieId: movieId, value: value });
   };
 
@@ -117,7 +120,7 @@ export default function KeywordForm({
 
         <section className="absolute right-3 top-1/2 flex translate-y-[-50%] items-center gap-2">
           {focused && (
-            <p className="text-Gray Text-s-Regular">{value?.length}/5</p>
+            <p className="text-Gray Text-s-Regular">{value?.length || 0}/5</p>
           )}
           <Button
             size="sm"

@@ -1,11 +1,15 @@
 import { Dispatch, SetStateAction, useLayoutEffect, useState } from "react";
 
+import { cn } from "@/utils/cn";
+
 import Replies from "./replies/Replies";
 import TalkContentsBody from "./TalkContentsBody";
 import TalkContentsFooter from "./TalkContentsFooter";
 import TalkContentsHeader from "./talkContentsHeader/TalkContentsHeader";
 
 interface TalkContentsProps {
+  index: number;
+  length: number;
   talk: ReviewList;
   movieId: number;
   setOpen: Dispatch<SetStateAction<boolean>>;
@@ -13,6 +17,8 @@ interface TalkContentsProps {
 }
 
 export default function TalkContents({
+  index,
+  length,
   talk,
   movieId,
   setOpen,
@@ -27,7 +33,12 @@ export default function TalkContents({
   }, [spoiler]);
 
   return (
-    <div className="border-b-[1px] border-D1_Gray py-5 first:mt-4 last:border-b-0 Tablet:mt-5 Tablet:py-6 Laptop:border-D2_Gray">
+    <div
+      className={cn(
+        "border-b-[1px] border-D1_Gray py-5 first:mt-4 Tablet:mt-5 Tablet:py-6 Laptop:border-D2_Gray",
+        index === length - 1 && "border-b-0",
+      )}
+    >
       <TalkContentsHeader
         talk={talk}
         setOpen={setOpen}

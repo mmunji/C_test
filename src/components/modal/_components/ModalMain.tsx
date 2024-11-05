@@ -9,7 +9,7 @@ import { cn } from "@/utils/cn";
 
 interface ModalMainProps {
   isAlertModal: boolean;
-  onClose: () => void;
+  onClose: (e?: React.MouseEvent) => void;
   title?: string;
   children: React.ReactNode;
 }
@@ -79,13 +79,6 @@ export default function ModalMain({
     document.addEventListener("keydown", handleKeyDown);
     return () => document.removeEventListener("keydown", handleKeyDown);
   }, [onClose]);
-
-  useEffect(() => {
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.body.style.overflow = "auto";
-    };
-  }, []);
 
   return (
     <ModalContext.Provider

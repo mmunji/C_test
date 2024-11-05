@@ -7,7 +7,7 @@ export default function SignUpTitle() {
         멋진 닉네임과
         <br /> 간단한 정보를 입력해주세요.
       </h1>
-      <h1 className="mb-[52px] hidden text-center leading-[140%] Text-xxl-Bold Tablet:block Laptop:mb-6 Laptop:Text-xl-Bold Desktop:mb-[52px] Desktop:Text-xxl-Bold">
+      <h1 className="mb-[52px] hidden text-center leading-[140%] Text-xxl-Bold Tablet:mb-10 Tablet:block Laptop:mb-6 Laptop:Text-xl-Bold Desktop:mb-10 Desktop:Text-xxl-Bold">
         멋진 닉네임을 정해주세요.
       </h1>
     </>

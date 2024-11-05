@@ -12,6 +12,7 @@ import {
 import { revalidateMyPage } from "@/services/my/actions";
 import { talkAPIs } from "@/services/talk/talkAPIs";
 import { useAddTalk } from "@/services/talk/talkMutations";
+import useLoggedInStore from "@/stores/useLoggedIn";
 
 interface StarProps {
   type: "main" | "detail";
@@ -74,25 +75,36 @@ export default function RatingStar({
   }
 
   const { mutate: addTalks } = useAddTalk(movieId as number);
-
+  const { loggedIn } = useLoggedInStore();
   const AddStarReview = async (star: number) => {
-    if (StarReview) {
-      const { data } = await talkAPIs.addTalks({
-        movieName: movienm!,
-        movieId: movieId!,
-        star: star,
-        content: "",
-        spoiler: false,
-        genreList: genreList || [],
-      });
-      if (!data.message) {
-        if (type === "main") {
-          ratingValue = 0;
-          handleMovieList?.("별점 평가 완료! 💫");
-        }
-        revalidateMyPage("my");
+    if (StarReview && loggedIn) {
+      if (type === "detail") {
+        addTalks({
+          genreList: genreList || [],
+          movieId: movieId!,
+          movieName: movienm!,
+          ratingValue: star,
+          spoiler: false,
+          talk: "",
+        });
       } else {
-        alert(data.message);
+        const { data } = await talkAPIs.addTalks({
+          movieName: movienm!,
+          movieId: movieId!,
+          star: star,
+          content: "",
+          spoiler: false,
+          genreList: genreList || [],
+        });
+        if (!data.message) {
+          if (type === "main") {
+            ratingValue = 0;
+            handleMovieList?.("별점 평가 완료! 💫");
+          }
+          revalidateMyPage("my");
+        } else {
+          alert(data.message);
+        }
       }
     }
   };

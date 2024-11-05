@@ -70,17 +70,16 @@ export default function MoiveTopRank({ data }: MoiveTopRankType) {
           <div className="flex gap-1">
             <Dropdown type="genre">
               <Dropdown.Trigger>
-                <span className="flex items-center gap-1 text-white">
+                <Button type="button" variant={"textIconR"}>
                   {MovieGenreType[filter].name}
                   <Image
                     src={CaretDownMd}
                     alt="더보기"
                     className="cursor-pointer"
                   />
-                </span>
+                </Button>
               </Dropdown.Trigger>
-
-              <Dropdown.List>
+              <Dropdown.List className="left-0 top-11">
                 {MovieGenreType.map((genre, index) => {
                   return (
                     <Dropdown.Item
