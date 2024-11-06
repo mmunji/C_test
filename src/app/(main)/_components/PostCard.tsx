@@ -33,7 +33,7 @@ export default function PostCard({
   background,
   MobilePost,
 }: PostNumber) {
-  const [onMouseHover, SetMouseHover] = useState(true);
+  const [onMouseHover, SetMouseHover] = useState(false);
   const HandleMouseOver = () => {
     SetMouseHover(true);
   };
