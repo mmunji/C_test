@@ -104,15 +104,13 @@ export default function PostCard({
       )}
       {PostType && onMouseHover ? (
         <div
-          className=" flex h-full rounded-xl px-5  py-7  Desktop:px-6 Desktop:py-8"
+          className=" flex h-[358px] w-[238px] items-center rounded-xl px-5 py-7 Text-m-Regular Tablet:h-[390px]  Tablet:w-[260px] Laptop:h-[260px]  Laptop:w-[174px] Desktop:h-[360px] Desktop:w-[240px] Desktop:px-6 Desktop:py-8"
           style={{
             backdropFilter: "blur(5px)",
             background: "rgba(0, 0, 0, 0.50)",
           }}
         >
-          <span className="Desktop:line-clamp-9  line-clamp-6 w-full  Text-m-Regular">
-            {content}
-          </span>
+          <span className="Desktop:line-clamp-9 line-clamp-6"> {content}</span>
         </div>
       ) : (
         ""
