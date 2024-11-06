@@ -17,7 +17,7 @@ export default function SimilarTastesMovie({ data }: SimilarTastesMovieType) {
   const [ReviewUsers, setReviewUsers] = useState<MovieReviewRecommed[]>(data);
   const accessToken = tokenManager.getToken();
   const [message, setmessage] = useState(
-    "로그인 하고 별을 눌러 평가해보세요 :",
+    "로그인하면 맞춤형으로 추천받을 수 있어요.",
   );
   const [title, settitle] = useState("다른 사람들은 이런 영화를 평가했어요");
   const ChangePickNumber = (index: number) => {

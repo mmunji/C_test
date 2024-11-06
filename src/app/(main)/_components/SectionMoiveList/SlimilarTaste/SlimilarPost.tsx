@@ -87,7 +87,7 @@ export default function SlimilarPost({
           <Swiper
             slidesPerView="auto"
             spaceBetween={device == "laptop" ? 20 : 24}
-            className="flex  rounded-xl"
+            className="flex  "
             onSwiper={(e) => setSwiper(e)}
           >
             {Array.isArray(ReviewUsers) &&

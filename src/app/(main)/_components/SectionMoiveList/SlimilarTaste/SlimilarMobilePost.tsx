@@ -2,6 +2,7 @@ import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import SmallBadge from "@/components/smallBadge/SmallBadge";
+import useDevice from "@/hooks/useDevice";
 
 import {
   ChatFillSm,
@@ -23,6 +24,7 @@ export default function SlimilarMobilePost({
       ? UserPost[PickUserNumber]
       : null;
 
+  const { device } = useDevice();
   return (
     <div>
       <div className="flex flex-col gap-2">
@@ -74,15 +76,15 @@ export default function SlimilarMobilePost({
         </div>
       </div>
       <div className="block">
-        <Swiper slidesPerView="auto" spaceBetween={20}>
+        <Swiper slidesPerView="auto" spaceBetween={16}>
           {selectedUser?.reviews?.map((ReviewUser, index) => {
             return (
               <SwiperSlide
                 key={ReviewUser.review_id}
-                className="mt-5  flex h-[250px] w-[156px] flex-col  gap-1 Tablet:h-[261px]"
+                className="mt-5  flex h-[250px] w-[156px] flex-col  gap-1 Tablet:h-[260px]"
               >
                 <div
-                  className="flex h-[230px] w-[156px] flex-col  justify-end gap-1 rounded-2xl px-3  py-4 Text-s-Bold Tablet:h-[240px]"
+                  className="flex h-[230px] w-[165px] flex-col  justify-end gap-1 rounded-xl px-3  py-4 Text-s-Bold Tablet:h-[240px]"
                   style={{
                     backgroundImage: `linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, rgba(0, 0, 0, 0.80) 100%), url(${ReviewUser.poster_id ? `https://image.tmdb.org/t/p/original/${ReviewUser.poster_id}` : "/images/ssikongi/PNG/NoImage.png"})`,
                     backgroundSize: "cover",
