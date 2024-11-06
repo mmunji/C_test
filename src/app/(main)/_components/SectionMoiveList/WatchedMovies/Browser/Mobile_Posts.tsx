@@ -54,7 +54,7 @@ export default function Mobile_Posts({ MovieWatchMovies }: WatchMovieType) {
                 <div className="flex justify-center">
                   <Image
                     height={230}
-                    width={153}
+                    width={156}
                     className="rounded-xl"
                     src={
                       movie.poster_path
@@ -76,7 +76,7 @@ export default function Mobile_Posts({ MovieWatchMovies }: WatchMovieType) {
               </div>
               <div>
                 <h1 className="mt-5 text-center Text-l-Bold">{movie.rate}</h1>
-                <div className="flex items-center justify-center">
+                <div className="flex items-center justify-center p-1">
                   <PostRating
                     movienm={movie.movienm}
                     movieId={movie.movieId}

@@ -64,7 +64,7 @@ export default function MoiveTopRank({ data }: MoiveTopRankType) {
 
   return (
     <div className="flex flex-col gap-4  ">
-      <div className="flex justify-between">
+      <div className="flex items-center justify-between">
         <div className="flex items-center gap-[24px]">
           <h1 className="Text-l-Bold Laptop:Text-xxl-Bold">영화 톡 TOP 10</h1>
           <div className="flex gap-1">
@@ -104,7 +104,10 @@ export default function MoiveTopRank({ data }: MoiveTopRankType) {
       <div>
         {/* 모바일 */}
         <Tablet_BestMoive MovieData={MovieTopTenData} />
-        <DeskTop_BestMovie MovieData={MovieTopTenData} />
+        <DeskTop_BestMovie
+          MovieData={MovieTopTenData}
+          genreTitle={MovieGenreType[filter].name}
+        />
         <Laptop_BestMovie MovieData={MovieTopTenData} />
         <Mobile_BestMovie MovieData={MovieTopTenData} />
       </div>

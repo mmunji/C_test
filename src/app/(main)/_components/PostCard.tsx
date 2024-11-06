@@ -42,7 +42,7 @@ export default function PostCard({
   };
   return (
     <div
-      className="h-[358px] w-[238px] cursor-pointer rounded-xl Tablet:h-[344px] Tablet:w-[260px] Laptop:h-[260px] Laptop:w-[174px]  Desktop:h-[360px] Desktop:w-[240px]"
+      className="h-[358px] w-[238px] cursor-pointer rounded-xl Tablet:h-[344px] Tablet:w-[230px] Laptop:h-[260px] Laptop:w-[174px]  Desktop:h-[360px] Desktop:w-[240px]"
       style={{
         backgroundImage: `linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, rgba(0, 0, 0, 0) 100%), url('${background ? `https://image.tmdb.org/t/p/original/${background}` : "/images/ssikongi/PNG/NoImage.png"}')`,
         backgroundSize: "cover",
@@ -104,13 +104,15 @@ export default function PostCard({
       )}
       {PostType && onMouseHover ? (
         <div
-          className=" flex h-[358px] w-[238px] items-center rounded-xl px-5 py-7 Text-m-Regular Tablet:h-[390px]  Tablet:w-[260px] Laptop:h-[260px]  Laptop:w-[174px] Desktop:h-[360px] Desktop:w-[240px] Desktop:px-6 Desktop:py-8"
+          className=" flex h-full rounded-xl px-5  py-7  Desktop:px-6 Desktop:py-8"
           style={{
             backdropFilter: "blur(5px)",
             background: "rgba(0, 0, 0, 0.50)",
           }}
         >
-          <span className="Desktop:line-clamp-9 line-clamp-6"> {content}</span>
+          <span className="Desktop:line-clamp-9  line-clamp-6 w-full  Text-m-Regular">
+            {content}
+          </span>
         </div>
       ) : (
         ""

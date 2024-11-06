@@ -8,6 +8,7 @@ import {
   EditPencilLineFill,
   ThumbsUpFillSm,
 } from "../../../../../../public/icons";
+import ZeroBadge from "../../ZeroBadge";
 
 interface UserPostType {
   value: number;
@@ -33,7 +34,7 @@ export default function SlimilarUser({
   const [ItemHover, setItemHover] = useState(false);
   return (
     <div
-      className={`flex flex-col gap-5 rounded-xl  ${value != ClickIndex ? (ItemHover ? "bg-D2_Gray" : "bg-Black") : "bg-D1_Gray"} h-full  px-3 py-6 text-Silver Text-m-Medium`}
+      className={`flex flex-col gap-5 rounded-xl  ${value != ClickIndex ? (ItemHover ? "bg-D2_Gray" : "bg-Black") : "bg-D1_Gray"} h-full  px-5 py-6 text-Silver Text-m-Medium`}
       onClick={onClick}
       onMouseEnter={() => setItemHover(true)}
       onMouseLeave={() => setItemHover(false)}
@@ -60,21 +61,22 @@ export default function SlimilarUser({
           받은 좋아요 {evaluate ? evaluate : 0}
         </div>
       </div>
-      <div className="flex gap-1  ">
-        {Array(3)
-          .fill(0)
-          .map((_, index) => {
-            if (!Badge[index]?.badge_name) {
-              return "";
-            }
-            return (
-              <SmallBadge
-                key={index}
-                content={Badge[index]?.badge_name}
-                size="md"
-              />
-            );
-          })}
+      <div className="flex gap-2  ">
+        {Badge && Badge[0]?.badge_name ? (
+          Array(3)
+            .fill(0)
+            .map((_, index) =>
+              Badge[index]?.badge_name ? (
+                <SmallBadge
+                  key={index}
+                  content={Badge[index].badge_name}
+                  size="md"
+                />
+              ) : null,
+            )
+        ) : (
+          <ZeroBadge />
+        )}
       </div>
     </div>
   );

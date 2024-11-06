@@ -26,10 +26,11 @@ import PostCard from "../../PostCard";
 import BestTalkPost from "./Post/BestTalkPost";
 interface Desktop_BestMoiveProps {
   MovieData: Movie_TopTen | null;
+  genreTitle: string;
 }
 export default function DeskTop_BestMovie(
   MovieData: Desktop_BestMoiveProps,
-  GenreType: string,
+  genreTitle: string,
 ) {
   SwiperCore.use([Pagination]);
   const [StatePost, SetStatePost] = useState(0);
@@ -99,27 +100,30 @@ export default function DeskTop_BestMovie(
                   } flex flex-col justify-between transition-opacity duration-700 ease-in`}
                 >
                   <div className="flex flex-col gap-3">
-                    <div className="flex items-center justify-between  gap-3">
+                    <div className="flex items-center   gap-3">
                       <Link href={`detail/${MovieDetailData.movieId}`}>
-                        <h1 className="line-clamp-1 w-[310px]  Text-xxl-Bold">
+                        <h1 className="line-clamp-1 w-full Text-xxl-Bold">
                           {MovieDetailData.movienm}
                         </h1>
                       </Link>
-                      <div className="flex w-full items-center justify-end gap-[10px] text-Gray_Orange Text-s-Regular">
+                      <div className="flex items-center  gap-[10px] text-Gray_Orange Text-s-Regular">
                         <span>
                           {dayjs(MovieDetailData.release_date).format("YYYY")}
                         </span>
-                        <div className="flex h-3 w-[1px] items-center border-[1px] border-L_Gray"></div>
-                        <div className="flex  ">
-                          {MovieDetailData.genres.map(
-                            (genre: MovieGenreDto, index: number) => (
+                        <div className="flex h-3 w-[1px] items-center border-r-[1px] border-L_Gray"></div>
+                        <div className="flex ">
+                          {MovieDetailData.genres
+                            .slice(0, 3)
+                            .map((genre: MovieGenreDto, index: number) => (
                               <span className="Text-s-Regular" key={index}>
                                 {genre.name}
-                                {index < MovieDetailData.genres.length - 1 &&
-                                  " / "}
+                                {index <
+                                  Math.min(
+                                    2,
+                                    MovieDetailData.genres.length - 1,
+                                  ) && " / "}
                               </span>
-                            ),
-                          )}
+                            ))}
                         </div>
                       </div>
                     </div>
@@ -152,10 +156,18 @@ export default function DeskTop_BestMovie(
                   </div>
                   <div className="w-[368px] Desktop:w-[504px]">
                     <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-1">
-                        <Image src={BestTalkFire} alt="" className="h-6 w-6" />
-                        <h1 className="Text-m-Bold">BEST 톡</h1>
-                      </div>
+                      {!MovieDetailData.reviewData?.content ? (
+                        <div className="flex items-center gap-1">
+                          <Image
+                            src={BestTalkFire}
+                            alt=""
+                            className="h-6 w-6"
+                          />
+                          <h1 className="Text-m-Bold">BEST 톡</h1>
+                        </div>
+                      ) : (
+                        ""
+                      )}
                       <Link
                         href={`detail/${MovieDetailData.movieId}`}
                         className="flex items-center gap-1 p-2 pr-1"
