@@ -96,20 +96,31 @@ export default function Laptop_BestMovie(MovieData: Laptop_BestMoiveProps) {
                     } flex flex-col justify-between transition-opacity duration-700 ease-in`}
                   >
                     <div className="flex flex-col gap-3 ">
-                      <div className="flex items-center gap-3">
-                        <h1 className="line-clamp-1 w-[240px] text-Silver Text-xl-Bold">
-                          {MovieDetailData.movienm}
-                        </h1>
+                      <div className="flex  items-center gap-3">
+                        <Link href={`detail/${MovieDetailData.movieId}`}>
+                          <h1 className="line-clamp-1 w-full text-Silver Text-xl-Bold">
+                            {MovieDetailData.movienm}
+                          </h1>
+                        </Link>
                         <div className=" flex items-center gap-[10px] text-Gray_Orange Text-xs-Regular">
                           <span className="">
                             {dayjs(MovieDetailData.release_date).format("YYYY")}
                           </span>
-                          <div className="h-3 w-[1px] border-[1px] border-Gray_Orange"></div>
-                          <span className="">
-                            {MovieDetailData.genres[0]
-                              ? MovieDetailData.genres[0].name
-                              : ""}
-                          </span>
+                          <div className="h-3 w-[1px] border-r-[1px] border-L_Gray"></div>
+                          <div className="flex">
+                            {MovieDetailData.genres
+                              .slice(0, 3)
+                              .map((genre: MovieGenreDto, index: number) => (
+                                <span className="Text-s-Regular" key={index}>
+                                  {genre.name}
+                                  {index <
+                                    Math.min(
+                                      2,
+                                      MovieDetailData.genres.length - 1,
+                                    ) && " / "}
+                                </span>
+                              ))}
+                          </div>
                         </div>
                       </div>
                       <div className="flex gap-5">

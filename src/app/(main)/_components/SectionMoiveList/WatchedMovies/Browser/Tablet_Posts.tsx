@@ -25,6 +25,7 @@ export default function Tablet_Posts({ MovieWatchMovies }: WatchMovieType) {
   };
   const handleToast = (text: string) => {
     add(text);
+    setMovieNumber((prev) => prev + 1);
   };
 
   return (

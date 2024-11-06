@@ -1,4 +1,5 @@
 interface MovieHidingPiece {
+  length: number;
   StarAvg: number;
   reviewCount: number;
   movieposter: string;

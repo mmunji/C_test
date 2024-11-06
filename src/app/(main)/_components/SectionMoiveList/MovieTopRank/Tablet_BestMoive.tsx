@@ -28,7 +28,7 @@ export default function Tablet_BestMoive(MovieData: Tablet_BestMoiveProps) {
           ? MovieData.MovieData.map((MovieDetailData, index) => {
               return (
                 <SwiperSlide key={MovieDetailData.movieId}>
-                  <div className=" flex w-full gap-5">
+                  <div className=" flex w-full gap-4">
                     <Link href={`detail/${MovieDetailData.movieId}`}>
                       {MovieDetailData.poster_path ? (
                         <PostCard
@@ -48,16 +48,18 @@ export default function Tablet_BestMoive(MovieData: Tablet_BestMoiveProps) {
                     <div className="flex w-full flex-col justify-between gap-3">
                       <div className="flex flex-col gap-2">
                         <div className="flex justify-between gap-3 ">
-                          <h1 className="line-clamp-1 w-[366px] Text-l-Bold">
-                            {MovieDetailData.movienm}
-                          </h1>
+                          <Link href={`detail/${MovieDetailData.movieId}`}>
+                            <h1 className="line-clamp-1 w-[366px] Text-l-Bold">
+                              {MovieDetailData.movienm}
+                            </h1>
+                          </Link>
                           <div className="flex items-center gap-[10px] Text-xs-Regular">
                             <span>
                               {dayjs(MovieDetailData.release_date).format(
                                 "YYYY",
                               )}
                             </span>
-                            <div className="h-3 border-[1px] border-L_Gray"></div>
+                            <div className="h-3 border-r-[1px] border-L_Gray"></div>
                             <span className="w-10">
                               {MovieDetailData.genres[0].name}
                             </span>

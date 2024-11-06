@@ -27,7 +27,7 @@ export default function RecentKeyword({ data }: RecentKeywordType) {
         </span>
       </div>
       <div className="flex  flex-col items-start  gap-[24px] Laptop:flex-row">
-        <div className="flex h-full w-full Laptop:hidden">
+        <div className="block h-full w-full Laptop:hidden">
           <Swiper slidesPerView="auto" spaceBetween={12}>
             {data?.map((mention, index) => {
               return (

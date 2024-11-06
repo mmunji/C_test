@@ -27,7 +27,7 @@ export default function Mobile_BestMovie(MovieData: Mobile_BestMoiveProps) {
     <div className="block Tablet:hidden">
       <Swiper
         slidesPerView="auto"
-        spaceBetween={20}
+        spaceBetween={8}
         className="mySwiper"
         modules={[Pagination]}
       >
@@ -61,7 +61,7 @@ export default function Mobile_BestMovie(MovieData: Mobile_BestMoiveProps) {
                                 "YYYY",
                               )}
                             </span>
-                            <div className="h-3 w-[1px] border-[1px] border-Gray_Orange"></div>
+                            <div className="h-3 w-[1px] border-r-[1px] border-Gray_Orange"></div>
                             <span className="text-Silver">
                               {MovieDetailData.genres[0]
                                 ? MovieDetailData.genres[0].name
@@ -69,7 +69,7 @@ export default function Mobile_BestMovie(MovieData: Mobile_BestMoiveProps) {
                             </span>
                           </div>
                           <div>
-                            <div className="flex gap-5">
+                            <div className="flex items-center gap-5">
                               <div className="flex items-center gap-[2px]  text-E_md">
                                 <Image
                                   src={TmdbSm}
