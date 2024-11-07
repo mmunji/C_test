@@ -31,7 +31,7 @@ export default function KeywordBar({ title, top1Keyword }: KeywordBarProps) {
         </div>
       ) : (
         <div
-          className="mb-4 flex h-12 w-full items-center justify-center rounded-xl border-[1px] border-D1_Gray px-3 Laptop:mb-[52px] Laptop:h-[74px]"
+          className="mb-4 flex h-12 w-full items-center justify-center rounded-xl border-[1px] border-D1_Gray px-4 Laptop:mb-[52px] Laptop:h-[74px]"
           style={{
             background: gradientStyle === "" ? "#403E3C" : gradientStyle,
           }}
