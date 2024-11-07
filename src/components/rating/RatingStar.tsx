@@ -11,11 +11,12 @@ import {
 } from "@/../public/icons";
 import { revalidateMyPage } from "@/services/my/actions";
 import { talkAPIs } from "@/services/talk/talkAPIs";
-import { useAddTalk } from "@/services/talk/talkMutations";
+import { useAddTalk, useEditTalk } from "@/services/talk/talkMutations";
 import useLoggedInStore from "@/stores/useLoggedIn";
 
 interface StarProps {
-  type: "main" | "detail";
+  myTalk?: MyTalk;
+  type: "main" | "detail" | "detail-edit";
   index: number;
   ratingValue: number;
   setRatingValue: Dispatch<SetStateAction<number>>;
@@ -31,6 +32,7 @@ interface StarProps {
 }
 
 export default function RatingStar({
+  myTalk,
   type,
   ratingValue,
   index,
@@ -76,6 +78,11 @@ export default function RatingStar({
 
   const { mutate: addTalks } = useAddTalk(movieId as number);
   const { loggedIn } = useLoggedInStore();
+
+  const { mutate: editTalk } = useEditTalk({
+    movieId: movieId,
+  });
+
   const AddStarReview = async (star: number) => {
     if (StarReview && loggedIn) {
       if (type === "detail") {
@@ -86,6 +93,15 @@ export default function RatingStar({
           ratingValue: star,
           spoiler: false,
           talk: "",
+        });
+      } else if (type === "detail-edit") {
+        editTalk({
+          talkId: myTalk?.reviewId,
+          content: "",
+          movieName: movienm!,
+          genreList: genreList || [],
+          spoiler: false,
+          star: ratingValue,
         });
       } else {
         const { data } = await talkAPIs.addTalks({

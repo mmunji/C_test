@@ -6,8 +6,6 @@ import Modal from "@/components/modal/modal";
 import RatingStar from "@/components/rating/RatingStar";
 import SpeechBubble from "@/components/speechBubble/SpeechBubble";
 import useHandleClickAuthButton from "@/hooks/useHandleClickAuthButtons";
-import useNeedLogin from "@/hooks/useNeedLogin";
-import { useGetMyTalk } from "@/services/talk/talkQueries";
 import useLoggedInStore from "@/stores/useLoggedIn";
 
 import DriveCommentText from "./DriveCommentText";
@@ -39,7 +37,7 @@ export default function Rating({
     setIsOpen,
     showTalkForm,
     setShowTalkForm,
-  } = useRating({ initialValue: 0 });
+  } = useRating({ initialValue: myTalk ? myTalk?.star : 0, myTalk });
   const { handleClickAuthButton } = useHandleClickAuthButton();
   const genreList = movieDetailData.genreDTOList.map((el) => el.id);
   const [isLoading, setIsLoading] = useState(false);
@@ -57,7 +55,7 @@ export default function Rating({
 
   return (
     <div className="relative flex w-full flex-col justify-center rounded-xl py-3 Tablet:py-8 Laptop:mb-6 Laptop:bg-D1_Gray Laptop:px-7 Laptop:py-8">
-      {driveTalkText === "" ? (
+      {driveTalkText === "" && !myTalk ? (
         <TextBeforeRating title={title} />
       ) : (
         <DriveCommentText
@@ -67,29 +65,47 @@ export default function Rating({
       )}
 
       <div className="mx-auto mb-6 flex cursor-pointer Laptop:mb-0">
-        {myTalk && !showTalkForm ? (
-          <FixedRating star={myTalk?.star || 0} />
-        ) : (
-          [...Array(5)].map((_, i) => (
-            <RatingStar
-              key={i}
-              {...{
-                type: "detail",
-                movienm: movieDetailData.title,
-                index: i,
-                ratingValue,
-                setRatingValue,
-                clickedValue,
-                setClickedValue,
-                ratingSize: "Xl",
-                readyToRating,
-                StarReview: showTalkForm ? false : true,
-                movieId: movieId,
-                genreList: genreList,
-              }}
-            />
-          ))
-        )}
+        {myTalk
+          ? [...Array(5)].map((_, i) => (
+              <RatingStar
+                key={i}
+                {...{
+                  myTalk: myTalk,
+                  type: "detail-edit",
+                  movienm: movieDetailData.title,
+                  index: i,
+                  ratingValue,
+                  setRatingValue,
+                  clickedValue,
+                  setClickedValue,
+                  ratingSize: "Xl",
+                  readyToRating,
+                  StarReview: showTalkForm ? false : true,
+                  movieId: movieId,
+                  genreList: genreList,
+                }}
+              />
+            ))
+          : [...Array(5)].map((_, i) => (
+              <RatingStar
+                key={i}
+                {...{
+                  myTalk: myTalk,
+                  type: "detail",
+                  movienm: movieDetailData.title,
+                  index: i,
+                  ratingValue,
+                  setRatingValue,
+                  clickedValue,
+                  setClickedValue,
+                  ratingSize: "Xl",
+                  readyToRating,
+                  StarReview: showTalkForm ? false : true,
+                  movieId: movieId,
+                  genreList: genreList,
+                }}
+              />
+            ))}
       </div>
 
       {isLoading && loggedIn && (

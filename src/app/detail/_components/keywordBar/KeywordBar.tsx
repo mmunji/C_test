@@ -31,16 +31,19 @@ export default function KeywordBar({ title, top1Keyword }: KeywordBarProps) {
         </div>
       ) : (
         <div
-          className="mb-4 flex h-12 w-full items-center justify-center rounded-xl border-[1px] border-D1_Gray Laptop:mb-[52px] Laptop:h-[74px]"
+          className="mb-4 flex h-12 w-full items-center justify-center rounded-xl border-[1px] border-D1_Gray px-4 Laptop:mb-[52px] Laptop:h-[74px]"
           style={{
             background: gradientStyle === "" ? "#403E3C" : gradientStyle,
           }}
         >
-          <section className="flex h-6 items-center Laptop:h-[34px]">
-            <span className="mr-2 text-regular font-Bold text-Silver Laptop:text-xl">
+          <section className="flex h-6 w-full items-center justify-center overflow-hidden Laptop:h-[34px]">
+            <span
+              className="mr-2 overflow-hidden truncate whitespace-nowrap text-regular font-Bold text-Silver Laptop:text-xl"
+              style={{ textOverflow: "ellipsis" }}
+            >
               {gradientStyle !== "" && sentence1}
             </span>
-            <span className="text-regular font-Bold text-Primary Laptop:text-xl">
+            <span className="whitespace-nowrap text-regular font-Bold text-Primary Laptop:text-xl">
               {gradientStyle !== "" && `${top1Keyword.keyword}`}
             </span>
           </section>

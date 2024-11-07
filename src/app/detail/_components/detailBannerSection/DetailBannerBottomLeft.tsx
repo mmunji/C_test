@@ -37,9 +37,9 @@ export default function DetailBannerBottomLeft({
   ];
 
   return (
-    <section className="mt-auto flex flex-col gap-1">
+    <section className="mt-auto flex flex-col">
       <section className="mb-2 flex flex-col-reverse items-center gap-1 Laptop:mb-0 Laptop:flex-row Laptop:gap-4">
-        <h2 className="text-Silver Text-xl-Bold Laptop:Text-xxxl-Bold">
+        <h2 className="px-5 text-center text-Silver Text-xl-Bold Tablet:px-0 Laptop:Text-xxxl-Bold">
           {movieDetailData.title}
         </h2>
         <div className="flex items-center justify-center rounded-[35px] border-[1px] border-White px-3 py-1 Text-xs-Regular Laptop:h-10 Laptop:border-[2px] Laptop:px-4 Laptop:py-2 Laptop:Text-m-Medium">
