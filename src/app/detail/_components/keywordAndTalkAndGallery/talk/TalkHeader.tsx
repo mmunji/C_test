@@ -24,7 +24,7 @@ export default function TalkHeader({
 
   return (
     <section className="relative mb-4 flex h-10 items-center justify-between Tablet:mb-6">
-      <section className="flex items-center gap-[14px] overflow-hidden">
+      <section className="flex items-center gap-[12px] overflow-hidden">
         <p className="max-w-[190px] truncate text-Silver Text-m-Bold Tablet:max-w-max Tablet:Text-l-Bold">
           {title} TALK
         </p>

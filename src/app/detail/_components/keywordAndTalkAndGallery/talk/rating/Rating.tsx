@@ -39,7 +39,7 @@ export default function Rating({
     setIsOpen,
     showTalkForm,
     setShowTalkForm,
-  } = useRating({ initialValue: 0 });
+  } = useRating({ initialValue: myTalk ? myTalk.star : 0 });
   const { handleClickAuthButton } = useHandleClickAuthButton();
   const genreList = movieDetailData.genreDTOList.map((el) => el.id);
   const [isLoading, setIsLoading] = useState(false);
@@ -57,7 +57,7 @@ export default function Rating({
 
   return (
     <div className="relative flex w-full flex-col justify-center rounded-xl py-3 Tablet:py-8 Laptop:mb-6 Laptop:bg-D1_Gray Laptop:px-7 Laptop:py-8">
-      {driveTalkText === "" ? (
+      {driveTalkText === "" && !myTalk ? (
         <TextBeforeRating title={title} />
       ) : (
         <DriveCommentText

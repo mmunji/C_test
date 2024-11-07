@@ -39,9 +39,10 @@ export default function useRating({ initialValue = 0 }: UseRatingProps) {
       setDriveTalkText("최고였군요! 더 자세한 얘기도 해주세요 :)");
     }
   };
+  console.log("driveTalkText", driveTalkText);
 
   useEffect(() => {
-    if (clickedValue && !showTalkForm) handleDriveTalk();
+    if ((clickedValue || ratingValue) && !showTalkForm) handleDriveTalk();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [clickedValue, showTalkForm]);
 
