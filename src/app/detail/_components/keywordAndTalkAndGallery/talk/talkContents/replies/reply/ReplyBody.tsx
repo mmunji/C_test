@@ -43,7 +43,7 @@ export default function ReplyBody({
   const [showMore, setShowMore] = useState(false);
   const { contentRef, showMoreButton } = useNeedTalkMoreButton({
     type: "reply",
-    replyContent: reply.content,
+    replyContent: reply?.content,
   });
   const { device } = useDevice();
   const { mutate: handleEditReply } = useEditReply(
