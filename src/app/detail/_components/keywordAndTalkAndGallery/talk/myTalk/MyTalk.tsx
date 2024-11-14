@@ -101,7 +101,12 @@ function MyTalk({ myTalk, movieId, movieDetailData }: MyTalkProps) {
           </div>
         </div>
 
-        <div className="relative flex w-full flex-col justify-center rounded-xl bg-Black px-5 py-4 Laptop:mb-6 Laptop:gap-3 Laptop:bg-D1_Gray Laptop:px-7 Laptop:py-8">
+        <div
+          className={cn(
+            "relative flex w-full flex-col justify-center rounded-xl px-5 py-4 Laptop:mb-6 Laptop:gap-3 Laptop:bg-D1_Gray Laptop:px-7 Laptop:py-8",
+            clickedEditMyTalk ? "bg-Black" : "bg-D1_Gray",
+          )}
+        >
           <div className="mx-auto hidden flex-col items-center gap-3 Laptop:flex">
             <p className="text-Primary Text-l-Bold">
               {clickedEditMyTalk ? ratingValue : myTalk?.star}점
@@ -153,7 +158,9 @@ function MyTalk({ myTalk, movieId, movieDetailData }: MyTalkProps) {
               </div>
 
               <p className="hidden text-Gray Text-s-Medium Tablet:block">
-                {dayjs(myTalk?.createTime).format("YY.MM.DD")} 작성
+                {clickedEditMyTalk
+                  ? `${content?.length}/2000`
+                  : `${dayjs(myTalk?.createTime).format("YY.MM.DD")} 작성`}
               </p>
             </div>
 
@@ -170,6 +177,12 @@ function MyTalk({ myTalk, movieId, movieDetailData }: MyTalkProps) {
                 </p>
               </div>
             )}
+
+            <p className="ml-auto text-D3_Gray Text-s-Regular Tablet:hidden">
+              {clickedEditMyTalk
+                ? `${content?.length}/2000`
+                : `${dayjs(myTalk?.createTime).format("YY.MM.DD")} 작성`}
+            </p>
 
             {!clickedEditMyTalk && (
               <section className="hidden items-center justify-end Tablet:flex">

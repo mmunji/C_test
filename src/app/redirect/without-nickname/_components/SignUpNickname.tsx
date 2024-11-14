@@ -1,11 +1,5 @@
 import clsx from "clsx";
-import React, {
-  Dispatch,
-  SetStateAction,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 
 import useDebounce from "@/hooks/useDebounce";
 import { useCheckNickname } from "@/services/auth/authQueries";
@@ -17,6 +11,13 @@ interface SignUpNicknameProps {
   setNickname: Dispatch<SetStateAction<string>>;
   nickError: boolean;
   setNickError: Dispatch<SetStateAction<boolean>>;
+  userInfo: UserInfo;
+}
+
+interface UserInfo {
+  nickname: string;
+  birthday: string;
+  gender: string;
 }
 
 export default function SignUpNickname({
@@ -24,11 +25,13 @@ export default function SignUpNickname({
   setNickname,
   nickError,
   setNickError,
+  userInfo,
 }: SignUpNicknameProps) {
   const [nickFocused, setNickFocused] = useState(false);
   const [checkNickMessage, setCheckNickMessage] = useState("");
   const debouncedValue = useDebounce(nickname, 250);
   const { data } = useCheckNickname(debouncedValue);
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     if (value.length > 10) return;
@@ -42,14 +45,31 @@ export default function SignUpNickname({
   };
 
   useEffect(() => {
+    if (nickname === "") {
+      setCheckNickMessage("");
+      return;
+    }
+
     if (!nickError) {
-      if (!data?.data) {
+      if (!data?.data || userInfo.nickname === nickname) {
         setCheckNickMessage("멋진 닉네임이에요!");
       } else {
         setCheckNickMessage("이미 사용중인 닉네임이에요.");
       }
     }
-  }, [nickError, data]);
+  }, [nickError, data, userInfo.nickname, nickname]);
+
+  const borderColorClass = nickError
+    ? "border-Error"
+    : data?.data && userInfo.nickname !== nickname
+      ? "border-Error"
+      : "border-Success";
+
+  const textColorClass = nickError
+    ? "text-Error"
+    : data?.data && userInfo.nickname !== nickname
+      ? "text-Error"
+      : "text-Success";
 
   return (
     <section>
@@ -63,12 +83,12 @@ export default function SignUpNickname({
           onBlur={() => setNickFocused(false)}
           value={nickname}
           onChange={handleChange}
-          className={`h-12 w-full rounded-xl border-[1px] ${nickname === "" && nickFocused && "border-Tint_1"} ${nickname === "" && "border-Gray"} ${!data?.data && nickname !== "" && !nickError && "border-Success"} ${(data?.data || nickError) && "border-Error"} bg-transparent px-5 py-3 outline-none Text-m-Medium`}
+          className={`h-12 w-full rounded-xl border-[1px] ${borderColorClass} bg-transparent px-5 py-3 outline-none Text-m-Medium`}
         />
         <div
           className={clsx(
             "absolute right-5 top-1/2 -translate-y-1/2 Text-m-Medium",
-            nickError || data?.data ? "text-Error" : "text-Gray",
+            textColorClass,
             nickname === "" && "text-Gray",
           )}
         >
@@ -94,7 +114,7 @@ export default function SignUpNickname({
 
           {(checkNickMessage === "이미 사용중인 닉네임이에요." ||
             nickname === "" ||
-            nickError) && <p>{nickname.length}/10</p>}
+            nickError) && <p className="text-Gray">{nickname.length}/10</p>}
         </div>
       </div>
       {nickError && nickname !== "" && (
@@ -103,12 +123,7 @@ export default function SignUpNickname({
         </p>
       )}
       {!nickError && nickname !== "" && (
-        <p
-          className={cn(
-            "mt-2 Text-xs-Regular",
-            data?.data ? "text-Error" : "text-Success",
-          )}
-        >
+        <p className={cn("mt-2 Text-xs-Regular", textColorClass)}>
           {checkNickMessage}
         </p>
       )}
