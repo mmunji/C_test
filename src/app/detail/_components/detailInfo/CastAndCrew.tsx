@@ -16,18 +16,26 @@ interface CastAndCrew {
 }
 
 export default function CastAndCrew({ castAndCrew }: CastAndCrewProps) {
-  const tabs = ["출연", "제작진"];
-  const [activeTab, setActiveTab] = useState(tabs[0]);
+  const { cast, crew } = castAndCrew;
 
-  const { cast } = castAndCrew;
-  const { crew } = castAndCrew;
+  const tabs = [
+    ...(cast && cast.length > 0 ? ["출연"] : []),
+    ...(crew && crew.length > 0 ? ["제작진"] : []),
+  ];
+
+  const [activeTab, setActiveTab] = useState(tabs[0] || "");
+
+  if (tabs.length === 0) return null;
 
   return (
     <section className="max-h-full">
-      <CommonTab {...{ tabs, activeTab, setActiveTab }} />
-
-      {activeTab === tabs[0] && <CastAndCrewSlider type="cast" cast={cast} />}
-      {activeTab === tabs[1] && <CastAndCrewSlider type="crew" crew={crew} />}
+      <CommonTab {...{ tabs, activeTab, setActiveTab, cast, crew }} />
+      {activeTab === "출연" && cast && (
+        <CastAndCrewSlider type="cast" cast={cast} />
+      )}
+      {activeTab === "제작진" && crew && (
+        <CastAndCrewSlider type="crew" crew={crew} />
+      )}
     </section>
   );
 }

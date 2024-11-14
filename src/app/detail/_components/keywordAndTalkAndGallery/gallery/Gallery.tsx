@@ -29,12 +29,20 @@ export default function Gallery({
 
   return (
     <>
-      <GalleryTitle content="출연" />
-      <CastAndCrewSlider type="cast" cast={cast} />
-      <DividingLine />
-      <GalleryTitle content="제작진" />
-      <CastAndCrewSlider type="crew" crew={crew} />
-      <DividingLine />
+      {cast?.length !== 0 && (
+        <>
+          <GalleryTitle content="출연" />
+          <CastAndCrewSlider type="cast" cast={cast} />
+          <DividingLine />
+        </>
+      )}
+      {crew?.length !== 0 && (
+        <>
+          <GalleryTitle content="제작진" />
+          <CastAndCrewSlider type="crew" crew={crew} />
+          <DividingLine />
+        </>
+      )}
       <TrailerAndPhoto trailerAndPhoto={trailerAndPhoto} />
     </>
   );
