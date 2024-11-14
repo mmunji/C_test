@@ -172,7 +172,7 @@ function MyTalk({ myTalk, movieId, movieDetailData }: MyTalkProps) {
               />
             ) : (
               <div className="max-h-[105px] overflow-y-auto whitespace-pre-wrap text-Gray_Orange Text-s-Regular input-scrollbar Tablet:max-h-[120px] Tablet:Text-m-Medium Laptop:mt-2">
-                <p className="whitespace-pre-wrap break-all">
+                <p className="whitespace-pre-wrap break-words">
                   {myTalk?.content}
                 </p>
               </div>

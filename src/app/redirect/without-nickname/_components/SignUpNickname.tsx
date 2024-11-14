@@ -119,7 +119,7 @@ export default function SignUpNickname({
       </div>
       {nickError && nickname !== "" && (
         <p className="mt-2 text-Error Text-xs-Regular">
-          닉네임은 1자 이상 10자 이하의 영문, 숫자, 한글만 가능합니다.
+          닉네임은 1자 이상 10자 이하의 영문, 숫자, 한글만 가능해요.
         </p>
       )}
       {!nickError && nickname !== "" && (

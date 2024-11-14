@@ -66,6 +66,12 @@ export default function ReplyBody({
   };
 
   useEffect(() => {
+    if (reply.mine) {
+      setShowMore(true);
+    }
+  }, [reply.mine]);
+
+  useEffect(() => {
     if (editReply) textareaRef.current?.focus();
   }, [editReply]);
 
@@ -130,7 +136,7 @@ export default function ReplyBody({
           <p
             ref={contentRef}
             className={clsx(
-              "text-Gray_Orange Text-s-Regular Tablet:Text-m-Medium",
+              "text-wrap break-words text-Gray_Orange Text-s-Regular Tablet:Text-m-Medium",
               {
                 "line-clamp-3 max-h-[63px] overflow-hidden Tablet:max-h-[72px]":
                   !showMore,
@@ -143,9 +149,9 @@ export default function ReplyBody({
           {!showMore && showMoreButton && (
             <button
               onClick={() => setShowMore(true)}
-              className="absolute bottom-0 right-0 bg-BG pl-2 text-Gray Text-m-Medium Text-s-Medium Tablet:bg-D1_Gray"
+              className="absolute bottom-0 right-0 bg-BG pl-3 text-Gray Text-m-Medium Text-s-Medium Tablet:bg-D1_Gray"
             >
-              ...더보기
+              더보기
             </button>
           )}
         </div>
