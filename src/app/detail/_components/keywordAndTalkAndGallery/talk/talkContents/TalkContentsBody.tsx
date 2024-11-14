@@ -46,7 +46,7 @@ export default function TalkContentsBody({
           <p
             ref={contentRef}
             className={clsx(
-              "text-sm font-Regular leading-[150%] text-Gray_Orange Tablet:Text-m-Medium",
+              "text-wrap break-words text-sm font-Regular leading-[150%] text-Gray_Orange Tablet:Text-m-Medium",
               {
                 "line-clamp-3 max-h-[63px] overflow-hidden Tablet:max-h-[72px]":
                   !showMore,

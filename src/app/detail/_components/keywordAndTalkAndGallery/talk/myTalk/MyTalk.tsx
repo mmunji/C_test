@@ -125,7 +125,12 @@ function MyTalk({ myTalk, movieId, movieDetailData }: MyTalkProps) {
               )}
             </div>
           </div>
-          <div className="flex flex-col gap-2 Laptop:mt-5 Laptop:gap-3 Laptop:rounded-xl Laptop:bg-[rgba(0,0,0,0.2)] Laptop:px-6 Laptop:py-5 Laptop:pb-3">
+          <div
+            className={cn(
+              "flex flex-col gap-2 Laptop:mt-5 Laptop:gap-0 Laptop:rounded-xl Laptop:bg-[rgba(0,0,0,0.1)] Laptop:px-6 Laptop:py-5 Laptop:pb-3",
+              clickedEditMyTalk && "Laptop:bg-[rgba(0,0,0,0.2)]",
+            )}
+          >
             <div className="flex justify-between">
               <div className="flex items-center gap-1">
                 <p className="mr-1 text-Silver Text-s-Bold">
@@ -156,16 +161,18 @@ function MyTalk({ myTalk, movieId, movieDetailData }: MyTalkProps) {
               <textarea
                 value={content}
                 onChange={(e) => setContent(e.target.value)}
-                className="h-[105px] w-full resize-none bg-transparent leading-[21px] outline-none Text-s-Regular input-scrollbar placeholder:text-D3_Gray placeholder:Text-s-Regular Tablet:h-[120px] Tablet:leading-[24px] Tablet:Text-m-Medium Tablet:placeholder:Text-m-Medium"
+                className="h-[105px] w-full resize-none bg-transparent leading-[21px] outline-none Text-s-Regular input-scrollbar placeholder:text-D3_Gray placeholder:Text-s-Regular Tablet:h-[120px] Tablet:leading-[24px] Tablet:Text-m-Medium Tablet:placeholder:Text-m-Medium Laptop:my-2"
               />
             ) : (
-              <div className="max-h-[105px] overflow-auto text-Gray_Orange Text-s-Regular input-scrollbar Tablet:max-h-[120px] Tablet:Text-m-Medium">
-                <p>{WithLineBreak(myTalk?.content)}</p>
+              <div className="max-h-[105px] overflow-y-auto whitespace-pre-wrap text-Gray_Orange Text-s-Regular input-scrollbar Tablet:max-h-[120px] Tablet:Text-m-Medium Laptop:mt-2">
+                <p className="whitespace-pre-wrap break-all">
+                  {myTalk?.content}
+                </p>
               </div>
             )}
 
             {!clickedEditMyTalk && (
-              <section className="hidden items-center justify-end Tablet:mt-2 Tablet:flex">
+              <section className="hidden items-center justify-end Tablet:flex">
                 <Button
                   variant="textIconL"
                   className="cursor-default hover:bg-transparent active:bg-transparent"
@@ -255,7 +262,7 @@ function MyTalk({ myTalk, movieId, movieDetailData }: MyTalkProps) {
             <Button
               onClick={() => setClickedEditMyTalk(!clickedEditMyTalk)}
               size={"md"}
-              className="ml-auto hidden pb-0 pr-0 Laptop:block"
+              className="-mt-1 ml-auto hidden pb-0 pr-0 Laptop:block"
             >
               수정
             </Button>
