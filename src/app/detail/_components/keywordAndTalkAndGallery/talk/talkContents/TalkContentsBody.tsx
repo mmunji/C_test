@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 
 import useNeedTalkMoreButton from "@/app/detail/_hooks/useNeedTalkMoreButton";
 import WithLineBreak from "@/components/withLineBreak/WithLineBreak";
@@ -21,6 +21,12 @@ export default function TalkContentsBody({
     type: "talk",
     showSpoiler: showSpoiler,
   });
+
+  useEffect(() => {
+    if (talk.mine) {
+      setShowMore(true);
+    }
+  }, [talk.mine]);
 
   return (
     <div
@@ -46,7 +52,7 @@ export default function TalkContentsBody({
           <p
             ref={contentRef}
             className={clsx(
-              "text-sm font-Regular leading-[150%] text-Gray_Orange Tablet:Text-m-Medium",
+              "text-wrap break-words text-sm font-Regular leading-[150%] text-Gray_Orange Tablet:Text-m-Medium",
               {
                 "line-clamp-3 max-h-[63px] overflow-hidden Tablet:max-h-[72px]":
                   !showMore,
@@ -61,9 +67,9 @@ export default function TalkContentsBody({
       {!showMore && showSpoiler && showMoreButton && (
         <button
           onClick={() => setShowMore(true)}
-          className="absolute bottom-0 right-0 z-10 bg-BG pl-2 text-sm font-Regular leading-[140%] text-Gray Tablet:Text-m-Medium Laptop:bg-D1_Gray"
+          className="absolute bottom-0 right-0 z-10 bg-BG pl-3 text-sm font-Regular leading-[140%] text-Gray Tablet:Text-m-Medium Laptop:bg-D1_Gray"
         >
-          ...더보기
+          더보기
         </button>
       )}
     </div>

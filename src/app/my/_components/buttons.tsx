@@ -163,7 +163,7 @@ export function DeleteAccountButton({
             onClick={() => {
               setIsCompleteModalOpen(false);
               handleLogout();
-              logout();
+              logout(true);
             }}
           >
             홈으로 돌아가기

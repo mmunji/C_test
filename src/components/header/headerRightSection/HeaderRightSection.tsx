@@ -46,7 +46,12 @@ export default function HeaderRightSection({
   useEffect(() => {
     if (movieTopTen) {
       const randomIndex = Math.floor(Math.random() * movieTopTen.length);
-      setRandomMovie(movieTopTen[randomIndex].movienm);
+
+      const formattedMovieName =
+        movieTopTen[randomIndex].movienm.length > 10
+          ? movieTopTen[randomIndex].movienm.slice(0, 10) + "..."
+          : movieTopTen[randomIndex].movienm;
+      setRandomMovie(formattedMovieName);
     }
   }, [movieTopTen]);
 

@@ -24,11 +24,11 @@ export default function TalkHeader({
 
   return (
     <section className="relative mb-4 flex h-10 items-center justify-between Tablet:mb-6">
-      <section className="flex items-center gap-[14px]">
-        <p className="text-Silver Text-m-Bold Tablet:Text-l-Bold">
+      <section className="flex items-center gap-[12px] overflow-hidden">
+        <p className="max-w-[190px] truncate text-Silver Text-m-Bold Tablet:max-w-max Tablet:Text-l-Bold">
           {title} TALK
         </p>
-        <p className="text-Primary Text-m-Bold Tablet:Text-l-Bold">
+        <p className="flex-shrink-0 text-Primary Text-m-Bold Tablet:Text-l-Bold">
           {totalTalks.toLocaleString()}
         </p>
       </section>
@@ -42,7 +42,6 @@ export default function TalkHeader({
         </Dropdown.Trigger>
 
         <Dropdown.List>
-          {/* <Dropdown.List className="right-0 top-9 select-none"> */}
           {filters.map((filter) => (
             <Dropdown.Item key={filter} onClick={() => setActiveFilter(filter)}>
               {filter}

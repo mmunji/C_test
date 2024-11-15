@@ -83,7 +83,7 @@ export default function TalkContentsHeader({
                   {talk.nickName}
                 </p>
                 <p className="text-Gray Text-xs-Regular Tablet:Text-s-Medium">
-                  {formatDate(talk.createdAt)}
+                  {formatDate(talk.createdAt)} {talk.edited && "(수정)"}
                 </p>
               </section>
             </section>

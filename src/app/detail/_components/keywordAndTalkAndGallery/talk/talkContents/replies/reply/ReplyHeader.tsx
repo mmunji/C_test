@@ -54,10 +54,10 @@ export default function ReplyHeader({
             {reply?.nickName}
           </p>
           <p className="text-Gray Text-xs-Regular Tablet:Text-s-Medium">
-            {formatDate(reply?.createdAt)}
+            {formatDate(reply?.createdAt)} {reply?.edited && "(수정)"}
           </p>
         </section>
-        {reply.mine ? (
+        {reply?.mine ? (
           <Dropdown type="text">
             <Dropdown.Trigger>
               <Button variant="text" className="my-auto h-fit">

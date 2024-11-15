@@ -80,15 +80,18 @@ export default function TalkForm({
       className="mx-auto flex w-full flex-col gap-3 Laptop:mt-7"
     >
       <div
-        className="relative h-[174px] w-full overflow-hidden rounded-xl Tablet:h-[201px]"
+        className="relative h-[203px] w-full overflow-hidden rounded-xl Tablet:h-[213px]"
         style={{ backgroundColor: backgroundColor }}
       >
-        <TalkFormHeader />
+        <TalkFormHeader talk={talk} />
         <textarea
           {...register("talk", { required: true })}
           placeholder="영화에 대해 이야기 해볼까요?"
-          className="absolute bottom-5 left-0 h-[105px] w-[calc(100%-20px)] resize-none bg-transparent px-5 leading-[21px] outline-none Text-s-Regular input-scrollbar placeholder:text-D3_Gray placeholder:Text-s-Regular Tablet:h-[120px] Tablet:w-[calc(100%-24px)] Tablet:leading-[24px] Tablet:Text-m-Medium Tablet:placeholder:Text-m-Medium"
+          className="absolute bottom-10 left-0 h-[105px] w-[calc(100%-20px)] resize-none bg-transparent px-5 leading-[21px] outline-none Text-s-Regular input-scrollbar placeholder:text-D3_Gray placeholder:Text-s-Regular Tablet:h-[120px] Tablet:w-[calc(100%-24px)] Tablet:leading-[24px] Tablet:Text-m-Medium Tablet:placeholder:Text-m-Medium"
         />
+        <p className="absolute bottom-3 left-1/2 h-[21px] w-[calc(100%-40px)] -translate-x-1/2 text-end text-Gray Text-s-Medium Laptop:hidden">
+          {`${talk?.length}/2000`}
+        </p>
       </div>
 
       <section className="ml-auto flex">
