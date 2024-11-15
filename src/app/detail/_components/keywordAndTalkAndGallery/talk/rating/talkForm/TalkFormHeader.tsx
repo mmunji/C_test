@@ -5,7 +5,11 @@ import { API_URL } from "@/constants/api_url";
 import { tokenManager } from "@/services/auth/tokenManager";
 import { cn } from "@/utils/cn";
 
-export default function TalkFormHeader() {
+interface TalkFormHeaderProps {
+  talk: string;
+}
+
+export default function TalkFormHeader({ talk }: TalkFormHeaderProps) {
   const accessToken = tokenManager.getToken();
   const { data: myData } = useQuery({
     queryKey: ["myInfo"],
@@ -40,31 +44,37 @@ export default function TalkFormHeader() {
   });
 
   return (
-    <div className="absolute left-5 top-4 flex items-center Tablet:top-5">
-      <p
-        className={cn(
-          "mr-3 text-Silver Text-s-Bold",
-          badges?.length === 0 && "mt-1",
-        )}
-      >
-        {myData?.nickname}
-      </p>
+    <div className="absolute left-5 top-4 flex w-[calc(100%-40px)] items-center justify-between Tablet:top-5">
+      <div className="items flex">
+        <p
+          className={cn(
+            "mr-3 text-Silver Text-s-Bold",
+            badges?.length === 0 && "mt-1",
+          )}
+        >
+          {myData?.nickname}
+        </p>
 
-      {Array.isArray(badges) && badges.length > 0 && (
-        <section className="flex h-full gap-1">
-          {badges
-            .filter((badge) => badge.use)
-            ?.slice(0, 3)
-            ?.map((el, i) => (
-              <SmallBadge
-                key={i}
-                content={el.badge_name}
-                withoutContent
-                size="sm"
-              />
-            ))}
-        </section>
-      )}
+        {Array.isArray(badges) && badges.length > 0 && (
+          <section className="flex h-full gap-1">
+            {badges
+              .filter((badge) => badge.use)
+              ?.slice(0, 3)
+              ?.map((el, i) => (
+                <SmallBadge
+                  key={i}
+                  content={el.badge_name}
+                  withoutContent
+                  size="sm"
+                />
+              ))}
+          </section>
+        )}
+      </div>
+
+      <p className="hidden text-Gray Text-s-Medium Laptop:block">
+        {`${talk?.length}/2000`}
+      </p>
     </div>
   );
 }

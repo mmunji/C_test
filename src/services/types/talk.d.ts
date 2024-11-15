@@ -36,4 +36,5 @@ interface ReviewList {
   likeCheck: boolean;
   dislikeCheck: boolean;
   mine: boolean;
+  edited: boolean;
 }

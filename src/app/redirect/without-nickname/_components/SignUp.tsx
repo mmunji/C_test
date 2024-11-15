@@ -73,6 +73,7 @@ export default function SignUp({ userInfo }: SignUpProps) {
         <div className="mt-11 Tablet:mt-10 Laptop:mt-6 Desktop:mt-10">
           <SignUpTitle />
           <SignUpNickname
+            userInfo={userInfo}
             nickname={nickname}
             setNickname={setNickname}
             nickError={nickError}

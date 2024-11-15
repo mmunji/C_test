@@ -74,7 +74,7 @@ export default function ReplyFooter({
             alt="좋아요"
             className="hidden Tablet:block"
           />
-          <p className="ml-1 select-none text-Gray_Orange Text-xs-Regular Tablet:Text-s-Medium">
+          <p className="select-none text-Gray_Orange Text-xs-Regular Tablet:Text-s-Medium">
             {reply?.likeCount}
           </p>
         </Button>
@@ -94,7 +94,7 @@ export default function ReplyFooter({
             alt="싫어요"
             className="hidden Tablet:block"
           />
-          <p className="ml-1 select-none text-Gray_Orange Text-xs-Regular Tablet:Text-s-Medium">
+          <p className="select-none text-Gray_Orange Text-xs-Regular Tablet:Text-s-Medium">
             {reply?.dislikeCount}
           </p>
         </Button>
