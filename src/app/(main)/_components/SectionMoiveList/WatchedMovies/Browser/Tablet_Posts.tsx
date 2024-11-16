@@ -33,16 +33,10 @@ export default function Tablet_Posts({ MovieWatchMovies }: WatchMovieType) {
       <div className="mx-auto hidden w-[537px] items-center rounded-xl bg-D1_Gray Tablet:flex Laptop:hidden">
         <div
           className="flex transition-transform duration-500 ease-in-out"
-          style={{
-            transform: `translateX(-${MovieNumber * 100}%)`,
-            transition: "transform 0.5s ease-in-out",
-          }} // 슬라이드 애니메이션
+          style={{ transform: `translateX(-${MovieNumber * 100}%)` }} // 슬라이드 애니메이션
         >
           {MovieWatchMovies.map((movie, index) => (
-            <div
-              key={movie.movieId}
-              className="flex w-full flex-shrink-0 bg-D1_Gray" // 배경색도 함께 이동
-            >
+            <div key={movie.movieId} className="flex w-full flex-shrink-0">
               <Link href={`/detail/${movie.movieId}`}>
                 <div className="flex justify-center">
                   <Image
@@ -59,7 +53,7 @@ export default function Tablet_Posts({ MovieWatchMovies }: WatchMovieType) {
                 </div>
               </Link>
               <div className="flex w-[337px] flex-col items-center justify-center gap-8 px-5">
-                <div className="flex flex-col items-center justify-center gap-2">
+                <div className="flex flex-col items-center justify-center gap-2 ">
                   <h1 className="Text-l-Medium">{movie.movienm}</h1>
                   <div className="flex items-center gap-[10px] text-L_Gray Text-s-Regular">
                     <span>{movie.release_date}</span>
@@ -87,7 +81,6 @@ export default function Tablet_Posts({ MovieWatchMovies }: WatchMovieType) {
           ))}
         </div>
       </div>
-
       <div className="hidden w-full justify-center Tablet:flex Laptop:hidden">
         <button
           className="mt-5 w-[392px] rounded-xl border-[1px] border-D2_Gray px-5 py-3 text-L_Gray Text-s-Regular"
