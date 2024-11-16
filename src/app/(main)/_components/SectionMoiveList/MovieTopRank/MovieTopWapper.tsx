@@ -1,5 +1,4 @@
 import { movieAPIs } from "@/services/movie/movieAPIs";
-import { delay } from "@/utils/fn";
 
 import MoiveTopRank from "./MovieTopRank";
 

@@ -22,6 +22,7 @@ import Button from "@/components/buttons/Button";
 import useDevice from "@/hooks/useDevice";
 
 import { NoImageSsikongi } from "../../../../../../public/images";
+import NonPostCard from "../../NonPostCard";
 import PostCard from "../../PostCard";
 import BestTalkPost from "./Post/BestTalkPost";
 interface Desktop_BestMoiveProps {
@@ -43,21 +44,21 @@ export default function DeskTop_BestMovie(
 
   return (
     <div
-      className=" hidden Desktop:block "
+      className="  relative hidden overflow-visible   Desktop:block"
       onMouseEnter={() => sethovered(true)}
       onMouseLeave={() => sethovered(false)}
     >
       <Swiper
         slidesPerView="auto"
         spaceBetween={20}
-        className="mySwiper relative"
+        className="mySwiper relative "
         modules={[Pagination]}
         onSwiper={(e) => {
           setSwiper(e);
         }}
       >
         {Array.isArray(MovieData?.MovieData) &&
-          MovieData.MovieData.length > 0 &&
+        MovieData.MovieData.length > 0 ? (
           MovieData.MovieData.map((MovieDetailData, index) => (
             <SwiperSlide
               key={MovieDetailData.movieId}
@@ -101,17 +102,20 @@ export default function DeskTop_BestMovie(
                 >
                   <div className="flex flex-col gap-3">
                     <div className="flex items-center   gap-3">
-                      <Link href={`detail/${MovieDetailData.movieId}`}>
-                        <h1 className="line-clamp-1 w-full Text-xxl-Bold">
+                      <Link
+                        href={`detail/${MovieDetailData.movieId}`}
+                        className="max-w-[50%] flex-shrink"
+                      >
+                        <h1 className="line-clamp-1  w-full Text-xxl-Bold">
                           {MovieDetailData.movienm}
                         </h1>
                       </Link>
-                      <div className="flex items-center  gap-[10px] text-Gray_Orange Text-s-Regular">
+                      <div className="flex flex-grow items-center   gap-[10px] text-Gray_Orange Text-s-Regular">
                         <span>
                           {dayjs(MovieDetailData.release_date).format("YYYY")}
                         </span>
                         <div className="flex h-3 w-[1px] items-center border-r-[1px] border-L_Gray"></div>
-                        <div className="flex ">
+                        <div className="flex w-full ">
                           {MovieDetailData.genres
                             .slice(0, 3)
                             .map((genre: MovieGenreDto, index: number) => (
@@ -156,7 +160,7 @@ export default function DeskTop_BestMovie(
                   </div>
                   <div className="w-[368px] Desktop:w-[504px]">
                     <div className="flex items-center justify-between">
-                      {!MovieDetailData.reviewData?.content ? (
+                      {MovieDetailData.reviewData?.content ? (
                         <div className="flex items-center gap-1">
                           <Image
                             src={BestTalkFire}
@@ -195,35 +199,30 @@ export default function DeskTop_BestMovie(
                 </div>
               </div>
             </SwiperSlide>
-          ))}
-        {swiper && !swiper.isBeginning && (
-          <Button
-            onClick={() => swiper.slidePrev()}
-            variant="arrow1"
-            className={`absolute left-2 top-1/2 z-[10]  transform   transition-opacity duration-300 ${hovered ? "opacity-15" : "opacity-0"} `}
-          >
-            <Image
-              src={ChevronLeftMd}
-              alt="이전"
-              style={{ color: "#E9E9E9" }}
-            />
-          </Button>
-        )}
-
-        {swiper && !swiper.isEnd && (
-          <Button
-            onClick={() => swiper.slideNext()}
-            variant="arrow2"
-            className={`absolute right-4 top-1/2 z-[10]   transform transition-opacity duration-300${hovered ? "opacity-15" : "opacity-0"}  `}
-          >
-            <Image
-              src={ChevronRightMd}
-              alt="다음"
-              style={{ color: "#E9E9E9" }}
-            />
-          </Button>
+          ))
+        ) : (
+          <NonPostCard />
         )}
       </Swiper>
+      {swiper && !swiper.isBeginning && (
+        <Button
+          onClick={() => swiper.slidePrev()}
+          variant="arrow1"
+          className={`absolute -left-5 top-[40%] z-[100]  transform   transition-opacity duration-300 ${hovered ? "opacity-100" : "opacity-0"} `}
+        >
+          <Image src={ChevronLeftMd} alt="이전" style={{ color: "#E9E9E9" }} />
+        </Button>
+      )}
+
+      {swiper && !swiper.isEnd && (
+        <Button
+          onClick={() => swiper.slideNext()}
+          variant="arrow2"
+          className={`absolute -right-5 top-[40%]  z-[100]   transform transition-opacity duration-300 ${hovered ? "opacity-100" : "opacity-0"}  `}
+        >
+          <Image src={ChevronRightMd} alt="다음" style={{ color: "#E9E9E9" }} />
+        </Button>
+      )}
     </div>
   );
 }

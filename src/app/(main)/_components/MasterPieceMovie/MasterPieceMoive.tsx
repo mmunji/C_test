@@ -128,26 +128,26 @@ export default function MasterPieceMoive({ data }: MasterPieceMoiveType) {
                 </SwiperSlide>
               ))
             : null}
-          {swiper && !swiper.isBeginning && (
-            <Button
-              onClick={() => swiper.slidePrev()}
-              variant="arrow1"
-              className={`absolute left-2 top-1/2 z-[10]  transform   transition-opacity duration-300 ${hovered ? "opacity-100" : "opacity-0"} `}
-            >
-              <Image src={ChevronLeftMd} alt="이전" />
-            </Button>
-          )}
-
-          {swiper && !swiper.isEnd && (
-            <Button
-              onClick={() => swiper.slideNext()}
-              variant="arrow2"
-              className={`absolute right-4 top-1/2 z-[10]   transform transition-opacity duration-300 ${hovered ? "opacity-100" : "opacity-0"}  `}
-            >
-              <Image src={ChevronRightMd} alt="다음" />
-            </Button>
-          )}
         </Swiper>
+        {swiper && !swiper.isBeginning && (
+          <Button
+            onClick={() => swiper.slidePrev()}
+            variant="arrow1"
+            className={`absolute -left-5 top-1/2 z-[10]  transform   transition-opacity duration-300 ${hovered ? "opacity-100" : "opacity-0"} `}
+          >
+            <Image src={ChevronLeftMd} alt="이전" />
+          </Button>
+        )}
+
+        {swiper && !swiper.isEnd && (
+          <Button
+            onClick={() => swiper.slideNext()}
+            variant="arrow2"
+            className={`absolute -right-5 top-1/2 z-[10]   transform transition-opacity duration-300 ${hovered ? "opacity-100" : "opacity-0"}  `}
+          >
+            <Image src={ChevronRightMd} alt="다음" />
+          </Button>
+        )}
       </div>
     </div>
   );

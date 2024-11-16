@@ -22,6 +22,7 @@ import Button from "@/components/buttons/Button";
 
 import { NoImageSsikongi } from "../../../../../../public/images";
 import useMovieSwiper from "../../../_hooks/useMovieSwiper";
+import NonPostCard from "../../NonPostCard";
 import PostCard from "../../PostCard";
 import BestTalkPost from "./Post/BestTalkPost";
 interface Laptop_BestMoiveProps {
@@ -50,9 +51,10 @@ export default function Laptop_BestMovie(MovieData: Laptop_BestMoiveProps) {
         onSwiper={(e) => {
           setSwiper(e);
         }}
+        className="relative"
       >
         {Array.isArray(MovieData.MovieData) &&
-          MovieData.MovieData.length > 0 &&
+        MovieData.MovieData.length > 0 ? (
           MovieData.MovieData.map((MovieDetailData, index) => {
             return (
               <SwiperSlide
@@ -152,14 +154,18 @@ export default function Laptop_BestMovie(MovieData: Laptop_BestMoiveProps) {
                     </div>
                     <div className="w-[368px] Desktop:w-[504px] ">
                       <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-1">
-                          <Image
-                            src={BestTalkFire}
-                            alt=""
-                            className="h-6 w-6"
-                          />
-                          <h1 className="Text-m-Bold">BEST 톡</h1>
-                        </div>
+                        {MovieDetailData.reviewData?.content ? (
+                          <div className="flex items-center gap-1">
+                            <Image
+                              src={BestTalkFire}
+                              alt=""
+                              className="h-6 w-6"
+                            />
+                            <h1 className="Text-m-Bold">BEST 톡</h1>
+                          </div>
+                        ) : (
+                          ""
+                        )}
                         <Link
                           href={`detail/${MovieDetailData.movieId}`}
                           className="flex items-center gap-1 p-2 pr-1"
@@ -190,35 +196,38 @@ export default function Laptop_BestMovie(MovieData: Laptop_BestMoiveProps) {
                 </div>
               </SwiperSlide>
             );
-          })}
-        {swiper && !swiper.isBeginning && (
-          <Button
-            onClick={() => {
-              if (swiper) {
-                swiper.slidePrev();
-              }
-            }}
-            variant="arrow1"
-            className={`absolute left-2 top-1/2 z-[10]  transform   transition-opacity duration-300 ${hovered ? "opacity-100" : "opacity-30"} `}
-          >
-            <Image src={ChevronLeftMd} alt="이전" />
-          </Button>
-        )}
-
-        {swiper && !swiper.isEnd && (
-          <Button
-            onClick={() => {
-              if (swiper) {
-                swiper.slideNext();
-              }
-            }}
-            variant="arrow2"
-            className={`absolute right-4 top-1/2 z-[10]   transform transition-opacity duration-300${hovered ? "opacity-100" : "opacity-30"}  `}
-          >
-            <Image src={ChevronRightMd} alt="다음" />
-          </Button>
+          })
+        ) : (
+          <NonPostCard />
         )}
       </Swiper>
+      {swiper && !swiper.isBeginning && (
+        <Button
+          onClick={() => {
+            if (swiper) {
+              swiper.slidePrev();
+            }
+          }}
+          variant="arrow1"
+          className={`absolute -left-5 top-[40%] z-[50]  transform   transition-opacity duration-300 ${hovered ? "opacity-100" : "opacity-10"} `}
+        >
+          <Image src={ChevronLeftMd} alt="이전" />
+        </Button>
+      )}
+
+      {swiper && !swiper.isEnd && (
+        <Button
+          onClick={() => {
+            if (swiper) {
+              swiper.slideNext();
+            }
+          }}
+          variant="arrow2"
+          className={`absolute -right-5 top-[40%] z-[50]   transform transition-opacity duration-300 ${hovered ? "opacity-100" : "opacity-10"}  `}
+        >
+          <Image src={ChevronRightMd} alt="다음" />
+        </Button>
+      )}
     </div>
   );
 }

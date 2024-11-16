@@ -25,7 +25,7 @@ export default function BestTalkPost({
             <Image
               height={24}
               width={24}
-              className="h-6 w-6 rounded-[60px]"
+              className="h-6 w-6 rounded-[60px] object-cover"
               src={`data:image/jpeg;base64,${profileImg}
             `}
               alt="영화 포스터"
