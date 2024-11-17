@@ -54,6 +54,13 @@ export default function Rating({
   }, [loggedIn, setDriveTalkText, setRatingValue]);
 
   useEffect(() => {
+    if (!isMyTalk) {
+      setRatingValue(0);
+      setDriveTalkText("");
+    }
+  }, [isMyTalk, setDriveTalkText, setRatingValue]);
+
+  useEffect(() => {
     if (clickedValue) {
       setIsLoading(true);
     }

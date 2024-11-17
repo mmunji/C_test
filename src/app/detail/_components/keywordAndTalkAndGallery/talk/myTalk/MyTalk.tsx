@@ -36,6 +36,7 @@ function MyTalk({ myTalk, movieId, movieDetailData }: MyTalkProps) {
   const {
     ratingValue,
     setRatingValue,
+    setDriveTalkText,
     clickedValue,
     setClickedValue,
     handleDriveTalk,
@@ -50,6 +51,8 @@ function MyTalk({ myTalk, movieId, movieDetailData }: MyTalkProps) {
     setClickedEdit: setClickedEditMyTalk,
     movieId: movieId,
     type: "talk",
+    setRatingValue,
+    setDriveTalkText,
   });
   const { mutate: editTalk } = useEditTalk({
     movieId: movieId,

@@ -57,7 +57,7 @@ export default function Talk({ title, movieId, movieDetailData }: TalkProps) {
 
   useEffect(() => {
     refetch();
-  }, [activeFilter, refetch]);
+  }, [activeFilter, refetch, loggedIn]);
 
   const { setTotalTalks } = useTotalTalksStore();
 
