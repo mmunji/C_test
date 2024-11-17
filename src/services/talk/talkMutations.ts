@@ -3,6 +3,7 @@ import { Dispatch, SetStateAction } from "react";
 import { UseFormSetValue } from "react-hook-form";
 
 import { revalidateMyPage } from "@/services/my/actions";
+import useRefetchMyTalk from "@/stores/useRefetchMyTalk";
 
 import { talkAPIs } from "./talkAPIs";
 import { TALK_QUERY_KEYS } from "./talkQueryKeys";
@@ -243,14 +244,19 @@ export function useRemoveTalk({
   movieId,
   type,
   parentReviewId,
+  setRatingValue,
+  setDriveTalkText,
 }: {
   setOpenDeleteModal: Dispatch<SetStateAction<boolean>>;
   setClickedEdit?: (clickedEditMyTalk: boolean) => void;
   movieId: number;
   type: "talk" | "reply";
   parentReviewId?: number;
+  setRatingValue?: Dispatch<SetStateAction<number>>;
+  setDriveTalkText?: Dispatch<SetStateAction<string>>;
 }) {
   const queryClient = useQueryClient();
+  const { setMyTalk } = useRefetchMyTalk();
 
   return useMutation({
     mutationFn: ({ talkId }: { talkId: number | undefined }) =>
@@ -272,7 +278,11 @@ export function useRemoveTalk({
       setOpenDeleteModal(false);
 
       if (setClickedEdit) setClickedEdit(false);
-      if (type === "talk") location.reload();
+      if (type === "talk" && setRatingValue && setDriveTalkText) {
+        setMyTalk(null);
+        setRatingValue(0);
+        setDriveTalkText("");
+      }
     },
   });
 }

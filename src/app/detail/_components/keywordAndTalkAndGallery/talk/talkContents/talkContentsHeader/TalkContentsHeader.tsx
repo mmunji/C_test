@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import Image from "next/image";
 import React, { Dispatch, SetStateAction, useState } from "react";
 
@@ -46,11 +47,16 @@ export default function TalkContentsHeader({
       <div
         className={cn(
           "itmes-center relative flex h-[66px] justify-between Tablet:h-[54px]",
-          talk.badgeList.length === 0 && "h-auto",
+          talk.badgeList.length === 0 ? "h-[41px] Tablet:h-10" : "h-[66px]",
         )}
       >
         <section className="flex gap-2">
-          <div className="mt-1 h-7 w-7 overflow-hidden rounded-full Tablet:mt-[7px] Tablet:h-10 Tablet:w-10">
+          <div
+            className={clsx(
+              "mt-1 h-7 w-7 overflow-hidden rounded-full Tablet:mt-[7px] Tablet:h-10 Tablet:w-10",
+              talk.badgeList.length === 0 && "!mt-0",
+            )}
+          >
             <Image
               width={100}
               height={100}
@@ -89,12 +95,12 @@ export default function TalkContentsHeader({
             </section>
             {talk.badgeList.length !== 0 && (
               <>
-                <section className="absolute bottom-0 ml-[-4px] flex h-[25px] gap-1 Tablet:left-[56px] Tablet:mt-0 Tablet:hidden">
+                <section className="absolute bottom-0 flex h-[25px] gap-1 Tablet:left-[56px] Tablet:mt-0 Tablet:hidden">
                   {talk.badgeList.map((el, i) => (
                     <SmallBadge key={i} content={el} size="xs" />
                   ))}
                 </section>
-                <section className="absolute bottom-0 ml-[-4px] hidden h-[25px] gap-1 Tablet:left-[56px] Tablet:mt-0 Tablet:flex">
+                <section className="absolute bottom-0 ml-[-8px] hidden h-[25px] gap-1 Tablet:left-[56px] Tablet:mt-0 Tablet:flex">
                   {talk.badgeList.map((el, i) => (
                     <SmallBadge key={i} content={el} size="sm" />
                   ))}

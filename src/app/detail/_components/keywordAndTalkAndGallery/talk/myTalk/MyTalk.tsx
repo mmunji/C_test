@@ -7,7 +7,6 @@ import useClickedEditMyTalk from "@/app/detail/_stores/useClickedEditMyTalk";
 import Button from "@/components/buttons/Button";
 import RatingStar from "@/components/rating/RatingStar";
 import SmallBadge from "@/components/smallBadge/SmallBadge";
-import WithLineBreak from "@/components/withLineBreak/WithLineBreak";
 import { useEditTalk, useRemoveTalk } from "@/services/talk/talkMutations";
 import { cn } from "@/utils/cn";
 
@@ -37,6 +36,7 @@ function MyTalk({ myTalk, movieId, movieDetailData }: MyTalkProps) {
   const {
     ratingValue,
     setRatingValue,
+    setDriveTalkText,
     clickedValue,
     setClickedValue,
     handleDriveTalk,
@@ -51,6 +51,8 @@ function MyTalk({ myTalk, movieId, movieDetailData }: MyTalkProps) {
     setClickedEdit: setClickedEditMyTalk,
     movieId: movieId,
     type: "talk",
+    setRatingValue,
+    setDriveTalkText,
   });
   const { mutate: editTalk } = useEditTalk({
     movieId: movieId,
@@ -79,7 +81,7 @@ function MyTalk({ myTalk, movieId, movieDetailData }: MyTalkProps) {
       <div className="flex flex-col gap-2">
         <div className="mx-auto mb-5 flex flex-col items-center gap-3 Laptop:hidden">
           <p className="text-Primary Text-m-Bold Laptop:Text-l-Bold">
-            {myTalk?.star}점
+            {ratingValue}점
           </p>
           <div className="flex">
             {clickedEditMyTalk ? (
