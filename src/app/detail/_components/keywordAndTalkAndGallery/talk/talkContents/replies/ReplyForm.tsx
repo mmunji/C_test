@@ -53,7 +53,7 @@ export default function ReplyForm({ parentReviewId, movieId }: ReplyFormProps) {
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="relative flex h-fit rounded-xl bg-[#00000033]">
+        <div className="relative mt-2 flex h-fit rounded-xl bg-[#00000033]">
           <Controller
             control={control}
             name="replyValue"

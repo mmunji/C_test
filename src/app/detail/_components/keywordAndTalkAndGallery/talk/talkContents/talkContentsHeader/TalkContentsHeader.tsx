@@ -49,7 +49,7 @@ export default function TalkContentsHeader({
           talk.badgeList.length === 0 && "h-auto",
         )}
       >
-        <section className="flex gap-2 Tablet:gap-4">
+        <section className="flex gap-2">
           <div className="mt-1 h-7 w-7 overflow-hidden rounded-full Tablet:mt-[7px] Tablet:h-10 Tablet:w-10">
             <Image
               width={100}
@@ -89,12 +89,12 @@ export default function TalkContentsHeader({
             </section>
             {talk.badgeList.length !== 0 && (
               <>
-                <section className="absolute bottom-0 left-9 flex h-[25px] gap-1 Tablet:left-[56px] Tablet:mt-0 Tablet:hidden">
+                <section className="absolute bottom-0 ml-[-4px] flex h-[25px] gap-1 Tablet:left-[56px] Tablet:mt-0 Tablet:hidden">
                   {talk.badgeList.map((el, i) => (
                     <SmallBadge key={i} content={el} size="xs" />
                   ))}
                 </section>
-                <section className="absolute bottom-0 left-9 hidden h-[25px] gap-1 Tablet:left-[56px] Tablet:mt-0 Tablet:flex">
+                <section className="absolute bottom-0 ml-[-4px] hidden h-[25px] gap-1 Tablet:left-[56px] Tablet:mt-0 Tablet:flex">
                   {talk.badgeList.map((el, i) => (
                     <SmallBadge key={i} content={el} size="sm" />
                   ))}

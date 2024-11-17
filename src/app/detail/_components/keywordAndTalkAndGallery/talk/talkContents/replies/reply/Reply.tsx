@@ -22,7 +22,7 @@ export default function Reply({
   const [editReply, setEditReply] = useState(false);
 
   return (
-    <section className="mt-5 Tablet:mt-6">
+    <section className="mt-2 Tablet:mt-3">
       <ReplyHeader
         reply={reply}
         setOpen={setOpen}
