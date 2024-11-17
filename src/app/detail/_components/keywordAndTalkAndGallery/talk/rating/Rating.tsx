@@ -7,9 +7,9 @@ import RatingStar from "@/components/rating/RatingStar";
 import SpeechBubble from "@/components/speechBubble/SpeechBubble";
 import useHandleClickAuthButton from "@/hooks/useHandleClickAuthButtons";
 import useLoggedInStore from "@/stores/useLoggedIn";
+import useRefetchMyTalk from "@/stores/useRefetchMyTalk";
 
 import DriveCommentText from "./DriveCommentText";
-import FixedRating from "./FixedRating";
 import TalkForm from "./talkForm/TalkForm";
 import TextBeforeRating from "./TextBeforeRating";
 
@@ -32,6 +32,7 @@ export default function Rating({
     clickedValue,
     setClickedValue,
     driveTalkText,
+    setDriveTalkText,
     readyToRating,
     isOpen,
     setIsOpen,
@@ -42,6 +43,15 @@ export default function Rating({
   const genreList = movieDetailData.genreDTOList.map((el) => el.id);
   const [isLoading, setIsLoading] = useState(false);
   const { loggedIn } = useLoggedInStore();
+
+  const { myTalk: isMyTalk } = useRefetchMyTalk();
+
+  useEffect(() => {
+    if (!loggedIn) {
+      setRatingValue(0);
+      setDriveTalkText("");
+    }
+  }, [loggedIn, setDriveTalkText, setRatingValue]);
 
   useEffect(() => {
     if (clickedValue) {
@@ -55,7 +65,7 @@ export default function Rating({
 
   return (
     <div className="relative flex w-full flex-col justify-center rounded-xl py-3 Tablet:py-8 Laptop:mb-6 Laptop:bg-D1_Gray Laptop:px-7 Laptop:py-8">
-      {driveTalkText === "" && !myTalk ? (
+      {driveTalkText === "" && !isMyTalk ? (
         <TextBeforeRating title={title} />
       ) : (
         <DriveCommentText
@@ -65,7 +75,7 @@ export default function Rating({
       )}
 
       <div className="mx-auto mb-6 flex cursor-pointer Laptop:mb-0">
-        {myTalk
+        {isMyTalk
           ? [...Array(5)].map((_, i) => (
               <RatingStar
                 key={i}

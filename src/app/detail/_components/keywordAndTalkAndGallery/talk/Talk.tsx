@@ -6,6 +6,8 @@ import useTotalTalksStore from "@/app/detail/_stores/useTotalTalksStore";
 import useDevice from "@/hooks/useDevice";
 import useInfiniteScroll from "@/hooks/useInfiniteScroll";
 import { useGetMyTalk, useGetTalkQuery } from "@/services/talk/talkQueries";
+import useLoggedInStore from "@/stores/useLoggedIn";
+import useRefetchMyTalk from "@/stores/useRefetchMyTalk";
 
 import DividingLine from "../../common/DividingLine";
 import MyTalk from "./myTalk/MyTalk";
@@ -40,16 +42,24 @@ export default function Talk({ title, movieId, movieDetailData }: TalkProps) {
     fetchData: fetchNextPage,
     hasNextPage: hasNextPage,
   });
+  const { data: myTalkData, refetch: refetchMyTalk } = useGetMyTalk(movieId);
+  const myTalk: MyTalk = myTalkData?.data;
+
+  const { myTalk: isMyTalk, setMyTalk, setRefetchMyTalk } = useRefetchMyTalk();
+  const { loggedIn } = useLoggedInStore();
+
+  useEffect(() => {
+    if (loggedIn) {
+      setRefetchMyTalk(refetchMyTalk);
+      setMyTalk(myTalk);
+    }
+  }, [loggedIn, myTalk, refetchMyTalk, setMyTalk, setRefetchMyTalk]);
 
   useEffect(() => {
     refetch();
   }, [activeFilter, refetch]);
 
   const { setTotalTalks } = useTotalTalksStore();
-
-  const { data: myTalkData } = useGetMyTalk(movieId);
-
-  const myTalk: MyTalk = myTalkData?.data;
 
   useEffect(() => {
     if (data?.pages[0].totalElements) {
@@ -63,7 +73,7 @@ export default function Talk({ title, movieId, movieDetailData }: TalkProps) {
 
   return (
     <section id={id}>
-      {myTalk && myTalk.content !== "" ? (
+      {isMyTalk && myTalk.content !== "" ? (
         <MyTalk
           myTalk={myTalk}
           movieDetailData={movieDetailData}
