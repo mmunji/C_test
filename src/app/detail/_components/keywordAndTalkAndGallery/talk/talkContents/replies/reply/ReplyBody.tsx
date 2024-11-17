@@ -132,7 +132,7 @@ export default function ReplyBody({
           </div>
         </form>
       ) : (
-        <div className="relative mt-[6px] Tablet:mt-2">
+        <div className="relative mt-1 Tablet:mt-2">
           <p
             ref={contentRef}
             className={clsx(

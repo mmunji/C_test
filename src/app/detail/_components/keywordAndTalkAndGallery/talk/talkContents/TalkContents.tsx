@@ -35,7 +35,7 @@ export default function TalkContents({
   return (
     <div
       className={cn(
-        "border-b-[1px] border-D1_Gray py-5 first:mt-4 Tablet:mt-5 Tablet:py-6 Laptop:border-D2_Gray",
+        "border-b-[1px] border-D1_Gray py-3 Tablet:py-5 Laptop:border-D2_Gray",
         index === length - 1 && "border-b-0",
       )}
     >
@@ -57,6 +57,7 @@ export default function TalkContents({
           parentReviewId={talk.id}
           setOpen={setOpen}
           setTalkId={setTalkId}
+          setShowReplies={setShowReplies}
         />
       )}
     </div>
