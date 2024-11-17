@@ -91,17 +91,17 @@ export default function SlimilarMobilePost({
                     backgroundPosition: "center",
                   }}
                 >
-                  <div className="flex h-[17px]  justify-between">
-                    <h1 className="line-clamp-1 text-L_Gray Text-s-Medium Tablet:Text-m-Regular">
+                  <div className="flex   justify-between">
+                    <h1 className="line-clamp-1 h-full text-L_Gray Text-s-Medium Tablet:Text-m-Regular">
                       {ReviewUser.movienm}
                     </h1>
-                    <div className="flex  items-center gap-[2px] text-Silver">
+                    <div className="flex items-center  justify-center gap-[2px] text-Silver">
                       <Image
                         src={StarFillSm}
                         alt="평점 별"
                         className="h-4 w-4"
                       />
-                      <span>{ReviewUser.star}</span>
+                      <span className="Text-s-Bold ">{ReviewUser.star}</span>
                     </div>
                   </div>
                   <div className=" flex items-center   text-Silver  Text-s-Regular Tablet:Text-m-Regular">

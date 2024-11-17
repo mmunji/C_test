@@ -41,7 +41,7 @@ export default function SlimilarUser({
     >
       <div className="flex items-center gap-2 px-2">
         <div
-          className="h-[40px] w-[40px] rounded-[60px] "
+          className="h-[40px] w-[40px] rounded-[60px] object-cover"
           style={{
             backgroundImage: `linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, rgba(0, 0, 0, 0) 100%), url(data:image/jpeg;base64,${profile})`,
             backgroundSize: "cover",
@@ -52,7 +52,11 @@ export default function SlimilarUser({
       </div>
       <div className="flex gap-4 px-2">
         <div className="flex items-center gap-1">
-          <Image src={EditPencilLineFill} alt="펜슬" />
+          <Image
+            src={EditPencilLineFill}
+            alt="펜슬"
+            className="color-Grey-orange"
+          />
           평가한 영화 {heart ? heart : 0}
         </div>
         <div className="border-[1px] border-D3_Gray" />

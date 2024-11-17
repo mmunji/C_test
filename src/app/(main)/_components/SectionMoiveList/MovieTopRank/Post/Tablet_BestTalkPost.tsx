@@ -19,7 +19,7 @@ export default function Tablet_BestTalkPost({
       <Image
         height={30}
         width={30}
-        className="rounded-[60px]"
+        className="h-[30px] w-[30px] rounded-[60px] object-cover"
         src={`data:image/jpeg;base64,${profileImg}
             `}
         alt="영화 포스터"
@@ -29,14 +29,10 @@ export default function Tablet_BestTalkPost({
         <div className="line-clamp-3 h-[63px] text-Gray_Orange Text-s-Regular">
           <span className="line-clamp-3"> {content}</span>
         </div>
-        <div className="flex justify-end gap-1">
-          <Image
-            src={ThumbsUpLineSm}
-            alt="업버튼"
-            style={{ color: "#999490" }}
-          />
-          <span className="text-L_Gray Text-s-Medium">{likeCount}</span>
-        </div>
+      </div>
+      <div className="flex w-full justify-end gap-1">
+        <Image src={ThumbsUpLineSm} alt="업버튼" style={{ color: "#999490" }} />
+        <span className="text-L_Gray Text-s-Medium">{likeCount}</span>
       </div>
     </div>
   );

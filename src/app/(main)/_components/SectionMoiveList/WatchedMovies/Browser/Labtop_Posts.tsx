@@ -1,10 +1,17 @@
 "use client";
+import Image from "next/image";
 import Link from "next/link";
-import { Swiper, SwiperSlide } from "swiper/react";
+import { useState } from "react";
+import { Swiper, SwiperClass, SwiperSlide } from "swiper/react";
 
+import Button from "@/components/buttons/Button";
 import useDevice from "@/hooks/useDevice";
 import { useToastActions } from "@/stores/useToast";
 
+import {
+  ChevronLeftMd,
+  ChevronRightMd,
+} from "../../../../../../../public/icons";
 import PostCard from "../../../PostCard";
 import PostRating from "../../../Rating/PostRating";
 interface WatchMovieType {
@@ -13,13 +20,23 @@ interface WatchMovieType {
 export default function Labtop_Posts({ MovieWatchMovies }: WatchMovieType) {
   const { device } = useDevice();
   const { add } = useToastActions();
+  const [swiper, setSwiper] = useState<SwiperClass>();
+  const [hovered, sethovered] = useState(false);
   const handleToast = (text: string) => {
     add(text);
   };
 
   return (
-    <div className=" hidden  w-full gap-[24px] rounded-xl   Laptop:block">
-      <Swiper slidesPerView="auto" spaceBetween={device == "laptop" ? 20 : 24}>
+    <div
+      className=" relative hidden  w-full gap-[24px] rounded-xl   Laptop:block"
+      onMouseEnter={() => sethovered(true)}
+      onMouseLeave={() => sethovered(false)}
+    >
+      <Swiper
+        slidesPerView="auto"
+        spaceBetween={device == "laptop" ? 20 : 24}
+        onSwiper={(e) => setSwiper(e)}
+      >
         {MovieWatchMovies.map((e, index) => {
           return (
             <div key={e.movieId}>
@@ -55,6 +72,25 @@ export default function Labtop_Posts({ MovieWatchMovies }: WatchMovieType) {
           );
         })}
       </Swiper>
+      {swiper && !swiper.isBeginning && (
+        <Button
+          onClick={() => swiper.slidePrev()}
+          variant="arrow1"
+          className={`absolute -left-6 top-1/4 z-[10]  mt-9  transform   transition-opacity duration-300 ${hovered ? "opacity-100" : "opacity-10"} `}
+        >
+          <Image src={ChevronLeftMd} alt="이전" style={{ color: "#E9E9E9" }} />
+        </Button>
+      )}
+
+      {swiper && !swiper.isEnd && (
+        <Button
+          onClick={() => swiper.slideNext()}
+          variant="arrow2"
+          className={`absolute -right-6 top-1/4 z-[10]  mt-9  transform transition-opacity duration-300${hovered ? "opacity-100" : "opacity-10"}  `}
+        >
+          <Image src={ChevronRightMd} alt="다음" style={{ color: "#E9E9E9" }} />
+        </Button>
+      )}
     </div>
   );
 }
