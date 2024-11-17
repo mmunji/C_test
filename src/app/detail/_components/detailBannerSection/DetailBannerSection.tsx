@@ -20,9 +20,10 @@ export default function DetailBannerSection({
   movieDetailData,
 }: DetailBannerSectionProps) {
   const { gradientStyle, setGradientStyle } = usePaletteStore();
-  const posterImage =
-    "https://image.tmdb.org/t/p/w220_and_h330_face" +
-    movieDetailData.posterImg.split("/original")[1];
+  // const posterImage =
+  //   "https://image.tmdb.org/t/p/w220_and_h330_face" +
+  //   movieDetailData.posterImg.split("/original")[1];
+  const posterImage = movieDetailData.posterImg;
   const backgroundImage = movieDetailData.backGroundImg;
   const { device } = useDevice();
   const isSm = device === "mobile" || device === "tablet";
