@@ -31,7 +31,7 @@ export default function TalkContentsBody({
   return (
     <div
       className={cn(
-        "relative ml-[34px] mt-2 Tablet:mb-2 Tablet:ml-14",
+        "relative ml-[37px] mt-2 Tablet:mb-2 Tablet:ml-12",
         talk.badgeList.length === 0 && "mt-0",
       )}
     >

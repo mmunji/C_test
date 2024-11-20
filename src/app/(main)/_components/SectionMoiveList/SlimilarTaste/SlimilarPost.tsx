@@ -20,6 +20,8 @@ interface ReviewUsersProps {
   setPickUserNumber: Dispatch<SetStateAction<number>>;
   PickUserNumber: number;
   ChangePickNumber: (index: number) => void;
+  setProfileSwiper?: Dispatch<SetStateAction<SwiperClass | undefined>>;
+  ProfileSwiper?: SwiperClass;
 }
 
 export default function SlimilarPost({
@@ -27,6 +29,8 @@ export default function SlimilarPost({
   setPickUserNumber,
   ChangePickNumber,
   PickUserNumber,
+  ProfileSwiper,
+  setProfileSwiper,
 }: ReviewUsersProps) {
   const { device } = useDevice();
   const [swiper, setSwiper] = useState<SwiperClass>();
@@ -47,6 +51,7 @@ export default function SlimilarPost({
           className=" flex rounded-xl"
           centeredSlides={false}
           initialSlide={0}
+          onSwiper={(e: SwiperClass) => setProfileSwiper?.(e)}
         >
           {Array.isArray(ReviewUsers) && ReviewUsers.length > 0
             ? ReviewUsers.map((ReviewUser, index) => {
@@ -75,7 +80,7 @@ export default function SlimilarPost({
         </Swiper>
       </div>
 
-      <div className="hidden flex-col gap-[16px] rounded-xl bg-D1_Gray  px-[24px]  py-[28px] text-white Laptop:flex">
+      <div className="relative hidden  flex-col gap-[16px] rounded-xl bg-D1_Gray  px-[24px]  py-[28px] text-white Laptop:flex">
         <h1 className="text-Silver Text-xl-Bold">
           {ReviewUsers[PickUserNumber]?.nickname}님의 최근 톡
         </h1>
@@ -121,34 +126,34 @@ export default function SlimilarPost({
                   },
                 )
               : ""}
-            {swiper && !swiper.isBeginning && (
-              <Button
-                onClick={() => swiper.slidePrev()}
-                variant="arrow1"
-                className={`absolute left-2 top-1/4 z-[10]  mt-9  transform   transition-opacity duration-300 ${hovered ? "opacity-100" : "opacity-10"} `}
-              >
-                <Image
-                  src={ChevronLeftMd}
-                  alt="이전"
-                  style={{ color: "#E9E9E9" }}
-                />
-              </Button>
-            )}
-
-            {swiper && !swiper.isEnd && (
-              <Button
-                onClick={() => swiper.slideNext()}
-                variant="arrow2"
-                className={`absolute right-4 top-1/4 z-[10]  mt-9  transform transition-opacity duration-300${hovered ? "opacity-100" : "opacity-10"}  `}
-              >
-                <Image
-                  src={ChevronRightMd}
-                  alt="다음"
-                  style={{ color: "#E9E9E9" }}
-                />
-              </Button>
-            )}
           </Swiper>
+          {swiper && !swiper.isBeginning && (
+            <Button
+              onClick={() => swiper.slidePrev()}
+              variant="arrow1"
+              className={`absolute -left-1 top-[40%] z-[10]  mt-9  transform   transition-opacity duration-300 ${hovered ? "opacity-100" : "opacity-10"} `}
+            >
+              <Image
+                src={ChevronLeftMd}
+                alt="이전"
+                style={{ color: "#E9E9E9" }}
+              />
+            </Button>
+          )}
+
+          {swiper && !swiper.isEnd && (
+            <Button
+              onClick={() => swiper.slideNext()}
+              variant="arrow2"
+              className={`absolute -right-1 top-[40%] z-[20]  mt-9  transform transition-opacity duration-300 ${hovered ? "opacity-100" : "opacity-10"}  `}
+            >
+              <Image
+                src={ChevronRightMd}
+                alt="다음"
+                style={{ color: "#E9E9E9" }}
+              />
+            </Button>
+          )}
         </div>
       </div>
     </div>

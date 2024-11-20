@@ -54,16 +54,18 @@ export default function KeyWordPosts({
             <Image
               height={24}
               width={24}
-              className="rounded-[60px]"
+              className="h-6 w-6 rounded-[60px] object-cover"
               src={`data:image/jpeg;base64,${profile}
           `}
               alt="영화 포스터"
             />
-            <h1 className="text-Silver Text-s-Medium">{nickname}</h1>
+            <h1 className="line-clamp-1 text-Silver Text-s-Medium">
+              {nickname}
+            </h1>
           </div>
-          <div className="flex text-Silver Text-s-Bold ">
+          <div className="flex items-center  text-Silver Text-s-Bold ">
             <Image src={StarFillSm} alt="주황별" />
-            {star.toFixed(1)}
+            <span>{star.toFixed(1)}</span>
           </div>
         </div>
         <div className=" h-[42px] text-Gray_Orange Text-s-Regular  Tablet:h-[48px] Laptop:Text-m-Regular">

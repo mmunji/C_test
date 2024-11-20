@@ -21,7 +21,7 @@ input::-webkit-search-results-decoration {
   display: none;
 }
 #containerForBullets {
-  @apply absolute -bottom-3 left-[calc(100%-78px)] flex w-[74px] items-center gap-1 Laptop:-bottom-4  Laptop:left-[calc(100%-108px)]  Laptop:w-[108px] !important;
+  @apply absolute -bottom-3 left-[calc(100%-82px)] flex w-[74px] items-center gap-1 Laptop:-bottom-4  Laptop:left-[calc(100%-112px)]  Laptop:w-[108px] !important;
 }
 
 .swiper-custom-bullet {

@@ -6,6 +6,7 @@ import Dropdown from "@/components/dropdown/dropdown";
 import ROUTES from "@/constants/routes";
 import { logout } from "@/services/my/actions";
 import useLoggedInStore from "@/stores/useLoggedIn";
+import useRefetchMyTalk from "@/stores/useRefetchMyTalk";
 import useScrollStore from "@/stores/useScrollStore";
 
 import { BestTalkFire, CaretDownMd, LogOut, User } from "../../../public/icons";
@@ -36,12 +37,18 @@ export default function HeaderDropdown({
   const hasScrolledPast = useScrollStore((state) => state.hasScrolledPast);
   const pathname = usePathname();
   const handleLogout = useLoggedInStore((state) => state.logout);
+  const { setMyTalk, refetchMyTalk } = useRefetchMyTalk();
 
   const handleClickDropdown = (href: string | null) => {
     if (href) return;
     logout(pathname.includes("/my"));
     handleLogout();
+    if (pathname.includes("/detail")) {
+      refetchMyTalk();
+      setMyTalk(null);
+    }
   };
+
   const filteredMenu = dropdownMenu.filter(
     (item) => !item.requiresAdmin || isAdmin,
   );
