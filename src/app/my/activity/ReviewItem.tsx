@@ -1,3 +1,4 @@
+import dayjs from "dayjs";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -81,7 +82,9 @@ export default function ReviewItem({
         </div>
       </div>
       <div className="flex items-center justify-between border-t border-D2_Gray pt-3 group-hover:border-D1_Gray group-active:border-D2_Gray">
-        <div className="text-Gray Text-xs-Regular">{review.regDate} 작성</div>
+        <div className="text-Gray Text-xs-Regular">
+          {dayjs(review.regDate).format("YY.MM.DD")} 작성
+        </div>
         <div className="flex items-center gap-3">
           <div className="flex items-center gap-1">
             <Image alt="좋아요" src={ThumbsUpLineSm} />
