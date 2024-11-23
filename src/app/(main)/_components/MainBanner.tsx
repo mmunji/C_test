@@ -57,7 +57,7 @@ export default function MainBanner({ data }: BannerType) {
                   >
                     <LeftMoivePost
                       PostImg={BannerItem.poster_path}
-                      keyword={BannerItem.genres[0].name}
+                      keyword={BannerItem.keyword}
                       MovieName={BannerItem.movienm}
                       Rate={BannerItem.rate}
                     />
