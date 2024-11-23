@@ -59,11 +59,23 @@ export default function MoiveTopRank({ data }: MoiveTopRankType) {
       console.error("영화를 가져오는 중 오류 발생:", error);
     }
   };
+  const getSortedGenres = () => {
+    if (filter === 0) return MovieGenreType; // "전체"가 선택된 경우 순서 변경 없이 반환
+
+    const selectedGenreIndex = filter;
+    const fixedGenres = MovieGenreType.slice(1); // "전체"를 제외한 나머지
+    const reorderedGenres = [
+      ...fixedGenres.slice(selectedGenreIndex - 1),
+      ...fixedGenres.slice(0, selectedGenreIndex - 1),
+    ];
+
+    return [MovieGenreType[0], ...reorderedGenres]; // "전체"를 맨 앞에 추가
+  };
 
   useEffect(() => {}, [filter]);
 
   return (
-    <div className="flex flex-col gap-4  ">
+    <div className="flex flex-col gap-4">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-[24px]">
           <h1 className="Text-l-Bold Laptop:Text-xxl-Bold">영화 톡 TOP 10</h1>
@@ -80,22 +92,22 @@ export default function MoiveTopRank({ data }: MoiveTopRankType) {
                 </Button>
               </Dropdown.Trigger>
               <Dropdown.List className="left-0 top-11">
-                {MovieGenreType.map((genre, index) => {
-                  return (
-                    <Dropdown.Item
-                      key={genre.index}
-                      onClick={() => {
-                        setFilter(index), fetchMovie(index);
-                      }}
-                    >
-                      {genre.name}
-                    </Dropdown.Item>
-                  );
-                })}
+                {getSortedGenres().map((genre, index) => (
+                  <Dropdown.Item
+                    key={genre.index}
+                    onClick={() => {
+                      setFilter(MovieGenreType.indexOf(genre));
+                      fetchMovie(MovieGenreType.indexOf(genre));
+                    }}
+                  >
+                    {genre.name}
+                  </Dropdown.Item>
+                ))}
               </Dropdown.List>
             </Dropdown>
           </div>
         </div>
+
         <span className="text-D3_Gray Text-xs-Regular Tablet:Text-s-Medium">
           매월 업데이트
         </span>
