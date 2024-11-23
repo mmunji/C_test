@@ -30,13 +30,13 @@ export default function Tablet_Posts({ MovieWatchMovies }: WatchMovieType) {
 
   return (
     <div className="flex flex-col justify-center">
-      <div className="mx-auto hidden w-[537px] items-center rounded-xl bg-D1_Gray Tablet:flex Laptop:hidden">
+      <div className="mx-auto hidden w-[537px] items-center  Tablet:flex Laptop:hidden">
         <div
           className="flex transition-transform duration-500 ease-in-out"
           style={{ transform: `translateX(-${MovieNumber * 100}%)` }} // 슬라이드 애니메이션
         >
           {MovieWatchMovies.map((movie, index) => (
-            <div key={movie.movieId} className="flex w-full flex-shrink-0">
+            <div key={movie.movieId} className="flex w-full flex-shrink-0 ">
               <Link href={`/detail/${movie.movieId}`}>
                 <div className="flex justify-center">
                   <Image
@@ -52,7 +52,7 @@ export default function Tablet_Posts({ MovieWatchMovies }: WatchMovieType) {
                   />
                 </div>
               </Link>
-              <div className="flex w-[337px] flex-col items-center justify-center gap-8 px-5">
+              <div className="flex w-[337px] flex-col items-center justify-center  gap-8 rounded-xl bg-D1_Gray px-5">
                 <div className="flex flex-col items-center justify-center gap-2 ">
                   <h1 className="Text-l-Medium">{movie.movienm}</h1>
                   <div className="flex items-center gap-[10px] text-L_Gray Text-s-Regular">

@@ -32,9 +32,12 @@ export default function RecentKeyword({ data }: RecentKeywordType) {
             <Swiper slidesPerView="auto" spaceBetween={12}>
               {data?.map((mention, index) => {
                 return (
-                  <SwiperSlide key={mention.keyword} className="w-[104px]">
+                  <SwiperSlide
+                    key={mention.keyword}
+                    className="w-[68px] Tablet:w-[81px]"
+                  >
                     <div
-                      className={`Text-s-Bold  ${KeywordListNumber == index ? "bg-D1_Gray text-Silver" : "text-L_Gray"}  rounded-[36px] px-3 py-2 text-center `}
+                      className={`relative Text-s-Bold  ${KeywordListNumber == index ? "bg-D1_Gray text-Silver" : "text-L_Gray"} rounded-[36px] px-4 py-2  text-center Tablet:px-5 Tablet:Text-m-Bold`}
                       onClick={() => HandleKeywords(index)}
                     >
                       {mention.keyword}
