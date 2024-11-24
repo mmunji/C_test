@@ -23,8 +23,22 @@ import NonPostCard from "../../NonPostCard";
 
 interface Mobile_BestMoiveProps {
   MovieData: Movie_TopTen | null;
+  MovieGenre: string;
 }
-export default function Mobile_BestMovie(MovieData: Mobile_BestMoiveProps) {
+export default function Mobile_BestMovie({
+  MovieData,
+  MovieGenre,
+}: Mobile_BestMoiveProps) {
+  function sortGenresByTitle(
+    genres: MovieGenreDto[],
+    genreTitle: string,
+  ): MovieGenreDto[] {
+    return [...genres].sort((a, b) => {
+      if (a.name === genreTitle) return -1; // genreTitle과 같으면 앞으로 이동
+      if (b.name === genreTitle) return 1;
+      return 0; // 나머지는 순서를 유지
+    });
+  }
   return (
     <div className="block Tablet:hidden">
       <Swiper
@@ -33,9 +47,8 @@ export default function Mobile_BestMovie(MovieData: Mobile_BestMoiveProps) {
         className="mySwiper"
         modules={[Pagination]}
       >
-        {Array.isArray(MovieData.MovieData) &&
-        MovieData.MovieData.length > 0 ? (
-          MovieData.MovieData.map((MovieDetailData, index) => {
+        {Array.isArray(MovieData) && MovieData.length > 0 ? (
+          MovieData.map((MovieDetailData, index) => {
             return (
               <SwiperSlide
                 key={MovieDetailData.movieId}
@@ -63,11 +76,18 @@ export default function Mobile_BestMovie(MovieData: Mobile_BestMoiveProps) {
                             {dayjs(MovieDetailData.release_date).format("YYYY")}
                           </span>
                           <div className="h-3 w-[1px] border-r-[1px] border-Gray_Orange"></div>
-                          <span className="text-Silver">
-                            {MovieDetailData.genres[0]
-                              ? MovieDetailData.genres[0].name
-                              : ""}
-                          </span>
+                          {sortGenresByTitle(MovieDetailData.genres, MovieGenre)
+                            .slice(0, 3)
+                            .map((genre: MovieGenreDto, index: number) => (
+                              <span className="Text-xs-Regular" key={index}>
+                                {genre.name}
+                                {index <
+                                  Math.min(
+                                    2,
+                                    MovieDetailData.genres.length - 1,
+                                  ) && " / "}
+                              </span>
+                            ))}
                         </div>
                         <div>
                           <div className="flex items-center gap-5">

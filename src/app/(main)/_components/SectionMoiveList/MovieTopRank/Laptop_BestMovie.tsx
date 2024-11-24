@@ -27,8 +27,12 @@ import PostCard from "../../PostCard";
 import BestTalkPost from "./Post/BestTalkPost";
 interface Laptop_BestMoiveProps {
   MovieData: Movie_TopTen | null;
+  MovieGenre: string;
 }
-export default function Laptop_BestMovie(MovieData: Laptop_BestMoiveProps) {
+export default function Laptop_BestMovie({
+  MovieData,
+  MovieGenre,
+}: Laptop_BestMoiveProps) {
   SwiperCore.use([Pagination]);
 
   const [StatePost, SetStatePost] = useState(0);
@@ -37,6 +41,16 @@ export default function Laptop_BestMovie(MovieData: Laptop_BestMoiveProps) {
   const onHandlePost = (index: number) => {
     SetStatePost(index);
   };
+  function sortGenresByTitle(
+    genres: MovieGenreDto[],
+    genreTitle: string,
+  ): MovieGenreDto[] {
+    return [...genres].sort((a, b) => {
+      if (a.name === genreTitle) return -1; // genreTitle과 같으면 앞으로 이동
+      if (b.name === genreTitle) return 1;
+      return 0; // 나머지는 순서를 유지
+    });
+  }
   return (
     <div
       className="relative hidden h-[calc(260px)]  Laptop:block Desktop:hidden"
@@ -53,9 +67,8 @@ export default function Laptop_BestMovie(MovieData: Laptop_BestMoiveProps) {
         }}
         className="relative"
       >
-        {Array.isArray(MovieData.MovieData) &&
-        MovieData.MovieData.length > 0 ? (
-          MovieData.MovieData.map((MovieDetailData, index) => {
+        {Array.isArray(MovieData) && MovieData.length > 0 ? (
+          MovieData.map((MovieDetailData, index) => {
             return (
               <SwiperSlide
                 key={MovieDetailData.movieId}
@@ -110,7 +123,10 @@ export default function Laptop_BestMovie(MovieData: Laptop_BestMoiveProps) {
                           </span>
                           <div className="h-3 w-[1px] border-r-[1px] border-L_Gray"></div>
                           <div className="flex">
-                            {MovieDetailData.genres
+                            {sortGenresByTitle(
+                              MovieDetailData.genres,
+                              MovieGenre,
+                            )
                               .slice(0, 3)
                               .map((genre: MovieGenreDto, index: number) => (
                                 <span className="Text-s-Regular" key={index}>
@@ -154,7 +170,7 @@ export default function Laptop_BestMovie(MovieData: Laptop_BestMoiveProps) {
                     </div>
                     <div className="w-[368px] Desktop:w-[504px] ">
                       <div className="flex items-center justify-between">
-                        {MovieDetailData.reviewData?.content ? (
+                        {MovieDetailData.reviewList ? (
                           <div className="flex items-center gap-1">
                             <Image
                               src={BestTalkFire}

@@ -2,7 +2,8 @@
 import dayjs from "dayjs";
 import Image from "next/image";
 import Link from "next/link";
-import { Swiper, SwiperSlide } from "swiper/react";
+import { useState } from "react";
+import { Swiper, SwiperClass, SwiperSlide } from "swiper/react";
 
 import {
   BestTalkFire,
@@ -12,6 +13,7 @@ import {
   StarFillMd,
   TmdbSm,
 } from "@/../public/icons";
+import Button from "@/components/buttons/Button";
 
 import { NoImageSsikongi } from "../../../../../../public/images";
 import NonPostCard from "../../NonPostCard";
@@ -19,15 +21,42 @@ import PostCard from "../../PostCard";
 import Tablet_BestTalkPost from "./Post/Tablet_BestTalkPost";
 interface Tablet_BestMoiveProps {
   MovieData: Movie_TopTen | null;
+  MovieGenre: string;
 }
 
-export default function Tablet_BestMoive(MovieData: Tablet_BestMoiveProps) {
+export default function Tablet_BestMoive({
+  MovieData,
+  MovieGenre,
+}: Tablet_BestMoiveProps) {
+  const [swiper, setSwiper] = useState<SwiperClass>();
+  const [hovered, sethovered] = useState(false);
+
+  function sortGenresByTitle(
+    genres: MovieGenreDto[],
+    genreTitle: string,
+  ): MovieGenreDto[] {
+    return [...genres].sort((a, b) => {
+      if (a.name === genreTitle) return -1; // genreTitle과 같으면 앞으로 이동
+      if (b.name === genreTitle) return 1;
+      return 0; // 나머지는 순서를 유지
+    });
+  }
   return (
-    <div className="hidden  h-[344px] Tablet:block Laptop:hidden">
-      <Swiper slidesPerView="auto" spaceBetween={20} className="relative">
-        {Array.isArray(MovieData.MovieData) &&
-        MovieData.MovieData.length > 0 ? (
-          MovieData.MovieData.map((MovieDetailData, index) => {
+    <div
+      className="hidden  h-[344px] Tablet:block Laptop:hidden"
+      onMouseEnter={() => sethovered(true)}
+      onMouseLeave={() => sethovered(false)}
+    >
+      <Swiper
+        slidesPerView="auto"
+        spaceBetween={20}
+        className="relative"
+        onSwiper={(e) => {
+          setSwiper(e);
+        }}
+      >
+        {Array.isArray(MovieData) && MovieData.length > 0 ? (
+          MovieData.map((MovieDetailData, index) => {
             return (
               <SwiperSlide key={MovieDetailData.movieId}>
                 <div className=" flex w-full gap-4">
@@ -60,9 +89,18 @@ export default function Tablet_BestMoive(MovieData: Tablet_BestMoiveProps) {
                             {dayjs(MovieDetailData.release_date).format("YYYY")}
                           </span>
                           <div className="h-3 border-r-[1px] border-L_Gray"></div>
-                          <span className="w-10">
-                            {MovieDetailData.genres[0].name}
-                          </span>
+                          {sortGenresByTitle(MovieDetailData.genres, MovieGenre)
+                            .slice(0, 3)
+                            .map((genre: MovieGenreDto, index: number) => (
+                              <span className="Text-xs-Regular" key={index}>
+                                {genre.name}
+                                {index <
+                                  Math.min(
+                                    2,
+                                    MovieDetailData.genres.length - 1,
+                                  ) && "  /  "}
+                              </span>
+                            ))}
                         </div>
                       </div>
                       <div className="flex gap-5">
@@ -94,7 +132,7 @@ export default function Tablet_BestMoive(MovieData: Tablet_BestMoiveProps) {
                     </div>
                     <div className="flex w-full flex-col">
                       <div className="flex flex-col gap-3">
-                        {MovieDetailData.reviewData?.content ? (
+                        {MovieDetailData.reviewList ? (
                           <div className="flex items-center gap-1">
                             <Image
                               src={BestTalkFire}
@@ -140,6 +178,25 @@ export default function Tablet_BestMoive(MovieData: Tablet_BestMoiveProps) {
           <NonPostCard />
         )}
       </Swiper>
+      {swiper && !swiper.isBeginning && (
+        <Button
+          onClick={() => swiper.slidePrev()}
+          variant="arrow1"
+          className={`absolute left-1 top-[70%] z-[100]  transform   transition-opacity duration-300 ${hovered ? "opacity-100" : "opacity-0"} `}
+        >
+          <Image src={ChevronLeftMd} alt="이전" style={{ color: "#E9E9E9" }} />
+        </Button>
+      )}
+
+      {swiper && !swiper.isEnd && (
+        <Button
+          onClick={() => swiper.slideNext()}
+          variant="arrow2"
+          className={`absolute right-1 top-[70%]  z-[100]   transform transition-opacity duration-300 ${hovered ? "opacity-100" : "opacity-0"}  `}
+        >
+          <Image src={ChevronRightMd} alt="다음" style={{ color: "#E9E9E9" }} />
+        </Button>
+      )}
     </div>
   );
 }
