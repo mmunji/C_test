@@ -27,12 +27,12 @@ import PostCard from "../../PostCard";
 import BestTalkPost from "./Post/BestTalkPost";
 interface Desktop_BestMoiveProps {
   MovieData: Movie_TopTen | null;
-  genreTitle: string;
+  MovieGenre: string;
 }
-export default function DeskTop_BestMovie(
-  MovieData: Desktop_BestMoiveProps,
-  genreTitle: string,
-) {
+export default function DeskTop_BestMovie({
+  MovieData,
+  MovieGenre,
+}: Desktop_BestMoiveProps) {
   SwiperCore.use([Pagination]);
   const [StatePost, SetStatePost] = useState(0);
   const [swiper, setSwiper] = useState<SwiperClass>();
@@ -41,6 +41,17 @@ export default function DeskTop_BestMovie(
   const onHandlePost = (index: number) => {
     SetStatePost(index);
   };
+
+  function sortGenresByTitle(
+    genres: MovieGenreDto[],
+    genreTitle: string,
+  ): MovieGenreDto[] {
+    return [...genres].sort((a, b) => {
+      if (a.name === genreTitle) return -1; // genreTitle과 같으면 앞으로 이동
+      if (b.name === genreTitle) return 1;
+      return 0; // 나머지는 순서를 유지
+    });
+  }
 
   return (
     <div
@@ -57,9 +68,8 @@ export default function DeskTop_BestMovie(
           setSwiper(e);
         }}
       >
-        {Array.isArray(MovieData?.MovieData) &&
-        MovieData.MovieData.length > 0 ? (
-          MovieData.MovieData.map((MovieDetailData, index) => (
+        {Array.isArray(MovieData) && MovieData.length > 0 ? (
+          MovieData.map((MovieDetailData, index) => (
             <SwiperSlide
               key={MovieDetailData.movieId}
               style={{
@@ -116,7 +126,7 @@ export default function DeskTop_BestMovie(
                         </span>
                         <div className="flex h-3 w-[1px] items-center border-r-[1px] border-L_Gray"></div>
                         <div className="flex w-full ">
-                          {MovieDetailData.genres
+                          {sortGenresByTitle(MovieDetailData.genres, MovieGenre)
                             .slice(0, 3)
                             .map((genre: MovieGenreDto, index: number) => (
                               <span className="Text-s-Regular" key={index}>
@@ -160,7 +170,7 @@ export default function DeskTop_BestMovie(
                   </div>
                   <div className="w-[368px] Desktop:w-[504px]">
                     <div className="flex items-center justify-between">
-                      {MovieDetailData.reviewData?.content ? (
+                      {MovieDetailData.reviewList ? (
                         <div className="flex items-center gap-1">
                           <Image
                             src={BestTalkFire}
@@ -170,7 +180,7 @@ export default function DeskTop_BestMovie(
                           <h1 className="Text-m-Bold">BEST 톡</h1>
                         </div>
                       ) : (
-                        ""
+                        "  "
                       )}
                       <Link
                         href={`detail/${MovieDetailData.movieId}`}

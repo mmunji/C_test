@@ -60,16 +60,16 @@ export default function MoiveTopRank({ data }: MoiveTopRankType) {
     }
   };
   const getSortedGenres = () => {
-    if (filter === 0) return MovieGenreType; // "전체"가 선택된 경우 순서 변경 없이 반환
+    if (filter === 0) return MovieGenreType;
 
     const selectedGenreIndex = filter;
-    const fixedGenres = MovieGenreType.slice(1); // "전체"를 제외한 나머지
+    const fixedGenres = MovieGenreType.slice(1);
     const reorderedGenres = [
       ...fixedGenres.slice(selectedGenreIndex - 1),
       ...fixedGenres.slice(0, selectedGenreIndex - 1),
     ];
 
-    return [MovieGenreType[0], ...reorderedGenres]; // "전체"를 맨 앞에 추가
+    return [MovieGenreType[0], ...reorderedGenres];
   };
 
   useEffect(() => {}, [filter]);
@@ -115,13 +115,22 @@ export default function MoiveTopRank({ data }: MoiveTopRankType) {
 
       <div>
         {/* 모바일 */}
-        <Tablet_BestMoive MovieData={MovieTopTenData} />
+        <Tablet_BestMoive
+          MovieData={MovieTopTenData}
+          MovieGenre={MovieGenreType[filter].name}
+        />
         <DeskTop_BestMovie
           MovieData={MovieTopTenData}
-          genreTitle={MovieGenreType[filter].name}
+          MovieGenre={MovieGenreType[filter].name}
         />
-        <Laptop_BestMovie MovieData={MovieTopTenData} />
-        <Mobile_BestMovie MovieData={MovieTopTenData} />
+        <Laptop_BestMovie
+          MovieData={MovieTopTenData}
+          MovieGenre={MovieGenreType[filter].name}
+        />
+        <Mobile_BestMovie
+          MovieData={MovieTopTenData}
+          MovieGenre={MovieGenreType[filter].name}
+        />
       </div>
     </div>
   );
