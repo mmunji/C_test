@@ -45,7 +45,7 @@ export default function Footer() {
     }
   };
   return (
-    <div className="Desktop: flex flex-col gap-7 bg-Black px-7  py-11 text-white Tablet:gap-[52px] Desktop:gap-[52px] Desktop:px-[180px] Desktop:py-[90px]">
+    <div className="flex flex-col gap-7 bg-Black px-7 py-11 text-white Tablet:gap-[52px] Tablet:px-9 Laptop:px-[64px] Laptop:py-[90px] Desktop:gap-[52px] Desktop:px-[180px]">
       <div className="flex flex-col items-center gap-[24px]">
         <h1 className=" text-Silver  Text-m-Bold Laptop:Text-xl-Bold">
           지금까지 총<span className="text-Primary"> {Commnets} </span> 개의
