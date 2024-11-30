@@ -13,7 +13,7 @@ export const movieAPIs = {
     const res = await fetch(`${API_URL}/movie/HidingPiece`, {
       cache: "no-store",
     });
-    const data: MovieHidingPiece = await res.json();
+    const data: MovieHidingPiece[] = await res.json();
     return data;
   },
   getMentionKeword: async () => {

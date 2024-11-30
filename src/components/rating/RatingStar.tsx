@@ -127,7 +127,7 @@ export default function RatingStar({
 
   return (
     <div
-      className="relative"
+      className="relative w-full"
       onMouseLeave={() => {
         if (!clickedValue) setRatingValue(0);
       }}

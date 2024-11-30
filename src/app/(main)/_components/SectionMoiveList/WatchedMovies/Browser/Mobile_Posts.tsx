@@ -45,17 +45,13 @@ export default function Mobile_Posts({ MovieWatchMovies }: WatchMovieType) {
           className="flex transition-transform duration-500 ease-in-out"
           style={{ transform: `translateX(-${MovieNumber * 100}%)` }}
         >
-          {MovieWatchMovies.map((movie, index) => (
-            <div
-              key={movie.movieId}
-              className="w-full flex-shrink-0 px-[12px] py-[28px]"
-            >
-              <div className="flex flex-col justify-center gap-3">
-                <div className="flex justify-center">
+          {MovieWatchMovies.map((movie) => (
+            <div key={movie.movieId} className="mb-7 w-full flex-shrink-0">
+              <div className="flex flex-col items-center  justify-center gap-3">
+                <div className="relative flex h-[230px] w-[156px] overflow-hidden rounded-xl">
                   <Image
-                    height={230}
-                    width={156}
-                    className="rounded-xl"
+                    className="object-cover"
+                    fill
                     src={
                       movie.poster_path
                         ? getTmdbPosterUrl("original", movie.poster_path)
@@ -64,7 +60,6 @@ export default function Mobile_Posts({ MovieWatchMovies }: WatchMovieType) {
                     alt="영화 포스터"
                   />
                 </div>
-
                 <div className="flex flex-col items-center justify-center gap-2">
                   <h1 className="Text-m-Medium">{movie.movienm}</h1>
                   <div className="flex gap-[10px] text-L_Gray Text-xs-Regular">
@@ -74,7 +69,7 @@ export default function Mobile_Posts({ MovieWatchMovies }: WatchMovieType) {
                   </div>
                 </div>
               </div>
-              <div>
+              <div className="flex justify-center">
                 <h1 className="mt-5 text-center Text-l-Bold">{movie.rate}</h1>
                 <div className="flex items-center justify-center p-1">
                   <PostRating
