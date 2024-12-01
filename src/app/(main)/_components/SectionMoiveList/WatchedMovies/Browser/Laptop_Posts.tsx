@@ -27,7 +27,7 @@ export default function Laptop_Posts({ MovieWatchMovies }: WatchMovieType) {
 
   return (
     <>
-      <div className="relative hidden w-full gap-[24px] rounded-xl Laptop:mb-[180px] Laptop:block Desktop:mb-[200px]">
+      <div className="relative hidden w-full gap-[24px] rounded-xl Laptop:block">
         <Swiper
           breakpoints={{
             1280: { spaceBetween: 20 },
