@@ -6,8 +6,8 @@ import { ChatFillSm, ThumbsUpFillSm } from "../../../../public/icons";
 
 export default function HoverPostCard({ movie }: { movie: MovieHidingPiece }) {
   return (
-    <div className="absolute hidden h-full w-full flex-col gap-2 bg-black/70 px-5 py-6 group-hover:flex Desktop:gap-4 Desktop:px-6 Desktop:pb-5 Desktop:pt-7">
-      <div className="flex justify-center">
+    <div className="absolute z-10 hidden h-full w-full flex-col gap-2 bg-black/70 px-5 py-6 group-hover:Laptop:flex Desktop:gap-4 Desktop:px-6 Desktop:pb-5 Desktop:pt-7 group-hover:Desktop:flex">
+      <div className="flex w-full justify-center">
         <GetRating StarRating={movie.StarAvg} ratingsize="Md" space={true} />
       </div>
       <div className="flex flex-1 flex-col">

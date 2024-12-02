@@ -30,16 +30,14 @@ export default function MasterPieceMoive({ data }: MasterPieceMoiveType) {
         <span className="text-L_Gray Text-m-Regular Laptop:hidden">
           리뷰수 대비 평점이 높은 작품들이에요
         </span>
-        {(!swiper?.isEnd || !swiper.isBeginning) && (
-          <div className="flex gap-1">
-            <Button onClick={() => swiper?.slidePrev()} variant="arrow2">
-              <Image src={ChevronLeftMd} alt="이전" />
-            </Button>
-            <Button onClick={() => swiper?.slideNext()} variant="arrow2">
-              <Image src={ChevronRightMd} alt="다음" />
-            </Button>
-          </div>
-        )}
+        <div className="hidden gap-1 Laptop:flex">
+          <Button onClick={() => swiper?.slidePrev()} variant="arrow2">
+            <Image src={ChevronLeftMd} alt="이전" />
+          </Button>
+          <Button onClick={() => swiper?.slideNext()} variant="arrow2">
+            <Image src={ChevronRightMd} alt="다음" />
+          </Button>
+        </div>
       </div>
       <div className="">
         <Swiper
@@ -58,10 +56,10 @@ export default function MasterPieceMoive({ data }: MasterPieceMoiveType) {
           {data.map((movie) => (
             <SwiperSlide className="group w-fit" key={movie.movieid}>
               <Link
-                className="relative flex flex-col gap-2 Laptop:w-[174px] Desktop:w-[240px]"
+                className="relative flex w-[156px] flex-col gap-2 Tablet:w-[165px] Laptop:w-[174px] Desktop:w-[240px]"
                 href={`detail/${movie.movieid}`}
               >
-                <div className="relative flex h-[230px] w-[156px] items-end justify-between overflow-hidden rounded-xl Text-s-Bold Tablet:h-[240px] Tablet:w-[165px] Laptop:h-[260px] Laptop:w-[174px] Desktop:h-[360px] Desktop:w-[240px]">
+                <div className="relative flex h-[230px] w-full items-end justify-between overflow-hidden rounded-xl Text-s-Bold Tablet:h-[240px]  Laptop:h-[260px] Desktop:h-[360px]">
                   <Image
                     className="object-cover group-hover:Laptop:blur-[3px]"
                     fill
