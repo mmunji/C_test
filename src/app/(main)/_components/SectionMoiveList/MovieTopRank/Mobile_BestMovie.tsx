@@ -76,18 +76,23 @@ export default function Mobile_BestMovie({
                             {dayjs(MovieDetailData.release_date).format("YYYY")}
                           </span>
                           <div className="h-3 w-[1px] border-r-[1px] border-Gray_Orange"></div>
-                          {sortGenresByTitle(MovieDetailData.genres, MovieGenre)
-                            .slice(0, 3)
-                            .map((genre: MovieGenreDto, index: number) => (
-                              <span className="Text-xs-Regular" key={index}>
-                                {genre.name}
-                                {index <
-                                  Math.min(
-                                    2,
-                                    MovieDetailData.genres.length - 1,
-                                  ) && " / "}
-                              </span>
-                            ))}
+                          <div className="flex gap-1">
+                            {sortGenresByTitle(
+                              MovieDetailData.genres,
+                              MovieGenre,
+                            )
+                              .slice(0, 3)
+                              .map((genre: MovieGenreDto, index: number) => (
+                                <span className="Text-xs-Regular" key={index}>
+                                  {genre.name}
+                                  {index <
+                                    Math.min(
+                                      2,
+                                      MovieDetailData.genres.length - 1,
+                                    ) && " /"}
+                                </span>
+                              ))}
+                          </div>
                         </div>
                         <div>
                           <div className="flex items-center gap-5">
@@ -127,7 +132,7 @@ export default function Mobile_BestMovie({
                     </div>
                     <div className="flex flex-col gap-2 px-4">
                       <div className="flex justify-between   Text-xs-Regular">
-                        <div className="flex items-center  rounded bg-Primary px-1  text-White">
+                        <div className="flex items-center  rounded bg-Primary px-1  text-[#FFFFFF]">
                           {MovieDetailData.reviewList[0]?.content
                             ? "BEST"
                             : "TALK"}

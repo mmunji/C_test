@@ -77,7 +77,7 @@ export default function Laptop_BestMovie({
                 }}
               >
                 <div
-                  className={`flex gap-6 ${StatePost === index ? "w-[562px]" : "w-[174px]"} transition-opacity duration-700 ease-in`}
+                  className={`flex gap-5 ${StatePost === index ? "w-[562px]" : "w-[174px]"} transition-opacity duration-700 ease-in`}
                 >
                   <div
                     className={`${
@@ -122,20 +122,20 @@ export default function Laptop_BestMovie({
                             {dayjs(MovieDetailData.release_date).format("YYYY")}
                           </span>
                           <div className="h-3 w-[1px] border-r-[1px] border-L_Gray"></div>
-                          <div className="flex">
+                          <div className="flex  gap-1">
                             {sortGenresByTitle(
                               MovieDetailData.genres,
                               MovieGenre,
                             )
                               .slice(0, 3)
                               .map((genre: MovieGenreDto, index: number) => (
-                                <span className="Text-s-Regular" key={index}>
+                                <span className="Text-xs-Regular" key={index}>
                                   {genre.name}
                                   {index <
                                     Math.min(
                                       2,
                                       MovieDetailData.genres.length - 1,
-                                    ) && " / "}
+                                    ) && " /"}
                                 </span>
                               ))}
                           </div>
@@ -225,7 +225,7 @@ export default function Laptop_BestMovie({
             }
           }}
           variant="arrow1"
-          className={`absolute -left-5 top-[40%] z-[50]  transform   transition-opacity duration-300 ${hovered ? "opacity-100" : "opacity-10"} `}
+          className={`absolute -left-5 top-[40%] z-[50]  transform   transition-opacity duration-300 ${hovered ? "opacity-100" : "opacity-0"} `}
         >
           <Image src={ChevronLeftMd} alt="이전" />
         </Button>
@@ -238,8 +238,8 @@ export default function Laptop_BestMovie({
               swiper.slideNext();
             }
           }}
-          variant="arrow2"
-          className={`absolute -right-5 top-[40%] z-[50]   transform transition-opacity duration-300 ${hovered ? "opacity-100" : "opacity-10"}  `}
+          variant="arrow1"
+          className={`absolute -right-5 top-[40%] z-[50]   transform transition-opacity duration-300 ${hovered ? "opacity-100" : "opacity-0"}  `}
         >
           <Image src={ChevronRightMd} alt="다음" />
         </Button>

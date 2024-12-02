@@ -19,7 +19,7 @@ interface ReviewListType {
 
 export default function RealTimeHotTalk({ ReviewList }: ReviewListType) {
   return (
-    <div className="flex  flex-col gap-[20px]  text-white Tablet:justify-end">
+    <div className="flex  flex-col gap-[20px]  text-Silver Tablet:justify-end">
       <h1 className=" hidden Laptop:block Laptop:w-[390px]  Laptop:Text-xl-Bold Desktop:w-[521px]  ">
         실시간 핫한 톡
       </h1>

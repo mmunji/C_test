@@ -32,7 +32,7 @@ export default function BestTalkPost({
             />
             <div className=" flex items-center Text-s-Bold">
               <Image src={StarFillSm} alt="별점" />
-              <span className="Text-s-Medium">{star}</span>
+              <span className="Text-s-Medium">{star.toFixed(1)}</span>
             </div>
           </div>
 
