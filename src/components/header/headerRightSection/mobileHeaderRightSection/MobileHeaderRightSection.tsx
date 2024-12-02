@@ -5,7 +5,6 @@ import React, { Dispatch, SetStateAction, useState } from "react";
 import Modal from "@/components/modal/modal";
 import ROUTES from "@/constants/routes";
 import useHandleClickAuthButton from "@/hooks/useHandleClickAuthButtons";
-import useSearchMovies from "@/hooks/useSearchMovies";
 import useLoggedInStore from "@/stores/useLoggedIn";
 
 import { House, SearchWhiter, User } from "../../../../../public/icons";
@@ -40,8 +39,6 @@ function MobileHeaderRightSection({
       setIsOpen(true);
     }
   };
-
-  useSearchMovies(inputValue);
 
   return (
     <>
