@@ -80,7 +80,7 @@ export default function SlimilarPost({
         </Swiper>
       </div>
 
-      <div className="relative hidden  flex-col gap-[16px] rounded-xl bg-D1_Gray  px-[24px]  py-[28px] text-white Laptop:flex">
+      <div className="relative hidden  flex-col gap-[16px] rounded-xl bg-D1_Gray  px-[24px]  py-[28px] text-Silver Laptop:flex">
         <h1 className="text-Silver Text-xl-Bold">
           {ReviewUsers[PickUserNumber]?.nickname}님의 최근 톡
         </h1>
@@ -131,7 +131,7 @@ export default function SlimilarPost({
             <Button
               onClick={() => swiper.slidePrev()}
               variant="arrow1"
-              className={`absolute -left-1 top-[40%] z-[10]  mt-9  transform   transition-opacity duration-300 ${hovered ? "opacity-100" : "opacity-10"} `}
+              className={`absolute left-1 top-[40%] z-[10]  mt-9  transform   transition-opacity duration-300 ${hovered ? "opacity-100" : "opacity-0"} `}
             >
               <Image
                 src={ChevronLeftMd}
@@ -144,8 +144,8 @@ export default function SlimilarPost({
           {swiper && !swiper.isEnd && (
             <Button
               onClick={() => swiper.slideNext()}
-              variant="arrow2"
-              className={`absolute -right-1 top-[40%] z-[20]  mt-9  transform transition-opacity duration-300 ${hovered ? "opacity-100" : "opacity-10"}  `}
+              variant="arrow1"
+              className={`absolute right-1 top-[40%] z-[20]  mt-9  transform transition-opacity duration-300 ${hovered ? "opacity-100" : "opacity-0"}  `}
             >
               <Image
                 src={ChevronRightMd}

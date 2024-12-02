@@ -89,18 +89,23 @@ export default function Tablet_BestMoive({
                             {dayjs(MovieDetailData.release_date).format("YYYY")}
                           </span>
                           <div className="h-3 border-r-[1px] border-L_Gray"></div>
-                          {sortGenresByTitle(MovieDetailData.genres, MovieGenre)
-                            .slice(0, 3)
-                            .map((genre: MovieGenreDto, index: number) => (
-                              <span className="Text-xs-Regular" key={index}>
-                                {genre.name}
-                                {index <
-                                  Math.min(
-                                    2,
-                                    MovieDetailData.genres.length - 1,
-                                  ) && "  /  "}
-                              </span>
-                            ))}
+                          <div className="flex gap-1">
+                            {sortGenresByTitle(
+                              MovieDetailData.genres,
+                              MovieGenre,
+                            )
+                              .slice(0, 3)
+                              .map((genre: MovieGenreDto, index: number) => (
+                                <span className="Text-xs-Regular" key={index}>
+                                  {genre.name}
+                                  {index <
+                                    Math.min(
+                                      2,
+                                      MovieDetailData.genres.length - 1,
+                                    ) && " /"}
+                                </span>
+                              ))}
+                          </div>
                         </div>
                       </div>
                       <div className="flex gap-5">
@@ -182,7 +187,7 @@ export default function Tablet_BestMoive({
         <Button
           onClick={() => swiper.slidePrev()}
           variant="arrow1"
-          className={`absolute left-1 top-[70%] z-[100]  transform   transition-opacity duration-300 ${hovered ? "opacity-100" : "opacity-0"} `}
+          className={`absolute left-1 top-[93%] z-[100]  transform   transition-opacity duration-300 ${hovered ? "opacity-100" : "opacity-0"} `}
         >
           <Image src={ChevronLeftMd} alt="이전" style={{ color: "#E9E9E9" }} />
         </Button>
@@ -191,8 +196,8 @@ export default function Tablet_BestMoive({
       {swiper && !swiper.isEnd && (
         <Button
           onClick={() => swiper.slideNext()}
-          variant="arrow2"
-          className={`absolute right-1 top-[70%]  z-[100]   transform transition-opacity duration-300 ${hovered ? "opacity-100" : "opacity-0"}  `}
+          variant="arrow1"
+          className={`absolute right-1 top-[93%]  z-[100]   transform transition-opacity duration-300 ${hovered ? "opacity-100" : "opacity-0"}  `}
         >
           <Image src={ChevronRightMd} alt="다음" style={{ color: "#E9E9E9" }} />
         </Button>

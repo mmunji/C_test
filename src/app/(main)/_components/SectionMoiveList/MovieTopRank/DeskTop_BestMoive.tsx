@@ -125,18 +125,20 @@ export default function DeskTop_BestMovie({
                           {dayjs(MovieDetailData.release_date).format("YYYY")}
                         </span>
                         <div className="flex h-3 w-[1px] items-center border-r-[1px] border-L_Gray"></div>
-                        <div className="flex w-full ">
+                        <div className="flex w-full gap-1 ">
                           {sortGenresByTitle(MovieDetailData.genres, MovieGenre)
                             .slice(0, 3)
                             .map((genre: MovieGenreDto, index: number) => (
-                              <span className="Text-s-Regular" key={index}>
-                                {genre.name}
-                                {index <
-                                  Math.min(
-                                    2,
-                                    MovieDetailData.genres.length - 1,
-                                  ) && " / "}
-                              </span>
+                              <div key={index}>
+                                <span className="Text-s-Regular">
+                                  {genre.name}
+                                  {index <
+                                    Math.min(
+                                      2,
+                                      MovieDetailData.genres.length - 1,
+                                    ) && " / "}
+                                </span>
+                              </div>
                             ))}
                         </div>
                       </div>
@@ -227,7 +229,7 @@ export default function DeskTop_BestMovie({
       {swiper && !swiper.isEnd && (
         <Button
           onClick={() => swiper.slideNext()}
-          variant="arrow2"
+          variant="arrow1"
           className={`absolute -right-5 top-[40%]  z-[100]   transform transition-opacity duration-300 ${hovered ? "opacity-100" : "opacity-0"}  `}
         >
           <Image src={ChevronRightMd} alt="다음" style={{ color: "#E9E9E9" }} />
