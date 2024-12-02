@@ -50,7 +50,7 @@ export default function SlimilarUser({
         />
         <span>{name}</span>
       </div>
-      <div className="flex gap-4 px-2">
+      <div className="flex items-center gap-4 px-2">
         <div className="flex items-center gap-1">
           <Image
             src={EditPencilLineFill}
@@ -59,7 +59,7 @@ export default function SlimilarUser({
           />
           평가한 영화 {heart ? heart : 0}
         </div>
-        <div className="border-[1px] border-D3_Gray" />
+        <div className="h-4 border-r-[1px] border-D3_Gray" />
         <div className="flex items-center gap-1">
           <Image src={ThumbsUpFillSm} alt="펜슬" />
           받은 좋아요 {evaluate ? evaluate : 0}

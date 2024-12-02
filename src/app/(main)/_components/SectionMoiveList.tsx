@@ -12,7 +12,7 @@ import SimilarTastesMovieWapper from "./SectionMoiveList/SlimilarTaste/SimilarTa
 import WatchedMoive from "./SectionMoiveList/WatchedMovies/WatchedMoive";
 export default function SectionMoiveList() {
   return (
-    <div className="mt-[65px] flex flex-col gap-[68px] px-5 Tablet:mt-[84px] Tablet:gap-[100px] Laptop:mt-[77px] Laptop:gap-[120px] Laptop:px-[68px] Desktop:mt-[120px] Desktop:gap-[140px] Desktop:px-[180px]">
+    <div className="mb-[100px] mt-[65px] flex flex-col gap-[68px] px-5 Tablet:mb-[160px] Tablet:mt-[84px] Tablet:gap-[100px] Tablet:px-6 Laptop:mb-[180px] Laptop:mt-[77px] Laptop:gap-[120px] Laptop:px-[68px] Desktop:mb-[200px] Desktop:mt-[120px] Desktop:gap-[140px] Desktop:px-[180px]">
       {/* 영화TOP4 전체  컴포넌트 */}
       <Suspense fallback={<MovieTopSkeleton />}>
         <MovieTopWapper />
@@ -30,7 +30,6 @@ export default function SectionMoiveList() {
       <SimilarTastesMovieWapper />
       {/*혹시 이 영화 보셨나요? */}
       <WatchedMoive />
-      <div></div>
     </div>
   );
 }

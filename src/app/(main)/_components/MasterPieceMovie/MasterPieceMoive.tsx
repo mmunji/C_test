@@ -5,149 +5,91 @@ import "swiper/css/pagination";
 
 import Image from "next/image";
 import Link from "next/link";
-import { Suspense, useEffect, useState } from "react";
+import { useState } from "react";
 import { Pagination } from "swiper/modules";
 import { Swiper, SwiperClass, SwiperSlide } from "swiper/react";
 
 import { ChevronLeftMd, ChevronRightMd, StarFillMd } from "@/../public/icons";
+import HoverPostCard from "@/app/(main)/_components/HoverPostCard";
 import Button from "@/components/buttons/Button";
-import useDevice from "@/hooks/useDevice";
-
-import PostCard from "../PostCard";
+import { getTmdbPosterUrl } from "@/utils/tmdb";
 
 interface MasterPieceMoiveType {
-  data: MovieHidingPiece | null;
+  data: MovieHidingPiece[];
 }
 
 export default function MasterPieceMoive({ data }: MasterPieceMoiveType) {
   const [swiper, setSwiper] = useState<SwiperClass>();
-  const [hovered, sethovered] = useState(false);
-  const { device } = useDevice();
 
   return (
-    <div className="flex flex-col gap-[20px]">
-      <div className="flex flex-col gap-1">
-        <h1 className="Desktop: Text-xxl-Bold Text-l-Bold Laptop:Text-xxl-Bold">
+    <div className="flex flex-col gap-5 Tablet:gap-4">
+      <div className="flex flex-col gap-1 Laptop:flex-row Laptop:justify-between">
+        <h2 className="Text-l-Bold Laptop:Text-xxl-Bold">
           씨네톡 속 숨겨진 명작
-        </h1>
-        <span className="text-L_Gray Text-m-Regular Laptop:hidden Desktop:hidden">
+        </h2>
+        <span className="text-L_Gray Text-m-Regular Laptop:hidden">
           리뷰수 대비 평점이 높은 작품들이에요
         </span>
+        {(!swiper?.isEnd || !swiper.isBeginning) && (
+          <div className="flex gap-1">
+            <Button onClick={() => swiper?.slidePrev()} variant="arrow2">
+              <Image src={ChevronLeftMd} alt="이전" />
+            </Button>
+            <Button onClick={() => swiper?.slideNext()} variant="arrow2">
+              <Image src={ChevronRightMd} alt="다음" />
+            </Button>
+          </div>
+        )}
       </div>
-
-      <div className=" block gap-2 Laptop:hidden  ">
-        <Swiper slidesPerView="auto" spaceBetween={20} centeredSlides={false}>
-          {Array.isArray(data) && data.length > 0
-            ? data.map((movie, index) => (
-                <SwiperSlide
-                  key={movie.movieid}
-                  style={{ width: "156px", justifyContent: "start" }}
-                >
-                  <Link href={`detail/${movie.movieid}`}>
-                    <div
-                      className="flex h-[230px] w-[156px] items-end  justify-between rounded-xl   Text-s-Bold Tablet:h-[240px] Tablet:w-[165px]"
-                      style={{
-                        backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0.0) 0%, rgba(0, 0, 0, 0.7) 70%), url('${movie?.movieposter ? `https://image.tmdb.org/t/p/original/${movie?.movieposter}` : "/images/ssikongi/PNG/NoImage.png"}')`,
-                        backgroundSize: "cover",
-                        backgroundPosition: "center",
-                      }}
-                    >
-                      <div className="flex  w-full items-center justify-between gap-1 px-3 pb-3">
-                        <span className="line-clamp-1 text-Silver Text-s-Medium Tablet:Text-m-Medium">
-                          {movie.movienm}
-                        </span>
-                        <div className="flex gap-1 Text-m-Medium">
-                          <Image
-                            src={StarFillMd}
-                            alt="star"
-                            className="h-6 w-6"
-                          />
-                          <span className="flex items-center  text-Silver Text-s-Bold Tablet:Text-m-Bold ">
-                            {movie.StarAvg.toFixed(1)}
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                  </Link>
-                </SwiperSlide>
-              ))
-            : null}
-        </Swiper>
-      </div>
-
-      <div
-        className="hidden Laptop:block"
-        onMouseEnter={() => sethovered(true)}
-        onMouseLeave={() => sethovered(false)}
-      >
+      <div className="">
         <Swiper
-          slidesPerView="auto"
-          spaceBetween={device == "laptop" ? 20 : 24}
-          className=" gap-5 Laptop:gap-5 Desktop:gap-6"
-          centeredSlides={false}
-          slidesOffsetBefore={0}
+          breakpoints={{
+            0: { spaceBetween: 8 },
+            768: { spaceBetween: 16 },
+            1280: { spaceBetween: 20 },
+            1920: { spaceBetween: 24 },
+          }}
           modules={[Pagination]}
           onSwiper={(e) => {
             setSwiper(e);
           }}
+          slidesPerView="auto"
         >
-          {Array.isArray(data) && data.length > 0
-            ? data.map((movie, index) => (
-                <SwiperSlide
-                  key={movie.movieid}
-                  className="w-[174px] Desktop:w-[240px]"
-                >
-                  <Link href={`detail/${movie.movieid}`}>
-                    <div className="flex w-[174px] flex-col Desktop:w-[240px]">
-                      <PostCard
-                        StarPostType="StarPost"
-                        StarRating={movie.star}
-                        content={movie.content}
-                        regDate={movie.regDate}
-                        likeCount={movie?.likeCount}
-                        reviewCount={movie?.rereviewCount}
-                        background={movie?.movieposter}
-                      />
-                      <div className="mt-2  flex justify-between">
-                        <div>
-                          <span className="line-clamp-1">{movie.movienm}</span>
-                        </div>
-                        <div className="flex gap-1 Text-m-Medium">
-                          <Image
-                            src={StarFillMd}
-                            alt="star"
-                            className="h-6 w-6"
-                          />
-                          <span className="flex items-center ">
-                            {movie.StarAvg}
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                  </Link>
-                </SwiperSlide>
-              ))
-            : null}
+          {data.map((movie) => (
+            <SwiperSlide className="group w-fit" key={movie.movieid}>
+              <Link
+                className="relative flex flex-col gap-2 Laptop:w-[174px] Desktop:w-[240px]"
+                href={`detail/${movie.movieid}`}
+              >
+                <div className="relative flex h-[230px] w-[156px] items-end justify-between overflow-hidden rounded-xl Text-s-Bold Tablet:h-[240px] Tablet:w-[165px] Laptop:h-[260px] Laptop:w-[174px] Desktop:h-[360px] Desktop:w-[240px]">
+                  <Image
+                    className="object-cover group-hover:Laptop:blur-[3px]"
+                    fill
+                    alt={movie.movienm}
+                    src={
+                      movie.movieposter
+                        ? getTmdbPosterUrl("w780", movie.movieposter)
+                        : "/images/ssikongi/PNG/NoImage.png"
+                    }
+                  />
+                  <HoverPostCard movie={movie} />
+                  <div className="absolute h-full w-full bg-gradient-to-t from-black/70 Laptop:hidden" />
+                </div>
+                <div className="absolute bottom-0 flex w-full min-w-0 items-center justify-between gap-1 px-3 pb-3 Laptop:relative Laptop:px-0 Laptop:pb-0">
+                  <p className="overflow-hidden text-ellipsis whitespace-nowrap Text-s-Medium Tablet:Text-m-Medium">
+                    {movie.movienm}
+                  </p>
+                  <div className="flex shrink-0 items-center gap-[2px] Laptop:gap-1">
+                    <Image src={StarFillMd} alt="star" className="h-6 w-6" />
+                    <span className="flex items-center Text-s-Bold Tablet:Text-m-Bold">
+                      {movie.StarAvg.toFixed(1)}
+                    </span>
+                  </div>
+                </div>
+              </Link>
+            </SwiperSlide>
+          ))}
         </Swiper>
-        {swiper && !swiper.isBeginning && (
-          <Button
-            onClick={() => swiper.slidePrev()}
-            variant="arrow1"
-            className={`absolute -left-5 top-1/2 z-[10]  transform   transition-opacity duration-300 ${hovered ? "opacity-100" : "opacity-0"} `}
-          >
-            <Image src={ChevronLeftMd} alt="이전" />
-          </Button>
-        )}
-
-        {swiper && !swiper.isEnd && (
-          <Button
-            onClick={() => swiper.slideNext()}
-            variant="arrow2"
-            className={`absolute -right-5 top-1/2 z-[10]   transform transition-opacity duration-300 ${hovered ? "opacity-100" : "opacity-0"}  `}
-          >
-            <Image src={ChevronRightMd} alt="다음" />
-          </Button>
-        )}
       </div>
     </div>
   );

@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { movieAPIs } from "@/services/movie/movieAPIs";
 
 import WatchedSkeleton from "../../MainSkeleton/WatchedMoive/WatchedSkeleton";
-import Labtop_Posts from "./Browser/Labtop_Posts";
+import Laptop_Posts from "./Browser/Laptop_Posts";
 import Mobile_Posts from "./Browser/Mobile_Posts";
 import Tablet_Posts from "./Browser/Tablet_Posts";
 interface WatchMovieDataType {
@@ -12,7 +12,6 @@ interface WatchMovieDataType {
 }
 export default function MoviePosts({ WatchMovieData }: WatchMovieDataType) {
   // await movieAPIs.getWatchMovie();
-
   return (
     <div>
       {/* Mobile */}
@@ -20,7 +19,7 @@ export default function MoviePosts({ WatchMovieData }: WatchMovieDataType) {
       {/* Tablet */}
       <Tablet_Posts MovieWatchMovies={WatchMovieData} />
       {/* Laptop, Desktop */}
-      <Labtop_Posts MovieWatchMovies={WatchMovieData} />
+      <Laptop_Posts MovieWatchMovies={WatchMovieData} />
     </div>
   );
 }

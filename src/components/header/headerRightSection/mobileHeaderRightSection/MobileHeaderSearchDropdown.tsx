@@ -3,7 +3,6 @@ import Link from "next/link";
 import React, { Dispatch, SetStateAction } from "react";
 
 import ROUTES from "@/constants/routes";
-import useGetPopularSearchList from "@/hooks/useGetPopularSearchList";
 import { searchAPIs } from "@/services/search/searchAPIs";
 import useSearchMovieTitlesStore from "@/stores/useSearchMovieTitlesStore";
 
@@ -22,8 +21,8 @@ export default function MobilHeaderSearchDropdown({
   inputFocused,
   setClickSearchIcon,
 }: MobilHeaderSearchDropdownProps) {
-  const { movieTitles } = useSearchMovieTitlesStore();
-  useGetPopularSearchList(inputValue);
+  const { movieTitles, popularMovieTitles } = useSearchMovieTitlesStore();
+  const movies = inputValue.length === 0 ? popularMovieTitles : movieTitles;
 
   const highlightText = (text: string, highlight: string) => {
     const parts = text.split(new RegExp(`(${highlight})`, "gi"));
@@ -51,7 +50,7 @@ export default function MobilHeaderSearchDropdown({
 
       {inputFocused && (
         <ul className="flex flex-col gap-2">
-          {movieTitles?.map((title, i) => (
+          {movies?.map((title, i) => (
             <Link
               key={i}
               href={`${ROUTES.SEARCH.getById(title)}`}

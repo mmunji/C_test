@@ -49,7 +49,7 @@ export default function MainBanner({ data }: BannerType) {
                   }}
                 >
                   <div
-                    className="absolute inset-0  flex flex-col justify-between rounded-[20px] px-5 pb-4 pt-8  text-white Tablet:flex-row Tablet:px-9 Tablet:pb-7  Laptop:px-[74px]  Laptop:py-[40px]  Desktop:h-[637px] Desktop:px-[108px] Desktop:py-[60px]"
+                    className="absolute inset-0  flex flex-col justify-between rounded-[20px] px-5 pb-4 pt-8  Tablet:flex-row Tablet:px-9 Tablet:pb-7  Laptop:px-[74px]  Laptop:py-[40px]  Desktop:h-[637px] Desktop:px-[108px] Desktop:py-[60px]"
                     style={{
                       backdropFilter: `${device == "laptop" || device == "desktop" ? `blur(5px)` : ""}`,
                       background: `${device == "laptop" || device == "desktop" ? `rgba(0, 0, 0, 0.50)` : ""}`,
