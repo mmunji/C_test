@@ -4,7 +4,6 @@ import { useRouter } from "next/navigation";
 import React, { Dispatch, SetStateAction } from "react";
 
 import ROUTES from "@/constants/routes";
-import useGetPopularSearchList from "@/hooks/useGetPopularSearchList";
 import { searchAPIs } from "@/services/search/searchAPIs";
 import useSearchMovieTitlesStore from "@/stores/useSearchMovieTitlesStore";
 
@@ -20,8 +19,8 @@ export default function HeaderSearchDropdown({
   setInputValue,
 }: HeaderSearchDropdownProps) {
   const router = useRouter();
-  const { movieTitles } = useSearchMovieTitlesStore();
-  useGetPopularSearchList(inputValue);
+  const { movieTitles, popularMovieTitles } = useSearchMovieTitlesStore();
+  const movies = inputValue.length === 0 ? popularMovieTitles : movieTitles;
 
   const highlightText = (text: string, highlight: string) => {
     const parts = text.split(new RegExp(`(${highlight})`, "gi"));
@@ -45,7 +44,7 @@ export default function HeaderSearchDropdown({
         </div>
       )}
       <div className="flex flex-col">
-        {movieTitles?.map((title, i) => (
+        {movies?.map((title, i) => (
           <div
             key={i}
             // href={`${ROUTES.SEARCH.getById(title)}`}

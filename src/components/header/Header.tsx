@@ -5,6 +5,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { Suspense, useEffect, useState } from "react";
 
 import ROUTES from "@/constants/routes";
+import useGetPopularSearchList from "@/hooks/useGetPopularSearchList";
 import useHeaderScrollThreshold from "@/hooks/useHeaderScrollThreshold";
 import useRefresh from "@/hooks/useRefresh";
 import useScrollStore from "@/stores/useScrollStore";
@@ -37,6 +38,7 @@ export default function Header({ children }: { children: React.ReactNode }) {
       document.body.style.overflowY = "auto";
     }
   }, [clickSearchIcon]);
+  useGetPopularSearchList();
 
   const { myPageHeaderText } = getMyPageHeaderText(pathname);
 
