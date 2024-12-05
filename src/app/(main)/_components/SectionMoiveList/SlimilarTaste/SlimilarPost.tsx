@@ -1,160 +1,191 @@
-"use client";
-import "swiper/css";
-import "swiper/css/pagination";
-
 import Image from "next/image";
 import Link from "next/link";
-import { Dispatch, SetStateAction, useState } from "react";
+import { useRef, useState } from "react";
 import { Swiper, SwiperClass, SwiperSlide } from "swiper/react";
 
+import HoverPostCard from "@/app/(main)/_components/HoverPostCard";
 import Button from "@/components/buttons/Button";
-import useDevice from "@/hooks/useDevice";
+import SmallBadge from "@/components/smallBadge/SmallBadge";
+import ROUTES from "@/constants/routes";
+import { getTmdbPosterUrl } from "@/utils/tmdb";
 
+import {
+  ChatFillSmSvgr,
+  EditPencilLineFill,
+  StarFillSm,
+  ThumbsUpFillSm,
+  ThumbsUpFillSmSvgr,
+} from "../../../../../../public/icons";
 import { ChevronLeftMd, ChevronRightMd } from "../../../../../../public/icons";
-import PostCard from "../../PostCard";
-import SlimilarMobilePost from "./SlimilarMobilePost";
-import SlimilarUser from "./SlimilarUser";
+import { ProfileBlue } from "../../../../../../public/images";
 
 interface ReviewUsersProps {
-  ReviewUsers: MovieReviewRecommed[];
-  setPickUserNumber: Dispatch<SetStateAction<number>>;
-  PickUserNumber: number;
-  ChangePickNumber: (index: number) => void;
-  setProfileSwiper?: Dispatch<SetStateAction<SwiperClass | undefined>>;
-  ProfileSwiper?: SwiperClass;
+  selectedReviewer: MovieReviewRecommed;
 }
 
-export default function SlimilarPost({
-  ReviewUsers,
-  setPickUserNumber,
-  ChangePickNumber,
-  PickUserNumber,
-  ProfileSwiper,
-  setProfileSwiper,
-}: ReviewUsersProps) {
-  const { device } = useDevice();
-  const [swiper, setSwiper] = useState<SwiperClass>();
-  const [hovered, sethovered] = useState(false);
-
+export default function SlimilarPost({ selectedReviewer }: ReviewUsersProps) {
+  const swiperRef = useRef<SwiperClass>();
+  const [isBeginning, setIsBeginning] = useState(true);
+  const [isEnd, setIsEnd] = useState(false);
   return (
-    <div className="flex flex-col gap-5 ">
-      <div className="flex flex-col gap-5 rounded-2xl bg-Black py-5 pl-5 Tablet:bg-D1_Gray Laptop:hidden ">
-        <SlimilarMobilePost
-          UserPost={ReviewUsers}
-          PickUserNumber={PickUserNumber}
-        />
+    <div className="flex flex-col gap-5 rounded-[20px] bg-Black p-5 Laptop:gap-4 Laptop:p-6 Laptop:pb-7">
+      <div className="hidden Text-xl-Bold Laptop:flex">
+        {selectedReviewer.nickname}님의 최근 톡
       </div>
-      <div className=" hidden justify-between Laptop:block">
-        <Swiper
-          slidesPerView="auto"
-          spaceBetween={device == "laptop" ? 20 : 24}
-          className=" flex rounded-xl"
-          centeredSlides={false}
-          initialSlide={0}
-          onSwiper={(e: SwiperClass) => setProfileSwiper?.(e)}
-        >
-          {Array.isArray(ReviewUsers) && ReviewUsers.length > 0
-            ? ReviewUsers.map((ReviewUser, index) => {
-                if (!ReviewUser) {
-                  return null;
-                }
-                return (
-                  <SwiperSlide
-                    key={ReviewUser.userId}
-                    className="w-[368px] Desktop:w-[372px]  "
-                  >
-                    <SlimilarUser
-                      name={ReviewUser.nickname}
-                      evaluate={ReviewUser.rateCount}
-                      heart={ReviewUser.reviewCount}
-                      value={PickUserNumber}
-                      Badge={ReviewUser.badges}
-                      profile={ReviewUser.profile}
-                      ClickIndex={index}
-                      onClick={() => ChangePickNumber(index)}
-                    />
-                  </SwiperSlide>
-                );
-              })
-            : ""}
-        </Swiper>
-      </div>
-
-      <div className="relative hidden  flex-col gap-[16px] rounded-xl bg-D1_Gray  px-[24px]  py-[28px] text-Silver Laptop:flex">
-        <h1 className="text-Silver Text-xl-Bold">
-          {ReviewUsers[PickUserNumber]?.nickname}님의 최근 톡
-        </h1>
-        <div
-          className="block gap-[24px]"
-          onMouseEnter={() => sethovered(true)}
-          onMouseLeave={() => sethovered(false)}
-        >
-          <Swiper
-            slidesPerView="auto"
-            spaceBetween={device == "laptop" ? 20 : 24}
-            className="flex  "
-            onSwiper={(e) => setSwiper(e)}
-          >
-            {Array.isArray(ReviewUsers) &&
-            ReviewUsers.length > 0 &&
-            Array.isArray(ReviewUsers[PickUserNumber]?.reviews)
-              ? ReviewUsers[PickUserNumber].reviews.map(
-                  (_: PostreviewDTO, index: number) => {
-                    return (
-                      <SwiperSlide
-                        key={index}
-                        className={`${device == "laptop" ? "h-[296px] w-[174px]" : "h-[396px] w-[240px]"} `}
-                      >
-                        <Link href={`detail/${_.movie_id}`}>
-                          <div className="flex flex-col gap-2">
-                            <PostCard
-                              content={_.content}
-                              background={_.poster_id}
-                              StarPostType="StarPost"
-                              StarRating={_.star}
-                              reviewCount={_.rereviewCount}
-                              likeCount={_.rateCount}
-                              regDate={_.regDate}
-                            />
-                            <span className="line-clamp-1 text-Gray_Orange">
-                              {_.movienm}
-                            </span>
-                          </div>
-                        </Link>
-                      </SwiperSlide>
-                    );
-                  },
-                )
-              : ""}
-          </Swiper>
-          {swiper && !swiper.isBeginning && (
-            <Button
-              onClick={() => swiper.slidePrev()}
-              variant="arrow1"
-              className={`absolute left-1 top-[40%] z-[10]  mt-9  transform   transition-opacity duration-300 ${hovered ? "opacity-100" : "opacity-0"} `}
-            >
-              <Image
-                src={ChevronLeftMd}
-                alt="이전"
-                style={{ color: "#E9E9E9" }}
-              />
-            </Button>
-          )}
-
-          {swiper && !swiper.isEnd && (
-            <Button
-              onClick={() => swiper.slideNext()}
-              variant="arrow1"
-              className={`absolute right-1 top-[40%] z-[20]  mt-9  transform transition-opacity duration-300 ${hovered ? "opacity-100" : "opacity-0"}  `}
-            >
-              <Image
-                src={ChevronRightMd}
-                alt="다음"
-                style={{ color: "#E9E9E9" }}
-              />
-            </Button>
-          )}
+      <div className="flex flex-col gap-2 Laptop:hidden">
+        <div className="flex items-center gap-3">
+          <div className="relative h-10 w-10">
+            <Image
+              className="rounded-full object-cover"
+              fill
+              alt="유저 프로필"
+              src={
+                selectedReviewer?.profile
+                  ? `data:image/png;base64,${selectedReviewer.profile}`
+                  : ProfileBlue
+              }
+            />
+          </div>
+          <div className="">
+            <p className="Text-s-Medium ">{selectedReviewer?.nickname}</p>
+            <div className="flex items-center gap-2 text-Gray_Orange Text-s-Medium">
+              <span className="flex items-center gap-1">
+                <Image
+                  width={16}
+                  height={16}
+                  src={EditPencilLineFill}
+                  alt="글 쓰기"
+                />
+                {selectedReviewer?.reviewCount}
+              </span>
+              <div className="h-4 w-px bg-D2_Gray" />
+              <span className="flex items-center gap-1">
+                <Image src={ThumbsUpFillSm} alt="좋아요" className="h-4 w-4" />
+                {selectedReviewer.rateCount ?? 0}
+              </span>
+            </div>
+          </div>
         </div>
+        <div className="flex gap-1">
+          {selectedReviewer?.badges.map((badge) => (
+            <SmallBadge
+              key={badge.badge_id}
+              content={badge.badge_name}
+              size="sm"
+            />
+          ))}
+        </div>
+      </div>
+      <div className="relative -mr-5 Laptop:mr-0">
+        <Swiper
+          onSlideChange={(swiper) => {
+            setIsEnd(swiper.isEnd);
+            setIsBeginning(swiper.isBeginning);
+          }}
+          onSwiper={(swiper) => {
+            swiperRef.current = swiper;
+            setIsEnd(swiper.isEnd);
+            setIsBeginning(swiper.isBeginning);
+          }}
+          slidesPerView="auto"
+          breakpoints={{
+            0: { spaceBetween: 8, slidesOffsetAfter: 20 },
+            768: { spaceBetween: 16, slidesOffsetAfter: 20 },
+            1280: { spaceBetween: 20, slidesOffsetAfter: 0 },
+            1920: { spaceBetween: 24, slidesOffsetAfter: 0 },
+          }}
+        >
+          {selectedReviewer.reviews.map((review) => {
+            return (
+              <SwiperSlide className="group w-fit" key={review.review_id}>
+                <Link
+                  href={`${ROUTES.DETAIL}/${review.movie_id}`}
+                  className="flex w-[156px] flex-col gap-1 Tablet:w-[165px] Laptop:w-[174px] Laptop:gap-2 Desktop:w-[240px]"
+                >
+                  <div className="relative h-[230px] overflow-hidden rounded-xl Tablet:h-[240px] Laptop:h-[260px] Laptop:cursor-pointer Desktop:h-[360px]">
+                    <Image
+                      className="object-cover group-hover:Laptop:blur-[3px]"
+                      fill
+                      alt={review.movienm}
+                      src={
+                        review.poster_id
+                          ? getTmdbPosterUrl("w780", review.poster_id)
+                          : "/images/ssikongi/PNG/NoImage.png"
+                      }
+                    />
+                    <div className="absolute h-full w-full bg-gradient-to-t from-[#1E1E1ECC] Laptop:hidden" />
+                    <div className="absolute  flex h-full w-full flex-col justify-end gap-1 p-3 Laptop:hidden">
+                      <div className="flex items-center justify-between gap-1 overflow-hidden text-Gray_Orange">
+                        <p className="line-clamp-1 Text-xs-Regular Tablet:Text-m-Regular">
+                          {review.movienm}
+                        </p>
+                        <div className="flex shrink-0 items-center justify-center gap-[2px] text-Silver Text-s-Bold">
+                          <Image
+                            src={StarFillSm}
+                            alt="평점 별"
+                            className="h-4 w-4"
+                          />
+                          <span className="Text-s-Bold ">{review.star}</span>
+                        </div>
+                      </div>
+                      <div className="flex h-[42px] items-center">
+                        <div className="line-clamp-2 Text-s-Regular Tablet:Text-m-Regular">
+                          {review.content}
+                        </div>
+                      </div>
+                    </div>
+                    <HoverPostCard
+                      movie={{
+                        content: review.content,
+                        likeCount: review.rateCount,
+                        regDate: review.regDate,
+                        rereviewCount: review.rereviewCount,
+                        StarAvg: review.star,
+                      }}
+                    />
+                  </div>
+                  <div className="hidden Text-m-Medium Laptop:flex">
+                    <p className="line-clamp-1">{review.movienm}</p>
+                  </div>
+                  <div className="flex justify-end gap-2 text-L_Gray Text-xs-Regular Laptop:hidden">
+                    <div className="flex items-center gap-1">
+                      <ThumbsUpFillSmSvgr
+                        width={16}
+                        height={16}
+                        fill={"#999490"}
+                      />
+                      <span>{review.rateCount}</span>
+                    </div>
+                    <div className="flex items-center gap-1 ">
+                      <ChatFillSmSvgr fill={"#999490"} width={16} height={16} />
+                      <span className="text-L_Gray">
+                        {review.rereviewCount}
+                      </span>
+                    </div>
+                  </div>
+                </Link>
+              </SwiperSlide>
+            );
+          })}
+        </Swiper>
+        {!isBeginning && (
+          <Button
+            className="absolute -left-[24px] top-1/2 z-10 hidden -translate-y-1/2 Laptop:block"
+            variant={"arrow1"}
+            onClick={() => swiperRef.current?.slidePrev()}
+          >
+            <Image src={ChevronLeftMd} alt="왼쪽 네비게이션" />
+          </Button>
+        )}
+        {!isEnd && (
+          <Button
+            className="absolute -right-[24px] top-1/2 z-10 hidden -translate-y-1/2 Laptop:block"
+            variant={"arrow1"}
+            onClick={() => swiperRef.current?.slideNext()}
+          >
+            <Image src={ChevronRightMd} alt="오른쪽 네비게이션" />
+          </Button>
+        )}
       </div>
     </div>
   );

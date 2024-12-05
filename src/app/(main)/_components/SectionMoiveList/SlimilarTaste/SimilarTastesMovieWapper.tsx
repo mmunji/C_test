@@ -33,6 +33,6 @@ export default function SimilarTastesMovieWapper() {
   return isLoading ? (
     <SimilarTasteSkleton />
   ) : (
-    <SimilarTastesMovie data={PeopleReviewers} />
+    <SimilarTastesMovie reviewUsers={PeopleReviewers} />
   );
 }

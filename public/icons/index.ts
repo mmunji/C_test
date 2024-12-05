@@ -98,3 +98,4 @@ export { default as UserSquare } from "./interaction/user/user_square.svg?url";
 
 export { default as ThumbsUpFillSmSvgr } from "./interaction/thumbs/thumbs_up_fill_sm_svgr.svg";
 export { default as ChatFillSmSvgr } from "./chat/chat_fill_sm_svgr.svg";
+export { default as EditPencilLineFillSvgr } from "./interaction/edit_pencil/edit_pencil_line_fill_svgr.svg";

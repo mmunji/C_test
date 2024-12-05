@@ -77,26 +77,12 @@ export default function Laptop_Posts({ MovieWatchMovies }: WatchMovieType) {
         </Swiper>
       </div>
       <div className="absolute right-0 top-0 z-10 hidden gap-1 Laptop:flex">
-        <Button
-          onClick={() => swiper?.slidePrev()}
-          variant="arrow2"
-          // className={`absolute -left-6 top-1/4 z-[10]  mt-9  transform   transition-opacity duration-300 ${hovered ? "opacity-100" : "opacity-10"} `}
-        >
-          <Image src={ChevronLeftMd} alt="이전" style={{ color: "#E9E9E9" }} />
+        <Button onClick={() => swiper?.slidePrev()} variant="arrow2">
+          <Image src={ChevronLeftMd} alt="이전" />
         </Button>
-        <Button
-          onClick={() => swiper?.slideNext()}
-          variant="arrow2"
-          // className={`absolute -right-6 top-1/4 z-[10]  mt-9  transform transition-opacity duration-300${hovered ? "opacity-100" : "opacity-10"}  `}
-        >
-          <Image src={ChevronRightMd} alt="다음" style={{ color: "#E9E9E9" }} />
+        <Button onClick={() => swiper?.slideNext()} variant="arrow2">
+          <Image src={ChevronRightMd} alt="다음" />
         </Button>
-        {/* {swiper && !swiper.isBeginning && (
-      )}
-
-      {swiper && !swiper.isEnd && (
-
-      )} */}
       </div>
     </>
   );

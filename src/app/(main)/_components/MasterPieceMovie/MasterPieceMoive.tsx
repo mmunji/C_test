@@ -39,18 +39,16 @@ export default function MasterPieceMoive({ data }: MasterPieceMoiveType) {
           </Button>
         </div>
       </div>
-      <div className="">
+      <div className="-mr-5 Tablet:-mr-6 Laptop:mr-0">
         <Swiper
           breakpoints={{
-            0: { spaceBetween: 8 },
-            768: { spaceBetween: 16 },
+            0: { spaceBetween: 8, slidesOffsetAfter: 20 },
+            768: { spaceBetween: 16, slidesOffsetAfter: 24 },
             1280: { spaceBetween: 20 },
             1920: { spaceBetween: 24 },
           }}
           modules={[Pagination]}
-          onSwiper={(e) => {
-            setSwiper(e);
-          }}
+          onSwiper={setSwiper}
           slidesPerView="auto"
         >
           {data.map((movie) => (
