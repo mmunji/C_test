@@ -46,7 +46,7 @@ export default function SlimilarPost({ selectedReviewer }: ReviewUsersProps) {
               }
             />
           </div>
-          <div className="">
+          <div className="flex flex-col gap-1">
             <p className="Text-s-Medium ">{selectedReviewer?.nickname}</p>
             <div className="flex items-center gap-2 text-Gray_Orange Text-s-Medium">
               <span className="flex items-center gap-1">
