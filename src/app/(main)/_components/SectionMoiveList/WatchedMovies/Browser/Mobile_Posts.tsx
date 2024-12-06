@@ -14,6 +14,10 @@ import PostRating from "../../../Rating/PostRating";
 interface WatchMovieType {
   MovieWatchMovies: WatchMovie[];
 }
+
+const base64 = "data:image/jpeg;base64,";
+const blurImg =
+  "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mN0sLP5DwADOwG7TZHLmQAAAABJRU5ErkJggg==";
 export default function Mobile_Posts({ MovieWatchMovies }: WatchMovieType) {
   const [MovieNumber, setMovieNumber] = useState(0);
   const { add } = useToastActions();
@@ -53,6 +57,8 @@ export default function Mobile_Posts({ MovieWatchMovies }: WatchMovieType) {
               <div className="flex flex-col items-center  justify-center gap-3">
                 <div className="relative flex h-[230px] w-[156px] overflow-hidden rounded-xl">
                   <Image
+                    placeholder="blur"
+                    blurDataURL={base64 + blurImg}
                     className="object-cover"
                     fill
                     src={
@@ -65,7 +71,7 @@ export default function Mobile_Posts({ MovieWatchMovies }: WatchMovieType) {
                 </div>
                 <div className="flex flex-col items-center justify-center gap-2">
                   <div className="w-full max-w-[240px] Text-m-Medium">
-                    <p className="line-clamp-1">{movie.movienm}</p>
+                    <p className="line-clamp-1 text-center">{movie.movienm}</p>
                   </div>
                   <div className="flex gap-[10px] text-L_Gray Text-xs-Regular">
                     <span>{movie.release_date}</span>
