@@ -48,7 +48,7 @@ export default function Tablet_Posts({ MovieWatchMovies }: WatchMovieType) {
                     className="rounded-xl object-cover"
                     src={
                       movie.poster_path
-                        ? getTmdbPosterUrl("original", movie.poster_path)
+                        ? getTmdbPosterUrl("w780", movie.poster_path)
                         : NoImageSsikongi
                     }
                     alt="영화 포스터"
@@ -57,7 +57,9 @@ export default function Tablet_Posts({ MovieWatchMovies }: WatchMovieType) {
               </Link>
               <div className="flex w-[337px] flex-col items-center justify-center  gap-8 rounded-r-xl bg-D1_Gray px-5">
                 <div className="flex flex-col items-center justify-center gap-2 ">
-                  <h1 className="Text-l-Medium">{movie.movienm}</h1>
+                  <div className="w-full max-w-[317px] Text-l-Medium">
+                    <p className="line-clamp-1">{movie.movienm}</p>
+                  </div>
                   <div className="flex items-center gap-[10px] text-L_Gray Text-s-Regular">
                     <span>{movie.release_date}</span>
                     <div className="h-3 border-r-[1px] border-L_Gray" />

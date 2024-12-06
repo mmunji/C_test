@@ -95,7 +95,7 @@ export default function SimilarTasteReviewers({
                       />
                     ))
                   ) : (
-                    <div className="flex items-center justify-center rounded-lg p-2 text-Gray outline-dashed Text-m-Medium">
+                    <div className="flex items-center justify-center rounded-lg p-2 text-Gray outline-dashed outline-1 Text-m-Medium">
                       착용한 뱃지가 없어요
                     </div>
                   )}

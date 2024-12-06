@@ -9,7 +9,10 @@ import Button from "@/components/buttons/Button";
 import SpeechBubble from "@/components/speechBubble/SpeechBubble";
 import { tokenManager } from "@/services/auth/tokenManager";
 
-import { ChevronLeftMd, ChevronRightMd } from "../../../../../../public/icons";
+import {
+  ChevronLeftMd,
+  ChevronRightMdSvgr,
+} from "../../../../../../public/icons";
 import SlimilarPost from "./SlimilarPost";
 
 interface SimilarTastesMovieType {
@@ -38,7 +41,8 @@ export default function SimilarTastesMovie({
       settitle("나와 취향이 비슷한 사람들");
     }
   }, [accessToken]);
-
+  console.log(swiper);
+  console.log({ isend: swiper?.isEnd, isbeginning: swiper?.isBeginning });
   return (
     <div className="flex flex-col gap-5">
       <div className="flex justify-between">
@@ -55,26 +59,22 @@ export default function SimilarTastesMovie({
             </SpeechBubble>
           </div>
         </div>
-        <div className="hidden gap-1 Laptop:flex">
-          <Button onClick={() => swiper?.slidePrev()} variant={"arrow2"}>
-            <Image
-              src={ChevronLeftMd}
-              alt="arrowRight"
-              height={24}
-              width={24}
-              className="h-6 w-6 "
-            />
-          </Button>
-          <Button onClick={() => swiper?.slideNext()} variant={"arrow2"}>
-            <Image
-              src={ChevronRightMd}
-              alt="arrowRight"
-              height={24}
-              width={24}
-              className="h-6 w-6"
-            />
-          </Button>
-        </div>
+        {!(swiper?.isBeginning && swiper?.isEnd) && (
+          <div className="hidden gap-1 Laptop:flex">
+            <Button onClick={() => swiper?.slidePrev()} variant={"arrow2"}>
+              <Image
+                src={ChevronLeftMd}
+                alt="arrowRight"
+                height={24}
+                width={24}
+                className="h-6 w-6 "
+              />
+            </Button>
+            <Button onClick={() => swiper?.slideNext()} variant={"arrow2"}>
+              <ChevronRightMdSvgr stroke="#E9E9E9" />
+            </Button>
+          </div>
+        )}{" "}
       </div>
       <div className="flex flex-col gap-4">
         <SimilarTasteReviewers

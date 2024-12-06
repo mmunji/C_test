@@ -9,7 +9,11 @@ import { useState } from "react";
 import { Pagination } from "swiper/modules";
 import { Swiper, SwiperClass, SwiperSlide } from "swiper/react";
 
-import { ChevronLeftMd, ChevronRightMd, StarFillMd } from "@/../public/icons";
+import {
+  ChevronLeftMd,
+  ChevronRightMdSvgr,
+  StarFillMd,
+} from "@/../public/icons";
 import HoverPostCard from "@/app/(main)/_components/HoverPostCard";
 import Button from "@/components/buttons/Button";
 import { getTmdbPosterUrl } from "@/utils/tmdb";
@@ -30,14 +34,16 @@ export default function MasterPieceMoive({ data }: MasterPieceMoiveType) {
         <span className="text-L_Gray Text-m-Regular Laptop:hidden">
           리뷰수 대비 평점이 높은 작품들이에요
         </span>
-        <div className="hidden gap-1 Laptop:flex">
-          <Button onClick={() => swiper?.slidePrev()} variant="arrow2">
-            <Image src={ChevronLeftMd} alt="이전" />
-          </Button>
-          <Button onClick={() => swiper?.slideNext()} variant="arrow2">
-            <Image src={ChevronRightMd} alt="다음" />
-          </Button>
-        </div>
+        {!(swiper?.isBeginning && swiper?.isEnd) && (
+          <div className="hidden gap-1 Laptop:flex">
+            <Button onClick={() => swiper?.slidePrev()} variant="arrow2">
+              <Image src={ChevronLeftMd} alt="이전" />
+            </Button>
+            <Button onClick={() => swiper?.slideNext()} variant="arrow2">
+              <ChevronRightMdSvgr stroke="#E9E9E9" />
+            </Button>
+          </div>
+        )}
       </div>
       <div className="-mr-5 Tablet:-mr-6 Laptop:mr-0">
         <Swiper

@@ -10,7 +10,7 @@ import { getTmdbPosterUrl } from "@/utils/tmdb";
 
 import {
   ChevronLeftMd,
-  ChevronRightMd,
+  ChevronRightMdSvgr,
 } from "../../../../../../../public/icons";
 import PostRating from "../../../Rating/PostRating";
 
@@ -76,14 +76,16 @@ export default function Laptop_Posts({ MovieWatchMovies }: WatchMovieType) {
           })}
         </Swiper>
       </div>
-      <div className="absolute right-0 top-0 z-10 hidden gap-1 Laptop:flex">
-        <Button onClick={() => swiper?.slidePrev()} variant="arrow2">
-          <Image src={ChevronLeftMd} alt="이전" />
-        </Button>
-        <Button onClick={() => swiper?.slideNext()} variant="arrow2">
-          <Image src={ChevronRightMd} alt="다음" />
-        </Button>
-      </div>
+      {!(swiper?.isBeginning && swiper?.isEnd) && (
+        <div className="absolute right-0 top-0 z-10 hidden gap-1 Laptop:flex">
+          <Button onClick={() => swiper?.slidePrev()} variant="arrow2">
+            <Image src={ChevronLeftMd} alt="이전" />
+          </Button>
+          <Button onClick={() => swiper?.slideNext()} variant="arrow2">
+            <ChevronRightMdSvgr stroke="#E9E9E9" />
+          </Button>
+        </div>
+      )}
     </>
   );
 }

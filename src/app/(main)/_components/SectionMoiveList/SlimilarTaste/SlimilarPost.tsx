@@ -11,12 +11,13 @@ import { getTmdbPosterUrl } from "@/utils/tmdb";
 
 import {
   ChatFillSmSvgr,
+  ChevronRightMdSvgr,
   EditPencilLineFill,
   StarFillSm,
   ThumbsUpFillSm,
   ThumbsUpFillSmSvgr,
 } from "../../../../../../public/icons";
-import { ChevronLeftMd, ChevronRightMd } from "../../../../../../public/icons";
+import { ChevronLeftMd } from "../../../../../../public/icons";
 import { ProfileBlue } from "../../../../../../public/images";
 
 interface ReviewUsersProps {
@@ -183,7 +184,7 @@ export default function SlimilarPost({ selectedReviewer }: ReviewUsersProps) {
             variant={"arrow1"}
             onClick={() => swiperRef.current?.slideNext()}
           >
-            <Image src={ChevronRightMd} alt="오른쪽 네비게이션" />
+            <ChevronRightMdSvgr stroke="#E9E9E9" />
           </Button>
         )}
       </div>
