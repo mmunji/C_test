@@ -57,7 +57,7 @@ export default function Mobile_Posts({ MovieWatchMovies }: WatchMovieType) {
                     fill
                     src={
                       movie.poster_path
-                        ? getTmdbPosterUrl("w780", movie.poster_path)
+                        ? getTmdbPosterUrl("w500", movie.poster_path)
                         : NoImageSsikongi
                     }
                     alt="영화 포스터"

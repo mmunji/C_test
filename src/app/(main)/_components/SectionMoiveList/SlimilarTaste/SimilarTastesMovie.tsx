@@ -41,8 +41,6 @@ export default function SimilarTastesMovie({
       settitle("나와 취향이 비슷한 사람들");
     }
   }, [accessToken]);
-  console.log(swiper);
-  console.log({ isend: swiper?.isEnd, isbeginning: swiper?.isBeginning });
   return (
     <div className="flex flex-col gap-5">
       <div className="flex justify-between">
