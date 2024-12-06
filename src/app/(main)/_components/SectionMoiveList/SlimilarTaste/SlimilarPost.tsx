@@ -171,7 +171,7 @@ export default function SlimilarPost({ selectedReviewer }: ReviewUsersProps) {
         </Swiper>
         {!isBeginning && (
           <Button
-            className="absolute -left-[24px] top-1/2 z-10 hidden -translate-y-1/2 Laptop:block"
+            className="absolute -left-[24px] top-1/2 z-[9] hidden -translate-y-1/2 Laptop:block"
             variant={"arrow1"}
             onClick={() => swiperRef.current?.slidePrev()}
           >
@@ -180,7 +180,7 @@ export default function SlimilarPost({ selectedReviewer }: ReviewUsersProps) {
         )}
         {!isEnd && (
           <Button
-            className="absolute -right-[24px] top-1/2 z-10 hidden -translate-y-1/2 Laptop:block"
+            className="absolute -right-[24px] top-1/2 z-[9] hidden -translate-y-1/2 Laptop:block"
             variant={"arrow1"}
             onClick={() => swiperRef.current?.slideNext()}
           >

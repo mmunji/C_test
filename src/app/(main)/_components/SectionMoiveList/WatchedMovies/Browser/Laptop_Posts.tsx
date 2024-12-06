@@ -77,7 +77,7 @@ export default function Laptop_Posts({ MovieWatchMovies }: WatchMovieType) {
         </Swiper>
       </div>
       {!(swiper?.isBeginning && swiper?.isEnd) && (
-        <div className="absolute right-0 top-0 z-10 hidden gap-1 Laptop:flex">
+        <div className="absolute right-0 top-0 hidden gap-1 Laptop:flex">
           <Button onClick={() => swiper?.slidePrev()} variant="arrow2">
             <Image src={ChevronLeftMd} alt="이전" />
           </Button>
