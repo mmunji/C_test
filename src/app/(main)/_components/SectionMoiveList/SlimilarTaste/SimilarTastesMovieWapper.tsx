@@ -18,7 +18,6 @@ export default function SimilarTastesMovieWapper() {
       try {
         const response: MovieReviewRecommed[] =
           await movieAPIs.getPeopleReviewers();
-
         setPeopleReviewers(response);
       } catch (error) {
         console.error("Failed to fetch movie data", error);
@@ -33,6 +32,6 @@ export default function SimilarTastesMovieWapper() {
   return isLoading ? (
     <SimilarTasteSkleton />
   ) : (
-    <SimilarTastesMovie data={PeopleReviewers} />
+    <SimilarTastesMovie reviewUsers={PeopleReviewers} />
   );
 }

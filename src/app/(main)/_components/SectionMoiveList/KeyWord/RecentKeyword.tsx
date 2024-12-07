@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-import { ChevronRight } from "../../../../../../public/icons";
+import { ChevronRight, ChevronRightMd } from "../../../../../../public/icons";
 import RightKeyWords from "./RightKeyWords";
 interface RecentKeywordType {
   data: MentionKeword[];
@@ -77,7 +77,7 @@ export default function RecentKeyword({ data }: RecentKeywordType) {
             className="hidden w-fit items-center gap-1 p-2 pr-1 Laptop:flex"
           >
             <span className="text-Gray_Orange Text-m-Medium">더보기</span>
-            <Image src={ChevronRight} alt="화살표" />
+            <Image src={ChevronRightMd} alt="화살표" />
           </Link>
         </div>
       </div>

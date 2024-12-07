@@ -9,7 +9,11 @@ import { useState } from "react";
 import { Pagination } from "swiper/modules";
 import { Swiper, SwiperClass, SwiperSlide } from "swiper/react";
 
-import { ChevronLeftMd, ChevronRightMd, StarFillMd } from "@/../public/icons";
+import {
+  ChevronLeftMd,
+  ChevronRightMdSvgr,
+  StarFillMd,
+} from "@/../public/icons";
 import HoverPostCard from "@/app/(main)/_components/HoverPostCard";
 import Button from "@/components/buttons/Button";
 import { getTmdbPosterUrl } from "@/utils/tmdb";
@@ -30,38 +34,36 @@ export default function MasterPieceMoive({ data }: MasterPieceMoiveType) {
         <span className="text-L_Gray Text-m-Regular Laptop:hidden">
           리뷰수 대비 평점이 높은 작품들이에요
         </span>
-        {(!swiper?.isEnd || !swiper.isBeginning) && (
-          <div className="flex gap-1">
+        {!(swiper?.isBeginning && swiper?.isEnd) && (
+          <div className="hidden gap-1 Laptop:flex">
             <Button onClick={() => swiper?.slidePrev()} variant="arrow2">
               <Image src={ChevronLeftMd} alt="이전" />
             </Button>
             <Button onClick={() => swiper?.slideNext()} variant="arrow2">
-              <Image src={ChevronRightMd} alt="다음" />
+              <ChevronRightMdSvgr stroke="#E9E9E9" />
             </Button>
           </div>
         )}
       </div>
-      <div className="">
+      <div className="-mr-5 Tablet:-mr-6 Laptop:mr-0">
         <Swiper
           breakpoints={{
-            0: { spaceBetween: 8 },
-            768: { spaceBetween: 16 },
+            0: { spaceBetween: 8, slidesOffsetAfter: 20 },
+            768: { spaceBetween: 16, slidesOffsetAfter: 24 },
             1280: { spaceBetween: 20 },
             1920: { spaceBetween: 24 },
           }}
           modules={[Pagination]}
-          onSwiper={(e) => {
-            setSwiper(e);
-          }}
+          onSwiper={setSwiper}
           slidesPerView="auto"
         >
           {data.map((movie) => (
             <SwiperSlide className="group w-fit" key={movie.movieid}>
               <Link
-                className="relative flex flex-col gap-2 Laptop:w-[174px] Desktop:w-[240px]"
+                className="relative flex w-[156px] flex-col gap-2 Tablet:w-[165px] Laptop:w-[174px] Desktop:w-[240px]"
                 href={`detail/${movie.movieid}`}
               >
-                <div className="relative flex h-[230px] w-[156px] items-end justify-between overflow-hidden rounded-xl Text-s-Bold Tablet:h-[240px] Tablet:w-[165px] Laptop:h-[260px] Laptop:w-[174px] Desktop:h-[360px] Desktop:w-[240px]">
+                <div className="relative flex h-[230px] w-full items-end justify-between overflow-hidden rounded-xl Text-s-Bold Tablet:h-[240px]  Laptop:h-[260px] Desktop:h-[360px]">
                   <Image
                     className="object-cover group-hover:Laptop:blur-[3px]"
                     fill
