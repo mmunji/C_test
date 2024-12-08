@@ -48,7 +48,10 @@ export default function DetailBannerSection({
       </div>
 
       <Palette
-        src={posterImage}
+        src={
+          "https://image.tmdb.org/t/p/w220_and_h330_face" +
+          movieDetailData.posterImg.split("/original")[1]
+        }
         crossOrigin="anonymous"
         format="hex"
         colorCount={2}
