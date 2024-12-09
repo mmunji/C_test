@@ -10,7 +10,7 @@ import { getTmdbPosterUrl } from "@/utils/tmdb";
 
 import {
   ChevronLeftMd,
-  ChevronRightMdSvgr,
+  ChevronRightSilverMd,
 } from "../../../../../../../public/icons";
 import PostRating from "../../../Rating/PostRating";
 
@@ -82,7 +82,7 @@ export default function Laptop_Posts({ MovieWatchMovies }: WatchMovieType) {
             <Image src={ChevronLeftMd} alt="이전" />
           </Button>
           <Button onClick={() => swiper?.slideNext()} variant="arrow2">
-            <ChevronRightMdSvgr stroke="#E9E9E9" />
+            <Image src={ChevronRightSilverMd} alt="다음" />
           </Button>
         </div>
       )}

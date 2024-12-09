@@ -5,8 +5,8 @@ import SmallBadge from "@/components/smallBadge/SmallBadge";
 import { cn } from "@/utils/cn";
 
 import {
-  EditPencilLineFillSvgr,
-  ThumbsUpFillSmSvgr,
+  EditPencilLineSilverFill,
+  ThumbsUpFillLSilverSm,
 } from "../../../../../../public/icons";
 import { ProfileBlue } from "../../../../../../public/images";
 
@@ -76,12 +76,12 @@ export default function SimilarTasteReviewers({
               <div className="hidden flex-col gap-5 Laptop:flex">
                 <div className="flex items-center gap-4 Text-m-Medium">
                   <div className="flex items-center gap-1">
-                    <EditPencilLineFillSvgr fill="#E9E9E9" />
+                    <Image src={EditPencilLineSilverFill} alt="평가한 영화" />
                     <span>평가한 영화 {reviewer.reviewCount}</span>
                   </div>
                   <div className="h-4 w-px bg-D3_Gray" />
                   <div className="flex items-center gap-1">
-                    <ThumbsUpFillSmSvgr fill="#E9E9E9" />
+                    <Image src={ThumbsUpFillLSilverSm} alt="좋아요" />
                     <span>받은 좋아요 {reviewer.rateCount ?? 0}</span>
                   </div>
                 </div>

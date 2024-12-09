@@ -11,7 +11,7 @@ import { tokenManager } from "@/services/auth/tokenManager";
 
 import {
   ChevronLeftMd,
-  ChevronRightMdSvgr,
+  ChevronRightSilverMd,
 } from "../../../../../../public/icons";
 import SlimilarPost from "./SlimilarPost";
 
@@ -60,16 +60,10 @@ export default function SimilarTastesMovie({
         {!(swiper?.isBeginning && swiper?.isEnd) && (
           <div className="hidden gap-1 Laptop:flex">
             <Button onClick={() => swiper?.slidePrev()} variant={"arrow2"}>
-              <Image
-                src={ChevronLeftMd}
-                alt="arrowRight"
-                height={24}
-                width={24}
-                className="h-6 w-6 "
-              />
+              <Image src={ChevronLeftMd} alt="이전" className="h-6 w-6 " />
             </Button>
             <Button onClick={() => swiper?.slideNext()} variant={"arrow2"}>
-              <ChevronRightMdSvgr stroke="#E9E9E9" />
+              <Image src={ChevronRightSilverMd} alt="다음" />
             </Button>
           </div>
         )}{" "}
