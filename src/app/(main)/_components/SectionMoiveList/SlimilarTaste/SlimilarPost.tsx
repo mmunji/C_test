@@ -10,12 +10,12 @@ import ROUTES from "@/constants/routes";
 import { getTmdbPosterUrl } from "@/utils/tmdb";
 
 import {
-  ChatFillSmSvgr,
-  ChevronRightMdSvgr,
+  ChatFillGraySm,
+  ChevronRightSilverMd,
   EditPencilLineFill,
   StarFillSm,
+  ThumbsUpFillLGraySm,
   ThumbsUpFillSm,
-  ThumbsUpFillSmSvgr,
 } from "../../../../../../public/icons";
 import { ChevronLeftMd } from "../../../../../../public/icons";
 import { ProfileBlue } from "../../../../../../public/images";
@@ -150,15 +150,11 @@ export default function SlimilarPost({ selectedReviewer }: ReviewUsersProps) {
                   </div>
                   <div className="flex justify-end gap-2 text-L_Gray Text-xs-Regular Laptop:hidden">
                     <div className="flex items-center gap-1">
-                      <ThumbsUpFillSmSvgr
-                        width={16}
-                        height={16}
-                        fill={"#999490"}
-                      />
+                      <Image src={ThumbsUpFillLGraySm} alt="좋아요" />
                       <span>{review.rateCount}</span>
                     </div>
                     <div className="flex items-center gap-1 ">
-                      <ChatFillSmSvgr fill={"#999490"} width={16} height={16} />
+                      <Image src={ChatFillGraySm} alt="톡" />
                       <span className="text-L_Gray">
                         {review.rereviewCount}
                       </span>
@@ -184,7 +180,7 @@ export default function SlimilarPost({ selectedReviewer }: ReviewUsersProps) {
             variant={"arrow1"}
             onClick={() => swiperRef.current?.slideNext()}
           >
-            <ChevronRightMdSvgr stroke="#E9E9E9" />
+            <Image src={ChevronRightSilverMd} alt="오른쪽 네비게이션" />
           </Button>
         )}
       </div>
