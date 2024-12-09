@@ -129,7 +129,9 @@ export default function RatingStar({
     <div
       className="relative w-full"
       onMouseLeave={() => {
-        if (!clickedValue) setRatingValue(0);
+        if (type === "detail-edit" && myTalk) {
+          if (!clickedValue) setRatingValue(myTalk.star);
+        }
       }}
       onClick={() => {
         setRatingValue(ratingValue);
