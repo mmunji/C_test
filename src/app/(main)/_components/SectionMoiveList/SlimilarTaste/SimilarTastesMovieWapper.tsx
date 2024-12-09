@@ -2,7 +2,6 @@
 import { useEffect, useState } from "react";
 
 import { movieAPIs } from "@/services/movie/movieAPIs";
-import { delay } from "@/utils/fn";
 
 import SimilarTasteSkleton from "../../MainSkeleton/SimilarTaste/SimilarTasteSkleton";
 import SimilarTastesMovie from "./SimilarTastesMovie";
@@ -19,7 +18,6 @@ export default function SimilarTastesMovieWapper() {
       try {
         const response: MovieReviewRecommed[] =
           await movieAPIs.getPeopleReviewers();
-
         setPeopleReviewers(response);
       } catch (error) {
         console.error("Failed to fetch movie data", error);
@@ -34,6 +32,6 @@ export default function SimilarTastesMovieWapper() {
   return isLoading ? (
     <SimilarTasteSkleton />
   ) : (
-    <SimilarTastesMovie data={PeopleReviewers} />
+    <SimilarTastesMovie reviewUsers={PeopleReviewers} />
   );
 }

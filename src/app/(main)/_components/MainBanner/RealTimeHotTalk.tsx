@@ -19,7 +19,7 @@ interface ReviewListType {
 
 export default function RealTimeHotTalk({ ReviewList }: ReviewListType) {
   return (
-    <div className="flex  flex-col gap-[20px]  text-white Tablet:justify-end">
+    <div className="flex  flex-col gap-[20px]  text-Silver Tablet:justify-end">
       <h1 className=" hidden Laptop:block Laptop:w-[390px]  Laptop:Text-xl-Bold Desktop:w-[521px]  ">
         실시간 핫한 톡
       </h1>
@@ -30,7 +30,7 @@ export default function RealTimeHotTalk({ ReviewList }: ReviewListType) {
           return (
             <li
               key={index}
-              className={`items- center flex  justify-between gap-2 text-Silver Text-xs-Regular Tablet:w-[331px] Tablet:Text-s-Regular`}
+              className={`flex items-center  justify-between gap-2 text-Silver Text-xs-Regular Tablet:w-[331px] Tablet:Text-s-Regular`}
             >
               <div className="flex w-[35px] items-center justify-center">
                 <Image src={StarFillSm} alt="star" className="h-4 w-4" />

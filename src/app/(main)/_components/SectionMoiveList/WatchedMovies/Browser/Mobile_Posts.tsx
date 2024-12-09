@@ -1,8 +1,11 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
+import SpeechBubble from "@/components/speechBubble/SpeechBubble";
+import useDevice from "@/hooks/useDevice";
+import { tokenManager } from "@/services/auth/tokenManager";
 import { useToastActions } from "@/stores/useToast";
 import { getTmdbPosterUrl } from "@/utils/tmdb";
 
@@ -11,9 +14,18 @@ import PostRating from "../../../Rating/PostRating";
 interface WatchMovieType {
   MovieWatchMovies: WatchMovie[];
 }
+
+const base64 = "data:image/jpeg;base64,";
+const blurImg =
+  "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mN0sLP5DwADOwG7TZHLmQAAAABJRU5ErkJggg==";
 export default function Mobile_Posts({ MovieWatchMovies }: WatchMovieType) {
   const [MovieNumber, setMovieNumber] = useState(0);
   const { add } = useToastActions();
+  const { device } = useDevice();
+  const [message, setmessage] = useState(
+    "로그인 하고 별을 눌러 평가해보세요 :",
+  );
+  const accessToken = tokenManager.getToken();
   const handleMovieList = () => {
     if (MovieWatchMovies.length == MovieNumber + 1) {
       return null;
@@ -25,7 +37,11 @@ export default function Mobile_Posts({ MovieWatchMovies }: WatchMovieType) {
     add(text);
     handleMovieList();
   };
-
+  useEffect(() => {
+    if (accessToken) {
+      setmessage("슬라이드하여 별점을 조절하세요");
+    }
+  }, [accessToken]);
   return (
     <div className="justify-center rounded-xl bg-D1_Gray px-3 py-7 Tablet:hidden">
       <div className="relative overflow-hidden rounded-xl">
@@ -33,28 +49,30 @@ export default function Mobile_Posts({ MovieWatchMovies }: WatchMovieType) {
           className="flex transition-transform duration-500 ease-in-out"
           style={{ transform: `translateX(-${MovieNumber * 100}%)` }}
         >
-          {MovieWatchMovies.map((movie, index) => (
+          {MovieWatchMovies.map((movie) => (
             <div
               key={movie.movieId}
-              className="w-full flex-shrink-0 px-[12px] py-[28px]"
+              className="flex w-full flex-shrink-0 flex-col gap-5"
             >
-              <div className="flex flex-col justify-center gap-3">
-                <div className="flex justify-center">
+              <div className="flex flex-col items-center  justify-center gap-3">
+                <div className="relative flex h-[230px] w-[156px] overflow-hidden rounded-xl">
                   <Image
-                    height={230}
-                    width={153}
-                    className="rounded-xl"
+                    placeholder="blur"
+                    blurDataURL={base64 + blurImg}
+                    className="object-cover"
+                    fill
                     src={
                       movie.poster_path
-                        ? getTmdbPosterUrl("original", movie.poster_path)
+                        ? getTmdbPosterUrl("w500", movie.poster_path)
                         : NoImageSsikongi
                     }
                     alt="영화 포스터"
                   />
                 </div>
-
                 <div className="flex flex-col items-center justify-center gap-2">
-                  <h1 className="Text-m-Medium">{movie.movienm}</h1>
+                  <div className="w-full max-w-[240px] Text-m-Medium">
+                    <p className="line-clamp-1 text-center">{movie.movienm}</p>
+                  </div>
                   <div className="flex gap-[10px] text-L_Gray Text-xs-Regular">
                     <span>{movie.release_date}</span>
                     <span>|</span>
@@ -62,7 +80,7 @@ export default function Mobile_Posts({ MovieWatchMovies }: WatchMovieType) {
                   </div>
                 </div>
               </div>
-              <div>
+              <div className="flex justify-center">
                 <h1 className="mt-5 text-center Text-l-Bold">{movie.rate}</h1>
                 <div className="flex items-center justify-center">
                   <PostRating
@@ -76,7 +94,18 @@ export default function Mobile_Posts({ MovieWatchMovies }: WatchMovieType) {
             </div>
           ))}
         </div>
-        <div className="flex w-full justify-center ">
+        <div className="relative flex justify-center">
+          {device == "mobile" ? (
+            <div className="absolute -bottom-2 ">
+              <SpeechBubble id={"SimilarTastesMovie"} dir="top">
+                {message}
+              </SpeechBubble>
+            </div>
+          ) : (
+            ""
+          )}
+        </div>
+        <div className="mt-7 flex w-full justify-center">
           <button
             className=" w-full  max-w-[352px] rounded-xl border-[1px] border-D3_Gray px-5 py-3 text-L_Gray Text-s-Regular"
             onClick={handleMovieList}

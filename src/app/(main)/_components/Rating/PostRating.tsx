@@ -27,11 +27,11 @@ export default function PostRating({
   } = useRating({ initialValue: 0 });
   const { handleClickAuthButton } = useHandleClickAuthButton();
   return (
-    <div className="flex flex-col ">
+    <div className="flex w-full flex-col">
       <span className="text-center Text-l-Bold Laptop:hidden">
         {ratingValue.toFixed(1)}
       </span>
-      <div className="mx-auto flex  gap-1 Laptop:hidden">
+      <div className="flex gap-1 Laptop:hidden">
         {[...Array(5)].map((_, i) => (
           <RatingStar
             key={i}
@@ -52,7 +52,7 @@ export default function PostRating({
           />
         ))}
       </div>
-      <div className="mx-auto hidden  gap-1 Laptop:flex Desktop:hidden">
+      <div className="hidden w-full gap-1 Laptop:flex Desktop:hidden">
         {[...Array(5)].map((_, i) => (
           <RatingStar
             key={i}
@@ -73,7 +73,7 @@ export default function PostRating({
           />
         ))}
       </div>
-      <div className="mx-auto hidden gap-1 Desktop:flex">
+      <div className="hidden w-full gap-1 Desktop:flex">
         {[...Array(5)].map((_, i) => (
           <RatingStar
             key={i}

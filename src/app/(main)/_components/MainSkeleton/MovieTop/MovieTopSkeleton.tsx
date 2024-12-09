@@ -12,7 +12,7 @@ export default function MovieTopSkeleton() {
     <div>
       <div className="flex flex-col gap-4  ">
         <h1 className="Text-l-Bold Laptop:Text-xxl-Bold">영화 톡 TOP 10</h1>
-        <div className="flex gap-2">
+        <div className="flex w-full gap-2 Tablet:gap-0">
           <MobileMovieTop />
           <MobileMovieTop />
           <TabletMovieTop />

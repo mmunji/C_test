@@ -134,7 +134,7 @@ export default function TrailerAndPhotoSlider({
       {swiper && !swiper.isEnd && (
         <Button
           onClick={handleNext}
-          variant="arrow2"
+          variant="arrow1"
           className={`absolute hidden Laptop:flex ${hovered ? "opacity-100" : "opacity-0"} right-0 top-1/2 z-[5] translate-x-[50%] translate-y-[-50%] transition-opacity duration-300`}
         >
           <Image src={ChevronRightMd} alt="다음" />

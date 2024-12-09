@@ -22,12 +22,17 @@ import Button from "@/components/buttons/Button";
 
 import { NoImageSsikongi } from "../../../../../../public/images";
 import useMovieSwiper from "../../../_hooks/useMovieSwiper";
+import NonPostCard from "../../NonPostCard";
 import PostCard from "../../PostCard";
 import BestTalkPost from "./Post/BestTalkPost";
 interface Laptop_BestMoiveProps {
   MovieData: Movie_TopTen | null;
+  MovieGenre: string;
 }
-export default function Laptop_BestMovie(MovieData: Laptop_BestMoiveProps) {
+export default function Laptop_BestMovie({
+  MovieData,
+  MovieGenre,
+}: Laptop_BestMoiveProps) {
   SwiperCore.use([Pagination]);
 
   const [StatePost, SetStatePost] = useState(0);
@@ -36,6 +41,16 @@ export default function Laptop_BestMovie(MovieData: Laptop_BestMoiveProps) {
   const onHandlePost = (index: number) => {
     SetStatePost(index);
   };
+  function sortGenresByTitle(
+    genres: MovieGenreDto[],
+    genreTitle: string,
+  ): MovieGenreDto[] {
+    return [...genres].sort((a, b) => {
+      if (a.name === genreTitle) return -1; // genreTitle과 같으면 앞으로 이동
+      if (b.name === genreTitle) return 1;
+      return 0; // 나머지는 순서를 유지
+    });
+  }
   return (
     <div
       className="relative hidden h-[calc(260px)]  Laptop:block Desktop:hidden"
@@ -50,10 +65,10 @@ export default function Laptop_BestMovie(MovieData: Laptop_BestMoiveProps) {
         onSwiper={(e) => {
           setSwiper(e);
         }}
+        className="relative"
       >
-        {Array.isArray(MovieData.MovieData) &&
-          MovieData.MovieData.length > 0 &&
-          MovieData.MovieData.map((MovieDetailData, index) => {
+        {Array.isArray(MovieData) && MovieData.length > 0 ? (
+          MovieData.map((MovieDetailData, index) => {
             return (
               <SwiperSlide
                 key={MovieDetailData.movieId}
@@ -62,7 +77,7 @@ export default function Laptop_BestMovie(MovieData: Laptop_BestMoiveProps) {
                 }}
               >
                 <div
-                  className={`flex gap-6 ${StatePost === index ? "w-[562px]" : "w-[174px]"} transition-opacity duration-700 ease-in`}
+                  className={`flex gap-5 ${StatePost === index ? "w-[562px]" : "w-[174px]"} transition-opacity duration-700 ease-in`}
                 >
                   <div
                     className={`${
@@ -96,20 +111,34 @@ export default function Laptop_BestMovie(MovieData: Laptop_BestMoiveProps) {
                     } flex flex-col justify-between transition-opacity duration-700 ease-in`}
                   >
                     <div className="flex flex-col gap-3 ">
-                      <div className="flex items-center gap-3">
-                        <h1 className="line-clamp-1 w-[240px] text-Silver Text-xl-Bold">
-                          {MovieDetailData.movienm}
-                        </h1>
+                      <div className="flex  items-center gap-3">
+                        <Link href={`detail/${MovieDetailData.movieId}`}>
+                          <h1 className="line-clamp-1 w-full text-Silver Text-xl-Bold">
+                            {MovieDetailData.movienm}
+                          </h1>
+                        </Link>
                         <div className=" flex items-center gap-[10px] text-Gray_Orange Text-xs-Regular">
                           <span className="">
                             {dayjs(MovieDetailData.release_date).format("YYYY")}
                           </span>
-                          <div className="h-3 w-[1px] border-[1px] border-Gray_Orange"></div>
-                          <span className="">
-                            {MovieDetailData.genres[0]
-                              ? MovieDetailData.genres[0].name
-                              : ""}
-                          </span>
+                          <div className="h-3 w-[1px] border-r-[1px] border-L_Gray"></div>
+                          <div className="flex  gap-1">
+                            {sortGenresByTitle(
+                              MovieDetailData.genres,
+                              MovieGenre,
+                            )
+                              .slice(0, 3)
+                              .map((genre: MovieGenreDto, index: number) => (
+                                <span className="Text-xs-Regular" key={index}>
+                                  {genre.name}
+                                  {index <
+                                    Math.min(
+                                      2,
+                                      MovieDetailData.genres.length - 1,
+                                    ) && " /"}
+                                </span>
+                              ))}
+                          </div>
                         </div>
                       </div>
                       <div className="flex gap-5">
@@ -141,14 +170,18 @@ export default function Laptop_BestMovie(MovieData: Laptop_BestMoiveProps) {
                     </div>
                     <div className="w-[368px] Desktop:w-[504px] ">
                       <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-1">
-                          <Image
-                            src={BestTalkFire}
-                            alt=""
-                            className="h-6 w-6"
-                          />
-                          <h1 className="Text-m-Bold">BEST 톡</h1>
-                        </div>
+                        {MovieDetailData.reviewList ? (
+                          <div className="flex items-center gap-1">
+                            <Image
+                              src={BestTalkFire}
+                              alt=""
+                              className="h-6 w-6"
+                            />
+                            <h1 className="Text-m-Bold">BEST 톡</h1>
+                          </div>
+                        ) : (
+                          ""
+                        )}
                         <Link
                           href={`detail/${MovieDetailData.movieId}`}
                           className="flex items-center gap-1 p-2 pr-1"
@@ -179,35 +212,38 @@ export default function Laptop_BestMovie(MovieData: Laptop_BestMoiveProps) {
                 </div>
               </SwiperSlide>
             );
-          })}
-        {swiper && !swiper.isBeginning && (
-          <Button
-            onClick={() => {
-              if (swiper) {
-                swiper.slidePrev();
-              }
-            }}
-            variant="arrow1"
-            className={`absolute left-2 top-1/2 z-[10]  transform   transition-opacity duration-300 ${hovered ? "opacity-100" : "opacity-30"} `}
-          >
-            <Image src={ChevronLeftMd} alt="이전" />
-          </Button>
-        )}
-
-        {swiper && !swiper.isEnd && (
-          <Button
-            onClick={() => {
-              if (swiper) {
-                swiper.slideNext();
-              }
-            }}
-            variant="arrow2"
-            className={`absolute right-4 top-1/2 z-[10]   transform transition-opacity duration-300${hovered ? "opacity-100" : "opacity-30"}  `}
-          >
-            <Image src={ChevronRightMd} alt="다음" />
-          </Button>
+          })
+        ) : (
+          <NonPostCard />
         )}
       </Swiper>
+      {swiper && !swiper.isBeginning && (
+        <Button
+          onClick={() => {
+            if (swiper) {
+              swiper.slidePrev();
+            }
+          }}
+          variant="arrow1"
+          className={`absolute -left-5 top-[40%] z-[50]  transform   transition-opacity duration-300 ${hovered ? "opacity-100" : "opacity-0"} `}
+        >
+          <Image src={ChevronLeftMd} alt="이전" />
+        </Button>
+      )}
+
+      {swiper && !swiper.isEnd && (
+        <Button
+          onClick={() => {
+            if (swiper) {
+              swiper.slideNext();
+            }
+          }}
+          variant="arrow1"
+          className={`absolute -right-5 top-[40%] z-[50]   transform transition-opacity duration-300 ${hovered ? "opacity-100" : "opacity-0"}  `}
+        >
+          <Image src={ChevronRightMd} alt="다음" />
+        </Button>
+      )}
     </div>
   );
 }

@@ -4,11 +4,11 @@ import PostCardSkeleton from "../PostCardSkeleton";
 
 export default function DesktopMovieTop() {
   return (
-    <div className="hidden  Laptop:flex">
-      <div className="flex gap-6 ">
+    <div className="hidden  w-full  Laptop:flex">
+      <div className="flex w-full  gap-6 ">
         <PostCardSkeleton />
-        <div className="flex flex-col justify-between">
-          <div className="flex flex-col gap-3">
+        <div className="flex w-[504px] flex-shrink-0  flex-col justify-between">
+          <div className="flex  flex-col gap-3">
             <div className="h-[30px] w-[100px] animate-pulse rounded-lg bg-D2_Gray Desktop:h-[40px]  " />
             <div className="h-[24px] w-[200px] animate-pulse rounded-lg   bg-D2_Gray  "></div>
           </div>
@@ -19,7 +19,7 @@ export default function DesktopMovieTop() {
                 return (
                   <div
                     key={_}
-                    className="h-[40px] w-[368px] animate-pulse rounded-xl bg-D2_Gray Desktop:h-[59px]  Desktop:w-[504px] "
+                    className="h-[40px] w-full animate-pulse rounded-xl bg-D2_Gray Desktop:h-[59px]   "
                   />
                 );
               })}

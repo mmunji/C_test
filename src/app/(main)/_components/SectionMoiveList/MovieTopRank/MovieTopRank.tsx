@@ -59,44 +59,55 @@ export default function MoiveTopRank({ data }: MoiveTopRankType) {
       console.error("영화를 가져오는 중 오류 발생:", error);
     }
   };
+  const getSortedGenres = () => {
+    if (filter === 0) return MovieGenreType;
+
+    const selectedGenreIndex = filter;
+    const fixedGenres = MovieGenreType.slice(1);
+    const reorderedGenres = [
+      ...fixedGenres.slice(selectedGenreIndex - 1),
+      ...fixedGenres.slice(0, selectedGenreIndex - 1),
+    ];
+
+    return [MovieGenreType[0], ...reorderedGenres];
+  };
 
   useEffect(() => {}, [filter]);
 
   return (
-    <div className="flex flex-col gap-4  ">
-      <div className="flex justify-between">
-        <div className="flex items-center gap-[24px]">
+    <div className="flex flex-col gap-4">
+      <div className="flex items-center justify-between">
+        <div className="flex items-center gap-2 Tablet:gap-6">
           <h1 className="Text-l-Bold Laptop:Text-xxl-Bold">영화 톡 TOP 10</h1>
           <div className="flex gap-1">
             <Dropdown type="genre">
               <Dropdown.Trigger>
-                <span className="flex items-center gap-1 text-white">
+                <Button type="button" variant={"textIconR"}>
                   {MovieGenreType[filter].name}
                   <Image
                     src={CaretDownMd}
                     alt="더보기"
                     className="cursor-pointer"
                   />
-                </span>
+                </Button>
               </Dropdown.Trigger>
-
-              <Dropdown.List>
-                {MovieGenreType.map((genre, index) => {
-                  return (
-                    <Dropdown.Item
-                      key={genre.index}
-                      onClick={() => {
-                        setFilter(index), fetchMovie(index);
-                      }}
-                    >
-                      {genre.name}
-                    </Dropdown.Item>
-                  );
-                })}
+              <Dropdown.List className="left-0 top-11">
+                {getSortedGenres().map((genre, index) => (
+                  <Dropdown.Item
+                    key={genre.index}
+                    onClick={() => {
+                      setFilter(MovieGenreType.indexOf(genre));
+                      fetchMovie(MovieGenreType.indexOf(genre));
+                    }}
+                  >
+                    {genre.name}
+                  </Dropdown.Item>
+                ))}
               </Dropdown.List>
             </Dropdown>
           </div>
         </div>
+
         <span className="text-D3_Gray Text-xs-Regular Tablet:Text-s-Medium">
           매월 업데이트
         </span>
@@ -104,10 +115,22 @@ export default function MoiveTopRank({ data }: MoiveTopRankType) {
 
       <div>
         {/* 모바일 */}
-        <Tablet_BestMoive MovieData={MovieTopTenData} />
-        <DeskTop_BestMovie MovieData={MovieTopTenData} />
-        <Laptop_BestMovie MovieData={MovieTopTenData} />
-        <Mobile_BestMovie MovieData={MovieTopTenData} />
+        <Tablet_BestMoive
+          MovieData={MovieTopTenData}
+          MovieGenre={MovieGenreType[filter].name}
+        />
+        <DeskTop_BestMovie
+          MovieData={MovieTopTenData}
+          MovieGenre={MovieGenreType[filter].name}
+        />
+        <Laptop_BestMovie
+          MovieData={MovieTopTenData}
+          MovieGenre={MovieGenreType[filter].name}
+        />
+        <Mobile_BestMovie
+          MovieData={MovieTopTenData}
+          MovieGenre={MovieGenreType[filter].name}
+        />
       </div>
     </div>
   );

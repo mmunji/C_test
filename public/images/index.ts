@@ -35,3 +35,4 @@ export { default as ProfileGreen } from "./detail/profile_green.png";
 export { default as ProfileOrange } from "./detail/profile_orange.png";
 export { default as ProfileRed } from "./detail/profile_red.png";
 export { default as ProfileViolet } from "./detail/profile_violet.png";
+export { default as ProfileSsicong } from "./ssikongi/PNG/Ssicong.png";

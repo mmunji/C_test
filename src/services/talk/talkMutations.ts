@@ -192,6 +192,7 @@ export function useEditTalk({
       talkAPIs.editTalk(talkId, movieName, star, content, spoiler, genreList),
     onSuccess: () => {
       revalidateMyPage("my");
+      revalidateMyPage("badges");
       queryClient.invalidateQueries({
         queryKey: TALK_QUERY_KEYS.myTalk(movieId),
       });

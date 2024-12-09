@@ -47,7 +47,7 @@ class CustomFetch {
     try {
       const res = await fetch(`${baseUrl}${url}`, fetchOptions);
       const data = await res.json();
-      if (!res.ok) throw new Error(data?.message);
+      // if (!res.ok) throw new Error(data?.message);
       return data as T;
     } catch (error) {
       console.error({ error });

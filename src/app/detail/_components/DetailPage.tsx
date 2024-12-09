@@ -25,14 +25,13 @@ export default async function Detail({
   const noKeyword = keywordsData?.length === 0;
   const top1Keyword = keywordsData.sort((a, b) => b.count - a.count)[0];
   const movieTitle = movieDetailData.title;
-
   return (
     <div className="bg-BG">
       <DetailBannerSection
         movieId={movieId}
         movieDetailData={movieDetailData}
       />
-      <div className="mx-5 mb-[100px] mt-[137px] Tablet:mx-6 Tablet:mb-40 Tablet:mt-[118px] Laptop:mx-[68px] Laptop:mb-[180px] Laptop:mt-7 Desktop:mx-auto Desktop:mb-[200px] Desktop:w-[1560px]">
+      <div className="mx-5 mb-[100px] mt-[137px] Tablet:mx-6 Tablet:mb-40 Tablet:mt-[118px] Laptop:mx-[64px] Laptop:mb-[180px] Laptop:mt-7 Desktop:mx-auto Desktop:mb-[200px] Desktop:w-[1560px]">
         {!noKeyword && (
           <KeywordBar title={movieDetailData.title} top1Keyword={top1Keyword} />
         )}

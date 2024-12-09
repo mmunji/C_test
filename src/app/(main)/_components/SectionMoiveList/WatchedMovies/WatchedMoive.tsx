@@ -35,13 +35,13 @@ export default function WatchedMoive() {
     fetchMovie();
   }, []);
   let message =
-    accsstoken == ""
-      ? "톡을 많이 작성할수록 내 취향에 비슷해져요"
+    accsstoken != ""
+      ? "별을 눌러 평가해보세요 :)"
       : "로그인 하고 별을 눌러 평가해보세요 ";
   return isLoading ? (
     <WatchedSkeleton />
   ) : WatchMovieData.length != 0 ? (
-    <div className="flex flex-col gap-5">
+    <div className="relative flex flex-col gap-4 Tablet:gap-5">
       <div className="flex flex-col gap-1 text-center  Laptop:flex-row Laptop:gap-5 Laptop:text-left">
         <h1 className=" text-Silver Text-l-Bold  Laptop:Text-xxl-Bold">
           혹시 이 영화 보셨나요?

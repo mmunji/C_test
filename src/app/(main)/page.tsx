@@ -6,7 +6,7 @@ import Banner from "./_components/MainSkeleton/Skeleton";
 import SectionMoiveList from "./_components/SectionMoiveList";
 export default function Main() {
   return (
-    <div className="bg-BG text-white ">
+    <div className="bg-BG">
       <div>
         <Suspense fallback={<Banner />}>
           <BannerWapper />

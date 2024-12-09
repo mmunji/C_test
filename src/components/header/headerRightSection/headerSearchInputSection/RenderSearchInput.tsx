@@ -59,6 +59,7 @@ function RenderSearchInput({
                 ? "어떤 영화가 궁금하신가요?"
                 : `'${randomMovie}' 궁금하지 않으세요?`
             }
+
             onFocus={() => setIsInputFocused(true)}
             onBlur={() => {
               setTimeout(() => {

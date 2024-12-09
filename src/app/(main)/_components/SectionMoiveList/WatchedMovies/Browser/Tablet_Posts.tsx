@@ -25,35 +25,41 @@ export default function Tablet_Posts({ MovieWatchMovies }: WatchMovieType) {
   };
   const handleToast = (text: string) => {
     add(text);
+    setMovieNumber((prev) => prev + 1);
   };
 
   return (
-    <div className="flex flex-col justify-center">
-      <div className="mx-auto hidden w-[537px] items-center rounded-xl bg-D1_Gray Tablet:flex Laptop:hidden">
+    <div className="hidden flex-col justify-center Tablet:flex Laptop:hidden">
+      <div className="mx-auto hidden w-[537px] items-center  Tablet:flex Laptop:hidden">
         <div
           className="flex transition-transform duration-500 ease-in-out"
           style={{ transform: `translateX(-${MovieNumber * 100}%)` }} // 슬라이드 애니메이션
         >
-          {MovieWatchMovies.map((movie, index) => (
-            <div key={movie.movieId} className="flex w-full flex-shrink-0">
+          {MovieWatchMovies.map((movie) => (
+            <div
+              key={movie.movieId}
+              className="flex h-[280px] w-full flex-shrink-0 "
+            >
               <Link href={`/detail/${movie.movieId}`}>
-                <div className="flex justify-center">
+                <div className="flex h-full justify-center bg-D1_Gray">
                   <Image
                     height={280}
                     width={200}
-                    className="rounded-xl"
+                    className="rounded-xl object-cover"
                     src={
                       movie.poster_path
-                        ? getTmdbPosterUrl("original", movie.poster_path)
+                        ? getTmdbPosterUrl("w780", movie.poster_path)
                         : NoImageSsikongi
                     }
                     alt="영화 포스터"
                   />
                 </div>
               </Link>
-              <div className="flex w-[337px] flex-col items-center justify-center gap-8 px-5">
+              <div className="flex w-[337px] flex-col items-center justify-center  gap-8 rounded-r-xl bg-D1_Gray px-5">
                 <div className="flex flex-col items-center justify-center gap-2 ">
-                  <h1 className="Text-l-Medium">{movie.movienm}</h1>
+                  <div className="w-full max-w-[317px] Text-l-Medium">
+                    <p className="line-clamp-1">{movie.movienm}</p>
+                  </div>
                   <div className="flex items-center gap-[10px] text-L_Gray Text-s-Regular">
                     <span>{movie.release_date}</span>
                     <div className="h-3 border-r-[1px] border-L_Gray" />

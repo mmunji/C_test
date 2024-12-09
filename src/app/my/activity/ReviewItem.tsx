@@ -1,3 +1,4 @@
+import dayjs from "dayjs";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -54,11 +55,7 @@ export default function ReviewItem({
             </div>
             <span className="line-clamp-1 Text-m-Medium">{review.movienm}</span>
           </div>
-          <div
-            onClick={(e) => {
-              e.preventDefault();
-            }}
-          >
+          <div onClick={(e) => e.preventDefault()}>
             <Dropdown>
               <Dropdown.Trigger>
                 <Button variant={"icon"}>
@@ -85,7 +82,9 @@ export default function ReviewItem({
         </div>
       </div>
       <div className="flex items-center justify-between border-t border-D2_Gray pt-3 group-hover:border-D1_Gray group-active:border-D2_Gray">
-        <div className="text-Gray Text-xs-Regular">{review.regDate} 작성</div>
+        <div className="text-Gray Text-xs-Regular">
+          {dayjs(review.regDate).format("YY.MM.DD")} 작성
+        </div>
         <div className="flex items-center gap-3">
           <div className="flex items-center gap-1">
             <Image alt="좋아요" src={ThumbsUpLineSm} />
@@ -103,7 +102,13 @@ export default function ReviewItem({
       </div>
 
       {isModalOpen && (
-        <Modal isAlertModal onClose={() => setIsModalOpen(false)}>
+        <Modal
+          isAlertModal
+          onClose={(e) => {
+            e?.stopPropagation();
+            setIsModalOpen(false);
+          }}
+        >
           <Modal.TitleWrapper>
             <Modal.Title>
               {loading ? "삭제 중..." : "정말 삭제하시겠어요?"}
