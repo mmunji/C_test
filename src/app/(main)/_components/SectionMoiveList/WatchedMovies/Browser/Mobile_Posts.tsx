@@ -14,6 +14,10 @@ import PostRating from "../../../Rating/PostRating";
 interface WatchMovieType {
   MovieWatchMovies: WatchMovie[];
 }
+
+const base64 = "data:image/jpeg;base64,";
+const blurImg =
+  "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mN0sLP5DwADOwG7TZHLmQAAAABJRU5ErkJggg==";
 export default function Mobile_Posts({ MovieWatchMovies }: WatchMovieType) {
   const [MovieNumber, setMovieNumber] = useState(0);
   const { add } = useToastActions();
@@ -46,22 +50,29 @@ export default function Mobile_Posts({ MovieWatchMovies }: WatchMovieType) {
           style={{ transform: `translateX(-${MovieNumber * 100}%)` }}
         >
           {MovieWatchMovies.map((movie) => (
-            <div key={movie.movieId} className="mb-7 w-full flex-shrink-0">
+            <div
+              key={movie.movieId}
+              className="flex w-full flex-shrink-0 flex-col gap-5"
+            >
               <div className="flex flex-col items-center  justify-center gap-3">
                 <div className="relative flex h-[230px] w-[156px] overflow-hidden rounded-xl">
                   <Image
+                    placeholder="blur"
+                    blurDataURL={base64 + blurImg}
                     className="object-cover"
                     fill
                     src={
                       movie.poster_path
-                        ? getTmdbPosterUrl("original", movie.poster_path)
+                        ? getTmdbPosterUrl("w500", movie.poster_path)
                         : NoImageSsikongi
                     }
                     alt="영화 포스터"
                   />
                 </div>
                 <div className="flex flex-col items-center justify-center gap-2">
-                  <h1 className="Text-m-Medium">{movie.movienm}</h1>
+                  <div className="w-full max-w-[240px] Text-m-Medium">
+                    <p className="line-clamp-1 text-center">{movie.movienm}</p>
+                  </div>
                   <div className="flex gap-[10px] text-L_Gray Text-xs-Regular">
                     <span>{movie.release_date}</span>
                     <span>|</span>
@@ -71,7 +82,7 @@ export default function Mobile_Posts({ MovieWatchMovies }: WatchMovieType) {
               </div>
               <div className="flex justify-center">
                 <h1 className="mt-5 text-center Text-l-Bold">{movie.rate}</h1>
-                <div className="flex items-center justify-center p-1">
+                <div className="flex items-center justify-center">
                   <PostRating
                     movienm={movie.movienm}
                     movieId={movie.movieId}
@@ -94,7 +105,7 @@ export default function Mobile_Posts({ MovieWatchMovies }: WatchMovieType) {
             ""
           )}
         </div>
-        <div className="flex w-full justify-center ">
+        <div className="mt-7 flex w-full justify-center">
           <button
             className=" w-full  max-w-[352px] rounded-xl border-[1px] border-D3_Gray px-5 py-3 text-L_Gray Text-s-Regular"
             onClick={handleMovieList}

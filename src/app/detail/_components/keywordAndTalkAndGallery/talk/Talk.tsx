@@ -73,7 +73,7 @@ export default function Talk({ title, movieId, movieDetailData }: TalkProps) {
 
   return (
     <section id={id}>
-      {isMyTalk && myTalk.content !== "" ? (
+      {isMyTalk && myTalk?.content !== "" ? (
         <MyTalk
           myTalk={myTalk}
           movieDetailData={movieDetailData}
