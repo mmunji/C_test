@@ -112,7 +112,10 @@ export default function Laptop_BestMovie({
                   >
                     <div className="flex flex-col gap-3 ">
                       <div className="flex  items-center gap-3">
-                        <Link href={`detail/${MovieDetailData.movieId}`}>
+                        <Link
+                          href={`detail/${MovieDetailData.movieId}`}
+                          className="max-w-[50%] flex-shrink"
+                        >
                           <h1 className="line-clamp-1 w-full text-Silver Text-xl-Bold">
                             {MovieDetailData.movienm}
                           </h1>
@@ -202,6 +205,7 @@ export default function Laptop_BestMovie({
                                 content={reviewData.content}
                                 likeCount={reviewData.likeCount}
                                 profileImg={reviewData.profile}
+                                movieId={MovieDetailData.movieId}
                               />
                             );
                           },

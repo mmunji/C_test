@@ -58,7 +58,7 @@ export default function LeftMovePost({
                 Best 키워드
               </h4>
               <h1 className="text-center Text-s-Bold Laptop:Text-l-Bold">
-                {keyword}
+                {keyword == null ? "-" : keyword}
               </h1>
             </li>
             <li className="flex flex-col gap-2  text-Silver">

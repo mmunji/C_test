@@ -11,7 +11,7 @@ import { Swiper, SwiperClass, SwiperSlide } from "swiper/react";
 
 import {
   ChevronLeftMd,
-  ChevronRightMdSvgr,
+  ChevronRightSilverMd,
   StarFillMd,
 } from "@/../public/icons";
 import HoverPostCard from "@/app/(main)/_components/HoverPostCard";
@@ -40,7 +40,7 @@ export default function MasterPieceMoive({ data }: MasterPieceMoiveType) {
               <Image src={ChevronLeftMd} alt="이전" />
             </Button>
             <Button onClick={() => swiper?.slideNext()} variant="arrow2">
-              <ChevronRightMdSvgr stroke="#E9E9E9" />
+              <Image src={ChevronRightSilverMd} alt="다음" />
             </Button>
           </div>
         )}
