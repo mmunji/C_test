@@ -15,7 +15,7 @@ export default function AdminMain() {
   return (
     <div className="flex min-h-screen w-full flex-col  gap-5 p-24">
       <div className="">
-        <h1 className="text-gray-80 text-4xl font-extrabold">통계</h1>
+        <h2 className="text-gray-80 text-4xl font-extrabold">통계</h2>
       </div>
       <div>
         <MyResponsiveLine

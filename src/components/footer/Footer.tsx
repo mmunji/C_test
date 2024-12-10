@@ -47,10 +47,10 @@ export default function Footer() {
   return (
     <div className="flex flex-col gap-7 bg-Black px-7 py-11 text-white Tablet:gap-[52px] Tablet:px-9 Laptop:px-[64px] Laptop:py-[90px] Desktop:gap-[52px] Desktop:px-[180px]">
       <div className="flex flex-col items-center gap-[24px]">
-        <h1 className=" text-Silver  Text-m-Bold Laptop:Text-xl-Bold">
+        <h2 className=" text-Silver  Text-m-Bold Laptop:Text-xl-Bold">
           지금까지 총<span className="text-Primary"> {Commnets} </span> 개의
           톡이 쌓였어요!
-        </h1>
+        </h2>
         <div className="flex w-full  justify-between gap-2  rounded-xl bg-D1_Gray py-2 pl-4 pr-3 Text-s-Regular  Laptop:w-[512px]">
           <input
             placeholder="개선할 점이 있나요? 피드백 해주세요 ;)"
