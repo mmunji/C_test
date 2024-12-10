@@ -81,7 +81,7 @@ export default function Mobile_Posts({ MovieWatchMovies }: WatchMovieType) {
                 </div>
               </div>
               <div className="flex justify-center">
-                <h1 className="mt-5 text-center Text-l-Bold">{movie.rate}</h1>
+                <h4 className="mt-5 text-center Text-l-Bold">{movie.rate}</h4>
                 <div className="flex items-center justify-center">
                   <PostRating
                     movienm={movie.movienm}

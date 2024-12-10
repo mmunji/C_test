@@ -33,9 +33,9 @@ export default function LeftMovePost({
         <div className="flex flex-col gap-1  Laptop:flex-row Laptop:gap-4 ">
           <span className="Text-m-Bold Laptop:hidden ">실시간 핫한 톡</span>
           <div className="flex items-center gap-4">
-            <h1 className="line-clamp-1 Text-xl-Bold Laptop:Text-xxxl-Bold ">
+            <h3 className="line-clamp-1 Text-xl-Bold Laptop:Text-xxxl-Bold ">
               {MovieName}
-            </h1>
+            </h3>
           </div>
         </div>
         <div>
@@ -57,17 +57,17 @@ export default function LeftMovePost({
               <h4 className="text-center Text-xs-Regular Laptop:Text-s-Medium ">
                 Best 키워드
               </h4>
-              <h1 className="text-center Text-s-Bold Laptop:Text-l-Bold">
+              <h4 className="text-center Text-s-Bold Laptop:Text-l-Bold">
                 {keyword == null ? "-" : keyword}
-              </h1>
+              </h4>
             </li>
             <li className="flex flex-col gap-2  text-Silver">
               <h4 className="text-center Text-xs-Regular Laptop:Text-s-Medium">
                 장르
               </h4>
-              <h1 className="text-center Text-s-Bold Laptop:Text-l-Bold">
+              <h4 className="text-center Text-s-Bold Laptop:Text-l-Bold">
                 판타지
-              </h1>
+              </h4>
             </li>
           </ul>
         </div>

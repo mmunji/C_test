@@ -116,9 +116,9 @@ export default function DeskTop_BestMovie({
                         href={`detail/${MovieDetailData.movieId}`}
                         className="max-w-[50%] flex-shrink"
                       >
-                        <h1 className="line-clamp-1  w-full Text-xxl-Bold">
+                        <h4 className="line-clamp-1  w-full Text-xxl-Bold">
                           {MovieDetailData.movienm}
-                        </h1>
+                        </h4>
                       </Link>
                       <div className="flex flex-grow items-center   gap-[10px] text-Gray_Orange Text-s-Regular">
                         <span>
@@ -179,7 +179,7 @@ export default function DeskTop_BestMovie({
                             alt=""
                             className="h-6 w-6"
                           />
-                          <h1 className="Text-m-Bold">BEST 톡</h1>
+                          <h4 className="Text-m-Bold">BEST 톡</h4>
                         </div>
                       ) : (
                         "  "

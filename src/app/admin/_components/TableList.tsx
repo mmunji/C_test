@@ -99,9 +99,9 @@ export default function TableList({ rowData, type }: TableListProps) {
   return (
     <div className="flex min-h-screen w-full flex-col gap-5 p-6">
       <div className="flex items-center justify-between p-10">
-        <h1 className="mb-6 text-center  text-4xl font-extrabold text-gray-800 ">
+        <h2 className="mb-6 text-center  text-4xl font-extrabold text-gray-800 ">
           {type == "report" ? "신고" : "피드백"}
-        </h1>
+        </h2>
         <div className="mb-4 flex items-center justify-center gap-4">
           <span className="">조회할 데이터 : </span>
           <input

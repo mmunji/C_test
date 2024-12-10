@@ -83,9 +83,9 @@ export default function Tablet_BestMoive({
                           href={`detail/${MovieDetailData.movieId}`}
                           className="max-w-[50%] flex-shrink"
                         >
-                          <h1 className="line-clamp-1 w-[366px] Text-l-Bold">
+                          <h4 className="line-clamp-1 w-[366px] Text-l-Bold">
                             {MovieDetailData.movienm}
-                          </h1>
+                          </h4>
                         </Link>
                         <div className="flex items-center gap-3 Text-xs-Regular">
                           <span>
@@ -147,7 +147,7 @@ export default function Tablet_BestMoive({
                               alt=""
                               className="h-6 w-6"
                             />
-                            <h1 className="Text-m-Bold">BEST 톡</h1>
+                            <h4 className="Text-m-Bold">BEST 톡</h4>
                           </div>
                         ) : (
                           <Link

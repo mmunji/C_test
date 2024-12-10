@@ -116,9 +116,9 @@ export default function Laptop_BestMovie({
                           href={`detail/${MovieDetailData.movieId}`}
                           className="max-w-[50%] flex-shrink"
                         >
-                          <h1 className="line-clamp-1 w-full text-Silver Text-xl-Bold">
+                          <h3 className="line-clamp-1 w-full text-Silver Text-xl-Bold">
                             {MovieDetailData.movienm}
-                          </h1>
+                          </h3>
                         </Link>
                         <div className=" flex items-center gap-[10px] text-Gray_Orange Text-xs-Regular">
                           <span className="">
@@ -180,7 +180,7 @@ export default function Laptop_BestMovie({
                               alt=""
                               className="h-6 w-6"
                             />
-                            <h1 className="Text-m-Bold">BEST 톡</h1>
+                            <h4 className="Text-m-Bold">BEST 톡</h4>
                           </div>
                         ) : (
                           ""
