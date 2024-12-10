@@ -1,5 +1,10 @@
 "use client";
+import "swiper/css";
+import "swiper/css/grid";
+
 import { useEffect, useState } from "react";
+import { Grid, Navigation } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
 
 import KeyWordPosts from "./KeyWordPosts";
 interface KeyWordInfoProps {
@@ -26,66 +31,65 @@ export default function RightKeyWords({
   }, [keywordInfo]);
   return (
     <div className="h-full w-full">
-      <div className={`grid grid-cols-1 gap-3 Tablet:hidden `}>
-        {Array(3)
-          .fill(0)
-          .map((_, index) => {
-            if (!keywordInfo[keywordIndex]?.reviewList?.[index]) {
-              return null;
-            }
-            return (
+      <Swiper
+        modules={[Grid]}
+        slidesPerView={1}
+        spaceBetween={12}
+        grid={{ rows: 3, fill: "row" }}
+        className="relative grid   Tablet:hidden "
+      >
+        {keywordInfo[keywordIndex]?.reviewList.map((review, index) => {
+          if (!review) {
+            return null;
+          }
+          return (
+            <SwiperSlide key={index} className="h-[135px] max-w-[320px]">
               <KeyWordPosts
-                key={index}
-                id={keywordInfo[keywordIndex]?.reviewList[index]?.movieId}
-                nickname={
-                  keywordInfo[keywordIndex]?.reviewList[index]?.nickname
-                }
-                movieName={
-                  keywordInfo[keywordIndex]?.reviewList[index]?.movienm
-                }
-                star={keywordInfo[keywordIndex]?.reviewList[index]?.star}
-                content={keywordInfo[keywordIndex]?.reviewList[index]?.content}
+                id={review.movieId}
+                nickname={review.nickname}
+                movieName={review?.movienm}
+                star={review.star}
+                content={review.content}
                 keyword={keyword}
-                createdAt={
-                  keywordInfo[keywordIndex]?.reviewList[index]?.createdAt
-                }
-                profile={keywordInfo[keywordIndex]?.reviewList[index]?.profile}
+                createdAt={review.createdAt}
+                profile={review.profile}
                 isVisible={isVisible}
               />
-            );
-          })}
-      </div>
-      <div className={`hidden   grid-cols-3 gap-4 Tablet:grid Laptop:hidden `}>
-        {Array(6)
-          .fill(0)
-          .map((_, index) => {
-            if (!keywordInfo[keywordIndex]?.reviewList?.[index]) {
-              return null;
-            }
-            return (
+            </SwiperSlide>
+          );
+        })}
+      </Swiper>
+
+      <Swiper
+        modules={[Grid]}
+        slidesPerView={3}
+        spaceBetween={16}
+        grid={{ rows: 2, fill: "row" }}
+        className="hidden Tablet:grid Laptop:hidden  "
+      >
+        {keywordInfo[keywordIndex]?.reviewList.map((review, index) => {
+          if (!review) {
+            return null;
+          }
+          return (
+            <SwiperSlide key={index} className="max-h-[157px] max-w-[229px]">
               <KeyWordPosts
-                key={index}
-                id={keywordInfo[keywordIndex]?.reviewList[index]?.movieId}
-                nickname={
-                  keywordInfo[keywordIndex]?.reviewList[index]?.nickname
-                }
-                movieName={
-                  keywordInfo[keywordIndex]?.reviewList[index]?.movienm
-                }
-                star={keywordInfo[keywordIndex]?.reviewList[index]?.star}
-                content={keywordInfo[keywordIndex]?.reviewList[index]?.content}
+                id={review.movieId}
+                nickname={review.nickname}
+                movieName={review?.movienm}
+                star={review.star}
+                content={review.content}
                 keyword={keyword}
-                createdAt={
-                  keywordInfo[keywordIndex]?.reviewList[index]?.createdAt
-                }
-                profile={keywordInfo[keywordIndex]?.reviewList[index]?.profile}
+                createdAt={review.createdAt}
+                profile={review.profile}
                 isVisible={isVisible}
               />
-            );
-          })}
-      </div>
+            </SwiperSlide>
+          );
+        })}
+      </Swiper>
       <div
-        className={`hidden h-full w-full  grid-cols-4  gap-5 Laptop:grid Desktop:hidden`}
+        className={`hidden h-full w-full  grid-cols-4  gap-5 transition-opacity duration-700 ease-in Laptop:grid Desktop:hidden `}
       >
         {Array(8)
           .fill(0)

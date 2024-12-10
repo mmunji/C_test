@@ -47,7 +47,7 @@ export default function KeyWordPosts({
   return (
     <Link href={`/detail/${id}`}>
       <div
-        className={`${isVisible ? "scale-100 opacity-100" : "scale-10 opacity-0"}  transition-transfor Text-s-Mediuim flex  h-full w-full flex-col gap-2 rounded-xl bg-D1_Gray px-4 py-4 duration-700 ease-in-out Tablet:px-7 Tablet:py-6 `}
+        className={`${isVisible ? "scale-100 opacity-100" : "scale-10 opacity-0"}  transition-transfor Text-s-Mediuim flex  flex-col gap-2 rounded-xl bg-D1_Gray px-4 py-4 duration-700 ease-in-out Tablet:px-7 Tablet:py-6 `}
       >
         <div className="flex justify-between">
           <div className="flex items-center gap-2">

@@ -79,7 +79,10 @@ export default function Tablet_BestMoive({
                   <div className="flex w-full flex-col justify-between gap-3">
                     <div className="flex flex-col gap-2">
                       <div className="flex justify-between gap-3 ">
-                        <Link href={`detail/${MovieDetailData.movieId}`}>
+                        <Link
+                          href={`detail/${MovieDetailData.movieId}`}
+                          className="max-w-[50%] flex-shrink"
+                        >
                           <h1 className="line-clamp-1 w-[366px] Text-l-Bold">
                             {MovieDetailData.movienm}
                           </h1>
@@ -167,6 +170,7 @@ export default function Tablet_BestMoive({
                                   content={reviewData.content}
                                   likeCount={reviewData.likeCount}
                                   profileImg={reviewData.profile}
+                                  movieId={MovieDetailData.movieId}
                                 />
                               );
                             },

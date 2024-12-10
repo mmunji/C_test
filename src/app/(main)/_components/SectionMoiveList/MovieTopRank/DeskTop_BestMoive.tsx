@@ -203,6 +203,7 @@ export default function DeskTop_BestMovie({
                             content={reviewData.content}
                             likeCount={reviewData.likeCount}
                             profileImg={reviewData.profile}
+                            movieId={MovieDetailData.movieId}
                           />
                         ),
                       )}
