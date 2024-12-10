@@ -36,14 +36,14 @@ export default function RightKeyWords({
         slidesPerView={1}
         spaceBetween={12}
         grid={{ rows: 3, fill: "row" }}
-        className="relative grid   Tablet:hidden "
+        className=" grid Tablet:hidden "
       >
         {keywordInfo[keywordIndex]?.reviewList.map((review, index) => {
           if (!review) {
             return null;
           }
           return (
-            <SwiperSlide key={index} className="h-[135px] max-w-[320px]">
+            <SwiperSlide key={index} className="max-h-[135px]">
               <KeyWordPosts
                 id={review.movieId}
                 nickname={review.nickname}
@@ -72,7 +72,7 @@ export default function RightKeyWords({
             return null;
           }
           return (
-            <SwiperSlide key={index} className="max-h-[157px] max-w-[229px]">
+            <SwiperSlide key={index} className="max-h-[157px] w-full">
               <KeyWordPosts
                 id={review.movieId}
                 nickname={review.nickname}

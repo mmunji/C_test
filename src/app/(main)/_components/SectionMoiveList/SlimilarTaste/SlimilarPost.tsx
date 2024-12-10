@@ -29,7 +29,7 @@ export default function SlimilarPost({ selectedReviewer }: ReviewUsersProps) {
   const [isBeginning, setIsBeginning] = useState(true);
   const [isEnd, setIsEnd] = useState(false);
   return (
-    <div className="flex flex-col gap-5 rounded-[20px] bg-Black p-5 Laptop:gap-4 Laptop:p-6 Laptop:pb-7">
+    <div className="flex flex-col gap-5 rounded-[20px] bg-D1_Gray p-5 Laptop:gap-4 Laptop:p-6 Laptop:pb-7">
       <div className="hidden Text-xl-Bold Laptop:flex">
         {selectedReviewer.nickname}님의 최근 톡
       </div>
