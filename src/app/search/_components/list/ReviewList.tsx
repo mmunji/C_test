@@ -101,8 +101,10 @@ export default function SearchReviewList({
               <div className="line-clamp-3 h-[63px] break-words text-Gray_Orange Text-s-Regular Tablet:line-clamp-4 Tablet:h-[96px] Tablet:Text-m-Regular">
                 {highlightedText(talk.reviewDTO.content, query)}
               </div>
-              <div className="text-L_Gray Text-s-Regular Tablet:Text-m-Medium">
-                {talk.reviewDTO.movienm} · {talk.reviewDTO.createdAt}
+              <div className="flex items-center text-L_Gray Text-s-Regular Tablet:Text-m-Medium">
+                <p className="line-clamp-1">{talk.reviewDTO.movienm}</p>
+                <p>&nbsp;·&nbsp;</p>
+                <p>{talk.reviewDTO.createdAt}</p>
               </div>
             </Link>
           ))
