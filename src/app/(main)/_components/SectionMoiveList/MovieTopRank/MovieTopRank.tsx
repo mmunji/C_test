@@ -1,9 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
-import { CaretDownMd, ChevronDown, Filter } from "@/../public/icons";
+import { ChevronDownGrayOrangeMd } from "@/../public/icons";
 import Button from "@/components/buttons/Button";
 import Dropdown from "@/components/dropdown/dropdown";
 import { movieAPIs } from "@/services/movie/movieAPIs";
@@ -78,14 +78,14 @@ export default function MoiveTopRank({ data }: MoiveTopRankType) {
     <div className="flex flex-col gap-4">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2 Tablet:gap-6">
-          <h1 className="Text-l-Bold Laptop:Text-xxl-Bold">영화 톡 TOP 10</h1>
+          <h2 className="Text-l-Bold Laptop:Text-xxl-Bold">영화 톡 TOP 10</h2>
           <div className="flex gap-1">
             <Dropdown type="genre">
               <Dropdown.Trigger>
                 <Button type="button" variant={"textIconR"}>
                   {MovieGenreType[filter].name}
                   <Image
-                    src={CaretDownMd}
+                    src={ChevronDownGrayOrangeMd}
                     alt="더보기"
                     className="cursor-pointer"
                   />

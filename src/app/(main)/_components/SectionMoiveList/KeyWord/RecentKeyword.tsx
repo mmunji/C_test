@@ -19,9 +19,9 @@ export default function RecentKeyword({ data }: RecentKeywordType) {
   return (
     <div className="flex flex-col gap-[20px]">
       <div className="flex justify-between">
-        <h1 className="Text-l-Bold Laptop:Text-xxl-Bold Desktop:Text-xxl-Bold">
+        <h2 className="Text-l-Bold Laptop:Text-xxl-Bold Desktop:Text-xxl-Bold">
           지금 많이 언급되는 키워드
-        </h1>
+        </h2>
         <span className="text-D3_Gray Text-xs-Regular Tablet:Text-s-Regular">
           매일 밤 12시 업데이트
         </span>

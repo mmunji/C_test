@@ -32,7 +32,7 @@ export default function Tablet_Posts({ MovieWatchMovies }: WatchMovieType) {
     <div className="hidden flex-col justify-center Tablet:flex Laptop:hidden">
       <div className="mx-auto hidden w-[537px] items-center  Tablet:flex Laptop:hidden">
         <div
-          className="flex transition-transform duration-500 ease-in-out"
+          className="flex transition-transform duration-700 ease-in-out"
           style={{ transform: `translateX(-${MovieNumber * 100}%)` }} // 슬라이드 애니메이션
         >
           {MovieWatchMovies.map((movie) => (

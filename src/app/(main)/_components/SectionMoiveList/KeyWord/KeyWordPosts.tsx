@@ -59,9 +59,9 @@ export default function KeyWordPosts({
           `}
               alt="영화 포스터"
             />
-            <h1 className="line-clamp-1 text-Silver Text-s-Medium">
+            <h4 className="line-clamp-1 text-Silver Text-s-Medium">
               {nickname}
-            </h1>
+            </h4>
           </div>
           <div className="flex items-center  text-Silver Text-s-Bold ">
             <Image src={StarFillSm} alt="주황별" />
