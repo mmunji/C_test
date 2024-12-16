@@ -42,6 +42,8 @@
 ![typescript](https://img.shields.io/badge/typescript-3178C6?style=for-the-badge&logo=typescript&logoColor=fff)
 ![zustand](https://img.shields.io/badge/zustand-000?style=for-the-badge&logo=zustand&logoColor=000)
 ![tailwindcss](https://img.shields.io/badge/tailwindcss-fff?style=for-the-badge&logo=tailwindcss&logoColor=06B6D4)
+![eslint](https://img.shields.io/badge/eslint-4B32C3?style=for-the-badge&logo=eslint&logoColor=fff)
+![prettier](https://img.shields.io/badge/prettier-F7B93E?style=for-the-badge&logo=prettier&logoColor=000)
 
 ### 💼 기타
 
