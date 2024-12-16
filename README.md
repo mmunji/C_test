@@ -47,6 +47,17 @@
 ![eslint](https://img.shields.io/badge/eslint-4B32C3?style=for-the-badge&logo=eslint&logoColor=fff)
 ![prettier](https://img.shields.io/badge/prettier-F7B93E?style=for-the-badge&logo=prettier&logoColor=000)
 
+### 🚀 BackEnd
+![springBoot](https://img.shields.io/badge/springboot-6DB33F?style=for-the-badge&logo=springboot&logoColor=000)
+![springsecurity](https://img.shields.io/badge/spring_security-6DB33F?style=for-the-badge&logo=springsecurity&logoColor=000)
+![mariadb](https://img.shields.io/badge/mariadb-003545?style=for-the-badge&logo=mariadb&logoColor=000)
+![Redis](https://img.shields.io/badge/Redis-FF4438?style=for-the-badge&logo=Redis&logoColor=000)
+![docker](https://img.shields.io/badge/docker-2496ED?style=for-the-badge&logo=docker&logoColor=000)
+![amazonec2](https://img.shields.io/badge/amazon_ec2-FF9900?style=for-the-badge&logo=amazonec2&logoColor=000)
+![amazonrds](https://img.shields.io/badge/amazon_rds-527FFF?style=for-the-badge&logo=amazonrds&logoColor=000)
+![awselasticloadbalancing](https://img.shields.io/badge/aws_elastic_load_balancing-8C4FFF?style=for-the-badge&logo=awselasticloadbalancing&logoColor=000)
+
+
 ### 💼 기타
 
 ![git](https://img.shields.io/badge/git-F05032?style=for-the-badge&logo=git&logoColor=fff)
