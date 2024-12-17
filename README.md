@@ -1,8 +1,12 @@
 # 씨네톡 - 키워드 하나로 완성되는 영화 리뷰 탐색
 
 [씨네톡 바로가기](https://www.cinetalk.site/)
-  
-![cinetalk](https://github.com/user-attachments/assets/bd3c116a-fa3e-44b8-ab4e-1b35e4420b9a)
+
+![1](https://github.com/user-attachments/assets/5a93c6d4-1077-4efa-b72e-4d994ebb5461)
+![2](https://github.com/user-attachments/assets/a9118e7e-910d-45da-8286-bcc8db2af504)
+![4](https://github.com/user-attachments/assets/5eb2293d-3920-49f3-9caf-7f44c403a4cc)
+![5](https://github.com/user-attachments/assets/7aea417f-891a-4bf0-a802-0a9462369313)
+![6](https://github.com/user-attachments/assets/6e08c0a4-cf2d-454d-9b55-3319f7a613a6)
 
 ## 어떤 서비스인가요? 🎥
 
