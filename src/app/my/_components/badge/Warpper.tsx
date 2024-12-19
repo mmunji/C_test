@@ -23,27 +23,26 @@ export default function BadgeWarpper({ badges, reviewCounts }: BadgeProps) {
   );
 
   const toggleMovie = (id: number) => {
-    if (selectedBadgeIds.includes(id))
-      return setSelectedBadgeIds((prev) =>
-        prev.filter((prevId) => prevId !== id),
-      );
-    setSelectedBadgeIds((prev) => [...prev, id]);
+    if (selectedBadgeIds.includes(id)) {
+      setSelectedBadgeIds((prev) => prev.filter((prevId) => prevId !== id));
+    } else {
+      setSelectedBadgeIds((prev) => [...prev, id]);
+    }
   };
 
-  const toggleEditing = async () => setIsEditing((prev) => !prev);
   return (
     <>
       <BadgeTitle
         selectedBadgeIds={selectedBadgeIds}
         hasBadge={!!badges.length}
-        toggleEditing={toggleEditing}
+        toggleEditing={() => setIsEditing((prev) => !prev)}
         isEditing={isEditing}
       />
       <div className="">
         <div
           className={cn(
             isExpanded ? "h-[1036.58px]" : "h-[437.4px]",
-            `transition-height grid grid-cols-3 gap-3 overflow-hidden duration-[800ms] Tablet:h-auto Tablet:grid-cols-4 Tablet:gap-5 Laptop:grid-cols-6 Laptop:gap-x-6 Laptop:gap-y-4`,
+            `grid grid-cols-3 gap-3 overflow-hidden transition-height duration-[800ms] Tablet:h-auto Tablet:grid-cols-4 Tablet:gap-5 Laptop:grid-cols-6 Laptop:gap-x-6 Laptop:gap-y-4`,
           )}
         >
           {reviewCounts.map((review) => (
