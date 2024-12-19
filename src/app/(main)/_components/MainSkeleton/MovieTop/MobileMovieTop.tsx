@@ -1,7 +1,7 @@
 export default function MobileMovieTop() {
   return (
     <div>
-      <div className="flex w-full animate-pulse flex-col gap-4 rounded-xl bg-D1_Gray pb-4 Tablet:hidden">
+      <div className="flex w-full  animate-pulse flex-col gap-4 overflow-auto rounded-xl bg-D1_Gray pb-4 Tablet:hidden">
         <div className="h-[358px] w-full animate-pulse rounded-xl   bg-D2_Gray  " />
         <div className="flex flex-col  gap-2 px-4 ">
           <div className="h-4 w-10 animate-pulse rounded-[4px] bg-D2_Gray " />

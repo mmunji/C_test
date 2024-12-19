@@ -83,7 +83,7 @@ export default function Tablet_BestMoive({
                           href={`detail/${MovieDetailData.movieId}`}
                           className="max-w-[50%] flex-shrink"
                         >
-                          <h4 className="line-clamp-1 w-[366px] Text-l-Bold">
+                          <h4 className="line-clamp-1 Text-l-Bold">
                             {MovieDetailData.movienm}
                           </h4>
                         </Link>
@@ -191,7 +191,7 @@ export default function Tablet_BestMoive({
         <Button
           onClick={() => swiper.slidePrev()}
           variant="arrow1"
-          className={`absolute left-1 top-[93%] z-[100]  transform   transition-opacity duration-300 ${hovered ? "opacity-100" : "opacity-0"} `}
+          className={`absolute left-1 top-[77%] z-[100]  transform   transition-opacity duration-300 ${hovered ? "opacity-100" : "opacity-0"} `}
         >
           <Image src={ChevronLeftMd} alt="이전" style={{ color: "#E9E9E9" }} />
         </Button>
@@ -201,7 +201,7 @@ export default function Tablet_BestMoive({
         <Button
           onClick={() => swiper.slideNext()}
           variant="arrow1"
-          className={`absolute right-1 top-[93%]  z-[100]   transform transition-opacity duration-300 ${hovered ? "opacity-100" : "opacity-0"}  `}
+          className={`absolute right-1 top-[77%]  z-[100]   transform transition-opacity duration-300 ${hovered ? "opacity-100" : "opacity-0"}  `}
         >
           <Image src={ChevronRightMd} alt="다음" style={{ color: "#E9E9E9" }} />
         </Button>
