@@ -111,6 +111,7 @@ export function DeleteAccountButton({
         >
           <Modal.Etc>
             <Image
+              unoptimized
               src={SadSsikongi}
               alt="씨네톡 로고 씨콩이가 우는 그림"
               width={168}
@@ -147,6 +148,7 @@ export function DeleteAccountButton({
         >
           <Modal.Etc>
             <Image
+              unoptimized
               src={ByeSsikongi}
               alt="씨네톡 로고 씨콩이가 문열고 나가는 그림"
               width={139}

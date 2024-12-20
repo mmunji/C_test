@@ -18,6 +18,7 @@ export default function MobileSignUpComplete({
   return (
     <div className="flex h-full w-full flex-col items-center justify-center Tablet:hidden">
       <Image
+        unoptimized
         src={WelcomeSsikongi}
         alt="씨콩이"
         className="mt-10 h-[160px] w-[300px]"

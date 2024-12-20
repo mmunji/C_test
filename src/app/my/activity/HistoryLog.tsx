@@ -65,6 +65,7 @@ export default function HistoryLog({ log, activeFilter }: HistoryLogProps) {
                       className="relative h-[90px] w-[60px] Tablet:h-[150px] Tablet:w-[100px]"
                     >
                       <Image
+                        unoptimized
                         fill
                         className="rounded-lg object-cover"
                         alt={`${movie.movienm} 영화 포스터`}
@@ -81,7 +82,7 @@ export default function HistoryLog({ log, activeFilter }: HistoryLogProps) {
                       </span>
                     ) : (
                       <div className="flex items-center gap-1">
-                        <Image alt="별 아이콘" src={StarFillMd} />
+                        <Image unoptimized alt="별 아이콘" src={StarFillMd} />
                         <span className="text-Gray_Orange Text-m-Bold">
                           {Number.isInteger(movie.star)
                             ? `${movie.star}.0`

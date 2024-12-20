@@ -29,12 +29,14 @@ export default function DetailStory({ overview }: DetailStoryProps) {
         <div className="my-1 flex h-6 items-center justify-center">
           <div>
             <Image
+              unoptimized
               src={CaretDownGrayMd}
               alt="더보기"
               className={`cursor-pointer select-none Laptop:hidden ${clicked ? "scale-[-1]" : "scale-1"} transition-transform`}
               onClick={() => setClicked(!clicked)}
             />
             <Image
+              unoptimized
               src={CaretDownMd}
               alt="더보기"
               className={`hidden cursor-pointer select-none Laptop:block ${clicked ? "scale-[-1]" : "scale-1"} transition-transform`}

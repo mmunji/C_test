@@ -42,6 +42,7 @@ export default function ReplyHeader({
       <div className="flex h-10 items-center justify-between">
         <section className="flex items-center gap-2">
           <Image
+            unoptimized
             width={100}
             height={100}
             alt={reply?.nickName}
@@ -61,7 +62,7 @@ export default function ReplyHeader({
           <Dropdown type="text">
             <Dropdown.Trigger>
               <Button variant="text" className="my-auto h-fit">
-                <Image src={MoreHorizontal} alt="메뉴" />
+                <Image unoptimized src={MoreHorizontal} alt="메뉴" />
               </Button>
             </Dropdown.Trigger>
             <Dropdown.List>
@@ -85,7 +86,7 @@ export default function ReplyHeader({
           <Dropdown type="text">
             <Dropdown.Trigger>
               <Button variant="text" className="my-auto h-fit">
-                <Image src={MoreHorizontal} alt="메뉴" />
+                <Image unoptimized src={MoreHorizontal} alt="메뉴" />
               </Button>
             </Dropdown.Trigger>
             <Dropdown.List>

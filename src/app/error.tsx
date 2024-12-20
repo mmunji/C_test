@@ -14,7 +14,13 @@ export default function Error() {
     <div className="fixed left-0 top-0 z-50 flex h-full w-full items-center justify-center bg-BG">
       <div className="flex flex-col items-center gap-[64px]">
         <div className="relative h-8 w-48 Tablet:h-11 Tablet:w-[264px]">
-          <Image src={FullLogo} alt="cinetalk logo" className="" fill />
+          <Image
+            unoptimized
+            src={FullLogo}
+            alt="cinetalk logo"
+            className=""
+            fill
+          />
         </div>
         <div className="flex flex-col items-center gap-7">
           <p className="text-center text-Primary Text-l-Bold Tablet:Text-xxl-Bold Desktop:Text-xxxl-Bold">

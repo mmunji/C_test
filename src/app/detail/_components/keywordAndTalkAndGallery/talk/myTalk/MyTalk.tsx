@@ -193,11 +193,13 @@ function MyTalk({ myTalk, movieId, movieDetailData }: MyTalkProps) {
                   className="cursor-default hover:bg-transparent active:bg-transparent"
                 >
                   <Image
+                    unoptimized
                     src={ThumbsUpLineSm}
                     alt="좋아요"
                     className="Laptop:hidden"
                   />
                   <Image
+                    unoptimized
                     src={ThumbsUpLineMd}
                     alt="좋아요"
                     className="hidden Laptop:block"
@@ -211,11 +213,13 @@ function MyTalk({ myTalk, movieId, movieDetailData }: MyTalkProps) {
                   className="cursor-default hover:bg-transparent active:bg-transparent"
                 >
                   <Image
+                    unoptimized
                     src={ThumbsDownLineSm}
                     alt="싫어요"
                     className="Laptop:hidden"
                   />
                   <Image
+                    unoptimized
                     src={ThumbsDownLineMd}
                     alt="싫어요"
                     className="hidden Laptop:block"
@@ -255,6 +259,7 @@ function MyTalk({ myTalk, movieId, movieDetailData }: MyTalkProps) {
                 className="flex cursor-pointer items-center gap-1"
               >
                 <Image
+                  unoptimized
                   src={isSpoiler ? SquareCheckFillMd : SquareCheckMd}
                   alt="check"
                 />
@@ -291,6 +296,7 @@ function MyTalk({ myTalk, movieId, movieDetailData }: MyTalkProps) {
               className="flex cursor-pointer items-center gap-1"
             >
               <Image
+                unoptimized
                 src={isSpoiler ? SquareCheckFillSm : SquareCheckSm}
                 alt="check"
               />

@@ -65,7 +65,13 @@ export default function BadgeWarpper({ badges, reviewCounts }: BadgeProps) {
             className="flex w-full justify-center p-2"
             type="button"
           >
-            <Image width={24} height={24} src={CaretDownMd} alt="늘리기" />
+            <Image
+              unoptimized
+              width={24}
+              height={24}
+              src={CaretDownMd}
+              alt="늘리기"
+            />
           </button>
         </div>
       </div>

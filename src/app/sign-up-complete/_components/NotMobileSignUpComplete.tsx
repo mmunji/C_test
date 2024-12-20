@@ -17,6 +17,7 @@ export default function NotMobileSignUpComplete({
   return (
     <div className="hidden items-center justify-center rounded-xl bg-D1_Gray Tablet:flex Tablet:h-[558px] Tablet:w-[472px] Tablet:flex-col Tablet:gap-10 Tablet:px-14 Tablet:py-16 Laptop:h-[438px] Laptop:w-[440px] Laptop:gap-6 Laptop:px-10 Laptop:py-11 Desktop:h-[603px] Desktop:w-[650px] Desktop:gap-10 Desktop:px-[100px] Desktop:py-20">
       <Image
+        unoptimized
         src={WelcomeSsikongi}
         alt="씨콩이"
         className="Tablet:h-[184px] Tablet:w-[344px] Laptop:h-[150px] Laptop:w-[280px] Desktop:h-[226px] Desktop:w-[422px]"

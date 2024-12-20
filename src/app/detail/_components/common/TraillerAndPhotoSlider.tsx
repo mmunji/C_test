@@ -89,6 +89,7 @@ export default function TrailerAndPhotoSlider({
                   className="absolute h-full w-full"
                 />
                 <Image
+                  unoptimized
                   width={500}
                   height={500}
                   src={`https://img.youtube.com/vi/${el}/maxresdefault.jpg`}
@@ -96,6 +97,7 @@ export default function TrailerAndPhotoSlider({
                   className="h-[182px] w-full rounded-lg Tablet:h-[200px] Laptop:h-[150px] Laptop:rounded-xl Desktop:h-[210px]"
                 />
                 <Image
+                  unoptimized
                   src={VideoPlay}
                   alt="재생"
                   className="absolute left-1/2 top-1/2 translate-x-[-50%] translate-y-[-50%]"
@@ -110,6 +112,7 @@ export default function TrailerAndPhotoSlider({
               className="max-w-[320px] cursor-pointer Tablet:max-w-[352px] Laptop:max-w-[271px] Desktop:max-w-[372px]"
             >
               <Image
+                unoptimized
                 width={500}
                 height={500}
                 src={el.filePath}
@@ -127,7 +130,7 @@ export default function TrailerAndPhotoSlider({
           variant="arrow1"
           className={`absolute hidden Laptop:flex ${hovered ? "opacity-100" : "opacity-0"} left-0 top-1/2 z-[5] translate-x-[-50%] translate-y-[-50%] transition-opacity duration-300`}
         >
-          <Image src={ChevronLeftMd} alt="이전" />
+          <Image unoptimized src={ChevronLeftMd} alt="이전" />
         </Button>
       )}
 
@@ -137,7 +140,7 @@ export default function TrailerAndPhotoSlider({
           variant="arrow1"
           className={`absolute hidden Laptop:flex ${hovered ? "opacity-100" : "opacity-0"} right-0 top-1/2 z-[5] translate-x-[50%] translate-y-[-50%] transition-opacity duration-300`}
         >
-          <Image src={ChevronRightMd} alt="다음" />
+          <Image unoptimized src={ChevronRightMd} alt="다음" />
         </Button>
       )}
       {openPhotoModal && (

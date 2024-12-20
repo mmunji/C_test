@@ -58,6 +58,7 @@ export default function TalkContentsHeader({
             )}
           >
             <Image
+              unoptimized
               width={100}
               height={100}
               alt={talk.nickName}
@@ -114,7 +115,7 @@ export default function TalkContentsHeader({
           <Dropdown type="text">
             <Dropdown.Trigger>
               <Button variant="text" className="my-auto h-fit">
-                <Image src={MoreHorizontal} alt="메뉴" />
+                <Image unoptimized src={MoreHorizontal} alt="메뉴" />
               </Button>
             </Dropdown.Trigger>
             <Dropdown.List>
@@ -139,7 +140,7 @@ export default function TalkContentsHeader({
           <Dropdown type="text">
             <Dropdown.Trigger>
               <Button variant="text" className="my-auto h-fit">
-                <Image src={MoreHorizontal} alt="메뉴" />
+                <Image unoptimized src={MoreHorizontal} alt="메뉴" />
               </Button>
             </Dropdown.Trigger>
             <Dropdown.List>

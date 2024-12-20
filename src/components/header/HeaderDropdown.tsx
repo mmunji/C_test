@@ -61,7 +61,12 @@ export default function HeaderDropdown({
           >
             {children}
           </div>
-          <Image src={CaretDownMd} alt="더보기" className="cursor-pointer" />
+          <Image
+            unoptimized
+            src={CaretDownMd}
+            alt="더보기"
+            className="cursor-pointer"
+          />
         </div>
       </Dropdown.Trigger>
       <Dropdown.List className="left-1/2 top-[43px] -translate-x-1/2">
@@ -74,7 +79,12 @@ export default function HeaderDropdown({
             isFocused={m.content === "전체"}
           >
             <div className="flex items-center gap-2">
-              <Image src={m.icon} alt={m.content} className="h-6 w-6" />
+              <Image
+                unoptimized
+                src={m.icon}
+                alt={m.content}
+                className="h-6 w-6"
+              />
               <p className="min-w-fit Text-m-Regular">{m.content}</p>
             </div>
           </Dropdown.Item>

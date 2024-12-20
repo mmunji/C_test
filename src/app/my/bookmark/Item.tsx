@@ -23,6 +23,7 @@ export function BookMarkDefaultItem({
       className="relative h-[230px] w-full overflow-hidden rounded-xl Tablet:h-[288px] Laptop:h-[331px]"
     >
       <Image
+        unoptimized
         fill
         src={
           movie.poster_path
@@ -52,6 +53,7 @@ export function BookmarkEditItem({
       )}
     >
       <Image
+        unoptimized
         fill
         src={
           movie.poster_path
@@ -63,7 +65,13 @@ export function BookmarkEditItem({
       />
       {isSelected && (
         <div className="absolute right-2 top-2 rounded-lg bg-Primary">
-          <Image src={Check} width={24} height={24} alt="선택 표시 아이콘" />
+          <Image
+            unoptimized
+            src={Check}
+            width={24}
+            height={24}
+            alt="선택 표시 아이콘"
+          />
         </div>
       )}
     </button>

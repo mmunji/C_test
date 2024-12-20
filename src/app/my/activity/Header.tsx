@@ -34,7 +34,7 @@ export default function ActivityHeader({
       <Dropdown>
         <Dropdown.Trigger>
           <Button variant={"textIconL"} className="Text-s-Medium">
-            <Image alt="필터 아이콘" src={Filter} />
+            <Image unoptimized alt="필터 아이콘" src={Filter} />
             <span>{filterMap[activeFilter]}</span>
           </Button>
         </Dropdown.Trigger>

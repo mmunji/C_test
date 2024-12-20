@@ -66,6 +66,7 @@ export default function SignUp({ userInfo }: SignUpProps) {
         className="mx-5 flex h-full flex-col Tablet:mx-auto Tablet:h-auto Tablet:w-[504px] Tablet:rounded-xl Tablet:bg-D1_Gray Tablet:px-[72px] Tablet:py-[64px] Laptop:w-[464px] Laptop:px-[52px] Laptop:py-10 Desktop:w-[504px] Desktop:px-[72px] Desktop:py-[64px]"
       >
         <Image
+          unoptimized
           src={FullLogo}
           alt="logo"
           className="mx-auto hidden h-[34px] w-[204px] Tablet:block"
