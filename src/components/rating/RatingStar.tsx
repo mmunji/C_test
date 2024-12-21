@@ -136,14 +136,6 @@ export default function RatingStar({
           if (!clickedValue) setRatingValue(0);
         }
       }}
-      onTouchEnd={() => {
-        if (type === "detail-edit" && myTalk) {
-          if (!clickedValue) setRatingValue(myTalk.star);
-        }
-        if (type == "main") {
-          if (!clickedValue) setRatingValue(0);
-        }
-      }}
       onClick={() => {
         setRatingValue(ratingValue);
         setClickedValue(!clickedValue);
