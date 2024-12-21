@@ -41,6 +41,7 @@ export default function Tablet_Posts({ MovieWatchMovies }: WatchMovieType) {
   }, [accessToken]);
   return (
     <div className="hidden flex-col justify-center overflow-hidden Tablet:flex Laptop:hidden">
+
       <div className="mx-auto hidden w-[537px] max-w-screen-md items-center  Tablet:flex Laptop:hidden">
         <div
           className="flex transition-transform  duration-700 ease-in-out"
