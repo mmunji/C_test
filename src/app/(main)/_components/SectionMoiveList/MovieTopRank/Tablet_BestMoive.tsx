@@ -78,10 +78,10 @@ export default function Tablet_BestMoive({
                   </Link>
                   <div className="flex w-full flex-col justify-between gap-3">
                     <div className="flex flex-col gap-2">
-                      <div className="flex justify-between gap-3 ">
+                      <div className="flex  gap-3 ">
                         <Link
                           href={`detail/${MovieDetailData.movieId}`}
-                          className="max-w-[50%] flex-shrink"
+                          className="max-w-[62%] flex-shrink"
                         >
                           <h4 className="line-clamp-1 Text-l-Bold">
                             {MovieDetailData.movienm}

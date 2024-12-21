@@ -7,6 +7,7 @@ import SpeechBubble from "@/components/speechBubble/SpeechBubble";
 import useDevice from "@/hooks/useDevice";
 import { tokenManager } from "@/services/auth/tokenManager";
 import { useToastActions } from "@/stores/useToast";
+import { delay } from "@/utils/fn";
 import { getTmdbPosterUrl } from "@/utils/tmdb";
 
 import { NoImageSsikongi } from "../../../../../../../public/images";
@@ -33,8 +34,9 @@ export default function Mobile_Posts({ MovieWatchMovies }: WatchMovieType) {
       setMovieNumber((prev) => prev + 1);
     }
   };
-  const handleToast = (text: string) => {
+  const handleToast = async (text: string) => {
     add(text);
+    await delay(300);
     handleMovieList();
   };
   useEffect(() => {
