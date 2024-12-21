@@ -2,10 +2,12 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import SpeechBubble from "@/components/speechBubble/SpeechBubble";
+import { tokenManager } from "@/services/auth/tokenManager";
 import { useToastActions } from "@/stores/useToast";
+import { delay } from "@/utils/fn";
 import { getTmdbPosterUrl } from "@/utils/tmdb";
 
 import { NoImageSsikongi } from "../../../../../../../public/images";
@@ -16,6 +18,10 @@ interface WatchMovieType {
 export default function Tablet_Posts({ MovieWatchMovies }: WatchMovieType) {
   const [MovieNumber, setMovieNumber] = useState(0);
   const { add } = useToastActions();
+  const [message, setmessage] = useState(
+    "로그인 하고 별을 눌러 평가해보세요 :",
+  );
+  const accessToken = tokenManager.getToken();
   const handleMovieList = () => {
     if (MovieWatchMovies.length === MovieNumber + 1) {
       return null;
@@ -23,13 +29,18 @@ export default function Tablet_Posts({ MovieWatchMovies }: WatchMovieType) {
       setMovieNumber((prev) => prev + 1);
     }
   };
-  const handleToast = (text: string) => {
+  const handleToast = async (text: string) => {
     add(text);
+    await delay(300);
     setMovieNumber((prev) => prev + 1);
   };
-
+  useEffect(() => {
+    if (accessToken) {
+      setmessage("슬라이드하여 별점을 조절하세요");
+    }
+  }, [accessToken]);
   return (
-    <div className="hidden flex-col justify-center Tablet:flex Laptop:hidden">
+    <div className="hidden flex-col justify-center overflow-hidden Tablet:flex Laptop:hidden">
       <div className="mx-auto hidden w-[537px] max-w-screen-md items-center  Tablet:flex Laptop:hidden">
         <div
           className="flex transition-transform  duration-700 ease-in-out"
@@ -58,7 +69,7 @@ export default function Tablet_Posts({ MovieWatchMovies }: WatchMovieType) {
               <div className="flex w-[337px] flex-col items-center justify-center  gap-8 rounded-r-xl bg-D1_Gray px-5">
                 <div className="flex flex-col items-center justify-center gap-2 ">
                   <div className="w-full max-w-[317px] Text-l-Medium">
-                    <p className="line-clamp-1">{movie.movienm}</p>
+                    <p className="line-clamp-1 text-center">{movie.movienm}</p>
                   </div>
                   <div className="flex items-center gap-[10px] text-L_Gray Text-s-Regular">
                     <span>{movie.release_date}</span>
@@ -75,10 +86,12 @@ export default function Tablet_Posts({ MovieWatchMovies }: WatchMovieType) {
                       handleMovieList={handleToast}
                     />
                   </div>
-                  <div className="mt-2">
-                    <SpeechBubble id={"WatchedMovie"} dir="top">
-                      로그인 하고 별을 눌러 평가해보세요 :)
-                    </SpeechBubble>
+                  <div className="mt-2 flex  justify-center">
+                    <div className=" w-fit">
+                      <SpeechBubble id={"WatchedMovie"} dir="top">
+                        {message}
+                      </SpeechBubble>
+                    </div>
                   </div>
                 </div>
               </div>
