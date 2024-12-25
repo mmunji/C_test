@@ -47,6 +47,7 @@ export default function SearchMovieList({
                 }
               >
                 <Image
+                  unoptimized
                   className="object-cover group-hover:opacity-70 group-hover:blur-[3px]"
                   src={`${movie.poster_path ? getTmdbPosterUrl("w500", movie.poster_path) : "/images/ssikongi/PNG/NoImage.png"}`}
                   alt={`${movie.title} 포스터`}

@@ -15,6 +15,7 @@ export default async function SnsLogin() {
           className={`my-1 flex h-8 w-8 items-center justify-center rounded-lg Tablet:my-0 Tablet:h-10 Tablet:w-10 ${oauthProvider === "kakao" ? "bg-Kakako" : "bg-Naver"}`}
         >
           <Image
+            unoptimized
             alt={oauthProvider}
             src={oauthProvider === "kakao" ? Kakao : Naver}
           />

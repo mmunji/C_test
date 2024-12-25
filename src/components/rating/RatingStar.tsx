@@ -161,6 +161,7 @@ export default function RatingStar({
         }}
       />
       <Image
+        unoptimized
         src={src}
         alt={alt as string}
         className="max-h-11 max-w-11 pl-1 last:pl-0"

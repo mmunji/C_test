@@ -44,6 +44,7 @@ export default function BadgeItem({
         <div className="flex h-full w-full items-center justify-center">
           <div className="relative h-11 w-11 Tablet:h-12 Tablet:w-12">
             <Image
+              unoptimized
               fill
               alt={`${badgeName} 뱃지 이미지`}
               src={getEmoji(badgeName)}

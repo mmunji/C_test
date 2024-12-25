@@ -62,6 +62,7 @@ export default function SpeechBubble({
             {children}
           </p>
           <Image
+            unoptimized
             src={CloseSm}
             alt="닫기"
             className="h-6 w-6 cursor-pointer"
@@ -69,6 +70,7 @@ export default function SpeechBubble({
           />
 
           <Image
+            unoptimized
             src={arrowSrc}
             alt="꼬리표"
             className={clsx(

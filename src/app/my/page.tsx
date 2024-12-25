@@ -37,7 +37,13 @@ export default function My() {
             href={ROUTES.MY.activity()}
             className="flex w-full items-center gap-2 px-5 py-4"
           >
-            <Image src={Archive} width={24} height={24} alt="내 활동" />
+            <Image
+              unoptimized
+              src={Archive}
+              width={24}
+              height={24}
+              alt="내 활동"
+            />
             <span className="Text-m-Medium">내 활동</span>
           </Link>
         </div>
@@ -46,7 +52,13 @@ export default function My() {
             href={ROUTES.MY.bookmark()}
             className="flex w-full items-center gap-2 px-5 py-4"
           >
-            <Image src={Bookmark} width={24} height={24} alt="찜한 영화" />
+            <Image
+              unoptimized
+              src={Bookmark}
+              width={24}
+              height={24}
+              alt="찜한 영화"
+            />
             <span className="Text-m-Medium">찜한 영화</span>
           </Link>
         </div>
@@ -55,7 +67,13 @@ export default function My() {
             href={ROUTES.MY.account()}
             className="flex w-full items-center gap-2 px-5 py-4"
           >
-            <Image src={User} width={24} height={24} alt="개인 정보" />
+            <Image
+              unoptimized
+              src={User}
+              width={24}
+              height={24}
+              alt="개인 정보"
+            />
             <span className="Text-m-Medium">개인 정보</span>
           </Link>
         </div>

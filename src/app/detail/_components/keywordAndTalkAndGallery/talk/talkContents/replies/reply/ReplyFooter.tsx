@@ -65,11 +65,13 @@ export default function ReplyFooter({
           variant="textIconR"
         >
           <Image
+            unoptimized
             src={reply?.likeCheck ? ThumbsUpFillSm : ThumbsUpLineSm}
             alt="좋아요"
             className="Tablet:hidden"
           />
           <Image
+            unoptimized
             src={reply?.likeCheck ? ThumbsUpFillMd : ThumbsUpLineMd}
             alt="좋아요"
             className="hidden Tablet:block"
@@ -85,11 +87,13 @@ export default function ReplyFooter({
           variant="textIconR"
         >
           <Image
+            unoptimized
             src={reply?.dislikeCheck ? ThumbsDownFillSm : ThumbsDownLineSm}
             alt="싫어요"
             className="Tablet:hidden"
           />
           <Image
+            unoptimized
             src={reply?.dislikeCheck ? ThumbsDownFillMd : ThumbsDownLineMd}
             alt="싫어요"
             className="hidden Tablet:block"

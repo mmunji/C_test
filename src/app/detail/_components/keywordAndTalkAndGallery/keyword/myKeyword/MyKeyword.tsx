@@ -33,11 +33,13 @@ function MyKeyword({
         className="ml-auto cursor-pointer"
       >
         <Image
+          unoptimized
           src={EditPencilLineSm}
           alt="편집"
           className="h-4 w-4 Tablet:hidden"
         />
         <Image
+          unoptimized
           src={EditPencilLineMd}
           alt="편집"
           className="hidden h-6 w-6 Tablet:block"

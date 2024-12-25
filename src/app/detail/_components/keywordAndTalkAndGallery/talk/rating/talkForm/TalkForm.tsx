@@ -100,11 +100,13 @@ export default function TalkForm({
           onClick={toggleSpoiler}
         >
           <Image
+            unoptimized
             src={spoiler ? SquareCheckFillSm : SquareCheckSm}
             alt="스포일러"
             className="Laptop:hidden"
           />
           <Image
+            unoptimized
             src={spoiler ? SquareCheckFillMd : SquareCheckMd}
             alt="스포일러"
             className="hidden Laptop:block"

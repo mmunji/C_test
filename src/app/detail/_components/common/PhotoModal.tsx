@@ -61,6 +61,7 @@ export default function PhotoModal({
           {photo?.map((el, i) => (
             <SwiperSlide key={i}>
               <Image
+                unoptimized
                 width={500}
                 height={500}
                 src={el.filePath}
@@ -75,7 +76,7 @@ export default function PhotoModal({
             onClick={handlePrev}
             className={`absolute left-2 top-1/2 z-[5] translate-y-[-50%] Tablet:left-[-42px] Tablet:translate-x-[-100%] Laptop:left-[-28px] Desktop:left-[-40px]`}
           >
-            <Image src={ChevronLeftLg} alt="이전" />
+            <Image unoptimized src={ChevronLeftLg} alt="이전" />
           </button>
         )}
 
@@ -84,7 +85,7 @@ export default function PhotoModal({
             onClick={handleNext}
             className={`absolute right-2 top-1/2 z-[5] translate-y-[-50%] Tablet:right-[-42px] Tablet:translate-x-[100%] Laptop:right-[-28px] Desktop:right-[-40px]`}
           >
-            <Image src={ChevronRightLg} alt="다음" />
+            <Image unoptimized src={ChevronRightLg} alt="다음" />
           </button>
         )}
       </div>
@@ -94,6 +95,7 @@ export default function PhotoModal({
           {(swiper?.activeIndex as number) + 1} · {photo?.length}
         </p>
         <Image
+          unoptimized
           onClick={() => setOpenPhotoModal(false)}
           src={CloseLg}
           alt="닫기"
