@@ -22,20 +22,21 @@ export default function BadgeTitle({
 }: BadgeTitleProps) {
   const [loading, setLoading] = useState(false);
   const isDisabled = selectedBadgeIds.length > 3;
+
   const getButtonText = () => {
-    if (isEditing) {
-      if (isDisabled) {
-        return (
-          <>
-            너무 많아요{" "}
-            <span className="text-Error">{selectedBadgeIds.length}/3</span>
-          </>
-        );
-      }
+    if (!isEditing) return "변경";
+    if (isDisabled) {
+      return (
+        <>
+          너무 많아요{" "}
+          <span className="text-Error">{selectedBadgeIds.length}/3</span>
+        </>
+      );
+    } else {
       return `완료 ${selectedBadgeIds.length}/3`;
     }
-    return "변경";
   };
+
   const handleSubmit = async () => {
     if (!isDisabled && isEditing) {
       setLoading(true);
@@ -43,6 +44,7 @@ export default function BadgeTitle({
       setLoading(false);
     }
   };
+
   return (
     <div className="relative flex w-full items-end gap-1">
       <div className="flex flex-1 flex-col gap-1">

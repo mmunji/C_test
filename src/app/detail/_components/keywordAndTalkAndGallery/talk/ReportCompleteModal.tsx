@@ -19,6 +19,7 @@ function ReportCompleteModal({
         <div className="mt-[87px] flex flex-col items-center gap-4 Tablet:mt-7 Tablet:flex-col-reverse Tablet:gap-7">
           <div className="h-[150px]">
             <Image
+              unoptimized
               width={100}
               height={100}
               src="/images/ssikongi/PNG/Check.png"

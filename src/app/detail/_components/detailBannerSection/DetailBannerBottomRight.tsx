@@ -83,11 +83,13 @@ export default function DetailBannerBottomRight({
           className="cursor-pointer"
         >
           <Image
+            unoptimized
             src={checkBookmark?.data.state ? HeartFillLg : HeartLineLg}
             alt="찜하기"
             className="m-1 h-8 w-8 Laptop:hidden"
           />
           <Image
+            unoptimized
             src={checkBookmark?.data.state ? HeartFillXl : HeartLineXl}
             alt="찜하기"
             className="hidden Laptop:block"
@@ -98,11 +100,13 @@ export default function DetailBannerBottomRight({
         </section>
         <section onClick={handleClickTalk} className="cursor-pointer">
           <Image
+            unoptimized
             src={EditPencilLineSm}
             alt="톡 작성"
             className="m-1 h-8 w-8 Laptop:hidden"
           />
           <Image
+            unoptimized
             src={EditPencilLineMd}
             alt="톡 작성"
             className="hidden Laptop:block"
@@ -113,6 +117,7 @@ export default function DetailBannerBottomRight({
         </section>
       </section>
       <Image
+        unoptimized
         src={
           movieDetailData.posterImg.includes("null")
             ? "/images/ssikongi/PNG/NoImage.png"

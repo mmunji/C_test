@@ -60,6 +60,7 @@ export default function CastAndCrewSlider({
                 className="min-h-[196px] max-w-[82px] rounded-[8px] bg-D1_Gray"
               >
                 <Image
+                  unoptimized
                   width={100}
                   height={100}
                   src={profileImage}
@@ -89,6 +90,7 @@ export default function CastAndCrewSlider({
                 className="min-h-[196px] max-w-[82px] rounded-[8px] bg-D1_Gray"
               >
                 <Image
+                  unoptimized
                   width={100}
                   height={100}
                   src={profileImage}
@@ -114,7 +116,7 @@ export default function CastAndCrewSlider({
           variant="arrow1"
           className={`absolute hidden Laptop:flex ${hovered ? "opacity-100" : "opacity-0"} left-0 top-1/2 z-[5] translate-x-[-50%] translate-y-[-50%] transition-opacity duration-300`}
         >
-          <Image src={ChevronLeftMd} alt="이전" />
+          <Image unoptimized src={ChevronLeftMd} alt="이전" />
         </Button>
       )}
 
@@ -124,7 +126,7 @@ export default function CastAndCrewSlider({
           variant="arrow1"
           className={`absolute hidden Laptop:flex ${hovered ? "opacity-100" : "opacity-0"} right-0 top-1/2 z-[5] translate-x-[50%] translate-y-[-50%] transition-opacity duration-300`}
         >
-          <Image src={ChevronRightMd} alt="다음" />
+          <Image unoptimized src={ChevronRightMd} alt="다음" />
         </Button>
       )}
     </div>

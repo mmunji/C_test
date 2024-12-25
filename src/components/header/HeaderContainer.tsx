@@ -15,6 +15,7 @@ export default async function HeaderContainer() {
         <HeaderAuthedUserSection isAdmin={user.role === "ROLE_ADMIN"}>
           <div className="relative h-[30px] w-[30px] overflow-hidden rounded-full">
             <Image
+              unoptimized
               fill
               className="object-cover"
               alt="유저_프로필"

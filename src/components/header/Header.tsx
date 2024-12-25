@@ -50,6 +50,7 @@ export default function Header({ children }: { children: React.ReactNode }) {
         {pathname !== ROUTES.MAIN && !clickSearchIcon && (
           <div className="flex items-center Tablet:hidden">
             <Image
+              unoptimized
               src={ChevronLeftMd}
               alt="뒤로 가기"
               onClick={() => router.back()}

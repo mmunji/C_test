@@ -30,5 +30,5 @@ export default function TalkContentsRatingStar({
     alt = "빈 별";
   }
 
-  return <Image src={src} alt={alt} className="h-4 w-4" />;
+  return <Image unoptimized src={src} alt={alt} className="h-4 w-4" />;
 }

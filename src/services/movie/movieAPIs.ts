@@ -99,6 +99,7 @@ export const movieAPIs = {
       },
     });
     const data = await res.json();
+
     return data;
   },
   bookmarkMovie: async (movieId: number) => {

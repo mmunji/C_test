@@ -26,6 +26,7 @@ export default async function UserInfo() {
             <div className="relative">
               <div className="relative h-16 w-16 overflow-hidden rounded-full Tablet:h-[100px] Tablet:w-[100px]">
                 <Image
+                  unoptimized
                   alt="유저_프로필"
                   src={
                     user.profile

@@ -132,6 +132,9 @@ export default function RatingStar({
         if (type === "detail-edit" && myTalk) {
           if (!clickedValue) setRatingValue(myTalk.star);
         }
+        if (type == "main") {
+          if (!clickedValue) setRatingValue(0);
+        }
       }}
       onClick={() => {
         setRatingValue(ratingValue);
@@ -144,14 +147,21 @@ export default function RatingStar({
         onMouseEnter={() => {
           if (!clickedValue) setRatingValue(index + 0.5);
         }}
+        onTouchStart={() => {
+          if (!clickedValue) setRatingValue(index + 0.5);
+        }}
       />
       <div
         className="absolute right-0 top-0 h-full w-1/2"
         onMouseEnter={() => {
           if (!clickedValue) setRatingValue(index + 1);
         }}
+        onTouchStart={() => {
+          if (!clickedValue) setRatingValue(index + 1);
+        }}
       />
       <Image
+        unoptimized
         src={src}
         alt={alt as string}
         className="max-h-11 max-w-11 pl-1 last:pl-0"

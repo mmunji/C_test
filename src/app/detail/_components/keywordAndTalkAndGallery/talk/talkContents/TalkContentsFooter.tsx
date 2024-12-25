@@ -69,11 +69,13 @@ export default function TalkContentsFooter({
       <section className="flex items-center justify-end Tablet:mt-2">
         <Button onClick={() => handleClickLike(talk.id)} variant="textIconL">
           <Image
+            unoptimized
             src={talk.likeCheck ? ThumbsUpFillSm : ThumbsUpLineSm}
             alt="좋아요"
             className="Tablet:hidden"
           />
           <Image
+            unoptimized
             src={talk.likeCheck ? ThumbsUpFillMd : ThumbsUpLineMd}
             alt="좋아요"
             className="hidden Tablet:block"
@@ -84,11 +86,13 @@ export default function TalkContentsFooter({
         </Button>
         <Button onClick={() => handleClickDislike(talk.id)} variant="textIconL">
           <Image
+            unoptimized
             src={talk.dislikeCheck ? ThumbsDownFillSm : ThumbsDownLineSm}
             alt="싫어요"
             className="Tablet:hidden"
           />
           <Image
+            unoptimized
             src={talk.dislikeCheck ? ThumbsDownFillMd : ThumbsDownLineMd}
             alt="싫어요"
             className="hidden Tablet:block"
@@ -123,6 +127,7 @@ export default function TalkContentsFooter({
             {talk.commentCount}
           </p>
           <Image
+            unoptimized
             src={
               talk.spoiler
                 ? showSpoiler

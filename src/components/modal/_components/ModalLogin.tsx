@@ -24,10 +24,11 @@ export default function ModalLogin({
         onClick={onClose}
         className="absolute right-1 top-0 w-fit p-2 Tablet:-right-6 Tablet:-top-12"
       >
-        <Image src={CloseLg} alt="닫기" width={24} height={24} />
+        <Image unoptimized src={CloseLg} alt="닫기" width={24} height={24} />
       </button>
       <div className="relative flex h-[34px] justify-center">
         <Image
+          unoptimized
           src={FullLogo}
           alt="씨네톡 로고"
           fill
@@ -43,7 +44,13 @@ export default function ModalLogin({
               onClick={onKakaoLogin}
               className="flex h-12 w-[320px] items-center  justify-center gap-4 rounded-xl bg-Kakako text-[#000000d9] Text-m-Medium Tablet:w-[360px]"
             >
-              <Image src={Kakao} alt="카카오" width={18} height={18} />
+              <Image
+                unoptimized
+                src={Kakao}
+                alt="카카오"
+                width={18}
+                height={18}
+              />
               카카오로 시작하기
             </button>
             {lastSocialLogin === "kakao" && (
@@ -61,7 +68,13 @@ export default function ModalLogin({
               onClick={onNaverLogin}
               className="flex h-12 w-[320px] items-center justify-center gap-4 rounded-xl bg-Naver text-White Text-m-Medium Tablet:w-[360px]"
             >
-              <Image src={Naver} alt="네이버" width={16} height={16} />
+              <Image
+                unoptimized
+                src={Naver}
+                alt="네이버"
+                width={16}
+                height={16}
+              />
               네이버로 시작하기
             </button>
             {lastSocialLogin === "naver" && (

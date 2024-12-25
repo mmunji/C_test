@@ -43,7 +43,7 @@ export default function Toast() {
           >
             <span className="">{item.message}</span>
             <button type="button" onClick={() => handleRemoveToast(item.id)}>
-              <Image src={CloseSm} alt="닫기" />
+              <Image unoptimized src={CloseSm} alt="닫기" />
             </button>
           </motion.div>
         ))}

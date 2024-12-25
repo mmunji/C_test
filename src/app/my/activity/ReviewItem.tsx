@@ -50,7 +50,7 @@ export default function ReviewItem({
         <div className="flex h-10 items-center justify-between gap-2 Laptop:mb-2">
           <div className="flex items-center gap-2">
             <div className="flex shrink-0 items-center Text-s-Bold">
-              <Image src={StarFillSm} alt="별점" />
+              <Image unoptimized src={StarFillSm} alt="별점" />
               {Number.isInteger(review.star) ? `${review.star}.0` : review.star}
             </div>
             <span className="line-clamp-1 Text-m-Medium">{review.movienm}</span>
@@ -59,7 +59,7 @@ export default function ReviewItem({
             <Dropdown>
               <Dropdown.Trigger>
                 <Button variant={"icon"}>
-                  <Image alt="더보기" src={MoreHorizontal} />
+                  <Image unoptimized alt="더보기" src={MoreHorizontal} />
                 </Button>
               </Dropdown.Trigger>
               <Dropdown.List>
@@ -87,13 +87,13 @@ export default function ReviewItem({
         </div>
         <div className="flex items-center gap-3">
           <div className="flex items-center gap-1">
-            <Image alt="좋아요" src={ThumbsUpLineSm} />
+            <Image unoptimized alt="좋아요" src={ThumbsUpLineSm} />
             <span className="text-Gray_Orange Text-s-Medium">
               {review.rateCount}
             </span>
           </div>
           <div className="flex items-center gap-1">
-            <Image alt="댓글" src={ChatLineGrayOrangeSm} />
+            <Image unoptimized alt="댓글" src={ChatLineGrayOrangeSm} />
             <span className="text-Gray_Orange Text-s-Medium">
               {review.rereviewCount}
             </span>

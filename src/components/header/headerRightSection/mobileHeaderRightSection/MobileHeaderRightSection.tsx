@@ -60,12 +60,14 @@ function MobileHeaderRightSection({
         ) : (
           <section className="flex Tablet:gap-4">
             <Image
+              unoptimized
               src={SearchWhiter}
               alt="검색"
               onClick={() => setClickSearchIcon(true)}
               className={`m-2 ${pathname.includes(ROUTES.DETAIL) && "hidden Tablet:block"} cursor-pointer`}
             />
             <Image
+              unoptimized
               src={House}
               alt="홈"
               onClick={() => router.push(ROUTES.MAIN)}
@@ -73,6 +75,7 @@ function MobileHeaderRightSection({
             />
 
             <Image
+              unoptimized
               src={User}
               alt="유저"
               onClick={handleClickUserIcon}
@@ -101,6 +104,7 @@ function MobileHeaderRightSection({
       </section>
 
       <Image
+        unoptimized
         src={House}
         alt="home"
         onClick={() => router.push(ROUTES.MAIN)}

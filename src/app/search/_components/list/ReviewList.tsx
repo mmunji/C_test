@@ -69,6 +69,7 @@ export default function SearchReviewList({
                 <div className="flex items-center gap-2">
                   <div className="relative h-6 w-6 overflow-hidden rounded-full">
                     <Image
+                      unoptimized
                       className="object-cover"
                       alt="유저 프로필 이미지"
                       fill
@@ -85,6 +86,7 @@ export default function SearchReviewList({
                 </div>
                 <div className="flex items-center">
                   <Image
+                    unoptimized
                     alt="별 아이콘"
                     width={16}
                     height={16}

@@ -44,7 +44,9 @@ export default function CategoryTab({
             className={`flex items-center gap-1 rounded-[38px] px-4 py-2 Text-m-Bold ${activeCategoryTab === tab && "bg-D1_Gray"}`}
             onClick={() => setActiveCategoryTab(tab)}
           >
-            {activeCategoryTab === tab && <Image src={imgSrc} alt="" />}
+            {activeCategoryTab === tab && (
+              <Image unoptimized src={imgSrc} alt="svg icon" />
+            )}
             {tab}
           </button>
         );
