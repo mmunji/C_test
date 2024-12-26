@@ -6,24 +6,20 @@ import dayjs from "dayjs";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import SwiperCore from "swiper";
-import { Pagination } from "swiper/modules";
-import { Swiper, SwiperClass, SwiperSlide } from "swiper/react";
+import { SwiperSlide } from "swiper/react";
 
 import {
   BestTalkFire,
   ChatLineLg,
-  ChevronLeftMd,
   ChevronRightMd,
   StarFillMd,
   TmdbSm,
 } from "@/../public/icons";
-import Button from "@/components/buttons/Button";
-import useDevice from "@/hooks/useDevice";
 
 import { NoImageSsikongi } from "../../../../../../public/images";
 import NonPostCard from "../../NonPostCard";
 import PostCard from "../../PostCard";
+import CustomSwiper from "../../swiper/CustomSwiper";
 import BestTalkPost from "./Post/BestTalkPost";
 interface Desktop_BestMoiveProps {
   MovieData: Movie_TopTen | null;
@@ -33,10 +29,7 @@ export default function DeskTop_BestMovie({
   MovieData,
   MovieGenre,
 }: Desktop_BestMoiveProps) {
-  SwiperCore.use([Pagination]);
   const [StatePost, SetStatePost] = useState(0);
-  const [swiper, setSwiper] = useState<SwiperClass>();
-  const [hovered, sethovered] = useState(false);
 
   const onHandlePost = (index: number) => {
     SetStatePost(index);
@@ -54,20 +47,8 @@ export default function DeskTop_BestMovie({
   }
 
   return (
-    <div
-      className="  relative hidden overflow-visible   Desktop:block"
-      onMouseEnter={() => sethovered(true)}
-      onMouseLeave={() => sethovered(false)}
-    >
-      <Swiper
-        slidesPerView="auto"
-        spaceBetween={20}
-        className="mySwiper relative "
-        modules={[Pagination]}
-        onSwiper={(e) => {
-          setSwiper(e);
-        }}
-      >
+    <div className="  relative hidden overflow-visible   Desktop:block">
+      <CustomSwiper type="topten" spaceBetween={20}>
         {Array.isArray(MovieData) && MovieData.length > 0 ? (
           MovieData.map((MovieDetailData, index) => (
             <SwiperSlide
@@ -199,10 +180,7 @@ export default function DeskTop_BestMovie({
                         (reviewData: MovieReviewDTO, index: number) => (
                           <BestTalkPost
                             key={reviewData.reviewId}
-                            star={reviewData.star}
-                            content={reviewData.content}
-                            likeCount={reviewData.likeCount}
-                            profileImg={reviewData.profile}
+                            reivewData={reviewData}
                             movieId={MovieDetailData.movieId}
                           />
                         ),
@@ -216,26 +194,7 @@ export default function DeskTop_BestMovie({
         ) : (
           <NonPostCard />
         )}
-      </Swiper>
-      {swiper && !swiper.isBeginning && (
-        <Button
-          onClick={() => swiper.slidePrev()}
-          variant="arrow1"
-          className={`absolute -left-5 top-[40%] z-[100]  transform   transition-opacity duration-300 ${hovered ? "opacity-100" : "opacity-0"} `}
-        >
-          <Image src={ChevronLeftMd} alt="이전" style={{ color: "#E9E9E9" }} />
-        </Button>
-      )}
-
-      {swiper && !swiper.isEnd && (
-        <Button
-          onClick={() => swiper.slideNext()}
-          variant="arrow1"
-          className={`absolute -right-5 top-[40%]  z-[100]   transform transition-opacity duration-300 ${hovered ? "opacity-100" : "opacity-0"}  `}
-        >
-          <Image src={ChevronRightMd} alt="다음" style={{ color: "#E9E9E9" }} />
-        </Button>
-      )}
+      </CustomSwiper>
     </div>
   );
 }

@@ -8,7 +8,7 @@ const getMovieIds = async () => {
 };
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const url = "https://www.cinetalk.site";
+  const url = process.env.NEXT_PUBLIC_CLIENT_URL;
   const ids = await getMovieIds();
   const sitemap = ids.map((id) => ({
     url: `${url}/detail/${id}`,
