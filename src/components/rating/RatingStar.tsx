@@ -1,5 +1,6 @@
+"use client";
 import Image from "next/image";
-import React, { Dispatch, SetStateAction } from "react";
+import React, { Dispatch, SetStateAction, useRef } from "react";
 
 import {
   StarFillLg,
@@ -75,6 +76,17 @@ export default function RatingStar({
       alt = "큰 빈 별";
     }
   }
+  const starRef = useRef<HTMLDivElement>(null);
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (starRef.current) {
+      const rect = starRef.current.getBoundingClientRect();
+      const touchX = e.touches[0].clientX - rect.left; // 슬라이드 위치 계산
+      const starWidth = rect.width / 5; // 별 한 개의 너비
+      const newRating = Math.ceil(touchX / starWidth); // 슬라이드된 별점
+      setRatingValue(newRating >= 0 && newRating <= 5 ? newRating : 0); // 범위 제한
+    }
+  };
 
   const { mutate: addTalks } = useAddTalk(movieId as number);
   const { loggedIn } = useLoggedInStore();
@@ -128,6 +140,8 @@ export default function RatingStar({
   return (
     <div
       className="relative w-full"
+      ref={starRef}
+      onTouchMove={handleTouchMove}
       onMouseLeave={() => {
         if (type === "detail-edit" && myTalk) {
           if (!clickedValue) setRatingValue(myTalk.star);

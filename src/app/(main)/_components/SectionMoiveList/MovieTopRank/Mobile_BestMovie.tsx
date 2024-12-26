@@ -5,14 +5,10 @@ import "swiper/css/pagination";
 import dayjs from "dayjs";
 import Image from "next/image";
 import Link from "next/link";
-import SwiperCore from "swiper";
-import { Pagination } from "swiper/modules";
-import { Swiper, SwiperSlide } from "swiper/react";
+import { SwiperSlide } from "swiper/react";
 
 import {
-  ChatLineLg,
   ChatLineSm,
-  StarFillMd,
   StarFillSm,
   ThumbsUpFillSm,
   TmdbSm,
@@ -20,6 +16,7 @@ import {
 
 import { ProfileSsicong } from "../../../../../../public/images";
 import NonPostCard from "../../NonPostCard";
+import CustomSwiper from "../../swiper/CustomSwiper";
 
 interface Mobile_BestMoiveProps {
   MovieData: Movie_TopTen | null;
@@ -41,12 +38,7 @@ export default function Mobile_BestMovie({
   }
   return (
     <div className="block Tablet:hidden">
-      <Swiper
-        slidesPerView="auto"
-        spaceBetween={8}
-        className="mySwiper"
-        modules={[Pagination]}
-      >
+      <CustomSwiper type="topten" spaceBetween={8}>
         {Array.isArray(MovieData) && MovieData.length > 0 ? (
           MovieData.map((MovieDetailData, index) => {
             return (
@@ -184,7 +176,7 @@ export default function Mobile_BestMovie({
         ) : (
           <NonPostCard />
         )}
-      </Swiper>
+      </CustomSwiper>
     </div>
   );
 }

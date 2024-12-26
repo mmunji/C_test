@@ -2,7 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
+import { Swiper, SwiperClass, SwiperSlide } from "swiper/react";
 
 import { ChevronRight, ChevronRightMd } from "../../../../../../public/icons";
 import RightKeyWords from "./RightKeyWords";
@@ -15,7 +15,11 @@ export default function RecentKeyword({ data }: RecentKeywordType) {
   const HandleKeywords = (index: number) => {
     setKeywordListNumber(index);
   };
-
+  const addKeywordIndex = () => {
+    if (KeywordListNumber < data.length - 1) {
+      setKeywordListNumber((prev) => prev + 1);
+    }
+  };
   return (
     <div className="flex flex-col gap-[20px]">
       <div className="flex justify-between">
@@ -67,8 +71,10 @@ export default function RecentKeyword({ data }: RecentKeywordType) {
           </div>
           {data ? (
             <RightKeyWords
+              addKeywordIndex={addKeywordIndex}
               keywordInfo={data}
               keywordIndex={KeywordListNumber}
+              setKeywordListNumber={setKeywordListNumber}
             />
           ) : (
             ""

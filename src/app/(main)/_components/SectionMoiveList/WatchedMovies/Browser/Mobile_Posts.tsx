@@ -98,7 +98,7 @@ export default function Mobile_Posts({ MovieWatchMovies }: WatchMovieType) {
         </div>
         <div className="relative flex justify-center">
           {device == "mobile" ? (
-            <div className="absolute -bottom-2 ">
+            <div className="absolute -bottom-10 ">
               <SpeechBubble id={"SimilarTastesMovie"} dir="top">
                 {message}
               </SpeechBubble>
