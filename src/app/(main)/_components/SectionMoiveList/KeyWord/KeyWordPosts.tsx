@@ -4,26 +4,14 @@ import Link from "next/link";
 
 import { StarFillSm } from "@/../public/icons";
 interface KeyWordInfoProps {
-  movieName: string;
-  star: number;
-  content: string;
   keyword?: string;
-  id: number;
-  nickname: string;
-  createdAt: string;
-  profile?: string;
   isVisible?: boolean;
+  review: reviewDTO;
 }
 
 export default function KeyWordPosts({
-  movieName,
-  star,
-  content,
-  id,
-  nickname,
+  review,
   keyword,
-  createdAt,
-  profile,
   isVisible,
 }: KeyWordInfoProps) {
   const highlightedText = (text: string, query: string | null) => {
@@ -45,7 +33,7 @@ export default function KeyWordPosts({
   };
 
   return (
-    <Link href={`/detail/${id}`}>
+    <Link href={`/detail/${review.id}`}>
       <div
         className={`${isVisible ? "scale-100 opacity-100" : "scale-10 opacity-0"}  transition-transfor Text-s-Mediuim flex  flex-col gap-2 rounded-xl bg-D1_Gray px-4 py-4 duration-700 ease-in-out Tablet:px-7 Tablet:py-6 `}
       >
@@ -55,26 +43,26 @@ export default function KeyWordPosts({
               height={24}
               width={24}
               className="h-6 w-6 rounded-[60px] object-cover"
-              src={`data:image/jpeg;base64,${profile}
+              src={`data:image/jpeg;base64,${review.profile}
           `}
               alt="영화 포스터"
             />
             <h4 className="line-clamp-1 text-Silver Text-s-Medium">
-              {nickname}
+              {review.nickname}
             </h4>
           </div>
           <div className="flex items-center  text-Silver Text-s-Bold ">
             <Image src={StarFillSm} alt="주황별" />
-            <span>{star.toFixed(1)}</span>
+            <span>{review.star.toFixed(1)}</span>
           </div>
         </div>
         <div className=" h-[42px] text-Gray_Orange Text-s-Regular  Tablet:h-[48px] Laptop:Text-m-Regular">
           <span className="line-clamp-2">
-            {highlightedText(content, keyword!)}
+            {highlightedText(review.content, keyword!)}
           </span>
         </div>
         <span className="line-clamp-1 text-L_Gray Text-s-Regular  Laptop:Text-m-Regular">
-          {movieName} · {createdAt}
+          {review.movienm} · {review.createdAt}
         </span>
       </div>
     </Link>

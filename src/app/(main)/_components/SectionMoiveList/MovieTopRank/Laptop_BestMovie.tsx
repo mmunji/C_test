@@ -6,24 +6,20 @@ import dayjs from "dayjs";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import SwiperCore from "swiper";
-import { Pagination } from "swiper/modules";
-import { Swiper, SwiperSlide } from "swiper/react";
+import { SwiperSlide } from "swiper/react";
 
 import {
   BestTalkFire,
   ChatLineLg,
-  ChevronLeftMd,
   ChevronRightMd,
   StarFillMd,
   TmdbSm,
 } from "@/../public/icons";
-import Button from "@/components/buttons/Button";
 
 import { NoImageSsikongi } from "../../../../../../public/images";
-import useMovieSwiper from "../../../_hooks/useMovieSwiper";
 import NonPostCard from "../../NonPostCard";
 import PostCard from "../../PostCard";
+import CustomSwiper from "../../swiper/CustomSwiper";
 import BestTalkPost from "./Post/BestTalkPost";
 interface Laptop_BestMoiveProps {
   MovieData: Movie_TopTen | null;
@@ -33,11 +29,7 @@ export default function Laptop_BestMovie({
   MovieData,
   MovieGenre,
 }: Laptop_BestMoiveProps) {
-  SwiperCore.use([Pagination]);
-
   const [StatePost, SetStatePost] = useState(0);
-  const { hovered, sethovered, swiper, setSwiper, forceUpdate } =
-    useMovieSwiper();
   const onHandlePost = (index: number) => {
     SetStatePost(index);
   };
@@ -52,21 +44,8 @@ export default function Laptop_BestMovie({
     });
   }
   return (
-    <div
-      className="relative hidden h-[calc(260px)]  Laptop:block Desktop:hidden"
-      onMouseEnter={() => sethovered(true)}
-      onMouseLeave={() => sethovered(false)}
-    >
-      <Swiper
-        slidesPerView="auto"
-        spaceBetween={20}
-        modules={[Pagination]}
-        onSlideChange={forceUpdate}
-        onSwiper={(e) => {
-          setSwiper(e);
-        }}
-        className="relative"
-      >
+    <div className="relative hidden h-[calc(260px)]  Laptop:block Desktop:hidden">
+      <CustomSwiper type="topten" spaceBetween={20}>
         {Array.isArray(MovieData) && MovieData.length > 0 ? (
           MovieData.map((MovieDetailData, index) => {
             return (
@@ -201,10 +180,7 @@ export default function Laptop_BestMovie({
                             return (
                               <BestTalkPost
                                 key={reviewData.reviewId}
-                                star={reviewData.star}
-                                content={reviewData.content}
-                                likeCount={reviewData.likeCount}
-                                profileImg={reviewData.profile}
+                                reivewData={reviewData}
                                 movieId={MovieDetailData.movieId}
                               />
                             );
@@ -220,34 +196,7 @@ export default function Laptop_BestMovie({
         ) : (
           <NonPostCard />
         )}
-      </Swiper>
-      {swiper && !swiper.isBeginning && (
-        <Button
-          onClick={() => {
-            if (swiper) {
-              swiper.slidePrev();
-            }
-          }}
-          variant="arrow1"
-          className={`absolute -left-5 top-[40%] z-[50]  transform   transition-opacity duration-300 ${hovered ? "opacity-100" : "opacity-0"} `}
-        >
-          <Image src={ChevronLeftMd} alt="이전" />
-        </Button>
-      )}
-
-      {swiper && !swiper.isEnd && (
-        <Button
-          onClick={() => {
-            if (swiper) {
-              swiper.slideNext();
-            }
-          }}
-          variant="arrow1"
-          className={`absolute -right-5 top-[40%] z-[50]   transform transition-opacity duration-300 ${hovered ? "opacity-100" : "opacity-0"}  `}
-        >
-          <Image src={ChevronRightMd} alt="다음" />
-        </Button>
-      )}
+      </CustomSwiper>
     </div>
   );
 }

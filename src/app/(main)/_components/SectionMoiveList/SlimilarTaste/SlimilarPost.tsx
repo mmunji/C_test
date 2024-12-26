@@ -117,7 +117,7 @@ export default function SlimilarPost({ selectedReviewer }: ReviewUsersProps) {
                     <div className="absolute h-full w-full bg-gradient-to-t from-[#1E1E1ECC] Laptop:hidden" />
                     <div className="absolute  flex h-full w-full flex-col justify-end gap-1 p-3 Laptop:hidden">
                       <div className="flex items-center justify-between gap-1 overflow-hidden text-Gray_Orange">
-                        <p className="line-clamp-1 Text-xs-Regular Tablet:Text-m-Regular">
+                        <p className="line-clamp-1 Text-xs-Regular">
                           {review.movienm}
                         </p>
                         <div className="flex shrink-0 items-center justify-center gap-[2px] text-Silver Text-s-Bold">
@@ -126,11 +126,13 @@ export default function SlimilarPost({ selectedReviewer }: ReviewUsersProps) {
                             alt="평점 별"
                             className="h-4 w-4"
                           />
-                          <span className="Text-s-Bold ">{review.star}</span>
+                          <span className="Text-s-Bold ">
+                            {review.star.toFixed(1)}
+                          </span>
                         </div>
                       </div>
                       <div className="flex h-[42px] items-center">
-                        <div className="line-clamp-2 Text-s-Regular Tablet:Text-m-Regular">
+                        <div className="line-clamp-2 Text-s-Regular">
                           {review.content}
                         </div>
                       </div>
