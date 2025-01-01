@@ -98,12 +98,12 @@ export default function SlimilarPost({ selectedReviewer }: ReviewUsersProps) {
         >
           {selectedReviewer.reviews.map((review) => {
             return (
-              <SwiperSlide className="group w-fit" key={review.review_id}>
+              <SwiperSlide className=" w-fit" key={review.review_id}>
                 <Link
                   href={`${ROUTES.DETAIL}/${review.movie_id}`}
                   className="flex w-[156px] flex-col gap-1 Tablet:w-[165px] Laptop:w-[174px] Laptop:gap-2 Desktop:w-[240px]"
                 >
-                  <div className="relative h-[230px] overflow-hidden rounded-xl Tablet:h-[240px] Laptop:h-[260px] Laptop:cursor-pointer Desktop:h-[360px]">
+                  <div className="group relative h-[230px] overflow-hidden rounded-xl Tablet:h-[240px] Laptop:h-[260px] Laptop:cursor-pointer Desktop:h-[360px]">
                     <Image
                       className="object-cover group-hover:Laptop:blur-[3px]"
                       fill

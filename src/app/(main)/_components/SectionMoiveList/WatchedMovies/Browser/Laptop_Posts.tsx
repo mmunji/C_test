@@ -39,11 +39,11 @@ export default function Laptop_Posts({ MovieWatchMovies }: WatchMovieType) {
           {MovieWatchMovies.map((movie) => {
             return (
               <SwiperSlide
-                className="group flex flex-col gap-2 Laptop:w-[174px] Desktop:w-[240px]"
+                className=" flex flex-col gap-2 Laptop:w-[174px] Desktop:w-[240px]"
                 key={movie.movieId}
               >
                 <Link
-                  className="relative flex overflow-hidden rounded-xl Laptop:h-[260px] Laptop:w-[174px] Desktop:h-[360px] Desktop:w-[240px]"
+                  className="group relative flex overflow-hidden rounded-xl Laptop:h-[260px] Laptop:w-[174px] Desktop:h-[360px] Desktop:w-[240px]"
                   href={`/detail/${movie.movieId}`}
                 >
                   <div className="absolute z-10 hidden h-full flex-col bg-black/70 px-5 py-7  group-hover:flex Desktop:px-6 Desktop:py-8">
