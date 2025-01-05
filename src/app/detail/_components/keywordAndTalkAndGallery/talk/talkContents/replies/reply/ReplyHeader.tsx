@@ -41,14 +41,16 @@ export default function ReplyHeader({
     <>
       <div className="flex h-10 items-center justify-between">
         <section className="flex items-center gap-2">
-          <Image
-            width={100}
-            height={100}
-            alt={reply?.nickName}
-            id="replyimg"
-            src={`data:image/jpeg;base64,${reply?.profileImage}`}
-            className="mt-1 h-7 w-7 overflow-hidden rounded-full Tablet:mr-2 Tablet:h-[30px] Tablet:w-[30px]"
-          />
+          <div className="mt-1 h-7 w-7 overflow-hidden rounded-full Tablet:mr-2 Tablet:h-[30px] Tablet:w-[30px]">
+            <Image
+              width={100}
+              height={100}
+              alt={reply?.nickName}
+              id="replyimg"
+              src={`data:image/jpeg;base64,${reply?.profileImage}`}
+              className="h-full object-cover"
+            />
+          </div>
 
           <p className="text-Gray_Orange Text-xs-Regular Tablet:Text-s-Medium">
             {reply?.nickName}
