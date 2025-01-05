@@ -38,6 +38,7 @@ export default function SearchListHeader({
           >
             전체보기{" "}
             <Image
+              unoptimized
               className="Mobile:h-4 Mobile:w-4 Tablet:h-6 Tablet:w-6"
               src={ChevronRightGrayMd}
               alt="ChevronRightMd"

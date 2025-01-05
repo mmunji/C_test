@@ -2,7 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
+import { Swiper, SwiperClass, SwiperSlide } from "swiper/react";
 
 import { ChevronRight, ChevronRightMd } from "../../../../../../public/icons";
 import RightKeyWords from "./RightKeyWords";
@@ -15,7 +15,11 @@ export default function RecentKeyword({ data }: RecentKeywordType) {
   const HandleKeywords = (index: number) => {
     setKeywordListNumber(index);
   };
-
+  const addKeywordIndex = () => {
+    if (KeywordListNumber < data.length - 1) {
+      setKeywordListNumber((prev) => prev + 1);
+    }
+  };
   return (
     <div className="flex flex-col gap-[20px]">
       <div className="flex justify-between">
@@ -27,15 +31,18 @@ export default function RecentKeyword({ data }: RecentKeywordType) {
         </span>
       </div>
       <div className="flex flex-col gap-2">
-        <div className="flex  flex-col items-start  gap-[24px] Laptop:flex-row">
+        <div className="flex  flex-col items-start gap-3 Tablet:gap-4 Laptop:flex-row Laptop:gap-5   Desktop:gap-6">
           <div className="block h-full w-full Laptop:hidden">
-            <Swiper slidesPerView="auto" spaceBetween={12}>
+            <Swiper
+              slidesPerView="auto"
+              breakpoints={{
+                0: { spaceBetween: 8 },
+                768: { spaceBetween: 12 },
+              }}
+            >
               {data?.map((mention, index) => {
                 return (
-                  <SwiperSlide
-                    key={mention.keyword}
-                    className="w-[68px] Tablet:w-[81px]"
-                  >
+                  <SwiperSlide key={mention.keyword} className="w-fit">
                     <div
                       className={`relative Text-s-Bold  ${KeywordListNumber == index ? "bg-D1_Gray text-Silver" : "text-L_Gray"} rounded-[36px] px-4 py-2  text-center Tablet:px-5 Tablet:Text-m-Bold`}
                       onClick={() => HandleKeywords(index)}
@@ -64,8 +71,10 @@ export default function RecentKeyword({ data }: RecentKeywordType) {
           </div>
           {data ? (
             <RightKeyWords
+              addKeywordIndex={addKeywordIndex}
               keywordInfo={data}
               keywordIndex={KeywordListNumber}
+              setKeywordListNumber={setKeywordListNumber}
             />
           ) : (
             ""

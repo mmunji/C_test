@@ -30,7 +30,7 @@ export default function SmallBadge({
       style={{ backgroundColor: backgroundColor }}
     >
       <p className={cn("relative h-3 w-3", size === "md" && "h-4 w-4")}>
-        <Image fill alt={`${content} 뱃지 이미지`} src={emoji} />
+        <Image unoptimized fill alt={`${content} 뱃지 이미지`} src={emoji} />
       </p>
       <p
         className={cn(

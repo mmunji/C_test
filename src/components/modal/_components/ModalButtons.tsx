@@ -50,6 +50,7 @@ export function ModalCheckbox({ children }: { children: React.ReactNode }) {
       <button type="button" id="checkbox" onClick={toggleCheckbox}>
         {isChecked ? (
           <Image
+            unoptimized
             src={SquareCheckFillMd}
             alt="active checkbox"
             width={24}
@@ -57,6 +58,7 @@ export function ModalCheckbox({ children }: { children: React.ReactNode }) {
           />
         ) : (
           <Image
+            unoptimized
             src={SquareCheckMd}
             alt="inactive checkbox"
             width={24}

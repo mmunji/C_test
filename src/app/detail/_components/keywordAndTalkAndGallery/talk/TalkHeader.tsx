@@ -36,7 +36,7 @@ export default function TalkHeader({
       <Dropdown>
         <Dropdown.Trigger>
           <Button variant={"textIconL"} className="Text-s-Medium">
-            <Image alt="필터" src={Filter} />
+            <Image unoptimized alt="필터" src={Filter} />
             <span>{activeFilter}</span>
           </Button>
         </Dropdown.Trigger>

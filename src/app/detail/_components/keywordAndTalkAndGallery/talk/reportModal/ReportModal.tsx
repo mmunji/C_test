@@ -97,7 +97,13 @@ export default function ReportModal({
                   {reportType}
                 </p>
 
-                <Image width={24} height={24} src={CaretDownMd} alt="더보기" />
+                <Image
+                  unoptimized
+                  width={24}
+                  height={24}
+                  src={CaretDownMd}
+                  alt="더보기"
+                />
                 {openDropdown && (
                   <ReportModalDropdown
                     REPORT_TYPE={REPORT_TYPE}

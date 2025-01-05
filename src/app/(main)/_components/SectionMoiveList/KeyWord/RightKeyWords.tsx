@@ -4,28 +4,46 @@ import "swiper/css/grid";
 
 import { useEffect, useState } from "react";
 import { Grid, Navigation } from "swiper/modules";
-import { Swiper, SwiperSlide } from "swiper/react";
+import { Swiper, SwiperClass, SwiperSlide } from "swiper/react";
+
+import useMovieSwiper from "@/app/(main)/_hooks/useMovieSwiper";
 
 import KeyWordPosts from "./KeyWordPosts";
 interface KeyWordInfoProps {
   keywordInfo: MentionKeword[];
-
+  addKeywordIndex?: () => void;
   keywordIndex: number;
+  setKeywordListNumber: (index: number) => void;
 }
 
 export default function RightKeyWords({
   keywordInfo,
   keywordIndex,
+  addKeywordIndex,
+  setKeywordListNumber,
 }: KeyWordInfoProps) {
   const keyword = keywordInfo[keywordIndex]?.keyword;
   const [isVisible, setIsVisible] = useState(false);
+  const [isLastSlide, setIsLastSlide] = useState(false);
+
+  const { swiper, setSwiper } = useMovieSwiper();
+  const handleSlideChange = (swiper: SwiperClass) => {
+    const isLast = swiper.isEnd;
+    console.log(isLast);
+    setIsLastSlide(isLast);
+    if (isLast) {
+      // 마지막 슬라이드에서 다음으로 넘어가려는 시도 시 발생할 동작
+      setKeywordListNumber(keywordIndex + 1);
+    } else {
+      swiper.slideNext(); // 마지막 슬라이드가 아니면 정상적으로 슬라이드 이동
+    }
+  };
 
   useEffect(() => {
-    // 컴포넌트가 마운트된 후 애니메이션 시작
     setIsVisible(false);
     const timer = setTimeout(() => {
       setIsVisible(true);
-    }, 400); // 애니메이션 지연 시간 (필요시 조정)
+    }, 400);
 
     return () => clearTimeout(timer);
   }, [keywordInfo]);
@@ -37,6 +55,8 @@ export default function RightKeyWords({
         spaceBetween={12}
         grid={{ rows: 3, fill: "row" }}
         className=" grid Tablet:hidden "
+        onSlideChange={handleSlideChange}
+        onSwiper={(e) => setSwiper(e)}
       >
         {keywordInfo[keywordIndex]?.reviewList.map((review, index) => {
           if (!review) {
@@ -45,14 +65,8 @@ export default function RightKeyWords({
           return (
             <SwiperSlide key={index} className="max-h-[135px]">
               <KeyWordPosts
-                id={review.movieId}
-                nickname={review.nickname}
-                movieName={review?.movienm}
-                star={review.star}
-                content={review.content}
+                review={review}
                 keyword={keyword}
-                createdAt={review.createdAt}
-                profile={review.profile}
                 isVisible={isVisible}
               />
             </SwiperSlide>
@@ -66,6 +80,7 @@ export default function RightKeyWords({
         spaceBetween={16}
         grid={{ rows: 2, fill: "row" }}
         className="hidden Tablet:grid Laptop:hidden  "
+        onSlideChange={handleSlideChange}
       >
         {keywordInfo[keywordIndex]?.reviewList.map((review, index) => {
           if (!review) {
@@ -74,14 +89,8 @@ export default function RightKeyWords({
           return (
             <SwiperSlide key={index} className="max-h-[157px] w-full">
               <KeyWordPosts
-                id={review.movieId}
-                nickname={review.nickname}
-                movieName={review?.movienm}
-                star={review.star}
-                content={review.content}
+                review={review}
                 keyword={keyword}
-                createdAt={review.createdAt}
-                profile={review.profile}
                 isVisible={isVisible}
               />
             </SwiperSlide>
@@ -100,20 +109,8 @@ export default function RightKeyWords({
             return (
               <KeyWordPosts
                 key={index}
-                id={keywordInfo[keywordIndex]?.reviewList[index]?.movieId}
-                nickname={
-                  keywordInfo[keywordIndex]?.reviewList[index]?.nickname
-                }
-                movieName={
-                  keywordInfo[keywordIndex]?.reviewList[index]?.movienm
-                }
-                star={keywordInfo[keywordIndex]?.reviewList[index]?.star}
-                content={keywordInfo[keywordIndex]?.reviewList[index]?.content}
+                review={keywordInfo[keywordIndex].reviewList[index]}
                 keyword={keyword}
-                createdAt={
-                  keywordInfo[keywordIndex]?.reviewList[index]?.createdAt
-                }
-                profile={keywordInfo[keywordIndex]?.reviewList[index]?.profile}
                 isVisible={isVisible}
               />
             );
@@ -129,14 +126,8 @@ export default function RightKeyWords({
           return (
             <KeyWordPosts
               key={index}
-              id={movie.movieId}
-              nickname={movie.nickname}
-              movieName={movie.movienm}
-              star={movie.star}
-              content={movie.content}
+              review={movie}
               keyword={keyword}
-              createdAt={movie.createdAt}
-              profile={movie.profile}
               isVisible={isVisible}
             />
           );

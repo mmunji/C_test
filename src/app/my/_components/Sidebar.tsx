@@ -85,6 +85,7 @@ export default function Sidebar() {
             <li key={link.name}>
               <Button href={link.href} variant={"icon"}>
                 <Image
+                  unoptimized
                   src={isActive ? link.acitveSvg : link.svg}
                   width={24}
                   height={24}

@@ -65,10 +65,10 @@ export default function ImageUploadForm() {
         <DropdownTrigger>
           <div className="absolute -bottom-[2px] right-[2px] flex h-7 w-7 translate-x-1/2 items-center justify-center rounded-full bg-D3_Gray Tablet:h-10 Tablet:w-10">
             <div className="block Tablet:hidden">
-              <Image src={CameraSm} alt="변경" />
+              <Image unoptimized src={CameraSm} alt="변경" />
             </div>
             <div className="hidden Tablet:block">
-              <Image src={CameraMd} alt="변경" />
+              <Image unoptimized src={CameraMd} alt="변경" />
             </div>
           </div>
         </DropdownTrigger>
@@ -79,6 +79,7 @@ export default function ImageUploadForm() {
           >
             <div className="flex items-center gap-2">
               <Image
+                unoptimized
                 src={UserSquare}
                 alt="선택"
                 className="hidden Tablet:inline-block"
@@ -92,6 +93,7 @@ export default function ImageUploadForm() {
           >
             <div className="flex items-center gap-2">
               <Image
+                unoptimized
                 src={trashFull}
                 alt="삭제"
                 className="hidden Tablet:inline-block"

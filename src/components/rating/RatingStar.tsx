@@ -1,5 +1,6 @@
+"use client";
 import Image from "next/image";
-import React, { Dispatch, SetStateAction } from "react";
+import React, { Dispatch, SetStateAction, useRef } from "react";
 
 import {
   StarFillLg,
@@ -40,6 +41,7 @@ export default function RatingStar({
   clickedValue,
   setClickedValue,
   ratingSize,
+
   readyToRating,
   StarReview,
   movienm,
@@ -75,6 +77,7 @@ export default function RatingStar({
       alt = "큰 빈 별";
     }
   }
+  const starRef = useRef<HTMLDivElement>(null);
 
   const { mutate: addTalks } = useAddTalk(movieId as number);
   const { loggedIn } = useLoggedInStore();
@@ -128,9 +131,14 @@ export default function RatingStar({
   return (
     <div
       className="relative w-full"
+      ref={starRef}
+      // onTouchMove={onTouchMoveHandler}
       onMouseLeave={() => {
         if (type === "detail-edit" && myTalk) {
           if (!clickedValue) setRatingValue(myTalk.star);
+        }
+        if (type == "main") {
+          if (!clickedValue) setRatingValue(0);
         }
       }}
       onClick={() => {
@@ -144,14 +152,21 @@ export default function RatingStar({
         onMouseEnter={() => {
           if (!clickedValue) setRatingValue(index + 0.5);
         }}
+        onTouchStart={() => {
+          if (!clickedValue) setRatingValue(index + 0.5);
+        }}
       />
       <div
         className="absolute right-0 top-0 h-full w-1/2"
         onMouseEnter={() => {
           if (!clickedValue) setRatingValue(index + 1);
         }}
+        onTouchStart={() => {
+          if (!clickedValue) setRatingValue(index + 1);
+        }}
       />
       <Image
+        unoptimized
         src={src}
         alt={alt as string}
         className="max-h-11 max-w-11 pl-1 last:pl-0"

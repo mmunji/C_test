@@ -170,6 +170,7 @@ export default function Keyword({
       >
         <div className="flex items-center">
           <Image
+            unoptimized
             width={100}
             height={100}
             src={Report}

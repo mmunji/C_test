@@ -47,6 +47,7 @@ export default function HeaderSearchInputSection({
         />
 
         <Image
+          unoptimized
           src={
             !isInputFocused
               ? pathname.includes(ROUTES.DETAIL)

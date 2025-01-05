@@ -50,14 +50,14 @@ export default function DetailBannerBottomLeft({
       <section className="flex flex-col items-center Laptop:mb-0 Laptop:flex-row Laptop:gap-6">
         <section className="mb-2 flex gap-6 Laptop:mb-0">
           <section className="flex items-center gap-1">
-            <Image src={StarFillMd} alt="별점" />
+            <Image unoptimized src={StarFillMd} alt="별점" />
             <p className="text-Primary Text-m-Bold Laptop:Text-xxl-Bold">
               {movieDetailData.cinetalkScore}
             </p>
           </section>
 
           <section className="flex items-center gap-1">
-            <Image src={TmdbMd} alt="TMDB" />
+            <Image unoptimized src={TmdbMd} alt="TMDB" />
             <p className="text-Silver Text-m-Bold Laptop:Text-xxl-Bold">
               {movieDetailData.tmdbScore}
             </p>

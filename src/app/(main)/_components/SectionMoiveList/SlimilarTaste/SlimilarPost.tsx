@@ -77,7 +77,7 @@ export default function SlimilarPost({ selectedReviewer }: ReviewUsersProps) {
           ))}
         </div>
       </div>
-      <div className="relative -mr-5 Laptop:mr-0">
+      <div className="group/swiper relative -mr-5 Laptop:mr-0">
         <Swiper
           onSlideChange={(swiper) => {
             setIsEnd(swiper.isEnd);
@@ -98,12 +98,12 @@ export default function SlimilarPost({ selectedReviewer }: ReviewUsersProps) {
         >
           {selectedReviewer.reviews.map((review) => {
             return (
-              <SwiperSlide className="group w-fit" key={review.review_id}>
+              <SwiperSlide className=" w-fit" key={review.review_id}>
                 <Link
                   href={`${ROUTES.DETAIL}/${review.movie_id}`}
                   className="flex w-[156px] flex-col gap-1 Tablet:w-[165px] Laptop:w-[174px] Laptop:gap-2 Desktop:w-[240px]"
                 >
-                  <div className="relative h-[230px] overflow-hidden rounded-xl Tablet:h-[240px] Laptop:h-[260px] Laptop:cursor-pointer Desktop:h-[360px]">
+                  <div className="group relative h-[230px] overflow-hidden rounded-xl Tablet:h-[240px] Laptop:h-[260px] Laptop:cursor-pointer Desktop:h-[360px]">
                     <Image
                       className="object-cover group-hover:Laptop:blur-[3px]"
                       fill
@@ -117,7 +117,7 @@ export default function SlimilarPost({ selectedReviewer }: ReviewUsersProps) {
                     <div className="absolute h-full w-full bg-gradient-to-t from-[#1E1E1ECC] Laptop:hidden" />
                     <div className="absolute  flex h-full w-full flex-col justify-end gap-1 p-3 Laptop:hidden">
                       <div className="flex items-center justify-between gap-1 overflow-hidden text-Gray_Orange">
-                        <p className="line-clamp-1 Text-xs-Regular Tablet:Text-m-Regular">
+                        <p className="line-clamp-1 Text-xs-Regular">
                           {review.movienm}
                         </p>
                         <div className="flex shrink-0 items-center justify-center gap-[2px] text-Silver Text-s-Bold">
@@ -126,11 +126,13 @@ export default function SlimilarPost({ selectedReviewer }: ReviewUsersProps) {
                             alt="평점 별"
                             className="h-4 w-4"
                           />
-                          <span className="Text-s-Bold ">{review.star}</span>
+                          <span className="Text-s-Bold ">
+                            {review.star.toFixed(1)}
+                          </span>
                         </div>
                       </div>
                       <div className="flex h-[42px] items-center">
-                        <div className="line-clamp-2 Text-s-Regular Tablet:Text-m-Regular">
+                        <div className="line-clamp-2 Text-s-Regular">
                           {review.content}
                         </div>
                       </div>
@@ -167,7 +169,7 @@ export default function SlimilarPost({ selectedReviewer }: ReviewUsersProps) {
         </Swiper>
         {!isBeginning && (
           <Button
-            className="absolute -left-[24px] top-1/2 z-[9] hidden -translate-y-1/2 Laptop:block"
+            className=" absolute -left-[24px] top-1/2 z-[9] hidden -translate-y-1/2 group-hover/swiper:Laptop:block"
             variant={"arrow1"}
             onClick={() => swiperRef.current?.slidePrev()}
           >
@@ -176,7 +178,7 @@ export default function SlimilarPost({ selectedReviewer }: ReviewUsersProps) {
         )}
         {!isEnd && (
           <Button
-            className="absolute -right-[24px] top-1/2 z-[9] hidden -translate-y-1/2 Laptop:block"
+            className="absolute -right-[24px] top-1/2 z-[9] hidden -translate-y-1/2 group-hover/swiper:Laptop:block"
             variant={"arrow1"}
             onClick={() => swiperRef.current?.slideNext()}
           >

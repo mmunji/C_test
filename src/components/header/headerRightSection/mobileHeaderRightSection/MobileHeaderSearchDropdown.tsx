@@ -43,7 +43,12 @@ export default function MobilHeaderSearchDropdown({
     >
       {inputFocused && !inputValue && (
         <div className="mb-2 flex gap-1 px-6 py-1">
-          <Image src={EnvironmentFire} alt="불" className="mx-[5px] my-[3px]" />
+          <Image
+            unoptimized
+            src={EnvironmentFire}
+            alt="불"
+            className="mx-[5px] my-[3px]"
+          />
           <p className="font-Medium text-Primary">인기 검색어</p>
         </div>
       )}

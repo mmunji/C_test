@@ -63,7 +63,7 @@ export default function ReplyHeader({
           <Dropdown type="text">
             <Dropdown.Trigger>
               <Button variant="text" className="my-auto h-fit">
-                <Image src={MoreHorizontal} alt="메뉴" />
+                <Image unoptimized src={MoreHorizontal} alt="메뉴" />
               </Button>
             </Dropdown.Trigger>
             <Dropdown.List>
@@ -87,7 +87,7 @@ export default function ReplyHeader({
           <Dropdown type="text">
             <Dropdown.Trigger>
               <Button variant="text" className="my-auto h-fit">
-                <Image src={MoreHorizontal} alt="메뉴" />
+                <Image unoptimized src={MoreHorizontal} alt="메뉴" />
               </Button>
             </Dropdown.Trigger>
             <Dropdown.List>

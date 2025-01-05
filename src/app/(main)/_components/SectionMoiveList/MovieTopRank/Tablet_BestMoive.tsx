@@ -2,22 +2,20 @@
 import dayjs from "dayjs";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
 import { Swiper, SwiperClass, SwiperSlide } from "swiper/react";
 
 import {
   BestTalkFire,
   ChatLineLg,
-  ChevronLeftMd,
   ChevronRightMd,
   StarFillMd,
   TmdbSm,
 } from "@/../public/icons";
-import Button from "@/components/buttons/Button";
 
 import { NoImageSsikongi } from "../../../../../../public/images";
 import NonPostCard from "../../NonPostCard";
 import PostCard from "../../PostCard";
+import CustomSwiper from "../../swiper/CustomSwiper";
 import Tablet_BestTalkPost from "./Post/Tablet_BestTalkPost";
 interface Tablet_BestMoiveProps {
   MovieData: Movie_TopTen | null;
@@ -28,33 +26,19 @@ export default function Tablet_BestMoive({
   MovieData,
   MovieGenre,
 }: Tablet_BestMoiveProps) {
-  const [swiper, setSwiper] = useState<SwiperClass>();
-  const [hovered, sethovered] = useState(false);
-
   function sortGenresByTitle(
     genres: MovieGenreDto[],
     genreTitle: string,
   ): MovieGenreDto[] {
     return [...genres].sort((a, b) => {
-      if (a.name === genreTitle) return -1; // genreTitle과 같으면 앞으로 이동
+      if (a.name === genreTitle) return -1;
       if (b.name === genreTitle) return 1;
-      return 0; // 나머지는 순서를 유지
+      return 0;
     });
   }
   return (
-    <div
-      className="hidden  h-[344px] Tablet:block Laptop:hidden"
-      onMouseEnter={() => sethovered(true)}
-      onMouseLeave={() => sethovered(false)}
-    >
-      <Swiper
-        slidesPerView="auto"
-        spaceBetween={20}
-        className="relative"
-        onSwiper={(e) => {
-          setSwiper(e);
-        }}
-      >
+    <div className="hidden  h-[344px] Tablet:block Laptop:hidden">
+      <CustomSwiper type="topten" spaceBetween={20}>
         {Array.isArray(MovieData) && MovieData.length > 0 ? (
           MovieData.map((MovieDetailData, index) => {
             return (
@@ -78,16 +62,16 @@ export default function Tablet_BestMoive({
                   </Link>
                   <div className="flex w-full flex-col justify-between gap-3">
                     <div className="flex flex-col gap-2">
-                      <div className="flex justify-between gap-3 ">
+                      <div className="flex  gap-3 ">
                         <Link
                           href={`detail/${MovieDetailData.movieId}`}
-                          className="max-w-[50%] flex-shrink"
+                          className="max-w-[62%] flex-shrink"
                         >
-                          <h4 className="line-clamp-1 w-[366px] Text-l-Bold">
+                          <h4 className="line-clamp-1 Text-l-Bold">
                             {MovieDetailData.movienm}
                           </h4>
                         </Link>
-                        <div className="flex items-center gap-3 Text-xs-Regular">
+                        <div className="flex items-center gap-2 Text-xs-Regular">
                           <span>
                             {dayjs(MovieDetailData.release_date).format("YYYY")}
                           </span>
@@ -186,26 +170,7 @@ export default function Tablet_BestMoive({
         ) : (
           <NonPostCard />
         )}
-      </Swiper>
-      {swiper && !swiper.isBeginning && (
-        <Button
-          onClick={() => swiper.slidePrev()}
-          variant="arrow1"
-          className={`absolute left-1 top-[93%] z-[100]  transform   transition-opacity duration-300 ${hovered ? "opacity-100" : "opacity-0"} `}
-        >
-          <Image src={ChevronLeftMd} alt="이전" style={{ color: "#E9E9E9" }} />
-        </Button>
-      )}
-
-      {swiper && !swiper.isEnd && (
-        <Button
-          onClick={() => swiper.slideNext()}
-          variant="arrow1"
-          className={`absolute right-1 top-[93%]  z-[100]   transform transition-opacity duration-300 ${hovered ? "opacity-100" : "opacity-0"}  `}
-        >
-          <Image src={ChevronRightMd} alt="다음" style={{ color: "#E9E9E9" }} />
-        </Button>
-      )}
+      </CustomSwiper>
     </div>
   );
 }
