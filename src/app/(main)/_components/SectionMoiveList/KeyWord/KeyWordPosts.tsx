@@ -61,9 +61,11 @@ export default function KeyWordPosts({
             {highlightedText(review.content, keyword!)}
           </span>
         </div>
-        <span className="line-clamp-1 text-L_Gray Text-s-Regular  Laptop:Text-m-Regular">
-          {review.movienm} · {review.createdAt}
-        </span>
+        <div className="flex gap-1  text-L_Gray Text-s-Regular  Laptop:Text-m-Regular ">
+          <span className="line-clamp-1 max-w-[50%]">{review.movienm}</span>
+          <span>·</span>
+          <span> {review.createdAt}</span>
+        </div>
       </div>
     </Link>
   );
