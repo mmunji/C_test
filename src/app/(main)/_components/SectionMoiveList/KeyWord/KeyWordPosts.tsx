@@ -33,7 +33,7 @@ export default function KeyWordPosts({
   };
 
   return (
-    <Link href={`/detail/${review.id}`}>
+    <Link href={`/detail/${review.movieId}`}>
       <div
         className={`${isVisible ? "scale-100 opacity-100" : "scale-10 opacity-0"}  transition-transfor Text-s-Mediuim flex  flex-col gap-2 rounded-xl bg-D1_Gray px-4 py-4 duration-700 ease-in-out Tablet:px-7 Tablet:py-6 `}
       >
@@ -61,9 +61,11 @@ export default function KeyWordPosts({
             {highlightedText(review.content, keyword!)}
           </span>
         </div>
-        <span className="line-clamp-1 text-L_Gray Text-s-Regular  Laptop:Text-m-Regular">
-          {review.movienm} · {review.createdAt}
-        </span>
+        <div className="flex gap-1  text-L_Gray Text-s-Regular  Laptop:Text-m-Regular ">
+          <span className="line-clamp-1 max-w-[50%]">{review.movienm}</span>
+          <span>·</span>
+          <span> {review.createdAt}</span>
+        </div>
       </div>
     </Link>
   );
