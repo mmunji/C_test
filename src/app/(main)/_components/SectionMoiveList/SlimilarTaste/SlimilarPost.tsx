@@ -7,7 +7,7 @@ import HoverPostCard from "@/app/(main)/_components/HoverPostCard";
 import Button from "@/components/buttons/Button";
 import SmallBadge from "@/components/smallBadge/SmallBadge";
 import ROUTES from "@/constants/routes";
-import { getTmdbPosterUrl } from "@/utils/tmdb";
+import { getTmdbPosterUrl } from "@/utils/image";
 
 import {
   ChatFillGraySm,
@@ -107,6 +107,7 @@ export default function SlimilarPost({ selectedReviewer }: ReviewUsersProps) {
                     <Image
                       className="object-cover group-hover:Laptop:blur-[3px]"
                       fill
+                      sizes="240px"
                       alt={review.movienm}
                       src={
                         review.poster_id

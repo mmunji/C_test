@@ -16,7 +16,7 @@ import {
 } from "@/../public/icons";
 import HoverPostCard from "@/app/(main)/_components/HoverPostCard";
 import Button from "@/components/buttons/Button";
-import { getTmdbPosterUrl } from "@/utils/tmdb";
+import { getTmdbPosterUrl } from "@/utils/image";
 
 interface MasterPieceMoiveType {
   data: MovieHidingPiece[];
@@ -65,6 +65,7 @@ export default function MasterPieceMoive({ data }: MasterPieceMoiveType) {
               >
                 <div className="relative flex h-[230px] w-full items-end justify-between overflow-hidden rounded-xl Text-s-Bold Tablet:h-[240px]  Laptop:h-[260px] Desktop:h-[360px]">
                   <Image
+                    sizes={"240px"}
                     className="object-cover group-hover:Laptop:blur-[3px]"
                     fill
                     alt={movie.movienm}
