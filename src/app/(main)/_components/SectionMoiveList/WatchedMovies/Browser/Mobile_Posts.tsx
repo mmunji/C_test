@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 
 import SpeechBubble from "@/components/speechBubble/SpeechBubble";
+import { blurDataURL } from "@/constants/blurImageUrl";
 import useDevice from "@/hooks/useDevice";
 import { tokenManager } from "@/services/auth/tokenManager";
 import { useToastActions } from "@/stores/useToast";
@@ -16,9 +17,6 @@ interface WatchMovieType {
   MovieWatchMovies: WatchMovie[];
 }
 
-const base64 = "data:image/jpeg;base64,";
-const blurImg =
-  "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mN0sLP5DwADOwG7TZHLmQAAAABJRU5ErkJggg==";
 export default function Mobile_Posts({ MovieWatchMovies }: WatchMovieType) {
   const [MovieNumber, setMovieNumber] = useState(0);
   const { add } = useToastActions();
@@ -26,6 +24,7 @@ export default function Mobile_Posts({ MovieWatchMovies }: WatchMovieType) {
   const [message, setmessage] = useState(
     "로그인 하고 별을 눌러 평가해보세요 :",
   );
+
   const accessToken = tokenManager.getToken();
   const handleMovieList = () => {
     if (MovieWatchMovies.length == MovieNumber + 1) {
@@ -60,7 +59,7 @@ export default function Mobile_Posts({ MovieWatchMovies }: WatchMovieType) {
                 <div className="relative flex h-[230px] w-[156px] overflow-hidden rounded-xl">
                   <Image
                     placeholder="blur"
-                    blurDataURL={base64 + blurImg}
+                    blurDataURL={blurDataURL}
                     className="object-cover"
                     fill
                     src={
