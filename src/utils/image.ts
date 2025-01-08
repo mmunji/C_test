@@ -28,27 +28,3 @@ export function getRandomProfileImage() {
   const randomIndex = Math.floor(Math.random() * profileImages.length);
   return profileImages[randomIndex];
 }
-
-export const getImageSizes = ({
-  mobile,
-  tablet,
-  laptop,
-  desktop,
-}: {
-  mobile: number;
-  tablet: number;
-  laptop: number;
-  desktop: number;
-}) => {
-  const breakPoints: BreakPoint[] = [
-    { minWidth: 768, imageSize: tablet },
-    { minWidth: 1280, imageSize: laptop },
-    { minWidth: 1920, imageSize: desktop },
-  ];
-
-  const mediaQueries = breakPoints
-    .map((point) => `(min-width: ${point.minWidth}px) ${point.imageSize}px`)
-    .join(", ");
-
-  return `${mediaQueries}, ${mobile}px`;
-};

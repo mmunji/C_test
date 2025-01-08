@@ -58,6 +58,7 @@ export default function Mobile_Posts({ MovieWatchMovies }: WatchMovieType) {
               <div className="flex flex-col items-center  justify-center gap-3">
                 <div className="relative flex h-[230px] w-[156px] overflow-hidden rounded-xl">
                   <Image
+                    sizes="156px"
                     placeholder="blur"
                     blurDataURL={blurDataURL}
                     className="object-cover"

@@ -107,6 +107,7 @@ export default function SlimilarPost({ selectedReviewer }: ReviewUsersProps) {
                     <Image
                       className="object-cover group-hover:Laptop:blur-[3px]"
                       fill
+                      sizes="240px"
                       alt={review.movienm}
                       src={
                         review.poster_id
