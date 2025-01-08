@@ -7,8 +7,8 @@ import SpeechBubble from "@/components/speechBubble/SpeechBubble";
 import useDevice from "@/hooks/useDevice";
 import { tokenManager } from "@/services/auth/tokenManager";
 import { useToastActions } from "@/stores/useToast";
-import { delay } from "@/utils/fn";
-import { getTmdbPosterUrl } from "@/utils/tmdb";
+import { delay } from "@/utils/delay";
+import { getTmdbPosterUrl } from "@/utils/image";
 
 import { NoImageSsikongi } from "../../../../../../../public/images";
 import PostRating from "../../../Rating/PostRating";

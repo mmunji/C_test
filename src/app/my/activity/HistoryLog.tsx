@@ -4,7 +4,7 @@ import Link from "next/link";
 
 import Placeholder from "@/app/my/_components/Placeholder";
 import ROUTES from "@/constants/routes";
-import { getTmdbPosterUrl } from "@/utils/tmdb";
+import { getTmdbPosterUrl } from "@/utils/image";
 
 import { StarFillMd } from "../../../../public/icons";
 import { NoImageSsikongi } from "../../../../public/images";

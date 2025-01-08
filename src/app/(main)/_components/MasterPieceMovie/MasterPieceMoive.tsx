@@ -16,7 +16,7 @@ import {
 } from "@/../public/icons";
 import HoverPostCard from "@/app/(main)/_components/HoverPostCard";
 import Button from "@/components/buttons/Button";
-import { getTmdbPosterUrl } from "@/utils/tmdb";
+import { getTmdbPosterUrl } from "@/utils/image";
 
 interface MasterPieceMoiveType {
   data: MovieHidingPiece[];

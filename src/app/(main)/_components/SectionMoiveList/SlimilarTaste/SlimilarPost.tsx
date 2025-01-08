@@ -7,7 +7,7 @@ import HoverPostCard from "@/app/(main)/_components/HoverPostCard";
 import Button from "@/components/buttons/Button";
 import SmallBadge from "@/components/smallBadge/SmallBadge";
 import ROUTES from "@/constants/routes";
-import { getTmdbPosterUrl } from "@/utils/tmdb";
+import { getTmdbPosterUrl } from "@/utils/image";
 
 import {
   ChatFillGraySm,

@@ -6,7 +6,7 @@ import { Swiper, SwiperClass, SwiperSlide } from "swiper/react";
 
 import Button from "@/components/buttons/Button";
 import { useToastActions } from "@/stores/useToast";
-import { getTmdbPosterUrl } from "@/utils/tmdb";
+import { getTmdbPosterUrl } from "@/utils/image";
 
 import {
   ChevronLeftMd,

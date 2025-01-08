@@ -7,7 +7,7 @@ import SearchPlaceholder from "@/app/search/_components/placeholders/SearchPlace
 import useDeviceLimits from "@/app/search/_hooks/useDeviceLimits";
 import ROUTES from "@/constants/routes";
 import useSearchTabStore from "@/stores/useTabStore";
-import { getTmdbPosterUrl } from "@/utils/tmdb";
+import { getTmdbPosterUrl } from "@/utils/image";
 
 interface SearchMovieListProps {
   movies: MovieResult[];
