@@ -55,7 +55,7 @@ export default function Tablet_BestMoive({
                         <Image
                           src={NoImageSsikongi}
                           alt="포스터"
-                          className="h-[358px] w-[238px] cursor-pointer rounded-xl Tablet:h-[344px] Tablet:w-[260px] Laptop:h-[260px] Laptop:w-[174px]  Desktop:h-[360px] Desktop:w-[240px]"
+                          className="h-[358px] w-[238px] cursor-pointer rounded-xl Tablet:h-[344px] Tablet:w-[260px] "
                         />
                       </div>
                     )}
@@ -150,10 +150,7 @@ export default function Tablet_BestMoive({
                               return (
                                 <Tablet_BestTalkPost
                                   key={reviewData.reviewId}
-                                  star={reviewData.star}
-                                  content={reviewData.content}
-                                  likeCount={reviewData.likeCount}
-                                  profileImg={reviewData.profile}
+                                  reviewData={reviewData}
                                   movieId={MovieDetailData.movieId}
                                 />
                               );

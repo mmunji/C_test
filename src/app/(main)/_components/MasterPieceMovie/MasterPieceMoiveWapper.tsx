@@ -1,33 +1,15 @@
-"use client";
-import { useEffect, useState } from "react";
+"use server";
 
-import MasterPieceSkeleton from "@/app/(main)/_components/MainSkeleton/MasterPieceMovie/MasterPieceSkeletion";
+import dynamic from "next/dynamic";
+
 import { movieAPIs } from "@/services/movie/movieAPIs";
 
-import MasterPieceMoive from "./MasterPieceMoive";
-export default function MasterPieceMoiveWapper() {
-  const [data, setData] = useState<MovieHidingPiece[]>([]);
-
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchMovie = async () => {
-      try {
-        const response: MovieHidingPiece[] = await movieAPIs.getHidingPiece();
-        setData(response);
-      } catch (error) {
-        console.error("Failed to fetch movie data", error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchMovie();
-  }, []);
-
-  if (isLoading) {
-    return <MasterPieceSkeleton />;
-  }
-
+import MasterPieceSkeleton from "../MainSkeleton/MasterPieceMovie/MasterPieceSkeletion";
+const MasterPieceMoive = dynamic(() => import("./MasterPieceMoive"), {
+  ssr: false,
+  loading: () => <MasterPieceSkeleton />,
+});
+export default async function MasterPieceMoiveWapper() {
+  const data: MovieHidingPiece[] = await movieAPIs.getHidingPiece();
   return <MasterPieceMoive data={data} />;
 }
