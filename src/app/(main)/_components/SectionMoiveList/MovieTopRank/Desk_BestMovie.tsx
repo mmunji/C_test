@@ -15,6 +15,8 @@ import {
   StarFillMd,
   TmdbSm,
 } from "@/../public/icons";
+import useFilter from "@/app/(main)/_hooks/useFilter";
+import useDevice from "@/hooks/useDevice";
 
 import { NoImageSsikongi } from "../../../../../../public/images";
 import NonPostCard from "../../NonPostCard";
@@ -25,15 +27,28 @@ interface Desktop_BestMoiveProps {
   MovieData: Movie_TopTen | null;
   MovieGenre: string;
 }
-export default function DeskTop_BestMovie({
+export default function Desk_BestMovie({
   MovieData,
   MovieGenre,
 }: Desktop_BestMoiveProps) {
-  const [StatePost, SetStatePost] = useState(0);
+  const { Filter, ChangeFilter } = useFilter();
+  const { device } = useDevice();
 
-  const onHandlePost = (index: number) => {
-    SetStatePost(index);
-  };
+  function DeviceSwiperSlide(Filter: number, index: number) {
+    if (device == "laptop") {
+      if (Filter === index) {
+        return "562px";
+      } else {
+        return "174px";
+      }
+    } else if (device == "desktop") {
+      if (Filter === index) {
+        return "768px";
+      } else {
+        return "240px";
+      }
+    }
+  }
 
   function sortGenresByTitle(
     genres: MovieGenreDto[],
@@ -47,30 +62,29 @@ export default function DeskTop_BestMovie({
   }
 
   return (
-    <div className="  relative hidden overflow-visible   Desktop:block">
+    <div className="  relative hidden overflow-visible   Laptop:block">
       <CustomSwiper type="topten" spaceBetween={20}>
         {Array.isArray(MovieData) && MovieData.length > 0 ? (
           MovieData.map((MovieDetailData, index) => (
             <SwiperSlide
               key={MovieDetailData.movieId}
               style={{
-                width: StatePost === index ? "768px" : "240px",
+                width: DeviceSwiperSlide(Filter, index),
               }}
             >
               <div
-                className={`flex gap-6 ${StatePost === index ? "w-[768px]" : "w-[240px]"} transition-opacity duration-700 ease-in-out`}
+                className={`flex gap-6 transition-opacity duration-700 ease-in-out`}
               >
                 <div
                   className={`${
-                    StatePost === index ? "scale-100" : ""
+                    Filter === index ? "scale-100" : ""
                   } transition-opacity duration-500 ease-in-out`}
-                  style={{ width: StatePost === index ? "240px" : "240px" }} // 원하는 고정 너비
                 >
                   <Link href={`detail/${MovieDetailData.movieId}`}>
                     {MovieDetailData.poster_path ? (
                       <PostCard
                         num={index + 1}
-                        onMouseEnter={() => onHandlePost(index)}
+                        onMouseEnter={() => ChangeFilter(index)}
                         background={MovieDetailData.poster_path}
                       />
                     ) : (
@@ -86,7 +100,7 @@ export default function DeskTop_BestMovie({
                 </div>
                 <div
                   className={`${
-                    StatePost === index
+                    Filter === index
                       ? "visibility-visible opacity-100"
                       : "visibility-hidden opacity-0"
                   } flex flex-col justify-between transition-opacity duration-700 ease-in`}
@@ -97,21 +111,21 @@ export default function DeskTop_BestMovie({
                         href={`detail/${MovieDetailData.movieId}`}
                         className="max-w-[50%] flex-shrink"
                       >
-                        <h4 className="line-clamp-1  w-full Text-xxl-Bold">
+                        <h4 className="line-clamp-1  w-full  Text-xl-Bold Desktop:Text-xxl-Bold">
                           {MovieDetailData.movienm}
                         </h4>
                       </Link>
-                      <div className="flex flex-grow items-center   gap-[10px] text-Gray_Orange Text-s-Regular">
+                      <div className="flex flex-grow items-center   gap-[10px] text-Gray_Orange Text-xs-Regular Desktop:Text-s-Regular">
                         <span>
                           {dayjs(MovieDetailData.release_date).format("YYYY")}
                         </span>
-                        <div className="flex h-3 w-[1px] items-center border-r-[1px] border-L_Gray"></div>
+                        <div className="flex h-3 w-[1px] items-center border-r-[1px] border-L_Gray" />
                         <div className="flex w-full gap-1 ">
                           {sortGenresByTitle(MovieDetailData.genres, MovieGenre)
                             .slice(0, 3)
                             .map((genre: MovieGenreDto, index: number) => (
                               <div key={index}>
-                                <span className="Text-s-Regular">
+                                <span>
                                   {genre.name}
                                   {index <
                                     Math.min(
@@ -169,7 +183,7 @@ export default function DeskTop_BestMovie({
                         href={`detail/${MovieDetailData.movieId}`}
                         className="flex items-center gap-1 p-2 pr-1"
                       >
-                        <span className="text-Gray_Orange Text-m-Medium">
+                        <span className="text-Gray_Orange Desktop:Text-m-Medium ">
                           자세히보기
                         </span>
                         <Image src={ChevronRightMd} alt="화살표" />

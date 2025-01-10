@@ -19,7 +19,6 @@ interface KeyWordInfoProps {
 export default function RightKeyWords({
   keywordInfo,
   keywordIndex,
-  addKeywordIndex,
   setKeywordListNumber,
 }: KeyWordInfoProps) {
   const keyword = keywordInfo[keywordIndex]?.keyword;

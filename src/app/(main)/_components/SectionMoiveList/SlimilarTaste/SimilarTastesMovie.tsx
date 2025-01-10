@@ -1,13 +1,13 @@
 "use client";
-
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { SwiperClass } from "swiper/react";
 
 import SimilarTasteReviewers from "@/app/(main)/_components/SectionMoiveList/SlimilarTaste/SimilarTasteReviewers";
+import useFilter from "@/app/(main)/_hooks/useFilter";
+import useMessage from "@/app/(main)/_hooks/useMessage";
+import useMovieSwiper from "@/app/(main)/_hooks/useMovieSwiper";
 import Button from "@/components/buttons/Button";
 import SpeechBubble from "@/components/speechBubble/SpeechBubble";
-import { tokenManager } from "@/services/auth/tokenManager";
 
 import {
   ChevronLeftMd,
@@ -22,38 +22,33 @@ interface SimilarTastesMovieType {
 export default function SimilarTastesMovie({
   reviewUsers,
 }: SimilarTastesMovieType) {
-  const [pickUserNumber, setPickUserNumber] = useState<number>(0);
-  const [swiper, setSwiper] = useState<SwiperClass>();
-  const accessToken = tokenManager.getToken();
-  const [message, setmessage] = useState(
-    "로그인하면 맞춤형으로 추천받을 수 있어요.",
-  );
-  const [title, settitle] = useState("다른 사람들은 이런 영화를 평가했어요");
-  const changePickNumber = (index: number) => {
-    setPickUserNumber(index);
-  };
-
-  const selectedReviewer = reviewUsers[pickUserNumber];
-
+  const { Filter, ChangeFilter } = useFilter();
+  const { swiper, setSwiper } = useMovieSwiper();
+  const [content, setContent] = useState<{ title: string; message: string }>({
+    title: "",
+    message: "",
+  });
   useEffect(() => {
-    if (accessToken) {
-      setmessage("톡을 많이 작성할수록 내 취향에 비슷해져요.");
-      settitle("나와 취향이 비슷한 사람들");
+    async function Message() {
+      const { title, message } = await useMessage("similar");
+      setContent({ title, message });
     }
-  }, [accessToken]);
+    Message();
+  }, []);
+
   return (
     <div className="flex flex-col gap-5">
       <div className="flex justify-between">
         <div className=" relative flex   flex-col gap-5 Tablet:flex-row Tablet:items-center">
-          <h2 className="Text-l-Bold Laptop:Text-xxl-Bold ">{title}</h2>
+          <h2 className="Text-l-Bold Laptop:Text-xxl-Bold ">{content.title}</h2>
           <div className="absolute -bottom-11 block w-max Tablet:hidden">
             <SpeechBubble id={"SimilarTastesMovie"} dir="top">
-              {message}
+              {content.message}
             </SpeechBubble>
           </div>
           <div className="hidden Tablet:block">
             <SpeechBubble id={"SimilarTastesMovie"} dir="left">
-              {message}
+              {content.message}
             </SpeechBubble>
           </div>
         </div>
@@ -66,19 +61,16 @@ export default function SimilarTastesMovie({
               <Image src={ChevronRightSilverMd} alt="다음" />
             </Button>
           </div>
-        )}{" "}
+        )}
       </div>
       <div className="flex flex-col gap-4">
         <SimilarTasteReviewers
           setSwiper={setSwiper}
-          changePickNumber={changePickNumber}
-          pickUserNumber={pickUserNumber}
+          changePickNumber={ChangeFilter}
+          pickUserNumber={Filter}
           reviewUsers={reviewUsers}
         />
-        <SlimilarPost
-          key={pickUserNumber}
-          selectedReviewer={selectedReviewer}
-        />
+        <SlimilarPost key={Filter} selectedReviewer={reviewUsers[Filter]} />
       </div>
     </div>
   );

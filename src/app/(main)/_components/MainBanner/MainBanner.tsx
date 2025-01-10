@@ -10,9 +10,9 @@ import { SwiperSlide } from "swiper/react";
 
 import useDevice from "@/hooks/useDevice";
 
-import LeftMoivePost from "./MainBanner/LeftMoivePost";
-import RealTimeHotTalk from "./MainBanner/RealTimeHotTalk";
-import CustomSwiper from "./swiper/CustomSwiper";
+import CustomSwiper from "../swiper/CustomSwiper";
+import LeftMoivePost from "./LeftMoivePost";
+import RealTimeHotTalk from "./RealTimeHotTalk";
 
 interface BannerType {
   data: BannerDTO[] | null;
