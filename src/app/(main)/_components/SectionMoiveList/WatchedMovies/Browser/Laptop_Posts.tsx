@@ -6,7 +6,7 @@ import { Swiper, SwiperClass, SwiperSlide } from "swiper/react";
 
 import Button from "@/components/buttons/Button";
 import { useToastActions } from "@/stores/useToast";
-import { getTmdbPosterUrl } from "@/utils/tmdb";
+import { getTmdbPosterUrl } from "@/utils/image";
 
 import {
   ChevronLeftMd,
@@ -54,6 +54,7 @@ export default function Laptop_Posts({ MovieWatchMovies }: WatchMovieType) {
                   <Image
                     className="group-hover:blur-[3px]"
                     fill
+                    sizes="240px"
                     alt={movie.movienm}
                     src={getTmdbPosterUrl("w780", movie.poster_path)}
                   />

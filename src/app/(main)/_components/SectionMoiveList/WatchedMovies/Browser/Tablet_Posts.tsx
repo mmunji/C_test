@@ -7,8 +7,8 @@ import { useEffect, useState } from "react";
 import SpeechBubble from "@/components/speechBubble/SpeechBubble";
 import { tokenManager } from "@/services/auth/tokenManager";
 import { useToastActions } from "@/stores/useToast";
-import { delay } from "@/utils/fn";
-import { getTmdbPosterUrl } from "@/utils/tmdb";
+import { delay } from "@/utils/delay";
+import { getTmdbPosterUrl } from "@/utils/image";
 
 import { NoImageSsikongi } from "../../../../../../../public/images";
 import PostRating from "../../../Rating/PostRating";
@@ -41,7 +41,6 @@ export default function Tablet_Posts({ MovieWatchMovies }: WatchMovieType) {
   }, [accessToken]);
   return (
     <div className="hidden flex-col justify-center overflow-hidden Tablet:flex Laptop:hidden">
-
       <div className="mx-auto hidden w-[537px] max-w-screen-md items-center  Tablet:flex Laptop:hidden">
         <div
           className="flex transition-transform  duration-700 ease-in-out"

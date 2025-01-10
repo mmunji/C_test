@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import ROUTES from "@/constants/routes";
-import { getTmdbPosterUrl } from "@/utils/tmdb";
+import { getTmdbPosterUrl } from "@/utils/image";
 
 import { Check } from "../../../../public/icons";
 import { NoImageSsikongi } from "../../../../public/images";

@@ -17,6 +17,7 @@ export const metadata: Metadata = {
   description:
     "키워드로 간편하게 영화 리뷰를 작성하고, 원하는 영화를 빠르게 찾아볼 수 있는 영화 커뮤니티! 쉽고 빠른 검색으로 다양한 영화 리뷰를 만나보세요!",
   alternates: { canonical: "./" },
+
   verification: {
     google: "Uyr0KRU8qs3xU0rPHGx7ZUd-bDPlEdO1SvVUN-W4aIQ",
     other: {
@@ -47,6 +48,7 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <head>
+        <meta name="theme-color" content="#262626" />
         <meta
           httpEquiv="Content-Security-Policy"
           content="upgrade-insecure-requests"
