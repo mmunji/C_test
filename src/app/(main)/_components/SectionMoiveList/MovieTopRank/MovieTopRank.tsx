@@ -10,8 +10,6 @@ import Dropdown from "@/components/dropdown/dropdown";
 import { movieAPIs } from "@/services/movie/movieAPIs";
 
 import Desk_BestMovie from "./Desk_BestMovie";
-import DeskTop_BestMovie from "./DeskTop_BestMoive";
-import Laptop_BestMovie from "./Laptop_BestMovie";
 import Mobile_BestMovie from "./Mobile_BestMovie";
 import Tablet_BestMoive from "./Tablet_BestMoive";
 

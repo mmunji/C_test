@@ -1,6 +1,3 @@
-"use server";
-import { cookies } from "next/headers";
-
 import useMessage from "@/app/(main)/_hooks/useMessage";
 import SpeechBubble from "@/components/speechBubble/SpeechBubble";
 
