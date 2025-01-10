@@ -17,9 +17,7 @@ export default async function UserInfo() {
   const user = await myAPIs.getUser();
   return (
     <section className="mb-9 flex w-full flex-col items-center gap-7 px-5 Tablet:mb-0 Tablet:gap-8 Tablet:px-0 Laptop:gap-10">
-      <Suspense fallback={null}>
-        <PenaltyInfo />
-      </Suspense>
+      <PenaltyInfo />
       <div className="flex w-full flex-col items-center gap-7 Tablet:gap-[52px]">
         <div className="flex flex-col items-center gap-4 px-6 Tablet:gap-3 Tablet:px-0 Laptop:gap-4">
           <div className="flex justify-center">

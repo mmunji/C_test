@@ -16,11 +16,13 @@ const DEVICE_LIMITS: {
   desktop: { talk: 12, movie: 6 },
 };
 
-export default function useDeviceLimits<T>({
+export default function useSlicedDataByDevice<T>({
   category,
   data,
 }: DeviceLimitsProps<T>): T[] {
   const { device } = useDevice();
   const limit = DEVICE_LIMITS[device as Exclude<Device, "">]?.[category];
-  return data.slice(0, limit);
+  const slicedData = data.slice(0, limit);
+
+  return slicedData;
 }
