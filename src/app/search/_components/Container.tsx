@@ -14,7 +14,7 @@ export default async function SearchContainer({ query }: SearchContainerProps) {
     searchPageAPIs.getReviews(query),
     searchPageAPIs.getRelatedKeywords(),
   ]);
-  const isEmpty = !movies.length && !reviews.length;
+  const isDataEmpty = !movies.length && !reviews.length;
   const shuffledKeywords = relatedKeywords.sort(() => 0.5 - Math.random());
   return (
     <div className="mx-auto px-5 Tablet:px-6 Laptop:max-w-[1144px] Laptop:px-0 Desktop:max-w-[1560px]">
@@ -27,7 +27,7 @@ export default async function SearchContainer({ query }: SearchContainerProps) {
         </h1>
         <div
           className={clsx(
-            isEmpty && "Laptop:mb-7 Desktop:mb-11",
+            isDataEmpty && "Laptop:mb-7 Desktop:mb-11",
             "my-3 Tablet:mb-3 Tablet:mt-4 Laptop:mb-6 Laptop:mt-7 Desktop:mb-6 Desktop:mt-11",
           )}
         >

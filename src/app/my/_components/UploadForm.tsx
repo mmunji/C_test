@@ -7,7 +7,7 @@ import Dropdown from "@/components/dropdown/dropdown";
 import { FullLoadingSpinner } from "@/components/loadingSpinner/LoadingSpinner";
 import Modal from "@/components/modal/modal";
 import { updateProfileImage } from "@/services/my/actions";
-import { getRandomProfileImage } from "@/utils/fn";
+import { getRandomProfileImage } from "@/utils/image";
 
 import {
   CameraMd,

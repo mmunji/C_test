@@ -24,14 +24,18 @@ export default function SearchListContainer({
 
   return (
     <>
-      <SearchMovieList movies={movies} relatedKeywords={relatedKeywords} />
+      {!activeSearchTab.includes("톡") && (
+        <SearchMovieList movies={movies} relatedKeywords={relatedKeywords} />
+      )}
       <div
         className={clsx(
           activeSearchTab !== "전체" && "hidden",
           "relative -left-5 my-7 h-3 w-screen rounded-[3px] bg-Black Tablet:my-20 Laptop:static Laptop:h-[1px] Laptop:w-full Laptop:bg-Gray Desktop:my-[120px]",
         )}
       />
-      <SearchReviewList reviews={reviews} relatedKeywords={relatedKeywords} />
+      {!activeSearchTab.includes("영화") && (
+        <SearchReviewList reviews={reviews} relatedKeywords={relatedKeywords} />
+      )}
     </>
   );
 }
