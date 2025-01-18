@@ -1,7 +1,8 @@
 "use client";
+
 import dayjs from "dayjs";
-import { useRef } from "react";
 import Image from "next/image";
+import { useRef } from "react";
 import React, { useState } from "react";
 
 import useRating from "@/app/detail/_hooks/useRating";

@@ -1,4 +1,5 @@
 "use client";
+
 import "swiper/css";
 import "swiper/css/pagination";
 
@@ -8,14 +9,19 @@ import { useEffect, useRef } from "react";
 import { Swiper, SwiperClass, SwiperSlide } from "swiper/react";
 
 import useFilter from "@/app/(main)/_hooks/useFilter";
+import useMovieSwiper from "@/app/(main)/_hooks/useMovieSwiper";
+import Button from "@/components/buttons/Button";
 import useDevice from "@/hooks/useDevice";
 
+import {
+  ChevronLeftMd,
+  ChevronRightMd,
+} from "../../../../../../../public/icons";
 import { NoImageSsikongi } from "../../../../../../../public/images";
 import NonPostCard from "../../../NonPostCard";
 import PostCard from "../../../PostCard";
 import CustomSwiper from "../../../swiper/CustomSwiper";
 import MovieDetailPost from "./Post/MovieDetailPost";
-import useMovieSwiper from "@/app/(main)/_hooks/useMovieSwiper";
 
 interface MultiDeviceBestMovieProps {
   MovieData: Movie_TopTen | null;
@@ -85,7 +91,7 @@ export default function MultiDeviceBestMovie({
               }}
             >
               <div
-                className={`flex w-full gap-6 transition-opacity duration-700 ease-in-out`}
+                className={`flex h-full w-full gap-6 transition-opacity duration-700 ease-in-out`}
               >
                 <div
                   className={`${
@@ -122,6 +128,25 @@ export default function MultiDeviceBestMovie({
           <NonPostCard />
         )}
       </Swiper>
+      {swiper && !swiper.isBeginning && (
+        <Button
+          onClick={() => swiper.slidePrev()}
+          variant="arrow1"
+          className={`absolute  -left-4 top-[40%]   z-[100] hidden transform transition-opacity duration-300  Tablet:block   Laptop:-left-5 Laptop:top-[40%] ${hovered ? "opacity-100" : "opacity-0"} `}
+        >
+          <Image src={ChevronLeftMd} alt="이전" style={{ color: "#E9E9E9" }} />
+        </Button>
+      )}
+
+      {swiper && !swiper.isEnd && (
+        <Button
+          onClick={() => swiper.slideNext()}
+          variant="arrow1"
+          className={`absolute -right-4 top-[40%] z-[100] hidden transform transition-opacity  duration-300   Tablet:block Laptop:-right-5 Laptop:top-[40%] ${hovered ? "opacity-100" : "opacity-0"}  `}
+        >
+          <Image src={ChevronRightMd} alt="다음" style={{ color: "#E9E9E9" }} />
+        </Button>
+      )}
     </div>
   );
 }
