@@ -1,9 +1,9 @@
 import { Suspense } from "react";
 
-import KeywordSkeleton from "./MainSkeleton/Keyword/KeywordSkeleton";
-import MovieTopSkeleton from "./MainSkeleton/MovieTop/MovieTopSkeleton";
-import SimilarTasteSkleton from "./MainSkeleton/SimilarTaste/SimilarTasteSkleton";
-import WatchedSkeleton from "./MainSkeleton/WatchedMoive/WatchedSkeleton";
+import KeywordSkeleton from "./Skeleton/Keyword/KeywordSkeleton";
+import MovieTopSkeleton from "./Skeleton/MovieTop/MovieTopSkeleton";
+import SimilarTasteSkleton from "./Skeleton/SimilarTaste/SimilarTasteSkleton";
+import WatchedSkeleton from "./Skeleton/WatchedMoive/WatchedSkeleton";
 import MasterPieceMoiveWapper from "./MasterPieceMovie/MasterPieceMoiveWapper";
 import RecentKeywordWapper from "./SectionMoiveList/KeyWord/RecentKeywordWapper";
 import MovieTopWapper from "./SectionMoiveList/MovieTopRank/MovieTopWapper";

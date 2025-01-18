@@ -2,7 +2,7 @@ import dynamic from "next/dynamic";
 
 import { movieAPIs } from "@/services/movie/movieAPIs";
 
-import KeywordSkeleton from "../../MainSkeleton/Keyword/KeywordSkeleton";
+import KeywordSkeleton from "../../Skeleton/Keyword/KeywordSkeleton";
 
 const RecentKeyword = dynamic(() => import("./RecentKeyword"), {
   ssr: false,

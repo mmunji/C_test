@@ -1,5 +1,5 @@
 import Footer from "../../components/footer/Footer";
-import BannerWapper from "./_components/MainBanner/BannerWapper";
+import BannerWapper from "./_components/Banner/BannerWapper";
 import SectionMoiveList from "./_components/SectionMoiveList";
 export default function Main() {
   return (

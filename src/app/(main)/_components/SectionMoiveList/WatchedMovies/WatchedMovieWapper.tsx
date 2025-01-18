@@ -5,7 +5,7 @@ import { cookies } from "next/headers";
 
 import { movieAPIs } from "@/services/movie/movieAPIs";
 
-import WatchedSkeleton from "../../MainSkeleton/WatchedMoive/WatchedSkeleton";
+import WatchedSkeleton from "../../Skeleton/WatchedMoive/WatchedSkeleton";
 
 const WatchedMoive = dynamic(() => import("./WatchedMoive"), {
   ssr: false,

@@ -2,7 +2,7 @@ import dynamic from "next/dynamic";
 
 import { movieAPIs } from "@/services/movie/movieAPIs";
 
-import MovieTopSkeleton from "../../MainSkeleton/MovieTop/MovieTopSkeleton";
+import MovieTopSkeleton from "../../Skeleton/MovieTop/MovieTopSkeleton";
 
 const MovieTopRank = dynamic(() => import("./MovieTopRank"), {
   ssr: false,

@@ -2,7 +2,7 @@ import dynamic from "next/dynamic";
 
 import { movieAPIs } from "@/services/movie/movieAPIs";
 
-import Banner from "../MainSkeleton/Skeleton";
+import Banner from "../Skeleton/Skeleton";
 
 const MainBanner = dynamic(() => import("./MainBanner"), {
   ssr: false,

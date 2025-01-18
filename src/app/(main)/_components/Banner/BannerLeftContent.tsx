@@ -4,30 +4,18 @@ import { StarFillMd, StarFillSm } from "@/../public/icons";
 import useDevice from "@/hooks/useDevice";
 
 import PostCard from "../PostCard";
-interface MovieBannerTypes {
-  PostImg: string;
-  keyword: string;
-  MovieName: string;
-  Rate: number;
+interface BannerItemsType {
+  BannerItem: BannerDTO[];
 }
 
-export default function LeftMovePost({
-  PostImg,
-  keyword,
-  MovieName,
-  Rate,
-}: MovieBannerTypes) {
+export default function BannerLeftContent({ BannerItem }: BannerItemsType) {
   {
-    /*
-  1. 임시로 모바일 텍스트
-  2. 나중에 테블릿 ,렙탑, 데탑 사즈로
-*/
   }
   const { device } = useDevice();
   return (
     <div className="flex  h-full w-full flex-col justify-between gap-9 Tablet:w-[220px] Tablet:justify-end Laptop:w-[400px]">
       <div className="hidden Laptop:block ">
-        <PostCard background={PostImg} />
+        <PostCard background={BannerItem.poster_path} />
       </div>
       <div className="flex  h-full  flex-col  justify-between Tablet:gap-3  Laptop:justify-between  Laptop:gap-5  ">
         <div className="flex flex-col gap-1  Laptop:flex-row Laptop:gap-4 ">
