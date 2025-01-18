@@ -2,19 +2,11 @@
 import "swiper/css";
 import "swiper/css/pagination";
 
-import dayjs from "dayjs";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
-import { SwiperSlide } from "swiper/react";
+import { useEffect, useRef } from "react";
+import { Swiper, SwiperClass, SwiperSlide } from "swiper/react";
 
-import {
-  BestTalkFire,
-  ChatLineLg,
-  ChevronRightMd,
-  StarFillMd,
-  TmdbSm,
-} from "@/../public/icons";
 import useFilter from "@/app/(main)/_hooks/useFilter";
 import useDevice from "@/hooks/useDevice";
 
@@ -23,6 +15,7 @@ import NonPostCard from "../../../NonPostCard";
 import PostCard from "../../../PostCard";
 import CustomSwiper from "../../../swiper/CustomSwiper";
 import MovieDetailPost from "./Post/MovieDetailPost";
+import useMovieSwiper from "@/app/(main)/_hooks/useMovieSwiper";
 
 interface MultiDeviceBestMovieProps {
   MovieData: Movie_TopTen | null;
@@ -34,6 +27,18 @@ export default function MultiDeviceBestMovie({
 }: MultiDeviceBestMovieProps) {
   const { Filter, ChangeFilter } = useFilter();
   const { device } = useDevice();
+
+  const { swiper, setSwiper, hovered, sethovered } = useMovieSwiper();
+  const swiperRef = useRef<SwiperClass | null>(null);
+
+  // hover 시 해당 슬라이드를 맨 왼쪽으로 이동
+  const handleHoverSlide = async (index: number) => {
+    await ChangeFilter(index);
+    if (swiperRef.current) {
+      swiperRef.current.slideTo(index); // 슬라이드 이동
+      swiperRef.current.update(); // Swiper 강제 업데이트
+    }
+  };
 
   function DeviceSwiperSlide(Filter: number, index: number) {
     if (device == "laptop") {
@@ -50,43 +55,59 @@ export default function MultiDeviceBestMovie({
       }
     }
   }
-
+  useEffect(() => {
+    if (swiper) {
+      swiper.update();
+    }
+  }, [Filter, swiper]);
   return (
-    <div className="  relative hidden overflow-visible   Laptop:block">
-      <CustomSwiper type="topten" spaceBetween={20}>
+    <div
+      className="  relative hidden overflow-visible   Laptop:block"
+      onMouseEnter={() => sethovered(true)}
+      onMouseLeave={() => sethovered(false)}
+    >
+      <Swiper
+        slidesPerView="auto"
+        className="relative"
+        onSwiper={(swiper) => {
+          setSwiper(swiper);
+          swiperRef.current = swiper;
+        }}
+        spaceBetween={20}
+      >
         {Array.isArray(MovieData) && MovieData.length > 0 ? (
           MovieData.map((MovieDetailData, index) => (
             <SwiperSlide
-              key={MovieDetailData.movieId}
+              key={`${MovieDetailData.movieId}-${Filter}`}
+              onClick={() => handleHoverSlide(index)}
               style={{
-                width: DeviceSwiperSlide(Filter, index),
+                width: `${DeviceSwiperSlide(Filter, index)} `,
               }}
             >
               <div
-                className={`flex gap-6 transition-opacity duration-700 ease-in-out`}
+                className={`flex w-full gap-6 transition-opacity duration-700 ease-in-out`}
               >
                 <div
                   className={`${
                     Filter === index ? "scale-100" : ""
                   } transition-opacity duration-500 ease-in-out`}
                 >
-                  <Link href={`detail/${MovieDetailData.movieId}`}>
-                    {MovieDetailData.poster_path ? (
-                      <PostCard
-                        num={index + 1}
-                        onMouseEnter={() => ChangeFilter(index)}
-                        background={MovieDetailData.poster_path}
+                  {/* <Link href={`detail/${MovieDetailData.movieId}`}> */}
+                  {MovieDetailData.poster_path ? (
+                    <PostCard
+                      num={index + 1}
+                      background={MovieDetailData.poster_path}
+                    />
+                  ) : (
+                    <div>
+                      <Image
+                        src={NoImageSsikongi}
+                        alt="포스터"
+                        className="h-[358px] w-[238px] cursor-pointer rounded-xl Tablet:h-[344px] Tablet:w-[260px] Laptop:h-[260px] Laptop:w-[174px]  Desktop:h-[360px] Desktop:w-[240px]"
                       />
-                    ) : (
-                      <div>
-                        <Image
-                          src={NoImageSsikongi}
-                          alt="포스터"
-                          className="h-[358px] w-[238px] cursor-pointer rounded-xl Tablet:h-[344px] Tablet:w-[260px] Laptop:h-[260px] Laptop:w-[174px]  Desktop:h-[360px] Desktop:w-[240px]"
-                        />
-                      </div>
-                    )}
-                  </Link>
+                    </div>
+                  )}
+                  {/* </Link> */}
                 </div>
                 <MovieDetailPost
                   Filter={Filter}
@@ -100,7 +121,7 @@ export default function MultiDeviceBestMovie({
         ) : (
           <NonPostCard />
         )}
-      </CustomSwiper>
+      </Swiper>
     </div>
   );
 }

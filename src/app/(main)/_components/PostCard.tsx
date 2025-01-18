@@ -7,7 +7,7 @@ import { ChatFillSm, StarFillMd, ThumbsUpFillSm } from "@/../public/icons";
 import GetRating from "./Rating/GetRating";
 interface PostNumber {
   num?: number;
-  onMouseEnter?: () => void;
+  onClick?: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
   Hover?: () => void;
   StarPostType?: string;
   PostType?: string;
@@ -22,7 +22,7 @@ interface PostNumber {
 
 export default function PostCard({
   num,
-  onMouseEnter,
+  onClick,
   PostType,
   StarPostType,
   StarRating,
@@ -34,12 +34,12 @@ export default function PostCard({
   MobilePost,
 }: PostNumber) {
   const [onMouseHover, SetMouseHover] = useState(false);
-  const HandleMouseOver = () => {
-    SetMouseHover(true);
-  };
-  const HandleMouseOut = () => {
-    SetMouseHover(false);
-  };
+  // const HandleMouseOver = () => {
+  //   SetMouseHover(true);
+  // };
+  // const HandleMouseOut = () => {
+  //   SetMouseHover(false);
+  // };
   return (
     <div
       className="h-[358px] w-[238px] cursor-pointer rounded-xl Tablet:h-[344px] Tablet:w-[230px] Laptop:h-[260px] Laptop:w-[174px]  Desktop:h-[360px] Desktop:w-[240px]"
@@ -48,9 +48,9 @@ export default function PostCard({
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
-      onMouseEnter={onMouseEnter}
-      onMouseOver={HandleMouseOver}
-      onMouseOut={HandleMouseOut}
+      onClick={onClick}
+      // onMouseOver={HandleMouseOver}
+      // onMouseOut={HandleMouseOut}
     >
       {num ? (
         <div className="flex h-[30px] w-[30px] items-center justify-center rounded-br-[12px] rounded-tl-[12px] bg-Primary Text-s-Bold Tablet:Text-l-Bold">
