@@ -7,7 +7,7 @@ interface ReviewType {
   movieId?: number;
   reviewData: MovieReviewDTO;
 }
-export default function Tablet_BestTalkPost({
+export default function TabletDeviceBestTalkPost({
   movieId,
   reviewData,
 }: ReviewType) {

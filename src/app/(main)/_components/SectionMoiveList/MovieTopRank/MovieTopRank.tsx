@@ -9,9 +9,8 @@ import Button from "@/components/buttons/Button";
 import Dropdown from "@/components/dropdown/dropdown";
 import { movieAPIs } from "@/services/movie/movieAPIs";
 
-import Desk_BestMovie from "./Desk_BestMovie";
-import Mobile_BestMovie from "./Mobile_BestMovie";
-import Tablet_BestMoive from "./Tablet_BestMoive";
+import MobileDeviceBestMovie from "./Device/MobileDeviceBestMovie";
+import MultiDeviceBestMovie from "./Device/MultiDeviceBestMovie";
 
 interface MoiveTopRankType {
   data: Movie_TopTen | null;
@@ -58,6 +57,7 @@ export default function MoiveTopRank({ data }: MoiveTopRankType) {
       console.error("영화를 가져오는 중 오류 발생:", error);
     }
   };
+
   const getSortedGenres = () => {
     if (Filter === 0) return MovieGenreType;
 
@@ -113,17 +113,11 @@ export default function MoiveTopRank({ data }: MoiveTopRankType) {
       </div>
 
       <div>
-        {/* 모바일 */}
-        <Tablet_BestMoive
+        <MobileDeviceBestMovie
           MovieData={MovieTopTenData}
           MovieGenre={MovieGenreType[Filter].name}
         />
-
-        <Mobile_BestMovie
-          MovieData={MovieTopTenData}
-          MovieGenre={MovieGenreType[Filter].name}
-        />
-        <Desk_BestMovie
+        <MultiDeviceBestMovie
           MovieData={MovieTopTenData}
           MovieGenre={MovieGenreType[Filter].name}
         />

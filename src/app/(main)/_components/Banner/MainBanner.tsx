@@ -42,7 +42,7 @@ export default function MainBanner({ data }: BannerType) {
                       background: `${device == "laptop" || device == "desktop" ? `rgba(0, 0, 0, 0.50)` : ""}`,
                     }}
                   >
-                    <BannerLeftContent BennerItem={BannerItem} />
+                    <BannerLeftContent BannerItem={BannerItem} />
                     <div className="h-[1px] border-[1px] border-[#FFFFFF] opacity-15 Tablet:hidden"></div>
                     <BannerRightRealTimeTalk
                       ReviewList={BannerItem.reviewList}

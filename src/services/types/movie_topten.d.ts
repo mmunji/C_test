@@ -6,7 +6,7 @@ interface Movie_TopTen {
   genres: MovieGenreDto[];
   rate: number;
   reviewCount: number;
-  reviewList: reviewDTO[];
+  reviewList: MovieReviewDTO[];
   tmdbrate: number;
 }
 interface MovieGenreDto {

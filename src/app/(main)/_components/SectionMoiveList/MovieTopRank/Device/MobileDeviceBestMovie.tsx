@@ -14,15 +14,15 @@ import {
   TmdbSm,
 } from "@/../public/icons";
 
-import { ProfileSsicong } from "../../../../../../public/images";
-import NonPostCard from "../../NonPostCard";
-import CustomSwiper from "../../swiper/CustomSwiper";
+import { ProfileSsicong } from "../../../../../../../public/images";
+import NonPostCard from "../../../NonPostCard";
+import CustomSwiper from "../../../swiper/CustomSwiper";
 
 interface Mobile_BestMoiveProps {
   MovieData: Movie_TopTen | null;
   MovieGenre: string;
 }
-export default function Mobile_BestMovie({
+export default function MobileDeviceBestMovie({
   MovieData,
   MovieGenre,
 }: Mobile_BestMoiveProps) {

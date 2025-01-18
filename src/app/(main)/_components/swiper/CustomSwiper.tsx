@@ -33,6 +33,8 @@ export default function CustomSwiper({
       <MovieTopTen spaceBetween={spaceBetween ?? 20}>{children}</MovieTopTen>
     );
 }
+
+//Banner Component
 export function BannerSwiper({ children }: { children: ReactNode }) {
   return (
     <div className="relative">
@@ -55,6 +57,8 @@ export function BannerSwiper({ children }: { children: ReactNode }) {
     </div>
   );
 }
+
+//영화TOP10 Component
 export function MovieTopTen({
   children,
   spaceBetween,
