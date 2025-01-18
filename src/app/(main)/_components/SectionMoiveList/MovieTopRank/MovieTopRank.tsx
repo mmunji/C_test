@@ -9,8 +9,9 @@ import Button from "@/components/buttons/Button";
 import Dropdown from "@/components/dropdown/dropdown";
 import { movieAPIs } from "@/services/movie/movieAPIs";
 
-import MobileDeviceBestMovie from "./Device/MobileDeviceBestMovie";
-import MultiDeviceBestMovie from "./Device/MultiDeviceBestMovie";
+import MobileDeviceBestMovie from "./Device/Mobile_BestMovie";
+import MultiDeviceBestMovie from "./Device/MultiDeviceBestMovies";
+import TabletDeviceBestMovies from "./Device/TabletDeviceBestMovies";
 
 interface MoiveTopRankType {
   data: Movie_TopTen | null;
@@ -114,6 +115,10 @@ export default function MoiveTopRank({ data }: MoiveTopRankType) {
 
       <div>
         <MobileDeviceBestMovie
+          MovieData={MovieTopTenData}
+          MovieGenre={MovieGenreType[Filter].name}
+        />
+        <TabletDeviceBestMovies
           MovieData={MovieTopTenData}
           MovieGenre={MovieGenreType[Filter].name}
         />

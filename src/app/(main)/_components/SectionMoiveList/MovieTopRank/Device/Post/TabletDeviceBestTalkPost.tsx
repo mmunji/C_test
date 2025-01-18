@@ -1,8 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import { ThumbsUpLineSm } from "../../../../../../../public/icons";
-import GetRating from "../../../Rating/GetRating";
+import { ThumbsUpLineSm } from "../../../../../../../../public/icons";
+import GetRating from "../../../../Rating/GetRating";
 interface ReviewType {
   movieId?: number;
   reviewData: MovieReviewDTO;

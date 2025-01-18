@@ -22,7 +22,7 @@ import { NoImageSsikongi } from "../../../../../../../public/images";
 import NonPostCard from "../../../NonPostCard";
 import PostCard from "../../../PostCard";
 import CustomSwiper from "../../../swiper/CustomSwiper";
-import MovieDetailPost from "../MovieDetailPost";
+import MovieDetailPost from "./Post/MovieDetailPost";
 
 interface MultiDeviceBestMovieProps {
   MovieData: Movie_TopTen | null;

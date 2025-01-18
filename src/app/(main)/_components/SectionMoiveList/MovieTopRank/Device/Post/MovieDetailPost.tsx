@@ -10,9 +10,9 @@ import {
   ChevronRightMd,
   StarFillMd,
   TmdbSm,
-} from "../../../../../../public/icons";
-import BestTalkPost from "./Device/BestTalkPost";
-import Tablet_BestTalkPost from "./Device/Tablet_BestTalkPost";
+} from "../../../../../../../../public/icons";
+import BestTalkPost from "./BestTalkPost";
+import TabletDeviceBestTalkPost from "./TabletDeviceBestTalkPost";
 
 interface MovieDetailType {
   MovieDetailData: Movie_TopTen;
@@ -120,7 +120,7 @@ export default function MovieDetailPost({
               );
             else {
               return (
-                <Tablet_BestTalkPost
+                <TabletDeviceBestTalkPost
                   key={reviewList.reviewId}
                   reviewData={reviewList}
                   movieId={MovieDetailData.movieId}
