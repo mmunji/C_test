@@ -1,37 +1,20 @@
-"use client";
-import { useEffect, useState } from "react";
+"use server";
+
+import dynamic from "next/dynamic";
+import { cookies } from "next/headers";
 
 import { movieAPIs } from "@/services/movie/movieAPIs";
 
-import SimilarTasteSkleton from "../../MainSkeleton/SimilarTaste/SimilarTasteSkleton";
-import SimilarTastesMovie from "./SimilarTastesMovie";
+import SimilarTasteSkleton from "../../Skeleton/SimilarTaste/SimilarTasteSkleton";
 
-export default function SimilarTastesMovieWapper() {
-  const [PeopleReviewers, setPeopleReviewers] = useState<MovieReviewRecommed[]>(
-    [],
-  );
+const SimilarTastesMovie = dynamic(() => import("./SimilarTastesMovie"), {
+  ssr: false,
+  loading: () => <SimilarTasteSkleton />,
+});
 
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchMovie = async () => {
-      try {
-        const response: MovieReviewRecommed[] =
-          await movieAPIs.getPeopleReviewers();
-        setPeopleReviewers(response);
-      } catch (error) {
-        console.error("Failed to fetch movie data", error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchMovie();
-  }, []);
-
-  return isLoading ? (
-    <SimilarTasteSkleton />
-  ) : (
-    <SimilarTastesMovie reviewUsers={PeopleReviewers} />
-  );
+export default async function SimilarTastesMovieWapper() {
+  const cookie = cookies();
+  const token = cookie.get("accessToken")?.value || null;
+  const data: MovieReviewRecommed[] = await movieAPIs.getPeopleReviewers(token);
+  return <SimilarTastesMovie reviewUsers={data} />;
 }

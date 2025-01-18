@@ -73,7 +73,7 @@ export default function PostRating({
           />
         ))}
       </div>
-      {/* <div className="hidden w-full gap-1 Laptop:flex Desktop:hidden">
+      <div className="hidden w-full gap-1 Laptop:flex Desktop:hidden">
         {[...Array(5)].map((_, i) => (
           <RatingStar
             key={i}
@@ -114,7 +114,7 @@ export default function PostRating({
             }}
           />
         ))}
-      </div> */}
+      </div>
       {isOpen && (
         <Modal isAlertModal={false} onClose={() => setIsOpen(false)}>
           <Modal.Login

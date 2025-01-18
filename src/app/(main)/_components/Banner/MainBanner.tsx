@@ -10,9 +10,9 @@ import { SwiperSlide } from "swiper/react";
 
 import useDevice from "@/hooks/useDevice";
 
-import LeftMoivePost from "./MainBanner/LeftMoivePost";
-import RealTimeHotTalk from "./MainBanner/RealTimeHotTalk";
-import CustomSwiper from "./swiper/CustomSwiper";
+import CustomSwiper from "../swiper/CustomSwiper";
+import BannerLeftContent from "./BannerLeftContent";
+import BannerRightRealTimeTalk from "./BannerRightRealTimeTalk";
 
 interface BannerType {
   data: BannerDTO[] | null;
@@ -42,14 +42,11 @@ export default function MainBanner({ data }: BannerType) {
                       background: `${device == "laptop" || device == "desktop" ? `rgba(0, 0, 0, 0.50)` : ""}`,
                     }}
                   >
-                    <LeftMoivePost
-                      PostImg={BannerItem.poster_path}
-                      keyword={BannerItem.keyword}
-                      MovieName={BannerItem.movienm}
-                      Rate={BannerItem.rate}
-                    />
+                    <BannerLeftContent BannerItem={BannerItem} />
                     <div className="h-[1px] border-[1px] border-[#FFFFFF] opacity-15 Tablet:hidden"></div>
-                    <RealTimeHotTalk ReviewList={BannerItem.reviewList} />
+                    <BannerRightRealTimeTalk
+                      ReviewList={BannerItem.reviewList}
+                    />
                   </div>
                 </div>
               </Link>

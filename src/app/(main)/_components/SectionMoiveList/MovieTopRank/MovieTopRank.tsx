@@ -4,22 +4,21 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 
 import { ChevronDownGrayOrangeMd } from "@/../public/icons";
+import useFilter from "@/app/(main)/_hooks/useFilter";
 import Button from "@/components/buttons/Button";
 import Dropdown from "@/components/dropdown/dropdown";
 import { movieAPIs } from "@/services/movie/movieAPIs";
 
-import DeskTop_BestMovie from "./DeskTop_BestMoive";
-import Laptop_BestMovie from "./Laptop_BestMovie";
-import Mobile_BestMovie from "./Mobile_BestMovie";
-import Tablet_BestMoive from "./Tablet_BestMoive";
+import MobileDeviceBestMovie from "./Device/Mobile_BestMovie";
+import MultiDeviceBestMovie from "./Device/MultiDeviceBestMovies";
+import TabletDeviceBestMovies from "./Device/TabletDeviceBestMovies";
 
 interface MoiveTopRankType {
   data: Movie_TopTen | null;
 }
 
 export default function MoiveTopRank({ data }: MoiveTopRankType) {
-  const [filter, setFilter] = useState(0);
-
+  const { Filter, ChangeFilter } = useFilter();
   const MovieGenreType = [
     {
       name: "전체",
@@ -59,10 +58,11 @@ export default function MoiveTopRank({ data }: MoiveTopRankType) {
       console.error("영화를 가져오는 중 오류 발생:", error);
     }
   };
-  const getSortedGenres = () => {
-    if (filter === 0) return MovieGenreType;
 
-    const selectedGenreIndex = filter;
+  const getSortedGenres = () => {
+    if (Filter === 0) return MovieGenreType;
+
+    const selectedGenreIndex = Filter;
     const fixedGenres = MovieGenreType.slice(1);
     const reorderedGenres = [
       ...fixedGenres.slice(selectedGenreIndex - 1),
@@ -72,7 +72,7 @@ export default function MoiveTopRank({ data }: MoiveTopRankType) {
     return [MovieGenreType[0], ...reorderedGenres];
   };
 
-  useEffect(() => {}, [filter]);
+  useEffect(() => {}, [Filter]);
 
   return (
     <div className="flex flex-col gap-4">
@@ -83,7 +83,7 @@ export default function MoiveTopRank({ data }: MoiveTopRankType) {
             <Dropdown type="genre">
               <Dropdown.Trigger>
                 <Button type="button" variant={"textIconR"}>
-                  {MovieGenreType[filter].name}
+                  {MovieGenreType[Filter].name}
                   <Image
                     src={ChevronDownGrayOrangeMd}
                     alt="더보기"
@@ -96,7 +96,7 @@ export default function MoiveTopRank({ data }: MoiveTopRankType) {
                   <Dropdown.Item
                     key={genre.index}
                     onClick={() => {
-                      setFilter(MovieGenreType.indexOf(genre));
+                      ChangeFilter(MovieGenreType.indexOf(genre));
                       fetchMovie(MovieGenreType.indexOf(genre));
                     }}
                   >
@@ -114,22 +114,17 @@ export default function MoiveTopRank({ data }: MoiveTopRankType) {
       </div>
 
       <div>
-        {/* 모바일 */}
-        <Tablet_BestMoive
+        <MobileDeviceBestMovie
           MovieData={MovieTopTenData}
-          MovieGenre={MovieGenreType[filter].name}
+          MovieGenre={MovieGenreType[Filter].name}
         />
-        <DeskTop_BestMovie
+        <TabletDeviceBestMovies
           MovieData={MovieTopTenData}
-          MovieGenre={MovieGenreType[filter].name}
+          MovieGenre={MovieGenreType[Filter].name}
         />
-        <Laptop_BestMovie
+        <MultiDeviceBestMovie
           MovieData={MovieTopTenData}
-          MovieGenre={MovieGenreType[filter].name}
-        />
-        <Mobile_BestMovie
-          MovieData={MovieTopTenData}
-          MovieGenre={MovieGenreType[filter].name}
+          MovieGenre={MovieGenreType[Filter].name}
         />
       </div>
     </div>

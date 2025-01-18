@@ -54,38 +54,27 @@ export const movieAPIs = {
     const data: Movie_TopTen = await res.json();
     return data;
   },
-  getWatchMovie: async () => {
-    const accessToken = tokenManager.getToken();
-    let res = null;
-    accessToken
-      ? (res = await fetch(`${API_URL}/movie/HoxyWatching`, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            access: `${accessToken}`,
-          },
-          cache: "no-store",
-        }))
-      : (res = await fetch(`${API_URL}/movie/HoxyWatching`, {
-          cache: "no-store",
-        }));
-
+  getWatchMovie: async (token: string | null) => {
+    const res = await fetch(`${API_URL}/movie/HoxyWatching`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        ...(token && { access: `${token}` }),
+      },
+      cache: "no-store",
+    });
     const data: WatchMovie[] = await res.json();
     return data;
   },
-  getPeopleReviewers: async () => {
-    const accessToken = tokenManager.getToken();
-    let res = null;
-    accessToken
-      ? (res = await fetch(`${API_URL}/movie/top-reviewers`, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            access: `${accessToken}`,
-          },
-          cache: "no-store",
-        }))
-      : (res = await fetch(`${API_URL}/movie/top-reviewers`));
+  getPeopleReviewers: async (token: string | null) => {
+    const res = await fetch(`${API_URL}/movie/top-reviewers`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        ...(token && { access: `${token}` }),
+      },
+      cache: "no-store",
+    });
     const data: MovieReviewRecommed[] = await res.json();
     return data;
   },

@@ -1,6 +1,13 @@
+import dynamic from "next/dynamic";
+
 import { movieAPIs } from "@/services/movie/movieAPIs";
 
-import MainBanner from "./MainBanner";
+import Banner from "../Skeleton/Skeleton";
+
+const MainBanner = dynamic(() => import("./MainBanner"), {
+  ssr: false,
+  loading: () => <Banner />,
+});
 
 export default async function BannerWapper() {
   const data = await movieAPIs.getMovieMainBanner();
