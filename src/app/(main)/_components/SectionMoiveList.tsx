@@ -1,14 +1,9 @@
-import { Suspense } from "react";
-
-import KeywordSkeleton from "./MainSkeleton/Keyword/KeywordSkeleton";
-import MovieTopSkeleton from "./MainSkeleton/MovieTop/MovieTopSkeleton";
-import SimilarTasteSkleton from "./MainSkeleton/SimilarTaste/SimilarTasteSkleton";
-import WatchedSkeleton from "./MainSkeleton/WatchedMoive/WatchedSkeleton";
 import MasterPieceMoiveWapper from "./MasterPieceMovie/MasterPieceMoiveWapper";
 import RecentKeywordWapper from "./SectionMoiveList/KeyWord/RecentKeywordWapper";
 import MovieTopWapper from "./SectionMoiveList/MovieTopRank/MovieTopWapper";
 import SimilarTastesMovieWapper from "./SectionMoiveList/SlimilarTaste/SimilarTastesMovieWapper";
 import WatchedMovieWapper from "./SectionMoiveList/WatchedMovies/WatchedMovieWapper";
+
 export default function SectionMoiveList() {
   return (
     <div className="mx-5 Tablet:mx-6 Laptop:mx-[64px] Desktop:mx-0">

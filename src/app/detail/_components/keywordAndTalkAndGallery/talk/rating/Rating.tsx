@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import useRating from "@/app/detail/_hooks/useRating";
 import Button from "@/components/buttons/Button";
@@ -45,7 +45,20 @@ export default function Rating({
   const { loggedIn } = useLoggedInStore();
 
   const { myTalk: isMyTalk } = useRefetchMyTalk();
+  const containerRef = useRef<HTMLDivElement>(null);
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (containerRef.current && !clickedValue) {
+      const rect = containerRef.current.getBoundingClientRect();
+      const touchX = e.touches[0].clientX - rect.left;
+      const percentage = touchX / rect.width;
 
+      const newRating = Math.min(
+        Math.max(0, Math.round(percentage * 10) / 2),
+        5,
+      );
+      setRatingValue(newRating);
+    }
+  };
   useEffect(() => {
     if (!loggedIn) {
       setRatingValue(0);
@@ -81,7 +94,11 @@ export default function Rating({
         />
       )}
 
-      <div className="mx-auto mb-6 flex cursor-pointer Laptop:mb-0">
+      <div
+        className="mx-auto mb-6 flex cursor-pointer Laptop:mb-0"
+        ref={containerRef}
+        onTouchMove={handleTouchMove}
+      >
         {isMyTalk
           ? [...Array(5)].map((_, i) => (
               <RatingStar

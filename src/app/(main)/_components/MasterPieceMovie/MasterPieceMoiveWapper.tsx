@@ -4,7 +4,7 @@ import dynamic from "next/dynamic";
 
 import { movieAPIs } from "@/services/movie/movieAPIs";
 
-import MasterPieceSkeleton from "../MainSkeleton/MasterPieceMovie/MasterPieceSkeletion";
+import MasterPieceSkeleton from "../Skeleton/MasterPieceMovie/MasterPieceSkeletion";
 const MasterPieceMoive = dynamic(() => import("./MasterPieceMoive"), {
   ssr: false,
   loading: () => <MasterPieceSkeleton />,

@@ -5,7 +5,7 @@ import { cookies } from "next/headers";
 
 import { movieAPIs } from "@/services/movie/movieAPIs";
 
-import SimilarTasteSkleton from "../../MainSkeleton/SimilarTaste/SimilarTasteSkleton";
+import SimilarTasteSkleton from "../../Skeleton/SimilarTaste/SimilarTasteSkleton";
 
 const SimilarTastesMovie = dynamic(() => import("./SimilarTastesMovie"), {
   ssr: false,
