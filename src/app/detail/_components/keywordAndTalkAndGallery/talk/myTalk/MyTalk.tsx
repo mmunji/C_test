@@ -1,4 +1,6 @@
+"use client";
 import dayjs from "dayjs";
+import { useRef } from "react";
 import Image from "next/image";
 import React, { useState } from "react";
 
@@ -32,6 +34,7 @@ interface MyTalkProps {
 function MyTalk({ myTalk, movieId, movieDetailData }: MyTalkProps) {
   const { clickedEditMyTalk, setClickedEditMyTalk } = useClickedEditMyTalk();
 
+  const containerRef = useRef<HTMLDivElement>(null);
   const [content, setContent] = useState<string | undefined>(myTalk?.content);
   const {
     ratingValue,
@@ -76,6 +79,19 @@ function MyTalk({ myTalk, movieId, movieDetailData }: MyTalkProps) {
     removeTalk({ talkId: myTalk?.reviewId });
   };
 
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (containerRef.current && !clickedValue) {
+      const rect = containerRef.current.getBoundingClientRect();
+      const touchX = e.touches[0].clientX - rect.left;
+      const percentage = touchX / rect.width;
+
+      const newRating = Math.min(
+        Math.max(0, Math.round(percentage * 10) / 2),
+        5,
+      );
+      setRatingValue(newRating);
+    }
+  };
   return (
     <>
       <div className="flex flex-col gap-2">
@@ -83,7 +99,11 @@ function MyTalk({ myTalk, movieId, movieDetailData }: MyTalkProps) {
           <p className="text-Primary Text-m-Bold Laptop:Text-l-Bold">
             {ratingValue}점
           </p>
-          <div className="flex">
+          <div
+            className="flex"
+            ref={containerRef}
+            onTouchMove={handleTouchMove}
+          >
             {clickedEditMyTalk ? (
               [...Array(5)].map((_, i) => (
                 <RatingStar
