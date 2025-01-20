@@ -39,7 +39,7 @@ export default function MovieDetailPost({
 }: MovieDetailType) {
   const { device } = useDevice();
   return (
-    <div className="relative">
+    <div className="relative w-full">
       <div
         className={`${
           Filter === index
