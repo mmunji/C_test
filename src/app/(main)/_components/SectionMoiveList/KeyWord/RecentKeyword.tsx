@@ -1,4 +1,5 @@
 "use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
@@ -44,7 +45,7 @@ export default function RecentKeyword({ data }: RecentKeywordType) {
                 return (
                   <SwiperSlide key={mention.keyword} className="w-fit">
                     <div
-                      className={`relative Text-s-Bold  ${KeywordListNumber == index ? "bg-D1_Gray text-Silver" : "text-L_Gray"} rounded-[36px] px-4 py-2  text-center Tablet:px-5 Tablet:Text-m-Bold`}
+                      className={`relative Text-s-Bold  ${KeywordListNumber == index ? "bg-D1_Gray text-Silver" : "text-L_Gray"} rounded-[36px] px-4 py-2 text-center   Tablet:px-5 Tablet:Text-m-Bold`}
                       onClick={() => HandleKeywords(index)}
                     >
                       {mention.keyword}
@@ -55,29 +56,26 @@ export default function RecentKeyword({ data }: RecentKeywordType) {
             </Swiper>
           </div>
           <div className="Text-S-Bold  hidden gap-3 Laptop:flex Laptop:flex-col Laptop:gap-5">
-            {Array.isArray(data) && data.length > 0
-              ? data.map((mention, index) => {
-                  return (
-                    <div
-                      key={mention.keyword}
-                      className={`cursor-pointer Text-m-Bold Tablet:Text-s-Bold  Laptop:Text-l-Bold  ${KeywordListNumber == index ? "bg-D1_Gray text-Silver" : "text-L_Gray"}  rounded-xl px-5 py-2 text-center Laptop:w-[178px] Desktop:w-[240px] `}
-                      onClick={() => HandleKeywords(index)}
-                    >
-                      {mention.keyword}
-                    </div>
-                  );
-                })
-              : ""}
+            {Array.isArray(data) &&
+              data.map((mention, index) => {
+                return (
+                  <div
+                    key={mention.keyword}
+                    className={`cursor-pointer Text-m-Bold hover:bg-D2_Gray  Tablet:Text-s-Bold Laptop:Text-l-Bold  ${KeywordListNumber == index ? "bg-D1_Gray text-Silver" : "text-L_Gray"}  rounded-xl px-5 py-2 text-center Laptop:w-[178px] Desktop:w-[240px] `}
+                    onClick={() => HandleKeywords(index)}
+                  >
+                    {mention.keyword}
+                  </div>
+                );
+              })}
           </div>
-          {data ? (
+          {data && (
             <RightKeyWords
               addKeywordIndex={addKeywordIndex}
               keywordInfo={data}
               keywordIndex={KeywordListNumber}
               setKeywordListNumber={setKeywordListNumber}
             />
-          ) : (
-            ""
           )}
         </div>
         <div className="flex justify-end">
