@@ -2,7 +2,7 @@
 import "swiper/css";
 import "swiper/css/grid";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Grid, Navigation } from "swiper/modules";
 import { Swiper, SwiperClass, SwiperSlide } from "swiper/react";
 
@@ -23,21 +23,26 @@ export default function RightKeyWords({
 }: KeyWordInfoProps) {
   const keyword = keywordInfo[keywordIndex]?.keyword;
   const [isVisible, setIsVisible] = useState(false);
-  const [isLastSlide, setIsLastSlide] = useState(false);
 
-  const { swiper, setSwiper } = useMovieSwiper();
-  const handleSlideChange = (swiper: SwiperClass) => {
-    const isLast = swiper.isEnd;
-    console.log(isLast);
-    setIsLastSlide(isLast);
-    if (isLast) {
-      // 마지막 슬라이드에서 다음으로 넘어가려는 시도 시 발생할 동작
-      setKeywordListNumber(keywordIndex + 1);
-    } else {
-      swiper.slideNext(); // 마지막 슬라이드가 아니면 정상적으로 슬라이드 이동
-    }
+  const startX = useRef(0); // 드래그 시작 좌표
+  const endX = useRef(0); // 드래그 끝 좌표
+
+  const handleTouchStart = (swiper: any) => {
+    startX.current = swiper.touches.startX; // 드래그 시작 좌표 저장
   };
 
+  const handleTouchEnd = (swiper: any) => {
+    endX.current = swiper.touches.currentX; // 드래그 끝 좌표 저장
+
+    // 드래그 방향 계산
+    if (startX.current < endX.current) {
+      console.log("오른쪽으로 드래그했습니다!");
+    } else if (startX.current > endX.current) {
+      console.log("왼쪽으로 드래그했습니다!");
+    } else {
+      console.log("드래그가 거의 발생하지 않았습니다.");
+    }
+  };
   useEffect(() => {
     setIsVisible(false);
     const timer = setTimeout(() => {
@@ -54,8 +59,10 @@ export default function RightKeyWords({
         spaceBetween={12}
         grid={{ rows: 3, fill: "row" }}
         className=" grid Tablet:hidden "
-        onSlideChange={handleSlideChange}
-        onSwiper={(e) => setSwiper(e)}
+        onTouchStart={handleTouchStart} // 드래그 시작 시
+        onTouchEnd={handleTouchEnd} // 드래그 끝날 때
+        simulateTouch={true}
+        allowTouchMove={true}
       >
         {keywordInfo[keywordIndex]?.reviewList.map((review, index) => {
           if (!review) {
@@ -79,7 +86,6 @@ export default function RightKeyWords({
         spaceBetween={16}
         grid={{ rows: 2, fill: "row" }}
         className="hidden Tablet:grid Laptop:hidden  "
-        onSlideChange={handleSlideChange}
       >
         {keywordInfo[keywordIndex]?.reviewList.map((review, index) => {
           if (!review) {

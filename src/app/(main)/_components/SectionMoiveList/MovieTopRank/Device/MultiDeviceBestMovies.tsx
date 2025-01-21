@@ -132,7 +132,7 @@ export default function MultiDeviceBestMovie({
         <Button
           onClick={() => swiper.slidePrev()}
           variant="arrow1"
-          className={`absolute  -left-4 top-[40%]   z-[100] hidden transform transition-opacity duration-300  Tablet:block   Laptop:-left-5 Laptop:top-[40%] ${hovered ? "opacity-100" : "opacity-0"} `}
+          className={`absolute  -left-4 top-[40%]   z-[100] hidden transform transition-opacity duration-300  Tablet:block   Laptop:-left-5 Laptop:top-[25%] ${hovered ? "opacity-100" : "opacity-0"} `}
         >
           <Image src={ChevronLeftMd} alt="이전" style={{ color: "#E9E9E9" }} />
         </Button>
@@ -142,7 +142,7 @@ export default function MultiDeviceBestMovie({
         <Button
           onClick={() => swiper.slideNext()}
           variant="arrow1"
-          className={`absolute -right-4 top-[40%] z-[100] hidden transform transition-opacity  duration-300   Tablet:block Laptop:-right-5 Laptop:top-[40%] ${hovered ? "opacity-100" : "opacity-0"}  `}
+          className={`absolute -right-4 top-[40%] z-[100] hidden transform transition-opacity  duration-300   Tablet:block Laptop:-right-5 Laptop:top-[25%] ${hovered ? "opacity-100" : "opacity-0"}  `}
         >
           <Image src={ChevronRightMd} alt="다음" style={{ color: "#E9E9E9" }} />
         </Button>
