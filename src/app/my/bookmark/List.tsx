@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { use, useState } from "react";
 
 import { BookmarkMobileButtons } from "@/app/my/_components/buttons";
 import Placeholder from "@/app/my/_components/Placeholder";
@@ -9,10 +9,11 @@ import { BookMarkDefaultItem, BookmarkEditItem } from "@/app/my/bookmark/Item";
 import { deleteBookmark } from "@/services/my/actions";
 
 interface BookmarkListProps {
-  movies: Bookmark[];
+  promiseMovies: Promise<Bookmark[]>;
 }
 
-export default function BookmarkList({ movies }: BookmarkListProps) {
+export default function BookmarkList({ promiseMovies }: BookmarkListProps) {
+  const movies = use(promiseMovies);
   const [isEditing, setIsEditing] = useState(false);
   const [loading, setLoading] = useState(false);
   const [selectedMovieIds, setSelectedMovieIds] = useState<number[]>([]);
