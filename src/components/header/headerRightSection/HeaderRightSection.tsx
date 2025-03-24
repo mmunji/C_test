@@ -48,9 +48,9 @@ export default function HeaderRightSection({
       const randomIndex = Math.floor(Math.random() * movieTopTen.length);
 
       const formattedMovieName =
-        movieTopTen[randomIndex].movienm.length > 10
-          ? movieTopTen[randomIndex].movienm.slice(0, 10) + "..."
-          : movieTopTen[randomIndex].movienm;
+        movieTopTen[randomIndex]?.movienm.length > 10
+          ? movieTopTen[randomIndex]?.movienm.slice(0, 10) + "..."
+          : movieTopTen[randomIndex]?.movienm;
       setRandomMovie(formattedMovieName);
     }
   }, [movieTopTen]);
