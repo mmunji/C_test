@@ -55,8 +55,8 @@ export default function Talk({ title }: TalkProps) {
                 length={dummyTalks.length}
                 movieId={0}
                 talk={talk}
-                setOpen={() => {}}
-                setTalkId={() => {}}
+                setOpen={() => { }}
+                setTalkId={() => { }}
               />
             ))}
           </>
