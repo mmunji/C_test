@@ -2,12 +2,12 @@
 
 import React, { useEffect, useState } from "react";
 
+import useTotalTalksStore from "@/app/detail/_stores/useTotalTalksStore";
 import useDevice from "@/hooks/useDevice";
 import useInfiniteScroll from "@/hooks/useInfiniteScroll";
 import { useGetMyTalk, useGetTalkQuery } from "@/services/talk/talkQueries";
 import useLoggedInStore from "@/stores/useLoggedIn";
 import useRefetchMyTalk from "@/stores/useRefetchMyTalk";
-import useTotalTalksStore from "@/app/detail/_stores/useTotalTalksStore";
 
 import DividingLine from "../../common/DividingLine";
 import MyTalk from "./myTalk/MyTalk";
@@ -17,6 +17,7 @@ import ReportCompleteModal from "./ReportCompleteModal";
 import ReportModal from "./reportModal/ReportModal";
 import TalkContents from "./talkContents/TalkContents";
 import TalkHeader from "./TalkHeader";
+
 
 ``
 interface TalkProps {
