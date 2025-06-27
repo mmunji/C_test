@@ -18,7 +18,7 @@ import ReportModal from "./reportModal/ReportModal";
 import TalkContents from "./talkContents/TalkContents";
 import TalkHeader from "./TalkHeader";
 
-
+``
 interface TalkProps {
   title: string;
   movieId: number;
