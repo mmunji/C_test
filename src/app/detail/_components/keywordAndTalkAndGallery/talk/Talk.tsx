@@ -1,89 +1,64 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-
-import useTotalTalksStore from "@/app/detail/_stores/useTotalTalksStore";
-import useDevice from "@/hooks/useDevice";
-import useInfiniteScroll from "@/hooks/useInfiniteScroll";
-import { useGetMyTalk, useGetTalkQuery } from "@/services/talk/talkQueries";
-import useLoggedInStore from "@/stores/useLoggedIn";
-import useRefetchMyTalk from "@/stores/useRefetchMyTalk";
+import React, { useState } from "react";
 
 import DividingLine from "../../common/DividingLine";
-import MyTalk from "./myTalk/MyTalk";
 import NoTalk from "./NoTalk";
-import Rating from "./rating/Rating";
-import ReportCompleteModal from "./ReportCompleteModal";
-import ReportModal from "./reportModal/ReportModal";
 import TalkContents from "./talkContents/TalkContents";
 import TalkHeader from "./TalkHeader";
+import Rating from "./rating/Rating";
 
-
-``
 interface TalkProps {
   title: string;
   movieId: number;
-  movieDetailData: MovieDetailData;
+  movieDetailData: any;
 }
+
+const dummyTalks = [
+  {
+    id: 1,
+    content: "이 영화 정말 감동적이었어요!",
+    likeCount: 12,
+    writer: { nickname: "감성영화인", profileImageUrl: "" },
+    createdAt: "2024-06-01",
+    isLiked: false,
+  },
+  {
+    id: 2,
+    content: "연출이 정말 멋졌습니다. 특히 후반부!",
+    likeCount: 8,
+    writer: { nickname: "영화광", profileImageUrl: "" },
+    createdAt: "2024-06-02",
+    isLiked: false,
+  },
+  {
+    id: 3,
+    content: "스토리는 평범했지만 배우들의 연기가 좋았어요.",
+    likeCount: 5,
+    writer: { nickname: "솔직리뷰어", profileImageUrl: "" },
+    createdAt: "2024-06-03",
+    isLiked: false,
+  },
+];
 
 export default function Talk({ title, movieId, movieDetailData }: TalkProps) {
   const filters = ["최신순", "좋아요순"];
   const [activeFilter, setActiveFilter] = useState(filters[0]);
-  const sort = activeFilter === "최신순" ? "createdAt" : "star";
-  const { data, refetch, hasNextPage, fetchNextPage } = useGetTalkQuery(
-    movieId,
-    sort,
-  );
-  const { device } = useDevice();
-  const id = device === "mobile" || device === "tablet" ? undefined : "my-talk";
-  const noTalk = data?.pages?.[0]?.reviewList?.length === 0;
-  const [open, setOpen] = useState(false);
-  const [openReportComplete, setOpenReportComplete] = useState(false);
-  const [talkId, setTalkId] = useState<number | null>(null);
-  const { ref } = useInfiniteScroll<HTMLDivElement>({
-    fetchData: fetchNextPage,
-    hasNextPage: hasNextPage,
+
+  const sortedTalks = [...dummyTalks].sort((a, b) => {
+    return activeFilter === "최신순"
+      ? b.createdAt.localeCompare(a.createdAt)
+      : b.likeCount - a.likeCount;
   });
-  const { data: myTalkData, refetch: refetchMyTalk } = useGetMyTalk(movieId);
-  const myTalk: MyTalk = myTalkData?.data;
-
-  const { myTalk: isMyTalk, setMyTalk, setRefetchMyTalk } = useRefetchMyTalk();
-  const { loggedIn } = useLoggedInStore();
-
-  useEffect(() => {
-    if (loggedIn) {
-      setRefetchMyTalk(refetchMyTalk);
-      setMyTalk(myTalk);
-    }
-  }, [loggedIn, myTalk, refetchMyTalk, setMyTalk, setRefetchMyTalk]);
-
-  useEffect(() => {
-    refetch();
-  }, [activeFilter, refetch, loggedIn]);
-
-  const { setTotalTalks } = useTotalTalksStore();
-
-  useEffect(() => {
-    if (data?.pages[0].totalElements) {
-      setTotalTalks(data?.pages[0].totalElements);
-    }
-
-    return () => setTotalTalks(0);
-  }, [data?.pages, setTotalTalks]);
-
-  const allTalks = data?.pages.flatMap((page) => page.reviewList) || [];
 
   return (
-    <section id={id}>
-      {isMyTalk && myTalk?.content !== "" ? (
-        <MyTalk
-          myTalk={myTalk}
-          movieDetailData={movieDetailData}
-          movieId={movieId}
-        />
-      ) : (
-        <Rating {...{ title, movieId, movieDetailData, myTalk }} />
-      )}
+    <section>
+      <Rating
+        title={title}
+        movieId={movieId}
+        movieDetailData={movieDetailData}
+        myTalk={null}
+      />
       <DividingLine />
 
       <section className="Laptop:rounded-xl Laptop:bg-D1_Gray Laptop:p-8">
@@ -93,40 +68,24 @@ export default function Talk({ title, movieId, movieDetailData }: TalkProps) {
           filters={filters}
           setActiveFilter={setActiveFilter}
         />
-        {noTalk ? (
+        {sortedTalks.length === 0 ? (
           <NoTalk />
         ) : (
-          <React.Fragment>
-            {allTalks
-              .filter((el) => el.content !== "")
-              .map((talk, i) => (
-                <TalkContents
-                  index={i}
-                  length={allTalks.length}
-                  key={talk.id}
-                  movieId={movieId}
-                  talk={talk}
-                  setOpen={setOpen}
-                  setTalkId={setTalkId}
-                />
-              ))}
-            <div ref={ref} />
-          </React.Fragment>
+          <>
+            {sortedTalks.map((talk, i) => (
+              <TalkContents
+                key={talk.id}
+                index={i}
+                length={sortedTalks.length}
+                movieId={movieId}
+                talk={talk}
+                setOpen={() => {}}
+                setTalkId={() => {}}
+              />
+            ))}
+          </>
         )}
       </section>
-
-      {open && (
-        <ReportModal
-          movieId={movieId}
-          type="talk"
-          setOpen={setOpen}
-          talkId={talkId}
-          setOpenReportComplete={setOpenReportComplete}
-        />
-      )}
-      {openReportComplete && (
-        <ReportCompleteModal setOpenReportComplete={setOpenReportComplete} />
-      )}
     </section>
   );
 }
