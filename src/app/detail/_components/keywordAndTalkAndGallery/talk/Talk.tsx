@@ -79,8 +79,8 @@ export default function Talk({ title, movieId, movieDetailData }: TalkProps) {
                 length={sortedTalks.length}
                 movieId={movieId}
                 talk={talk}
-                setOpen={() => {}}
-                setTalkId={() => {}}
+                setOpen={() => { }}
+                setTalkId={() => { }}
               />
             ))}
           </>
