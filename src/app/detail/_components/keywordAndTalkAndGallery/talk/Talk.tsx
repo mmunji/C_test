@@ -1,131 +1,29 @@
-/* eslint-disable simple-import-sort/imports */
-"use client";
+'use client';
 
-import React, { useEffect, useState } from "react";
-
-import DividingLine from "../../common/DividingLine";
-import MyTalk from "./myTalk/MyTalk";
-import NoTalk from "./NoTalk";
-import Rating from "./rating/Rating";
-import ReportCompleteModal from "./ReportCompleteModal";
-import ReportModal from "./reportModal/ReportModal";
-import TalkContents from "./talkContents/TalkContents";
-import TalkHeader from "./TalkHeader";
-
-import useDevice from "@/hooks/useDevice";
-import useInfiniteScroll from "@/hooks/useInfiniteScroll";
-import { useGetMyTalk, useGetTalkQuery } from "@/services/talk/talkQueries";
-import useLoggedInStore from "@/stores/useLoggedIn";
-import useRefetchMyTalk from "@/stores/useRefetchMyTalk";
-import useTotalTalksStore from "@/app/detail/_stores/useTotalTalksStore";
+import React from 'react';
 
 interface TalkProps {
   title: string;
   movieId: number;
-  movieDetailData: MovieDetailData;
+  movieDetailData: any;
 }
 
-export default function Talk({ title, movieId, movieDetailData }: TalkProps) {
-  const filters = ["최신순", "좋아요순"];
-  const [activeFilter, setActiveFilter] = useState(filters[0]);
-  const sort = activeFilter === "최신순" ? "createdAt" : "star";
-  const { data, refetch, hasNextPage, fetchNextPage } = useGetTalkQuery(
-    movieId,
-    sort,
-  );
-  const { device } = useDevice();
-  const id = device === "mobile" || device === "tablet" ? undefined : "my-talk";
-  const noTalk = data?.pages?.[0]?.reviewList?.length === 0;
-  const [open, setOpen] = useState(false);
-  const [openReportComplete, setOpenReportComplete] = useState(false);
-  const [talkId, setTalkId] = useState<number | null>(null);
-  const { ref } = useInfiniteScroll<HTMLDivElement>({
-    fetchData: fetchNextPage,
-    hasNextPage: hasNextPage,
-  });
-  const { data: myTalkData, refetch: refetchMyTalk } = useGetMyTalk(movieId);
-  const myTalk: MyTalk = myTalkData?.data;
+const fakeTalks = [
+  { id: 1, content: '정말 재미있었어요! 연기도 좋고 스토리도 탄탄했어요.', user: 'user1' },
+  { id: 2, content: '생각보다 별로였어요. 기대를 너무 했나봐요.', user: 'user2' },
+  { id: 3, content: 'OST가 너무 좋아서 계속 들었어요!', user: 'user3' },
+];
 
-  const { myTalk: isMyTalk, setMyTalk, setRefetchMyTalk } = useRefetchMyTalk();
-  const { loggedIn } = useLoggedInStore();
-
-  useEffect(() => {
-    if (loggedIn) {
-      setRefetchMyTalk(refetchMyTalk);
-      setMyTalk(myTalk);
-    }
-  }, [loggedIn, myTalk, refetchMyTalk, setMyTalk, setRefetchMyTalk]);
-
-  useEffect(() => {
-    refetch();
-  }, [activeFilter, refetch, loggedIn]);
-
-  const { setTotalTalks } = useTotalTalksStore();
-
-  useEffect(() => {
-    if (data?.pages[0].totalElements) {
-      setTotalTalks(data?.pages[0].totalElements);
-    }
-
-    return () => setTotalTalks(0);
-  }, [data?.pages, setTotalTalks]);
-
-  const allTalks = data?.pages.flatMap((page) => page.reviewList) || [];
-
+export default function Talk({ title }: TalkProps) {
   return (
-    <section id={id}>
-      {isMyTalk && myTalk?.content !== "" ? (
-        <MyTalk
-          myTalk={myTalk}
-          movieDetailData={movieDetailData}
-          movieId={movieId}
-        />
-      ) : (
-        <Rating {...{ title, movieId, movieDetailData, myTalk }} />
-      )}
-      <DividingLine />
-
-      <section className="Laptop:rounded-xl Laptop:bg-D1_Gray Laptop:p-8">
-        <TalkHeader
-          title={title}
-          activeFilter={activeFilter}
-          filters={filters}
-          setActiveFilter={setActiveFilter}
-        />
-        {noTalk ? (
-          <NoTalk />
-        ) : (
-          <React.Fragment>
-            {allTalks
-              .filter((el) => el.content !== "")
-              .map((talk, i) => (
-                <TalkContents
-                  index={i}
-                  length={allTalks.length}
-                  key={talk.id}
-                  movieId={movieId}
-                  talk={talk}
-                  setOpen={setOpen}
-                  setTalkId={setTalkId}
-                />
-              ))}
-            <div ref={ref} />
-          </React.Fragment>
-        )}
-      </section>
-
-      {open && (
-        <ReportModal
-          movieId={movieId}
-          type="talk"
-          setOpen={setOpen}
-          talkId={talkId}
-          setOpenReportComplete={setOpenReportComplete}
-        />
-      )}
-      {openReportComplete && (
-        <ReportCompleteModal setOpenReportComplete={setOpenReportComplete} />
-      )}
+    <section className="p-4 bg-white rounded shadow max-w-2xl mx-auto mt-10">
+      <h2 className="text-xl font-bold mb-4">{title}에 대한 리뷰</h2>
+      {fakeTalks.map((talk, index) => (
+        <div key={talk.id} className="border-b py-2">
+          <p className="text-gray-700">{talk.content}</p>
+          <p className="text-sm text-gray-500 mt-1">- {talk.user}</p>
+        </div>
+      ))}
     </section>
   );
 }
