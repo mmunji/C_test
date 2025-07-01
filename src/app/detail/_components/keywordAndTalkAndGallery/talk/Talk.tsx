@@ -1,6 +1,10 @@
-'use client';
+"use client";
 
-import React from 'react';
+import React from "react";
+import DividingLine from "../../common/DividingLine";
+import TalkContents from "./talkContents/TalkContents";
+import TalkHeader from "./TalkHeader";
+import NoTalk from "./NoTalk";
 
 interface TalkProps {
   title: string;
@@ -8,22 +12,60 @@ interface TalkProps {
   movieDetailData: any;
 }
 
-const fakeTalks = [
-  { id: 1, content: '정말 재미있었어요! 연기도 좋고 스토리도 탄탄했어요.', user: 'user1' },
-  { id: 2, content: '생각보다 별로였어요. 기대를 너무 했나봐요.', user: 'user2' },
-  { id: 3, content: 'OST가 너무 좋아서 계속 들었어요!', user: 'user3' },
+const dummyTalks = [
+  {
+    id: 1,
+    content: "정말 감동적인 영화였어요. 눈물이 멈추질 않았습니다.",
+    star: 5,
+    userNickname: "감성영화러버",
+  },
+  {
+    id: 2,
+    content: "배우들의 연기가 정말 대단했습니다!",
+    star: 4,
+    userNickname: "영화광",
+  },
+  {
+    id: 3,
+    content: "스토리는 조금 아쉬웠지만, 연출이 좋았어요.",
+    star: 3,
+    userNickname: "연출덕후",
+  },
 ];
 
 export default function Talk({ title }: TalkProps) {
+  const filters = ["최신순", "좋아요순"];
+  const [activeFilter, setActiveFilter] = React.useState(filters[0]);
+
   return (
-    <section className="p-4 bg-white rounded shadow max-w-2xl mx-auto mt-10">
-      <h2 className="text-xl font-bold mb-4">{title}에 대한 리뷰</h2>
-      {fakeTalks.map((talk, index) => (
-        <div key={talk.id} className="border-b py-2">
-          <p className="text-gray-700">{talk.content}</p>
-          <p className="text-sm text-gray-500 mt-1">- {talk.user}</p>
-        </div>
-      ))}
+    <section>
+      <DividingLine />
+
+      <section className="Laptop:rounded-xl Laptop:bg-D1_Gray Laptop:p-8">
+        <TalkHeader
+          title={title}
+          activeFilter={activeFilter}
+          filters={filters}
+          setActiveFilter={setActiveFilter}
+        />
+        {dummyTalks.length === 0 ? (
+          <NoTalk />
+        ) : (
+          <>
+            {dummyTalks.map((talk, i) => (
+              <TalkContents
+                index={i}
+                length={dummyTalks.length}
+                key={talk.id}
+                movieId={1}
+                talk={talk}
+                setOpen={() => {}}
+                setTalkId={() => {}}
+              />
+            ))}
+          </>
+        )}
+      </section>
     </section>
   );
 }
