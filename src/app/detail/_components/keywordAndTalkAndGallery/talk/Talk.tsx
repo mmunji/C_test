@@ -1,73 +1,51 @@
 /* eslint-disable simple-import-sort/imports */
 
-"use client";
+'use client';
+import { useState } from 'react';
 
-import React from "react";
-import DividingLine from "../../common/DividingLine";
-import TalkContents from "./talkContents/TalkContents";
-import TalkHeader from "./TalkHeader";
-import NoTalk from "./NoTalk";
-
-interface TalkProps {
-  title: string;
-  movieId: number;
-  movieDetailData: any;
+interface TalkItem {
+  id: number;
+  userNickname: string;
+  content: string;
+  star: number;
 }
 
-const dummyTalks = [
+const talks: TalkItem[] = [
   {
     id: 1,
-    content: "정말 감동적인 영화였어요. 눈물이 멈추질 않았습니다.",
-    star: 5,
-    userNickname: "감성영화러버",
+    userNickname: '무비러버',
+    content: '영화 너무 재밌게 봤어요! 배우들 연기 최고!',
+    star: 5
   },
   {
     id: 2,
-    content: "배우들의 연기가 정말 대단했습니다!",
-    star: 4,
-    userNickname: "영화광",
+    userNickname: '씨네광',
+    content: '스토리가 탄탄해서 몰입감 있게 봤습니다.',
+    star: 4
   },
   {
     id: 3,
-    content: "스토리는 조금 아쉬웠지만, 연출이 좋았어요.",
-    star: 3,
-    userNickname: "연출덕후",
-  },
+    userNickname: '영화쟁이',
+    content: '음악이 인상적이었어요. 또 보고 싶네요.',
+    star: 4
+  }
 ];
 
-export default function Talk({ title }: TalkProps) {
-  const filters = ["최신순", "좋아요순"];
-  const [activeFilter, setActiveFilter] = React.useState(filters[0]);
+export default function Talk() {
+  const [open, setOpen] = useState(false);
+  const [talkId, setTalkId] = useState<number | null>(null);
 
   return (
-    <section>
-      <DividingLine />
-
-      <section className="Laptop:rounded-xl Laptop:bg-D1_Gray Laptop:p-8">
-        <TalkHeader
-          title={title}
-          activeFilter={activeFilter}
-          filters={filters}
-          setActiveFilter={setActiveFilter}
-        />
-        {dummyTalks.length === 0 ? (
-          <NoTalk />
-        ) : (
-          <>
-            {dummyTalks.map((talk, i) => (
-              <TalkContents
-                index={i}
-                length={dummyTalks.length}
-                key={talk.id}
-                movieId={1}
-                talk={talk}
-                setOpen={() => { }}
-                setTalkId={() => { }}
-              />
-            ))}
-          </>
-        )}
-      </section>
-    </section>
+    <div className="space-y-4 mt-4">
+      {talks.map((talk) => (
+        <div key={talk.id} className="border border-gray-300 p-4 rounded-md shadow-sm">
+          <div className="flex items-center justify-between mb-2">
+            <div className="font-semibold">{talk.userNickname}</div>
+            <div className="text-yellow-500">{'★'.repeat(talk.star)}</div>
+          </div>
+          <div className="text-sm text-gray-700">{talk.content}</div>
+        </div>
+      ))}
+    </div>
   );
 }
